@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const result = await streamText({
-      model: google('gemini-1.5-pro'),
+      model: google('gemini-pro-latest'),
       system: OSCE_SIMULATOR_PROMPT,
       messages: messages,
       temperature: 0.7, // slightly higher to allow creative patient scenarios

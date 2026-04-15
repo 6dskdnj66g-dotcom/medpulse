@@ -9,6 +9,8 @@ import {
   Sparkles, ChevronRight
 } from "lucide-react";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface Message {
   id: string;
@@ -187,22 +189,13 @@ function ChatModal({
         const { value, done } = await reader.read();
         if (done) break;
         const text = decoder.decode(value);
-        // Parse SSE data from AI SDK
-        const lines = text.split("\n").filter(Boolean);
-        for (const line of lines) {
-          if (line.startsWith("0:")) {
-            try {
-              const chunk = JSON.parse(line.slice(2));
-              setMessages((prev) =>
-                prev.map((m) =>
-                  m.id === assistantMsg.id
-                    ? { ...m, content: m.content + chunk }
-                    : m
-                )
-              );
-            } catch {}
-          }
-        }
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantMsg.id
+              ? { ...m, content: m.content + text }
+              : m
+          )
+        );
       }
     } catch {
       setMessages((prev) =>
@@ -262,7 +255,21 @@ function ChatModal({
                     : "bg-white border border-slate-200 text-slate-700 rounded-tl-sm shadow-sm"
                 }`}
               >
-                {msg.content || (
+                {msg.content ? (
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      a: ({ node, ...props }) => <a className="text-sky-600 font-semibold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                      p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                      ul: ({ node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
+                      ol: ({ node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
+                      li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+                      strong: ({ node, ...props }) => <strong className="font-bold text-slate-800" {...props} />
+                    }}
+                  >
+                    {msg.content}
+                  </ReactMarkdown>
+                ) : (
                   <span className="flex items-center space-x-1.5 text-slate-400">
                     <Loader2 className="w-4 h-4 animate-spin" />
                     <span>Retrieving clinical data...</span>

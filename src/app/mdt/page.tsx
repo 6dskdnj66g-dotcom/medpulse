@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Search, Brain, ShieldCheck, AlertTriangle, Send, Loader2, BookMarked, UserCheck } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function MDTPage() {
   const [query, setQuery] = useState("");
@@ -40,14 +42,18 @@ export default function MDTPage() {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
 
+      let buffer = '';
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
 
         const text = decoder.decode(value);
-        const lines = text.split('\n').filter(Boolean);
+        buffer += text;
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
 
         for (const line of lines) {
+          if (!line.trim()) continue;
           try {
             const data = JSON.parse(line);
             setCurrentAgent(data.agent);
@@ -126,8 +132,12 @@ export default function MDTPage() {
             </div>
             {currentAgent === 'A' && <div className="text-xs font-bold text-sky-500 animate-pulse tracking-widest uppercase">Researching...</div>}
           </div>
-          <div className="flex-1 p-6 overflow-y-auto whitespace-pre-wrap text-slate-600 dark:text-slate-300 font-medium leading-relaxed font-mono text-sm">
-            {agentA || <span className="text-slate-300 dark:text-slate-600">Awaiting query...</span>}
+          <div className="flex-1 p-6 overflow-y-auto text-slate-600 dark:text-slate-300 font-medium leading-relaxed text-sm prose prose-sm max-w-none prose-a:text-sky-600 prose-a:no-underline hover:prose-a:underline">
+            {agentA ? (
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{agentA}</ReactMarkdown>
+            ) : (
+              <span className="text-slate-300 dark:text-slate-600">Awaiting query...</span>
+            )}
           </div>
         </div>
 
@@ -142,8 +152,12 @@ export default function MDTPage() {
             </div>
             {currentAgent === 'B' && <div className="text-xs font-bold text-amber-500 animate-pulse tracking-widest uppercase">Cross-Examining...</div>}
           </div>
-          <div className="flex-1 p-6 overflow-y-auto whitespace-pre-wrap text-slate-600 dark:text-slate-300 font-medium leading-relaxed font-mono text-sm">
-            {agentB || <span className="text-slate-300 dark:text-slate-600">Awaiting debate process...</span>}
+          <div className="flex-1 p-6 overflow-y-auto text-slate-600 dark:text-slate-300 font-medium leading-relaxed text-sm prose prose-sm max-w-none prose-a:text-amber-600 prose-a:no-underline hover:prose-a:underline">
+            {agentB ? (
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{agentB}</ReactMarkdown>
+            ) : (
+              <span className="text-slate-300 dark:text-slate-600">Awaiting debate process...</span>
+            )}
           </div>
         </div>
 
@@ -158,8 +172,12 @@ export default function MDTPage() {
             </div>
             {currentAgent === 'C' && <div className="text-xs font-bold text-teal-500 animate-pulse tracking-widest uppercase">Synthesizing...</div>}
           </div>
-          <div className="flex-1 p-6 overflow-y-auto whitespace-pre-wrap text-slate-800 dark:text-teal-100 font-bold leading-relaxed font-sans text-sm bg-teal-50/5 dark:bg-teal-900/10 border-2 border-teal-50 dark:border-teal-900/30 m-2 rounded-2xl shadow-inner">
-            {agentC || <span className="text-slate-300 dark:text-slate-600">Awaiting final verdict...</span>}
+          <div className="flex-1 p-6 overflow-y-auto text-slate-800 dark:text-teal-100 font-bold leading-relaxed text-sm bg-teal-50/5 dark:bg-teal-900/10 border-2 border-teal-50 dark:border-teal-900/30 m-2 rounded-2xl shadow-inner prose prose-sm max-w-none prose-a:text-teal-600 prose-a:no-underline hover:prose-a:underline">
+            {agentC ? (
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{agentC}</ReactMarkdown>
+            ) : (
+              <span className="text-slate-300 dark:text-slate-600">Awaiting final verdict...</span>
+            )}
           </div>
         </div>
 

@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     ];
 
     const { text: responseText } = await generateText({
-      model: google('gemini-1.5-pro'),
+      model: google('gemini-pro-latest'),
       system: SUMMARIZER_PROMPT,
       messages,
       temperature: 0.1,

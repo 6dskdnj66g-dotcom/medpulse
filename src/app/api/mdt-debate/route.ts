@@ -20,7 +20,7 @@ export async function POST(req: Request) {
         const mockContext = "Patient presents with persistent cough and low-grade fever. Standard guidelines recommend checking for macrolide resistance in endemic areas.";
 
         const resultA = await streamText({
-          model: google('gemini-1.5-pro'),
+          model: google('gemini-pro-latest'),
           system: AGENT_A_PROMPT + mockContext,
           prompt: query,
           temperature: 0.1,
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
         send({ agent: 'B', status: 'reviewing', message: 'Agent B: MDT Reviewer is cross-examining research...' });
         
         const resultB = await streamText({
-          model: google('gemini-1.5-pro'),
+          model: google('gemini-pro-latest'),
           system: AGENT_B_PROMPT + agentAOutput,
           prompt: "Analyze the previous research for drug interactions or outdated guidelines.",
           temperature: 0.1,
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
         send({ agent: 'C', status: 'synthesizing', message: 'Agent C: CMO is synthesizing final medical consensus...' });
 
         const resultC = await streamText({
-          model: google('gemini-1.5-pro'),
+          model: google('gemini-pro-latest'),
           system: AGENT_C_PROMPT,
           prompt: `Synthesize the findings between Agent A: ${agentAOutput} and the critique from Agent B: ${agentBOutput}. Create a final verified article.`,
           temperature: 0.1,

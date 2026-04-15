@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { Activity, Stethoscope, HeartPulse, ShieldAlert, Send, RefreshCw, Loader2, Info, Mic, MicOff, Volume2 } from "lucide-react";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import { useAchievement } from "@/components/AchievementContext";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function SimulatorWard() {
   const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string; id: string }[]>([]);
@@ -94,17 +96,9 @@ function SimulatorWard() {
         const { value, done } = await reader.read();
         if (done) break;
         const text = decoder.decode(value);
-        const lines = text.split("\n").filter(Boolean);
-        for (const line of lines) {
-          if (line.startsWith("0:")) {
-            try {
-              const chunk = JSON.parse(line.slice(2));
-              setMessages((prev) =>
-                prev.map((m) => m.id === assistantMsg.id ? { ...m, content: m.content + chunk } : m)
-              );
-            } catch {}
-          }
-        }
+        setMessages((prev) =>
+          prev.map((m) => m.id === assistantMsg.id ? { ...m, content: m.content + text } : m)
+        );
       }
     } catch {
       setMessages([{ id: "err", role: "assistant", content: "Simulation failed to start. Please reset ward." }]);
@@ -149,17 +143,9 @@ function SimulatorWard() {
         const { value, done } = await reader.read();
         if (done) break;
         const text = decoder.decode(value);
-        const lines = text.split("\n").filter(Boolean);
-        for (const line of lines) {
-          if (line.startsWith("0:")) {
-            try {
-              const chunk = JSON.parse(line.slice(2));
-              setMessages((prev) =>
-                prev.map((m) => m.id === assistantMsg.id ? { ...m, content: m.content + chunk } : m)
-              );
-            } catch {}
-          }
-        }
+        setMessages((prev) =>
+          prev.map((m) => m.id === assistantMsg.id ? { ...m, content: m.content + text } : m)
+        );
       }
       addXp(10, "Clinical Diagnosis Practice");
     } catch {
@@ -238,7 +224,7 @@ function SimulatorWard() {
           <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/30 dark:bg-slate-950/30">
             {messages.map((msg, idx) => (
               <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[80%] rounded-2xl px-5 py-4 shadow-sm text-sm leading-relaxed whitespace-pre-wrap ${
+                <div className={`max-w-[80%] rounded-2xl px-5 py-4 shadow-sm text-sm leading-relaxed ${
                   msg.role === "user" 
                     ? "bg-slate-800 text-white rounded-tr-sm" 
                     : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-tl-sm ring-1 ring-slate-900/5 dark:ring-slate-700/50"
@@ -251,7 +237,21 @@ function SimulatorWard() {
                       <Volume2 className="w-4 h-4" />
                     </button>
                   )}
-                  {msg.content || (
+                  {msg.content ? (
+                    <ReactMarkdown 
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        a: ({ node, ...props }) => <a className="text-rose-600 font-semibold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                        p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                        ul: ({ node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
+                        ol: ({ node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
+                        li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+                        strong: ({ node, ...props }) => <strong className="font-bold text-slate-800 dark:text-white" {...props} />
+                      }}
+                    >
+                      {msg.content}
+                    </ReactMarkdown>
+                  ) : (
                     <span className="flex items-center space-x-2 text-slate-400">
                       <Loader2 className="w-4 h-4 animate-spin" />
                       <span>Processing...</span>
