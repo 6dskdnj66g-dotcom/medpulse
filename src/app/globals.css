@@ -6,15 +6,15 @@
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   
   /* Primary Clinical Palette */
-  --color-medical-primary: #0ea5e9;    /* Sky 500 */
-  --color-medical-secondary: #2dd4bf; /* Teal 400 */
-  --color-medical-accent: #6366f1;    /* Indigo 500 */
+  --color-medical-primary: #0284c7;    /* Sky 600 */
+  --color-medical-secondary: #06b6d4;  /* Cyan 500 */
+  --color-medical-accent: #4f46e5;     /* Indigo 600 */
   
   /* Neutral Clinical Palette */
-  --color-clinical-bg: #f8fafc;       /* Slate 50 */
-  --color-clinical-text: #1e293b;     /* Slate 800 */
+  --color-clinical-bg: #f1f5f9;       /* Slate 100 */
+  --color-clinical-text: #0f172a;     /* Slate 900 */
   --color-clinical-muted: #64748b;    /* Slate 500 */
-  --color-clinical-border: #e2e8f0;   /* Slate 200 */
+  --color-clinical-border: #cbd5e1;   /* Slate 300 */
 }
 
 @layer base {
@@ -27,7 +27,7 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 antialiased;
+    @apply bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-50 antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -36,17 +36,17 @@
   }
 
   ::selection {
-    @apply bg-sky-500/20 text-sky-900;
+    @apply bg-cyan-500/20 text-cyan-950;
   }
 }
 
 @layer components {
   .clinical-card {
-    @apply bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md;
+    @apply bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md hover:border-sky-200 dark:hover:border-sky-900/60;
   }
 
   .medical-gradient {
-    @apply bg-gradient-to-r from-sky-500 to-teal-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-600 bg-clip-text text-transparent;
   }
 
   .glass-panel {
@@ -54,7 +54,7 @@
   }
 
   .btn-clinical-primary {
-    @apply px-6 py-3 rounded-2xl font-bold transition-all active:scale-95 flex items-center justify-center space-x-2 bg-slate-900 text-white hover:bg-slate-800 shadow-lg;
+    @apply px-6 py-3 rounded-2xl font-bold transition-all active:scale-95 flex items-center justify-center space-x-2 text-white bg-gradient-to-r from-sky-600 to-cyan-500 hover:from-sky-700 hover:to-cyan-600 shadow-lg;
   }
 
   .btn-clinical-outline {
@@ -145,6 +145,6 @@
 
 /* Focus ring override for clinical UI */
 input:focus, textarea:focus, select:focus, button:focus-visible {
-  outline: 2px solid #0ea5e9;
+  outline: 2px solid #0284c7;
   outline-offset: 2px;
 }
