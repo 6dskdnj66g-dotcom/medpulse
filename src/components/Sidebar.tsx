@@ -13,43 +13,43 @@ const navItems = [
     href: "/",
     icon: LayoutDashboard,
     label: "Dashboard",
-    activeClass: "bg-sky-50 text-sky-600",
-    hoverClass: "hover:bg-slate-50 hover:text-sky-600",
+    activeClass: "bg-sky-50 text-sky-700",
+    hoverClass: "hover:bg-slate-50 hover:text-sky-700",
   },
   {
     href: "/encyclopedia",
     icon: BookOpen,
     label: "Encyclopedia",
-    activeClass: "bg-sky-50 text-sky-600",
-    hoverClass: "hover:bg-slate-50 hover:text-sky-600",
+    activeClass: "bg-sky-50 text-sky-700",
+    hoverClass: "hover:bg-slate-50 hover:text-sky-700",
   },
   {
     href: "/mdt",
     icon: Brain,
     label: "MDT Debate",
-    activeClass: "bg-emerald-50 text-emerald-600",
-    hoverClass: "hover:bg-slate-50 hover:text-emerald-600",
+    activeClass: "bg-cyan-50 text-cyan-700",
+    hoverClass: "hover:bg-slate-50 hover:text-cyan-700",
   },
   {
     href: "/professors",
     icon: Bot,
     label: "AI Professors",
-    activeClass: "bg-indigo-50 text-indigo-600",
-    hoverClass: "hover:bg-slate-50 hover:text-indigo-600",
+    activeClass: "bg-indigo-50 text-indigo-700",
+    hoverClass: "hover:bg-slate-50 hover:text-indigo-700",
   },
   {
     href: "/summarizer",
     icon: FileText,
     label: "Medical Summarizer",
-    activeClass: "bg-sky-50 text-sky-600",
-    hoverClass: "hover:bg-slate-50 hover:text-sky-600",
+    activeClass: "bg-sky-50 text-sky-700",
+    hoverClass: "hover:bg-slate-50 hover:text-sky-700",
   },
   {
     href: "/simulator",
     icon: HeartPulse,
     label: "OSCE Simulator",
-    activeClass: "bg-rose-50 text-rose-600",
-    hoverClass: "hover:bg-slate-50 hover:text-rose-600",
+    activeClass: "bg-rose-50 text-rose-700",
+    hoverClass: "hover:bg-slate-50 hover:text-rose-700",
   },
 ];
 
@@ -71,20 +71,20 @@ export function Sidebar() {
 
   const roleBadgeClass =
     user?.role === Role.PROFESSOR
-      ? "text-teal-600 bg-teal-50 border-teal-100"
+      ? "text-cyan-700 bg-cyan-50 border-cyan-100"
       : user?.role === Role.ADMIN
-      ? "text-rose-600 bg-rose-50 border-rose-100"
-      : "text-sky-600 bg-sky-50 border-sky-100";
+      ? "text-rose-700 bg-rose-50 border-rose-100"
+      : "text-sky-700 bg-sky-50 border-sky-100";
 
   return (
     <div className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 h-full flex-shrink-0 transition-colors">
       {/* Logo */}
       <div className="p-6 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
         <div className="flex items-center space-x-3">
-          <div className="w-9 h-9 bg-gradient-to-br from-sky-500 to-teal-400 rounded-xl flex items-center justify-center shadow-md">
+          <div className="w-9 h-9 bg-gradient-to-br from-sky-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-md">
             <Activity className="h-5 w-5 text-white" />
           </div>
-          <span className="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-teal-400">
+          <span className="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-600">
             MedPulse
           </span>
         </div>
@@ -124,7 +124,7 @@ export function Sidebar() {
       {/* User Profile Footer */}
       <div className="p-4 border-t border-slate-100 dark:border-slate-800">
         <div className="flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors cursor-pointer group">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-sm">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-sm">
             {initials}
           </div>
           <div className="flex-1 min-w-0">
