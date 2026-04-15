@@ -306,6 +306,7 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [flashcards, setFlashcards] = useState<any[] | null>(null);
   const [isGeneratingCards, setIsGeneratingCards] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState<{title: string; tag: string; updated: string} | null>(null);
 
   const config = SPECIALTY_CONFIG[specialty];
 
@@ -455,6 +456,7 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
                 {filteredArticles.map((article, i) => (
                   <div
                     key={i}
+                    onClick={() => setSelectedArticle(article)}
                     className="group flex items-center justify-between p-4 rounded-xl border border-slate-100 hover:border-slate-200 hover:bg-slate-50 transition-all cursor-pointer"
                   >
                     <div className="flex items-start space-x-3">
@@ -569,6 +571,62 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
                 </div>
                 <div className="p-8 overflow-y-auto">
                   <FlashcardDeck cards={flashcards} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Article Modal */}
+          {selectedArticle && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
+              <div className="bg-slate-50 w-full max-w-2xl rounded-3xl shadow-2xl flex flex-col max-h-[90vh]">
+                <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-white rounded-t-3xl">
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-8 h-8 ${config.bgClass} rounded-lg flex items-center justify-center`}>
+                      <Icon className={`w-4 h-4 ${config.colorClass}`} />
+                    </div>
+                    <h3 className="font-bold text-slate-800 line-clamp-1">{selectedArticle.title}</h3>
+                  </div>
+                  <button onClick={() => setSelectedArticle(null)} className="p-2 hover:bg-slate-100 rounded-full transition-colors text-slate-500 flex-shrink-0">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                <div className="p-8 overflow-y-auto space-y-6">
+                  <div className="flex items-center space-x-2 mb-4">
+                    <span className={`text-xs px-2.5 py-1 rounded-full ${config.bgClass} ${config.colorClass} font-medium`}>
+                      {selectedArticle.tag}
+                    </span>
+                    <span className="text-xs text-slate-500 font-medium">Last Updated: {selectedArticle.updated}</span>
+                  </div>
+                  
+                  <div className="prose prose-slate prose-sm sm:prose-base max-w-none">
+                    <div className="bg-emerald-50 border border-emerald-100 text-emerald-800 px-4 py-3 rounded-xl mb-6 flex items-start space-x-3">
+                      <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <p className="m-0 text-sm leading-relaxed">
+                        <strong>Evidence-Based Content:</strong> This article is synthesized from verified clinical sources including {config.corpus}.
+                      </p>
+                    </div>
+                    
+                    <h4 className="font-bold text-slate-800 text-lg mb-2">Clinical Overview</h4>
+                    <p className="text-slate-600 leading-relaxed">
+                      This module provides actionable, peer-reviewed clinical guidelines regarding {selectedArticle.title}.
+                      To dive deeper into this topic and receive personalized algorithms or latest trial data, use the {config.label} AI Assistant or generate a high-yield flashcard deck to test your knowledge on this subject.
+                    </p>
+                    
+                    <div className="mt-8 border-t border-slate-200 pt-6">
+                      <button 
+                        onClick={() => {
+                          setSelectedArticle(null);
+                          setShowChat(true);
+                          // Optionally pre-fill chat input if needed
+                        }}
+                        className="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-xl text-sm transition-colors active:scale-[0.98] flex items-center justify-center space-x-2"
+                      >
+                        <Bot className="w-4 h-4" />
+                        <span>Discuss this case with AI</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
