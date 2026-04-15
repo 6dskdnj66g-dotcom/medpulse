@@ -6,24 +6,9 @@ import { useState } from "react";
 import { FileText, GraduationCap, ArrowRight, Search, BookMarked, PlayCircle, Sparkles } from "lucide-react";
 
 const SAVED_SETS = [
-  {
-    id: 1,
-    title: "Cardiology: Arrhythmias",
-    count: "45 Flashcards",
-    savedAt: "Saved 2 days ago",
-  },
-  {
-    id: 2,
-    title: "Pharmacology: Antibiotics",
-    count: "120 MCQs",
-    savedAt: "Saved last week",
-  },
-  {
-    id: 3,
-    title: "Neurology: Stroke Protocols",
-    count: "67 Flashcards",
-    savedAt: "Saved 3 days ago",
-  },
+  { id: 1, title: "Cardiology: Arrhythmias", count: "45 Flashcards", savedAt: "Saved 2 days ago" },
+  { id: 2, title: "Pharmacology: Antibiotics", count: "120 MCQs", savedAt: "Saved last week" },
+  { id: 3, title: "Neurology: Stroke Protocols", count: "67 Flashcards", savedAt: "Saved 3 days ago" },
 ];
 
 const QUICK_LINKS = [
@@ -47,16 +32,16 @@ export function StudentDashboard() {
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Welcome Banner */}
       <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-2">
           Welcome back, Future Doctor 👋
         </h1>
-        <p className="text-slate-500 text-lg">
+        <p className="text-slate-500 dark:text-slate-400 text-lg">
           Access your study tools and review your saved medical materials.
         </p>
       </div>
 
       {/* Encyclopedia Search */}
-      <div className="bg-gradient-to-br from-sky-500 to-teal-400 rounded-2xl p-6 mb-8 relative overflow-hidden shadow-lg shadow-sky-100">
+      <div className="bg-gradient-to-br from-sky-500 to-teal-400 rounded-2xl p-6 mb-8 relative overflow-hidden shadow-lg shadow-sky-100 dark:shadow-sky-900/30">
         <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
           <BookMarked className="w-40 h-40 text-white" />
         </div>
@@ -65,9 +50,7 @@ export function StudentDashboard() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>Zero-Hallucination RAG Engine</span>
           </div>
-          <h2 className="text-2xl font-extrabold text-white mb-1">
-            Query the Medical Encyclopedia
-          </h2>
+          <h2 className="text-2xl font-extrabold text-white mb-1">Query the Medical Encyclopedia</h2>
           <p className="text-sky-100 text-sm mb-5">
             Search across thousands of strictly vetted articles, pathophysiology pathways, and pharmacology entries.
           </p>
@@ -89,7 +72,6 @@ export function StudentDashboard() {
               Search
             </button>
           </form>
-          {/* Quick Tags */}
           <div className="flex flex-wrap gap-2 mt-4">
             {QUICK_LINKS.map((link) => (
               <Link
@@ -108,37 +90,36 @@ export function StudentDashboard() {
         {/* Summarizer Tool */}
         <Link
           href="/summarizer"
-          className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-sky-300 hover:shadow-md transition-all group flex flex-col h-full cursor-pointer"
+          className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:border-sky-300 dark:hover:border-sky-700 hover:shadow-md transition-all group flex flex-col h-full cursor-pointer"
         >
-          <div className="w-14 h-14 bg-sky-50 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
+          <div className="w-14 h-14 bg-sky-50 dark:bg-sky-900/40 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
             <FileText className="h-7 w-7 text-sky-500" />
           </div>
-          <h3 className="text-xl font-bold text-slate-800 mb-2">AI Summarizer</h3>
-          <p className="text-slate-500 flex-1 mb-5 text-sm leading-relaxed">
+          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">AI Summarizer</h3>
+          <p className="text-slate-500 dark:text-slate-400 flex-1 mb-5 text-sm leading-relaxed">
             Paste heavy medical texts or clinical notes to get structured, easy-to-read summaries with key diagnoses.
           </p>
-          <div className="flex items-center text-sky-600 font-semibold text-sm mt-auto">
+          <div className="flex items-center text-sky-600 dark:text-sky-400 font-semibold text-sm mt-auto">
             Open Summarizer{" "}
             <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
           </div>
         </Link>
 
         {/* Saved Materials */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col">
-          <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col">
+          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center">
             <GraduationCap className="h-5 w-5 text-indigo-500 mr-2" />
             Saved Flashcards &amp; MCQs
           </h3>
-
           <div className="flex-1 space-y-2">
             {SAVED_SETS.map((set) => (
               <div
                 key={set.id}
-                className="border border-slate-100 bg-slate-50 rounded-xl p-4 flex items-center justify-between hover:bg-white hover:border-indigo-200 transition-colors cursor-pointer group"
+                className="border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 flex items-center justify-between hover:bg-white dark:hover:bg-slate-800 hover:border-indigo-200 dark:hover:border-indigo-700 transition-colors cursor-pointer group"
               >
                 <div>
-                  <h4 className="font-bold text-slate-700 text-sm">{set.title}</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <h4 className="font-bold text-slate-700 dark:text-slate-200 text-sm">{set.title}</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                     {set.count} • {set.savedAt}
                   </p>
                 </div>
@@ -146,8 +127,7 @@ export function StudentDashboard() {
               </div>
             ))}
           </div>
-
-          <button className="mt-4 w-full py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold rounded-xl text-sm transition-colors border border-indigo-100">
+          <button className="mt-4 w-full py-3 bg-indigo-50 dark:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-700 dark:text-indigo-400 font-semibold rounded-xl text-sm transition-colors border border-indigo-100 dark:border-indigo-800">
             View All Saved Sets
           </button>
         </div>

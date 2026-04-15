@@ -185,7 +185,7 @@ function SimulatorWard() {
         </div>
         <button
           onClick={startNewCase}
-          className="flex items-center space-x-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 px-4 py-2 rounded-xl text-sm font-semibold transition-colors shadow-sm"
+          className="flex items-center space-x-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-colors shadow-sm"
         >
           <RefreshCw className="w-4 h-4" />
           <span>New Patient Case</span>
@@ -215,12 +215,12 @@ function SimulatorWard() {
             </div>
           </div>
 
-          <div className="bg-sky-50 border border-sky-100 rounded-2xl p-5 flex-1 overflow-y-auto">
-            <h3 className="font-bold text-sky-800 flex items-center mb-3">
+          <div className="bg-sky-50 dark:bg-sky-900/20 border border-sky-100 dark:border-sky-900/40 rounded-2xl p-5 flex-1 overflow-y-auto">
+            <h3 className="font-bold text-sky-800 dark:text-sky-300 flex items-center mb-3">
               <Info className="w-4 h-4 mr-2" />
               How to Play
             </h3>
-            <ul className="text-sm text-sky-700 space-y-3 list-disc list-inside">
+            <ul className="text-sm text-sky-700 dark:text-sky-400 space-y-3 list-disc list-inside">
               <li>Ask the patient questions to gather history.</li>
               <li>Order specific labs.</li>
               <li>Perform physical exams.</li>
@@ -229,19 +229,19 @@ function SimulatorWard() {
           </div>
         </div>
 
-        <div className="flex-1 bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col relative overflow-hidden">
-          <div className="bg-slate-50 border-b border-slate-200 p-4 flex items-center shadow-sm z-10">
+        <div className="flex-1 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative overflow-hidden">
+          <div className="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-4 flex items-center shadow-sm z-10">
             <Stethoscope className="w-5 h-5 text-slate-400 mr-3" />
-            <span className="font-bold text-slate-700">Examination Room 1</span>
+            <span className="font-bold text-slate-700 dark:text-slate-200">Examination Room 1</span>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/30">
+          <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/30 dark:bg-slate-950/30">
             {messages.map((msg, idx) => (
               <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[80%] rounded-2xl px-5 py-4 shadow-sm text-sm leading-relaxed whitespace-pre-wrap ${
                   msg.role === "user" 
                     ? "bg-slate-800 text-white rounded-tr-sm" 
-                    : "bg-white border border-slate-200 text-slate-700 rounded-tl-sm ring-1 ring-slate-900/5"
+                    : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-tl-sm ring-1 ring-slate-900/5 dark:ring-slate-700/50"
                 }`}>
                   {msg.role === "assistant" && (
                     <button 
@@ -263,7 +263,7 @@ function SimulatorWard() {
             <div ref={bottomRef} />
           </div>
 
-          <div className="p-4 border-t border-slate-100 bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+          <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
             <div className="flex items-center space-x-3">
               <button
                 onClick={toggleRecording}
@@ -276,7 +276,7 @@ function SimulatorWard() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
                 placeholder="Talk to the patient, order a lab, or state your diagnosis..."
-                className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm text-slate-700 placeholder-slate-400 focus:ring-2 focus:ring-rose-500 focus:bg-white outline-none transition-all font-medium"
+                className="flex-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:ring-2 focus:ring-rose-500 focus:bg-white dark:focus:bg-slate-700 outline-none transition-all font-medium"
                 disabled={isLoading}
               />
               <button
