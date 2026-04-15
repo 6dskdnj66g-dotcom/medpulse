@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { Sidebar } from '@/components/Sidebar';
 import { Navbar } from '@/components/Navbar';
@@ -9,8 +8,6 @@ import { AchievementProvider } from '@/components/AchievementContext';
 import { DevRoleToggle } from '@/components/DevRoleToggle';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { CalculatorsWidget } from '@/components/CalculatorsWidget';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'MedPulse AI | HealthTech Platform',
@@ -27,7 +24,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${inter.className} bg-slate-50 text-slate-900 antialiased`}
+        className="bg-slate-50 text-slate-900 antialiased"
         style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden' }}
       >
         <AuthProvider>
@@ -56,4 +53,3 @@ export default function RootLayout({
     </html>
   );
 }
-
