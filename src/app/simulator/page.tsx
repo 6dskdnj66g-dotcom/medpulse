@@ -161,7 +161,7 @@ function SimulatorWard() {
           }
         }
       }
-      addXp(10);
+      addXp(10, "Clinical Diagnosis Practice");
     } catch {
       setMessages((prev) =>
         prev.map((m) => m.id === assistantMsg.id ? { ...m, content: "⚠️ Connection error." } : m)

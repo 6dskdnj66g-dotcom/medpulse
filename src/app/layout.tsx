@@ -32,24 +32,24 @@ export default function RootLayout({
       >
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* Mobile top nav */}
-          <Navbar />
-          {/* Desktop: sidebar + content */}
-          <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-            <Sidebar />
-            <main
-              className="flex-1 overflow-y-auto"
-              style={{ minWidth: 0 }}
-            >
-              <ErrorBoundary>
-                <AchievementProvider>
-                  {children}
-                </AchievementProvider>
-              </ErrorBoundary>
-            </main>
-          </div>
-          <DevRoleToggle />
-          <CalculatorsWidget />
+            <AchievementProvider>
+              {/* Mobile top nav */}
+              <Navbar />
+              {/* Desktop: sidebar + content */}
+              <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+                <Sidebar />
+                <main
+                  className="flex-1 overflow-y-auto"
+                  style={{ minWidth: 0 }}
+                >
+                  <ErrorBoundary>
+                    {children}
+                  </ErrorBoundary>
+                </main>
+              </div>
+              <DevRoleToggle />
+              <CalculatorsWidget />
+            </AchievementProvider>
           </ThemeProvider>
         </AuthProvider>
       </body>

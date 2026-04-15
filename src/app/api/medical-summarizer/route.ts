@@ -1,4 +1,4 @@
-import { streamText, CoreMessage } from 'ai';
+import { streamText } from 'ai';
 import { google } from '@ai-sdk/google';
 
 export const maxDuration = 60;
@@ -40,13 +40,14 @@ export async function POST(req: Request) {
       );
     }
 
-    const messages: CoreMessage[] = [
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const messages: any = [
       {
-        role: 'user',
+        role: 'user' as const,
         content: image 
           ? [
-              { type: 'text', text: `Analyze and summarize the following clinical text alongside the provided medical image/lab report:\n\n${text || "No text provided, rely on the image."}` },
-              { type: 'image', image: image.split(',')[1] || image }
+              { type: 'text' as const, text: `Analyze and summarize the following clinical text alongside the provided medical image/lab report:\n\n${text || "No text provided, rely on the image."}` },
+              { type: 'image' as const, image: image.split(',')[1] || image }
             ]
           : `Analyze and summarize the following clinical text:\n\n${text}`
       }
