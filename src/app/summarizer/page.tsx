@@ -85,44 +85,16 @@ export default function SummarizerPage() {
         return;
       }
 
-      if (!res.body) throw new Error("No stream");
+      const data = await res.json();
 
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let accumulated = "";
-
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        const text = decoder.decode(value);
-        const lines = text.split("\n").filter(Boolean);
-        for (const line of lines) {
-          if (line.startsWith("0:")) {
-            try {
-              const chunk = JSON.parse(line.slice(2));
-              accumulated += chunk;
-            } catch {}
-          }
-        }
+      if (data.error) {
+        setError(data.error);
+        return;
       }
 
-      // Try to parse the accumulated JSON from Gemini
-      const jsonMatch = accumulated.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        try {
-          const parsed: SummaryResult = JSON.parse(jsonMatch[0]);
-          if (parsed.error) {
-            setError(parsed.error);
-          } else {
-            setResult(parsed);
-            addXp(100, "Analyzed Clinical Document");
-          }
-        } catch {
-          setError("Failed to parse AI response. The model returned an unstructured response. Please try again.");
-        }
-      } else {
-        setError("The AI did not return a valid structured response. Please try again.");
-      }
+      const parsed: SummaryResult = data;
+      setResult(parsed);
+      addXp(100, "Analyzed Clinical Document");
     } catch (err) {
       console.error("Summarizer error:", err);
       setError("Network error. Please check your connection and try again.");

@@ -1,4 +1,4 @@
-import { streamText } from 'ai';
+import { generateText } from 'ai';
 import { google } from '@ai-sdk/google';
 
 export const maxDuration = 60;
@@ -10,7 +10,7 @@ UpToDate, The Cochrane Library, PubMed/MEDLINE, WHO (World Health Organization) 
 
 CRITICAL DIRECTIVES:
 1. Analyze the provided clinical text (patient notes, lecture material, research, lab results) and any attached medical images thoroughly against the prioritized sources.
-2. Structure your response STRICTLY in the following JSON format — no markdown, only valid JSON:
+2. Structure your response STRICTLY in the following JSON format — no markdown, no code blocks, only valid raw JSON:
 {
   "chiefComplaint": "...",
   "pathophysiology": "...",
@@ -27,7 +27,8 @@ CRITICAL DIRECTIVES:
 3. If the text does not appear medical, return: {"error": "Non-medical text detected. Please provide clinical notes or medical literature."}
 4. Do NOT hallucinate. Base every field strictly on what is expressly mentioned in the text, cross-referenced with mandatory sources.
 5. If a field cannot be determined from the text, use null for that field.
-6. Keep all values concise and clinical.`;
+6. Keep all values concise and clinical.
+7. IMPORTANT: Return ONLY the raw JSON object. No markdown, no backticks, no "json" prefix.`;
 
 export async function POST(req: Request) {
   try {
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
     if ((!text || text.trim().length < 2) && !image) {
       return new Response(
         JSON.stringify({ error: 'Insufficient data provided. Please enter clinical text or upload an image.' }),
-        { status: 400 }
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
@@ -53,19 +54,33 @@ export async function POST(req: Request) {
       }
     ];
 
-    const result = await streamText({
+    const { text: responseText } = await generateText({
       model: google('gemini-1.5-pro'),
       system: SUMMARIZER_PROMPT,
       messages,
       temperature: 0.1,
     });
 
-    return result.toTextStreamResponse();
+    // Extract JSON from response
+    const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      return new Response(
+        JSON.stringify({ error: 'The AI did not return a valid structured response. Please try again.' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const parsed = JSON.parse(jsonMatch[0]);
+    return new Response(JSON.stringify(parsed), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+
   } catch (error) {
     console.error('Medical Summarizer Error:', error);
     return new Response(
       JSON.stringify({ error: 'Failed to process clinical text. Please try again.' }),
-      { status: 500 }
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 }
