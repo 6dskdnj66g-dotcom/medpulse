@@ -31,53 +31,66 @@ export function StudentDashboard() {
   return (
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
       {/* Welcome Banner */}
-      <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-2">
-          Welcome back, Future Doctor 👋
+      <div className="mb-10">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="px-3 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] rounded-lg border border-indigo-100 dark:border-indigo-800">
+            Clinical Portal v2.0
+          </div>
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">System Online</span>
+        </div>
+        <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">
+          Welcome back, <br />
+          <span className="medical-gradient">Future Doctor.</span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-lg">
-          Access your study tools and review your saved medical materials.
+        <p className="text-slate-500 dark:text-slate-400 text-xl max-w-2xl font-medium leading-relaxed">
+          Your command center for verified medical intelligence and high-yield clinical mastery.
         </p>
       </div>
 
       {/* Encyclopedia Search */}
-      <div className="bg-gradient-to-br from-sky-500 to-teal-400 rounded-2xl p-6 mb-8 relative overflow-hidden shadow-lg shadow-sky-100 dark:shadow-sky-900/30">
-        <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
-          <BookMarked className="w-40 h-40 text-white" />
+      <div className="bg-indigo-600 dark:bg-indigo-900/40 rounded-[2.5rem] p-8 md:p-12 mb-10 relative overflow-hidden shadow-2xl shadow-indigo-200 dark:shadow-none border border-indigo-500/20">
+        <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none transform translate-x-10 -translate-y-10 scale-150">
+          <BookMarked className="w-64 h-64 text-white" />
         </div>
-        <div className="relative z-10 max-w-2xl">
-          <div className="flex items-center space-x-2 text-white/70 text-xs font-bold uppercase tracking-widest mb-2">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Zero-Hallucination RAG Engine</span>
+        <div className="relative z-10 max-w-3xl">
+          <div className="flex items-center space-x-2 text-indigo-200 text-sm font-bold uppercase tracking-[0.2em] mb-4">
+            <Sparkles className="w-4 h-4" />
+            <span>MedPulse AI RAG ENGINE v2.5</span>
           </div>
-          <h2 className="text-2xl font-extrabold text-white mb-1">Query the Medical Encyclopedia</h2>
-          <p className="text-sky-100 text-sm mb-5">
-            Search across thousands of strictly vetted articles, pathophysiology pathways, and pharmacology entries.
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
+            Query the Clinical <br /> 
+            <span className="text-teal-300">Evidence Base</span>
+          </h2>
+          <p className="text-indigo-100/80 text-lg mb-8 max-w-xl leading-relaxed">
+            Instant access to verified pathophysiology, pharmacology, and treatment protocols with zero hallucination.
           </p>
-          <form onSubmit={handleSearch} className="flex items-center space-x-2">
-            <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row items-center gap-3">
+            <div className="relative flex-1 w-full">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="e.g. 'Pathophysiology of Heart Failure'..."
-                className="w-full pl-11 pr-4 py-3 bg-white rounded-xl text-slate-700 placeholder-slate-400 outline-none focus:ring-2 focus:ring-white/50 font-medium shadow-sm"
+                placeholder="Search clinical topics, drug doses, or guidelines..."
+                className="w-full pl-14 pr-6 py-5 bg-white rounded-2xl text-slate-800 placeholder-slate-400 outline-none focus:ring-4 focus:ring-indigo-400/30 font-semibold text-lg shadow-2xl transition-all"
               />
             </div>
             <button
               type="submit"
-              className="bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-6 rounded-xl transition-colors shadow-sm whitespace-nowrap active:scale-95"
+              className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white font-bold py-5 px-10 rounded-2xl transition-all shadow-xl whitespace-nowrap active:scale-95 flex items-center justify-center gap-2 group"
             >
               Search
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </form>
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-3 mt-8">
+            <span className="text-indigo-200/60 text-xs font-bold uppercase tracking-widest pt-1.5">Quick Filters:</span>
             {QUICK_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-xs bg-white/20 hover:bg-white/30 text-white font-medium px-3 py-1.5 rounded-full transition-colors border border-white/20"
+                className="text-sm bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-2 rounded-xl transition-all border border-white/10 hover:border-white/30 backdrop-blur-sm"
               >
                 {link.label}
               </Link>
@@ -86,49 +99,58 @@ export function StudentDashboard() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-8">
         {/* Summarizer Tool */}
         <Link
           href="/summarizer"
-          className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 hover:border-sky-300 dark:hover:border-sky-700 hover:shadow-md transition-all group flex flex-col h-full cursor-pointer"
+          className="clinical-card p-8 group flex flex-col h-full cursor-pointer overflow-hidden relative"
         >
-          <div className="w-14 h-14 bg-sky-50 dark:bg-sky-900/40 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
-            <FileText className="h-7 w-7 text-sky-500" />
+          <div className="absolute -right-4 -top-4 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition-colors" />
+          <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/40 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-sm border border-indigo-100 dark:border-indigo-800">
+            <FileText className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
           </div>
-          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">AI Summarizer</h3>
-          <p className="text-slate-500 dark:text-slate-400 flex-1 mb-5 text-sm leading-relaxed">
-            Paste heavy medical texts or clinical notes to get structured, easy-to-read summaries with key diagnoses.
+          <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-3">AI Summarizer</h3>
+          <p className="text-slate-500 dark:text-slate-400 flex-1 mb-8 text-base leading-relaxed">
+            Convert complex medical literature or clinical notes into structured, high-yield summaries with one click.
           </p>
-          <div className="flex items-center text-sky-600 dark:text-sky-400 font-semibold text-sm mt-auto">
-            Open Summarizer{" "}
-            <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+          <div className="flex items-center text-indigo-600 dark:text-indigo-400 font-bold text-sm mt-auto group/btn">
+            Launch Analysis Protocol
+            <ArrowRight className="h-5 w-5 ml-2 group-hover/btn:translate-x-2 transition-transform" />
           </div>
         </Link>
 
         {/* Saved Materials */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col">
-          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center">
-            <GraduationCap className="h-5 w-5 text-indigo-500 mr-2" />
-            Saved Flashcards &amp; MCQs
+        <div className="clinical-card p-8 flex flex-col relative overflow-hidden">
+          <div className="absolute -right-4 -top-4 w-32 h-32 bg-teal-500/5 rounded-full blur-3xl" />
+          <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center">
+            <div className="w-10 h-10 bg-teal-50 dark:bg-teal-900/40 rounded-xl flex items-center justify-center mr-4 border border-teal-100 dark:border-teal-800">
+              <GraduationCap className="h-5 w-5 text-teal-600 dark:text-teal-400" />
+            </div>
+            Recent Materials
           </h3>
-          <div className="flex-1 space-y-2">
+          <div className="flex-1 space-y-3">
             {SAVED_SETS.map((set) => (
               <div
                 key={set.id}
-                className="border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 flex items-center justify-between hover:bg-white dark:hover:bg-slate-800 hover:border-indigo-200 dark:hover:border-indigo-700 transition-colors cursor-pointer group"
+                className="group border border-slate-100 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-800/30 rounded-2xl p-4 flex items-center justify-between hover:bg-white dark:hover:bg-slate-800 hover:border-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/5 transition-all cursor-pointer"
               >
-                <div>
-                  <h4 className="font-bold text-slate-700 dark:text-slate-200 text-sm">{set.title}</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                    {set.count} • {set.savedAt}
-                  </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-2 h-10 bg-indigo-500/20 group-hover:bg-indigo-500 rounded-full transition-all" />
+                  <div>
+                    <h4 className="font-black text-slate-800 dark:text-slate-100 text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{set.title}</h4>
+                    <p className="text-xs font-bold text-slate-400 dark:text-slate-500 mt-1 uppercase tracking-wider">
+                      {set.count} • {set.savedAt}
+                    </p>
+                  </div>
                 </div>
-                <PlayCircle className="w-8 h-8 text-indigo-300 group-hover:text-indigo-500 transition-colors flex-shrink-0" />
+                <div className="w-10 h-10 rounded-full bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800 flex items-center justify-center group-hover:bg-indigo-600 group-hover:border-indigo-600 transition-all">
+                  <PlayCircle className="w-6 h-6 text-indigo-500 group-hover:text-white transition-all" />
+                </div>
               </div>
             ))}
           </div>
-          <button className="mt-4 w-full py-3 bg-indigo-50 dark:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-700 dark:text-indigo-400 font-semibold rounded-xl text-sm transition-colors border border-indigo-100 dark:border-indigo-800">
-            View All Saved Sets
+          <button className="mt-6 w-full py-4 bg-slate-50 dark:bg-slate-800/50 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 text-slate-600 dark:text-slate-400 font-bold rounded-2xl text-sm transition-all border border-slate-200 dark:border-slate-800 hover:border-indigo-600 shadow-sm">
+            Access Complete Library
           </button>
         </div>
       </div>

@@ -23,39 +23,39 @@ export function Navbar() {
 
   const roleBadgeClass =
     user?.role === Role.PROFESSOR
-      ? "bg-cyan-100 text-cyan-700"
-      : "bg-sky-100 text-sky-700";
+      ? "bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-400"
+      : "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-400";
 
   return (
     <div className="md:hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 relative z-50 flex-shrink-0">
       <div className="px-4 py-3 flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <div className="w-7 h-7 bg-gradient-to-br from-sky-600 to-cyan-500 rounded-lg flex items-center justify-center shadow-sm">
-            <Activity className="h-4 w-4 text-white" />
+          <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <Activity className="h-5 w-5 text-white" />
           </div>
-          <span className="text-base font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-600">
-            MedPulse AI
+          <span className="text-lg font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-600 via-teal-500 to-emerald-500">
+            MedPulse
           </span>
         </div>
         <div className="flex items-center space-x-3">
           <ThemeToggle />
           {user && (
-            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${roleBadgeClass}`}>
+            <span className={`text-[10px] font-black px-2 py-1 rounded-lg uppercase tracking-wider ${roleBadgeClass}`}>
               {user.role === Role.PROFESSOR ? "PROF" : "STUDENT"}
             </span>
           )}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 p-1.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-800"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
 
       {isOpen && (
-        <div className="px-3 py-3 border-t border-slate-100 space-y-1 bg-white shadow-xl absolute w-full">
+        <div className="px-4 py-6 border-t border-slate-100 dark:border-slate-800 space-y-2 bg-white dark:bg-slate-950 shadow-2xl absolute w-full animate-in slide-in-from-top-4 duration-300">
           {mobileNavItems.map((item) => {
             const isActive =
               item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
@@ -64,13 +64,13 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-sm transition-colors ${
+                className={`flex items-center space-x-4 px-5 py-4 rounded-2xl font-bold text-sm transition-all active:scale-95 ${
                   isActive
-                    ? "bg-sky-50 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300"
-                    : "text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-900"
+                    ? "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800 shadow-sm"
+                    : "text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-900 border border-transparent"
                 }`}
               >
-                <item.icon className="h-4 w-4" />
+                <item.icon className={`h-5 w-5 ${isActive ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400"}`} />
                 <span>{item.label}</span>
               </Link>
             );

@@ -10,9 +10,15 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="p-8 max-w-6xl mx-auto w-full h-full flex flex-col items-center justify-center space-y-4">
-        <div className="w-10 h-10 border-4 border-slate-200 border-t-sky-500 rounded-full animate-spin"></div>
-        <p className="text-slate-500 font-medium animate-pulse">Authenticating your secure session...</p>
+      <div className="p-8 max-w-6xl mx-auto w-full h-full flex flex-col items-center justify-center space-y-6">
+        <div className="relative">
+          <div className="w-16 h-16 border-4 border-indigo-500/10 border-t-indigo-600 rounded-full animate-spin"></div>
+          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-b-teal-500 rounded-full animate-spin-slow"></div>
+        </div>
+        <div className="text-center">
+          <h2 className="text-xl font-black text-slate-800 dark:text-white mb-2">MedPulse Security Protocol</h2>
+          <p className="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest text-xs animate-pulse">Initializing encrypted session...</p>
+        </div>
       </div>
     );
   }

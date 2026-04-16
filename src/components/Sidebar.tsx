@@ -13,43 +13,43 @@ const navItems = [
     href: "/",
     icon: LayoutDashboard,
     label: "Dashboard",
-    activeClass: "bg-sky-50 text-sky-700",
-    hoverClass: "hover:bg-slate-50 hover:text-sky-700",
+    activeClass: "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-700 dark:hover:text-indigo-400",
   },
   {
     href: "/encyclopedia",
     icon: BookOpen,
     label: "Encyclopedia",
-    activeClass: "bg-sky-50 text-sky-700",
-    hoverClass: "hover:bg-slate-50 hover:text-sky-700",
+    activeClass: "bg-teal-50 text-teal-700 dark:bg-teal-900/20 dark:text-teal-400",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-teal-700 dark:hover:text-teal-400",
   },
   {
     href: "/mdt",
     icon: Brain,
     label: "MDT Debate",
-    activeClass: "bg-cyan-50 text-cyan-700",
-    hoverClass: "hover:bg-slate-50 hover:text-cyan-700",
+    activeClass: "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-700 dark:hover:text-indigo-400",
   },
   {
     href: "/professors",
     icon: Bot,
     label: "AI Professors",
-    activeClass: "bg-indigo-50 text-indigo-700",
-    hoverClass: "hover:bg-slate-50 hover:text-indigo-700",
+    activeClass: "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-emerald-700 dark:hover:text-emerald-400",
   },
   {
     href: "/summarizer",
     icon: FileText,
     label: "Medical Summarizer",
-    activeClass: "bg-sky-50 text-sky-700",
-    hoverClass: "hover:bg-slate-50 hover:text-sky-700",
+    activeClass: "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-700 dark:hover:text-indigo-400",
   },
   {
     href: "/simulator",
     icon: HeartPulse,
     label: "OSCE Simulator",
-    activeClass: "bg-rose-50 text-rose-700",
-    hoverClass: "hover:bg-slate-50 hover:text-rose-700",
+    activeClass: "bg-rose-50 text-rose-700 dark:bg-rose-900/20 dark:text-rose-400",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-rose-700 dark:hover:text-rose-400",
   },
 ];
 
@@ -71,20 +71,20 @@ export function Sidebar() {
 
   const roleBadgeClass =
     user?.role === Role.PROFESSOR
-      ? "text-cyan-700 bg-cyan-50 border-cyan-100"
+      ? "text-teal-700 bg-teal-50 border-teal-100 dark:bg-teal-900/20 dark:text-teal-400 dark:border-teal-800"
       : user?.role === Role.ADMIN
-      ? "text-rose-700 bg-rose-50 border-rose-100"
-      : "text-sky-700 bg-sky-50 border-sky-100";
+      ? "text-rose-700 bg-rose-50 border-rose-100 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800"
+      : "text-indigo-700 bg-indigo-50 border-indigo-100 dark:bg-indigo-900/20 dark:text-indigo-400 dark:border-indigo-800";
 
   return (
     <div className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 h-full flex-shrink-0 transition-colors">
       {/* Logo */}
       <div className="p-6 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
         <div className="flex items-center space-x-3">
-          <div className="w-9 h-9 bg-gradient-to-br from-sky-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-md">
-            <Activity className="h-5 w-5 text-white" />
+          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <Activity className="h-6 w-6 text-white" />
           </div>
-          <span className="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-cyan-500 to-indigo-600">
+          <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-600 via-teal-500 to-emerald-500">
             MedPulse
           </span>
         </div>
