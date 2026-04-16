@@ -47,7 +47,7 @@ export default function MDTPage() {
         const { value, done } = await reader.read();
         if (done) break;
 
-        const text = decoder.decode(value);
+        const text = decoder.decode(value, { stream: true });
         buffer += text;
         const lines = buffer.split('\n');
         buffer = lines.pop() || '';

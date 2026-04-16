@@ -188,7 +188,7 @@ function ChatModal({
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
-        const text = decoder.decode(value);
+        const text = decoder.decode(value, { stream: true });
         setMessages((prev) =>
           prev.map((m) =>
             m.id === assistantMsg.id

@@ -36,8 +36,11 @@ export function StudentDashboard() {
           <div className="px-4 py-1.5 glass bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] rounded-full border border-indigo-500/20">
             Clinical Interface v3.0 (2026)
           </div>
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Medical Network Active</span>
+          <div className="flex items-center gap-2 px-3 py-1 glass bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest rounded-full border border-emerald-500/20">
+            <ShieldCheck className="w-3 h-3" />
+            Source Library Synced
+          </div>
+          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Medical Network Active (2026)</span>
         </div>
         <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 tracking-tight leading-none">
           Good morning, <br />

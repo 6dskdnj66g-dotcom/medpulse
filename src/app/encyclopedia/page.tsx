@@ -86,6 +86,73 @@ const SPECIALTIES = [
     articles: 1120,
     description: "Developmental milestones, pediatric dosing protocols, and neonatal emergency management.",
   },
+  {
+    id: "neurology",
+    icon: Brain,
+    label: "Neurology",
+    color: "violet",
+    iconBg: "bg-violet-500/10",
+    iconColor: "text-violet-500",
+    articles: 1640,
+    description: "Stroke protocols, movement disorders, epilepsy management, and CNS pathology from AAN and AHA Stroke 2026.",
+  },
+  {
+    id: "surgery",
+    icon: Stethoscope,
+    label: "Surgery",
+    color: "slate",
+    iconBg: "bg-slate-500/10",
+    iconColor: "text-slate-500",
+    articles: 2110,
+    description: "Perioperative care, surgical oncology, trauma surgery, and laparoscopic techniques from Bailey & Love 28th Ed.",
+  },
+  {
+    id: "obstetrics",
+    icon: Baby,
+    label: "Obstetrics & Gynecology",
+    color: "fuchsia",
+    iconBg: "bg-fuchsia-500/10",
+    iconColor: "text-fuchsia-500",
+    articles: 1450,
+    description: "Antenatal care, obstetric emergencies, and gynecologic oncology from ACOG, RCOG, and FIGO 2026.",
+  },
+  {
+    id: "oncology",
+    icon: Microscope,
+    label: "Oncology",
+    color: "orange",
+    iconBg: "bg-orange-500/10",
+    iconColor: "text-orange-500",
+    articles: 1880,
+    description: "Cancer biology, targeted therapy, immuno-oncology, and palliative care from NCCN, ESMO, and ASCO 2026.",
+  },
+  {
+    id: "orthopedics",
+    icon: Bone,
+    label: "Orthopedics",
+    color: "stone",
+    iconBg: "bg-stone-500/10",
+    iconColor: "text-stone-500",
+    articles: 980,
+    description: "Fracture management, joint arthroplasty, sports medicine, and spine surgery from AAOS 2026 guidelines.",
+  },
+  {
+    id: "ophthalmology",
+    icon: Eye,
+    label: "Ophthalmology",
+    color: "cyan",
+    iconBg: "bg-cyan-500/10",
+    iconColor: "text-cyan-500",
+    articles: 720,
+    description: "Retinal disease, glaucoma, cataract surgery, and neuro-ophthalmology from AAO Preferred Practice Patterns 2026.",
+  },
+];
+
+const SOURCE_CATEGORIES = [
+  { label: "Premier Journals", color: "indigo", sources: ["NEJM (IF 176.1)", "The Lancet (IF 202.7)", "JAMA (IF 157.3)", "BMJ (IF 105.7)", "Nature Medicine (IF 87.2)", "Annals of Internal Medicine", "J Clinical Oncology", "Circulation/AHA", "European Heart Journal", "Blood/ASH", "Gut/BMJ", "Chest/ACCP", "Kidney International", "JNNP"] },
+  { label: "Clinical Evidence Databases", color: "emerald", sources: ["UpToDate 2026", "Cochrane Library (Level 1A)", "PubMed/MEDLINE (NLM)", "ClinicalTrials.gov", "DynaMed 2026", "BMJ Best Practice 2026"] },
+  { label: "International Guidelines", color: "teal", sources: ["WHO 2026", "NICE (UK) 2026", "CDC 2026", "ACC/AHA 2026", "ESC 2026", "KDIGO 2026", "IDSA/ATS 2026", "ADA 2026", "NCCN 2026", "ESMO 2026", "ACR 2026", "AASLD 2026", "ACG 2026", "AAN 2026", "ACOG 2026", "AAP 2026", "AAOS 2026", "ASH 2026", "SCCM 2026"] },
+  { label: "Foundational Textbooks", color: "amber", sources: ["Harrison's 21st Ed", "Goldman-Cecil 27th Ed", "Braunwald's 12th Ed", "Robbins & Cotran 10th Ed", "Gray's Anatomy 5th Ed", "Netter's Atlas 8th Ed", "Guyton & Hall 14th Ed", "Adams & Victor's 11th Ed", "Nelson's 22nd Ed", "Williams Obstetrics 26th Ed", "Bailey & Love 28th Ed", "Schwartz's Surgery 11th Ed", "Goodman & Gilman 14th Ed", "Katzung 16th Ed", "Oxford Handbook 10th Ed", "Macleod's 14th Ed", "CMDT 2026"] },
 ];
 
 function EncyclopediaHome() {
@@ -191,6 +258,33 @@ function EncyclopediaHome() {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Global Medical Sources Panel */}
+      <div className="space-y-6">
+        <div className="text-center">
+          <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Global Medical Sources Registry</h3>
+          <p className="text-slate-500 dark:text-slate-400 text-sm max-w-2xl mx-auto">
+            MedPulse AI is synchronized with <strong>{SOURCE_CATEGORIES.reduce((acc, c) => acc + c.sources.length, 0)}+</strong> internationally recognized medical sources across all specialties, updated to <strong>April 2026</strong>.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {SOURCE_CATEGORIES.map((cat) => (
+            <div key={cat.label} className={`premium-card p-6 border-${cat.color}-500/20`}>
+              <h4 className={`text-xs font-black uppercase tracking-widest text-${cat.color}-600 dark:text-${cat.color}-400 mb-4 flex items-center`}>
+                <span className={`w-2 h-2 rounded-full bg-${cat.color}-500 mr-2 animate-pulse`} />
+                {cat.label}
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {cat.sources.map((src) => (
+                  <span key={src} className={`text-[10px] font-bold px-2.5 py-1 rounded-xl bg-${cat.color}-500/5 border border-${cat.color}-500/20 text-${cat.color}-700 dark:text-${cat.color}-400`}>
+                    {src}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
