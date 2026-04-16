@@ -24,26 +24,26 @@ export function Navbar() {
   ];
 
   return (
-    <div className={`md:hidden bg-white dark:bg-obsidian-950 border-b border-slate-200 dark:border-white/5 relative z-50 flex-shrink-0 transition-colors`} dir={dir}>
-      <div className="px-4 py-3 flex justify-between items-center">
+    <div className="md:hidden bg-white/80 dark:bg-obsidian-950/80 backdrop-blur-2xl border-b border-slate-200 dark:border-white/5 sticky top-0 z-[100] transition-all duration-500" dir={dir}>
+      <div className="px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30">
-            <Activity className="h-5 w-5 text-white" />
+          <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-[0_8px_20px_rgba(99,102,241,0.3)]">
+            <Activity className="h-6 w-6 text-white animate-pulse" />
           </div>
-          <span className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-600 via-teal-500 to-emerald-500 tracking-tight">
+          <span className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-500 via-teal-400 to-emerald-400 uppercase tracking-tighter">
             MedPulse
           </span>
         </div>
+        
         <div className="flex items-center gap-3">
-          {user && (
-            <span className={`text-[9px] font-black px-2 py-1 rounded-lg uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20`}>
-              {profile?.role || "STUDENT"}
-            </span>
-          )}
+          <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all border border-transparent hover:border-slate-200 dark:hover:border-white/10"
-            aria-label="Toggle menu"
+            className={`p-2.5 rounded-2xl transition-all duration-300 ${
+              isOpen 
+                ? "bg-rose-500 text-white shadow-lg" 
+                : "bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400"
+            }`}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -51,39 +51,45 @@ export function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="px-5 py-6 border-t border-slate-100 dark:border-white/5 space-y-4 bg-white dark:bg-obsidian-950 shadow-2xl absolute w-full animate-in slide-in-from-top-4 duration-300">
-          <div className="flex items-center justify-between pb-2">
+        <div className="absolute top-full left-0 w-full bg-white/95 dark:bg-obsidian-950/95 backdrop-blur-3xl border-b border-slate-200 dark:border-white/5 shadow-2xl p-6 space-y-3 animate-in slide-in-from-top-4 duration-500">
+          <div className="flex items-center justify-between mb-4 px-2">
             <LanguageToggle />
-            <ThemeToggle />
+            {user && (
+              <span className="text-[10px] font-black px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 uppercase tracking-[0.2em]">
+                {profile?.role || "STUDENT"}
+              </span>
+            )}
           </div>
-          <div className="space-y-1">
+          
+          <div className="grid grid-cols-1 gap-2">
             {mobileNavItems.map((item) => {
-              const isActive =
-                item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+              const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center gap-4 px-4 py-4 rounded-2xl font-black text-sm transition-all active:scale-95 ${
+                  className={`flex items-center gap-4 px-5 py-4 rounded-[1.25rem] font-black text-sm transition-all active:scale-[0.98] ${
                     isActive
-                      ? "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border border-indigo-500/20 obsidian-glow"
-                      : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 border border-transparent"
+                      ? "bg-indigo-600 text-white shadow-xl shadow-indigo-500/20 translate-x-1"
+                      : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5"
                   }`}
                 >
-                  <item.icon className={`h-5 w-5 ${isActive ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400 opacity-60"}`} />
-                  <span className="flex-1 text-start">{item.label}</span>
+                  <item.icon className={`h-5 w-5 ${isActive ? "text-white" : "text-slate-400"}`} />
+                  <span className="flex-1">{item.label}</span>
+                  {isActive && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
                 </Link>
               );
             })}
           </div>
+
           {user && (
-            <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/5">
+            <div className="pt-4 border-t border-slate-100 dark:border-white/5">
               <button 
-                className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-rose-500/10 text-rose-500 font-black text-sm border border-rose-500/10"
                 onClick={signOut}
+                className="w-full flex items-center justify-center gap-3 py-4 rounded-[1.25rem] bg-rose-500 text-white font-black text-sm shadow-xl shadow-rose-500/20 active:scale-95 transition-all"
               >
-                <LogOut className="w-4 h-4" />
+                <LogOut className="w-5 h-5" />
                 {t.common.logout}
               </button>
             </div>

@@ -58,32 +58,41 @@ export function Sidebar() {
     },
   ];
 
-  const COLOR_MAP: Record<string, { active: string; hover: string }> = {
-    indigo:  { active: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20",  hover: "hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-indigo-600 dark:hover:text-indigo-400" },
-    teal:    { active: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20",          hover: "hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-teal-600 dark:hover:text-teal-400" },
-    emerald: { active: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20", hover: "hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-emerald-600 dark:hover:text-emerald-400" },
-    rose:    { active: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",          hover: "hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-rose-600 dark:hover:text-rose-400" },
-    sky:     { active: "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20",              hover: "hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-sky-600 dark:hover:text-sky-400" },
-    amber:   { active: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",      hover: "hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-amber-600 dark:hover:text-amber-400" },
-    red:     { active: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",              hover: "hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-red-600 dark:hover:text-red-400" },
-    violet:  { active: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",  hover: "hover:bg-slate-50 dark:hover:bg-slate-900/50 hover:text-violet-600 dark:hover:text-violet-400" },
+  const COLOR_MAP: Record<string, { active: string; hover: string; dot: string }> = {
+    indigo:  { active: "bg-indigo-600 shadow-[0_10px_20px_rgba(99,102,241,0.3)] text-white scale-[1.02]", hover: "hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400", dot: "bg-indigo-500" },
+    teal:    { active: "bg-teal-600 shadow-[0_10px_20px_rgba(13,148,136,0.3)] text-white scale-[1.02]",   hover: "hover:bg-teal-50 dark:hover:bg-teal-900/20 hover:text-teal-600 dark:hover:text-teal-400",     dot: "bg-teal-500" },
+    emerald: { active: "bg-emerald-600 shadow-[0_10px_20px_rgba(16,185,129,0.3)] text-white scale-[1.02]", hover: "hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400", dot: "bg-emerald-500" },
+    rose:    { active: "bg-rose-600 shadow-[0_10px_20px_rgba(244,63,94,0.3)] text-white scale-[1.02]",    hover: "hover:bg-rose-50 dark:hover:bg-rose-900/20 hover:text-rose-600 dark:hover:text-rose-400",     dot: "bg-rose-500" },
+    sky:     { active: "bg-sky-600 shadow-[0_10px_20px_rgba(14,165,233,0.3)] text-white scale-[1.02]",    hover: "hover:bg-sky-50 dark:hover:bg-sky-900/20 hover:text-sky-600 dark:hover:text-sky-400",       dot: "bg-sky-500" },
+    amber:   { active: "bg-amber-600 shadow-[0_10px_20px_rgba(245,158,11,0.3)] text-white scale-[1.02]", hover: "hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-600 dark:hover:text-amber-400", dot: "bg-amber-500" },
+    red:     { active: "bg-red-600 shadow-[0_10px_20px_rgba(239,68,68,0.3)] text-white scale-[1.02]",     hover: "hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400",       dot: "bg-red-500" },
+    violet:  { active: "bg-violet-600 shadow-[0_10px_20px_rgba(139,92,246,0.3)] text-white scale-[1.02]", hover: "hover:bg-violet-50 dark:hover:bg-violet-900/20 hover:text-violet-600 dark:hover:text-violet-400", dot: "bg-violet-500" },
   };
 
   return (
-    <div className={`hidden md:flex flex-col w-72 bg-white dark:bg-obsidian-950 border-inline-end border-slate-200 dark:border-white/5 h-full flex-shrink-0 transition-all duration-500 z-50`} dir={dir}>
+    <div className={`hidden md:flex flex-col w-80 bg-white/80 dark:bg-slate-950/50 backdrop-blur-3xl border-inline-end border-slate-200/50 dark:border-white/5 h-[calc(100dvh-2rem)] my-4 mx-4 rounded-[2.5rem] shadow-2xl floating-3d z-50`} dir={dir}>
       {/* Logo Section */}
-      <div className="p-8 flex flex-col space-y-2 border-b border-slate-100 dark:border-white/5 bg-slate-50/20 dark:bg-transparent">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl shadow-indigo-500/30 group hover:rotate-12 transition-transform duration-500">
-            <Activity className="h-7 w-7 text-white" />
+      <div className="p-8 flex flex-col space-y-2">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-indigo-600 rounded-3xl flex items-center justify-center shadow-[0_10px_30px_rgba(99,102,241,0.4)] group hover:rotate-[15deg] transition-all duration-500 cursor-pointer">
+            <Activity className="h-8 w-8 text-white animate-pulse" />
           </div>
           <div>
-            <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-500 via-teal-400 to-emerald-400 uppercase tracking-tight">
+            <span className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-500 via-teal-400 to-emerald-400 uppercase tracking-tighter">
               MedPulse
             </span>
-            <p className="text-[10px] font-black tracking-[0.2em] text-slate-400 mt-[-2px] uppercase">Intelligence 3.0</p>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-black tracking-[0.3em] text-indigo-500/80 uppercase">AI ELITE</span>
+              <div className="h-[1px] w-8 bg-indigo-500/20" />
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Language & Theme Quick Toggles */}
+      <div className="px-6 pb-4 flex items-center justify-between">
+        <LanguageToggle />
+        <ThemeToggle />
       </div>
 
       {/* Navigation section */}
@@ -98,20 +107,27 @@ export function Sidebar() {
               const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
               const colors = COLOR_MAP[item.color] || COLOR_MAP.indigo;
               const Icon = item.icon;
+
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-3 px-3 py-3 rounded-2xl transition-all text-[12px] tracking-tight mb-1 relative group ${
-                    isActive
-                      ? `${colors.active} font-black obsidian-glow`
-                      : `text-slate-500 dark:text-slate-400 ${colors.hover} font-bold`
+                  className={`flex items-center gap-4 px-6 py-5 rounded-[1.75rem] text-sm font-black transition-all duration-500 group active:scale-95 ${
+                    isActive 
+                      ? colors.active 
+                      : `text-slate-500 dark:text-slate-400 ${colors.hover} hover:translate-x-1`
                   }`}
                 >
-                  <Icon className={`h-4 w-4 flex-shrink-0 transition-transform group-hover:scale-110 ${isActive ? "" : "opacity-60"}`} />
-                  <span className="flex-1 text-start">{item.label}</span>
+                  <div className={`relative p-2.5 rounded-2xl transition-all duration-500 ${
+                    isActive 
+                      ? 'bg-white/20 rotate-6 shadow-lg' 
+                      : 'bg-slate-100 dark:bg-white/5 group-hover:bg-white dark:group-hover:bg-slate-800 group-hover:scale-110 group-hover:-rotate-3 shadow-sm'
+                  }`}>
+                    <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-slate-500 dark:text-slate-400 group-hover:text-indigo-500'}`} />
+                  </div>
+                  <span className="flex-1 tracking-tighter uppercase">{item.label}</span>
                   {isActive && (
-                    <div className={`absolute ${lang === 'ar' ? '-left-1' : '-right-1'} top-3 w-1.5 h-6 rounded-full bg-current opacity-40`} />
+                    <div className="w-2 h-2 rounded-full bg-white animate-pulse shadow-[0_0_10px_white]" />
                   )}
                 </Link>
               );
@@ -133,65 +149,34 @@ export function Sidebar() {
         </div>
       </div>
 
-      {/* User Branding Footer */}
-      <div className="p-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-white/5">
-        {user ? (
-          <div className="p-2 rounded-2xl transition-all">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0 shadow-lg obsidian-glow">
-                {(profile?.full_name || user.email || "U").charAt(0).toUpperCase()}
+      {/* User section */}
+      {user && (
+        <div className="p-6 mt-auto">
+          <div className="clinical-card-3d p-6 group">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white font-black shadow-lg">
+                {profile?.full_name?.[0] || user.email?.[0].toUpperCase()}
               </div>
-              <div className="flex-1 min-w-0 text-start">
-                <p className="text-xs font-black text-slate-800 dark:text-slate-100 truncate">
-                  {profile?.full_name || user.email?.split("@")[0]}
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-black text-slate-900 dark:text-white truncate">
+                  {profile?.full_name || "User"}
                 </p>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 uppercase tracking-wider">
-                    {profile?.role || "student"}
-                  </span>
-                  <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20">
-                    {profile?.xp || 0} {t.common.xp}
-                  </span>
-                </div>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest truncate">
+                  {profile?.role || "Student"}
+                </p>
               </div>
             </div>
-            <div className="flex items-center gap-2 pt-2 border-t border-slate-100 dark:border-white/5">
-              <LanguageToggle />
-              <div className="flex-1" />
-              <ThemeToggle />
-              <button
-                onClick={signOut}
-                className="w-10 h-10 flex items-center justify-center rounded-xl bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 transition-all border border-rose-500/10"
-                title={t.common.logout}
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </div>
+            
+            <button 
+              onClick={() => signOut()}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs hover:bg-rose-500 hover:text-white transition-all duration-300"
+            >
+              <LogOut className="w-4 h-4" />
+              {t.common.logout}
+            </button>
           </div>
-        ) : (
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 p-2">
-              <div className="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center flex-shrink-0 border border-transparent dark:border-white/5">
-                <UserCircle className="w-5 h-5 text-slate-400" />
-              </div>
-              <div className="flex-1 min-w-0 text-start">
-                <p className="text-xs font-black text-slate-500 dark:text-slate-400">{t.common.visitor}</p>
-                <div className="flex items-center gap-1 mt-0.5">
-                  <span className="text-[9px] font-bold text-slate-400">{t.common.guest}</span>
-                </div>
-              </div>
-              <ThemeToggle />
-            </div>
-            <div className="flex items-center gap-2">
-              <LanguageToggle />
-              <div className="flex-1" />
-              <Link href="/auth/login" className="text-center text-[10px] font-black py-2.5 px-4 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-500/20 transition-all border border-indigo-500/10 whitespace-nowrap">
-                {t.common.login}
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

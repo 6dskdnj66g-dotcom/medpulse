@@ -3,158 +3,105 @@
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Inter", "Cairo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   
-  /* Modern Medical Obsidian Palette (2026 Edition) */
-  --color-obsidian-950: #020617;
-  --color-obsidian-900: #0f172a;
-  --color-obsidian-800: #1e293b;
+  /* ─── 3D Elite Medical Palette (Obsidian & Glass) ─── */
+  --color-medical-obsidian: #020617;   /* Deepest Space */
+  --color-medical-glass: rgba(255, 255, 255, 0.03);
+  --color-medical-primary: #6366f1;    /* Indigo Elite */
+  --color-medical-secondary: #0d9488;  /* Teal Bio */
+  --color-medical-accent: #f43f5e;     /* Rose Pulse */
   
-  --color-medical-primary: #6366f1;    /* Indigo 500 */
-  --color-medical-secondary: #0d9488;  /* Teal 600 */
-  --color-medical-accent: #10b981;     /* Emerald 500 */
-  
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-3xl: 2rem;
+  /* ─── Eye-Comfort Neutral Palette ─── */
+  --color-clinical-bg: #f8fafc;
+  --color-clinical-card: #ffffff;
+  --color-clinical-text: #0f172a;
+  --color-clinical-muted: #64748b;
+  --color-clinical-border: rgba(226, 232, 240, 0.8);
 }
 
 @layer base {
-  * {
-    @apply border-slate-200 dark:border-slate-800;
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-obsidian-950 dark:text-slate-50 antialiased selection:bg-indigo-500/30 transition-colors duration-500;
+    @apply bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-slate-100 antialiased selection:bg-indigo-500/30;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-extrabold text-slate-900 dark:text-white;
+  /* Support for RTL/LTR Arabic fonts */
+  [dir="rtl"] {
+    font-family: "Cairo", sans-serif;
   }
 }
 
 @layer components {
-  /* Premium Glassmorphism & 3D (2026 Engine) */
-  .glass-panel {
-    @apply bg-white/70 dark:bg-obsidian-900/60 backdrop-blur-2xl border border-white/20 dark:border-white/5 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] z-[100];
+  /* ─── 3D Glassmorphism Cards ─── */
+  .clinical-card-3d {
+    @apply relative bg-white dark:bg-slate-900/40 rounded-[2rem] border border-slate-200/60 dark:border-slate-800/50 
+           shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none backdrop-blur-xl transition-all duration-500
+           hover:shadow-[0_20px_50px_rgba(99,102,241,0.1)] hover:-translate-y-2 hover:border-indigo-500/30;
   }
 
-  .premium-card {
-    @apply bg-white dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-white/10 
-           shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.05)]
-           dark:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]
-           transition-all duration-500 hover:shadow-[0_25px_50px_-12px_rgba(99,102,241,0.15)] 
-           hover:-translate-y-2 hover:border-indigo-500/30 backdrop-blur-md relative overflow-hidden;
+  .floating-3d {
+    @apply shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+           transform perspective-1000 transition-transform duration-500;
   }
 
-  .premium-card-3d {
-    @apply bg-white dark:bg-obsidian-900 rounded-[2rem] border-b-4 border-slate-200 dark:border-indigo-500/20
-           shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)]
-           transition-all duration-300 hover:translate-y-[-4px] active:translate-y-[2px] active:border-b-0;
+  /* ─── Elite Buttons ─── */
+  .btn-elite {
+    @apply relative overflow-hidden px-8 py-4 rounded-2xl font-black tracking-wide uppercase text-xs
+           transition-all duration-300 active:scale-95 flex items-center justify-center gap-2
+           bg-indigo-600 text-white shadow-[0_10px_20px_rgba(99,102,241,0.3)]
+           hover:bg-indigo-700 hover:shadow-[0_15px_30px_rgba(99,102,241,0.4)] hover:-translate-y-0.5;
   }
 
-  .medical-gradient-text {
-    @apply bg-gradient-to-br from-indigo-500 via-teal-400 to-emerald-400 bg-clip-text text-transparent font-black antialiased;
+  .btn-elite-outline {
+    @apply px-8 py-4 rounded-2xl font-black tracking-wide uppercase text-xs
+           transition-all duration-300 border-2 border-slate-200 dark:border-slate-800
+           hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 backdrop-blur-md;
   }
 
-  .btn-premium {
-    @apply px-8 py-4 rounded-2xl font-black transition-all duration-300 active:scale-95 
-           flex items-center justify-center space-x-2 text-white 
-           bg-gradient-to-br from-indigo-600 to-indigo-800
-           hover:shadow-[0_15px_30px_-5px_rgba(99,102,241,0.3)] 
-           shadow-lg disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider text-[11px];
+  /* ─── 3D Gradients ─── */
+  .medical-gradient-3d {
+    @apply bg-gradient-to-br from-indigo-500 via-teal-400 to-emerald-400 bg-clip-text text-transparent;
   }
 
-  .obsidian-glow {
-    @apply shadow-[0_0_20px_-5px_rgba(99,102,241,0.3)] border-indigo-500/30;
+  .glass-nav {
+    @apply bg-white/70 dark:bg-slate-950/70 backdrop-blur-2xl border-b border-slate-200/50 dark:border-slate-800/50 sticky top-0 z-50;
   }
 }
 
-/* Custom Scrollbar */
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes progress {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-progress {
+    animation: progress 2s ease-in-out infinite;
+  }
+}
+
+/* Custom Eye-Comfort Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
-  height: 6px;
 }
 ::-webkit-scrollbar-track {
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-200 dark:bg-slate-800 rounded-full;
-}
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-300 dark:bg-slate-700;
-}
-
-/* ─── Animations ─────────────────────────────────────────────────── */
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scale-in {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes slide-in-bottom {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-in {
-  animation-duration: 300ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  animation-fill-mode: forwards;
-}
-
-.fade-in {
-  animation-name: fade-in;
-}
-
-.zoom-in {
-  animation-name: scale-in;
-}
-
-.slide-in-from-bottom {
-  animation-name: slide-in-bottom;
-}
-
-@keyframes clinical-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(0.99); }
-}
-
-.animate-clinical-pulse {
-  animation: clinical-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in-up {
-  @apply opacity-0;
-  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Global Transitions */
-.page-transition {
-  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Focus States */
-input:focus, textarea:focus, select:focus {
-  @apply ring-4 ring-indigo-500/10 border-indigo-500/40 outline-none transition-all duration-300;
+  @apply bg-slate-300 dark:bg-slate-800 rounded-full hover:bg-indigo-500 transition-colors;
 }
