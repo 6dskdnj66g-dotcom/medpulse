@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Menu, X, LayoutDashboard, BookOpen, Brain, Bot, FileText } from "lucide-react";
+import { Activity, Menu, X, LayoutDashboard, BookOpen, Brain, Bot, FileText, LogOut } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -81,7 +81,7 @@ export function Navbar() {
             <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/5">
               <button 
                 className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl bg-rose-500/10 text-rose-500 font-black text-sm border border-rose-500/10"
-                onClick={() => {/* Sign out logic or redirect */}}
+                onClick={signOut}
               >
                 <LogOut className="w-4 h-4" />
                 {t.common.logout}
