@@ -5,38 +5,27 @@
 @theme {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   
-  /* Modern Medical Obsidian Palette */
-  --color-medical-primary: #0f172a;    /* Navy 900 */
-  --color-medical-secondary: #0d9488;  /* Teal 600 */
-  --color-medical-accent: #6366f1;     /* Indigo 500 */
-  --color-medical-success: #10b981;    /* Emerald 500 */
-  --color-medical-warning: #f59e0b;    /* Amber 500 */
-  --color-medical-error: #ef4444;      /* Red 500 */
+  /* Modern Medical Obsidian Palette (2026 Edition) */
+  --color-obsidian-950: #020617;
+  --color-obsidian-900: #0f172a;
+  --color-obsidian-800: #1e293b;
   
-  /* Neutral Clinical Palette */
-  --color-clinical-bg: #f8fafc;       /* Slate 50 */
-  --color-clinical-text: #0f172a;     /* Slate 900 */
-  --color-clinical-muted: #64748b;    /* Slate 500 */
-  --color-clinical-border: #e2e8f0;   /* Slate 200 */
-
-  /* Dark Mode Obsidian */
-  --color-obsidian-bg: #020617;       /* Deep Obsidian */
-  --color-obsidian-card: #0f172a;     /* Navy 900 */
-  --color-obsidian-border: #1e293b;   /* Slate 800 */
+  --color-medical-primary: #6366f1;    /* Indigo 500 */
+  --color-medical-secondary: #0d9488;  /* Teal 600 */
+  --color-medical-accent: #10b981;     /* Emerald 500 */
+  
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
 }
 
 @layer base {
-  *, *::before, *::after {
-    box-sizing: border-box;
+  * {
+    @apply border-slate-200 dark:border-slate-800;
   }
-
-  html {
-    -webkit-text-size-adjust: 100%;
-    scroll-behavior: smooth;
-  }
-
+  
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 antialiased selection:bg-indigo-500/30 selection:text-indigo-900;
+    @apply bg-slate-50 text-slate-900 dark:bg-obsidian-950 dark:text-slate-50 antialiased selection:bg-indigo-500/30 transition-colors duration-500;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -46,132 +35,84 @@
 }
 
 @layer components {
-  .clinical-card {
-    @apply bg-white dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-800/50 shadow-xl shadow-slate-200/40 dark:shadow-none transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-1 hover:border-indigo-500/30 backdrop-blur-sm;
-  }
-
-  .medical-gradient {
-    @apply bg-gradient-to-br from-indigo-600 via-teal-500 to-emerald-500 bg-clip-text text-transparent;
-  }
-
+  /* Premium Glassmorphism */
   .glass-panel {
-    @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/20 dark:border-slate-800/50 shadow-2xl;
+    @apply bg-white/70 dark:bg-obsidian-900/40 backdrop-blur-xl border border-white/20 dark:border-slate-800/50 shadow-2xl;
   }
 
-  .btn-clinical-primary {
-    @apply px-8 py-4 rounded-2xl font-bold transition-all duration-300 active:scale-95 flex items-center justify-center space-x-2 text-white bg-indigo-600 hover:bg-indigo-700 hover:shadow-xl hover:shadow-indigo-500/20 shadow-lg;
+  .premium-card {
+    @apply bg-white dark:bg-obsidian-900/30 rounded-3xl border border-slate-200 dark:border-slate-800/50 shadow-xl shadow-slate-200/40 dark:shadow-none transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-1 hover:border-indigo-500/40 backdrop-blur-sm relative overflow-hidden;
   }
 
-  .btn-clinical-outline {
-    @apply px-8 py-4 rounded-2xl font-bold transition-all duration-300 active:scale-95 flex items-center justify-center space-x-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-indigo-500/30 hover:text-indigo-600 dark:hover:text-indigo-400;
+  .premium-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 transition-opacity duration-500;
   }
 
-  .status-badge {
-    @apply px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase flex items-center space-x-1.5;
+  .premium-card:hover::before {
+    @apply opacity-100;
   }
-}
 
-@layer utilities {
-  .perspective-1000 {
-    perspective: 1000px;
+  .medical-gradient-text {
+    @apply bg-gradient-to-br from-indigo-500 via-teal-400 to-emerald-400 bg-clip-text text-transparent font-black;
   }
-  .preserve-3d {
-    transform-style: preserve-3d;
-  }
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-  .rotate-y-180 {
-    transform: rotateY(180deg);
+
+  .btn-premium {
+    @apply px-8 py-4 rounded-2xl font-bold transition-all duration-300 active:scale-95 flex items-center justify-center space-x-2 text-white bg-indigo-600 hover:bg-indigo-700 hover:shadow-xl hover:shadow-indigo-500/20 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: transparent;
+  @apply bg-transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-200 rounded-full;
+  @apply bg-slate-200 dark:bg-slate-800 rounded-full;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-300;
+  @apply bg-slate-300 dark:bg-slate-700;
 }
 
 /* ─── Animations ─────────────────────────────────────────────────── */
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes clinical-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.99); }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
+.animate-clinical-pulse {
+  animation: clinical-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
-@keyframes clinical-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-clinical-pulse {
-  animation: clinical-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-fade-in-up {
+  @apply opacity-0;
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Global Transitions */
+.page-transition {
+  @apply animate-in fade-in duration-700;
 }
 
-@keyframes slide-in-from-bottom-4 {
-  from { transform: translateY(1rem); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slide-in-from-bottom-8 {
-  from { transform: translateY(2rem); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.animate-in {
-  animation-fill-mode: both;
-  animation-duration: 0.4s;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.fade-in {
-  animation-name: fade-in;
-}
-
-.slide-in-from-bottom-4 {
-  animation-name: slide-in-from-bottom-4;
-}
-
-.slide-in-from-bottom-8 {
-  animation-name: slide-in-from-bottom-8;
-}
-
-.duration-300 { animation-duration: 0.3s; }
-.duration-500 { animation-duration: 0.5s; }
-.duration-700 { animation-duration: 0.7s; }
-
-/* Focus ring override for clinical UI */
-input:focus, textarea:focus, select:focus, button:focus-visible {
-  outline: 2px solid #0284c7;
-  outline-offset: 2px;
+/* Focus States */
+input:focus, textarea:focus, select:focus {
+  @apply ring-4 ring-indigo-500/10 border-indigo-500/40 outline-none transition-all duration-300;
 }

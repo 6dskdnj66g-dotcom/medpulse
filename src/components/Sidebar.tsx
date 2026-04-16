@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, LayoutDashboard, FileText, BookOpen, Bot, Brain, LogOut, HeartPulse } from "lucide-react";
+import { Activity, LayoutDashboard, FileText, BookOpen, Bot, Brain, LogOut, HeartPulse, ShieldCheck } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/auth";
@@ -13,43 +13,43 @@ const navItems = [
     href: "/",
     icon: LayoutDashboard,
     label: "Dashboard",
-    activeClass: "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
-    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-700 dark:hover:text-indigo-400",
+    activeClass: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-600 dark:hover:text-indigo-400 font-bold",
   },
   {
     href: "/encyclopedia",
     icon: BookOpen,
     label: "Encyclopedia",
-    activeClass: "bg-teal-50 text-teal-700 dark:bg-teal-900/20 dark:text-teal-400",
-    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-teal-700 dark:hover:text-teal-400",
+    activeClass: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-teal-600 dark:hover:text-teal-400 font-bold",
   },
   {
     href: "/mdt",
     icon: Brain,
     label: "MDT Debate",
-    activeClass: "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
-    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-700 dark:hover:text-indigo-400",
+    activeClass: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-600 dark:hover:text-indigo-400 font-bold",
   },
   {
     href: "/professors",
     icon: Bot,
     label: "AI Professors",
-    activeClass: "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400",
-    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-emerald-700 dark:hover:text-emerald-400",
+    activeClass: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-emerald-600 dark:hover:text-emerald-400 font-bold",
   },
   {
     href: "/summarizer",
     icon: FileText,
     label: "Medical Summarizer",
-    activeClass: "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400",
-    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-700 dark:hover:text-indigo-400",
+    activeClass: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-600 dark:hover:text-indigo-400 font-bold",
   },
   {
     href: "/simulator",
     icon: HeartPulse,
     label: "OSCE Simulator",
-    activeClass: "bg-rose-50 text-rose-700 dark:bg-rose-900/20 dark:text-rose-400",
-    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-rose-700 dark:hover:text-rose-400",
+    activeClass: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
+    hoverClass: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-rose-600 dark:hover:text-rose-400 font-bold",
   },
 ];
 
@@ -64,38 +64,44 @@ export function Sidebar() {
 
   const roleLabel =
     user?.role === Role.PROFESSOR
-      ? "Professor Account"
+      ? "Clinical Professor"
       : user?.role === Role.ADMIN
-      ? "Admin Account"
-      : "Student Account";
+      ? "System Admin"
+      : "Medical Student";
 
   const roleBadgeClass =
     user?.role === Role.PROFESSOR
-      ? "text-teal-700 bg-teal-50 border-teal-100 dark:bg-teal-900/20 dark:text-teal-400 dark:border-teal-800"
+      ? "text-teal-600 bg-teal-500/10 border-teal-500/20"
       : user?.role === Role.ADMIN
-      ? "text-rose-700 bg-rose-50 border-rose-100 dark:bg-rose-900/20 dark:text-rose-400 dark:border-rose-800"
-      : "text-indigo-700 bg-indigo-50 border-indigo-100 dark:bg-indigo-900/20 dark:text-indigo-400 dark:border-indigo-800";
+      ? "text-rose-600 bg-rose-500/10 border-rose-500/20"
+      : "text-indigo-600 bg-indigo-500/10 border-indigo-500/20";
 
   return (
-    <div className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 h-full flex-shrink-0 transition-colors">
-      {/* Logo */}
-      <div className="p-6 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
+    <div className="hidden md:flex flex-col w-72 bg-white dark:bg-obsidian-900 border-r border-slate-200 dark:border-slate-800 h-full flex-shrink-0 transition-all duration-500 z-50">
+      {/* Logo Section */}
+      <div className="p-8 flex flex-col space-y-2 border-b border-slate-100 dark:border-slate-800/50">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
-            <Activity className="h-6 w-6 text-white" />
+          <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl shadow-indigo-500/20 group hover:rotate-12 transition-transform duration-500">
+            <Activity className="h-7 w-7 text-white" />
           </div>
-          <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-600 via-teal-500 to-emerald-500">
-            MedPulse
-          </span>
+          <div>
+            <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-500 via-teal-400 to-emerald-400 uppercase tracking-tight">
+              MedPulse
+            </span>
+            <p className="text-[10px] font-black tracking-[0.2em] text-slate-400 mt-[-2px] uppercase">Intelligence 3.0</p>
+          </div>
         </div>
-        <ThemeToggle />
       </div>
 
-      {/* Navigation */}
-      <div className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 mb-3">
-          Navigation
-        </p>
+      {/* Navigation section */}
+      <div className="flex-1 px-4 py-8 space-y-1 overflow-y-auto custom-scrollbar">
+        <div className="flex items-center justify-between px-4 mb-4">
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+            Clinical Modules
+          </p>
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        </div>
+        
         {navItems.map((item) => {
           const isActive =
             item.href === "/"
@@ -105,44 +111,55 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all font-medium text-sm ${
+              className={`flex items-center space-x-3 px-4 py-3.5 rounded-2xl border border-transparent transition-all text-[13px] tracking-tight ${
                 isActive
-                  ? item.activeClass
-                  : `text-slate-600 dark:text-slate-400 dark:hover:bg-slate-900 ${item.hoverClass}`
+                  ? `${item.activeClass} font-black shadow-lg shadow-indigo-500/5 scale-[1.02]`
+                  : `text-slate-500 dark:text-slate-400 ${item.hoverClass}`
               }`}
             >
-              <item.icon className="h-4 w-4 flex-shrink-0" />
+              <item.icon className={`h-5 w-5 flex-shrink-0 ${isActive ? "" : "opacity-60"}`} />
               <span>{item.label}</span>
               {isActive && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-current opacity-60" />
+                <div className="ml-auto w-1 h-4 rounded-full bg-current opacity-40" />
               )}
             </Link>
           );
         })}
+
+        {/* Verification Badge Tooltip style */}
+        <div className="mt-10 px-4">
+          <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4 border border-slate-100 dark:border-slate-800/50">
+            <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 mb-2">
+              <ShieldCheck className="w-4 h-4" />
+              <span className="text-[10px] font-black uppercase tracking-widest">Verified Context</span>
+            </div>
+            <p className="text-[10px] text-slate-500 leading-relaxed font-bold italic">
+              "Strict adherence to WHO & NEJM 2026 protocols verified by MedPulse Secure RAG."
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* User Profile Footer */}
-      <div className="p-4 border-t border-slate-100 dark:border-slate-800">
-        <div className="flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors cursor-pointer group">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm flex-shrink-0 shadow-sm">
+      {/* User Branding Footer */}
+      <div className="p-6 border-t border-slate-100 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-900/30">
+        <div className="flex items-center space-x-4 p-2 rounded-2xl group transition-all">
+          <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0 shadow-xl shadow-indigo-500/10 group-hover:scale-110 duration-500">
             {initials}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-slate-800 dark:text-slate-200 truncate">
-              {user?.name || "Loading..."}
+            <p className="text-sm font-black text-slate-800 dark:text-slate-100 truncate">
+              {user?.name || "Initializing..."}
             </p>
-            <div className="flex items-center space-x-2 mt-1">
-              <span
-                className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full border ${roleBadgeClass}`}
-              >
-                {roleLabel}
+            <div className="flex items-center gap-1.5 mt-1">
+              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full border border-current uppercase tracking-wider ${roleBadgeClass}`}>
+                {roleLabel.split(" ")[1]}
               </span>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200 flex items-center">
-                <span className="mr-1">🏆</span> {xp} XP
+              <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20 flex items-center">
+                {xp} XP
               </span>
             </div>
           </div>
-          <LogOut className="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover:text-slate-500 dark:group-hover:text-slate-400 transition-colors flex-shrink-0" />
+          <ThemeToggle />
         </div>
       </div>
     </div>
