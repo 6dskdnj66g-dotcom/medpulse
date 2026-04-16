@@ -1,17 +1,26 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-/**
- * Middleware: Route-level access control.
- * NOTE: The Professors page uses client-side UI lock overlays for
- * feature-level access control — middleware only protects truly
- * server-restricted admin routes.
- */
-export function middleware() {
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+
+  // Protect admin routes
+  if (pathname.startsWith('/admin')) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    // If Supabase not configured, allow for now
+    if (!supabaseUrl || supabaseUrl.includes('YOUR_PROJECT_ID')) {
+      return NextResponse.next();
+    }
+    // Check session cookie
+    const sessionCookie = req.cookies.get('sb-access-token')?.value
+      || req.cookies.getAll().find(c => c.name.includes('auth-token'))?.value;
+    if (!sessionCookie) {
+      return NextResponse.redirect(new URL('/auth/login', req.url));
+    }
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  // Only run on API admin routes if needed in the future
-  matcher: [],
+  matcher: ['/admin/:path*', '/profile/:path*'],
 };

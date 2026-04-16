@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, LayoutDashboard, FileText, BookOpen, Bot, Brain, HeartPulse, ShieldCheck, Calculator, Pill, Trophy, TrendingUp, Stethoscope, LogOut, UserCircle } from "lucide-react";
+import { Activity, LayoutDashboard, FileText, BookOpen, Bot, Brain, HeartPulse, ShieldCheck, Calculator, Pill, Trophy, TrendingUp, Stethoscope, LogOut, UserCircle, Library, User, LayoutGrid } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/auth";
@@ -36,22 +36,32 @@ const NAV_SECTIONS = [
     ]
   },
   {
-    title: "USMLE & Progress",
+    title: "Library & Progress",
     items: [
+      { href: "/library", icon: Library, label: "مكتبة المصادر", color: "violet" },
       { href: "/usmle", icon: Trophy, label: "USMLE Mode", color: "indigo" },
       { href: "/progress", icon: TrendingUp, label: "My Progress", color: "amber" },
+    ]
+  },
+  {
+    title: "Account",
+    items: [
+      { href: "/profile", icon: User, label: "ملفي الشخصي", color: "teal" },
+      { href: "/admin", icon: LayoutGrid, label: "لوحة الأدمن", color: "rose" },
     ]
   },
 ];
 
 const COLOR_MAP: Record<string, { active: string; hover: string }> = {
-  indigo: { active: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20", hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-600 dark:hover:text-indigo-400" },
-  teal: { active: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20", hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-teal-600 dark:hover:text-teal-400" },
+  indigo:  { active: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20",  hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-indigo-600 dark:hover:text-indigo-400" },
+  teal:    { active: "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20",          hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-teal-600 dark:hover:text-teal-400" },
   emerald: { active: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20", hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-emerald-600 dark:hover:text-emerald-400" },
-  rose: { active: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20", hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-rose-600 dark:hover:text-rose-400" },
-  sky: { active: "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20", hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-sky-600 dark:hover:text-sky-400" },
-  amber: { active: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20", hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-amber-600 dark:hover:text-amber-400" },
-  red: { active: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20", hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-red-600 dark:hover:text-red-400" },
+  rose:    { active: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",          hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-rose-600 dark:hover:text-rose-400" },
+  sky:     { active: "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20",              hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-sky-600 dark:hover:text-sky-400" },
+  amber:   { active: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",      hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-amber-600 dark:hover:text-amber-400" },
+  red:     { active: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",              hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-red-600 dark:hover:text-red-400" },
+  violet:  { active: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",  hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-violet-600 dark:hover:text-violet-400" },
+  orange:  { active: "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",  hover: "hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-orange-600 dark:hover:text-orange-400" },
 };
 
 export function Sidebar() {
