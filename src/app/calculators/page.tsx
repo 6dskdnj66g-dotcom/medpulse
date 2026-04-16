@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Calculator, Heart, Activity, Droplets, Scale, Brain, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, Info } from "lucide-react";
 
 // ── Calculator Definitions ─────────────────────────────────────────────────
@@ -276,7 +276,7 @@ function BMICalculator() {
     : bmi < 35 ? { label: "Obesity Class I", color: "orange", rec: "Medical intervention. Consider pharmacotherapy." }
     : bmi < 40 ? { label: "Obesity Class II", color: "red", rec: "Bariatric surgery evaluation. Intensive management." }
     : { label: "Obesity Class III (Severe)", color: "red", rec: "Bariatric surgery strongly indicated. Multidisciplinary team." };
-  const ibw = female => female ? 45.5 + 2.3 * ((height * 0.393701) - 60) : 50 + 2.3 * ((height * 0.393701) - 60);
+  const ibw = (f: boolean) => f ? 45.5 + 2.3 * ((height * 0.393701) - 60) : 50 + 2.3 * ((height * 0.393701) - 60);
 
   return (
     <div className="space-y-6">
