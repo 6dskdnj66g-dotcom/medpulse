@@ -1,0 +1,82 @@
+export type Language = 'en' | 'ar';
+
+export const translations = {
+  en: {
+    common: {
+      dashboard: "Dashboard",
+      visitor: "Visitor",
+      guest: "Unregistered",
+      login: "Login",
+      register: "Register",
+      logout: "Logout",
+      profile: "My Profile",
+      admin: "Admin Panel",
+      verifiedContext: "Verified Context",
+      ragDisclaimer: "WHO, NEJM & ACC/AHA 2026 protocols. Zero-hallucination RAG-verified.",
+      xp: "XP",
+      level: "Level",
+    },
+    sections: {
+      main: "Main",
+      clinicalModules: "Clinical Modules",
+      clinicalTools: "Clinical Tools",
+      libraryProgress: "Library & Progress",
+      account: "Account",
+    },
+    nav: {
+      encyclopedia: "Encyclopedia",
+      professors: "AI Professors",
+      mdt: "MDT Debate",
+      simulator: "OSCE Simulator",
+      summarizer: "Medical Summarizer",
+      calculators: "Clinical Calculators",
+      drugChecker: "Drug Checker",
+      ecg: "ECG Interpreter",
+      notes: "Clinical Notes",
+      translator: "Medical Translator",
+      records: "Clinical Portfolio",
+      library: "Source Library",
+      usmle: "USMLE Mode",
+      progress: "My Progress",
+    }
+  },
+  ar: {
+    common: {
+      dashboard: "لوحة التحكم",
+      visitor: "زائر",
+      guest: "غير مسجل",
+      login: "دخول",
+      register: "تسجيل",
+      logout: "خروج",
+      profile: "ملفي الشخصي",
+      admin: "لوحة الأدمن",
+      verifiedContext: "سياق موثق",
+      ragDisclaimer: "بروتوكولات WHO و NEJM لعام 2026. بيانات موثقة ضد الهلوسة.",
+      xp: "نقطة",
+      level: "مستوى",
+    },
+    sections: {
+      main: "الرئيسية",
+      clinicalModules: "الموديولات السريرية",
+      clinicalTools: "الأدوات السريرية",
+      libraryProgress: "المكتبة والتقدم",
+      account: "الحساب",
+    },
+    nav: {
+      encyclopedia: "الموسوعة الطبية",
+      professors: "أساتذة الذكاء الاصطناعي",
+      mdt: "مناظرات MDT",
+      simulator: "محاكي OSCE",
+      summarizer: "ملخص التقارير",
+      calculators: "الحاسبات السريرية",
+      drugChecker: "فاحص الأدوية",
+      ecg: "محلل ECG",
+      notes: "الملاحظات السريرية",
+      translator: "المترجم الطبي",
+      records: "المحفظة السريرية",
+      library: "مكتبة المصادر",
+      usmle: "وضع USMLE",
+      progress: "تقدمي الدراسي",
+    }
+  }
+};

@@ -8,13 +8,29 @@ export function ThemeToggle() {
   const { setTheme, theme } = useTheme();
 
   return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-      aria-label="Toggle theme"
-    >
-      <Sun className="h-5 w-5 dark:hidden block" />
-      <Moon className="h-5 w-5 hidden dark:block" />
-    </button>
+    <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700/50">
+      <button
+        onClick={() => setTheme('light')}
+        className={`w-8 h-8 flex items-center justify-center rounded-lg transition-all ${
+          theme === 'light'
+            ? "bg-white text-amber-500 shadow-sm"
+            : "text-slate-400 hover:text-amber-500"
+        }`}
+        aria-label="Light mode"
+      >
+        <Sun className="h-4 w-4" />
+      </button>
+      <button
+        onClick={() => setTheme('dark')}
+        className={`w-8 h-8 flex items-center justify-center rounded-lg transition-all ${
+          theme === 'dark'
+            ? "bg-slate-700 text-indigo-400 shadow-sm"
+            : "text-slate-500 hover:text-indigo-400"
+        }`}
+        aria-label="Dark mode"
+      >
+        <Moon className="h-4 w-4" />
+      </button>
+    </div>
   );
 }

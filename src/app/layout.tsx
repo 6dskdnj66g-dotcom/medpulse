@@ -52,31 +52,33 @@ export default function RootLayout({
         className="bg-slate-50 text-slate-900 antialiased"
         style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden' }}
       >
-        <SupabaseAuthProvider>
-          <AuthProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <AchievementProvider>
-                <VisitorTracker />
-                {/* Mobile top nav */}
-                <Navbar />
-                {/* Desktop: sidebar + content */}
-                <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-                  <Sidebar />
-                  <main
-                    className="flex-1 overflow-y-auto"
-                    style={{ minWidth: 0 }}
-                  >
-                    <ErrorBoundary>
-                      {children}
-                    </ErrorBoundary>
-                  </main>
-                </div>
-                <DevRoleToggle />
-                <CalculatorsWidget />
-              </AchievementProvider>
-            </ThemeProvider>
-          </AuthProvider>
-        </SupabaseAuthProvider>
+        <LanguageProvider>
+          <SupabaseAuthProvider>
+            <AuthProvider>
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <AchievementProvider>
+                  <VisitorTracker />
+                  {/* Mobile top nav */}
+                  <Navbar />
+                  {/* Desktop: sidebar + content */}
+                  <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+                    <Sidebar />
+                    <main
+                      className="flex-1 overflow-y-auto"
+                      style={{ minWidth: 0 }}
+                    >
+                      <ErrorBoundary>
+                        {children}
+                      </ErrorBoundary>
+                    </main>
+                  </div>
+                  <DevRoleToggle />
+                  <CalculatorsWidget />
+                </AchievementProvider>
+              </ThemeProvider>
+            </AuthProvider>
+          </SupabaseAuthProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
