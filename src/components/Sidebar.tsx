@@ -33,11 +33,13 @@ const NAV_SECTIONS = [
       { href: "/drug-checker", icon: Pill, label: "Drug Checker", color: "rose" },
       { href: "/ecg", icon: Activity, label: "ECG Interpreter", color: "red" },
       { href: "/notes", icon: Stethoscope, label: "Clinical Notes", color: "teal" },
+      { href: "/translator", icon: Bot, label: "Medical Translator", color: "indigo" },
     ]
   },
   {
     title: "Library & Progress",
     items: [
+      { href: "/records", icon: HeartPulse, label: "المحفظة السريرية", color: "emerald" },
       { href: "/library", icon: Library, label: "مكتبة المصادر", color: "violet" },
       { href: "/usmle", icon: Trophy, label: "USMLE Mode", color: "indigo" },
       { href: "/progress", icon: TrendingUp, label: "My Progress", color: "amber" },

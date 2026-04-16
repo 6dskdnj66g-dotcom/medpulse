@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, Loader2, ClipboardEdit, ShieldCheck, AlertTriangle, Copy, CheckCircle } from "lucide-react";
+import { FileText, Loader2, ClipboardEdit, ShieldCheck, AlertTriangle, Copy, CheckCircle, Download, Save, Bookmark } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { exportMedicalReport } from "@/lib/pdfExport";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { supabase } from "@/lib/supabase";
 
 const TEMPLATES = [
   {
@@ -25,9 +28,13 @@ const TEMPLATES = [
 ];
 
 export default function ClinicalNotesPage() {
+  const { user } = useSupabaseAuth();
   const [info, setInfo] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const generate = async () => {
@@ -145,14 +152,50 @@ export default function ClinicalNotesPage() {
                   <FileText className="w-4 h-4 text-teal-500" />
                   <h2 className="text-sm font-black uppercase tracking-widest text-slate-700 dark:text-slate-300">SOAP Note</h2>
                 </div>
-                <button
-                  onClick={copy}
-                  className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-teal-600 transition-colors"
-                >
-                  {copied ? <><CheckCircle className="w-4 h-4 text-teal-500" /> Copied!</> : <><Copy className="w-4 h-4" /> Copy Note</>}
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={async () => {
+                      setIsExporting(true);
+                      await exportMedicalReport("soap-content", { title: "Clinical SOAP Note", filename: "SOAP_Report" });
+                      setIsExporting(false);
+                    }}
+                    disabled={isExporting}
+                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-indigo-500 hover:text-indigo-600 transition-colors disabled:opacity-50"
+                    title="تحميل كتقرير PDF"
+                  >
+                    {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+                    PDF
+                  </button>
+                  {user && (
+                    <button
+                      onClick={async () => {
+                        setIsSaving(true);
+                        const { error } = await supabase.from("clinical_records").insert({
+                          user_id: user.id,
+                          type: "soap_note",
+                          title: `SOAP Note: ${info.substring(0, 30)}...`,
+                          content: { note: result, input: info },
+                        });
+                        if (!error) setSaved(true);
+                        setTimeout(() => setSaved(false), 3000);
+                        setIsSaving(false);
+                      }}
+                      disabled={isSaving || saved}
+                      className={`flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all ${saved ? "text-emerald-500" : "text-teal-600 hover:text-teal-700"}`}
+                    >
+                      {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <CheckCircle className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+                      {saved ? "Saved" : "Save"}
+                    </button>
+                  )}
+                  <button
+                    onClick={copy}
+                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-teal-600 transition-colors"
+                  >
+                    {copied ? <><CheckCircle className="w-4 h-4 text-teal-500" /> Copied!</> : <><Copy className="w-4 h-4" /> Copy</>}
+                  </button>
+                </div>
               </div>
-              <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-black prose-headings:text-teal-700 prose-strong:text-slate-900 dark:prose-strong:text-white overflow-y-auto max-h-[70vh]">
+              <div id="soap-content" className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-black prose-headings:text-teal-700 prose-strong:text-slate-900 dark:prose-strong:text-white overflow-y-auto max-h-[70vh] p-4 bg-white dark:bg-slate-900 rounded-xl">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{result}</ReactMarkdown>
               </div>
             </div>

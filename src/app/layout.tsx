@@ -17,12 +17,15 @@ export const metadata: Metadata = {
   description: 'AI-powered medical education platform with zero-hallucination clinical knowledge, USMLE prep, drug interactions, ECG interpretation, and clinical calculators.',
   keywords: ['medical AI', 'clinical knowledge', 'USMLE', 'drug interactions', 'ECG', 'clinical calculators', 'healthcare'],
   manifest: '/manifest.json',
-  themeColor: '#4f46e5',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
     title: 'MedPulse AI',
   },
+};
+
+export const viewport = {
+  themeColor: '#4f46e5',
 };
 
 export default function RootLayout({

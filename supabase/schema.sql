@@ -202,4 +202,26 @@ CREATE OR REPLACE TRIGGER on_progress_insert
 -- 8. SEED: Insert all global medical sources
 -- (Run the seeder API after setting up)
 -- ─────────────────────────────────────────────────────────────
--- Placeholder — seeder will be run via /api/admin/seed-sources endpoint
+
+-- ─────────────────────────────────────────────────────────────
+-- 9. CLINICAL RECORDS TABLE (Saved reports & notes)
+-- ─────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.clinical_records (
+  id            UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  created_at    TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+  user_id       UUID REFERENCES public.profiles(id) ON DELETE CASCADE NOT NULL,
+  type          TEXT NOT NULL CHECK (type IN ('soap_note', 'ecg_report', 'calc_result', 'translator_output', 'simulator_summary')),
+  title         TEXT,
+  content       JSONB NOT NULL DEFAULT '{}'::jsonb,
+  patient_id    TEXT, -- Optional identifier for the record
+  is_verified   BOOLEAN DEFAULT FALSE,
+  specialty     TEXT,
+  tags          TEXT[]
+);
+
+ALTER TABLE public.clinical_records ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can manage own clinical records" ON public.clinical_records FOR ALL USING (auth.uid() = user_id);
+
+CREATE INDEX IF NOT EXISTS idx_records_user ON public.clinical_records (user_id);
+CREATE INDEX IF NOT EXISTS idx_records_type ON public.clinical_records (type);
+CREATE INDEX IF NOT EXISTS idx_records_date ON public.clinical_records (created_at);

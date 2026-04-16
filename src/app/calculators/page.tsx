@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Calculator, Heart, Activity, Droplets, Scale, Brain, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, Info } from "lucide-react";
+import { Calculator, Heart, Activity, Droplets, Scale, Brain, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, Info, Download, Save, Loader2 } from "lucide-react";
+import { exportMedicalReport } from "@/lib/pdfExport";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { supabase } from "@/lib/supabase";
 
 // ── Calculator Definitions ─────────────────────────────────────────────────
 const CALCULATORS = [
@@ -16,7 +19,21 @@ const CALCULATORS = [
 ];
 
 // ── Result Component ───────────────────────────────────────────────────────
-function ResultBadge({ score, label, color, risk }: { score: number | string; label: string; color: string; risk: string }) {
+// ── Result Wrapper ──────────────────────────────────────────────────────────
+function CalcResultWrapper({ id, title, score, risk, label, color, rawData }: { 
+  id: string; 
+  title: string;
+  score: number | string; 
+  label: string; 
+  color: string; 
+  risk: string;
+  rawData: any;
+}) {
+  const { user } = useSupabaseAuth();
+  const [isExporting, setIsExporting] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
   const colors: Record<string, string> = {
     green: "bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400",
     yellow: "bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400",
@@ -24,11 +41,53 @@ function ResultBadge({ score, label, color, risk }: { score: number | string; la
     red: "bg-rose-500/10 border-rose-500/30 text-rose-700 dark:text-rose-400",
     blue: "bg-sky-500/10 border-sky-500/30 text-sky-700 dark:text-sky-400",
   };
+
   return (
-    <div className={`rounded-2xl border p-6 ${colors[color] || colors.blue}`}>
-      <p className="text-xs font-black uppercase tracking-widest mb-2">{label}</p>
-      <p className="text-4xl font-black mb-2">{score}</p>
-      <p className="text-sm font-bold">{risk}</p>
+    <div className="space-y-4">
+      <div id={id} className={`rounded-2xl border p-6 bg-white dark:bg-slate-900 ${colors[color] || colors.blue}`}>
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-widest opacity-70">{label}</p>
+            <p className="text-4xl font-black">{score}</p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={async () => {
+                setIsExporting(true);
+                await exportMedicalReport(id, { title: `${title} - Clinical Result`, filename: `${title.replace(/\s+/g, '_')}_Result` });
+                setIsExporting(false);
+              }}
+              disabled={isExporting}
+              className="p-2 rounded-xl bg-white/50 dark:bg-black/20 hover:scale-105 transition-all"
+              title="Download PDF"
+            >
+              {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+            </button>
+            {user && (
+              <button
+                onClick={async () => {
+                  setIsSaving(true);
+                  const { error } = await supabase.from("clinical_records").insert({
+                    user_id: user.id,
+                    type: "calc_result",
+                    title: `${title}: Score ${score}`,
+                    content: { score, risk, label, title, inputs: rawData },
+                  });
+                  if (!error) setSaved(true);
+                  setTimeout(() => setSaved(false), 3000);
+                  setIsSaving(false);
+                }}
+                disabled={isSaving || saved}
+                className="p-2 rounded-xl bg-white/50 dark:bg-black/20 hover:scale-105 transition-all"
+                title="Save to profile"
+              >
+                {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <CheckCircle className="w-4 h-4 text-emerald-500" /> : <Save className="w-4 h-4" />}
+              </button>
+            )}
+          </div>
+        </div>
+        <p className="text-sm font-bold">{risk}</p>
+      </div>
     </div>
   );
 }
@@ -91,7 +150,15 @@ function CURB65Calculator() {
         <CCheck label="BP <90 systolic or ≤60 diastolic" value={bp} onChange={setBp} />
         <CCheck label="Age ≥65 years" value={age} onChange={setAge} />
       </div>
-      <ResultBadge score={score} label="CURB-65 Score" color={risk.color as string} risk={`${risk.label} — ${risk.management}`} />
+      <CalcResultWrapper 
+        id="curb65-result" 
+        title="CURB-65"
+        score={score} 
+        label="CURB-65 Score" 
+        color={risk.color} 
+        risk={`${risk.label} — ${risk.management}`}
+        rawData={{ confusion, bun, rr, bp, age }}
+      />
       <p className="text-xs text-slate-400 font-bold">[Evidence: IDSA/ATS 2026 Community-Acquired Pneumonia Guidelines]</p>
     </div>
   );
@@ -125,9 +192,16 @@ function CHADSVASCCalculator() {
         <CCheck label="Age 65–74 years (+1)" value={age65} onChange={setAge65} />
         <CCheck label="Female sex (+1)" value={female} onChange={setFemale} />
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        <ResultBadge score={score} label="CHA₂DS₂-VASc Score" color={risk.color as string} risk={risk.label} />
-        <ResultBadge score={`${annualRisk}%`} label="Annual Stroke Risk" color={risk.color as string} risk={risk.rec} />
+      <div className="grid grid-cols-1 gap-4">
+        <CalcResultWrapper 
+          id="chadsvasc-result" 
+          title="CHA₂DS₂-VASc"
+          score={score} 
+          label="CHA₂DS₂-VASc Score" 
+          color={risk.color} 
+          risk={`${risk.label}: ${risk.rec} (Annual Risk: ${annualRisk}%)`}
+          rawData={{ hf, htn, age75, dm, stroke, vascular, age65, female }}
+        />
       </div>
       <p className="text-xs text-slate-400 font-bold">[Evidence: ESC 2026 Atrial Fibrillation Guidelines]</p>
     </div>
@@ -163,7 +237,15 @@ function WellsDVTCalculator() {
           <CCheck key={f.key} label={f.label} value={!!checks[f.key]} onChange={v => setChecks(prev => ({ ...prev, [f.key]: v }))} />
         ))}
       </div>
-      <ResultBadge score={score} label="Wells DVT Score" color={risk.color as string} risk={`${risk.label} — ${risk.rec}`} />
+      <CalcResultWrapper 
+        id="wells-dvt-result" 
+        title="Wells DVT"
+        score={score} 
+        label="Wells DVT Score" 
+        color={risk.color} 
+        risk={`${risk.label} — ${risk.rec}`}
+        rawData={checks}
+      />
       <p className="text-xs text-slate-400 font-bold">[Evidence: CHEST/ISTH Antithrombotic Guidelines 2026]</p>
     </div>
   );
@@ -193,7 +275,15 @@ function WellsPECalculator() {
           <CCheck key={f.key} label={f.label} value={!!checks[f.key]} onChange={v => setChecks(prev => ({ ...prev, [f.key]: v }))} />
         ))}
       </div>
-      <ResultBadge score={score.toFixed(1)} label="Wells PE Score" color={risk.color as string} risk={`${risk.label} — ${risk.rec}`} />
+      <CalcResultWrapper 
+        id="wells-pe-result" 
+        title="Wells PE"
+        score={score.toFixed(1)} 
+        label="Wells PE Score" 
+        color={risk.color} 
+        risk={`${risk.label} — ${risk.rec}`}
+        rawData={checks}
+      />
       <p className="text-xs text-slate-400 font-bold">[Evidence: European Society of Cardiology PE Guidelines 2026]</p>
     </div>
   );
@@ -220,9 +310,16 @@ function MELDCalculator() {
         <CField label="INR" value={inr} onChange={setInr} min={1} max={10} />
         <CField label="Sodium (mEq/L)" value={sodium} onChange={setSodium} min={100} max={150} />
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        <ResultBadge score={meld} label="MELD Score" color={color} risk={`90-Day Mortality: ${mortality}`} />
-        <ResultBadge score={Math.round(meldSodium)} label="MELD-Na Score" color={color} risk="Used for transplant prioritization (UNOS)" />
+      <div className="grid grid-cols-1 gap-4">
+        <CalcResultWrapper 
+          id="meld-result" 
+          title="MELD/MELD-Na"
+          score={`${meld} / ${Math.round(meldSodium)}`} 
+          label="MELD / MELD-Na" 
+          color={color} 
+          risk={`90-Day Mortality: ${mortality}. MELD-Na used for transplant prioritization.`}
+          rawData={{ creatinine, bilirubin, inr, sodium }}
+        />
       </div>
       <p className="text-xs text-slate-400 font-bold">[Evidence: AASLD/UNOS MELD-Na 2026 Guidelines]</p>
     </div>
@@ -252,7 +349,15 @@ function EGFRCalculator() {
         <CField label="Serum Creatinine (mg/dL)" value={creatinine} onChange={setCreatinine} min={0.1} max={20} />
       </div>
       <CCheck label="Female sex" value={female} onChange={setFemale} />
-      <ResultBadge score={`${egfr} mL/min/1.73m²`} label="eGFR (CKD-EPI 2021)" color={stage.color} risk={`CKD Stage: ${stage.s}`} />
+      <CalcResultWrapper 
+        id="egfr-result" 
+        title="eGFR (CKD-EPI)"
+        score={`${egfr} mL/min/1.73m²`} 
+        label="eGFR (CKD-EPI 2021)" 
+        color={stage.color} 
+        risk={`CKD Stage: ${stage.s}`}
+        rawData={{ age, creatinine, female }}
+      />
       <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-4 text-xs text-slate-500 space-y-1">
         <p className="font-black text-slate-700 dark:text-slate-300 mb-2">Drug Dose Adjustment Thresholds:</p>
         <p>• Metformin: Avoid if eGFR &lt;30, reduce if &lt;45</p>
@@ -284,7 +389,15 @@ function BMICalculator() {
         <CField label="Weight (kg)" value={weight} onChange={setWeight} min={20} max={300} />
         <CField label="Height (cm)" value={height} onChange={setHeight} min={100} max={250} />
       </div>
-      <ResultBadge score={bmi} label="BMI" color={cat.color} risk={`${cat.label} — ${cat.rec}`} />
+      <CalcResultWrapper 
+        id="bmi-result" 
+        title="BMI"
+        score={bmi} 
+        label="BMI Result" 
+        color={cat.color} 
+        risk={`${cat.label} — ${cat.rec}`}
+        rawData={{ weight, height }}
+      />
       <div className="grid grid-cols-2 gap-4 text-sm">
         <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-4">
           <p className="text-xs font-black uppercase text-slate-400 mb-1">Ideal Body Weight (Male)</p>
@@ -347,7 +460,15 @@ function NIHSSCalculator() {
           </div>
         ))}
       </div>
-      <ResultBadge score={total} label="NIHSS Total Score" color={sev.color} risk={sev.label} />
+      <CalcResultWrapper 
+        id="nihss-result" 
+        title="NIHSS"
+        score={total} 
+        label="NIHSS Total Score" 
+        color={sev.color} 
+        risk={sev.label}
+        rawData={scores}
+      />
       <p className="text-xs text-slate-400 font-bold">[Evidence: AHA/ASA Stroke Guidelines 2026]</p>
     </div>
   );

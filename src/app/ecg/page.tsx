@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Activity, Loader2, ShieldCheck, AlertTriangle, ChevronRight, CheckCircle, X, ArrowRight } from "lucide-react";
+import { Activity, Loader2, ShieldCheck, AlertTriangle, ChevronRight, CheckCircle, X, ArrowRight, Download, Save } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { exportMedicalReport } from "@/lib/pdfExport";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { supabase } from "@/lib/supabase";
 
 const ECG_PRESETS = [
   {
@@ -39,9 +42,13 @@ const ECG_PRESETS = [
 ];
 
 export default function ECGPage() {
+  const { user } = useSupabaseAuth();
   const [description, setDescription] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const analyzeECG = async (desc?: string) => {
     const query = desc || description;
@@ -148,12 +155,47 @@ Example: Rate 95 bpm, irregular rhythm, absent P waves, narrow QRS 80ms, no ST e
         <div>
           {result ? (
             <div className="premium-card p-8 h-full">
-              <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
                 <Activity className="w-4 h-4 text-rose-500" />
                 <h2 className="text-sm font-black uppercase tracking-widest text-slate-700 dark:text-slate-300">ECG Report</h2>
-                <span className="ml-auto text-[10px] font-black text-slate-400">ACC/AHA 2026</span>
+                
+                <div className="ml-auto flex items-center gap-3">
+                  <button
+                    onClick={async () => {
+                      setIsExporting(true);
+                      await exportMedicalReport("ecg-content", { title: "AI ECG Interpretation Report", filename: "ECG_Report" });
+                      setIsExporting(false);
+                    }}
+                    disabled={isExporting}
+                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-indigo-500 hover:text-indigo-600 transition-colors disabled:opacity-50"
+                  >
+                    {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+                    PDF
+                  </button>
+                  {user && (
+                    <button
+                      onClick={async () => {
+                        setIsSaving(true);
+                        const { error } = await supabase.from("clinical_records").insert({
+                          user_id: user.id,
+                          type: "ecg_report",
+                          title: `ECG: ${description.substring(0, 30)}...`,
+                          content: { report: result, findings: description },
+                        });
+                        if (!error) setSaved(true);
+                        setTimeout(() => setSaved(false), 3000);
+                        setIsSaving(false);
+                      }}
+                      disabled={isSaving || saved}
+                      className={`flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all ${saved ? "text-emerald-500" : "text-rose-600 hover:text-rose-700"}`}
+                    >
+                      {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <CheckCircle className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+                      {saved ? "Saved" : "Save"}
+                    </button>
+                  )}
+                </div>
               </div>
-              <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-black prose-strong:text-rose-600 overflow-y-auto max-h-[65vh]">
+              <div id="ecg-content" className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-black prose-strong:text-rose-600 overflow-y-auto max-h-[65vh] p-4 bg-white dark:bg-slate-900 rounded-xl">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{result}</ReactMarkdown>
               </div>
             </div>
