@@ -2,10 +2,12 @@ import { createClient } from '@supabase/supabase-js';
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextRequest, NextResponse } from 'next/server';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-key";
 
 // ── Browser Client (for client components) ─────────────────────────
+// Note: During build, we use placeholders to prevent crashes. 
+// Real initialization happens at runtime with actual environment variables.
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     persistSession: true,
@@ -33,9 +35,10 @@ export function createSupabaseServerClient(request: NextRequest, response: NextR
 
 // ── Admin Client (service role — only on server) ────────────────────
 export function createSupabaseAdmin() {
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "placeholder-secret";
   return createClient(
     supabaseUrl,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    serviceRoleKey,
     { auth: { autoRefreshToken: false, persistSession: false } }
   );
 }

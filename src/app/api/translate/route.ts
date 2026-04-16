@@ -28,7 +28,7 @@ Example Output:
 Brief explanation...`;
 
     const result = await streamText({
-      model: google('gemini-1.5-pro'),
+      model: google('gemini-2.0-flash'),
       system: "You are a professional medical translator.",
       prompt: prompt,
       temperature: 0.2,
