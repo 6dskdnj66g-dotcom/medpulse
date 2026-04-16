@@ -11,6 +11,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { CalculatorsWidget } from '@/components/CalculatorsWidget';
 import { SupabaseAuthProvider } from '@/components/SupabaseAuthContext';
 import { VisitorTracker } from '@/components/VisitorTracker';
+import { LanguageProvider } from '@/components/LanguageContext';
 
 export const metadata: Metadata = {
   title: 'MedPulse AI | Clinical Intelligence Platform 2026',

@@ -43,12 +43,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const t = translations[lang];
   const dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-  // Prevent hydration mismatch
-  if (!mounted) return <div style={{ visibility: 'hidden' }}>{children}</div>;
-
   return (
     <LanguageContext.Provider value={{ lang, dir, t, toggleLanguage, setLanguage }}>
-      {children}
+      <div style={{ visibility: mounted ? 'visible' : 'hidden' }}>
+        {children}
+      </div>
     </LanguageContext.Provider>
   );
 }
