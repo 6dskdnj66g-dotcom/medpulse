@@ -11,9 +11,16 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { CalculatorsWidget } from '@/components/CalculatorsWidget';
 
 export const metadata: Metadata = {
-  title: 'MedPulse AI | HealthTech Platform',
-  description: 'AI-powered medical platform designed for medical students and doctors. Zero-hallucination, RAG-powered clinical knowledge at your fingertips.',
-  keywords: ['medical AI', 'clinical knowledge', 'RAG', 'healthcare', 'USMLE'],
+  title: 'MedPulse AI | Clinical Intelligence Platform 2026',
+  description: 'AI-powered medical education platform with zero-hallucination clinical knowledge, USMLE prep, drug interactions, ECG interpretation, and clinical calculators.',
+  keywords: ['medical AI', 'clinical knowledge', 'USMLE', 'drug interactions', 'ECG', 'clinical calculators', 'healthcare'],
+  manifest: '/manifest.json',
+  themeColor: '#4f46e5',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'MedPulse AI',
+  },
 };
 
 export default function RootLayout({
@@ -23,6 +30,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#4f46e5" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/sw.js').catch(function() {});
+            });
+          }
+        `}} />
+      </head>
       <body
         suppressHydrationWarning
         className="bg-slate-50 text-slate-900 antialiased"
