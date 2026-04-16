@@ -14,6 +14,11 @@ import { FlashcardDeck } from "@/components/FlashcardDeck";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+interface Flashcard {
+  q: string;
+  a: string;
+}
+
 // ── Specialty config ─────────────────────────────────────────────────
 const SPECIALTY_CONFIG: Record<string, {
   label: string;
@@ -225,7 +230,7 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
   const searchParams = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("q") || "");
   const [showChat, setShowChat] = useState(false);
-  const [flashcards, setFlashcards] = useState<any[] | null>(null);
+  const [flashcards, setFlashcards] = useState<Flashcard[] | null>(null);
   const [isGeneratingCards, setIsGeneratingCards] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState<typeof SPECIALTY_CONFIG[string]["featuredArticles"][0] | null>(null);
 
@@ -267,7 +272,10 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
         if (done) break;
         fullJson += decoder.decode(value);
       }
-      setFlashcards(JSON.parse(fullJson.replace(/```json|```/g, "")));
+      setFlashcards(JSON.parse(fullJson.replace(/```json|```/g, "")).map((card: any) => ({
+        q: card.q || card.question,
+        a: card.a || card.answer
+      })));
     } catch {
       alert("Flashcard pipeline error.");
     } finally {
@@ -294,7 +302,7 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
                 <span className="flex items-center text-[10px] font-black uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                   <Activity className="w-3 h-3 mr-1" /> Verified 2026
                 </span>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{config.articles.length + " Verified Volumes"}</span>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{config.featuredArticles.length + " Verified Volumes"}</span>
               </div>
             </div>
           </div>

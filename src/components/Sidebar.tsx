@@ -134,7 +134,7 @@ export function Sidebar() {
               <span className="text-[10px] font-black uppercase tracking-widest">Verified Context</span>
             </div>
             <p className="text-[10px] text-slate-500 leading-relaxed font-bold italic">
-              "Strict adherence to WHO & NEJM 2026 protocols verified by MedPulse Secure RAG."
+              &quot;Strict adherence to WHO & NEJM 2026 protocols verified by MedPulse Secure RAG.&quot;
             </p>
           </div>
         </div>

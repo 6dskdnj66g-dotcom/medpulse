@@ -109,7 +109,7 @@
 
 /* Global Transitions */
 .page-transition {
-  @apply animate-in fade-in duration-700;
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Focus States */
