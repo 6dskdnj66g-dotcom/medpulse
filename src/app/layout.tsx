@@ -9,6 +9,8 @@ import { AchievementProvider } from '@/components/AchievementContext';
 import { DevRoleToggle } from '@/components/DevRoleToggle';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { CalculatorsWidget } from '@/components/CalculatorsWidget';
+import { SupabaseAuthProvider } from '@/components/SupabaseAuthContext';
+import { VisitorTracker } from '@/components/VisitorTracker';
 
 export const metadata: Metadata = {
   title: 'MedPulse AI | Clinical Intelligence Platform 2026',
@@ -47,28 +49,31 @@ export default function RootLayout({
         className="bg-slate-50 text-slate-900 antialiased"
         style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden' }}
       >
-        <AuthProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <AchievementProvider>
-              {/* Mobile top nav */}
-              <Navbar />
-              {/* Desktop: sidebar + content */}
-              <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-                <Sidebar />
-                <main
-                  className="flex-1 overflow-y-auto"
-                  style={{ minWidth: 0 }}
-                >
-                  <ErrorBoundary>
-                    {children}
-                  </ErrorBoundary>
-                </main>
-              </div>
-              <DevRoleToggle />
-              <CalculatorsWidget />
-            </AchievementProvider>
-          </ThemeProvider>
-        </AuthProvider>
+        <SupabaseAuthProvider>
+          <AuthProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <AchievementProvider>
+                <VisitorTracker />
+                {/* Mobile top nav */}
+                <Navbar />
+                {/* Desktop: sidebar + content */}
+                <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+                  <Sidebar />
+                  <main
+                    className="flex-1 overflow-y-auto"
+                    style={{ minWidth: 0 }}
+                  >
+                    <ErrorBoundary>
+                      {children}
+                    </ErrorBoundary>
+                  </main>
+                </div>
+                <DevRoleToggle />
+                <CalculatorsWidget />
+              </AchievementProvider>
+            </ThemeProvider>
+          </AuthProvider>
+        </SupabaseAuthProvider>
       </body>
     </html>
   );

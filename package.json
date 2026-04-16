@@ -13,6 +13,8 @@
     "@ai-sdk/google": "^3.0.63",
     "@google/generative-ai": "^0.24.1",
     "@pinecone-database/pinecone": "^7.2.0",
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.103.2",
     "ai": "^6.0.162",
     "lucide-react": "^0.468.0",
     "next": "^15.5.15",

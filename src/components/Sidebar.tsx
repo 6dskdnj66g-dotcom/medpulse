@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, LayoutDashboard, FileText, BookOpen, Bot, Brain, HeartPulse, ShieldCheck, Calculator, Pill, Trophy, TrendingUp, Stethoscope } from "lucide-react";
+import { Activity, LayoutDashboard, FileText, BookOpen, Bot, Brain, HeartPulse, ShieldCheck, Calculator, Pill, Trophy, TrendingUp, Stethoscope, LogOut, UserCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/auth";
 import { ThemeToggle } from "./ThemeToggle";
 import { useAchievement } from "./AchievementContext";
+import { useSupabaseAuth } from "./SupabaseAuthContext";
 
 const NAV_SECTIONS = [
   {
@@ -57,6 +58,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const { user } = useAuth();
   const { xp } = useAchievement();
+  const { user: supabaseUser, profile: supabaseProfile, signOut } = useSupabaseAuth();
 
   const initials = user?.name
     ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
@@ -139,26 +141,63 @@ export function Sidebar() {
       </div>
 
       {/* User Branding Footer */}
-      <div className="p-6 border-t border-slate-100 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-900/30">
-        <div className="flex items-center space-x-4 p-2 rounded-2xl group transition-all">
-          <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0 shadow-xl shadow-indigo-500/10 group-hover:scale-110 duration-500">
-            {initials}
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-black text-slate-800 dark:text-slate-100 truncate">
-              {user?.name || "Initializing..."}
-            </p>
-            <div className="flex items-center gap-1.5 mt-1">
-              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full border border-current uppercase tracking-wider ${roleBadgeClass}`}>
-                {roleLabel.split(" ")[1]}
-              </span>
-              <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20 flex items-center">
-                {xp} XP
-              </span>
+      <div className="p-4 border-t border-slate-100 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-900/30">
+        {supabaseUser ? (
+          // Logged in user
+          <div className="flex items-center gap-3 p-2 rounded-2xl group transition-all">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-emerald-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0 shadow-lg">
+              {(supabaseProfile?.full_name || supabaseUser.email || "U").charAt(0).toUpperCase()}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-black text-slate-800 dark:text-slate-100 truncate">
+                {supabaseProfile?.full_name || supabaseUser.email?.split("@")[0]}
+              </p>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 border border-indigo-500/20 uppercase tracking-wider">
+                  {supabaseProfile?.role || "student"}
+                </span>
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20">
+                  {supabaseProfile?.xp || xp} XP
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <ThemeToggle />
+              <button
+                onClick={signOut}
+                className="w-7 h-7 flex items-center justify-center rounded-xl bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 transition-all"
+                title="تسجيل الخروج"
+              >
+                <LogOut className="w-3 h-3" />
+              </button>
             </div>
           </div>
-          <ThemeToggle />
-        </div>
+        ) : (
+          // Guest / not logged in
+          <div className="space-y-2">
+            <div className="flex items-center gap-3 p-2">
+              <div className="w-10 h-10 rounded-2xl bg-slate-200 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+                <UserCircle className="w-5 h-5 text-slate-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-black text-slate-500">زائر</p>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <span className="text-[9px] font-bold text-slate-400">غير مسجل</span>
+                  <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20">{xp} XP</span>
+                </div>
+              </div>
+              <ThemeToggle />
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <Link href="/auth/login" className="text-center text-[11px] font-black py-2 px-3 rounded-xl bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500/20 transition-all border border-indigo-500/20">
+                دخول
+              </Link>
+              <Link href="/auth/register" className="text-center text-[11px] font-black py-2 px-3 rounded-xl bg-gradient-to-r from-indigo-600 to-teal-600 text-white hover:opacity-90 transition-all">
+                تسجيل
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
