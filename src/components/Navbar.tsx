@@ -51,7 +51,7 @@ export function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white/95 dark:bg-obsidian-950/95 backdrop-blur-3xl border-b border-slate-200 dark:border-white/5 shadow-2xl p-6 space-y-3 animate-in slide-in-from-top-4 duration-500">
+        <div className="absolute top-full left-0 w-full bg-white/95 dark:bg-obsidian-950/95 backdrop-blur-3xl border-b border-slate-200 dark:border-white/5 shadow-2xl p-6 space-y-3 fade-in">
           <div className="flex items-center justify-between mb-4 px-2">
             <LanguageToggle />
             {user && (

@@ -58,6 +58,15 @@
            hover:bg-indigo-700 hover:shadow-[0_15px_30px_rgba(99,102,241,0.4)] hover:-translate-y-0.5;
   }
 
+  .fade-in {
+    animation: fade-in 0.7s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .btn-elite-outline {
     @apply px-8 py-4 rounded-2xl font-black tracking-wide uppercase text-xs
            transition-all duration-300 border-2 border-slate-200 dark:border-slate-800

@@ -30,7 +30,7 @@ export function StudentDashboard() {
   };
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto p-6 md:p-10 space-y-12 animate-in fade-in duration-700" dir={dir}>
+    <div className="w-full max-w-[1600px] mx-auto p-6 md:p-10 space-y-12 fade-in" dir={dir}>
       {/* ─── Elite Welcome Header ─── */}
       <header className="relative space-y-6">
         <div className="flex flex-wrap items-center gap-4">
