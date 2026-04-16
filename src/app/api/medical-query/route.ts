@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const result = await streamText({
-      model: google('gemini-1.5-flash'),
+      model: google('gemini-2.0-flash'),
       system: ZERO_HALLUCINATION_PROMPT,
       messages: messages,
       temperature: 0.1,
