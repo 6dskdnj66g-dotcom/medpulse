@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.63",
+    "@google/generative-ai": "^0.24.1",
     "@pinecone-database/pinecone": "^7.2.0",
     "ai": "^6.0.162",
     "lucide-react": "^0.468.0",

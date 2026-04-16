@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     }
 
     const result = await streamText({
-      model: google('gemini-2.0-flash'),
+      model: google('gemini-1.5-flash'),
       system: FLASHCARD_PROMPT,
       prompt: `Generate flashcards from the following text:\n\n${text}`,
       temperature: 0.2, // Low temp for factual accuracy
