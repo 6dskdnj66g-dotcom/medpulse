@@ -1,5 +1,6 @@
 import { streamText } from 'ai';
-import { google } from '@ai-sdk/google';
+import { createGroq } from '@ai-sdk/groq';
+const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
 
 export const maxDuration = 60;
 
@@ -28,7 +29,7 @@ Example Output:
 Brief explanation...`;
 
     const result = await streamText({
-      model: google('gemini-2.0-flash'),
+      model: groq('llama-3.3-70b-versatile'),
       system: "You are a professional medical translator.",
       prompt: prompt,
       temperature: 0.2,
@@ -44,3 +45,4 @@ Brief explanation...`;
     return new Response(JSON.stringify({ error: "Failed to process translation." }), { status: 500 });
   }
 }
+

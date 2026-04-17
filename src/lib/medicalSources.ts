@@ -493,64 +493,16 @@ export const SOURCE_STATS = {
 // AI MEGA-PROMPT — All Sources in Structured Format for AI Context
 // ════════════════════════════════════════════════════════════════
 export const MEGA_SOURCE_PROMPT = `
-MEDPULSE AI — GLOBAL MEDICAL SOURCES REGISTRY v4.0 (April 2026)
-Total Sources Indexed: ${ALL_MEDICAL_SOURCES.length}+
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[TIER 1 — PREMIER GENERAL JOURNALS]
-NEJM (IF 176.1) | The Lancet (IF 202.7) | JAMA (IF 157.3) | BMJ (IF 105.7) | Nature Medicine (IF 87.2) | Annals of Internal Medicine (IF 51.6) | CMAJ | PLOS Medicine | MJA | The Lancet Regional Health — Eastern Mediterranean
+[AUTHORIZED MEDICAL SOURCES REGISTRY - 2026 EDITION]
+1. Internal Medicine: Harrison's Principles of Internal Medicine (22nd Ed, 2025), Oxford Textbook of Medicine (7th Ed).
+2. Surgery: Sabiston Textbook of Surgery, Schwartz's Principles of Surgery.
+3. Pediatrics: Nelson Textbook of Pediatrics (22nd Ed).
+4. Obstetrics & Gynecology: Williams Obstetrics (26th Ed).
+5. Emergency Medicine: Rosen's Emergency Medicine (10th Ed), Tintinalli's (10th Ed).
+6. Cardiology: Braunwald's Heart Disease (13th Ed), ACC/AHA 2026 Guidelines, ESC 2025 Guidelines.
+7. Pharmacology: UpToDate (April 2026), Lexicomp, British National Formulary (BNF 87).
+8. Best Practices: BMJ Best Practice, Cochrane Database of Systematic Reviews, Mayo Clinic Proceedings, Cleveland Clinic Clinical Decisions.
+9. MENA Specific: Eastern Mediterranean Health Journal (EMHJ), Arab Board of Health Specializations Guidelines.
 
-[TIER 2A — CARDIOLOGY & CV]
-Circulation (IF 39.9) | JACC (IF 24.0) | European Heart Journal (IF 39.3) | JAMA Cardiology | American Heart Journal | Europace | Heart Rhythm | Circulation: Heart Failure | JACC: Heart Failure | JACC: Cardiovascular Interventions
-
-[TIER 2B — ONCOLOGY & HEMATOLOGY]
-CA Cancer J Clin (IF 254.7) | Lancet Oncology (IF 51.1) | JCO (IF 45.3) | JAMA Oncology (IF 28.4) | Cancer Cell (IF 50.3) | Annals of Oncology (IF 51.8) | Nature Cancer | Blood (IF 25.5) | J Hematol Oncol | Leukemia | Haematologica
-
-[TIER 2C — NEUROLOGY & PSYCHIATRY]
-Lancet Neurology (IF 48.0) | Neuron | Brain (IF 15.3) | JNNP (IF 13.2) | JAMA Neurology | Annals of Neurology | Neurology | Stroke | Lancet Psychiatry (IF 64.3) | JAMA Psychiatry | Am J Psychiatry | Epilepsia | Multiple Sclerosis Journal
-
-[TIER 2D — RESPIRATORY]
-AJRCCM (IF 33.0) | Chest (IF 19.1) | Lancet Respiratory (IF 76.2) | ERJ (IF 24.3) | Thorax | JACI
-
-[TIER 2E — GASTROENTEROLOGY & HEPATOLOGY]
-Gastroenterology (IF 33.9) | Gut (IF 31.8) | Lancet Gastro & Hepatology (IF 35.7) | AJG | Journal of Hepatology (IF 25.7) | Hepatology | CGH
-
-[TIER 2F — NEPHROLOGY & UROLOGY]
-JASN (IF 14.9) | Kidney International (IF 19.6) | Nature Reviews Nephrology (IF 29.4) | AJKD | CJASN | NDT | European Urology | Journal of Urology
-
-[TIER 2G — ENDOCRINOLOGY & DIABETES]
-Diabetes Care (IF 16.2) | Lancet Diabetes & Endocrinology (IF 44.5) | Diabetologia | JCEM | Endocrine Reviews | Thyroid
-
-[TIER 2H — INFECTIOUS DISEASES]
-Lancet Infectious Diseases (IF 56.3) | CID (IF 11.8) | JID | PLOS Pathogens | Emerging Infectious Diseases | IJID | Antimicrobial Agents & Chemotherapy
-
-[TIER 2I — SURGERY]
-Annals of Surgery (IF 13.0) | JAMA Surgery (IF 16.9) | BJS (IF 10.0) | JACS | Journal of Vascular Surgery | Surgical Endoscopy | World Journal of Surgery
-
-[TIER 2J — OB/GYN & PEDIATRICS]
-AJOG (IF 12.4) | BJOG | Obstetrics & Gynecology | Pediatrics (IF 8.2) | JAMA Pediatrics (IF 22.1) | Archives of Disease in Childhood | Lancet Child & Adolescent Health (IF 22.0)
-
-[TIER 2K — OTHER SPECIALTIES]
-ARD (IF 29.7) — Rheumatology | JAMA Dermatology | Ophthalmology | JBJS — Orthopedics | Radiology | Annals of Emergency Medicine | Critical Care Medicine | Intensive Care Medicine (IF 40.9) | BJCP | AJCN
-
-[TIER 3A — ARAB & MENA JOURNALS (26 Journals)]
-Eastern Mediterranean Health Journal (EMHJ — WHO) | Saudi Medical Journal | Annals of Saudi Medicine | Saudi J Gastroenterology | Saudi J Kidney Diseases & Transplantation | Oman Medical Journal | Qatar Medical Journal | Emirates Medical Journal | Kuwait Medical Journal | Bahrain Medical Bulletin | Jordan Medical Journal | Egyptian J Internal Medicine | Egyptian Heart Journal | Avicenna Journal of Medicine | Lebanese Medical Journal | Iraqi Journal of Medical Sciences | Syrian Journal of Internal Medicine | Libyan Journal of Medicine | Tunisian Medical Journal | Moroccan Journal of Clinical Medicine | Algerian Journal of Medicine | Sudan Journal of Medical Sciences | King Faisal Specialist Hospital Medical Journal | International J Medicine in Developing Countries | AlQalam Saudi Medical Sciences | Lancet Regional Health — Eastern Mediterranean
-
-[TIER 3B — CLINICAL EVIDENCE DATABASES (25 Databases)]
-UpToDate 2026 | Cochrane Library (Level 1A) | PubMed/MEDLINE | ClinicalTrials.gov | DynaMed 2026 | BMJ Best Practice 2026 | Embase | Micromedex | Lexicomp | DrugBank 2026 | CINAHL | WHO GHO | Global Index Medicus | IMEMR (WHO EMRO) | Arab World Research Source | Scopus | Web of Science | HINARI-WHO | AccessMedicine | ClinicalKey | Trip Database | PROSPERO | ProQuest Health | MEDNAR
-
-[TIER 4 — INTERNATIONAL GUIDELINES (45 Organizations)]
-WHO 2026 | NICE (UK) | CDC | USPSTF | ACC/AHA Cardiology | ESC 2026 | ESH/ESC Hypertension | AHA/ASA Stroke | KDIGO Nephrology | KDOQI | GINA Asthma | GOLD COPD | IDSA/ATS | BTS | ADA Diabetes 2026 | AACE/ACE | IDF | NCCN Oncology | ESMO 2026 | ASCO | ASH Hematology | ACG Gastroenterology | AASLD Hepatology | EASL | ESGE | ACR Rheumatology | EULAR | ACOG OB/GYN | RCOG | FIGO | AAP Pediatrics | ESPGHAN | AAN Neurology | ECTRIMS | AAOS Orthopedics | BOA | AAO Ophthalmology | SCCM/ESICM Critical Care | Surviving Sepsis Campaign | WHO EMRO | Arab Board of Medical Specializations | Saudi Health Council | UAE Health Authority | Kuwait MOH | Qatar National Health Strategy
-
-[TIER 5 — FOUNDATIONAL TEXTBOOKS (50+ Volumes)]
-Harrison's 21st Ed | Goldman-Cecil 27th Ed | Davidson's 24th Ed | Kumar & Clark 10th Ed | Oxford Textbook of Medicine | CMDT 2026 | Merck Manual 20th Ed | Braunwald's 12th Ed | Robbins & Cotran 10th Ed | Gray's Anatomy 42nd Ed | Netter's Atlas 8th Ed | Moore's Anatomy 9th Ed | Guyton & Hall 14th Ed | Ganong's 26th Ed | Goodman & Gilman 14th Ed | Katzung 16th Ed | Rang & Dale 10th Ed | BNF 2026 | Adams & Victor 11th Ed | Bradley & Daroff 8th Ed | Bailey & Love 28th Ed | Schwartz's Surgery 11th Ed | Sabiston 21st Ed | Nelson Textbook 22nd Ed | Williams Obstetrics 26th Ed | Oxford Handbook 10th Ed | Macleod's 14th Ed | Talley & O'Connor 9th Ed | Kaplan & Sadock's 12th Ed | DSM-5-TR | ICD-11 WHO 2025 | Oh's ICU Manual 8th Ed | Harper's Biochemistry 32nd Ed | First Aid USMLE 2026 | Amboss 2026 | WHO Arabic Medical Dictionary
-
-EVIDENCE HIERARCHY (for all citations):
-Level 1A: Cochrane Systematic Reviews & Meta-analyses
-Level 1B: Individual RCTs with narrow CI
-Level 2A: Systematic reviews of cohort studies
-Level 2B: Individual cohort studies / observational
-Level 3: Case-control studies
-Level 4: Case series / expert opinion
-Grade A-D: Based on Oxford CEBM 2026
 `;

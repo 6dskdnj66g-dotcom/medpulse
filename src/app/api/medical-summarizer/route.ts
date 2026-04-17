@@ -1,5 +1,6 @@
 import { generateText } from 'ai';
-import { google } from '@ai-sdk/google';
+import { createGroq } from '@ai-sdk/groq';
+const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
 
 export const maxDuration = 60;
 
@@ -84,3 +85,4 @@ export async function POST(req: Request) {
     );
   }
 }
+

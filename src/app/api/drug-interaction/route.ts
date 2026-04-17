@@ -1,5 +1,6 @@
 import { streamText } from 'ai';
-import { google } from '@ai-sdk/google';
+import { createGroq } from '@ai-sdk/groq';
+const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
 
 export const maxDuration = 60;
 
@@ -52,7 +53,7 @@ export async function POST(req: Request) {
     const drugList = drugs.join(', ');
 
     const result = await streamText({
-      model: google('gemini-2.0-flash'),
+      model: groq('llama-3.3-70b-versatile'),
       system: DRUG_INTERACTION_PROMPT,
       prompt: `Analyze interactions between these drugs: ${drugList}. Patient context: April 2026.`,
       temperature: 0.1,
@@ -72,3 +73,4 @@ export async function POST(req: Request) {
     );
   }
 }
+
