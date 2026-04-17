@@ -47,7 +47,8 @@
 
   .floating-3d {
     @apply shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]
-           transform perspective-1000 transition-transform duration-500;
+           transition-transform duration-500;
+    perspective: 1000px;
   }
 
   /* ─── Elite Buttons ─── */
@@ -81,9 +82,25 @@
   .glass-nav {
     @apply bg-white/70 dark:bg-slate-950/70 backdrop-blur-2xl border-b border-slate-200/50 dark:border-slate-800/50 sticky top-0 z-50;
   }
+
+  /* ─── Premium Card (alias for 3D card) ─── */
+  .premium-card {
+    @apply relative bg-white dark:bg-slate-900/40 rounded-2xl border border-slate-200/60 dark:border-slate-800/50
+           shadow-[0_4px_20px_rgb(0,0,0,0.04)] dark:shadow-none backdrop-blur-xl transition-all duration-300
+           hover:shadow-[0_12px_30px_rgba(99,102,241,0.08)] hover:border-indigo-500/20;
+  }
+
+  /* ─── Page Transition ─── */
+  .page-transition {
+    animation: fade-in 0.5s ease-out forwards;
+  }
 }
 
 @layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
   .animate-spin-slow {
     animation: spin 8s linear infinite;
   }

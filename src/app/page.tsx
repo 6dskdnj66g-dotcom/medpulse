@@ -4,6 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/auth";
 import { StudentDashboard } from "@/components/dashboard/StudentDashboard";
 import { ProfessorDashboard } from "@/components/dashboard/ProfessorDashboard";
+import { Activity } from "lucide-react";
 
 export default function Home() {
   const { user, isLoading } = useAuth();

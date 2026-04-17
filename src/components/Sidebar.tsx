@@ -70,7 +70,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className={`hidden md:flex flex-col w-80 bg-white/80 dark:bg-slate-950/50 backdrop-blur-3xl border-inline-end border-slate-200/50 dark:border-white/5 h-[calc(100dvh-2rem)] my-4 mx-4 rounded-[2.5rem] shadow-2xl floating-3d z-50`} dir={dir}>
+    <div className={`hidden md:flex flex-col w-80 bg-white/80 dark:bg-slate-950/50 backdrop-blur-3xl border border-slate-200/50 dark:border-white/5 h-[calc(100dvh-2rem)] my-4 mx-4 rounded-[2.5rem] shadow-2xl floating-3d z-50`} dir={dir}>
       {/* Logo Section */}
       <div className="p-8 flex flex-col space-y-2">
         <div className="flex items-center gap-4">
@@ -96,7 +96,7 @@ export function Sidebar() {
       </div>
 
       {/* Navigation section */}
-      <div className="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar bg-white dark:bg-transparent">
+      <div className="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
         {NAV_SECTIONS.map((section) => (
           <div key={section.title} className="mb-6">
             <div className="flex items-center justify-between px-3 mb-3">
@@ -115,7 +115,7 @@ export function Sidebar() {
                   className={`flex items-center gap-4 px-6 py-5 rounded-[1.75rem] text-sm font-black transition-all duration-500 group active:scale-95 ${
                     isActive 
                       ? colors.active 
-                      : `text-slate-500 dark:text-slate-400 ${colors.hover} hover:translate-x-1`
+                      : `text-slate-500 dark:text-slate-400 ${colors.hover} ${dir === 'ltr' ? 'hover:translate-x-1' : 'hover:-translate-x-1'}`
                   }`}
                 >
                   <div className={`relative p-2.5 rounded-2xl transition-all duration-500 ${

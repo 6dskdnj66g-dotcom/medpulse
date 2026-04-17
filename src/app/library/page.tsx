@@ -4,41 +4,44 @@ import { useState, useEffect, useMemo } from "react";
 import {
   BookOpen, Search, Filter, ExternalLink, Bookmark, BookmarkCheck,
   Globe, Star, Database, ScrollText, BookMarked, ChevronDown,
-  Newspaper, Award, FlaskConical, GraduationCap
+  Newspaper, Award
 } from "lucide-react";
 import { ALL_MEDICAL_SOURCES, type MedicalSource } from "@/lib/medicalSources";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useLanguage } from "@/components/LanguageContext";
 
 // ── Type configs ─────────────────────────────────────────────────────────────
-const TYPE_CONFIG: Record<string, { label: string; icon: React.ElementType; color: string }> = {
-  journal:      { label: "مجلات دولية",     icon: Newspaper,    color: "indigo" },
-  journal_arab: { label: "مجلات عربية",     icon: Globe,        color: "emerald" },
-  database:     { label: "قواعد البيانات",   icon: Database,     color: "sky" },
-  database_arab:{ label: "قواعد بيانات عربية", icon: Globe,     color: "teal" },
-  guideline:    { label: "إرشادات سريرية",  icon: ScrollText,   color: "amber" },
-  textbook:     { label: "كتب طبية",        icon: BookMarked,   color: "violet" },
-  organization: { label: "منظمات دولية",    icon: Award,        color: "rose" },
+const TYPE_CONFIG: Record<string, { labelAr: string; labelEn: string; icon: React.ElementType; color: string }> = {
+  journal:       { labelAr: "مجلات دولية",          labelEn: "International Journals", icon: Newspaper,  color: "indigo" },
+  journal_arab:  { labelAr: "مجلات عربية",           labelEn: "Arab Journals",          icon: Globe,      color: "emerald" },
+  database:      { labelAr: "قواعد البيانات",         labelEn: "Databases",              icon: Database,   color: "sky" },
+  database_arab: { labelAr: "قواعد بيانات عربية",    labelEn: "Arab Databases",         icon: Globe,      color: "teal" },
+  guideline:     { labelAr: "إرشادات سريرية",        labelEn: "Clinical Guidelines",    icon: ScrollText, color: "amber" },
+  textbook:      { labelAr: "كتب طبية",              labelEn: "Medical Textbooks",      icon: BookMarked, color: "violet" },
+  organization:  { labelAr: "منظمات دولية",          labelEn: "Organizations",          icon: Award,      color: "rose" },
 };
 
-const REGION_CONFIG: Record<string, { label: string; flag: string }> = {
-  global: { label: "عالمي",         flag: "🌐" },
-  mena:   { label: "عربي / MENA",   flag: "🌍" },
-  usa:    { label: "أمريكا",        flag: "🇺🇸" },
-  europe: { label: "أوروبا",        flag: "🇪🇺" },
-  asia:   { label: "آسيا",          flag: "🌏" },
-  arab:   { label: "عربي",          flag: "🟢" },
+const REGION_CONFIG: Record<string, { labelAr: string; labelEn: string; flag: string }> = {
+  global: { labelAr: "عالمي",       labelEn: "Global",       flag: "🌐" },
+  mena:   { labelAr: "عربي / MENA", labelEn: "Arab / MENA",  flag: "🌍" },
+  usa:    { labelAr: "أمريكا",      labelEn: "USA",          flag: "🇺🇸" },
+  europe: { labelAr: "أوروبا",      labelEn: "Europe",       flag: "🇪🇺" },
+  asia:   { labelAr: "آسيا",        labelEn: "Asia",         flag: "🌏" },
+  arab:   { labelAr: "عربي",        labelEn: "Arab",         flag: "🟢" },
 };
 
 const ALL_SPECIALTIES = Array.from(new Set(ALL_MEDICAL_SOURCES.map(s => s.specialty).filter(Boolean))).sort();
 
 // ── Source Card ──────────────────────────────────────────────────────────────
-function SourceCard({ source, bookmarked, onToggleBookmark }: {
+function SourceCard({ source, bookmarked, onToggleBookmark, lang }: {
   source: MedicalSource;
   bookmarked: boolean;
   onToggleBookmark: (name: string) => void;
+  lang: "en" | "ar";
 }) {
   const typeConfig = TYPE_CONFIG[source.type] || TYPE_CONFIG.journal;
   const Icon = typeConfig.icon;
+  const typeLabel = lang === "ar" ? typeConfig.labelAr : typeConfig.labelEn;
   const colors: Record<string, string> = {
     indigo:  "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20",
     emerald: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
@@ -50,6 +53,7 @@ function SourceCard({ source, bookmarked, onToggleBookmark }: {
   };
   const colorClass = colors[typeConfig.color] || colors.indigo;
   const regionInfo = REGION_CONFIG[source.region || "global"];
+  const regionLabel = lang === "ar" ? regionInfo.labelAr : regionInfo.labelEn;
 
   return (
     <div className="premium-card p-5 hover:scale-[1.01] transition-all group">
@@ -74,19 +78,21 @@ function SourceCard({ source, bookmarked, onToggleBookmark }: {
               {/* Bookmark */}
               <button
                 onClick={() => onToggleBookmark(source.name)}
+                aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"}
                 className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all ${
                   bookmarked ? "bg-amber-500/10 text-amber-500" : "bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-amber-500"
                 }`}
               >
                 {bookmarked ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
               </button>
-              {/* Open link */}
+              {/* Open link — always rendered when URL exists */}
               {source.url && (
                 <a
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-indigo-500 transition-all"
+                  aria-label={`Open ${source.name}`}
+                  className="w-8 h-8 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 hover:bg-indigo-500 hover:text-white transition-all"
                 >
                   <ExternalLink className="w-4 h-4" />
                 </a>
@@ -94,10 +100,15 @@ function SourceCard({ source, bookmarked, onToggleBookmark }: {
             </div>
           </div>
 
+          {/* Type badge */}
+          <span className={`text-[10px] font-black px-2 py-0.5 rounded-full border inline-block mb-2 ${colorClass}`}>
+            {typeLabel}
+          </span>
+
           {/* Meta tags */}
-          <div className="flex flex-wrap gap-1.5 mt-2">
+          <div className="flex flex-wrap gap-1.5 mt-1">
             <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">
-              {regionInfo.flag} {regionInfo.label}
+              {regionInfo.flag} {regionLabel}
             </span>
             {source.specialty && (
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">
@@ -112,12 +123,12 @@ function SourceCard({ source, bookmarked, onToggleBookmark }: {
             )}
             {source.openAccess && (
               <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
-                🔓 Open Access
+                🔓 {lang === "ar" ? "مفتوح الوصول" : "Open Access"}
               </span>
             )}
             {source.language === "arabic" && (
               <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 border border-indigo-500/20">
-                عربي
+                {lang === "ar" ? "عربي" : "Arabic"}
               </span>
             )}
           </div>
@@ -130,6 +141,8 @@ function SourceCard({ source, bookmarked, onToggleBookmark }: {
 // ── Main Library Page ────────────────────────────────────────────────────────
 export default function SourceLibraryPage() {
   const { user } = useSupabaseAuth();
+  const { lang, dir } = useLanguage();
+  const isAr = lang === "ar";
   const [search, setSearch] = useState("");
   const [selectedType, setSelectedType] = useState<string>("all");
   const [selectedRegion, setSelectedRegion] = useState<string>("all");
@@ -183,7 +196,7 @@ export default function SourceLibraryPage() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto p-6 md:p-10 w-full page-transition">
+    <div className="max-w-7xl mx-auto p-6 md:p-10 w-full page-transition" dir={dir}>
 
       {/* ── Header ── */}
       <div className="mb-10">
@@ -192,9 +205,13 @@ export default function SourceLibraryPage() {
             <BookOpen className="w-7 h-7 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">مكتبة المصادر الطبية</h1>
+            <h1 className="text-3xl font-black text-slate-900 dark:text-white">
+              {isAr ? "مكتبة المصادر الطبية" : "Medical Source Library"}
+            </h1>
             <p className="text-slate-500 text-sm mt-1">
-              {ALL_MEDICAL_SOURCES.length}+ مصدر طبي عالمي وعربي موثق ومُصنّف
+              {isAr
+                ? `${ALL_MEDICAL_SOURCES.length}+ مصدر طبي عالمي وعربي موثق ومُصنّف`
+                : `${ALL_MEDICAL_SOURCES.length}+ verified global & Arab medical sources`}
             </p>
           </div>
         </div>
@@ -203,10 +220,11 @@ export default function SourceLibraryPage() {
         <div className="flex flex-wrap gap-2">
           {Object.entries(TYPE_CONFIG).map(([type, config]) => {
             const Icon = config.icon;
+            const label = isAr ? config.labelAr : config.labelEn;
             return (
               <div key={type} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-black text-slate-500">
                 <Icon className="w-3 h-3" />
-                {config.label}: <span className="text-slate-900 dark:text-white">{typeCounts[type] || 0}</span>
+                {label}: <span className="text-slate-900 dark:text-white">{typeCounts[type] || 0}</span>
               </div>
             );
           })}
@@ -217,13 +235,13 @@ export default function SourceLibraryPage() {
       <div className="sticky top-0 z-10 bg-slate-50/90 dark:bg-slate-950/90 backdrop-blur-xl py-4 mb-6 -mx-2 px-2">
         <div className="flex gap-3 items-center mb-3">
           <div className="relative flex-1">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className={`absolute ${dir === "rtl" ? "right-4" : "left-4"} top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400`} />
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="ابحث عن مجلة، قاعدة بيانات، كتاب..."
-              className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3.5 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all"
+              placeholder={isAr ? "ابحث عن مجلة، قاعدة بيانات، كتاب..." : "Search journals, databases, textbooks..."}
+              className={`w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl ${dir === "rtl" ? "pr-11 pl-4" : "pl-11 pr-4"} py-3.5 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all`}
             />
           </div>
           <button
@@ -233,7 +251,7 @@ export default function SourceLibraryPage() {
             }`}
           >
             <Filter className="w-4 h-4" />
-            فلاتر
+            {isAr ? "فلاتر" : "Filters"}
             <ChevronDown className={`w-3 h-3 transition-transform ${showFilters ? "rotate-180" : ""}`} />
           </button>
           <button
@@ -243,7 +261,7 @@ export default function SourceLibraryPage() {
             }`}
           >
             <BookmarkCheck className="w-4 h-4" />
-            المفضلة ({bookmarks.size})
+            {isAr ? `المفضلة (${bookmarks.size})` : `Saved (${bookmarks.size})`}
           </button>
         </div>
 
@@ -252,37 +270,47 @@ export default function SourceLibraryPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 animate-in fade-in slide-in-from-top-2 duration-300">
             {/* Type */}
             <div>
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 block">نوع المصدر</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 block">
+                {isAr ? "نوع المصدر" : "Source Type"}
+              </label>
               <select
                 value={selectedType}
                 onChange={e => setSelectedType(e.target.value)}
                 className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2.5 text-xs font-bold outline-none"
               >
-                <option value="all">الكل</option>
-                {Object.entries(TYPE_CONFIG).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
+                <option value="all">{isAr ? "الكل" : "All"}</option>
+                {Object.entries(TYPE_CONFIG).map(([k, v]) => (
+                  <option key={k} value={k}>{isAr ? v.labelAr : v.labelEn}</option>
+                ))}
               </select>
             </div>
             {/* Region */}
             <div>
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 block">المنطقة</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 block">
+                {isAr ? "المنطقة" : "Region"}
+              </label>
               <select
                 value={selectedRegion}
                 onChange={e => setSelectedRegion(e.target.value)}
                 className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2.5 text-xs font-bold outline-none"
               >
-                <option value="all">الكل</option>
-                {Object.entries(REGION_CONFIG).map(([k, v]) => <option key={k} value={k}>{v.flag} {v.label}</option>)}
+                <option value="all">{isAr ? "الكل" : "All"}</option>
+                {Object.entries(REGION_CONFIG).map(([k, v]) => (
+                  <option key={k} value={k}>{v.flag} {isAr ? v.labelAr : v.labelEn}</option>
+                ))}
               </select>
             </div>
             {/* Specialty */}
             <div>
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 block">التخصص</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5 block">
+                {isAr ? "التخصص" : "Specialty"}
+              </label>
               <select
                 value={selectedSpecialty}
                 onChange={e => setSelectedSpecialty(e.target.value)}
                 className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2.5 text-xs font-bold outline-none"
               >
-                <option value="all">الكل</option>
+                <option value="all">{isAr ? "الكل" : "All"}</option>
                 {ALL_SPECIALTIES.map(s => <option key={s} value={s!}>{s}</option>)}
               </select>
             </div>
@@ -294,7 +322,7 @@ export default function SourceLibraryPage() {
                   openAccess ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600" : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500"
                 }`}
               >
-                🔓 Open Access فقط
+                🔓 {isAr ? "Open Access فقط" : "Open Access Only"}
               </button>
             </div>
           </div>
@@ -303,7 +331,10 @@ export default function SourceLibraryPage() {
 
       {/* ── Type quick-filter pills ── */}
       <div className="flex flex-wrap gap-2 mb-6">
-        {[{ k: "all", label: "الكل", icon: null }, ...Object.entries(TYPE_CONFIG).map(([k, v]) => ({ k, label: v.label, icon: v.icon }))].map(({ k, label, icon: Icon }) => (
+        {[
+          { k: "all", labelAr: "الكل", labelEn: "All", icon: null },
+          ...Object.entries(TYPE_CONFIG).map(([k, v]) => ({ k, labelAr: v.labelAr, labelEn: v.labelEn, icon: v.icon }))
+        ].map(({ k, labelAr, labelEn, icon: Icon }) => (
           <button
             key={k}
             onClick={() => setSelectedType(k)}
@@ -314,7 +345,7 @@ export default function SourceLibraryPage() {
             }`}
           >
             {Icon && <Icon className="w-3 h-3" />}
-            {label}
+            {isAr ? labelAr : labelEn}
           </button>
         ))}
       </div>
@@ -322,14 +353,17 @@ export default function SourceLibraryPage() {
       {/* ── Results count ── */}
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm font-bold text-slate-500">
-          عرض <span className="text-slate-900 dark:text-white font-black">{filtered.length}</span> من {ALL_MEDICAL_SOURCES.length} مصدر
+          {isAr
+            ? <>{isAr ? "عرض " : "Showing "}<span className="text-slate-900 dark:text-white font-black">{filtered.length}</span>{` من ${ALL_MEDICAL_SOURCES.length} مصدر`}</>
+            : <>Showing <span className="text-slate-900 dark:text-white font-black">{filtered.length}</span>{` of ${ALL_MEDICAL_SOURCES.length} sources`}</>
+          }
         </p>
         {(search || selectedType !== "all" || selectedRegion !== "all" || openAccess) && (
           <button
             onClick={() => { setSearch(""); setSelectedType("all"); setSelectedRegion("all"); setSelectedSpecialty("all"); setOpenAccess(false); }}
             className="text-xs font-black text-rose-500 hover:underline"
           >
-            مسح الفلاتر
+            {isAr ? "مسح الفلاتر" : "Clear Filters"}
           </button>
         )}
       </div>
@@ -338,8 +372,8 @@ export default function SourceLibraryPage() {
       {filtered.length === 0 ? (
         <div className="text-center py-20 text-slate-400">
           <Search className="w-12 h-12 mx-auto mb-4 opacity-30" />
-          <p className="font-bold text-lg">لا توجد نتائج</p>
-          <p className="text-sm">جرب كلمات بحث مختلفة</p>
+          <p className="font-bold text-lg">{isAr ? "لا توجد نتائج" : "No results found"}</p>
+          <p className="text-sm">{isAr ? "جرب كلمات بحث مختلفة" : "Try different search terms"}</p>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
@@ -349,6 +383,7 @@ export default function SourceLibraryPage() {
               source={source}
               bookmarked={bookmarks.has(source.name)}
               onToggleBookmark={toggleBookmark}
+              lang={lang}
             />
           ))}
         </div>

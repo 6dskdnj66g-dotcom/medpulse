@@ -4,8 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { Search, Brain, ShieldCheck, AlertTriangle, Send, Loader2, BookMarked, UserCheck } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function MDTPage() {
+  const { lang, dir } = useLanguage();
+  const isAr = lang === "ar";
   const [query, setQuery] = useState("");
   const [isDebating, setIsDebating] = useState(false);
   const [agentA, setAgentA] = useState("");
@@ -77,43 +80,45 @@ export default function MDTPage() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto w-full h-full flex flex-col space-y-6 overflow-hidden">
-      <div className="flex justify-between items-start">
+    <div className="p-8 max-w-7xl mx-auto w-full h-full flex flex-col space-y-6 overflow-hidden" dir={dir}>
+      <div className="flex justify-between items-start flex-wrap gap-4">
         <div>
-          <h1 className="text-4xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center">
-            <Brain className="mr-4 h-10 w-10 text-sky-500" />
-            MDT Debate System
+          <h1 className="text-4xl font-bold text-slate-800 dark:text-white tracking-tight flex items-center gap-4">
+            <Brain className="h-10 w-10 text-sky-500 flex-shrink-0" />
+            {isAr ? "نظام مناظرات MDT" : "MDT Debate System"}
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 text-lg mt-2 font-medium">Multi-Agent AI Debate for High-Complexity Medical Case Anomaly Research</p>
+          <p className="text-slate-500 dark:text-slate-400 text-lg mt-2 font-medium">
+            {isAr
+              ? "مناظرة ذكاء اصطناعي متعددة الوكلاء للحالات الطبية عالية التعقيد"
+              : "Multi-Agent AI Debate for High-Complexity Medical Case Anomaly Research"}
+          </p>
         </div>
-        <div className="flex space-x-3">
-          <div className="flex items-center space-x-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-4 py-2 rounded-full border border-emerald-100 dark:border-emerald-800 text-sm font-bold shadow-sm">
-            <ShieldCheck className="w-5 h-5" />
-            <span>Clinical Grade Engine</span>
-          </div>
+        <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-4 py-2 rounded-full border border-emerald-100 dark:border-emerald-800 text-sm font-bold shadow-sm">
+          <ShieldCheck className="w-5 h-5 flex-shrink-0" />
+          <span>{isAr ? "محرك سريري متخصص" : "Clinical Grade Engine"}</span>
         </div>
       </div>
 
       {/* Query Bar */}
       <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 relative overflow-hidden">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-4">
           <div className="flex-1 relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-            <input 
+            <Search className={`absolute ${dir === "rtl" ? "right-4" : "left-4"} top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5`} />
+            <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleStartDebate()}
-              placeholder="e.g. 'Pathophysiology of Heart Failure Treatment Anomaly in the elderly'..."
-              className="w-full pl-12 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl text-slate-800 dark:text-slate-100 font-semibold focus:ring-2 focus:ring-sky-500 transition-all placeholder-slate-400"
+              placeholder={isAr ? "مثال: فشل القلب الاحتقاني في كبار السن..." : "e.g. 'Pathophysiology of Heart Failure Treatment Anomaly in the elderly'..."}
+              className={`w-full ${dir === "rtl" ? "pr-12 pl-4" : "pl-12 pr-4"} py-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl text-slate-800 dark:text-slate-100 font-semibold focus:ring-2 focus:ring-sky-500 transition-all placeholder-slate-400`}
             />
           </div>
-          <button 
+          <button
             onClick={handleStartDebate}
             disabled={isDebating || !query.trim()}
-            className="bg-slate-900 dark:bg-sky-600 hover:bg-slate-800 dark:hover:bg-sky-500 disabled:bg-slate-200 dark:disabled:bg-slate-700 disabled:text-slate-400 text-white font-bold py-4 px-8 rounded-2xl flex items-center space-x-3 transition-all shadow-lg active:scale-95"
+            className="bg-slate-900 dark:bg-sky-600 hover:bg-slate-800 dark:hover:bg-sky-500 disabled:bg-slate-200 dark:disabled:bg-slate-700 disabled:text-slate-400 text-white font-bold py-4 px-8 rounded-2xl flex items-center gap-3 transition-all shadow-lg active:scale-95"
           >
             {isDebating ? <Loader2 className="animate-spin h-5 w-5" /> : <Send className="h-5 w-5" />}
-            <span>{isDebating ? 'Debating...' : 'Initialize Debate'}</span>
+            <span>{isDebating ? (isAr ? "جاري النقاش..." : "Debating...") : (isAr ? "بدء النقاش" : "Initialize Debate")}</span>
           </button>
         </div>
       </div>
@@ -124,7 +129,7 @@ export default function MDTPage() {
         {/* Agent A - Research */}
         <div className={`flex flex-col bg-white dark:bg-slate-900 rounded-3xl border ${currentAgent === 'A' ? 'border-sky-500 shadow-sky-100 dark:shadow-sky-900/50 shadow-2xl' : 'border-slate-200 dark:border-slate-800'} transition-all overflow-hidden`}>
           <div className="p-5 border-b border-slate-100 dark:border-slate-800 bg-sky-50/50 dark:bg-sky-900/20 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-sky-500 rounded-xl flex items-center justify-center text-white shadow-lg">
                 <BookMarked className="w-6 h-6" />
               </div>
@@ -144,7 +149,7 @@ export default function MDTPage() {
         {/* Agent B - Skeptic */}
         <div className={`flex flex-col bg-white dark:bg-slate-900 rounded-3xl border ${currentAgent === 'B' ? 'border-amber-500 shadow-amber-100 dark:shadow-amber-900/50 shadow-2xl' : 'border-slate-200 dark:border-slate-800'} transition-all overflow-hidden`}>
           <div className="p-5 border-b border-slate-100 dark:border-slate-800 bg-amber-50/50 dark:bg-amber-900/20 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-white shadow-lg">
                 <AlertTriangle className="w-6 h-6" />
               </div>
@@ -164,7 +169,7 @@ export default function MDTPage() {
         {/* Agent C - CMO Final */}
         <div className={`flex flex-col bg-white dark:bg-slate-900 rounded-3xl border ${currentAgent === 'C' ? 'border-teal-500 shadow-teal-100 dark:shadow-teal-900/50 shadow-2xl' : 'border-slate-200 dark:border-slate-800'} transition-all overflow-hidden`}>
           <div className="p-5 border-b border-slate-100 dark:border-slate-800 bg-teal-50/50 dark:bg-teal-900/20 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-teal-500 rounded-xl flex items-center justify-center text-white shadow-lg">
                 <UserCheck className="w-6 h-6" />
               </div>

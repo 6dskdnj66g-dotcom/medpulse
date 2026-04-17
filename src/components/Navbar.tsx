@@ -13,7 +13,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const { t, dir } = useLanguage();
-  const { user, profile } = useSupabaseAuth();
+  const { user, profile, signOut } = useSupabaseAuth();
 
   const mobileNavItems = [
     { href: "/", icon: LayoutDashboard, label: t.common.dashboard },

@@ -11,6 +11,7 @@ import {
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useLanguage } from "@/components/LanguageContext";
 
 interface Message {
   id: string;
@@ -219,7 +220,7 @@ function ChatModal({
       <div className="bg-white w-full max-w-2xl h-[85vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-in fade-in slide-in-from-bottom-8 duration-300">
         {/* Header */}
         <div className={`bg-gradient-to-r ${professor.gradient} p-5 flex items-center justify-between`}>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-3">
             <div className="w-11 h-11 bg-white/20 rounded-2xl flex items-center justify-center shadow-lg">
               <professor.icon className="w-6 h-6 text-white" />
             </div>
@@ -244,7 +245,7 @@ function ChatModal({
               className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
               {msg.role === "assistant" && (
-                <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${professor.gradient} flex items-center justify-center mr-2 flex-shrink-0 mt-0.5 shadow-sm`}>
+                <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${professor.gradient} flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm`}>
                   <professor.icon className="w-4 h-4 text-white" />
                 </div>
               )}
@@ -270,7 +271,7 @@ function ChatModal({
                     {msg.content}
                   </ReactMarkdown>
                 ) : (
-                  <span className="flex items-center space-x-1.5 text-slate-400">
+                  <span className="flex items-center gap-1.5 text-slate-400">
                     <Loader2 className="w-4 h-4 animate-spin" />
                     <span>Retrieving clinical data...</span>
                   </span>
@@ -302,7 +303,7 @@ function ChatModal({
 
         {/* Input */}
         <div className="p-4 border-t border-slate-100 bg-white">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-3">
             <input
               ref={inputRef}
               value={input}
@@ -332,11 +333,12 @@ function ChatModal({
 
 function ProfessorsInterface() {
   const { isLoading, hasRole } = useAuth();
+  const { dir } = useLanguage();
   const [activeSession, setActiveSession] = useState<Professor | null>(null);
 
   if (isLoading) {
     return (
-      <div className="p-8 flex items-center space-x-3 text-slate-500">
+      <div className="p-8 flex items-center gap-3 text-slate-500">
         <Loader2 className="w-5 h-5 animate-spin" />
         <span>Authenticating secure session...</span>
       </div>
@@ -346,15 +348,15 @@ function ProfessorsInterface() {
   const canAccessRestricted = hasRole([Role.PROFESSOR, Role.ADMIN]);
 
   return (
-    <div className="p-8 max-w-5xl mx-auto w-full">
+    <div className="p-8 max-w-5xl mx-auto w-full" dir={dir}>
       {activeSession && (
         <ChatModal professor={activeSession} onClose={() => setActiveSession(null)} />
       )}
 
       <div className="mb-10 flex justify-between items-start">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center">
-            <Bot className="h-8 w-8 text-indigo-500 mr-3" />
+          <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+            <Bot className="h-8 w-8 text-indigo-500 flex-shrink-0" />
             AI Professor Network
           </h1>
           <p className="text-slate-500 text-base max-w-2xl">
@@ -362,7 +364,7 @@ function ProfessorsInterface() {
             fine-tuned on a dedicated medical corpus to prevent cross-domain hallucination.
           </p>
         </div>
-        <div className="hidden md:flex items-center space-x-2 bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-lg text-indigo-700 text-sm font-semibold">
+        <div className="hidden md:flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-lg text-indigo-700 text-sm font-semibold">
           <ShieldCheck className="w-4 h-4" />
           <span>RAG Pipeline Active</span>
         </div>
@@ -413,13 +415,13 @@ function ProfessorsInterface() {
                 <p className="text-slate-500 text-sm leading-relaxed mb-3 flex-1">
                   {professor.description}
                 </p>
-                <div className="flex items-start space-x-2 text-xs text-slate-400 bg-slate-50 rounded-lg p-2.5 mb-5">
+                <div className="flex items-start gap-2 text-xs text-slate-400 bg-slate-50 rounded-lg p-2.5 mb-5">
                   <Sparkles className="w-3 h-3 mt-0.5 flex-shrink-0" />
                   <span>{professor.corpus}</span>
                 </div>
                 <button
                   onClick={() => !isRestricted && setActiveSession(professor)}
-                  className={`w-full py-3 px-4 rounded-xl font-semibold text-sm transition-all active:scale-95 flex items-center justify-center space-x-2 ${
+                  className={`w-full py-3 px-4 rounded-xl font-semibold text-sm transition-all active:scale-95 flex items-center justify-center gap-2 ${
                     isRestricted
                       ? "bg-slate-100 text-slate-400 cursor-not-allowed"
                       : `${professor.bgClass} ${professor.textClass} hover:opacity-90 border ${professor.borderClass}`
