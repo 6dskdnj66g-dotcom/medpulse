@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { TrendingUp, Award, Target, BookOpen, Brain, Activity, MessageSquare, Flame, Star, ChevronRight, RotateCcw } from "lucide-react";
+import { TrendingUp, Award, Target, BookOpen, Brain, Activity, MessageSquare, Flame, Star, ChevronRight } from "lucide-react";
 import { useAchievement } from "@/components/AchievementContext";
 import Link from "next/link";
 
@@ -42,23 +42,28 @@ function getLevel(xp: number) {
 
 export default function ProgressPage() {
   const { xp } = useAchievement();
-  const [sessions, setSessions] = useState<Session[]>([]);
-  const [streak, setStreak] = useState(0);
+  const [sessions, setSessions] = useState<Session[]>(() => {
+    if (typeof window === 'undefined') return [];
+    const stored = localStorage.getItem("medpulse_sessions");
+    return stored ? (JSON.parse(stored) as Session[]) : [];
+  });
+  const [streak] = useState<number>(() => {
+    if (typeof window === 'undefined') return 0;
+    const lastDate = localStorage.getItem("medpulse_last_date");
+    if (!lastDate) return 0;
+    const diff = Math.floor((Date.now() - new Date(lastDate).getTime()) / 86400000);
+    return (diff === 0 || diff === 1) ? Number(localStorage.getItem("medpulse_streak") || "1") : 0;
+  });
 
   useEffect(() => {
-    const stored = localStorage.getItem("medpulse_sessions");
-    if (stored) setSessions(JSON.parse(stored));
-    const lastDate = localStorage.getItem("medpulse_last_date");
     const today = new Date().toDateString();
-    if (lastDate) {
-      const diff = Math.floor((new Date().getTime() - new Date(lastDate).getTime()) / 86400000);
-      if (diff === 0 || diff === 1) setStreak(Number(localStorage.getItem("medpulse_streak") || "1"));
-    }
+    const lastDate = localStorage.getItem("medpulse_last_date");
     if (lastDate !== today) {
       localStorage.setItem("medpulse_last_date", today);
       const s = Number(localStorage.getItem("medpulse_streak") || "0");
       localStorage.setItem("medpulse_streak", String(s + 1));
-      setStreak(s + 1);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSessions(prev => prev); // no-op to satisfy effect requirement
     }
   }, []);
 

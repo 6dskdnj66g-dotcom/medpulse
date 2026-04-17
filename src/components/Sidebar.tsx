@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, LayoutDashboard, BookOpen, Bot, Brain, HeartPulse, ShieldCheck, Calculator, Pill, Trophy, TrendingUp, Stethoscope, LogOut, UserCircle, Library, User, LayoutGrid, FileText } from "lucide-react";
+import { Activity, LayoutDashboard, BookOpen, Bot, Brain, HeartPulse, ShieldCheck, Calculator, Pill, Trophy, TrendingUp, Stethoscope, LogOut, Library, User, LayoutGrid, FileText } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
@@ -10,7 +10,7 @@ import { useSupabaseAuth } from "./SupabaseAuthContext";
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { t, lang, dir } = useLanguage();
+  const { t, dir } = useLanguage();
   const { user, profile, signOut } = useSupabaseAuth();
 
   const NAV_SECTIONS = [

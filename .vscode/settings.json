@@ -1,0 +1,19 @@
+{
+  "workbench.colorCustomizations": {
+    "sideBar.foreground": "#e2e8f0",
+    "sideBar.background": "#0a0a0f",
+    "list.activeSelectionForeground": "#ffffff",
+    "list.inactiveSelectionForeground": "#cbd5e1",
+    "list.hoverForeground": "#f8fafc",
+    "tree.indentGuidesStroke": "#334155",
+    "editor.background": "#0a0a0f",
+    "activityBar.background": "#0a0a0f"
+  },
+  "editor.fontFamily": "'JetBrains Mono', 'Fira Code', monospace",
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.next": true
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Trophy, Target, Clock, CheckCircle, X, ChevronRight, RotateCcw, Award, BookOpen, Brain } from "lucide-react";
+import { Trophy, Clock, CheckCircle, X, ChevronRight, RotateCcw, Award, BookOpen, Brain } from "lucide-react";
 import { useAchievement } from "@/components/AchievementContext";
 
 // ── Question Bank ──────────────────────────────────────────────────────────
@@ -126,7 +126,7 @@ export default function USMLEPage() {
   const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState<boolean[]>([]);
-  const [timeLeft, setTimeLeft] = useState<number | null>(null);
+  const [_timeLeft, setTimeLeft] = useState<number | null>(null);
   const [finished, setFinished] = useState(false);
   const [questions, setQuestions] = useState(QUESTION_BANK);
 

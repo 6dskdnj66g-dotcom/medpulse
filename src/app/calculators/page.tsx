@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Calculator, Heart, Activity, Droplets, Scale, Brain, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, Info, Download, Save, Loader2 } from "lucide-react";
+import { Calculator, Heart, Activity, Droplets, Scale, Brain, ChevronDown, ChevronUp, CheckCircle, Info, Download, Save, Loader2 } from "lucide-react";
 import { exportMedicalReport } from "@/lib/pdfExport";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { supabase } from "@/lib/supabase";

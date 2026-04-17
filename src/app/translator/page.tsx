@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  Languages, ArrowLeftRight, Loader2, Copy, CheckCircle, 
-  Save, Volume2, ShieldCheck, Database, Search
+import {
+  Languages, ArrowLeftRight, Loader2, Copy, CheckCircle,
+  Save, ShieldCheck
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";

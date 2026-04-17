@@ -5,7 +5,7 @@ export interface ReportOptions {
   title: string;
   filename: string;
   patientId?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 /**

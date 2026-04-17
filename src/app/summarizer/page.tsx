@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Stethoscope, Activity, FileText, Pill, Sparkles,
   AlertTriangle, CheckCircle, Microscope, ClipboardList,
@@ -208,7 +209,7 @@ Example:
             {image && (
               <div className="mt-4 p-3 bg-sky-50 dark:bg-sky-900/30 rounded-xl border border-sky-100 dark:border-sky-800 flex items-start space-x-3">
                 <div className="w-16 h-16 rounded-lg bg-slate-200 overflow-hidden flex-shrink-0 border border-slate-300">
-                  <img src={image} alt="Uploaded lab" className="w-full h-full object-cover" />
+                  <Image src={image} alt="Uploaded lab" width={64} height={64} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-bold text-sky-800 dark:text-sky-300 flex items-center">

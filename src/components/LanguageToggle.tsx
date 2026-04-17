@@ -1,7 +1,6 @@
 "use client";
 
 import { useLanguage } from "./LanguageContext";
-import { Languages } from "lucide-react";
 
 export function LanguageToggle() {
   const { lang, setLanguage } = useLanguage();

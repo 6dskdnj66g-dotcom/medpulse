@@ -4,7 +4,7 @@ import { ALL_MEDICAL_SOURCES } from '@/lib/medicalSources';
 
 // POST /api/admin/seed-sources
 // Seeds all medical sources into Supabase database
-export async function POST(req: NextRequest) {
+export async function POST(_req: NextRequest) {
   try {
     const adminClient = createSupabaseAdmin();
 
@@ -41,8 +41,8 @@ export async function POST(req: NextRequest) {
       message: `Successfully seeded ${inserted} medical sources`,
       total: inserted,
     });
-  } catch (error) {
-    console.error('Seed error:', error);
+  } catch (_error) {
+    console.error('Seed error:', _error);
     return NextResponse.json({ error: 'Failed to seed sources' }, { status: 500 });
   }
 }
@@ -56,7 +56,7 @@ export async function GET() {
     const { count } = await adminClient.from('medical_sources').select('*', { count: 'exact', head: true });
 
     return NextResponse.json({ stats, sourcesInDB: count });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Failed to get stats' }, { status: 500 });
   }
 }

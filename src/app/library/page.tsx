@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import {
   BookOpen, Search, Filter, ExternalLink, Bookmark, BookmarkCheck,
   Globe, Star, Database, ScrollText, BookMarked, ChevronDown,
@@ -148,15 +148,15 @@ export default function SourceLibraryPage() {
   const [selectedRegion, setSelectedRegion] = useState<string>("all");
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>("all");
   const [openAccess, setOpenAccess] = useState(false);
-  const [bookmarks, setBookmarks] = useState<Set<string>>(new Set());
+  const [bookmarks, setBookmarks] = useState<Set<string>>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem("medpulse_source_bookmarks");
+      if (stored) return new Set(JSON.parse(stored) as string[]);
+    }
+    return new Set<string>();
+  });
   const [showBookmarked, setShowBookmarked] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-
-  // Load bookmarks from localStorage
-  useEffect(() => {
-    const stored = localStorage.getItem("medpulse_source_bookmarks");
-    if (stored) setBookmarks(new Set(JSON.parse(stored)));
-  }, []);
 
   function toggleBookmark(name: string) {
     setBookmarks(prev => {

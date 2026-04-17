@@ -27,8 +27,8 @@ export async function POST(req: NextRequest) {
     if (error) throw error;
 
     return NextResponse.json({ success: true, data });
-  } catch (error) {
-    console.error('Progress save error:', error);
+  } catch (_error) {
+    console.error('Progress save error:', _error);
     return NextResponse.json({ error: 'Failed to save progress' }, { status: 500 });
   }
 }
@@ -65,7 +65,7 @@ export async function GET(req: NextRequest) {
       sessions: sessions || [],
       stats: { totalAnswered, totalCorrect, accuracy, sessionsCount: sessions?.length || 0 },
     });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Failed to fetch progress' }, { status: 500 });
   }
 }

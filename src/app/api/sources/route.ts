@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
     if (error) throw error;
 
     return NextResponse.json({ data, total: count, page, limit });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Failed to fetch sources' }, { status: 500 });
   }
 }

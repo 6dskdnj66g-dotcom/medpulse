@@ -1,6 +1,5 @@
 import { generateText } from 'ai';
-import { createGroq } from '@ai-sdk/groq';
-const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
+import { google } from '@ai-sdk/google';
 
 export const maxDuration = 60;
 
@@ -56,7 +55,7 @@ export async function POST(req: Request) {
     ];
 
     const { text: responseText } = await generateText({
-      model: google('gemini-1.5-flash'),
+      model: google('gemini-2.0-flash'),
       system: SUMMARIZER_PROMPT,
       messages,
       temperature: 0.1,

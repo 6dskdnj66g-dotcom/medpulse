@@ -28,13 +28,15 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isConfigured);
+
+  const fetchProfile = async (userId: string) => {
+    const { data } = await supabase.from("profiles").select("*").eq("id", userId).single();
+    if (data) setProfile(data as Profile);
+  };
 
   useEffect(() => {
-    if (!isConfigured) {
-      setLoading(false);
-      return;
-    }
+    if (!isConfigured) return;
 
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -54,11 +56,6 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
 
     return () => subscription.unsubscribe();
   }, []);
-
-  async function fetchProfile(userId: string) {
-    const { data } = await supabase.from("profiles").select("*").eq("id", userId).single();
-    if (data) setProfile(data as Profile);
-  }
 
   async function signUp(email: string, password: string, fullName: string, role = "student") {
     const { error } = await supabase.auth.signUp({

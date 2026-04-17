@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, Loader2, ClipboardEdit, ShieldCheck, AlertTriangle, Copy, CheckCircle, Download, Save, Bookmark } from "lucide-react";
+import { FileText, Loader2, ClipboardEdit, ShieldCheck, Copy, CheckCircle, Download, Save } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { exportMedicalReport } from "@/lib/pdfExport";

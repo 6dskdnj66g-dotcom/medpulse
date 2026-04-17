@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FileText, GraduationCap, ArrowRight, Search, BookMarked, PlayCircle, Sparkles, Activity, ShieldCheck, Clock, Brain, HeartPulse } from "lucide-react";
+import { ArrowRight, Search, Sparkles, Activity, ShieldCheck, Clock, Brain, HeartPulse } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 
 const SAVED_SETS = [

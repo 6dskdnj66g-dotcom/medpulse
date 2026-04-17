@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Pill, Plus, X, AlertTriangle, ShieldCheck, Loader2, Search } from "lucide-react";
+import { Pill, X, AlertTriangle, ShieldCheck, Loader2, Search } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 

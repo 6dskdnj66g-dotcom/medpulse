@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Activity, Stethoscope, HeartPulse, ShieldAlert, Send, RefreshCw, Loader2, Info, Mic, MicOff, Volume2 } from "lucide-react";
+import { Activity, Stethoscope, HeartPulse, Send, RefreshCw, Loader2, Info, Mic, MicOff, Volume2 } from "lucide-react";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import { useAchievement } from "@/components/AchievementContext";
 import ReactMarkdown from "react-markdown";
@@ -222,7 +222,7 @@ function SimulatorWard() {
           </div>
 
           <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/30 dark:bg-slate-950/30">
-            {messages.map((msg, idx) => (
+            {messages.map((msg, _idx) => (
               <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[80%] rounded-2xl px-5 py-4 shadow-sm text-sm leading-relaxed ${
                   msg.role === "user" 
@@ -241,12 +241,18 @@ function SimulatorWard() {
                     <ReactMarkdown 
                       remarkPlugins={[remarkGfm]}
                       components={{
-                        a: ({ node, ...props }) => <a className="text-rose-600 font-semibold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
-                        p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
-                        ul: ({ node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
-                        ol: ({ node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
-                        li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-                        strong: ({ node, ...props }) => <strong className="font-bold text-slate-800 dark:text-white" {...props} />
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        a: ({ node: _node, ...props }) => <a className="text-rose-600 font-semibold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        p: ({ node: _node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        ul: ({ node: _node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        ol: ({ node: _node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        li: ({ node: _node, ...props }) => <li className="mb-1" {...props} />,
+                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        strong: ({ node: _node, ...props }) => <strong className="font-bold text-slate-800 dark:text-white" {...props} />
                       }}
                     >
                       {msg.content}

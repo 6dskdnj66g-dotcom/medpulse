@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { Mail, Lock, User, Stethoscope, Eye, EyeOff, Brain, AlertCircle, CheckCircle } from "lucide-react";
+import { Mail, Lock, User, Eye, EyeOff, Brain, AlertCircle, CheckCircle } from "lucide-react";
 
 const ROLES = [
   { value: "student", label: "Medical Student", icon: "🎓" },

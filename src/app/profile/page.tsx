@@ -7,7 +7,7 @@ import Link from "next/link";
 import {
   User, Award, TrendingUp, BookOpen, Brain, Activity,
   Edit3, Save, Shield, Calendar, Star, Flame, Target,
-  LogOut, CheckCircle, Camera, Globe, Stethoscope
+  LogOut, CheckCircle, Globe, Stethoscope
 } from "lucide-react";
 
 const LEVEL_THRESHOLDS = [

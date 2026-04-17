@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { useRouter } from "next/navigation";
 import {
   Users, Activity, Globe, BookOpen, TrendingUp, Award,
   Eye, Smartphone, Monitor, RefreshCw, Database, Zap,
   ChevronUp, ChevronDown, Shield, AlertCircle, BarChart2,
-  Map, Clock, Star
+  Star
 } from "lucide-react";
+import Link from "next/link";
 
 interface Stats {
   total_registered_users: number;
@@ -101,6 +101,7 @@ function BarChart({ data, title }: { data: Record<string, number>; title: string
 function LiveFeedRow({ visit }: { visit: { page: string; country: string; device_type: string; browser: string; is_registered: boolean; created_at: string } }) {
   const deviceIcon = visit.device_type === "mobile" ? "📱" : "🖥️";
   const when = new Date(visit.created_at);
+  // eslint-disable-next-line react-hooks/purity
   const timeAgo = Math.round((Date.now() - when.getTime()) / 60000);
 
   return (
@@ -123,7 +124,6 @@ function LiveFeedRow({ visit }: { visit: { page: string; country: string; device
 // ── Main Admin Page ──────────────────────────────────────────────────────────
 export default function AdminDashboard() {
   const { profile, loading } = useSupabaseAuth();
-  const router = useRouter();
   const [data, setData] = useState<VisitorData | null>(null);
   const [fetching, setFetching] = useState(true);
   const [seeding, setSeeding] = useState(false);
@@ -455,27 +455,27 @@ export default function AdminDashboard() {
           <div className="premium-card p-6">
             <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">🔗 إجراءات سريعة</h3>
             <div className="grid md:grid-cols-3 gap-3">
-              <a href="/library" className="flex items-center gap-3 p-4 rounded-2xl bg-indigo-500/10 hover:bg-indigo-500/20 transition-all">
+              <Link href="/library" className="flex items-center gap-3 p-4 rounded-2xl bg-indigo-500/10 hover:bg-indigo-500/20 transition-all">
                 <BookOpen className="w-5 h-5 text-indigo-600" />
                 <div>
                   <p className="text-sm font-black text-indigo-700 dark:text-indigo-300">مكتبة المصادر</p>
                   <p className="text-xs text-slate-400">عرض + بحث جميع المصادر</p>
                 </div>
-              </a>
-              <a href="/encyclopedia" className="flex items-center gap-3 p-4 rounded-2xl bg-teal-500/10 hover:bg-teal-500/20 transition-all">
+              </Link>
+              <Link href="/encyclopedia" className="flex items-center gap-3 p-4 rounded-2xl bg-teal-500/10 hover:bg-teal-500/20 transition-all">
                 <Globe className="w-5 h-5 text-teal-600" />
                 <div>
                   <p className="text-sm font-black text-teal-700 dark:text-teal-300">الموسوعة الطبية</p>
                   <p className="text-xs text-slate-400">عرض التخصصات والمقالات</p>
                 </div>
-              </a>
-              <a href="/progress" className="flex items-center gap-3 p-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 transition-all">
+              </Link>
+              <Link href="/progress" className="flex items-center gap-3 p-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 transition-all">
                 <TrendingUp className="w-5 h-5 text-amber-600" />
                 <div>
                   <p className="text-sm font-black text-amber-700 dark:text-amber-300">تتبع التقدم</p>
                   <p className="text-xs text-slate-400">XP وإحصائيات المستخدمين</p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

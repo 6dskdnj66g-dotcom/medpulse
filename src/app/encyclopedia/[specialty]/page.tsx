@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft, Search, ShieldCheck, X, Loader2,
-  HeartPulse, Stethoscope,
+  HeartPulse, Stethoscope, Brain, Baby, Pill, Bone, Eye, Microscope,
   Activity, Sparkles, BookOpen, Layers, ChevronRight,
   Send, Bot, AlertTriangle, Dna, FileText
 } from "lucide-react";
@@ -20,7 +20,7 @@ interface Flashcard {
 }
 
 // ── Global Medical Sources Registry ─────────────────────────────────
-export const GLOBAL_MEDICAL_SOURCES = [
+const GLOBAL_MEDICAL_SOURCES = [
   // === INTERNATIONAL JOURNALS ===
   { name: "New England Journal of Medicine (NEJM)", category: "Journal", impact: "176.1", url: "https://www.nejm.org" },
   { name: "The Lancet", category: "Journal", impact: "202.7", url: "https://www.thelancet.com" },

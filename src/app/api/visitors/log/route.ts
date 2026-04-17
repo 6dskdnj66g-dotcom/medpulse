@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
 }
 
 // GET /api/visitors/log — Admin stats
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     const admin = createSupabaseAdmin();
     const { data: stats } = await admin.from('platform_stats').select('*').single();
@@ -69,7 +69,7 @@ export async function GET(req: NextRequest) {
     }, {}) || {};
 
     return NextResponse.json({ stats, recentVisits, pageBreakdown, countryBreakdown });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ error: 'Failed to get visitor stats' }, { status: 500 });
   }
 }

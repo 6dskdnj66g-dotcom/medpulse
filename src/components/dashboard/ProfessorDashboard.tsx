@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import {
   AlertCircle, CheckCircle, Edit3, PenTool, ShieldCheck,
-  TrendingUp, Users, BookOpen, RefreshCw, Loader2, Activity
+  TrendingUp, Users, BookOpen, Activity
 } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";

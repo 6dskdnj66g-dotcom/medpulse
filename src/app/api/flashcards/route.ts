@@ -1,6 +1,5 @@
 import { streamText } from 'ai';
-import { createGroq } from '@ai-sdk/groq';
-const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
+import { google } from '@ai-sdk/google';
 
 export const maxDuration = 60;
 
@@ -38,7 +37,7 @@ export async function POST(req: Request) {
     }
 
     const result = await streamText({
-      model: google('gemini-1.5-flash'),
+      model: google('gemini-2.0-flash'),
       system: FLASHCARD_PROMPT,
       prompt: `Generate flashcards from the following text:\n\n${text}`,
       temperature: 0.2, // Low temp for factual accuracy

@@ -14,15 +14,17 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Language>('ar'); // Default to Arabic as per user preference
+  const [lang, setLang] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('medpulse_lang') as Language;
+      if (saved === 'en' || saved === 'ar') return saved;
+    }
+    return 'ar';
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('medpulse_lang') as Language;
-    if (saved && (saved === 'en' || saved === 'ar')) {
-      setLang(saved);
-    }
-    setMounted(true);
+    setMounted(true); // eslint-disable-line react-hooks/set-state-in-effect
   }, []);
 
   useEffect(() => {

@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { supabase } from "@/lib/supabase";
 import {
   FolderHeart, FileText, Activity, Calculator, Clock,
-  Search, Filter, Download, Trash2, ExternalLink,
+  Search, Download, Trash2,
   ChevronRight, ArrowRight, Loader2, Database, ShieldAlert
 } from "lucide-react";
 import Link from "next/link";
@@ -17,16 +17,18 @@ interface ClinicalRecord {
   created_at: string;
   type: "soap_note" | "ecg_report" | "calc_result" | "translator_output";
   title: string;
-  content: any;
+  content: Record<string, unknown>;
   specialty?: string;
 }
 
-const TYPE_CONFIG: Record<string, { label: string; icon: any; color: string; bgColor: string }> = {
+const TYPE_CONFIG: Record<string, { label: string; icon: React.ElementType; color: string; bgColor: string }> = {
   soap_note: { label: "ملاحظات SOAP", icon: FileText, color: "text-teal-500", bgColor: "bg-teal-500/10" },
   ecg_report: { label: "تقرير ECG", icon: Activity, color: "text-rose-500", bgColor: "bg-rose-500/10" },
   calc_result: { label: "نتيجة حاسبة", icon: Calculator, color: "text-indigo-500", bgColor: "bg-indigo-500/10" },
   translator_output: { label: "ترجمة طبية", icon: Database, color: "text-amber-500", bgColor: "bg-amber-500/10" },
 };
+
+const s = (v: unknown): string => (v == null ? '' : String(v));
 
 export default function ClinicalRecordsPage() {
   const { user, loading: authLoading } = useSupabaseAuth();
@@ -36,11 +38,7 @@ export default function ClinicalRecordsPage() {
   const [filter, setFilter] = useState("all");
   const [selectedRecord, setSelectedRecord] = useState<ClinicalRecord | null>(null);
 
-  useEffect(() => {
-    if (user) fetchRecords();
-  }, [user]);
-
-  async function fetchRecords() {
+  const fetchRecords = async () => {
     setLoading(true);
     const { data, error } = await supabase
       .from("clinical_records")
@@ -49,7 +47,12 @@ export default function ClinicalRecordsPage() {
 
     if (!error && data) setRecords(data as ClinicalRecord[]);
     setLoading(false);
-  }
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (user) fetchRecords();
+  }, [user]);
 
   async function deleteRecord(id: string) {
     if (!confirm("هل أنت متأكد من حذف هذا السجل؟")) return;
@@ -218,11 +221,11 @@ export default function ClinicalRecordsPage() {
               <div className="flex-1 p-8 overflow-y-auto">
                 {selectedRecord.type === "soap_note" && (
                   <div className="prose prose-sm dark:prose-invert max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{selectedRecord.content?.note}</ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{s(selectedRecord.content?.note)}</ReactMarkdown>
                     <div className="mt-10 pt-6 border-t border-slate-100 dark:border-slate-800">
                       <h4 className="text-xs font-black uppercase text-slate-400 mb-2">Original Clinical Input:</h4>
                       <p className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl text-xs text-slate-500 font-bold italic line-clamp-4">
-                        {selectedRecord.content?.input}
+                        {s(selectedRecord.content?.input)}
                       </p>
                     </div>
                   </div>
@@ -230,10 +233,10 @@ export default function ClinicalRecordsPage() {
 
                 {selectedRecord.type === "ecg_report" && (
                   <div className="prose prose-sm dark:prose-invert max-w-none">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{selectedRecord.content?.report}</ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{s(selectedRecord.content?.report)}</ReactMarkdown>
                     <div className="mt-8 p-4 bg-rose-500/5 rounded-xl border border-rose-500/10">
                       <p className="text-[10px] font-black uppercase text-rose-500 mb-1">Clinical Findings Provided:</p>
-                      <p className="text-xs text-slate-600 dark:text-slate-400 font-bold">{selectedRecord.content?.findings}</p>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 font-bold">{s(selectedRecord.content?.findings)}</p>
                     </div>
                   </div>
                 )}
@@ -241,15 +244,15 @@ export default function ClinicalRecordsPage() {
                 {selectedRecord.type === "calc_result" && (
                   <div className="space-y-8">
                     <div className="p-8 bg-indigo-500/5 border border-indigo-500/10 rounded-3xl text-center">
-                      <p className="text-xs font-black uppercase tracking-widest text-indigo-500 mb-2">{selectedRecord.content?.label}</p>
-                      <p className="text-6xl font-black text-slate-900 dark:text-white mb-4">{selectedRecord.content?.score}</p>
-                      <p className="text-lg font-bold text-slate-600 dark:text-slate-300">{selectedRecord.content?.risk}</p>
+                      <p className="text-xs font-black uppercase tracking-widest text-indigo-500 mb-2">{s(selectedRecord.content?.label)}</p>
+                      <p className="text-6xl font-black text-slate-900 dark:text-white mb-4">{s(selectedRecord.content?.score)}</p>
+                      <p className="text-lg font-bold text-slate-600 dark:text-slate-300">{s(selectedRecord.content?.risk)}</p>
                     </div>
                     
                     <div>
                       <h4 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">Input Parameters:</h4>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        {Object.entries(selectedRecord.content?.inputs || {}).map(([key, val]) => (
+                        {Object.entries((selectedRecord.content?.inputs as Record<string, unknown>) || {}).map(([key, val]) => (
                           <div key={key} className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-between border border-slate-100 dark:border-slate-700">
                             <span className="text-[10px] font-black uppercase text-slate-400 truncate mr-2">{key.replace(/_/g, ' ')}</span>
                             <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${val ? 'bg-emerald-500/10 text-emerald-600' : 'bg-slate-200 text-slate-500'}`}>

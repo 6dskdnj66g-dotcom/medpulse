@@ -8,7 +8,6 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { AchievementProvider } from '@/components/AchievementContext';
 import { DevRoleToggle } from '@/components/DevRoleToggle';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { CalculatorsWidget } from '@/components/CalculatorsWidget';
 import { SupabaseAuthProvider } from '@/components/SupabaseAuthContext';
 import { VisitorTracker } from '@/components/VisitorTracker';
 import { LanguageProvider } from '@/components/LanguageContext';
@@ -74,7 +73,6 @@ export default function RootLayout({
                     </main>
                   </div>
                   <DevRoleToggle />
-                  <CalculatorsWidget />
                 </AchievementProvider>
               </ThemeProvider>
             </AuthProvider>

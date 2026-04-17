@@ -260,12 +260,18 @@ function ChatModal({
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      a: ({ node, ...props }) => <a className="text-sky-600 font-semibold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
-                      p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
-                      ul: ({ node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
-                      ol: ({ node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
-                      li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-                      strong: ({ node, ...props }) => <strong className="font-bold text-slate-800" {...props} />
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      a: ({ node: _node, ...props }) => <a className="text-sky-600 font-semibold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      p: ({ node: _node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      ul: ({ node: _node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      ol: ({ node: _node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      li: ({ node: _node, ...props }) => <li className="mb-1" {...props} />,
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      strong: ({ node: _node, ...props }) => <strong className="font-bold text-slate-800" {...props} />
                     }}
                   >
                     {msg.content}
