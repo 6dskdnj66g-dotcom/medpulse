@@ -233,14 +233,14 @@ export default function USMLEPage() {
 
   if (finished) {
     const grade = pct >= 70 ? "PASS" : "NEEDS REVIEW";
-    const gradeColor = pct >= 70 ? "emerald" : "rose";
+    const isPassing = pct >= 70;
     return (
       <div className="max-w-2xl mx-auto p-6 md:p-10 w-full page-transition text-center">
-        <div className={`w-24 h-24 rounded-full bg-${gradeColor}-500/10 flex items-center justify-center mx-auto mb-6`}>
-          <Award className={`w-12 h-12 text-${gradeColor}-500`} />
+        <div className={`w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 ${isPassing ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
+          <Award className={`w-12 h-12 ${isPassing ? "text-emerald-500" : "text-rose-500"}`} />
         </div>
         <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-2">Session Complete</h1>
-        <p className={`text-2xl font-black text-${gradeColor}-600 mb-6`}>{grade}</p>
+        <p className={`text-2xl font-black mb-6 ${isPassing ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>{grade}</p>
         <div className="premium-card p-8 mb-8">
           <div className="grid grid-cols-3 gap-6">
             <div>

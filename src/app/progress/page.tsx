@@ -70,14 +70,49 @@ export default function ProgressPage() {
   const accuracy = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
 
   const colorMap: Record<string, string> = {
-    indigo: "bg-indigo-500/10 text-indigo-600 border-indigo-500/20",
-    sky: "bg-sky-500/10 text-sky-600 border-sky-500/20",
-    teal: "bg-teal-500/10 text-teal-600 border-teal-500/20",
-    emerald: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
-    amber: "bg-amber-500/10 text-amber-600 border-amber-500/20",
-    orange: "bg-orange-500/10 text-orange-600 border-orange-500/20",
-    rose: "bg-rose-500/10 text-rose-600 border-rose-500/20",
-    slate: "bg-slate-500/10 text-slate-600 border-slate-500/20",
+    indigo:  "bg-indigo-500/10  text-indigo-600  dark:text-indigo-400  border-indigo-500/20",
+    sky:     "bg-sky-500/10     text-sky-600     dark:text-sky-400     border-sky-500/20",
+    teal:    "bg-teal-500/10    text-teal-600    dark:text-teal-400    border-teal-500/20",
+    emerald: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+    amber:   "bg-amber-500/10   text-amber-600   dark:text-amber-400   border-amber-500/20",
+    orange:  "bg-orange-500/10  text-orange-600  dark:text-orange-400  border-orange-500/20",
+    rose:    "bg-rose-500/10    text-rose-600    dark:text-rose-400    border-rose-500/20",
+    slate:   "bg-slate-500/10   text-slate-600   dark:text-slate-400   border-slate-500/20",
+  };
+
+  /* icon-only color (no bg/border) for module icons */
+  const iconColorMap: Record<string, string> = {
+    indigo:  "bg-indigo-500/10  text-indigo-600  dark:text-indigo-400",
+    sky:     "bg-sky-500/10     text-sky-600     dark:text-sky-400",
+    teal:    "bg-teal-500/10    text-teal-600    dark:text-teal-400",
+    emerald: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+    amber:   "bg-amber-500/10   text-amber-600   dark:text-amber-400",
+    orange:  "bg-orange-500/10  text-orange-600  dark:text-orange-400",
+    rose:    "bg-rose-500/10    text-rose-600    dark:text-rose-400",
+    slate:   "bg-slate-500/10   text-slate-600   dark:text-slate-400",
+  };
+
+  /* text-only for level roadmap */
+  const textColorMap: Record<string, string> = {
+    indigo:  "text-indigo-700  dark:text-indigo-400",
+    sky:     "text-sky-700     dark:text-sky-400",
+    teal:    "text-teal-700    dark:text-teal-400",
+    emerald: "text-emerald-700 dark:text-emerald-400",
+    amber:   "text-amber-700   dark:text-amber-400",
+    orange:  "text-orange-700  dark:text-orange-400",
+    rose:    "text-rose-700    dark:text-rose-400",
+    slate:   "text-slate-700   dark:text-slate-400",
+  };
+
+  const dotColorMap: Record<string, string> = {
+    indigo:  "bg-indigo-500",
+    sky:     "bg-sky-500",
+    teal:    "bg-teal-500",
+    emerald: "bg-emerald-500",
+    amber:   "bg-amber-500",
+    orange:  "bg-orange-500",
+    rose:    "bg-rose-500",
+    slate:   "bg-slate-500",
   };
 
   return (
@@ -152,7 +187,7 @@ export default function ProgressPage() {
               return (
                 <Link key={m.id} href={m.href}
                   className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all group">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-${m.color}-500/10 text-${m.color}-600`}>
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconColorMap[m.color] || iconColorMap.indigo}`}>
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
@@ -173,15 +208,15 @@ export default function ProgressPage() {
               const isCompleted = xp >= lvlItem.xpRequired;
               const isCurrent = lvl === lvlItem;
               return (
-                <div key={lvlItem.level} className={`flex items-center gap-4 p-3 rounded-2xl transition-all ${isCurrent ? `bg-${lvlItem.color}-500/10 border border-${lvlItem.color}-500/20` : ""}`}>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black ${isCompleted ? `bg-${lvlItem.color}-500 text-white` : "bg-slate-100 dark:bg-slate-800 text-slate-400"}`}>
+                <div key={lvlItem.level} className={`flex items-center gap-4 p-3 rounded-2xl transition-all ${isCurrent ? `${colorMap[lvlItem.color] || colorMap.slate} border` : ""}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black ${isCompleted ? `${dotColorMap[lvlItem.color] || dotColorMap.slate} text-white` : "bg-slate-100 dark:bg-slate-800 text-slate-400"}`}>
                     {isCompleted ? "✓" : i + 1}
                   </div>
                   <div className="flex-1">
-                    <p className={`text-sm font-black ${isCurrent ? `text-${lvlItem.color}-700 dark:text-${lvlItem.color}-400` : "text-slate-500"}`}>{lvlItem.title}</p>
+                    <p className={`text-sm font-black ${isCurrent ? textColorMap[lvlItem.color] || textColorMap.slate : "text-slate-500 dark:text-slate-400"}`}>{lvlItem.title}</p>
                     <p className="text-xs text-slate-400">{lvlItem.xpRequired} XP</p>
                   </div>
-                  {isCurrent && <span className={`text-[10px] font-black uppercase text-${lvlItem.color}-600 bg-${lvlItem.color}-500/10 px-2 py-1 rounded-full`}>Current</span>}
+                  {isCurrent && <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-full ${colorMap[lvlItem.color] || colorMap.slate}`}>Current</span>}
                 </div>
               );
             })}
