@@ -1,6 +1,10 @@
 import { streamText } from 'ai';
-import { google } from '@ai-sdk/google';
+import { createGroq } from '@ai-sdk/groq';
 import { MEGA_SOURCE_PROMPT, SOURCE_STATS } from '@/lib/medicalSources';
+
+const groq = createGroq({
+  apiKey: process.env.GROQ_API_KEY,
+});
 
 export const maxDuration = 60;
 
@@ -26,7 +30,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const result = await streamText({
-      model: google('gemini-2.0-flash'),
+      model: groq('llama-3.3-70b-versatile'),
       system: ZERO_HALLUCINATION_PROMPT,
       messages: messages,
       temperature: 0.1,
