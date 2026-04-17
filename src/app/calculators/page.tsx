@@ -27,6 +27,7 @@ function CalcResultWrapper({ id, title, score, risk, label, color, rawData }: {
   label: string; 
   color: string; 
   risk: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rawData: any;
 }) {
   const { user } = useSupabaseAuth();

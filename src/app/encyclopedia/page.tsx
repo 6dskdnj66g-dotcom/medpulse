@@ -3,8 +3,8 @@
 import { useState } from "react";
 import {
   ArrowRight, BookOpen, HeartPulse, Brain, Microscope, Stethoscope,
-  Baby, Bone, Eye, Pill, Activity, Search, X, Dna, ExternalLink,
-  FlaskConical, ShieldCheck
+  Baby, Pill, Activity, Search, X, Dna, ExternalLink,
+  ShieldCheck, FlaskConical, Bone, Eye
 } from "lucide-react";
 import Link from "next/link";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";

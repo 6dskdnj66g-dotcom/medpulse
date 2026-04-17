@@ -4,10 +4,10 @@ import { useState, use } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
-  ArrowLeft, Search, BookOpen, ShieldCheck, X, Loader2,
-  HeartPulse, Brain, Microscope, Stethoscope, Baby,
-  Bone, Eye, Pill, Activity, ChevronRight, Sparkles,
-  Send, Bot, AlertTriangle, Layers, Dna, FileText
+  ArrowLeft, Search, ShieldCheck, X, Loader2,
+  HeartPulse, Stethoscope,
+  Activity, Sparkles, BookOpen, Layers, ChevronRight,
+  Send, Bot, AlertTriangle, Dna, FileText
 } from "lucide-react";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import { FlashcardDeck } from "@/components/FlashcardDeck";
@@ -416,8 +416,11 @@ function SpecialtyChat({ config }: { config: typeof SPECIALTY_CONFIG[string] }) 
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
                   components={{
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     a: ({ node, ...props }) => <a className="text-sky-500 font-bold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     strong: ({ node, ...props }) => <strong className="font-black text-slate-900 dark:text-white" {...props} />
                   }}
                 >
@@ -519,6 +522,7 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
         if (done) break;
         fullJson += decoder.decode(value);
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setFlashcards(JSON.parse(fullJson.replace(/```json|```/g, "")).map((card: any) => ({
         q: card.q || card.question,
         a: card.a || card.answer
@@ -668,6 +672,7 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
                     <button onClick={() => setSelectedFolder(null)} className="text-xs font-black uppercase text-slate-400 hover:text-slate-600 tracking-widest">Back</button>
                   </div>
                   <div className="space-y-3">
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {specialtyLibrary[selectedFolder as keyof typeof specialtyLibrary].map((file: any) => (
                       <div key={file.name} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group cursor-pointer">
                         <div className="flex items-center space-x-4">
