@@ -165,7 +165,7 @@ export default function ECGPage() {
             title="Animated Human Heart" 
             allowFullScreen 
             allow="autoplay; fullscreen; xr-spatial-tracking" 
-            src="https://sketchfab.com/models/0b2e2d83cd4d49d986b6a2e4dc27d14c/embed?autostart=1&preload=1&ui_controls=0&ui_infos=0&ui_watermark=0&transparent=1"
+            src="https://sketchfab.com/models/dedbab26bd27413eaf55148caaccc9f7/embed?autostart=1&preload=1&ui_controls=0&ui_infos=0&ui_watermark=0&transparent=1"
             className="absolute inset-0 w-full h-full object-contain pointer-events-auto"
             style={{ filter: "drop-shadow(0px 10px 15px rgba(0,0,0,0.2))" }}
           ></iframe>

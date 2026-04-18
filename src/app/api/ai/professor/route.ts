@@ -1,6 +1,5 @@
 // src/app/api/ai/professor/route.ts
 import { streamText } from "ai";
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { createGroq } from "@ai-sdk/groq";
 
 export const maxDuration = 60;
@@ -77,20 +76,7 @@ export async function POST(req: Request) {
     const persona = professorId ? PROFESSOR_PERSONAS[professorId] : null;
     const systemInstruction = customPrompt ?? persona?.systemPrompt ?? `أنت أستاذ طبي خبير. أجب بالعربية الطبية الفصحى مع ذكر المصادر.`;
 
-    const geminiKey = process.env.GEMINI_API_KEY ?? process.env.GOOGLE_GENERATIVE_AI_API_KEY;
     const groqKey = process.env.GROQ_API_KEY;
-
-    if (geminiKey) {
-      const google = createGoogleGenerativeAI({ apiKey: geminiKey });
-      const result = await streamText({
-        model: google("gemini-2.0-flash"),
-        system: systemInstruction,
-        messages,
-        temperature: 0.3,
-        maxOutputTokens: 1500,
-      });
-      return result.toTextStreamResponse();
-    }
 
     if (groqKey) {
       const groq = createGroq({ apiKey: groqKey });
@@ -98,8 +84,7 @@ export async function POST(req: Request) {
         model: groq("llama-3.3-70b-versatile"),
         system: systemInstruction,
         messages,
-        temperature: 0.3,
-        maxOutputTokens: 1500,
+        temperature: 0.3
       });
       return result.toTextStreamResponse();
     }
