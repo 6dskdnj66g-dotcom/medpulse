@@ -24,7 +24,7 @@ export function Navbar() {
   ];
 
   return (
-    <div className="md:hidden bg-white/80 dark:bg-obsidian-950/80 backdrop-blur-2xl border-b border-slate-200 dark:border-white/5 sticky top-0 z-[100] transition-all duration-500" dir={dir}>
+    <div className="md:hidden glass sticky top-0 z-[100] transition-all duration-500" dir={dir}>
       <div className="px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-[0_8px_20px_rgba(99,102,241,0.3)]">
@@ -51,7 +51,7 @@ export function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white/95 dark:bg-obsidian-950/95 backdrop-blur-3xl border-b border-slate-200 dark:border-white/5 shadow-2xl p-6 space-y-3 fade-in">
+        <div className="absolute top-full left-0 w-full level-3 p-6 space-y-3 fade-in glass">
           <div className="flex items-center justify-between mb-4 px-2">
             <LanguageToggle />
             {user && (
@@ -69,13 +69,13 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center gap-4 px-5 py-4 rounded-[1.25rem] font-black text-sm transition-all active:scale-[0.98] ${
+                  className={`flex items-center gap-4 px-5 py-4 rounded-xl font-bold text-sm transition-all duration-150 active:scale-[0.98] ${
                     isActive
-                      ? "bg-indigo-600 text-white shadow-xl shadow-indigo-500/20 translate-x-1"
-                      : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5"
+                      ? "btn-primary shadow-xl translate-x-1"
+                      : "text-[var(--text-secondary)] hover:bg-[var(--bg-1)]"
                   }`}
                 >
-                  <item.icon className={`h-5 w-5 ${isActive ? "text-white" : "text-slate-400"}`} />
+                  <item.icon className={`h-5 w-5 ${isActive ? "text-white" : "text-[var(--text-tertiary)]"}`} />
                   <span className="flex-1">{item.label}</span>
                   {isActive && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
                 </Link>

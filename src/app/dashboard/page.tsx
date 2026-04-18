@@ -109,64 +109,63 @@ export default function DashboardPage() {
     <div className="max-w-6xl mx-auto p-6 md:p-10 w-full page-transition space-y-8">
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between items-start gap-4">
         <div>
-          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">
+          <p className="text-[11px] font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-1">
             {isAr ? "لوحة التحكم" : "Dashboard"}
           </p>
-          <h1 className="text-3xl font-black text-slate-900 dark:text-white">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)]">
             {isAr ? "مرحباً، طبيب المستقبل" : "Welcome back, Doctor"}
           </h1>
-          <p className="text-slate-500 text-sm mt-1">
+          <p className="text-[var(--text-secondary)] text-sm mt-2">
             {isAr ? "تابع تقدمك وابدأ جلستك التدريبية" : "Track your progress and continue your learning session"}
           </p>
         </div>
         <Link href="/progress"
-          className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-indigo-500/10 hover:text-indigo-600 transition-all text-sm font-black text-slate-600 dark:text-slate-300">
+          className="flex items-center gap-2 px-5 py-3 rounded-xl bg-[var(--bg-1)] hover:bg-[var(--bg-2)] border border-[var(--border-subtle)] hover:border-[var(--color-medical-indigo)] hover:text-[var(--color-medical-indigo)] transition-all duration-300 text-sm font-bold shadow-sm active:scale-95 group">
           <TrendingUp className="w-4 h-4" />
           {isAr ? "التقدم الكامل" : "Full Progress"}
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
 
       {/* XP Level Banner */}
-      <div className={`premium-card p-6 border ${colorMap[lvl.color]}`}>
-        <div className="flex flex-col md:flex-row md:items-center gap-6">
-          <div className="flex-1">
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">
-              {isAr ? "الرتبة الحالية" : "Current Rank"}
+      <div className={`medpulse-card relative overflow-hidden flex flex-col md:flex-row md:items-center gap-6 ${colorMap[lvl.color]}`}>
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+        <div className="relative z-10 flex-1">
+          <p className="text-[11px] font-black uppercase tracking-widest opacity-80 mb-1">
+            {isAr ? "الرتبة الحالية" : "Current Rank"}
+          </p>
+          <h2 className="text-3xl font-extrabold text-[var(--text-primary)]">{lvlTitle}</h2>
+          {nextLvl && (
+            <p className="text-sm opacity-90 mt-2 font-medium">
+              {isAr
+                ? `${nextLvl.xpRequired - xp} نقطة للرتبة التالية: ${nextLvlTitle}`
+                : `${nextLvl.xpRequired - xp} XP to ${nextLvlTitle}`}
             </p>
-            <h2 className="text-2xl font-black text-slate-900 dark:text-white">{lvlTitle}</h2>
-            {nextLvl && (
-              <p className="text-xs text-slate-400 mt-1">
-                {isAr
-                  ? `${nextLvl.xpRequired - xp} نقطة للرتبة التالية: ${nextLvlTitle}`
-                  : `${nextLvl.xpRequired - xp} XP to ${nextLvlTitle}`}
-              </p>
-            )}
+          )}
+        </div>
+        <div className="relative z-10 flex items-center gap-6 flex-shrink-0">
+          <div className="text-center p-4 bg-[var(--bg-1)] rounded-2xl border border-[var(--border-subtle)] shadow-sm">
+            <p className="text-3xl font-black text-[var(--semantic-warning)] tabular-nums-data">{xp}</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-tertiary)] mt-1">XP</p>
           </div>
-          <div className="flex items-center gap-6 flex-shrink-0">
-            <div className="text-center">
-              <p className="text-2xl font-black text-amber-500">{xp}</p>
-              <p className="text-[10px] font-black uppercase text-slate-400">XP</p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl font-black text-orange-500">{streak}</p>
-              <p className="text-[10px] font-black uppercase text-slate-400">{isAr ? "أيام" : "Streak"}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl font-black text-emerald-500">{accuracy}%</p>
-              <p className="text-[10px] font-black uppercase text-slate-400">{isAr ? "دقة" : "Accuracy"}</p>
-            </div>
+          <div className="text-center p-4 bg-[var(--bg-1)] rounded-2xl border border-[var(--border-subtle)] shadow-sm">
+            <p className="text-3xl font-black text-[var(--color-vital-cyan)] tabular-nums-data">{streak}</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-tertiary)] mt-1">{isAr ? "أيام" : "Streak"}</p>
+          </div>
+          <div className="text-center p-4 bg-[var(--bg-1)] rounded-2xl border border-[var(--border-subtle)] shadow-sm">
+            <p className="text-3xl font-black text-[var(--semantic-success)] tabular-nums-data">{accuracy}%</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-tertiary)] mt-1">{isAr ? "دقة" : "Accuracy"}</p>
           </div>
         </div>
+        
         {nextLvl && (
-          <div className="mt-4">
-            <div className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full">
-              <div className="h-full bg-gradient-to-r from-indigo-500 to-teal-500 rounded-full transition-all duration-1000"
-                style={{ width: `${progress}%` }} />
-            </div>
-          </div>
+          <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[var(--bg-2)] opacity-30"></div>
+        )}
+        {nextLvl && (
+          <div className="absolute bottom-0 left-0 h-1.5 bg-gradient-to-r from-[var(--color-medical-indigo)] to-[var(--color-vital-cyan)] transition-all duration-1000"
+            style={{ width: `${progress}%` }}></div>
         )}
       </div>
 
@@ -180,10 +179,14 @@ export default function DashboardPage() {
         ].map(stat => {
           const Icon = stat.icon;
           return (
-            <div key={stat.label} className={`premium-card p-5 border ${colorMap[stat.color]}`}>
-              <Icon className="w-5 h-5 mb-3" />
-              <p className="text-2xl font-black text-slate-900 dark:text-white">{stat.value}</p>
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-1">{stat.label}</p>
+            <div key={stat.label} className={`medpulse-card p-5 group ${colorMap[stat.color]}`}>
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-8 h-8 rounded-lg bg-white/50 dark:bg-black/20 flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-6">
+                  <Icon className="w-4 h-4 opacity-90" />
+                </div>
+              </div>
+              <p className="text-3xl font-extrabold text-[var(--text-primary)] tabular-nums-data tracking-tight">{stat.value}</p>
+              <p className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-tertiary)] mt-2">{stat.label}</p>
             </div>
           );
         })}
@@ -191,19 +194,20 @@ export default function DashboardPage() {
 
       {/* Modules Grid */}
       <div>
-        <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">
+        <h2 className="text-[12px] font-black uppercase tracking-[0.2em] text-[var(--text-tertiary)] mb-5 ml-1">
           {isAr ? "الوحدات التدريبية" : "Training Modules"}
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {MODULES.map(mod => {
             const Icon = mod.icon;
             return (
               <Link key={mod.id} href={mod.href}
-                className={`premium-card p-5 flex flex-col items-center text-center gap-3 border hover:scale-105 transition-all group ${colorMap[mod.color]}`}>
-                <div className="w-10 h-10 rounded-xl bg-white/50 dark:bg-black/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Icon className="w-5 h-5" />
+                className={`medpulse-card p-6 flex flex-col items-center justify-center text-center gap-4 transition-all group hover:-translate-y-1 hover:shadow-xl ${colorMap[mod.color]}`}>
+                <div className="relative w-12 h-12 rounded-2xl bg-white/60 dark:bg-black/30 flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/10 dark:to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <Icon className="w-6 h-6 opacity-90" />
                 </div>
-                <p className="text-xs font-black leading-tight">{isAr ? mod.titleAr : mod.titleEn}</p>
+                <p className="text-sm font-extrabold leading-tight text-[var(--text-primary)]">{isAr ? mod.titleAr : mod.titleEn}</p>
               </Link>
             );
           })}
@@ -212,69 +216,78 @@ export default function DashboardPage() {
 
       {/* Recent Sessions */}
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="premium-card p-6">
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">
+        <div className="medpulse-card p-6 md:p-8 flex flex-col h-full hover:scale-100">
+          <h2 className="text-[12px] font-black uppercase tracking-[0.2em] text-[var(--text-tertiary)] mb-6">
             {isAr ? "الجلسات الأخيرة" : "Recent Sessions"}
           </h2>
           {sessions.length === 0 ? (
-            <div className="text-center py-8">
-              <Trophy className="w-10 h-10 text-slate-200 dark:text-slate-700 mx-auto mb-3" />
-              <p className="text-sm text-slate-400 font-bold">
+            <div className="text-center py-10 flex-1 flex flex-col items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-[var(--bg-1)] flex items-center justify-center text-[var(--border-strong)] mb-4">
+                <Trophy className="w-8 h-8 opacity-70" />
+              </div>
+              <p className="text-sm text-[var(--text-secondary)] font-medium max-w-[200px] leading-relaxed">
                 {isAr ? "أكمل وحدة تدريبية لتظهر هنا" : "Complete a training module to appear here"}
               </p>
             </div>
           ) : (
-            <div className="space-y-2">
+            <div className="space-y-3 flex-1">
               {sessions.slice(0, 6).map((s, i) => {
                 const pct = s.total > 0 ? Math.round((s.score / s.total) * 100) : 0;
                 const passed = pct >= 70;
                 return (
-                  <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                    <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${passed ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
+                  <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-1)] border border-[var(--border-subtle)] hover:bg-[var(--bg-2)] hover:border-[var(--color-medical-indigo)] hover:shadow-md transition-all group">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 shadow-inner ${passed ? "bg-[var(--semantic-success)]/10" : "bg-[var(--semantic-error)]/10"}`}>
                       {passed
-                        ? <CheckCircle className="w-4 h-4 text-emerald-500" />
-                        : <XCircle className="w-4 h-4 text-rose-500" />}
+                        ? <CheckCircle className="w-5 h-5 text-[var(--semantic-success)]" />
+                        : <XCircle className="w-5 h-5 text-[var(--semantic-error)]" />}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs font-black text-slate-800 dark:text-white truncate">{s.module}</p>
-                      <p className="text-[10px] text-slate-400">{new Date(s.date).toLocaleDateString()}</p>
+                      <p className="text-[13px] font-bold text-[var(--text-primary)] truncate">{s.module}</p>
+                      <p className="text-[11px] text-[var(--text-tertiary)] font-medium tracking-wide mt-0.5">{new Date(s.date).toLocaleDateString()}</p>
                     </div>
-                    <p className={`text-xs font-black flex-shrink-0 ${passed ? "text-emerald-600" : "text-rose-600"}`}>{pct}%</p>
+                    <div className={`flex flex-col items-end flex-shrink-0 ${passed ? "text-[var(--semantic-success)]" : "text-[var(--semantic-error)]"}`}>
+                      <p className="text-lg font-black tracking-tight tabular-nums-data">{pct}%</p>
+                    </div>
                   </div>
                 );
               })}
             </div>
           )}
           {sessions.length > 0 && (
-            <Link href="/progress" className="mt-4 flex items-center justify-center gap-2 text-xs font-black text-indigo-500 hover:text-indigo-600 transition-colors">
-              {isAr ? "عرض الكل" : "View all"} <ChevronRight className="w-3 h-3" />
+            <Link href="/progress" className="mt-8 flex items-center justify-center gap-2 text-sm font-extrabold text-[var(--color-medical-indigo)] hover:text-[var(--color-clinical-violet)] hover:bg-[var(--color-medical-indigo)]/5 p-3 rounded-xl transition-colors">
+              {isAr ? "عرض الكل" : "View all"} <ChevronRight className="w-4 h-4" />
             </Link>
           )}
         </div>
 
         {/* Quick Tools */}
-        <div className="premium-card p-6">
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">
+        <div className="medpulse-card p-6 md:p-8 hover:scale-100">
+          <h2 className="text-[12px] font-black uppercase tracking-[0.2em] text-[var(--text-tertiary)] mb-6">
             {isAr ? "أدوات سريعة" : "Quick Tools"}
           </h2>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
               { href: "/translator", icon: MessageSquare, color: "sky",   titleEn: "Medical Translator",    titleAr: "المترجم الطبي" },
               { href: "/library",    icon: BookOpen,      color: "teal",  titleEn: "Medical Library",       titleAr: "المكتبة الطبية" },
               { href: "/records",    icon: FileText,      color: "rose",  titleEn: "Patient Records",       titleAr: "سجلات المرضى" },
               { href: "/profile",    icon: Users,         color: "indigo",titleEn: "My Profile",            titleAr: "ملفي الشخصي" },
-            ].map(tool => {
+            ].map((tool, idx) => {
               const Icon = tool.icon;
               return (
                 <Link key={tool.href} href={tool.href}
-                  className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all group">
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${colorMap[tool.color]}`}>
-                    <Icon className="w-4 h-4" />
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-1)] border border-[var(--border-subtle)] hover:bg-[var(--bg-2)] hover:shadow-lg transition-all group fade-in">
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner group-hover:-rotate-6 group-hover:scale-110 transition-transform duration-300 ${colorMap[tool.color]}`}>
+                    <Icon className="w-5 h-5 opacity-90" />
                   </div>
-                  <p className="text-sm font-black text-slate-800 dark:text-white flex-1">
-                    {isAr ? tool.titleAr : tool.titleEn}
-                  </p>
-                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition-transform" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-extrabold text-[var(--text-primary)]">
+                      {isAr ? tool.titleAr : tool.titleEn}
+                    </p>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-[var(--bg-1)] flex items-center justify-center text-[var(--text-tertiary)] group-hover:bg-[var(--color-medical-indigo)]/10 group-hover:text-[var(--color-medical-indigo)] transition-colors">
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </Link>
               );
             })}

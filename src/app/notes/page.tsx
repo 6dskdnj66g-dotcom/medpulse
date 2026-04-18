@@ -85,41 +85,47 @@ export default function ClinicalNotesPage() {
   if (loading || !user) return null;
 
   return (
-    <div className="max-w-6xl mx-auto p-6 md:p-10 w-full page-transition">
-      <div className="mb-10">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-teal-600 rounded-2xl flex items-center justify-center shadow-xl">
-            <FileText className="w-6 h-6 text-white" />
+    <div className="max-w-7xl mx-auto p-4 md:p-10 w-full animate-in fade-in slide-in-from-bottom-8 duration-700">
+      <div className="mb-8 md:mb-12">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] rounded-[20px] flex items-center justify-center shadow-xl transform -rotate-3">
+            <FileText className="w-7 h-7 md:w-8 md:h-8 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">{isAr ? "مولد الملاحظات السريرية" : "Clinical Notes Generator"}</h1>
-            <p className="text-slate-500 text-sm">{isAr ? "ملاحظات SOAP بالذكاء الاصطناعي · معايير ACGME · رموز ICD-11" : "AI-generated SOAP Notes · ACGME & Joint Commission Standards · ICD-11 Codes"}</p>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight">
+              {isAr ? "الملاحظات" : "Clinical" } <span className="brand-gradient-text">{isAr ? "السريرية" : "Notes"}</span>
+            </h1>
+            <p className="text-[var(--text-secondary)] text-sm md:text-base font-medium mt-1">
+              {isAr ? "ملاحظات SOAP بالذكاء الاصطناعي · معايير ACGME · رموز ICD-11" : "AI-generated SOAP Notes · ACGME & Joint Commission Standards · ICD-11 Codes"}
+            </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 p-3 bg-teal-500/10 border border-teal-500/20 rounded-2xl">
-          <ShieldCheck className="w-4 h-4 text-teal-600 flex-shrink-0" />
-          <p className="text-xs font-bold text-teal-700 dark:text-teal-400">{isAr ? "راجع جميع الملاحظات قبل الاستخدام السريري. مطلوب توقيع الطبيب للسجلات الطبية." : "Review all AI-generated notes before clinical use. Physician signature required for medical records."}</p>
+        <div className="flex items-start md:items-center gap-3 p-4 bg-[var(--color-medical-indigo)]/10 border border-[var(--color-medical-indigo)]/20 rounded-2xl max-w-3xl shadow-sm backdrop-blur-sm">
+          <ShieldCheck className="w-5 h-5 text-[var(--color-medical-indigo)] flex-shrink-0 mt-0.5 md:mt-0" />
+          <p className="text-[13px] md:text-sm font-bold text-[var(--color-medical-indigo)] opacity-90">
+            {isAr ? "راجع جميع الملاحظات قبل الاستخدام السريري. مطلوب توقيع الطبيب للسجلات الطبية." : "Review all AI-generated notes before clinical use. Physician signature required for medical records."}
+          </p>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
         {/* Input */}
-        <div className="space-y-6">
-          <div className="premium-card p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">{isAr ? "المعلومات السريرية" : "Clinical Information"}</h2>
-              <ClipboardEdit className="w-4 h-4 text-slate-400" />
+        <div className="space-y-6 flex flex-col">
+          <div className="medpulse-card p-6 md:p-8 flex-1 flex flex-col shadow-lg border-[var(--border-subtle)]">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-xs md:text-sm font-extrabold uppercase tracking-widest text-[var(--text-tertiary)]">{isAr ? "المعلومات السريرية" : "Clinical Information"}</h2>
+              <ClipboardEdit className="w-5 h-5 text-[var(--text-tertiary)]" />
             </div>
 
             {/* Templates */}
-            <div className="mb-4">
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{isAr ? "قوالب سريعة" : "Quick Templates"}</p>
-              <div className="flex flex-wrap gap-2">
+            <div className="mb-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-tertiary)] mb-3">{isAr ? "قوالب سريعة" : "Quick Templates"}</p>
+              <div className="flex flex-wrap gap-2.5">
                 {TEMPLATES.map(t => (
                   <button
                     key={t.label}
                     onClick={() => setInfo(t.value)}
-                    className="text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-700 dark:text-teal-400 hover:bg-teal-500 hover:text-white transition-all"
+                    className="text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-xl bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:bg-[var(--color-medical-indigo)] hover:text-white hover:border-[var(--color-medical-indigo)] transition-all duration-300 shadow-sm hover:shadow-md active:scale-95"
                   >
                     {t.label}
                   </button>
@@ -127,46 +133,48 @@ export default function ClinicalNotesPage() {
               </div>
             </div>
 
-            <textarea
-              value={info}
-              onChange={e => setInfo(e.target.value)}
-              placeholder="Describe the patient case: demographics, chief complaint, history, examination findings, vitals, investigations, past medical history, medications, allergies..."
-              rows={14}
-              className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-3 text-sm font-medium text-slate-700 dark:text-white placeholder-slate-400 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all resize-none"
-            />
+            <div className="relative flex-1 group">
+              <textarea
+                value={info}
+                onChange={e => setInfo(e.target.value)}
+                placeholder="Describe the patient case: demographics, chief complaint, history, examination findings, vitals, investigations, past medical history, medications, allergies..."
+                rows={12}
+                className="w-full h-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-2xl px-5 py-4 text-sm md:text-[15px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:ring-2 focus:ring-[var(--color-medical-indigo)]/50 focus:border-transparent outline-none transition-all duration-300 resize-none shadow-inner group-hover:shadow-md"
+              />
+            </div>
 
             <button
               onClick={generate}
               disabled={isLoading || info.trim().length < 20}
-              className="w-full mt-4 btn-premium bg-gradient-to-r from-teal-600 to-cyan-600 border-0 text-white disabled:opacity-40 disabled:cursor-not-allowed justify-center py-4"
+              className="w-full mt-6 bg-gradient-to-r from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] border-0 text-white font-extrabold disabled:from-[var(--bg-3)] disabled:to-[var(--bg-3)] disabled:text-[var(--text-tertiary)] disabled:shadow-none shadow-lg hover:shadow-xl py-4 md:py-5 rounded-2xl flex items-center justify-center gap-3 transition-all duration-300 active:scale-95"
             >
               {isLoading
-                ? <><Loader2 className="w-4 h-4 animate-spin" /> {isAr ? "جارٍ توليد الملاحظة..." : "Generating SOAP Note..."}</>
-                : <><FileText className="w-4 h-4" /> {isAr ? "توليد ملاحظة SOAP" : "Generate Clinical SOAP Note"}</>}
+                ? <><Loader2 className="w-5 h-5 animate-spin" /> <span className="tracking-wide">{isAr ? "جارٍ التوليد..." : "Generating Note..."}</span></>
+                : <><FileText className="w-5 h-5" /> <span className="tracking-wide">{isAr ? "توليد الملاحظة" : "Generate SOAP Note"}</span></>}
             </button>
           </div>
 
-          <div className="p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
-            <h3 className="text-xs font-black uppercase tracking-widest text-slate-500 mb-3">Tips for Best Results</h3>
-            <ul className="space-y-1.5 text-xs text-slate-500 dark:text-slate-400">
-              <li className="flex gap-2"><span className="text-teal-500">→</span> Include vitals, examination findings, and lab results</li>
-              <li className="flex gap-2"><span className="text-teal-500">→</span> Mention past medical history and medications</li>
-              <li className="flex gap-2"><span className="text-teal-500">→</span> State the timeline clearly (onset, duration, progression)</li>
-              <li className="flex gap-2"><span className="text-teal-500">→</span> Include relevant imaging and investigation results</li>
+          <div className="p-6 glass level-1 rounded-3xl border border-[var(--border-subtle)]">
+            <h3 className="text-[11px] font-extrabold uppercase tracking-widest text-[var(--color-clinical-violet)] mb-4">Tips for Best Results</h3>
+            <ul className="space-y-3 text-xs md:text-[13px] font-medium text-[var(--text-secondary)]">
+              <li className="flex items-start gap-3"><span className="text-[var(--color-clinical-violet)] mt-0.5">→</span> <span>Include vitals, examination findings, and lab results</span></li>
+              <li className="flex items-start gap-3"><span className="text-[var(--color-clinical-violet)] mt-0.5">→</span> <span>Mention past medical history and medications</span></li>
+              <li className="flex items-start gap-3"><span className="text-[var(--color-clinical-violet)] mt-0.5">→</span> <span>State the timeline clearly (onset, duration, progression)</span></li>
+              <li className="flex items-start gap-3"><span className="text-[var(--color-clinical-violet)] mt-0.5">→</span> <span>Include relevant imaging and investigation results</span></li>
             </ul>
           </div>
         </div>
 
         {/* Output */}
-        <div>
+        <div className="flex flex-col h-full min-h-[500px] lg:min-h-full">
           {result ? (
-            <div className="premium-card p-8 h-full">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
-                <div className="flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-teal-500" />
-                  <h2 className="text-sm font-black uppercase tracking-widest text-slate-700 dark:text-slate-300">SOAP Note</h2>
+            <div className="medpulse-card p-6 md:p-8 flex flex-col h-full shadow-2xl border-[var(--border-subtle)]">
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-5 border-b border-[var(--border-subtle)]">
+                <div className="flex items-center gap-3 bg-[var(--color-vital-cyan)]/10 px-4 py-2 rounded-xl text-[var(--color-vital-cyan)]">
+                  <FileText className="w-5 h-5" />
+                  <h2 className="text-xs md:text-sm font-extrabold uppercase tracking-widest">SOAP Note</h2>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center flex-wrap gap-2 md:gap-3">
                   <button
                     onClick={async () => {
                       setIsExporting(true);
@@ -174,8 +182,8 @@ export default function ClinicalNotesPage() {
                       setIsExporting(false);
                     }}
                     disabled={isExporting}
-                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-indigo-500 hover:text-indigo-600 transition-colors disabled:opacity-50"
-                    title="تحميل كتقرير PDF"
+                    className="flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 md:px-4 py-2 md:py-2.5 rounded-xl bg-[var(--bg-1)] hover:bg-[var(--bg-2)] text-[var(--text-secondary)] transition-all border border-[var(--border-subtle)] hover:shadow-sm"
+                    title="Download Report PDF"
                   >
                     {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
                     PDF
@@ -195,7 +203,7 @@ export default function ClinicalNotesPage() {
                         setIsSaving(false);
                       }}
                       disabled={isSaving || saved}
-                      className={`flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all ${saved ? "text-emerald-500" : "text-teal-600 hover:text-teal-700"}`}
+                      className={`flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 md:px-4 py-2 md:py-2.5 rounded-xl transition-all border border-[var(--border-subtle)] hover:shadow-sm ${saved ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" : "bg-[var(--bg-1)] hover:bg-[var(--bg-2)] text-[var(--text-secondary)]"}`}
                     >
                       {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <CheckCircle className="w-4 h-4" /> : <Save className="w-4 h-4" />}
                       {saved ? "Saved" : "Save"}
@@ -203,25 +211,30 @@ export default function ClinicalNotesPage() {
                   )}
                   <button
                     onClick={copy}
-                    className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-500 hover:text-teal-600 transition-colors"
+                    className="flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-widest px-3 md:px-4 py-2 md:py-2.5 rounded-xl bg-[var(--text-primary)] hover:bg-[var(--text-secondary)] text-[var(--bg-0)] transition-all shadow-md active:scale-95"
                   >
-                    {copied ? <><CheckCircle className="w-4 h-4 text-teal-500" /> Copied!</> : <><Copy className="w-4 h-4" /> Copy</>}
+                    {copied ? <><CheckCircle className="w-4 h-4 text-emerald-400" /> Copied</> : <><Copy className="w-4 h-4" /> Copy</>}
                   </button>
                 </div>
               </div>
-              <div id="soap-content" className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-black prose-headings:text-teal-700 prose-strong:text-slate-900 dark:prose-strong:text-white overflow-y-auto max-h-[70vh] p-4 bg-white dark:bg-slate-900 rounded-xl">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{result}</ReactMarkdown>
+              <div id="soap-content" className="flex-1 overflow-y-auto bg-[var(--bg-0)] rounded-2xl p-5 md:p-6 border border-[var(--border-subtle)] shadow-inner custom-scrollbar">
+                <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-extrabold prose-headings:text-[var(--color-medical-indigo)] prose-strong:text-[var(--text-primary)] prose-li:text-[var(--text-secondary)] prose-p:text-[var(--text-secondary)] prose-p:leading-relaxed">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{result}</ReactMarkdown>
+                </div>
               </div>
             </div>
           ) : (
-            <div className="h-full min-h-96 flex flex-col items-center justify-center text-slate-400 bg-slate-50/50 dark:bg-slate-800/20 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800 p-12">
-              <FileText className="w-16 h-16 opacity-20 mb-4" />
-              <p className="font-black text-lg">Awaiting Clinical Input</p>
-              <p className="text-sm mt-2 text-center">Enter patient information on the left<br />or select a template to get started</p>
+            <div className="h-full min-h-[400px] flex flex-col items-center justify-center text-[var(--text-tertiary)] glass level-0 rounded-[32px] border-2 border-dashed border-[var(--border-subtle)] p-12 transition-all hover:bg-[var(--bg-1)]/50">
+              <div className="w-24 h-24 bg-[var(--bg-2)] rounded-3xl flex items-center justify-center mb-6 shadow-sm transform -rotate-3">
+                <FileText className="w-12 h-12 opacity-50" />
+              </div>
+              <p className="font-extrabold text-xl text-[var(--text-secondary)]">Awaiting Clinical Input</p>
+              <p className="text-sm mt-3 text-center opacity-80 leading-relaxed font-medium">Enter patient information on the left<br />or select a rapid template to instantly synthesize</p>
             </div>
           )}
         </div>
       </div>
     </div>
   );
+}
 }

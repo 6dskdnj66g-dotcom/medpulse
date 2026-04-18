@@ -70,7 +70,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className={`hidden md:flex flex-col w-80 bg-white/80 dark:bg-slate-950/50 backdrop-blur-3xl border border-slate-200/50 dark:border-white/5 h-[calc(100dvh-2rem)] my-4 mx-4 rounded-[2.5rem] shadow-2xl floating-3d z-50`} dir={dir}>
+    <div className={`hidden md:flex flex-col w-[280px] h-[calc(100dvh-2rem)] my-4 mx-4 rounded-3xl z-50 glass`} dir={dir}>
       {/* Logo Section */}
       <div className="p-8 flex flex-col space-y-2">
         <div className="flex items-center gap-4">
@@ -114,20 +114,20 @@ export function Sidebar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-4 px-6 py-5 rounded-[1.75rem] text-sm font-black transition-all duration-500 group active:scale-95 ${
+                  className={`flex items-center gap-4 px-4 py-3 mx-2 rounded-xl text-sm font-bold transition-all duration-300 group active:scale-95 ${
                     isActive 
-                      ? colors.active 
-                      : `text-slate-500 dark:text-slate-400 ${colors.hover} ${dir === 'ltr' ? 'hover:translate-x-1' : 'hover:-translate-x-1'}`
+                      ? 'bg-[var(--bg-2)] border border-[var(--border-strong)] shadow-sm'
+                      : `text-[var(--text-secondary)] hover:bg-[var(--bg-1)] ${dir === 'ltr' ? 'hover:translate-x-1' : 'hover:-translate-x-1'}`
                   }`}
                 >
-                  <div className={`relative p-2.5 rounded-2xl transition-all duration-500 ${
+                  <div className={`relative p-2 rounded-xl transition-all duration-300 ${
                     isActive 
-                      ? 'bg-white/20 rotate-6 shadow-lg' 
-                      : 'bg-slate-100 dark:bg-white/5 group-hover:bg-white dark:group-hover:bg-slate-800 group-hover:scale-110 group-hover:-rotate-3 shadow-sm'
+                      ? 'bg-gradient-to-br from-indigo-500 to-violet-500 shadow-md rotate-3' 
+                      : 'bg-[var(--bg-2)] border border-[var(--border-subtle)] group-hover:scale-110 group-hover:-rotate-3 shadow-sm'
                   }`}>
-                    <Icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-slate-500 dark:text-slate-400 group-hover:text-indigo-500'}`} />
+                    <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-[var(--text-tertiary)] group-hover:text-[var(--color-medical-indigo)]'}`} />
                   </div>
-                  <span className="flex-1 tracking-tighter uppercase">{item.label}</span>
+                  <span className={`flex-1 tracking-wide ${isActive ? 'text-[var(--color-medical-indigo)]' : ''}`}>{item.label}</span>
                   {isActive && (
                     <div className="w-2 h-2 rounded-full bg-white animate-pulse shadow-[0_0_10px_white]" />
                   )}
@@ -138,8 +138,8 @@ export function Sidebar() {
         ))}
 
         {/* Verification Badge */}
-        <div className="mt-8 px-2">
-          <div className="bg-slate-50 dark:bg-white/5 rounded-2xl p-4 border border-slate-100 dark:border-white/5 premium-card shadow-none hover:shadow-none translate-y-0 hover:translate-y-0">
+        <div className="mt-8 px-4">
+          <div className="medpulse-card p-4 translate-y-0 hover:translate-y-0">
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-2">
               <ShieldCheck className="w-4 h-4" />
               <span className="text-[9px] font-black uppercase tracking-widest">{t.common.verifiedContext}</span>
@@ -153,17 +153,17 @@ export function Sidebar() {
 
       {/* User section */}
       {user && (
-        <div className="p-6 mt-auto">
-          <div className="clinical-card-3d p-6 group">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white font-black shadow-lg">
+        <div className="p-4 mt-auto">
+          <div className="medpulse-card p-4 group">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white font-bold shadow-md">
                 {profile?.full_name?.[0] || user.email?.[0].toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-black text-slate-900 dark:text-white truncate">
+                <p className="text-sm font-bold text-[var(--text-primary)] truncate">
                   {profile?.full_name || "User"}
                 </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest truncate">
+                <p className="text-xs font-medium text-[var(--text-tertiary)] uppercase tracking-wide truncate">
                   {profile?.role || "Student"}
                 </p>
               </div>
@@ -171,7 +171,7 @@ export function Sidebar() {
             
             <button 
               onClick={() => signOut()}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs hover:bg-rose-500 hover:text-white transition-all duration-300"
+              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-[var(--border-subtle)] text-[var(--text-secondary)] font-bold text-xs hover:bg-[var(--color-heartbeat-red)] hover:text-white transition-all duration-150"
             >
               <LogOut className="w-4 h-4" />
               {t.common.logout}

@@ -4,33 +4,45 @@ import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
+import { motion } from "framer-motion";
+
 export function ThemeToggle() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, theme, resolvedTheme } = useTheme();
+  const currentTheme = theme === 'system' ? resolvedTheme : theme;
+
+  const toggleTheme = () => {
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  };
 
   return (
-    <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700/50">
-      <button
-        onClick={() => setTheme('light')}
-        className={`w-8 h-8 flex items-center justify-center rounded-lg transition-all ${
-          theme === 'light'
-            ? "bg-white text-amber-500 shadow-sm"
-            : "text-slate-400 hover:text-amber-500"
-        }`}
-        aria-label="Light mode"
+    <button
+      onClick={toggleTheme}
+      className="relative p-2.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-1)] hover:bg-[var(--bg-2)] transition-all duration-300 shadow-sm active:scale-95"
+      aria-label="Toggle theme"
+    >
+      <motion.div
+        initial={false}
+        animate={{
+          rotate: currentTheme === 'dark' ? 180 : 0,
+          scale: currentTheme === 'dark' ? 0 : 1,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+        className={`absolute inset-0 flex items-center justify-center ${currentTheme === 'dark' ? 'opacity-0' : 'opacity-100'} transition-opacity duration-200 text-amber-500`}
       >
-        <Sun className="h-4 w-4" />
-      </button>
-      <button
-        onClick={() => setTheme('dark')}
-        className={`w-8 h-8 flex items-center justify-center rounded-lg transition-all ${
-          theme === 'dark'
-            ? "bg-slate-700 text-indigo-400 shadow-sm"
-            : "text-slate-500 hover:text-indigo-400"
-        }`}
-        aria-label="Dark mode"
+        <Sun className="h-5 w-5" />
+      </motion.div>
+      <motion.div
+        initial={false}
+        animate={{
+          rotate: currentTheme === 'dark' ? 0 : -180,
+          scale: currentTheme === 'dark' ? 1 : 0,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+        className={`absolute inset-0 flex items-center justify-center ${currentTheme === 'dark' ? 'opacity-100' : 'opacity-0'} transition-opacity duration-200 text-indigo-400`}
       >
-        <Moon className="h-4 w-4" />
-      </button>
-    </div>
+        <Moon className="h-5 w-5" />
+      </motion.div>
+      <div className="w-5 h-5 opacity-0" /> {/* Spacer */}
+    </button>
   );
 }

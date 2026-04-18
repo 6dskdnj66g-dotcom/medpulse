@@ -37,22 +37,22 @@ function CalcResultWrapper({ id, title, score, risk, label, color, rawData }: {
   const [saved, setSaved] = useState(false);
 
   const colors: Record<string, string> = {
-    green: "bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400",
-    yellow: "bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400",
-    orange: "bg-orange-500/10 border-orange-500/30 text-orange-700 dark:text-orange-400",
-    red: "bg-rose-500/10 border-rose-500/30 text-rose-700 dark:text-rose-400",
-    blue: "bg-sky-500/10 border-sky-500/30 text-sky-700 dark:text-sky-400",
+    green: "bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.1)]",
+    yellow: "bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.1)]",
+    orange: "bg-orange-500/10 border-orange-500/30 text-orange-700 dark:text-orange-400 drop-shadow-[0_0_15px_rgba(249,115,22,0.1)]",
+    red: "bg-rose-500/10 border-rose-500/30 text-rose-700 dark:text-rose-400 drop-shadow-[0_0_15px_rgba(244,63,94,0.1)]",
+    blue: "bg-[var(--color-vital-cyan)]/10 border-[var(--color-vital-cyan)]/30 text-[var(--color-vital-cyan)] drop-shadow-[0_0_15px_rgba(6,182,212,0.1)]",
   };
 
   return (
     <div className="space-y-4">
-      <div id={id} className={`rounded-2xl border p-6 bg-white dark:bg-slate-900 ${colors[color] || colors.blue}`}>
-        <div className="flex justify-between items-start mb-4">
+      <div id={id} className={`rounded-[24px] border p-6 md:p-8 backdrop-blur-md transition-all duration-500 ${colors[color] || colors.blue}`}>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-5">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-widest opacity-70">{label}</p>
-            <p className="text-4xl font-black">{score}</p>
+            <p className="text-[11px] font-extrabold uppercase tracking-widest opacity-80 mb-1">{label}</p>
+            <p className="text-5xl md:text-6xl font-black tracking-tight">{score}</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <button
               onClick={async () => {
                 setIsExporting(true);
@@ -60,10 +60,10 @@ function CalcResultWrapper({ id, title, score, risk, label, color, rawData }: {
                 setIsExporting(false);
               }}
               disabled={isExporting}
-              className="p-2 rounded-xl bg-white/50 dark:bg-black/20 hover:scale-105 transition-all"
-              title="Download PDF"
+              className="p-3 rounded-2xl bg-[var(--bg-0)]/40 hover:bg-[var(--bg-0)]/80 backdrop-blur-sm border border-white/10 hover:scale-105 transition-all duration-300 shadow-sm"
+              title="Download PDF Document"
             >
-              {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+              {isExporting ? <Loader2 className="w-5 h-5 animate-spin" /> : <Download className="w-5 h-5" />}
             </button>
             {user && (
               <button
@@ -80,15 +80,17 @@ function CalcResultWrapper({ id, title, score, risk, label, color, rawData }: {
                   setIsSaving(false);
                 }}
                 disabled={isSaving || saved}
-                className="p-2 rounded-xl bg-white/50 dark:bg-black/20 hover:scale-105 transition-all"
-                title="Save to profile"
+                className="p-3 rounded-2xl bg-[var(--bg-0)]/40 hover:bg-[var(--bg-0)]/80 backdrop-blur-sm border border-white/10 hover:scale-105 transition-all duration-300 shadow-sm"
+                title="Save Profile Record"
               >
-                {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <CheckCircle className="w-4 h-4 text-emerald-500" /> : <Save className="w-4 h-4" />}
+                {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : saved ? <CheckCircle className="w-5 h-5 text-emerald-500" /> : <Save className="w-5 h-5" />}
               </button>
             )}
           </div>
         </div>
-        <p className="text-sm font-bold">{risk}</p>
+        <div className="pt-4 border-t border-black/5 dark:border-white/10">
+          <p className="text-base md:text-lg font-extrabold">{risk}</p>
+        </div>
       </div>
     </div>
   );
@@ -510,24 +512,26 @@ export default function CalculatorsPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 md:p-10 w-full page-transition">
-      <div className="mb-10">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl">
-            <Calculator className="w-6 h-6 text-white" />
+    <div className="max-w-6xl mx-auto p-4 md:p-10 w-full animate-in fade-in slide-in-from-bottom-8 duration-700">
+      <div className="mb-10 md:mb-12">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[var(--color-vital-cyan)] to-[var(--color-clinical-violet)] rounded-[20px] flex items-center justify-center shadow-xl transform -rotate-2">
+            <Calculator className="w-7 h-7 md:w-8 md:h-8 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">Clinical Calculator Suite</h1>
-            <p className="text-slate-500 dark:text-slate-400 text-sm">Evidence-based calculators updated to April 2026 guidelines</p>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight">
+               Clinical <span className="brand-gradient-text">Calculators</span>
+            </h1>
+            <p className="text-[var(--text-secondary)] text-sm md:text-base font-medium mt-1">Evidence-based medical models updated to April 2026 guidelines</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 p-3 bg-amber-500/10 border border-amber-500/20 rounded-2xl">
-          <Info className="w-4 h-4 text-amber-600 flex-shrink-0" />
-          <p className="text-xs font-bold text-amber-700 dark:text-amber-400">For clinical decision support only. Always apply clinical judgment and consult current guidelines.</p>
+        <div className="flex items-start md:items-center gap-3 p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl max-w-2xl shadow-sm backdrop-blur-sm">
+          <Info className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5 md:mt-0" />
+          <p className="text-[13px] md:text-sm font-bold text-amber-600 dark:text-amber-400">For clinical decision support only. Always apply clinical judgment and consult current guidelines.</p>
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {CALCULATORS.map(calc => {
           const Icon = calc.icon;
           const isOpen = active === calc.id;
@@ -535,24 +539,28 @@ export default function CalculatorsPage() {
           const colors = colorMap[calc.color] || colorMap.indigo;
 
           return (
-            <div key={calc.id} className="premium-card overflow-hidden">
+            <div key={calc.id} className={`medpulse-card overflow-hidden transition-all duration-500 ${isOpen ? 'ring-2 ring-[var(--border-subtle)] shadow-xl scale-[1.01]' : 'hover:shadow-md'}`}>
               <button
-                className="w-full flex items-center gap-4 p-6 text-left"
+                className="w-full flex items-center gap-5 p-5 md:p-6 text-left outline-none"
                 onClick={() => setActive(isOpen ? null : calc.id)}
               >
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${colors}`}>
+                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center border shadow-sm ${colors}`}>
                   <Icon className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-black text-slate-900 dark:text-white">{calc.label}</h3>
-                  <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">{calc.subtitle}</p>
-                  <p className="text-sm text-slate-400 mt-1">{calc.desc}</p>
+                  <h3 className="text-lg md:text-xl font-extrabold text-[var(--text-primary)]">{calc.label}</h3>
+                  <p className="text-[10px] md:text-xs font-bold text-[var(--text-tertiary)] uppercase tracking-widest mt-0.5 mb-1.5">{calc.subtitle}</p>
+                  <p className="text-[13px] md:text-sm text-[var(--text-secondary)] font-medium line-clamp-1 md:line-clamp-none">{calc.desc}</p>
                 </div>
-                {isOpen ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+                <div className={`p-2 rounded-xl transition-all duration-300 ${isOpen ? 'bg-[var(--color-vital-cyan)]/10 text-[var(--color-vital-cyan)]' : 'bg-[var(--bg-2)] text-[var(--text-tertiary)]'}`}>
+                  {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                </div>
               </button>
               {isOpen && CalcComponent && (
-                <div className="px-6 pb-6 border-t border-slate-100 dark:border-slate-800 pt-6">
-                  <CalcComponent />
+                <div className="px-5 md:px-8 pb-8 border-t border-[var(--border-subtle)] pt-8 bg-[var(--bg-0)]/50">
+                  <div className="max-w-4xl mx-auto animate-in fade-in slide-in-from-top-4 duration-500">
+                    <CalcComponent />
+                  </div>
                 </div>
               )}
             </div>

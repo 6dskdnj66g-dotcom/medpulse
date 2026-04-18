@@ -254,71 +254,71 @@ function ChatModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white w-full max-w-2xl h-[85vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-in fade-in slide-in-from-bottom-8 duration-300">
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-md flex items-end md:items-center justify-center sm:p-4 perspective-1000">
+      <div className="w-full md:max-w-3xl h-[90vh] md:h-[85vh] rounded-t-[32px] md:rounded-[32px] flex flex-col overflow-hidden glass level-3 animate-in fade-in slide-in-from-bottom-8 duration-500 shadow-2xl" dir={dir}>
         {/* Header */}
-        <div className={`bg-gradient-to-r ${professor.gradient} p-5 flex items-center justify-between`}>
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 bg-white/20 rounded-2xl flex items-center justify-center shadow-lg">
+        <div className={`p-4 md:p-6 flex items-center justify-between border-b border-[var(--border-subtle)] bg-[var(--bg-1)]`}>
+          <div className="flex items-center gap-4">
+            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg bg-gradient-to-br ${professor.gradient} transform rotate-3`}>
               <professor.icon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h3 className="font-extrabold text-white">{displayName}</h3>
-              <p className="text-white/70 text-xs font-medium">{displayTitle}</p>
+              <h3 className="font-extrabold text-[var(--text-primary)] text-lg">{displayName}</h3>
+              <p className="text-[var(--text-tertiary)] text-xs font-bold uppercase tracking-widest">{displayTitle}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors"
+            className="w-10 h-10 bg-[var(--bg-2)] hover:bg-[var(--bg-3)] border border-[var(--border-subtle)] rounded-full flex items-center justify-center text-[var(--text-secondary)] transition-all active:scale-95 shadow-sm"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-4 bg-slate-50/50">
+        <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 bg-[var(--bg-0)] custom-scrollbar">
           {messages.map((msg) => (
             <div
               key={msg.id}
               className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
               {msg.role === "assistant" && (
-                <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${professor.gradient} flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm`}>
+                <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${professor.gradient} flex items-center justify-center flex-shrink-0 mt-1 shadow-md z-10 ${dir === "rtl" ? "ml-3" : "mr-3"}`}>
                   <professor.icon className="w-4 h-4 text-white" />
                 </div>
               )}
               <div
-                className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                className={`max-w-[85%] md:max-w-[75%] px-5 py-4 text-[15px] leading-relaxed shadow-sm transition-all duration-300 hover:shadow-md ${
                   msg.role === "user"
-                    ? "bg-slate-800 text-white rounded-tr-sm"
-                    : "bg-white border border-slate-200 text-slate-700 rounded-tl-sm shadow-sm"
+                    ? `bg-gradient-to-br from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] text-white ${dir === "rtl" ? "rounded-[20px] rounded-bl-[4px]" : "rounded-[20px] rounded-br-[4px]"} `
+                    : `glass text-[var(--text-primary)] border border-[var(--border-subtle)] ${dir === "rtl" ? "rounded-[20px] rounded-br-[4px]" : "rounded-[20px] rounded-bl-[4px]"}`
                 }`}
               >
                 {msg.content ? (
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                      a: ({ node: _node, ...props }) => <a className="text-sky-600 font-semibold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
-                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                      p: ({ node: _node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
-                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                      ul: ({ node: _node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
-                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                      ol: ({ node: _node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
-                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      a: ({ node: _node, ...props }) => <a className="text-[var(--color-vital-cyan)] font-bold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                      p: ({ node: _node, ...props }) => <p className="mb-3 last:mb-0" {...props} />,
+                      ul: ({ node: _node, ...props }) => <ul className="list-disc pl-6 mb-3 space-y-1" {...props} />,
+                      ol: ({ node: _node, ...props }) => <ol className="list-decimal pl-6 mb-3 space-y-1" {...props} />,
                       li: ({ node: _node, ...props }) => <li className="mb-1" {...props} />,
-                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                      strong: ({ node: _node, ...props }) => <strong className="font-bold text-slate-800" {...props} />
+                      strong: ({ node: _node, ...props }) => <strong className="font-extrabold" {...props} />
                     }}
                   >
                     {msg.content}
                   </ReactMarkdown>
                 ) : (
-                  <span className="flex items-center gap-1.5 text-slate-400">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>{isAr ? "جارٍ استرجاع البيانات السريرية..." : "Retrieving clinical data..."}</span>
-                  </span>
+                  <div className="flex items-center gap-3 py-1">
+                    <div className="flex items-center gap-1.5 opacity-80">
+                      <div className="w-2 h-2 rounded-full bg-[var(--color-medical-indigo)] animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <div className="w-2 h-2 rounded-full bg-[var(--color-medical-indigo)] animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <div className="w-2 h-2 rounded-full bg-[var(--color-medical-indigo)] animate-bounce" style={{ animationDelay: "300ms" }} />
+                    </div>
+                    <span className="brand-gradient-text text-sm font-bold tracking-wide">
+                      {isAr ? "MedPulse يحلل..." : "MedPulse is analyzing..."}
+                    </span>
+                  </div>
                 )}
               </div>
             </div>
@@ -328,44 +328,49 @@ function ChatModal({
 
         {/* Starter Questions */}
         {messages.length === 1 && (
-          <div className="px-5 pb-3 space-y-1.5">
-            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">
+          <div className="px-4 md:px-6 pb-6 space-y-2 bg-[var(--bg-0)]">
+            <p className="text-[10px] text-[var(--text-tertiary)] font-bold uppercase tracking-widest mb-3 px-2">
               {isAr ? "أسئلة مقترحة" : "Suggested questions"}
             </p>
-            {questions.map((q) => (
-              <button
-                key={q}
-                onClick={() => sendMessage(q)}
-                className={`w-full text-left text-xs px-3 py-2 rounded-xl border ${professor.borderClass} ${professor.bgClass} ${professor.textClass} font-medium hover:opacity-80 transition-opacity flex items-center justify-between group`}
-              >
-                <span>{q}</span>
-                <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-2" />
-              </button>
-            ))}
+            <div className="flex flex-col gap-2">
+              {questions.map((q) => (
+                <button
+                  key={q}
+                  onClick={() => sendMessage(q)}
+                  className={`w-full text-left text-sm px-4 py-3 rounded-2xl border border-[var(--border-subtle)] ${professor.bgClass} ${professor.textClass} bg-opacity-30 dark:bg-opacity-10 font-medium hover:scale-[1.01] transition-all duration-300 flex items-center justify-between group shadow-sm hover:shadow-md`}
+                >
+                  <span>{q}</span>
+                  <ChevronRight className={`w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity flex-shrink-0 ${dir === "rtl" ? "mr-3 rotate-180" : "ml-3"}`} />
+                </button>
+              ))}
+            </div>
           </div>
         )}
 
         {/* Input */}
-        <div className="p-4 border-t border-slate-100 bg-white">
-          <div className="flex items-center gap-3">
-            <input
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
-              placeholder={isAr ? `اسأل ${displayName} سؤالاً سريرياً...` : `Ask ${professor.name} a clinical question...`}
-              className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-700 placeholder-slate-400 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
-              disabled={isLoading}
-            />
+        <div className="p-4 md:p-6 border-t border-[var(--border-subtle)] bg-[var(--bg-1)] glass">
+          <div className="flex items-center gap-3 md:gap-4 max-w-4xl mx-auto w-full">
+            <div className="flex-1 relative flex items-center">
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
+                placeholder={isAr ? `اسأل ${displayName} سؤالاً سريرياً...` : `Ask ${professor.name} a clinical question...`}
+                className="w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-2xl px-5 py-4 text-[15px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:ring-2 focus:ring-[var(--color-medical-indigo)] focus:border-transparent outline-none transition-all shadow-inner"
+                disabled={isLoading}
+                dir={dir}
+              />
+            </div>
             <button
               onClick={() => sendMessage()}
               disabled={isLoading || !input.trim()}
-              className={`w-11 h-11 bg-gradient-to-r ${professor.gradient} disabled:from-slate-200 disabled:to-slate-200 text-white rounded-xl flex items-center justify-center shadow-sm disabled:shadow-none transition-all active:scale-95`}
+              className={`w-14 h-14 bg-gradient-to-r flex-shrink-0 ${professor.gradient} disabled:from-[var(--bg-3)] disabled:to-[var(--bg-3)] disabled:text-[var(--text-tertiary)] text-white rounded-2xl flex items-center justify-center shadow-lg disabled:shadow-none transition-all duration-300 hover:shadow-xl active:scale-95`}
             >
               {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
-                <Send className="w-4 h-4" />
+                <Send className={`w-5 h-5 ${dir === "rtl" ? "-scale-x-100" : ""}`} />
               )}
             </button>
           </div>
@@ -383,7 +388,7 @@ function ProfessorsInterface() {
 
   if (isLoading) {
     return (
-      <div className="p-8 flex items-center gap-3 text-slate-500">
+      <div className="p-8 flex items-center gap-3 text-[var(--text-secondary)]">
         <Loader2 className="w-5 h-5 animate-spin" />
         <span>{isAr ? "جارٍ التحقق من الجلسة الآمنة..." : "Authenticating secure session..."}</span>
       </div>
@@ -393,92 +398,94 @@ function ProfessorsInterface() {
   const canAccessRestricted = hasRole([Role.PROFESSOR, Role.ADMIN]);
 
   return (
-    <div className="p-8 max-w-5xl mx-auto w-full" dir={dir}>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto w-full" dir={dir}>
       {activeSession && (
         <ChatModal professor={activeSession} onClose={() => setActiveSession(null)} />
       )}
 
-      <div className="mb-10 flex justify-between items-start">
+      <div className="mb-10 flex flex-col md:flex-row justify-between items-start gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
-            <Bot className="h-8 w-8 text-indigo-500 flex-shrink-0" />
-            {isAr ? "شبكة الأساتذة الذكاء" : "AI Professor Network"}
+          <h1 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] mb-3 flex items-center gap-3">
+            <Bot className="h-10 w-10 text-[var(--color-medical-indigo)] flex-shrink-0" />
+            <span className="brand-gradient-text">{isAr ? "شبكة الأساتذة الذكاء" : "AI Professor Network"}</span>
           </h1>
-          <p className="text-slate-500 text-base max-w-2xl">
+          <p className="text-[var(--text-secondary)] text-base md:text-lg max-w-3xl leading-relaxed">
             {isAr
               ? "تفاعل مع وكلاء سريريين متخصصين مدعومين بتقنية RAG. كل أستاذ مُدرَّب حصراً على مجموعة بيانات طبية محددة لمنع الهلوسة بين التخصصات."
               : "Engage with specialized RAG-powered clinical agents. Each Professor is strictly fine-tuned on a dedicated medical corpus to prevent cross-domain hallucination."}
           </p>
         </div>
-        <div className="hidden md:flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-lg text-indigo-700 text-sm font-semibold">
-          <ShieldCheck className="w-4 h-4" />
+        <div className="flex items-center gap-2 bg-[var(--color-medical-indigo)]/10 border border-[var(--color-medical-indigo)]/20 px-5 py-2.5 rounded-xl text-[var(--color-medical-indigo)] text-sm font-bold shadow-sm">
+          <ShieldCheck className="w-5 h-5" />
           <span>{isAr ? "خط RAG نشط" : "RAG Pipeline Active"}</span>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
         {PROFESSORS.map((professor) => {
           const isRestricted = professor.restricted && !canAccessRestricted;
           return (
             <div
               key={professor.id}
-              className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col relative group hover:shadow-md transition-all"
+              className="medpulse-card overflow-hidden flex flex-col relative group"
             >
               {/* Restricted overlay */}
               {isRestricted && (
-                <div className="absolute inset-0 bg-white/85 backdrop-blur-[3px] z-10 flex flex-col items-center justify-center p-6 text-center rounded-2xl">
-                  <div className="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-3">
-                    <Lock className="w-7 h-7 text-slate-400" />
+                <div className="absolute inset-0 bg-[var(--bg-0)]/70 backdrop-blur-md z-10 flex flex-col items-center justify-center p-8 text-center rtl:space-x-reverse rounded-3xl">
+                  <div className="w-16 h-16 glass rounded-2xl flex items-center justify-center mb-4 shadow-sm border border-[var(--border-subtle)]">
+                    <Lock className="w-8 h-8 text-[var(--text-tertiary)]" />
                   </div>
-                  <h4 className="font-bold text-slate-800 mb-1">
+                  <h4 className="font-extrabold text-[var(--text-primary)] text-xl mb-2">
                     {isAr ? "مطلوب صلاحية أستاذ" : "Professor Access Required"}
                   </h4>
-                  <p className="text-xs text-slate-500 mb-4 max-w-[220px]">
+                  <p className="text-sm font-medium text-[var(--text-secondary)] mb-6 max-w-sm">
                     {isAr
                       ? "بدّل إلى دور الأستاذ باستخدام مبدّل الدور للوصول إلى النماذج التجريبية المتخصصة."
                       : "Switch to Professor view using the role toggle to access specialized experimental models."}
                   </p>
-                  <button className="text-xs bg-slate-900 hover:bg-slate-800 text-white px-5 py-2 rounded-xl font-semibold transition-colors shadow-sm">
+                  <button className="text-sm bg-[var(--text-primary)] hover:bg-[var(--text-secondary)] text-[var(--bg-0)] px-6 py-3 rounded-xl font-bold transition-all shadow-md active:scale-95">
                     {isAr ? "طلب الوصول" : "Request Access"}
                   </button>
                 </div>
               )}
 
               {/* Header Banner */}
-              <div className={`h-28 bg-gradient-to-br ${professor.gradient} relative overflow-hidden flex items-center justify-center`}>
-                <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity">
-                  <professor.icon className="w-40 h-40 text-white absolute -right-8 -top-6" />
+              <div className={`h-36 bg-gradient-to-br ${professor.gradient} relative overflow-hidden flex items-center justify-center border-b border-[var(--border-subtle)]`}>
+                <div className="absolute inset-0 opacity-[0.15] group-hover:opacity-30 mix-blend-overlay transition-opacity duration-500">
+                  <professor.icon className="w-48 h-48 text-white absolute -right-8 -top-8 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-700" />
                 </div>
-                <div className="relative z-10 text-center">
-                  <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                    <professor.icon className="w-8 h-8 text-white" />
+                <div className="relative z-10 text-center transform group-hover:-translate-y-1 transition-transform duration-500">
+                  <div className="w-16 h-16 glass rounded-[20px] flex items-center justify-center mx-auto shadow-xl border border-white/20">
+                    <professor.icon className="w-8 h-8 text-white drop-shadow-md" />
                   </div>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="mb-1">
-                  <h3 className="text-xl font-bold text-slate-800">{isAr ? professor.nameAr : professor.name}</h3>
-                  <p className={`text-sm font-semibold ${professor.colorClass} mt-0.5`}>{isAr ? professor.titleAr : professor.title}</p>
+              <div className="p-6 md:p-8 flex-1 flex flex-col bg-[var(--bg-0)]">
+                <div className="mb-2">
+                  <h3 className="text-2xl font-extrabold text-[var(--text-primary)]">{isAr ? professor.nameAr : professor.name}</h3>
+                  <p className={`text-sm font-bold opacity-90 mt-1 uppercase tracking-wide ${professor.colorClass} ${professor.textClass}`}>
+                    {isAr ? professor.titleAr : professor.title}
+                  </p>
                 </div>
-                <p className="text-slate-500 text-sm leading-relaxed mb-3 flex-1">
+                <p className="text-[var(--text-secondary)] text-sm md:text-[15px] font-medium leading-relaxed mb-6 flex-1">
                   {isAr ? professor.descriptionAr : professor.description}
                 </p>
-                <div className="flex items-start gap-2 text-xs text-slate-400 bg-slate-50 rounded-lg p-2.5 mb-5">
-                  <Sparkles className="w-3 h-3 mt-0.5 flex-shrink-0" />
-                  <span>{professor.corpus}</span>
+                <div className="flex items-start gap-3 text-xs md:text-sm font-semibold text-[var(--text-tertiary)] bg-[var(--bg-1)] border border-[var(--border-subtle)] rounded-xl p-3 md:p-4 mb-6 shadow-sm">
+                  <Sparkles className={`w-4 h-4 md:w-5 md:h-5 mt-0.5 flex-shrink-0 ${professor.colorClass} ${professor.textClass}`} />
+                  <span className="leading-snug">{professor.corpus}</span>
                 </div>
                 <button
                   onClick={() => !isRestricted && setActiveSession(professor)}
-                  className={`w-full py-3 px-4 rounded-xl font-semibold text-sm transition-all active:scale-95 flex items-center justify-center gap-2 ${
+                  className={`w-full py-4 px-6 rounded-xl font-extrabold text-[15px] transition-all duration-300 active:scale-95 flex items-center justify-center gap-3 shadow-sm ${
                     isRestricted
-                      ? "bg-slate-100 text-slate-400 cursor-not-allowed"
-                      : `${professor.bgClass} ${professor.textClass} hover:opacity-90 border ${professor.borderClass}`
+                      ? "bg-[var(--bg-2)] text-[var(--text-tertiary)] cursor-not-allowed border border-[var(--border-subtle)]"
+                      : `${professor.bgClass} ${professor.textClass} hover:shadow-md border ${professor.borderClass} hover:opacity-90`
                   }`}
                 >
-                  <Bot className="w-4 h-4" />
-                  <span>{isAr ? "بدء الجلسة" : "Initialize Session"}</span>
+                  <Bot className="w-5 h-5" />
+                  <span>{isAr ? "بدء الجلسة المُخصصة" : "Initialize Session"}</span>
                 </button>
               </div>
             </div>

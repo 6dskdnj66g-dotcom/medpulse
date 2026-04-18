@@ -42,34 +42,38 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-[var(--bg-0)] flex items-center justify-center p-6 relative overflow-hidden animate-in fade-in duration-700">
+      {/* Ambient background glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[var(--color-clinical-violet)]/5 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-teal-500 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-2xl shadow-indigo-500/30">
-            <Brain className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] rounded-[24px] flex items-center justify-center mx-auto mb-5 shadow-[0_0_30px_rgba(var(--color-medical-indigo-rgb),0.3)] transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+            <Brain className="w-8 h-8 md:w-10 md:h-10 text-white" />
           </div>
-          <h1 className="text-2xl font-black text-white">مرحباً بعودتك</h1>
-          <p className="text-slate-400 text-sm mt-1">سجّل دخولك إلى MedPulse AI</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">مرحباً بعودتك</h1>
+          <p className="text-[var(--text-secondary)] text-sm md:text-base mt-2 font-medium">سجّل دخولك إلى MedPulse AI</p>
         </div>
 
-        <div className="premium-card p-8">
+        <div className="medpulse-card glass level-2 p-8 shadow-2xl border-[var(--border-subtle)]">
           {!isSupabaseConfigured && (
-            <div className="mb-6 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex gap-3">
+            <div className="mb-6 p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl flex gap-3 backdrop-blur-md">
               <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-amber-400 font-bold">
+              <p className="text-[13px] text-amber-600 dark:text-amber-400 font-bold leading-relaxed">
                 التسجيل قيد الإعداد — أضف SUPABASE_URL إلى Vercel لتفعيله.{" "}
-                <Link href="/auth/register" className="underline">إنشاء حساب</Link>
+                <Link href="/auth/register" className="underline decoration-amber-500/30 hover:decoration-amber-500 transition-all font-extrabold">إنشاء حساب</Link>
               </p>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email */}
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">البريد الإلكتروني</label>
-              <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <div className="space-y-2">
+              <label className="block text-[11px] font-extrabold uppercase tracking-widest text-[var(--text-tertiary)]">البريد الإلكتروني</label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-tertiary)] group-focus-within:text-[var(--color-medical-indigo)] transition-colors" />
                 <input
                   type="email"
                   value={email}
@@ -77,19 +81,19 @@ export default function LoginPage() {
                   placeholder="doctor@hospital.com"
                   required
                   autoComplete="email"
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3.5 text-slate-800 dark:text-white font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all"
+                  className="w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[20px] pl-12 pr-5 py-4 text-[15px] text-[var(--text-primary)] font-bold placeholder-[var(--text-tertiary)]/50 focus:ring-4 focus:ring-[var(--color-medical-indigo)]/10 focus:border-[var(--color-medical-indigo)]/30 outline-none transition-all shadow-inner"
                 />
               </div>
             </div>
 
             {/* Password */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-xs font-black uppercase tracking-widest text-slate-500">كلمة المرور</label>
-                <button type="button" className="text-xs text-indigo-500 font-black hover:underline">نسيت كلمة المرور؟</button>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <label className="text-[11px] font-extrabold uppercase tracking-widest text-[var(--text-tertiary)]">كلمة المرور</label>
+                <button type="button" className="text-[11px] text-[var(--color-medical-indigo)] font-extrabold hover:underline decoration-[var(--color-medical-indigo)]/30">نسيت كلمة المرور؟</button>
               </div>
-              <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <div className="relative group">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-tertiary)] group-focus-within:text-[var(--color-medical-indigo)] transition-colors" />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
@@ -97,61 +101,61 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   required
                   autoComplete="current-password"
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-12 py-3.5 text-slate-800 dark:text-white font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none"
+                  className="w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[20px] pl-12 pr-12 py-4 text-[15px] text-[var(--text-primary)] font-bold placeholder-[var(--text-tertiary)]/50 focus:ring-4 focus:ring-[var(--color-medical-indigo)]/10 focus:border-[var(--color-medical-indigo)]/30 outline-none transition-all shadow-inner"
                 />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors">
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
             </div>
 
             {error && (
-              <div className="flex gap-2 p-4 bg-rose-500/10 border border-rose-500/30 rounded-2xl">
-                <AlertCircle className="w-4 h-4 text-rose-500 flex-shrink-0" />
-                <p className="text-xs text-rose-400 font-bold">{error}</p>
+              <div className="flex gap-3 p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl animate-in slide-in-from-top-2">
+                <AlertCircle className="w-5 h-5 text-rose-500 flex-shrink-0" />
+                <p className="text-[13px] text-rose-600 dark:text-rose-400 font-bold">{error}</p>
               </div>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-indigo-600 to-teal-600 text-white font-black py-4 rounded-2xl shadow-xl shadow-indigo-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-60 flex items-center justify-center gap-2 group"
+              className="w-full bg-gradient-to-r from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] text-white font-extrabold py-4 md:py-5 rounded-[20px] shadow-[0_10px_25px_-5px_rgba(var(--color-medical-indigo-rgb),0.4)] hover:shadow-[0_15px_35px_-5px_rgba(var(--color-medical-indigo-rgb),0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:hover:scale-100 flex items-center justify-center gap-3 group"
             >
               {loading ? "جارٍ تسجيل الدخول..." : (
                 <>
-                  تسجيل الدخول
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span className="text-[15px] tracking-wide">تسجيل الدخول</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </>
               )}
             </button>
 
             {/* Divider */}
-            <div className="flex items-center gap-3 my-2">
-              <div className="flex-1 h-px bg-slate-100 dark:bg-slate-800" />
-              <span className="text-xs text-slate-400 font-bold">أو</span>
-              <div className="flex-1 h-px bg-slate-100 dark:bg-slate-800" />
+            <div className="flex items-center gap-4 my-6">
+              <div className="flex-1 h-px bg-[var(--border-subtle)]" />
+              <span className="text-[11px] tracking-widest uppercase text-[var(--text-tertiary)] font-extrabold">أو</span>
+              <div className="flex-1 h-px bg-[var(--border-subtle)]" />
             </div>
 
             {/* Continue as Guest */}
             <Link
               href="/"
-              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-500 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-900 transition-all"
+              className="w-full flex items-center justify-center gap-2 py-4 rounded-[20px] border-2 border-[var(--border-subtle)] text-[var(--text-secondary)] font-extrabold text-[14px] hover:bg-[var(--bg-1)] transition-all duration-300 shadow-sm hover:shadow-md"
             >
               المتابعة كزائر (بدون حساب)
             </Link>
 
-            <p className="text-center text-xs text-slate-500 mt-4">
+            <p className="text-center text-[13px] text-[var(--text-secondary)] mt-6 font-medium">
               ليس لديك حساب؟{" "}
-              <Link href="/auth/register" className="text-indigo-500 font-black hover:underline">إنشاء حساب مجاني</Link>
+              <Link href="/auth/register" className="text-[var(--color-medical-indigo)] font-extrabold hover:underline decoration-[var(--color-medical-indigo)]/30 transition-all">إنشاء حساب مجاني</Link>
             </p>
           </form>
         </div>
 
         {/* Feature highlights */}
-        <div className="mt-6 grid grid-cols-3 gap-3">
+        <div className="mt-8 grid grid-cols-3 gap-3">
           {["🔒 آمن 100%", "📊 تتبع التقدم", "🌍 مصادر عالمية"].map(f => (
-            <div key={f} className="bg-slate-900 border border-slate-800 rounded-2xl p-3 text-center">
-              <p className="text-xs text-slate-400 font-bold">{f}</p>
+            <div key={f} className="glass level-1 border border-[var(--border-subtle)] rounded-2xl p-3 text-center shadow-sm">
+              <p className="text-[11px] text-[var(--text-secondary)] font-extrabold tracking-wide">{f}</p>
             </div>
           ))}
         </div>
