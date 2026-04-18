@@ -394,7 +394,8 @@ function ActivePhase({
             allowFullScreen 
             allow="autoplay; fullscreen; xr-spatial-tracking" 
             src="https://sketchfab.com/models/ea21ba37018c4c78ac906a599ccb242e/embed?autostart=1&preload=1&ui_controls=0&ui_infos=0&ui_watermark=0&transparent=1"
-            className="absolute inset-0 w-full h-full mix-blend-multiply dark:mix-blend-lighten"
+            className="absolute inset-0 w-full h-full object-contain pointer-events-auto"
+            style={{ filter: "drop-shadow(0px 10px 15px rgba(0,0,0,0.1))" }}
           ></iframe>
         </div>
 
