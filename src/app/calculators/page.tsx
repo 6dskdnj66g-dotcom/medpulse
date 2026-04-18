@@ -490,12 +490,8 @@ const CALC_COMPONENTS: Record<string, React.FC> = {
 
 // ── Main Page ──────────────────────────────────────────────────────────────
 export default function CalculatorsPage() {
-  const { loading } = useSupabaseAuth();
+  useSupabaseAuth();
   const [active, setActive] = useState<string | null>(null);
-
-  
-
-  if (loading) return null;
   const colorMap: Record<string, string> = {
     sky: "text-sky-500 bg-sky-500/10 border-sky-500/20",
     rose: "text-rose-500 bg-rose-500/10 border-rose-500/20",

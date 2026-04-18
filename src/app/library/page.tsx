@@ -329,9 +329,14 @@ export default function SourceLibraryPage() {
     return counts;
   }, []);
 
+  const PAGE_SIZE = 20;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const visibleSources = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
+
+  // Reset pagination when filters change
   const resetFilters = () => {
     setSearch(""); setSelectedType("all"); setSelectedRegion("all");
-    setSelectedSpecialty("all"); setOpenAccess(false);
+    setSelectedSpecialty("all"); setOpenAccess(false); setVisibleCount(PAGE_SIZE);
   };
 
   return (
@@ -394,7 +399,7 @@ export default function SourceLibraryPage() {
             <input
               type="text"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={e => { setSearch(e.target.value); setVisibleCount(PAGE_SIZE); }}
               placeholder={isAr ? "ابحث عن مجلة، قاعدة بيانات، كتاب..." : "Search journals, databases, textbooks..."}
               className={`w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[20px] ${dir === "rtl" ? "pr-14 pl-5" : "pl-14 pr-5"} py-4 text-[14px] md:text-[15px] font-bold text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500/30 outline-none transition-all shadow-inner`}
             />
@@ -413,7 +418,7 @@ export default function SourceLibraryPage() {
               <ChevronDown className={`w-3.5 h-3.5 opacity-50 transition-transform duration-300 ${showFilters ? "rotate-180" : ""}`} />
             </button>
             <button
-              onClick={() => setShowBookmarked(p => !p)}
+              onClick={() => { setShowBookmarked(p => !p); setVisibleCount(PAGE_SIZE); }}
               className={`flex-1 lg:flex-none flex items-center justify-center gap-2 px-5 py-4 rounded-[20px] border text-[13px] font-extrabold transition-all ${
                 showBookmarked
                   ? "bg-amber-500/10 border-amber-500/30 text-amber-600"
@@ -432,7 +437,7 @@ export default function SourceLibraryPage() {
               <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] block">
                 {isAr ? "نوع المصدر" : "Source Type"}
               </label>
-              <select value={selectedType} onChange={e => setSelectedType(e.target.value)}
+              <select value={selectedType} onChange={e => { setSelectedType(e.target.value); setVisibleCount(PAGE_SIZE); }}
                 className="w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[16px] px-4 py-3 text-[13px] font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500/30 appearance-none cursor-pointer">
                 <option value="all">{isAr ? "الكل" : "All Types"}</option>
                 {Object.entries(TYPE_CONFIG).map(([k, v]) => (
@@ -444,7 +449,7 @@ export default function SourceLibraryPage() {
               <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] block">
                 {isAr ? "المنطقة" : "Region"}
               </label>
-              <select value={selectedRegion} onChange={e => setSelectedRegion(e.target.value)}
+              <select value={selectedRegion} onChange={e => { setSelectedRegion(e.target.value); setVisibleCount(PAGE_SIZE); }}
                 className="w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[16px] px-4 py-3 text-[13px] font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500/30 appearance-none cursor-pointer">
                 <option value="all">{isAr ? "الكل" : "All Regions"}</option>
                 {Object.entries(REGION_CONFIG).map(([k, v]) => (
@@ -456,7 +461,7 @@ export default function SourceLibraryPage() {
               <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)] block">
                 {isAr ? "التخصص" : "Specialty"}
               </label>
-              <select value={selectedSpecialty} onChange={e => setSelectedSpecialty(e.target.value)}
+              <select value={selectedSpecialty} onChange={e => { setSelectedSpecialty(e.target.value); setVisibleCount(PAGE_SIZE); }}
                 className="w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[16px] px-4 py-3 text-[13px] font-bold text-[var(--text-primary)] outline-none focus:border-indigo-500/30 appearance-none cursor-pointer">
                 <option value="all">{isAr ? "الكل" : "All Specialties"}</option>
                 {ALL_SPECIALTIES.map(s => <option key={s} value={s}>{s}</option>)}
@@ -464,7 +469,7 @@ export default function SourceLibraryPage() {
             </div>
             <div className="flex items-end col-span-2 lg:col-span-1">
               <button
-                onClick={() => setOpenAccess(p => !p)}
+                onClick={() => { setOpenAccess(p => !p); setVisibleCount(PAGE_SIZE); }}
                 className={`w-full flex items-center justify-center gap-2 px-5 py-3 rounded-[16px] border text-[13px] font-extrabold transition-all h-[49px] ${
                   openAccess
                     ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600"
@@ -487,7 +492,7 @@ export default function SourceLibraryPage() {
         ].map(({ k, labelAr, labelEn, icon: TypeIcon }) => (
           <button
             key={k}
-            onClick={() => setSelectedType(k)}
+            onClick={() => { setSelectedType(k); setVisibleCount(PAGE_SIZE); }}
             className={`flex-shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-[14px] text-[12px] md:text-[13px] font-extrabold transition-all duration-300 ${
               selectedType === k
                 ? "bg-indigo-600 text-white shadow-[0_10px_20px_-10px_rgba(99,102,241,0.6)] scale-105"
@@ -535,23 +540,41 @@ export default function SourceLibraryPage() {
           </button>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6 relative z-10 w-full">
-          {filtered.map((source, i) => (
-            <div
-              key={`${source.name}-${i}`}
-              style={{ animationDelay: `${Math.min(i * 25, 600)}ms` }}
-              className="animate-in slide-in-from-bottom-4 fade-in fill-mode-both duration-500 h-full"
-            >
-              <SourceCard
-                source={source}
-                bookmarked={bookmarks.has(source.name)}
-                onToggleBookmark={toggleBookmark}
-                onOpenPreview={setPreviewSource}
-                lang={lang}
-              />
+        <>
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6 relative z-10 w-full">
+            {visibleSources.map((source, i) => (
+              <div
+                key={`${source.name}-${i}`}
+                style={{ animationDelay: `${Math.min(i * 20, 400)}ms` }}
+                className="animate-in slide-in-from-bottom-4 fade-in fill-mode-both duration-500 h-full"
+              >
+                <SourceCard
+                  source={source}
+                  bookmarked={bookmarks.has(source.name)}
+                  onToggleBookmark={toggleBookmark}
+                  onOpenPreview={setPreviewSource}
+                  lang={lang}
+                />
+              </div>
+            ))}
+          </div>
+
+          {visibleCount < filtered.length && (
+            <div className="flex flex-col items-center gap-3 mt-8 relative z-10">
+              <p className="text-[12px] text-[var(--text-tertiary)] font-medium">
+                {isAr
+                  ? `عرض ${visibleCount} من ${filtered.length} مصدر`
+                  : `Showing ${visibleCount} of ${filtered.length} sources`}
+              </p>
+              <button
+                onClick={() => setVisibleCount(c => Math.min(c + PAGE_SIZE, filtered.length))}
+                className="px-8 py-3 rounded-2xl font-black text-sm border border-[var(--color-medical-indigo)]/30 text-[var(--color-medical-indigo)] hover:bg-[var(--color-medical-indigo)] hover:text-white transition-all uppercase tracking-widest shadow-sm hover:shadow-[0_8px_20px_-8px_rgba(99,102,241,0.4)]"
+              >
+                {isAr ? `تحميل المزيد (+${Math.min(PAGE_SIZE, filtered.length - visibleCount)})` : `Load More (+${Math.min(PAGE_SIZE, filtered.length - visibleCount)})`}
+              </button>
             </div>
-          ))}
-        </div>
+          )}
+        </>
       )}
     </div>
   );

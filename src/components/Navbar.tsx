@@ -3,7 +3,7 @@
 import {
   Activity, Menu, X, LayoutDashboard, BookOpen, Brain, Bot, FileText,
   LogOut, Home, Trophy, Pill, User, Calculator, HeartPulse,
-  ShieldCheck, Library, TrendingUp, Stethoscope
+  Library, TrendingUp, Stethoscope
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -15,11 +15,11 @@ import { useSupabaseAuth } from "./SupabaseAuthContext";
 import { DevRoleToggle } from "./DevRoleToggle";
 
 const BOTTOM_NAV_ITEMS = [
-  { href: "/",            icon: Home,      labelAr: "الرئيسية",  labelEn: "Home" },
-  { href: "/encyclopedia",icon: BookOpen,  labelAr: "الموسوعة", labelEn: "Library" },
-  { href: "/usmle",       icon: Trophy,    labelAr: "USMLE",    labelEn: "USMLE" },
-  { href: "/drug-checker",icon: Pill,      labelAr: "الأدوية",  labelEn: "Drugs" },
-  { href: "/profile",     icon: User,      labelAr: "حسابي",    labelEn: "Profile" },
+  { href: "/",            icon: Home,      labelAr: "الرئيسية",        labelEn: "Home" },
+  { href: "/encyclopedia",icon: BookOpen,  labelAr: "الموسوعة",        labelEn: "Encyclopedia" },
+  { href: "/usmle",       icon: Trophy,    labelAr: "USMLE",           labelEn: "USMLE" },
+  { href: "/drug-checker",icon: Pill,      labelAr: "فاحص الأدوية",   labelEn: "Drug Checker" },
+  { href: "/profile",     icon: User,      labelAr: "ملفي",            labelEn: "Profile" },
 ];
 
 const DRAWER_SECTIONS = [
@@ -27,34 +27,35 @@ const DRAWER_SECTIONS = [
     titleAr: "الرئيسية",
     titleEn: "Main",
     items: [
-      { href: "/",         icon: Home,          labelAr: "الرئيسية",          labelEn: "Home" },
-      { href: "/dashboard",icon: LayoutDashboard,labelAr: "لوحة التحكم",       labelEn: "Dashboard" },
-      { href: "/progress", icon: TrendingUp,    labelAr: "تقدمي",             labelEn: "Progress" },
-      { href: "/profile",  icon: User,          labelAr: "الملف الشخصي",      labelEn: "Profile" },
+      { href: "/",          icon: Home,            labelAr: "الرئيسية",                    labelEn: "Home" },
+      { href: "/dashboard", icon: LayoutDashboard, labelAr: "لوحة التحكم",                 labelEn: "Dashboard" },
+      { href: "/progress",  icon: TrendingUp,      labelAr: "تقدمي الدراسي",               labelEn: "My Progress" },
+      { href: "/profile",   icon: User,            labelAr: "ملفي الشخصي",                 labelEn: "My Profile" },
     ],
   },
   {
     titleAr: "التعليم السريري",
     titleEn: "Clinical Education",
     items: [
-      { href: "/encyclopedia", icon: BookOpen,    labelAr: "الموسوعة الطبية",   labelEn: "Encyclopedia" },
-      { href: "/professors",   icon: Bot,         labelAr: "الأساتذة",          labelEn: "Professors" },
-      { href: "/mdt",          icon: Brain,       labelAr: "النقاش الطبي",      labelEn: "MDT Debate" },
-      { href: "/simulator",    icon: HeartPulse,  labelAr: "المحاكاة السريرية", labelEn: "Simulator" },
-      { href: "/usmle",        icon: Trophy,      labelAr: "USMLE",            labelEn: "USMLE" },
-      { href: "/summarizer",   icon: FileText,    labelAr: "الملخّص الذكي",    labelEn: "Summarizer" },
+      { href: "/encyclopedia", icon: BookOpen,   labelAr: "الموسوعة الطبية",           labelEn: "Encyclopedia" },
+      { href: "/professors",   icon: Bot,        labelAr: "أساتذة الذكاء الاصطناعي",  labelEn: "AI Professors" },
+      { href: "/mdt",          icon: Brain,      labelAr: "مناظرات MDT",               labelEn: "MDT Debate" },
+      { href: "/simulator",    icon: HeartPulse, labelAr: "محاكي OSCE",                labelEn: "OSCE Simulator" },
+      { href: "/usmle",        icon: Trophy,     labelAr: "وضع USMLE",                 labelEn: "USMLE Mode" },
+      { href: "/summarizer",   icon: FileText,   labelAr: "ملخص التقارير",             labelEn: "Summarizer" },
     ],
   },
   {
     titleAr: "الأدوات السريرية",
     titleEn: "Clinical Tools",
     items: [
-      { href: "/calculators",  icon: Calculator,  labelAr: "الحاسبات الطبية",  labelEn: "Calculators" },
-      { href: "/drug-checker", icon: Pill,        labelAr: "التفاعلات الدوائية",labelEn: "Drug Checker" },
-      { href: "/ecg",          icon: Activity,    labelAr: "تحليل ECG",        labelEn: "ECG Analysis" },
-      { href: "/notes",        icon: Stethoscope, labelAr: "الملاحظات السريرية",labelEn: "Clinical Notes" },
-      { href: "/records",      icon: FileText,    labelAr: "سجلات المرضى",     labelEn: "Records" },
-      { href: "/library",      icon: Library,     labelAr: "المكتبة",           labelEn: "Library" },
+      { href: "/calculators",  icon: Calculator,  labelAr: "الحاسبات السريرية",  labelEn: "Clinical Calculators" },
+      { href: "/drug-checker", icon: Pill,        labelAr: "فاحص الأدوية",       labelEn: "Drug Checker" },
+      { href: "/ecg",          icon: Activity,    labelAr: "محلل ECG",            labelEn: "ECG Interpreter" },
+      { href: "/notes",        icon: Stethoscope, labelAr: "الملاحظات السريرية", labelEn: "Clinical Notes" },
+      { href: "/translator",   icon: Bot,         labelAr: "المترجم الطبي",      labelEn: "Medical Translator" },
+      { href: "/records",      icon: FileText,    labelAr: "المحفظة السريرية",   labelEn: "Clinical Portfolio" },
+      { href: "/library",      icon: Library,     labelAr: "مكتبة المصادر",      labelEn: "Source Library" },
     ],
   },
 ];
@@ -215,20 +216,6 @@ export function Navbar() {
               </div>
             </div>
           ))}
-
-          {/* Verified badge */}
-          <div
-            className="mx-1 p-4 rounded-2xl mt-4"
-            style={{ background: "var(--bg-3)", border: "1px solid var(--border-subtle)" }}
-          >
-            <div className="flex items-center gap-2 text-emerald-500 mb-2">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span className="text-[9px] font-black uppercase tracking-widest">AI-Verified Sources</span>
-            </div>
-            <p className="text-[11px] leading-relaxed font-medium" style={{ color: "var(--text-tertiary)" }}>
-              Powered by Gemini 2.0 Flash + RAG with 2026 clinical guidelines.
-            </p>
-          </div>
         </div>
 
         {/* User section */}
