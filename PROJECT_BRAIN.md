@@ -97,31 +97,39 @@ Custom Tailwind 4 classes: `clinical-card-3d`, `premium-card`, `btn-elite`, `gla
 
 ## Progress Status
 
-### Last Completed (2026-04-18)
-1. **Progress tracking loop wired up** — USMLE saves sessions to `medpulse_sessions` localStorage on finish; Simulator saves session when starting a new case. Progress page cleans up no-op, adds Recent Sessions history panel. (`298f615`)
-2. **`/dashboard` route created** — Dedicated authenticated student dashboard with XP level banner, stat grid, 10-module quick-access cards, recent sessions panel, quick tools. Sidebar updated to link to `/dashboard`. (`a6013d3`)
+### Last Completed (2026-04-18) — Phase 2 & 3 DONE
+**Phase 2 — Feature Completeness** (`fc58375`):
+1. `/` — Full bilingual AR/EN marketing landing page; authenticated users redirect to `/dashboard`
+2. USMLE question bank: 12 → 50 questions (Psychiatry, OB/GYN, Hematology, ID, Gastro, Derm, Ophthalmology, EM, Oncology + more)
+3. Professors page: full Arabic/English bilingual (names, titles, descriptions, starter questions, all UI)
+4. Auth guards added to `/mdt`, `/simulator`, `/usmle`, `/drug-checker`, `/ecg`, `/calculators`
+
+**Phase 3 — Polish & Production Readiness** (`fc58375`):
+5. SEO `layout.tsx` (metadata) added to all 16 route directories
+6. Custom `not-found.tsx` 404 page — branded, bilingual, links to dashboard + encyclopedia
+7. Loading skeleton `loading.tsx` for `/dashboard`, `/progress`, `/records`
 
 ### Where We Stopped
-- Both feature milestones committed. Build passes 0 errors.
-- Next candidates:
-  - Enhance `/` home page as a proper unauthenticated landing page (currently redirects unauthenticated users to "Please sign in")
-  - Add professors page bilingual support (currently EN-only)
-  - Implement `/api/progress` integration in dashboard (currently localStorage only)
+- Phase 2 + Phase 3 complete. Build: 37/37 pages, 0 errors, 0 TypeScript errors.
+- Remaining opportunities:
+  - Connect progress dashboard to real Supabase `/api/progress` (currently localStorage)
+  - Expand USMLE bank further (currently 50 questions)
+  - Add `/professors` auth redirect (professors uses `useAuth` mock, not Supabase)
 
 ### Specific Next Step
-- Resume by checking `git log --oneline -5` and continuing from commit `a6013d3`.
+- Resume by checking `git log --oneline -5` and continuing from commit `fc58375`.
 
 ---
 
 ## Commit Log (Major Milestones)
 | Date | Commit | Summary |
 |---|---|---|
+| 2026-04-18 | `fc58375` | feat: Phase 2 + Phase 3 complete |
 | 2026-04-18 | `a6013d3` | feat: add /dashboard route |
 | 2026-04-18 | `298f615` | feat: wire up progress tracking loop |
 | 2026-04-17 | `c4cb3be` | Phase 1 Audit — 0 errors build |
-| 2026-04-17 | `3e0392e` | PROJECT_BRAIN.md created |
 | 2026-04-17 | `357c9fb` | Ultimate MedPulse MDT Core Upgrade |
 
 ---
 
-*Last updated: 2026-04-18 — Session: Progress tracking + Dashboard route*
+*Last updated: 2026-04-18 — Session: Phase 2 + Phase 3*
