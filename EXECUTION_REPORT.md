@@ -97,3 +97,19 @@ All functional, UI/UX, and technical checks pass. The codebase is production-rea
 - Full bilingual AR/EN support
 - Apple-Tier 3D glassmorphism design system
 - Complete SEO, error handling, and auth guard coverage
+
+## Phase 6.1: Post-QA Mobile UI & Lint Fixes
+**Date:** 2026-04-18 (Manual / Co-pilot intervention)
+- **Mobile Navigation Overlap Fix:** Moved DevRoleToggle from a fixed floating position (ottom-6) into the user profile section inside Navbar.tsx (mobile drawer) and Sidebar.tsx (desktop). This explicitly prevents the toggle from obscuring the mobile bottom nav.
+- **Encyclopedia Mobile Layout Fix:** Deleted legacy src/app/encyclopedia/layout.tsx which was forcing a desktop-only sidebar layout and crushing the main encyclopedia page into a narrow column on mobile devices.
+- **Simulator Lint Fix:** Fixed a React Hook rule violation (useMemo called conditionally) in src/app/simulator/page.tsx by moving the if (loading) return null; statement below all hooks.
+- **Build Status:** Re-ran 
+pm run build successfully. Project maintains 0 errors and 41 clean compiled routes.
+
+## Phase 6.1: Post-QA Mobile UI & Lint Fixes
+**Date:** 2026-04-18 (Manual / Co-pilot intervention)
+- **Mobile Navigation Overlap Fix:** Moved DevRoleToggle from a fixed floating position (ottom-6) into the user profile section inside Navbar.tsx (mobile drawer) and Sidebar.tsx (desktop). This explicitly prevents the toggle from obscuring the mobile bottom nav.
+- **Encyclopedia Mobile Layout Fix:** Deleted legacy src/app/encyclopedia/layout.tsx which was forcing a desktop-only sidebar layout and crushing the main encyclopedia page into a narrow column on mobile devices.
+- **Simulator Lint Fix:** Fixed a React Hook rule violation (useMemo called conditionally) in src/app/simulator/page.tsx by moving the if (loading) return null; statement below all hooks.
+- **Build Status:** Re-ran 
+pm run build successfully. Project maintains 0 errors and 41 clean compiled routes.

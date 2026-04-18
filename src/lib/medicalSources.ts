@@ -10,6 +10,7 @@ export interface MedicalSource {
   name: string;
   abbreviation?: string;
   url?: string;
+  slug?: string;
   type: "journal" | "database" | "guideline" | "textbook" | "organization" | "database_arab" | "journal_arab";
   specialty?: string;
   impactFactor?: number;
@@ -384,52 +385,52 @@ export const GUIDELINES_ORGS: MedicalSource[] = [
 // ════════════════════════════════════════════════════════════════
 export const MEDICAL_TEXTBOOKS: MedicalSource[] = [
   // Internal Medicine
-  { name: "Harrison's Principles of Internal Medicine, 21st Edition", type: "textbook", specialty: "Internal Medicine" },
-  { name: "Goldman-Cecil Medicine, 27th Edition", type: "textbook", specialty: "Internal Medicine" },
-  { name: "Davidson's Principles & Practice of Medicine, 24th Edition", type: "textbook", specialty: "Internal Medicine" },
-  { name: "Kumar & Clark's Clinical Medicine, 10th Edition", type: "textbook", specialty: "Internal Medicine" },
-  { name: "Oxford Textbook of Medicine, 6th Edition", type: "textbook", specialty: "Internal Medicine" },
-  { name: "Current Medical Diagnosis & Treatment (CMDT) 2026", type: "textbook", specialty: "Internal Medicine" },
+  { name: "Harrison's Principles of Internal Medicine, 21st Edition", type: "textbook", specialty: "Internal Medicine", slug: "harrisons-21" },
+  { name: "Goldman-Cecil Medicine, 27th Edition", type: "textbook", specialty: "Internal Medicine", slug: "goldman-cecil-27" },
+  { name: "Davidson's Principles & Practice of Medicine, 24th Edition", type: "textbook", specialty: "Internal Medicine", slug: "davidsons-24" },
+  { name: "Kumar & Clark's Clinical Medicine, 10th Edition", type: "textbook", specialty: "Internal Medicine", slug: "kumar-clark-10" },
+  { name: "Oxford Textbook of Medicine, 6th Edition", type: "textbook", specialty: "Internal Medicine", slug: "oxford-textbook-6" },
+  { name: "Current Medical Diagnosis & Treatment (CMDT) 2026", type: "textbook", specialty: "Internal Medicine", slug: "cmdt-2026" },
   { name: "Merck Manual of Diagnosis & Therapy, 20th Edition Professional", type: "textbook", specialty: "General Medicine" },
   // Cardiology
-  { name: "Braunwald's Heart Disease: A Textbook of Cardiovascular Medicine, 12th Edition", type: "textbook", specialty: "Cardiology" },
+  { name: "Braunwald's Heart Disease: A Textbook of Cardiovascular Medicine, 12th Edition", type: "textbook", specialty: "Cardiology", slug: "braunwald-12" },
   { name: "Hurst's The Heart, 14th Edition", type: "textbook", specialty: "Cardiology" },
   // Pathology
-  { name: "Robbins & Cotran Pathologic Basis of Disease, 10th Edition", type: "textbook", specialty: "Pathology" },
+  { name: "Robbins & Cotran Pathologic Basis of Disease, 10th Edition", type: "textbook", specialty: "Pathology", slug: "robbins-10" },
   { name: "Robbins Basic Pathology, 11th Edition", type: "textbook", specialty: "Pathology" },
   { name: "Underwood's Pathology, 8th Edition", type: "textbook", specialty: "Pathology" },
   // Anatomy
-  { name: "Gray's Anatomy, 42nd Edition (Referenced as 5th Clinical)", type: "textbook", specialty: "Anatomy" },
+  { name: "Gray's Anatomy, 42nd Edition (Referenced as 5th Clinical)", type: "textbook", specialty: "Anatomy", slug: "grays-42" },
   { name: "Netter's Atlas of Human Anatomy, 8th Edition", type: "textbook", specialty: "Anatomy" },
   { name: "Moore's Clinically Oriented Anatomy, 9th Edition", type: "textbook", specialty: "Anatomy" },
   { name: "Snell's Clinical Anatomy by Regions, 10th Edition", type: "textbook", specialty: "Anatomy" },
   // Physiology
-  { name: "Guyton & Hall Medical Physiology, 14th Edition", type: "textbook", specialty: "Physiology" },
+  { name: "Guyton & Hall Medical Physiology, 14th Edition", type: "textbook", specialty: "Physiology", slug: "guyton-14" },
   { name: "Ganong's Review of Medical Physiology, 26th Edition", type: "textbook", specialty: "Physiology" },
   { name: "Boron & Boulpaep Medical Physiology, 3rd Edition", type: "textbook", specialty: "Physiology" },
   // Pharmacology
-  { name: "Goodman & Gilman's: The Pharmacological Basis of Therapeutics, 14th Edition", type: "textbook", specialty: "Pharmacology" },
+  { name: "Goodman & Gilman's: The Pharmacological Basis of Therapeutics, 14th Edition", type: "textbook", specialty: "Pharmacology", slug: "goodman-gilman-14" },
   { name: "Katzung Basic & Clinical Pharmacology, 16th Edition", type: "textbook", specialty: "Pharmacology" },
   { name: "Rang & Dale's Pharmacology, 10th Edition", type: "textbook", specialty: "Pharmacology" },
   { name: "British National Formulary (BNF) 2026", type: "textbook", specialty: "Pharmacology" },
   // Neurology
-  { name: "Adams & Victor's Principles of Neurology, 11th Edition", type: "textbook", specialty: "Neurology" },
+  { name: "Adams & Victor's Principles of Neurology, 11th Edition", type: "textbook", specialty: "Neurology", slug: "adams-victor-11" },
   { name: "Bradley & Daroff's Neurology in Clinical Practice, 8th Edition", type: "textbook", specialty: "Neurology" },
   { name: "Marriott's Practical Electrocardiography, 13th Edition", type: "textbook", specialty: "Cardiology/ECG" },
   // Surgery
-  { name: "Bailey & Love's Short Practice of Surgery, 28th Edition", type: "textbook", specialty: "Surgery" },
+  { name: "Bailey & Love's Short Practice of Surgery, 28th Edition", type: "textbook", specialty: "Surgery", slug: "bailey-love-28" },
   { name: "Schwartz's Principles of Surgery, 11th Edition", type: "textbook", specialty: "Surgery" },
   { name: "Campbell-Walsh-Wein Urology, 12th Edition", type: "textbook", specialty: "Urology" },
   { name: "Sabiston Textbook of Surgery, 21st Edition", type: "textbook", specialty: "Surgery" },
   // Pediatrics
-  { name: "Nelson Textbook of Pediatrics, 22nd Edition", type: "textbook", specialty: "Pediatrics" },
+  { name: "Nelson Textbook of Pediatrics, 22nd Edition", type: "textbook", specialty: "Pediatrics", slug: "nelson-22" },
   { name: "Forfar & Arneil's Textbook of Paediatrics, 8th Edition", type: "textbook", specialty: "Pediatrics" },
   // OB/GYN
-  { name: "Williams Obstetrics, 26th Edition", type: "textbook", specialty: "OB/GYN" },
+  { name: "Williams Obstetrics, 26th Edition", type: "textbook", specialty: "OB/GYN", slug: "williams-obs-26" },
   { name: "Dutta's Textbook of Obstetrics, 10th Edition", type: "textbook", specialty: "OB/GYN" },
   // Clinical Examination
-  { name: "Oxford Handbook of Clinical Medicine, 10th Edition", type: "textbook", specialty: "Clinical Skills" },
-  { name: "Macleod's Clinical Examination, 14th Edition", type: "textbook", specialty: "Clinical Skills" },
+  { name: "Oxford Handbook of Clinical Medicine, 10th Edition", type: "textbook", specialty: "Clinical Skills", slug: "oxhm-10" },
+  { name: "Macleod's Clinical Examination, 14th Edition", type: "textbook", specialty: "Clinical Skills", slug: "macleods-14" },
   { name: "Talley & O'Connor: Clinical Examination, 9th Edition", type: "textbook", specialty: "Clinical Skills" },
   // Radiology
   { name: "Grainger & Allison's Diagnostic Radiology, 7th Edition", type: "textbook", specialty: "Radiology" },

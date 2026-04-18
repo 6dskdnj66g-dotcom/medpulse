@@ -12,6 +12,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "./LanguageContext";
 import { useSupabaseAuth } from "./SupabaseAuthContext";
+import { DevRoleToggle } from "./DevRoleToggle";
 
 const BOTTOM_NAV_ITEMS = [
   { href: "/",            icon: Home,      labelAr: "الرئيسية",  labelEn: "Home" },
@@ -259,6 +260,7 @@ export function Navbar() {
               <LogOut className="w-4 h-4" />
               {isAr ? "تسجيل الخروج" : "Sign Out"}
             </button>
+            <DevRoleToggle />
           </div>
         ) : (
           <div className="p-4 mt-auto" style={{ borderTop: "1px solid var(--border-subtle)" }}>

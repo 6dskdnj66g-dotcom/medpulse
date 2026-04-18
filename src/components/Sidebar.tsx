@@ -7,6 +7,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "./LanguageContext";
 import { useSupabaseAuth } from "./SupabaseAuthContext";
+import { DevRoleToggle } from "./DevRoleToggle";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -164,6 +165,7 @@ export function Sidebar() {
               <LogOut className="w-4 h-4" />
               {t.common.logout}
             </button>
+            <DevRoleToggle />
           </div>
         </div>
       )}

@@ -6,7 +6,6 @@ import { Navbar } from '@/components/Navbar';
 import { AuthProvider } from '@/components/AuthContext';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AchievementProvider } from '@/components/AchievementContext';
-import { DevRoleToggle } from '@/components/DevRoleToggle';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { SupabaseAuthProvider } from '@/components/SupabaseAuthContext';
 import { VisitorTracker } from '@/components/VisitorTracker';
@@ -114,7 +113,6 @@ export default function RootLayout({
                       </ErrorBoundary>
                     </main>
                   </div>
-                  <DevRoleToggle />
                 </AchievementProvider>
               </ThemeProvider>
             </AuthProvider>

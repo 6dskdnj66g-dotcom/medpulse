@@ -147,13 +147,13 @@ function OSCEHome() {
     });
   }, [specialtyFilter, difficultyFilter, typeFilter]);
 
-  if (loading) return null;
-
   const statsBySpecialty = useMemo(() => {
     const counts: Record<string, number> = {};
     OSCE_STATIONS.forEach(s => { counts[s.specialty] = (counts[s.specialty] || 0) + 1; });
     return counts;
   }, []);
+
+  if (loading) return null;
 
   return (
     <div className="max-w-7xl mx-auto p-4 pb-24 md:pb-8 md:p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700" dir={dir}>
