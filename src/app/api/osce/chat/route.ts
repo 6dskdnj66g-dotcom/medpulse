@@ -54,14 +54,16 @@ RULES:
 
 NEVER: Break character, mention you are an AI, give the diagnosis directly, volunteer all information unprompted.`;
 
-      const aiMessages = messages.map(m => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content }));
+      const aiMessages = messages.map(m => ({ 
+        role: (m.role === "assistant" ? "assistant" : "user") as "assistant" | "user", 
+        content: m.content 
+      }));
 
       const { text } = await generateText({
         model: groq("llama-3.3-70b-versatile"),
         system: systemPrompt,
         messages: aiMessages,
-        temperature: 0.75,
-        maxTokens: 350
+        temperature: 0.75
       });
 
       return NextResponse.json({ content: text, role: "patient" });
@@ -111,8 +113,7 @@ ${markingScheme.passThreshold/markingScheme.totalMarks >= 0.7 ? "High standards 
         model: groq("llama-3.3-70b-versatile"),
         system: systemPrompt,
         prompt: `يرجى تقييم أداء هذا الطالب في المحطة السريرية:\n\n${conversationText}`,
-        temperature: 0.2,
-        maxTokens: 2000
+        temperature: 0.2
       });
 
       const clean = text.replace(/```json\s?|```/g, "").trim();

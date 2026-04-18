@@ -247,6 +247,7 @@ function ActivePhase({
 }) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [showScheme, setShowScheme] = useState(false);
   
   // Voice & Speech State
   const [isListening, setIsListening] = useState(false);
@@ -254,9 +255,11 @@ function ActivePhase({
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   
   // Setup Speech Recognition
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
   useEffect(() => {
     if (typeof window !== "undefined") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       if (SpeechRecognition) {
         recognitionRef.current = new SpeechRecognition();
@@ -264,6 +267,7 @@ function ActivePhase({
         recognitionRef.current.interimResults = true;
         recognitionRef.current.lang = isAr ? 'ar-SA' : 'en-US';
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         recognitionRef.current.onresult = (event: any) => {
           let currentTranscript = "";
           for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -272,6 +276,7 @@ function ActivePhase({
           setInput(input + (input ? " " : "") + currentTranscript);
         };
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         recognitionRef.current.onerror = (event: any) => {
           console.error("Speech recognition error", event.error);
           setIsListening(false);
@@ -293,17 +298,7 @@ function ActivePhase({
     };
   }, [isAr, setInput, input]);
 
-  // Handle incoming messages to read them aloud
-  useEffect(() => {
-    if (voiceEnabled && messages.length > 0) {
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage.role === "assistant") {
-        speakText(lastMessage.content);
-      }
-    }
-  }, [messages, voiceEnabled]);
-
-  const speakText = (text: string) => {
+  const speakText = useCallback((text: string) => {
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel(); // Stop current speech
       const utterance = new SpeechSynthesisUtterance(text);
@@ -316,7 +311,17 @@ function ActivePhase({
       
       window.speechSynthesis.speak(utterance);
     }
-  };
+  }, [isAr]);
+
+  // Handle incoming messages to read them aloud
+  useEffect(() => {
+    if (voiceEnabled && messages.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage.role === "assistant") {
+        speakText(lastMessage.content);
+      }
+    }
+  }, [messages, voiceEnabled, speakText]);
 
   const toggleListen = () => {
     if (isListening) {
@@ -386,15 +391,8 @@ function ActivePhase({
           {/* Sketchfab iframe for realistic Medical Anatomy/Patient Room */}
           <iframe 
             title="3D Patient Exam" 
-            frameBorder="0" 
             allowFullScreen 
-            mozallowfullscreen="true" 
-            webkitallowfullscreen="true" 
             allow="autoplay; fullscreen; xr-spatial-tracking" 
-            xr-spatial-tracking="true" 
-            execution-while-out-of-viewport="true" 
-            execution-while-not-rendered="true" 
-            web-share="true" 
             src="https://sketchfab.com/models/ea21ba37018c4c78ac906a599ccb242e/embed?autostart=1&preload=1&ui_controls=0&ui_infos=0&ui_watermark=0&transparent=1"
             className="absolute inset-0 w-full h-full mix-blend-multiply dark:mix-blend-lighten"
           ></iframe>

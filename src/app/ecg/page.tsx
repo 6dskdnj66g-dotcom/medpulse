@@ -165,15 +165,8 @@ export default function ECGPage() {
           {/* Sketchfab iframe for realistic beating heart */}
           <iframe 
             title="Animated Human Heart" 
-            frameBorder="0" 
             allowFullScreen 
-            mozallowfullscreen="true" 
-            webkitallowfullscreen="true" 
             allow="autoplay; fullscreen; xr-spatial-tracking" 
-            xr-spatial-tracking="true" 
-            execution-while-out-of-viewport="true" 
-            execution-while-not-rendered="true" 
-            web-share="true" 
             src="https://sketchfab.com/models/0b2e2d83cd4d49d986b6a2e4dc27d14c/embed?autostart=1&preload=1&ui_controls=0&ui_infos=0&ui_watermark=0&transparent=1"
             className="absolute inset-0 w-full h-full object-cover"
           ></iframe>
