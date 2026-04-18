@@ -23,7 +23,7 @@ const COMMON_DRUGS = [
 ];
 
 export default function DrugCheckerPage() {
-  const { loading } = useSupabaseAuth();
+  useSupabaseAuth();
   const [selectedDrugs, setSelectedDrugs] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
@@ -87,8 +87,6 @@ export default function DrugCheckerPage() {
       setIsLoading(false);
     }
   };
-
-  if (loading) return null;
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-10 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 relative">

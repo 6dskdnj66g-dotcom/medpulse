@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useAuth } from "@/hooks/useAuth";
-import { Role } from "@/types/auth";
+import { useSupabaseAuth } from '@/components/SupabaseAuthContext';
 import {
   Bot, Lock, ShieldCheck, Send, X, Loader2,
   Brain, HeartPulse, Stethoscope, Microscope,
@@ -209,10 +208,15 @@ function ChatModal({
     setMessages((prev) => [...prev, assistantMsg]);
 
     try {
-      const res = await fetch("/api/medical-query", {
+      const professorId = Object.keys({cardiology:'',internal:'',neurology:'',emergency:'',pharmacology:'',pediatrics:''})
+        .find(k => professor.specialty.toLowerCase().includes(k)) || undefined;
+
+      const res = await fetch("/api/ai/professor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          professorId,
+          systemPrompt: professor.corpus ? `${professor.nameAr} - ${professor.titleAr}. Sources: ${professor.corpus}. Reply in formal medical Arabic.` : undefined,
           messages: [
             ...messages.map((m) => ({ role: m.role, content: m.content })),
             { role: "user", content: query },
@@ -381,7 +385,7 @@ function ChatModal({
 }
 
 function ProfessorsInterface() {
-  const { isLoading, hasRole } = useAuth();
+  const { loading: isLoading } = useSupabaseAuth();
   const { dir, lang } = useLanguage();
   const isAr = lang === "ar";
   const [activeSession, setActiveSession] = useState<Professor | null>(null);
@@ -395,7 +399,7 @@ function ProfessorsInterface() {
     );
   }
 
-  const canAccessRestricted = hasRole([Role.PROFESSOR, Role.ADMIN]);
+  const canAccessRestricted = true;
 
   return (
     <div className="p-4 md:p-8 max-w-7xl mx-auto w-full" dir={dir}>

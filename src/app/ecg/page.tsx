@@ -43,7 +43,7 @@ const ECG_PRESETS = [
 ];
 
 export default function ECGPage() {
-  const { user, loading } = useSupabaseAuth();
+  const { user } = useSupabaseAuth();
   const [description, setDescription] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -55,8 +55,6 @@ export default function ECGPage() {
 
   const { lang } = useLanguage();
   const isAr = lang === "ar";
-
-  if (loading) return null;
 
   const analyzeECG = async (desc?: string) => {
     const query = desc || description;
