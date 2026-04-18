@@ -11,7 +11,7 @@ import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { supabase } from "@/lib/supabase";
 
 export default function MedicalTranslatorPage() {
-  const { user, loading } = useSupabaseAuth();
+  const { user } = useSupabaseAuth();
   const [text, setText] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -78,8 +78,6 @@ export default function MedicalTranslatorPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  if (loading) return null;
 
   return (
     <div className="max-w-6xl mx-auto p-6 md:p-10 w-full page-transition">

@@ -60,7 +60,7 @@ function ResultSection({ icon: Icon, title, colorClass, bgClass, children }: {
 }
 
 export default function SummarizerPage() {
-  const { loading } = useSupabaseAuth();
+  useSupabaseAuth();
   const [inputText, setInputText] = useState("");
   const [image, setImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -139,8 +139,6 @@ export default function SummarizerPage() {
     setResult(null);
     setError(null);
   };
-
-  if (loading) return null;
 
   return (
     <div className="max-w-7xl mx-auto p-4 md:p-10 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 relative">

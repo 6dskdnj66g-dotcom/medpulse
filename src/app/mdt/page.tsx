@@ -8,7 +8,7 @@ import { useLanguage } from "@/components/LanguageContext";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 
 export default function MDTPage() {
-  const { loading } = useSupabaseAuth();
+  useSupabaseAuth();
   const { lang, dir } = useLanguage();
   const isAr = lang === "ar";
 
@@ -82,8 +82,6 @@ export default function MDTPage() {
       setCurrentAgent("");
     }
   };
-
-  if (loading) return null;
 
   return (
     <div className="p-4 md:p-8 max-w-[1600px] mx-auto w-full h-[calc(100vh-2rem)] md:h-[calc(100vh-100px)] flex flex-col space-y-6 md:space-y-8 overflow-hidden animate-in fade-in zoom-in-95 duration-700 perspective-1000" dir={dir}>
