@@ -42,7 +42,7 @@ function getLevel(xp: number) {
 
 export default function ProgressPage() {
   const { xp } = useAchievement();
-  const [sessions, setSessions] = useState<Session[]>(() => {
+  const [sessions] = useState<Session[]>(() => {
     if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem("medpulse_sessions");
     return stored ? (JSON.parse(stored) as Session[]) : [];

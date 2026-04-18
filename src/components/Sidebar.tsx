@@ -17,7 +17,7 @@ export function Sidebar() {
     {
       title: t.sections.main,
       items: [
-        { href: "/", icon: LayoutDashboard, label: t.common.dashboard, color: "indigo" },
+        { href: "/dashboard", icon: LayoutDashboard, label: t.common.dashboard, color: "indigo" },
       ]
     },
     {
@@ -104,7 +104,9 @@ export function Sidebar() {
               {section.title === t.sections.main && <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />}
             </div>
             {section.items.map((item) => {
-              const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+              const isActive = (item.href === "/" || item.href === "/dashboard")
+                ? pathname === item.href
+                : pathname?.startsWith(item.href);
               const colors = COLOR_MAP[item.color] || COLOR_MAP.indigo;
               const Icon = item.icon;
 
