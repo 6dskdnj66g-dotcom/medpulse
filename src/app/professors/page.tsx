@@ -22,7 +22,9 @@ interface Message {
 interface Professor {
   id: string;
   name: string;
+  nameAr: string;
   title: string;
+  titleAr: string;
   specialty: string;
   icon: React.ElementType;
   colorClass: string;
@@ -31,16 +33,20 @@ interface Professor {
   textClass: string;
   gradient: string;
   description: string;
+  descriptionAr: string;
   corpus: string;
   restricted: boolean;
   starterQuestions: string[];
+  starterQuestionsAr: string[];
 }
 
 const PROFESSORS: Professor[] = [
   {
     id: "dr-turing",
     name: "Dr. Turing",
+    nameAr: "د. تورينج",
     title: "Internal Medicine Expert",
+    titleAr: "خبير الطب الباطني",
     specialty: "internal-medicine",
     icon: Stethoscope,
     colorClass: "text-indigo-500",
@@ -48,8 +54,8 @@ const PROFESSORS: Professor[] = [
     borderClass: "border-indigo-200",
     textClass: "text-indigo-700",
     gradient: "from-indigo-400 to-sky-500",
-    description:
-      "General diagnostics, pathophysiology, and pharmacology within IM scope. Sourced from Harrison's Principles and active clinical guidelines.",
+    description: "General diagnostics, pathophysiology, and pharmacology within IM scope. Sourced from Harrison's Principles and active clinical guidelines.",
+    descriptionAr: "التشخيص العام وعلم الفيزيولوجيا المرضية والصيدلانيات في نطاق الطب الباطني. مستند إلى مبادئ هاريسون والإرشادات السريرية الحالية.",
     corpus: "Harrison's Principles of Internal Medicine, 21st Edition + UpToDate 2024",
     restricted: false,
     starterQuestions: [
@@ -57,11 +63,18 @@ const PROFESSORS: Professor[] = [
       "Explain the pathophysiology of type 2 diabetes.",
       "What is the first-line treatment for community-acquired pneumonia?",
     ],
+    starterQuestionsAr: [
+      "ما هي المعايير التشخيصية للإنتان (Sepsis)؟",
+      "اشرح الفيزيولوجيا المرضية لمرض السكري من النوع الثاني.",
+      "ما هو العلاج الخط الأول لالتهاب الرئة المكتسب من المجتمع؟",
+    ],
   },
   {
     id: "dr-fleming",
     name: "Dr. Fleming",
+    nameAr: "د. فليمينج",
     title: "Surgical Pathology & Oncology",
+    titleAr: "علم الأمراض الجراحي والأورام",
     specialty: "pathology",
     icon: Microscope,
     colorClass: "text-rose-500",
@@ -69,8 +82,8 @@ const PROFESSORS: Professor[] = [
     borderClass: "border-rose-200",
     textClass: "text-rose-700",
     gradient: "from-rose-400 to-orange-500",
-    description:
-      "Deep-tissue analysis and experimental oncological treatment algorithms. Unrestricted complex case simulator for verified professors.",
+    description: "Deep-tissue analysis and experimental oncological treatment algorithms. Unrestricted complex case simulator for verified professors.",
+    descriptionAr: "تحليل الأنسجة العميقة وخوارزميات علاج السرطان التجريبية. محاكي حالات معقدة غير مقيد للأساتذة المعتمدين.",
     corpus: "Robbins & Cotran Pathology + NCCN Oncology Guidelines 2024",
     restricted: true,
     starterQuestions: [
@@ -78,11 +91,18 @@ const PROFESSORS: Professor[] = [
       "What is the Gleason scoring system?",
       "Explain the mechanism of targeted therapy in NSCLC.",
     ],
+    starterQuestionsAr: [
+      "صف السمات المميزة للسرطان (Hallmarks of Cancer).",
+      "ما هو نظام تصنيف غليسون (Gleason) للسرطان البروستاتي؟",
+      "اشرح آلية عمل العلاج الموجه في سرطان الرئة غير الصغير الخلايا.",
+    ],
   },
   {
     id: "dr-charcot",
     name: "Dr. Charcot",
+    nameAr: "د. شاركو",
     title: "Neurology & Neuroscience",
+    titleAr: "طب الأعصاب وعلم الأعصاب",
     specialty: "neurology",
     icon: Brain,
     colorClass: "text-violet-500",
@@ -90,8 +110,8 @@ const PROFESSORS: Professor[] = [
     borderClass: "border-violet-200",
     textClass: "text-violet-700",
     gradient: "from-violet-400 to-purple-600",
-    description:
-      "Stroke protocols, movement disorders, epilepsy, dementia and neuromuscular diseases. Indexed from leading neurology references.",
+    description: "Stroke protocols, movement disorders, epilepsy, dementia and neuromuscular diseases. Indexed from leading neurology references.",
+    descriptionAr: "بروتوكولات السكتة الدماغية واضطرابات الحركة والصرع والخرف والأمراض العصبية العضلية. مستند إلى أبرز مراجع طب الأعصاب.",
     corpus: "Adams & Victor's Neurology + AHA Stroke Guidelines 2024",
     restricted: false,
     starterQuestions: [
@@ -99,11 +119,18 @@ const PROFESSORS: Professor[] = [
       "Explain the differences between Parkinson's and essential tremor.",
       "What are the triptans mechanism in migraine treatment?",
     ],
+    starterQuestionsAr: [
+      "ما استخدام مقياس NIHSS في السكتة الدماغية؟",
+      "وضح الفروق بين مرض باركنسون والرعاش الأساسي.",
+      "ما آلية عمل عقاقير التريبتان في علاج الصداع النصفي؟",
+    ],
   },
   {
     id: "dr-harvey",
     name: "Dr. Harvey",
+    nameAr: "د. هارفي",
     title: "Cardiology & Electrophysiology",
+    titleAr: "أمراض القلب وفيزيولوجيا الكهرباء",
     specialty: "cardiology",
     icon: HeartPulse,
     colorClass: "text-sky-500",
@@ -111,14 +138,19 @@ const PROFESSORS: Professor[] = [
     borderClass: "border-sky-200",
     textClass: "text-sky-700",
     gradient: "from-sky-400 to-cyan-500",
-    description:
-      "ECG interpretation, heart failure, arrhythmias, and interventional cardiology based on ACC/AHA 2024 guidelines.",
+    description: "ECG interpretation, heart failure, arrhythmias, and interventional cardiology based on ACC/AHA 2024 guidelines.",
+    descriptionAr: "تفسير تخطيط القلب وفشل القلب وعدم انتظام ضربات القلب وطب القلب التداخلي استناداً لإرشادات ACC/AHA 2024.",
     corpus: "Braunwald's Heart Disease + ACC/AHA Clinical Guidelines 2024",
     restricted: false,
     starterQuestions: [
       "How do I interpret a 12-lead ECG systematically?",
       "What is the HFrEF treatment algorithm?",
       "Explain the mechanism of AF and its anticoagulation management.",
+    ],
+    starterQuestionsAr: [
+      "كيف أفسر تخطيط القلب 12-lead بشكل منهجي؟",
+      "ما خوارزمية علاج فشل القلب مع انخفاض EF (HFrEF)؟",
+      "اشرح آلية الرجفان الأذيني وإدارة مضادات التخثر.",
     ],
   },
 ];
@@ -130,12 +162,18 @@ function ChatModal({
   professor: Professor;
   onClose: () => void;
 }) {
+  const { lang } = useLanguage();
+  const isAr = lang === "ar";
+  const displayName = isAr ? professor.nameAr : professor.name;
+  const displayTitle = isAr ? professor.titleAr : professor.title;
+  const questions = isAr ? professor.starterQuestionsAr : professor.starterQuestions;
+
+  const welcomeMsg = isAr
+    ? `مرحباً. أنا **${displayName}** — ${displayTitle}.\n\nتدربتُ حصراً على بيانات سريرية موثقة من: *${professor.corpus}*.\n\nجميع إجاباتي تتضمن اقتباسات الدليل العلمي. كيف يمكنني مساعدتك اليوم؟`
+    : `Hello. I am **${professor.name}** — ${professor.title}.\n\nI am trained exclusively on verified clinical data from: *${professor.corpus}*.\n\nAll responses include Evidence Level citations. How can I assist you today?`;
+
   const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "welcome",
-      role: "assistant",
-      content: `Hello. I am **${professor.name}** — ${professor.title}.\n\nI am trained exclusively on verified clinical data from: *${professor.corpus}*.\n\nAll responses include Evidence Level citations. How can I assist you today?`,
-    },
+    { id: "welcome", role: "assistant", content: welcomeMsg },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -225,8 +263,8 @@ function ChatModal({
               <professor.icon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h3 className="font-extrabold text-white">{professor.name}</h3>
-              <p className="text-white/70 text-xs font-medium">{professor.title}</p>
+              <h3 className="font-extrabold text-white">{displayName}</h3>
+              <p className="text-white/70 text-xs font-medium">{displayTitle}</p>
             </div>
           </div>
           <button
@@ -279,7 +317,7 @@ function ChatModal({
                 ) : (
                   <span className="flex items-center gap-1.5 text-slate-400">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Retrieving clinical data...</span>
+                    <span>{isAr ? "جارٍ استرجاع البيانات السريرية..." : "Retrieving clinical data..."}</span>
                   </span>
                 )}
               </div>
@@ -292,9 +330,9 @@ function ChatModal({
         {messages.length === 1 && (
           <div className="px-5 pb-3 space-y-1.5">
             <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">
-              Suggested questions
+              {isAr ? "أسئلة مقترحة" : "Suggested questions"}
             </p>
-            {professor.starterQuestions.map((q) => (
+            {questions.map((q) => (
               <button
                 key={q}
                 onClick={() => sendMessage(q)}
@@ -315,7 +353,7 @@ function ChatModal({
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
-              placeholder={`Ask ${professor.name} a clinical question...`}
+              placeholder={isAr ? `اسأل ${displayName} سؤالاً سريرياً...` : `Ask ${professor.name} a clinical question...`}
               className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-700 placeholder-slate-400 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-all"
               disabled={isLoading}
             />
@@ -339,14 +377,15 @@ function ChatModal({
 
 function ProfessorsInterface() {
   const { isLoading, hasRole } = useAuth();
-  const { dir } = useLanguage();
+  const { dir, lang } = useLanguage();
+  const isAr = lang === "ar";
   const [activeSession, setActiveSession] = useState<Professor | null>(null);
 
   if (isLoading) {
     return (
       <div className="p-8 flex items-center gap-3 text-slate-500">
         <Loader2 className="w-5 h-5 animate-spin" />
-        <span>Authenticating secure session...</span>
+        <span>{isAr ? "جارٍ التحقق من الجلسة الآمنة..." : "Authenticating secure session..."}</span>
       </div>
     );
   }
@@ -363,16 +402,17 @@ function ProfessorsInterface() {
         <div>
           <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
             <Bot className="h-8 w-8 text-indigo-500 flex-shrink-0" />
-            AI Professor Network
+            {isAr ? "شبكة الأساتذة الذكاء" : "AI Professor Network"}
           </h1>
           <p className="text-slate-500 text-base max-w-2xl">
-            Engage with specialized RAG-powered clinical agents. Each Professor is strictly
-            fine-tuned on a dedicated medical corpus to prevent cross-domain hallucination.
+            {isAr
+              ? "تفاعل مع وكلاء سريريين متخصصين مدعومين بتقنية RAG. كل أستاذ مُدرَّب حصراً على مجموعة بيانات طبية محددة لمنع الهلوسة بين التخصصات."
+              : "Engage with specialized RAG-powered clinical agents. Each Professor is strictly fine-tuned on a dedicated medical corpus to prevent cross-domain hallucination."}
           </p>
         </div>
         <div className="hidden md:flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-lg text-indigo-700 text-sm font-semibold">
           <ShieldCheck className="w-4 h-4" />
-          <span>RAG Pipeline Active</span>
+          <span>{isAr ? "خط RAG نشط" : "RAG Pipeline Active"}</span>
         </div>
       </div>
 
@@ -390,12 +430,16 @@ function ProfessorsInterface() {
                   <div className="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center mb-3">
                     <Lock className="w-7 h-7 text-slate-400" />
                   </div>
-                  <h4 className="font-bold text-slate-800 mb-1">Professor Access Required</h4>
+                  <h4 className="font-bold text-slate-800 mb-1">
+                    {isAr ? "مطلوب صلاحية أستاذ" : "Professor Access Required"}
+                  </h4>
                   <p className="text-xs text-slate-500 mb-4 max-w-[220px]">
-                    Switch to Professor view using the role toggle to access specialized experimental models.
+                    {isAr
+                      ? "بدّل إلى دور الأستاذ باستخدام مبدّل الدور للوصول إلى النماذج التجريبية المتخصصة."
+                      : "Switch to Professor view using the role toggle to access specialized experimental models."}
                   </p>
                   <button className="text-xs bg-slate-900 hover:bg-slate-800 text-white px-5 py-2 rounded-xl font-semibold transition-colors shadow-sm">
-                    Request Access
+                    {isAr ? "طلب الوصول" : "Request Access"}
                   </button>
                 </div>
               )}
@@ -415,11 +459,11 @@ function ProfessorsInterface() {
               {/* Content */}
               <div className="p-6 flex-1 flex flex-col">
                 <div className="mb-1">
-                  <h3 className="text-xl font-bold text-slate-800">{professor.name}</h3>
-                  <p className={`text-sm font-semibold ${professor.colorClass} mt-0.5`}>{professor.title}</p>
+                  <h3 className="text-xl font-bold text-slate-800">{isAr ? professor.nameAr : professor.name}</h3>
+                  <p className={`text-sm font-semibold ${professor.colorClass} mt-0.5`}>{isAr ? professor.titleAr : professor.title}</p>
                 </div>
                 <p className="text-slate-500 text-sm leading-relaxed mb-3 flex-1">
-                  {professor.description}
+                  {isAr ? professor.descriptionAr : professor.description}
                 </p>
                 <div className="flex items-start gap-2 text-xs text-slate-400 bg-slate-50 rounded-lg p-2.5 mb-5">
                   <Sparkles className="w-3 h-3 mt-0.5 flex-shrink-0" />
@@ -434,7 +478,7 @@ function ProfessorsInterface() {
                   }`}
                 >
                   <Bot className="w-4 h-4" />
-                  <span>Initialize Session</span>
+                  <span>{isAr ? "بدء الجلسة" : "Initialize Session"}</span>
                 </button>
               </div>
             </div>

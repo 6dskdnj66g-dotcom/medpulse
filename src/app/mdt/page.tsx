@@ -1,14 +1,23 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Search, Brain, ShieldCheck, AlertTriangle, Send, Loader2, BookMarked, UserCheck } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useLanguage } from "@/components/LanguageContext";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 
 export default function MDTPage() {
+  const router = useRouter();
+  const { user, loading } = useSupabaseAuth();
   const { lang, dir } = useLanguage();
   const isAr = lang === "ar";
+
+  useEffect(() => {
+    if (!loading && !user) router.replace("/auth/login");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, user]);
   const [query, setQuery] = useState("");
   const [isDebating, setIsDebating] = useState(false);
   const [agentA, setAgentA] = useState("");
@@ -78,6 +87,8 @@ export default function MDTPage() {
       setCurrentAgent("");
     }
   };
+
+  if (loading || !user) return null;
 
   return (
     <div className="p-8 max-w-7xl mx-auto w-full h-full flex flex-col space-y-6 overflow-hidden" dir={dir}>

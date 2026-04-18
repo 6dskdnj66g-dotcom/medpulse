@@ -74,21 +74,18 @@ export default function DashboardPage() {
   const { lang } = useLanguage();
   const isAr = lang === "ar";
 
-  const [sessions, setSessions] = useState<Session[]>([]);
-  const [streak, setStreak] = useState(0);
-
-  useEffect(() => {
+  const [sessions] = useState<Session[]>(() => {
+    if (typeof window === "undefined") return [];
     const stored = localStorage.getItem("medpulse_sessions");
-    if (stored) setSessions(JSON.parse(stored) as Session[]);
-
+    return stored ? (JSON.parse(stored) as Session[]) : [];
+  });
+  const [streak] = useState<number>(() => {
+    if (typeof window === "undefined") return 0;
     const lastDate = localStorage.getItem("medpulse_last_date");
-    if (lastDate) {
-      const diff = Math.floor((Date.now() - new Date(lastDate).getTime()) / 86400000);
-      if (diff === 0 || diff === 1) {
-        setStreak(Number(localStorage.getItem("medpulse_streak") || "0"));
-      }
-    }
-  }, []);
+    if (!lastDate) return 0;
+    const diff = Math.floor((Date.now() - new Date(lastDate).getTime()) / 86400000);
+    return (diff === 0 || diff === 1) ? Number(localStorage.getItem("medpulse_streak") || "0") : 0;
+  });
 
   useEffect(() => {
     if (!isLoading && !user) {

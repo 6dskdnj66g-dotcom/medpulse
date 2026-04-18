@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Pill, X, AlertTriangle, ShieldCheck, Loader2, Search } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 
 const COMMON_DRUGS = [
   "Warfarin", "Aspirin", "Clopidogrel", "Metformin", "Insulin",
@@ -21,12 +23,18 @@ const COMMON_DRUGS = [
 ];
 
 export default function DrugCheckerPage() {
+  const router = useRouter();
+  const { user, loading } = useSupabaseAuth();
   const [selectedDrugs, setSelectedDrugs] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [filtered, setFiltered] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!loading && !user) router.replace("/auth/login");
+  }, [loading, user, router]);
 
   const handleInput = (val: string) => {
     setInput(val);
@@ -79,6 +87,8 @@ export default function DrugCheckerPage() {
       setIsLoading(false);
     }
   };
+
+  if (loading || !user) return null;
 
   return (
     <div className="max-w-5xl mx-auto p-6 md:p-10 w-full page-transition">

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Calculator, Heart, Activity, Droplets, Scale, Brain, ChevronDown, ChevronUp, CheckCircle, Info, Download, Save, Loader2 } from "lucide-react";
 import { exportMedicalReport } from "@/lib/pdfExport";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
@@ -488,7 +489,15 @@ const CALC_COMPONENTS: Record<string, React.FC> = {
 
 // ── Main Page ──────────────────────────────────────────────────────────────
 export default function CalculatorsPage() {
+  const router = useRouter();
+  const { user, loading } = useSupabaseAuth();
   const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!loading && !user) router.replace("/auth/login");
+  }, [loading, user, router]);
+
+  if (loading || !user) return null;
   const colorMap: Record<string, string> = {
     sky: "text-sky-500 bg-sky-500/10 border-sky-500/20",
     rose: "text-rose-500 bg-rose-500/10 border-rose-500/20",

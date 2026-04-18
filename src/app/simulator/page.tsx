@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Activity, Stethoscope, HeartPulse, Send, RefreshCw, Loader2, Info, Mic, MicOff, Volume2 } from "lucide-react";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import { useAchievement } from "@/components/AchievementContext";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -312,10 +314,24 @@ function SimulatorWard() {
   );
 }
 
+function AuthGuard({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const { user, loading } = useSupabaseAuth();
+
+  useEffect(() => {
+    if (!loading && !user) router.replace("/auth/login");
+  }, [loading, user, router]);
+
+  if (loading || !user) return null;
+  return <>{children}</>;
+}
+
 export default function Page() {
   return (
     <ErrorBoundary>
-      <SimulatorWard />
+      <AuthGuard>
+        <SimulatorWard />
+      </AuthGuard>
     </ErrorBoundary>
   );
 }

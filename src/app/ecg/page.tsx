@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Activity, Loader2, AlertTriangle, CheckCircle, ArrowRight, Download, Save } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -42,13 +43,20 @@ const ECG_PRESETS = [
 ];
 
 export default function ECGPage() {
-  const { user } = useSupabaseAuth();
+  const router = useRouter();
+  const { user, loading } = useSupabaseAuth();
   const [description, setDescription] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user) router.replace("/auth/login");
+  }, [loading, user, router]);
+
+  if (loading || !user) return null;
 
   const analyzeECG = async (desc?: string) => {
     const query = desc || description;
