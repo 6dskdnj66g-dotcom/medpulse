@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Image from "next/image";
 import {
   Stethoscope, Activity, FileText, Pill, Sparkles,
@@ -61,8 +60,7 @@ function ResultSection({ icon: Icon, title, colorClass, bgClass, children }: {
 }
 
 export default function SummarizerPage() {
-  const router = useRouter();
-  const { user, loading } = useSupabaseAuth();
+  const { loading } = useSupabaseAuth();
   const [inputText, setInputText] = useState("");
   const [image, setImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);

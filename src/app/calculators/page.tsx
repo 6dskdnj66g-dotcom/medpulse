@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { Calculator, Heart, Activity, Droplets, Scale, Brain, ChevronDown, ChevronUp, CheckCircle, Info, Download, Save, Loader2 } from "lucide-react";
 import { exportMedicalReport } from "@/lib/pdfExport";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
@@ -491,8 +490,7 @@ const CALC_COMPONENTS: Record<string, React.FC> = {
 
 // ── Main Page ──────────────────────────────────────────────────────────────
 export default function CalculatorsPage() {
-  const router = useRouter();
-  const { user, loading } = useSupabaseAuth();
+  const { loading } = useSupabaseAuth();
   const [active, setActive] = useState<string | null>(null);
 
   

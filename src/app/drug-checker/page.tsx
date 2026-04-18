@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useRef } from "react";
 import { Pill, X, AlertTriangle, ShieldCheck, Loader2, Search } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -24,8 +23,7 @@ const COMMON_DRUGS = [
 ];
 
 export default function DrugCheckerPage() {
-  const router = useRouter();
-  const { user, loading } = useSupabaseAuth();
+  const { loading } = useSupabaseAuth();
   const [selectedDrugs, setSelectedDrugs] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");

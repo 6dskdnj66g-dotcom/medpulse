@@ -58,17 +58,6 @@ export function Sidebar() {
     },
   ];
 
-  const COLOR_MAP: Record<string, { active: string; hover: string; dot: string }> = {
-    indigo:  { active: "bg-indigo-600 shadow-[0_10px_20px_rgba(99,102,241,0.3)] text-white scale-[1.02]", hover: "hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400", dot: "bg-indigo-500" },
-    teal:    { active: "bg-teal-600 shadow-[0_10px_20px_rgba(13,148,136,0.3)] text-white scale-[1.02]",   hover: "hover:bg-teal-50 dark:hover:bg-teal-900/20 hover:text-teal-600 dark:hover:text-teal-400",     dot: "bg-teal-500" },
-    emerald: { active: "bg-emerald-600 shadow-[0_10px_20px_rgba(16,185,129,0.3)] text-white scale-[1.02]", hover: "hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400", dot: "bg-emerald-500" },
-    rose:    { active: "bg-rose-600 shadow-[0_10px_20px_rgba(244,63,94,0.3)] text-white scale-[1.02]",    hover: "hover:bg-rose-50 dark:hover:bg-rose-900/20 hover:text-rose-600 dark:hover:text-rose-400",     dot: "bg-rose-500" },
-    sky:     { active: "bg-sky-600 shadow-[0_10px_20px_rgba(14,165,233,0.3)] text-white scale-[1.02]",    hover: "hover:bg-sky-50 dark:hover:bg-sky-900/20 hover:text-sky-600 dark:hover:text-sky-400",       dot: "bg-sky-500" },
-    amber:   { active: "bg-amber-600 shadow-[0_10px_20px_rgba(245,158,11,0.3)] text-white scale-[1.02]", hover: "hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-600 dark:hover:text-amber-400", dot: "bg-amber-500" },
-    red:     { active: "bg-red-600 shadow-[0_10px_20px_rgba(239,68,68,0.3)] text-white scale-[1.02]",     hover: "hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400",       dot: "bg-red-500" },
-    violet:  { active: "bg-violet-600 shadow-[0_10px_20px_rgba(139,92,246,0.3)] text-white scale-[1.02]", hover: "hover:bg-violet-50 dark:hover:bg-violet-900/20 hover:text-violet-600 dark:hover:text-violet-400", dot: "bg-violet-500" },
-  };
-
   return (
     <div className={`hidden md:flex flex-col w-[280px] h-[calc(100dvh-2rem)] sticky top-4 my-4 mx-4 rounded-3xl z-50 glass`} dir={dir}>
       {/* Logo Section */}
@@ -107,7 +96,6 @@ export function Sidebar() {
               const isActive = (item.href === "/" || item.href === "/dashboard")
                 ? pathname === item.href
                 : pathname?.startsWith(item.href);
-              const colors = COLOR_MAP[item.color] || COLOR_MAP.indigo;
               const Icon = item.icon;
 
               return (

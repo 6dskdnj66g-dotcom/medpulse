@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   Languages, ArrowLeftRight, Loader2, Copy, CheckCircle,
   Save, ShieldCheck
@@ -12,7 +11,6 @@ import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { supabase } from "@/lib/supabase";
 
 export default function MedicalTranslatorPage() {
-  const router = useRouter();
   const { user, loading } = useSupabaseAuth();
   const [text, setText] = useState("");
   const [result, setResult] = useState("");

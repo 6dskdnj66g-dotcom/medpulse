@@ -143,7 +143,7 @@ function SourceCard({ source, bookmarked, onToggleBookmark, lang }: {
 
 // ── Main Library Page ────────────────────────────────────────────────────────
 export default function SourceLibraryPage() {
-  const { user } = useSupabaseAuth();
+  useSupabaseAuth();
   const { lang, dir } = useLanguage();
   const isAr = lang === "ar";
   const [search, setSearch] = useState("");

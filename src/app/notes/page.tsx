@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { FileText, Loader2, ClipboardEdit, ShieldCheck, Copy, CheckCircle, Download, Save } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -30,7 +29,6 @@ const TEMPLATES = [
 ];
 
 export default function ClinicalNotesPage() {
-  const router = useRouter();
   const { user, loading } = useSupabaseAuth();
   const [info, setInfo] = useState("");
   const [result, setResult] = useState("");

@@ -20,7 +20,7 @@ interface Flashcard {
 }
 
 // ── Global Medical Sources Registry ─────────────────────────────────
-const GLOBAL_MEDICAL_SOURCES = [
+const _GLOBAL_MEDICAL_SOURCES = [
   // === INTERNATIONAL JOURNALS ===
   { name: "New England Journal of Medicine (NEJM)", category: "Journal", impact: "176.1", url: "https://www.nejm.org" },
   { name: "The Lancet", category: "Journal", impact: "202.7", url: "https://www.thelancet.com" },

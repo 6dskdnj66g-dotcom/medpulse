@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { Activity, Stethoscope, HeartPulse, Send, RefreshCw, Loader2, Info, Mic, MicOff, Volume2 } from "lucide-react";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import { useAchievement } from "@/components/AchievementContext";
@@ -14,7 +13,7 @@ function SimulatorWard() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [_isSpeaking, setIsSpeaking] = useState(false);
   const { addXp } = useAchievement();
   const bottomRef = useRef<HTMLDivElement>(null);
   
@@ -23,11 +22,11 @@ function SimulatorWard() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Start ward if empty
   useEffect(() => {
     if (messages.length === 0) {
       startNewCase();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const speakText = (text: string) => {
@@ -343,10 +342,7 @@ function SimulatorWard() {
 }
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const { user, loading } = useSupabaseAuth();
-
-  
+  const { loading } = useSupabaseAuth();
 
   if (loading) return null;
   return <>{children}</>;

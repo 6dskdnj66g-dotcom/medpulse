@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { Search, Brain, ShieldCheck, AlertTriangle, Send, Loader2, BookMarked, UserCheck } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -9,8 +8,7 @@ import { useLanguage } from "@/components/LanguageContext";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 
 export default function MDTPage() {
-  const router = useRouter();
-  const { user, loading } = useSupabaseAuth();
+  const { loading } = useSupabaseAuth();
   const { lang, dir } = useLanguage();
   const isAr = lang === "ar";
 

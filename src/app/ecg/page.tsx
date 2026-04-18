@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Activity, Loader2, AlertTriangle, CheckCircle, ArrowRight, Download, Save } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 import ReactMarkdown from "react-markdown";
@@ -44,7 +43,6 @@ const ECG_PRESETS = [
 ];
 
 export default function ECGPage() {
-  const router = useRouter();
   const { user, loading } = useSupabaseAuth();
   const [description, setDescription] = useState("");
   const [result, setResult] = useState("");

@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import {
   TrendingUp, Brain, Activity, BookOpen, Pill, Zap,
   HeartPulse, MessageSquare, FileText, Trophy, Flame, Star,
@@ -68,8 +67,7 @@ const colorMap: Record<string, string> = {
 };
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const { user, isLoading } = useAuth();
+  const { isLoading } = useAuth();
   const { xp } = useAchievement();
   const { lang } = useLanguage();
   const isAr = lang === "ar";

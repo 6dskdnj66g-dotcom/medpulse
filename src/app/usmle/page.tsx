@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Trophy, Clock, CheckCircle, X, ChevronRight, RotateCcw, Award, BookOpen, Brain } from "lucide-react";
 import { useAchievement } from "@/components/AchievementContext";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
@@ -479,8 +478,7 @@ const QUESTION_BANK = [
 type QuestionMode = "by-specialty" | "exam" | "mixed";
 
 export default function USMLEPage() {
-  const router = useRouter();
-  const { user, loading } = useSupabaseAuth();
+  const { loading } = useSupabaseAuth();
   const { addXp } = useAchievement();
   const [mode, setMode] = useState<QuestionMode | null>(null);
 
