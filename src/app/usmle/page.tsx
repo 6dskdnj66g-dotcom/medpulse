@@ -167,6 +167,15 @@ export default function USMLEPage() {
 
   const nextQuestion = () => {
     if (currentQ + 1 >= questions.length) {
+      const session = {
+        date: new Date().toISOString(),
+        module: mode === "by-specialty" && specialty ? `USMLE - ${specialty}` : "USMLE Mixed",
+        score,
+        total: questions.length,
+      };
+      const stored = JSON.parse(localStorage.getItem("medpulse_sessions") || "[]");
+      stored.unshift(session);
+      localStorage.setItem("medpulse_sessions", JSON.stringify(stored.slice(0, 50)));
       setFinished(true);
       return;
     }

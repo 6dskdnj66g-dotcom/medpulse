@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { TrendingUp, Award, Target, BookOpen, Brain, Activity, MessageSquare, Flame, Star, ChevronRight } from "lucide-react";
+import { TrendingUp, Award, Target, BookOpen, Brain, Activity, MessageSquare, Flame, Star, ChevronRight, CheckCircle, XCircle } from "lucide-react";
 import { useAchievement } from "@/components/AchievementContext";
 import Link from "next/link";
 
@@ -62,8 +62,6 @@ export default function ProgressPage() {
       localStorage.setItem("medpulse_last_date", today);
       const s = Number(localStorage.getItem("medpulse_streak") || "0");
       localStorage.setItem("medpulse_streak", String(s + 1));
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setSessions(prev => prev); // no-op to satisfy effect requirement
     }
   }, []);
 
@@ -228,6 +226,35 @@ export default function ProgressPage() {
           </div>
         </div>
       </div>
+      {/* Session History */}
+      {sessions.length > 0 && (
+        <div className="mt-8 premium-card p-6">
+          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Recent Sessions</h2>
+          <div className="space-y-2">
+            {sessions.slice(0, 10).map((s, i) => {
+              const pct = s.total > 0 ? Math.round((s.score / s.total) * 100) : 0;
+              const passed = pct >= 70;
+              return (
+                <div key={i} className="flex items-center gap-4 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${passed ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
+                    {passed
+                      ? <CheckCircle className="w-4 h-4 text-emerald-500" />
+                      : <XCircle className="w-4 h-4 text-rose-500" />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-black text-slate-800 dark:text-white truncate">{s.module}</p>
+                    <p className="text-xs text-slate-400">{new Date(s.date).toLocaleDateString()}</p>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className={`text-sm font-black ${passed ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>{pct}%</p>
+                    <p className="text-xs text-slate-400">{s.score}/{s.total}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

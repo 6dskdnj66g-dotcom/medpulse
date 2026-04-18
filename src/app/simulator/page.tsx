@@ -72,6 +72,18 @@ function SimulatorWard() {
   };
 
   const startNewCase = async () => {
+    if (messages.length > 0) {
+      const userTurns = messages.filter(m => m.role === "user").length;
+      const session = {
+        date: new Date().toISOString(),
+        module: "OSCE Simulator",
+        score: Math.min(userTurns, 10),
+        total: 10,
+      };
+      const stored = JSON.parse(localStorage.getItem("medpulse_sessions") || "[]");
+      stored.unshift(session);
+      localStorage.setItem("medpulse_sessions", JSON.stringify(stored.slice(0, 50)));
+    }
     setMessages([]);
     setInput("");
     setIsLoading(true);
