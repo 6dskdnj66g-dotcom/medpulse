@@ -162,7 +162,7 @@ function ChatModal({
   professor: Professor;
   onClose: () => void;
 }) {
-  const { lang } = useLanguage();
+  const { lang, dir } = useLanguage();
   const isAr = lang === "ar";
   const displayName = isAr ? professor.nameAr : professor.name;
   const displayTitle = isAr ? professor.titleAr : professor.title;

@@ -429,26 +429,6 @@ function EncyclopediaHome() {
                     className={`inline-flex items-center gap-2 text-[11px] md:text-[12px] font-extrabold px-4 py-2.5 rounded-xl transition-all hover:scale-[1.03] hover:shadow-md cursor-pointer border border-[var(--border-subtle)] bg-[var(--bg-0)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-indigo-500/30`}
                   >
                     {src.label}
-                    <ExternalLink className="w-3 h-3 opacity-5trabold uppercase tracking-widest ${
-                  cat.color === "indigo"  ? "text-indigo-600  dark:text-indigo-400"  :
-                  cat.color === "emerald" ? "text-emerald-600 dark:text-emerald-400" :
-                  cat.color === "teal"    ? "text-teal-600    dark:text-teal-400"    :
-                                            "text-amber-600   dark:text-amber-400"
-                }`}>
-                  {isAr ? cat.labelAr : cat.label}
-                </h4>
-              </div>
-              <div className="flex flex-wrap gap-2 md:gap-3">
-                {cat.sources.map(src => (
-                  <a
-                    key={src.label}
-                    href={src.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={`Open ${src.label}`}
-                    className={`inline-flex items-center gap-2 text-[11px] md:text-[12px] font-extrabold px-4 py-2.5 rounded-xl transition-all hover:scale-[1.03] hover:shadow-md cursor-pointer border border-[var(--border-subtle)] bg-[var(--bg-0)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-indigo-500/30`}
-                  >
-                    {src.label}
                     <ExternalLink className="w-3 h-3 opacity-50" />
                   </a>
                 ))}
