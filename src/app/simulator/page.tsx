@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import {
   Stethoscope, Filter, Trophy, Clock, Target, ChevronRight,
   BookOpen, Users, Brain, Heart, Baby, Activity, Pill,
-  AlertCircle, CheckCircle, Star
+  AlertCircle, Star
 } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageContext";
@@ -207,9 +207,7 @@ function OSCEHome() {
           { step: "1", title: isAr ? "اختر المحطة" : "Choose Station", desc: isAr ? "اختر التخصص والمستوى" : "Pick specialty & difficulty", icon: Filter },
           { step: "2", title: isAr ? "ادخل المحطة" : "Enter Station", desc: isAr ? "تحدث مع المريض AI" : "Talk to the AI patient", icon: Users },
           { step: "3", title: isAr ? "احصل على تغذية راجعة" : "Get Feedback", desc: isAr ? "درجات وتحليل تفصيلي" : "Detailed marks & feedback", icon: Star },
-        ].map(item => {
-          const Icon = item.icon;
-          return (
+        ].map(item => (
             <div key={item.step} className="p-4 rounded-2xl flex items-start gap-3" style={{ background: "var(--bg-2)", border: "1px solid var(--border-subtle)" }}>
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] text-white font-black text-sm flex items-center justify-center flex-shrink-0">
                 {item.step}
@@ -219,8 +217,7 @@ function OSCEHome() {
                 <p className="text-xs" style={{ color: "var(--text-secondary)" }}>{item.desc}</p>
               </div>
             </div>
-          );
-        })}
+        ))}
       </div>
 
       {/* ── FILTERS ── */}

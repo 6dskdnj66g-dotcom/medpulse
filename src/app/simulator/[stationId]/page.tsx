@@ -2,7 +2,6 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, use } from "react";
-import { useRouter } from "next/navigation";
 import {
   ArrowLeft, Clock, Send, Loader2, CheckCircle, XCircle,
   AlertCircle, ChevronDown, ChevronUp, Trophy, Target,
@@ -419,11 +418,10 @@ function ActivePhase({
 // ── Phase: Results ────────────────────────────────────────────────────────────
 
 function ResultsPhase({
-  station, result, messages, onRetry, isAr
+  station, result, onRetry, isAr
 }: {
   station: OSCEStation;
   result: ExaminerResult;
-  messages: Message[];
   onRetry: () => void;
   isAr: boolean;
 }) {
@@ -577,7 +575,6 @@ function ResultsPhase({
 
 export default function StationPage({ params }: { params: Promise<{ stationId: string }> }) {
   const { stationId } = use(params);
-  const router = useRouter();
   const { lang } = useLanguage();
   const isAr = lang === "ar";
 
@@ -722,7 +719,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
             </div>
           </div>
         ) : result ? (
-          <ResultsPhase station={station} result={result} messages={messages} onRetry={handleRetry} isAr={isAr} />
+          <ResultsPhase station={station} result={result} onRetry={handleRetry} isAr={isAr} />
         ) : (
           <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] gap-4 p-8">
             <XCircle className="w-16 h-16 text-rose-500" />

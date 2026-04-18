@@ -3,14 +3,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
-  BookOpen, ChevronRight, Loader2, ArrowLeft, Microscope, Stethoscope,
-  Pill, AlertTriangle, Star, Target, BookMarked, FileText, Download,
-  ChevronDown, ChevronUp, ExternalLink, Shield
+  BookOpen, ChevronRight, Loader2, ArrowLeft,
+  AlertTriangle,
+  ChevronDown, ChevronUp, ExternalLink
 } from "lucide-react";
-import { getTextbookBySlug, type TextbookChapter, type TextbookEntry } from "@/lib/textbookRegistry";
+import { getTextbookBySlug, type TextbookChapter } from "@/lib/textbookRegistry";
 import { useLanguage } from "@/components/LanguageContext";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 interface ChapterContent {
   definition: string;

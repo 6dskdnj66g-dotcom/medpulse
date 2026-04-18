@@ -166,27 +166,10 @@ function SourceCard({
   const regionInfo = REGION_CONFIG[source.region || "global"];
   const regionLabel = lang === "ar" ? regionInfo.labelAr : regionInfo.labelEn;
 
-  // Textbooks with internal content → Link; everything else → modal trigger
   const isInternal = source.type === "textbook" && !!source.slug;
-  const CardWrapper = ({ children }: { children: React.ReactNode }) =>
-    isInternal ? (
-      <Link
-        href={`/library/${source.slug}`}
-        className="medpulse-card glass level-1 p-5 md:p-6 transition-all duration-500 group border border-[var(--border-subtle)] hover:shadow-xl hover:-translate-y-1 relative overflow-hidden cursor-pointer block h-full"
-      >
-        {children}
-      </Link>
-    ) : (
-      <button
-        onClick={() => onOpenPreview(source)}
-        className="medpulse-card glass level-1 p-5 md:p-6 transition-all duration-500 group border border-[var(--border-subtle)] hover:shadow-xl hover:-translate-y-1 relative overflow-hidden cursor-pointer text-left w-full h-full"
-      >
-        {children}
-      </button>
-    );
-
-  return (
-    <CardWrapper>
+  const cardClass = "medpulse-card glass level-1 p-5 md:p-6 transition-all duration-500 group border border-[var(--border-subtle)] hover:shadow-xl hover:-translate-y-1 relative overflow-hidden cursor-pointer";
+  const inner = (
+    <>
       <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none bg-[var(--color-medical-indigo)]" />
 
       <div className="flex items-start gap-4 relative z-10 h-full">
@@ -272,7 +255,20 @@ function SourceCard({
           </div>
         </div>
       </div>
-    </CardWrapper>
+    </>
+  );
+
+  if (isInternal) {
+    return (
+      <Link href={`/library/${source.slug}`} className={`${cardClass} block h-full`}>
+        {inner}
+      </Link>
+    );
+  }
+  return (
+    <button onClick={() => onOpenPreview(source)} className={`${cardClass} text-left w-full h-full`}>
+      {inner}
+    </button>
   );
 }
 
