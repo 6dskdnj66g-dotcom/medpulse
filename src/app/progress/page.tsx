@@ -80,7 +80,7 @@ export default function ProgressPage() {
     amber:   "bg-amber-500/10   text-amber-600   dark:text-amber-400   border-amber-500/20",
     orange:  "bg-orange-500/10  text-orange-600  dark:text-orange-400  border-orange-500/20",
     rose:    "bg-rose-500/10    text-rose-600    dark:text-rose-400    border-rose-500/20",
-    slate:   "bg-slate-500/10   text-slate-600   dark:text-slate-400   border-slate-500/20",
+    slate:   "bg-slate-500/10   text-slate-600   dark:text-[var(--text-tertiary)]/70   border-slate-500/20",
   };
 
   /* icon-only color (no bg/border) for module icons */
@@ -92,7 +92,7 @@ export default function ProgressPage() {
     amber:   "bg-amber-500/10   text-amber-600   dark:text-amber-400",
     orange:  "bg-orange-500/10  text-orange-600  dark:text-orange-400",
     rose:    "bg-rose-500/10    text-rose-600    dark:text-rose-400",
-    slate:   "bg-slate-500/10   text-slate-600   dark:text-slate-400",
+    slate:   "bg-slate-500/10   text-slate-600   dark:text-[var(--text-tertiary)]/70",
   };
 
   /* text-only for level roadmap */
@@ -104,7 +104,7 @@ export default function ProgressPage() {
     amber:   "text-amber-700   dark:text-amber-400",
     orange:  "text-orange-700  dark:text-orange-400",
     rose:    "text-rose-700    dark:text-rose-400",
-    slate:   "text-slate-700   dark:text-slate-400",
+    slate:   "text-[var(--text-secondary)]   dark:text-[var(--text-tertiary)]/70",
   };
 
   const dotColorMap: Record<string, string> = {
@@ -127,19 +127,19 @@ export default function ProgressPage() {
             <TrendingUp className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">Progress Tracker</h1>
-            <p className="text-slate-500 text-sm">Your clinical learning journey — April 2026</p>
+            <h1 className="text-3xl font-black text-[var(--text-primary)]">Progress Tracker</h1>
+            <p className="text-[var(--text-tertiary)] text-sm">Your clinical learning journey — April 2026</p>
           </div>
         </div>
       </div>
 
       {/* Level Card */}
-      <div className="premium-card p-8 mb-8 bg-gradient-to-br from-indigo-500/5 via-slate-900/0 to-teal-500/5">
+      <div className="medpulse-card glass level-1 p-8 mb-8 bg-gradient-to-br from-indigo-500/5 via-slate-900/0 to-teal-500/5">
         <div className="flex items-start justify-between mb-6">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Current Rank</p>
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white">{lvl.title}</h2>
-            <p className="text-slate-500 text-sm mt-1">Level {LEVEL_THRESHOLDS.indexOf(lvl) + 1} of {LEVEL_THRESHOLDS.length}</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-1">Current Rank</p>
+            <h2 className="text-3xl font-black text-[var(--text-primary)]">{lvl.title}</h2>
+            <p className="text-[var(--text-tertiary)] text-sm mt-1">Level {LEVEL_THRESHOLDS.indexOf(lvl) + 1} of {LEVEL_THRESHOLDS.length}</p>
           </div>
           <div className={`px-4 py-2 rounded-2xl border font-black text-2xl ${colorMap[lvl.color]}`}>
             {xp} XP
@@ -149,14 +149,14 @@ export default function ProgressPage() {
         {/* XP Progress Bar */}
         {nextLvl && (
           <div>
-            <div className="flex justify-between text-xs font-black text-slate-400 mb-2">
+            <div className="flex justify-between text-xs font-black text-[var(--text-tertiary)]/70 mb-2">
               <span>{xp} XP</span>
               <span>{nextLvl.xpRequired} XP — {nextLvl.title}</span>
             </div>
-            <div className="w-full h-3 bg-slate-200 dark:bg-slate-800 rounded-full">
+            <div className="w-full h-3 bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-full">
               <div className="h-full bg-gradient-to-r from-indigo-500 to-teal-500 rounded-full transition-all duration-1000" style={{ width: `${progress}%` }} />
             </div>
-            <p className="text-xs text-slate-400 mt-2 font-bold">{nextLvl.xpRequired - xp} XP to next rank</p>
+            <p className="text-xs text-[var(--text-tertiary)]/70 mt-2 font-bold">{nextLvl.xpRequired - xp} XP to next rank</p>
           </div>
         )}
       </div>
@@ -173,8 +173,8 @@ export default function ProgressPage() {
           return (
             <div key={stat.label} className={`premium-card p-6 border ${colorMap[stat.color]}`}>
               <Icon className="w-5 h-5 mb-3" />
-              <p className="text-2xl font-black text-slate-900 dark:text-white">{stat.value}</p>
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-1">{stat.label}</p>
+              <p className="text-2xl font-black text-[var(--text-primary)]">{stat.value}</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mt-1">{stat.label}</p>
             </div>
           );
         })}
@@ -182,21 +182,21 @@ export default function ProgressPage() {
 
       {/* Module Activity */}
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="premium-card p-6">
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Continue Learning</h2>
+        <div className="medpulse-card glass level-1 p-6">
+          <h2 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-4">Continue Learning</h2>
           <div className="space-y-3">
             {MODULES.map(m => {
               const Icon = m.icon;
               return (
                 <Link key={m.id} href={m.href}
-                  className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all group">
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-1)] bg-opacity-50 hover:bg-[var(--bg-2)] hover:border-[var(--color-medical-indigo)]/30 border border-transparent transition-all group">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconColorMap[m.color] || iconColorMap.indigo}`}>
                     <Icon className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm font-black text-slate-800 dark:text-white">{m.label}</p>
+                    <p className="text-sm font-black text-[var(--text-primary)]">{m.label}</p>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition-transform" />
+                  <ChevronRight className="w-4 h-4 text-[var(--text-tertiary)]/70 group-hover:translate-x-1 transition-transform" />
                 </Link>
               );
             })}
@@ -204,20 +204,20 @@ export default function ProgressPage() {
         </div>
 
         {/* Level Roadmap */}
-        <div className="premium-card p-6">
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Rank Progression</h2>
+        <div className="medpulse-card glass level-1 p-6">
+          <h2 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-4">Rank Progression</h2>
           <div className="space-y-3">
             {LEVEL_THRESHOLDS.map((lvlItem, i) => {
               const isCompleted = xp >= lvlItem.xpRequired;
               const isCurrent = lvl === lvlItem;
               return (
                 <div key={lvlItem.level} className={`flex items-center gap-4 p-3 rounded-2xl transition-all ${isCurrent ? `${colorMap[lvlItem.color] || colorMap.slate} border` : ""}`}>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black ${isCompleted ? `${dotColorMap[lvlItem.color] || dotColorMap.slate} text-white` : "bg-slate-100 dark:bg-slate-800 text-slate-400"}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black ${isCompleted ? `${dotColorMap[lvlItem.color] || dotColorMap.slate} text-white` : "bg-[var(--bg-2)] text-[var(--text-tertiary)]/70"}`}>
                     {isCompleted ? "✓" : i + 1}
                   </div>
                   <div className="flex-1">
-                    <p className={`text-sm font-black ${isCurrent ? textColorMap[lvlItem.color] || textColorMap.slate : "text-slate-500 dark:text-slate-400"}`}>{lvlItem.title}</p>
-                    <p className="text-xs text-slate-400">{lvlItem.xpRequired} XP</p>
+                    <p className={`text-sm font-black ${isCurrent ? textColorMap[lvlItem.color] || textColorMap.slate : "text-[var(--text-tertiary)] dark:text-[var(--text-tertiary)]/70"}`}>{lvlItem.title}</p>
+                    <p className="text-xs text-[var(--text-tertiary)]/70">{lvlItem.xpRequired} XP</p>
                   </div>
                   {isCurrent && <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-full ${colorMap[lvlItem.color] || colorMap.slate}`}>Current</span>}
                 </div>
@@ -229,25 +229,25 @@ export default function ProgressPage() {
       {/* Session History */}
       {sessions.length > 0 && (
         <div className="mt-8 premium-card p-6">
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Recent Sessions</h2>
+          <h2 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-4">Recent Sessions</h2>
           <div className="space-y-2">
             {sessions.slice(0, 10).map((s, i) => {
               const pct = s.total > 0 ? Math.round((s.score / s.total) * 100) : 0;
               const passed = pct >= 70;
               return (
-                <div key={i} className="flex items-center gap-4 p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50">
+                <div key={i} className="flex items-center gap-4 p-3 rounded-2xl bg-[var(--bg-1)] bg-opacity-50">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${passed ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
                     {passed
                       ? <CheckCircle className="w-4 h-4 text-emerald-500" />
                       : <XCircle className="w-4 h-4 text-rose-500" />}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-black text-slate-800 dark:text-white truncate">{s.module}</p>
-                    <p className="text-xs text-slate-400">{new Date(s.date).toLocaleDateString()}</p>
+                    <p className="text-sm font-black text-[var(--text-primary)] truncate">{s.module}</p>
+                    <p className="text-xs text-[var(--text-tertiary)]/70">{new Date(s.date).toLocaleDateString()}</p>
                   </div>
                   <div className="text-right flex-shrink-0">
                     <p className={`text-sm font-black ${passed ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>{pct}%</p>
-                    <p className="text-xs text-slate-400">{s.score}/{s.total}</p>
+                    <p className="text-xs text-[var(--text-tertiary)]/70">{s.score}/{s.total}</p>
                   </div>
                 </div>
               );
