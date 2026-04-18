@@ -97,27 +97,31 @@ Custom Tailwind 4 classes: `clinical-card-3d`, `premium-card`, `btn-elite`, `gla
 
 ## Progress Status
 
-### Last Completed
-- Comprehensive bug audit (2026-04-17): Fixed 10 critical runtime bugs across `page.tsx`, `StudentDashboard.tsx`, `Navbar.tsx`, `Sidebar.tsx`, `globals.css`, `layout.tsx`, and library page configs.
-- Established persistent PROJECT_BRAIN.md memory system.
+### Last Completed (2026-04-18)
+1. **Progress tracking loop wired up** — USMLE saves sessions to `medpulse_sessions` localStorage on finish; Simulator saves session when starting a new case. Progress page cleans up no-op, adds Recent Sessions history panel. (`298f615`)
+2. **`/dashboard` route created** — Dedicated authenticated student dashboard with XP level banner, stat grid, 10-module quick-access cards, recent sessions panel, quick tools. Sidebar updated to link to `/dashboard`. (`a6013d3`)
 
 ### Where We Stopped
-- PROJECT_BRAIN.md created. No active feature work in progress.
+- Both feature milestones committed. Build passes 0 errors.
+- Next candidates:
+  - Enhance `/` home page as a proper unauthenticated landing page (currently redirects unauthenticated users to "Please sign in")
+  - Add professors page bilingual support (currently EN-only)
+  - Implement `/api/progress` integration in dashboard (currently localStorage only)
 
 ### Specific Next Step
-- Awaiting user direction on next feature or fix. Resume by reading this file and asking the user what to work on.
+- Resume by checking `git log --oneline -5` and continuing from commit `a6013d3`.
 
 ---
 
 ## Commit Log (Major Milestones)
 | Date | Commit | Summary |
 |---|---|---|
-| 2026-04-17 | `16fbf71` | Latest commit (message: "5") |
+| 2026-04-18 | `a6013d3` | feat: add /dashboard route |
+| 2026-04-18 | `298f615` | feat: wire up progress tracking loop |
+| 2026-04-17 | `c4cb3be` | Phase 1 Audit — 0 errors build |
+| 2026-04-17 | `3e0392e` | PROJECT_BRAIN.md created |
 | 2026-04-17 | `357c9fb` | Ultimate MedPulse MDT Core Upgrade |
-| prior | `cbeba93` | Switch to Groq AI |
-| prior | `a39b9f9` | Fix build errors, update AI config |
-| prior | `cd2cbb9` | Elite 3D Redesign & Arabic/English Multi-language v5.1 |
 
 ---
 
-*Last updated: 2026-04-17 — Session: PROJECT_BRAIN initialization*
+*Last updated: 2026-04-18 — Session: Progress tracking + Dashboard route*
