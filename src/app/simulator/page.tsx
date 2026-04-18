@@ -172,109 +172,133 @@ function SimulatorWard() {
   };
 
   return (
-    <div className="p-6 md:p-8 max-w-6xl mx-auto w-full h-[calc(100vh-80px)] flex flex-col">
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-800 flex items-center mb-1">
-            <HeartPulse className="w-8 h-8 text-rose-500 mr-3" />
-            OSCE Clinical Simulator
-          </h1>
-          <p className="text-slate-500 text-sm">
-            Interview the patient, order labs, and establish a diagnosis. AI grades your performance.
-          </p>
+    <div className="p-4 md:p-8 max-w-7xl mx-auto w-full h-[calc(100vh-80px)] flex flex-col animate-in fade-in zoom-in-95 duration-700 relative">
+      {/* Background glow */}
+      <div className="absolute top-[10%] left-[10%] w-[30%] h-[30%] bg-[var(--color-medical-rose)]/5 rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-rose-500 to-red-600 rounded-[20px] flex items-center justify-center shadow-[0_0_30px_rgba(244,63,94,0.3)] transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+            <HeartPulse className="w-7 h-7 md:w-8 md:h-8 text-white" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <Activity className="w-4 h-4 text-rose-500 opacity-80" />
+              <span className="text-[11px] md:text-xs font-extrabold uppercase tracking-[0.2em] text-[var(--color-medical-rose)] bg-[var(--color-medical-rose)]/10 px-3 py-1 rounded-[8px] border border-[var(--color-medical-rose)]/20 shadow-sm">Interactive Case</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
+              OSCE Clinical Simulator
+            </h1>
+            <p className="text-[var(--text-secondary)] text-[13px] md:text-sm font-medium mt-2">
+              Interview the patient, order labs, and establish a diagnosis. AI grades your performance.
+            </p>
+          </div>
         </div>
         <button
           onClick={startNewCase}
-          className="flex items-center space-x-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-colors shadow-sm"
+          className="flex items-center space-x-2 bg-[var(--bg-0)] hover:bg-[var(--color-medical-rose)]/5 border border-[var(--border-subtle)] hover:border-[var(--color-medical-rose)]/30 text-[var(--text-primary)] px-5 py-3 rounded-[16px] text-[13px] font-extrabold uppercase tracking-widest transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 group"
         >
-          <RefreshCw className="w-4 h-4" />
+          <RefreshCw className="w-4 h-4 text-[var(--color-medical-rose)] group-hover:rotate-180 transition-transform duration-500" />
           <span>New Patient Case</span>
         </button>
       </div>
 
-      <div className="flex-1 flex gap-6 min-h-0">
-        <div className="w-80 flex flex-col space-y-4">
-          <div className="bg-slate-900 text-white rounded-2xl p-5 shadow-xl">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-slate-200 text-sm uppercase tracking-wider">Patient Monitor</h2>
-              <Activity className="w-5 h-5 text-emerald-400 animate-pulse" />
+      <div className="flex-1 flex flex-col md:flex-row gap-6 min-h-0 relative z-10">
+        {/* Sidebar */}
+        <div className="w-full md:w-80 flex flex-col gap-6">
+          <div className="medpulse-card glass level-1 bg-slate-900 border-slate-700/50 text-white rounded-[24px] p-6 shadow-2xl relative overflow-hidden group">
+            <div className="absolute inset-0 bg-[var(--color-medical-rose)]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex items-center justify-between mb-5 relative z-10">
+              <h2 className="font-extrabold text-slate-100 text-[12px] uppercase tracking-widest flex items-center">
+                <Activity className="w-4 h-4 mr-2 text-rose-400" /> Vitals Monitor
+              </h2>
+              <div className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
             </div>
-            <div className="space-y-3">
-              <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
-                <span className="text-xs text-slate-400 block mb-1">Heart Rate (bpm)</span>
-                <span className="text-2xl font-mono text-emerald-400">---</span>
+            <div className="space-y-4 relative z-10">
+              <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
+                <span className="text-[11px] text-slate-400 font-bold uppercase tracking-widest block mb-2">Heart Rate (bpm)</span>
+                <span className="text-3xl font-black text-rose-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(244,63,94,0.4)]">---</span>
               </div>
-              <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
-                <span className="text-xs text-slate-400 block mb-1">Blood Pressure (mmHg)</span>
-                <span className="text-2xl font-mono text-sky-400">---/---</span>
+              <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
+                <span className="text-[11px] text-slate-400 font-bold uppercase tracking-widest block mb-2">Blood Pressure (mmHg)</span>
+                <span className="text-3xl font-black text-sky-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(56,189,248,0.4)]">---/---</span>
               </div>
-              <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
-                <span className="text-xs text-slate-400 block mb-1">SpO2 (%)</span>
-                <span className="text-2xl font-mono text-indigo-400">--%</span>
+              <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
+                <span className="text-[11px] text-slate-400 font-bold uppercase tracking-widest block mb-2">SpO2 (%)</span>
+                <span className="text-3xl font-black text-indigo-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(129,140,248,0.4)]">--%</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-sky-50 dark:bg-sky-900/20 border border-sky-100 dark:border-sky-900/40 rounded-2xl p-5 flex-1 overflow-y-auto">
-            <h3 className="font-bold text-sky-800 dark:text-sky-300 flex items-center mb-3">
+          <div className="medpulse-card glass level-2 bg-[var(--color-vital-cyan)]/5 border border-[var(--color-vital-cyan)]/10 rounded-[24px] p-6 flex-1 overflow-y-auto">
+            <h3 className="font-extrabold text-[var(--color-vital-cyan)] flex items-center mb-4 text-[13px] uppercase tracking-widest">
               <Info className="w-4 h-4 mr-2" />
               How to Play
             </h3>
-            <ul className="text-sm text-sky-700 dark:text-sky-400 space-y-3 list-disc list-inside">
-              <li>Ask the patient questions to gather history.</li>
-              <li>Order specific labs.</li>
-              <li>Perform physical exams.</li>
-              <li>Submit your final diagnosis to receive your grade.</li>
+            <ul className="text-[13px] text-[var(--text-secondary)] font-medium space-y-3 list-none">
+              {['Ask the patient questions to gather history.', 'Order specific labs.', 'Perform physical exams.', 'Submit your final diagnosis.'].map((step, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <span className="bg-[var(--color-vital-cyan)]/10 text-[var(--color-vital-cyan)] w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-[10px] font-black">{i + 1}</span>
+                  <span className="mt-0.5 leading-relaxed">{step}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="flex-1 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col relative overflow-hidden">
-          <div className="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-4 flex items-center shadow-sm z-10">
-            <Stethoscope className="w-5 h-5 text-slate-400 mr-3" />
-            <span className="font-bold text-slate-700 dark:text-slate-200">Examination Room 1</span>
+        {/* Chat Area */}
+        <div className="flex-1 medpulse-card glass level-1 bg-[var(--bg-0)] rounded-[24px] shadow-xl border border-[var(--border-subtle)] flex flex-col relative overflow-hidden">
+          <div className="bg-[var(--bg-1)] bg-opacity-80 backdrop-blur-xl border-b border-[var(--border-subtle)] p-5 flex items-center shadow-sm z-20">
+            <div className="w-10 h-10 rounded-[12px] bg-[var(--color-medical-indigo)]/10 flex items-center justify-center border border-[var(--color-medical-indigo)]/20 mr-4">
+              <Stethoscope className="w-5 h-5 text-[var(--color-medical-indigo)]" />
+            </div>
+            <div>
+              <span className="font-extrabold text-[var(--text-primary)] text-[14px] md:text-[15px] block">Examination Room 1</span>
+              <span className="text-[11px] text-[var(--color-medical-indigo)] font-bold uppercase tracking-widest">Active Session</span>
+            </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/30 dark:bg-slate-950/30">
+          <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[var(--bg-0)] z-10 scroll-smooth">
             {messages.map((msg, _idx) => (
-              <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[80%] rounded-2xl px-5 py-4 shadow-sm text-sm leading-relaxed ${
+              <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in slide-in-from-bottom-4 fade-in duration-500`}>
+                <div className={`relative max-w-[85%] rounded-[20px] px-6 py-5 shadow-sm text-[14px] leading-relaxed ${
                   msg.role === "user" 
-                    ? "bg-slate-800 text-white rounded-tr-sm" 
-                    : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-tl-sm ring-1 ring-slate-900/5 dark:ring-slate-700/50"
+                    ? "bg-gradient-to-br from-indigo-600 to-indigo-700 text-white rounded-tr-[4px] shadow-lg shadow-indigo-500/20 font-medium" 
+                    : "bg-[var(--bg-1)] border border-[var(--border-subtle)] text-[var(--text-primary)] rounded-tl-[4px]"
                 }`}>
                   {msg.role === "assistant" && (
                     <button 
                       onClick={() => speakText(msg.content)}
-                      className="absolute top-2 right-2 p-1 text-slate-400 hover:text-rose-500"
+                      className="absolute top-3 right-3 p-1.5 rounded-[8px] text-[var(--text-tertiary)] hover:text-[var(--color-medical-indigo)] hover:bg-[var(--color-medical-indigo)]/10 transition-colors"
+                      title="Listen"
                     >
                       <Volume2 className="w-4 h-4" />
                     </button>
                   )}
                   {msg.content ? (
-                    <ReactMarkdown 
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                        a: ({ node: _node, ...props }) => <a className="text-rose-600 font-semibold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                        p: ({ node: _node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                        ul: ({ node: _node, ...props }) => <ul className="list-disc pl-5 mb-2" {...props} />,
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                        ol: ({ node: _node, ...props }) => <ol className="list-decimal pl-5 mb-2" {...props} />,
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                        li: ({ node: _node, ...props }) => <li className="mb-1" {...props} />,
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                        strong: ({ node: _node, ...props }) => <strong className="font-bold text-slate-800 dark:text-white" {...props} />
-                      }}
-                    >
-                      {msg.content}
-                    </ReactMarkdown>
+                    <div className={msg.role === "assistant" ? "pr-6" : ""}>
+                      <ReactMarkdown 
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          a: ({ node: _node, ...props }) => <a className="text-[var(--color-medical-indigo)] font-extrabold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                          p: ({ node: _node, ...props }) => <p className="mb-3 last:mb-0 font-medium" {...props} />,
+                          ul: ({ node: _node, ...props }) => <ul className="list-disc pl-5 mb-3 space-y-1" {...props} />,
+                          ol: ({ node: _node, ...props }) => <ol className="list-decimal pl-5 mb-3 space-y-1" {...props} />,
+                          li: ({ node: _node, ...props }) => <li className="mb-1" {...props} />,
+                          strong: ({ node: _node, ...props }) => <strong className="font-extrabold text-[var(--text-primary)]" {...props} />
+                        }}
+                      >
+                        {msg.content}
+                      </ReactMarkdown>
+                    </div>
                   ) : (
-                    <span className="flex items-center space-x-2 text-slate-400">
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Processing...</span>
+                    <span className="flex items-center space-x-3 text-[var(--color-medical-indigo)] font-extrabold text-[12px] uppercase tracking-widest">
+                      <div className="flex gap-1">
+                        <span className="w-1.5 h-1.5 bg-[var(--color-medical-indigo)] rounded-full animate-bounce [animation-delay:-0.3s]" />
+                        <span className="w-1.5 h-1.5 bg-[var(--color-medical-indigo)] rounded-full animate-bounce [animation-delay:-0.15s]" />
+                        <span className="w-1.5 h-1.5 bg-[var(--color-medical-indigo)] rounded-full animate-bounce" />
+                      </div>
+                      <span>Thinking...</span>
                     </span>
                   )}
                 </div>
@@ -283,11 +307,16 @@ function SimulatorWard() {
             <div ref={bottomRef} />
           </div>
 
-          <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+          <div className="p-4 md:p-5 border-t border-[var(--border-subtle)] bg-[var(--bg-1)] bg-opacity-80 backdrop-blur-xl z-20">
             <div className="flex items-center space-x-3">
               <button
                 onClick={toggleRecording}
-                className={`p-3 rounded-xl transition-all ${isRecording ? "bg-rose-100 text-rose-600 animate-pulse" : "bg-slate-100 text-slate-500 hover:bg-slate-200"}`}
+                className={`p-3.5 rounded-[16px] transition-all border shadow-sm ${
+                  isRecording 
+                    ? "bg-rose-500/10 text-rose-500 border-rose-500/30 animate-pulse" 
+                    : "bg-[var(--bg-0)] text-[var(--text-secondary)] border-[var(--border-subtle)] hover:border-[var(--color-medical-indigo)]/40 hover:text-[var(--color-medical-indigo)]"
+                }`}
+                title={isRecording ? "Stop Recording" : "Start Voice Input"}
               >
                 {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
               </button>
@@ -296,15 +325,15 @@ function SimulatorWard() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
                 placeholder="Talk to the patient, order a lab, or state your diagnosis..."
-                className="flex-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:ring-2 focus:ring-rose-500 focus:bg-white dark:focus:bg-slate-700 outline-none transition-all font-medium"
+                className="flex-1 bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[16px] px-5 py-4 text-[14px] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:border-[var(--color-medical-indigo)] focus:ring-1 focus:ring-[var(--color-medical-indigo)] outline-none transition-all font-bold shadow-inner"
                 disabled={isLoading}
               />
               <button
                 onClick={sendMessage}
                 disabled={isLoading || !input.trim()}
-                className="bg-rose-500 hover:bg-rose-600 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-xl h-12 w-12 flex items-center justify-center transition-colors active:scale-95 shadow-sm"
+                className="bg-gradient-to-br from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 disabled:from-[var(--bg-2)] disabled:to-[var(--bg-2)] disabled:text-[var(--text-tertiary)] disabled:shadow-none text-white rounded-[16px] h-[54px] w-[54px] flex items-center justify-center transition-all active:scale-95 shadow-[0_5px_15px_rgba(99,102,241,0.3)] disabled:border disabled:border-[var(--border-subtle)] group"
               >
-                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5 ml-1" />}
+                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />}
               </button>
             </div>
           </div>
