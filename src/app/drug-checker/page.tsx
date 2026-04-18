@@ -95,33 +95,42 @@ export default function DrugCheckerPage() {
   if (loading || !user) return null;
 
   return (
-    <div className="max-w-5xl mx-auto p-6 md:p-10 w-full page-transition">
+    <div className="max-w-6xl mx-auto p-4 md:p-10 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 relative">
+      {/* Ambient background glows */}
+      <div className="absolute top-[0%] left-[20%] w-[30%] h-[30%] bg-[var(--color-critical-red)]/5 rounded-full blur-[120px] pointer-events-none" />
+      
       {/* Header */}
-      <div className="mb-10">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 bg-rose-600 rounded-2xl flex items-center justify-center shadow-xl">
-            <Pill className="w-6 h-6 text-white" />
+      <div className="mb-8 md:mb-12 relative z-10">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[var(--color-critical-red)] to-rose-400 rounded-[20px] flex items-center justify-center shadow-[0_0_30px_rgba(225,29,72,0.3)] transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+            <Pill className="w-7 h-7 md:w-8 md:h-8 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">{isAr ? "فاحص التفاعلات الدوائية" : "Drug Interaction Checker"}</h1>
-            <p className="text-slate-500 text-sm">{isAr ? "مدعوم بـ Lexicomp 2026 · Micromedex 2026 · سلامة الدواء FDA" : "Powered by Lexicomp 2026 · Micromedex 2026 · FDA Drug Safety"}</p>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight">
+              {isAr ? "فاحص التفاعلات" : "Drug Interaction" } <span className="text-[var(--color-critical-red)]">{isAr ? "الدوائية" : "Checker"}</span>
+            </h1>
+            <p className="text-[var(--text-secondary)] text-sm md:text-base font-medium mt-1">
+              {isAr ? "مدعوم بـ Lexicomp 2026 · Micromedex 2026 · سلامة الدواء FDA" : "Powered by Lexicomp 2026 · Micromedex 2026 · FDA Drug Safety"}
+            </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 p-3 bg-rose-500/10 border border-rose-500/20 rounded-2xl">
-          <AlertTriangle className="w-4 h-4 text-rose-600 flex-shrink-0" />
-          <p className="text-xs font-bold text-rose-700 dark:text-rose-400">{isAr ? "للاستخدام الطبي والصيدلاني فقط. تحقق دائماً من المراجع الدوائية الحالية قبل القرارات السريرية." : "For pharmacist/physician use only. Always verify with current drug references before clinical decisions."}</p>
+        <div className="flex items-start md:items-center gap-3 p-4 bg-[var(--color-critical-red)]/10 border border-[var(--color-critical-red)]/20 rounded-2xl max-w-3xl shadow-sm backdrop-blur-sm">
+          <AlertTriangle className="w-5 h-5 text-[var(--color-critical-red)] flex-shrink-0 mt-0.5 md:mt-0" />
+          <p className="text-[13px] md:text-sm font-bold text-[var(--color-critical-red)] opacity-90 leading-relaxed">
+            {isAr ? "للاستخدام الطبي والصيدلاني فقط. تحقق دائماً من المراجع الدوائية الحالية قبل القرارات السريرية." : "For pharmacist/physician use only. Always verify with current drug references before clinical decisions."}
+          </p>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-5 gap-8">
+      <div className="grid lg:grid-cols-5 gap-6 md:gap-8 relative z-10">
         {/* Drug Input Panel */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="premium-card p-6">
-            <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">{isAr ? "إضافة الأدوية" : "Add Medications"}</h2>
+        <div className="lg:col-span-2 flex flex-col space-y-6">
+          <div className="medpulse-card p-6 md:p-8 flex-1 flex flex-col shadow-lg border-[var(--border-subtle)] bg-[var(--bg-1)]/50">
+            <h2 className="text-xs md:text-sm font-extrabold uppercase tracking-widest text-[var(--text-tertiary)] mb-5">{isAr ? "إضافة الأدوية" : "Add Medications"}</h2>
 
             {/* Input */}
-            <div className="relative mb-4">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <div className="relative mb-6">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-tertiary)]" />
               <input
                 ref={inputRef}
                 type="text"
@@ -131,13 +140,13 @@ export default function DrugCheckerPage() {
                   if (e.key === "Enter" && input.trim()) addDrug(input.trim());
                 }}
                 placeholder="Type drug name..."
-                className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-sm font-bold text-slate-700 dark:text-white placeholder-slate-400 focus:ring-4 focus:ring-rose-500/10 outline-none transition-all"
+                className="w-full pl-12 pr-5 py-4 bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[20px] text-[15px] font-bold text-[var(--text-primary)] placeholder-[var(--text-tertiary)]/50 focus:ring-4 focus:ring-[var(--color-critical-red)]/10 focus:border-[var(--color-critical-red)]/30 outline-none transition-all shadow-inner"
               />
               {/* Autocomplete */}
               {filtered.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl z-50 overflow-hidden">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[20px] shadow-2xl z-50 overflow-hidden backdrop-blur-xl">
                   {filtered.map(d => (
-                    <button key={d} onClick={() => addDrug(d)} className="w-full px-4 py-2.5 text-sm font-bold text-left text-slate-700 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-800 transition-colors">
+                    <button key={d} onClick={() => addDrug(d)} className="w-full px-5 py-3.5 text-[14px] font-bold text-left text-[var(--text-primary)] hover:bg-[var(--color-critical-red)]/10 hover:text-[var(--color-critical-red)] transition-colors border-b border-[var(--border-subtle)] last:border-0">
                       {d}
                     </button>
                   ))}
@@ -146,13 +155,13 @@ export default function DrugCheckerPage() {
             </div>
 
             {/* Quick Add */}
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{isAr ? "إضافة سريعة" : "Quick Add"}</p>
-              <div className="flex flex-wrap gap-1.5">
+            <div className="mt-2">
+              <p className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--text-tertiary)] mb-3">{isAr ? "إضافة سريعة" : "Quick Add"}</p>
+              <div className="flex flex-wrap gap-2">
                 {["Warfarin", "Aspirin", "Amiodarone", "Metformin", "Simvastatin", "Ciprofloxacin", "Fluconazole", "Clarithromycin"].map(d => (
                   <button key={d} onClick={() => addDrug(d)}
                     disabled={selectedDrugs.includes(d)}
-                    className="text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-rose-100 hover:text-rose-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+                    className="text-[11px] font-extrabold uppercase tracking-wider px-3.5 py-2 rounded-xl bg-[var(--bg-0)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:bg-[var(--color-critical-red)] hover:text-white hover:border-[var(--color-critical-red)] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 shadow-sm active:scale-95">
                     {d}
                   </button>
                 ))}
@@ -162,17 +171,17 @@ export default function DrugCheckerPage() {
 
           {/* Selected Drugs */}
           {selectedDrugs.length > 0 && (
-            <div className="premium-card p-6">
-              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">{isAr ? `الأدوية المختارة (${selectedDrugs.length})` : `Selected Drugs (${selectedDrugs.length})`}</h2>
-              <div className="space-y-2 mb-6">
-                {selectedDrugs.map(d => (
-                  <div key={d} className="flex items-center justify-between bg-slate-50 dark:bg-slate-800 rounded-2xl px-4 py-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-rose-500" />
-                      <span className="text-sm font-black text-slate-800 dark:text-white">{d}</span>
+            <div className="medpulse-card p-6 md:p-8 shadow-xl border-[var(--color-critical-red)]/20 animate-in slide-in-from-top-4">
+              <h2 className="text-xs md:text-sm font-extrabold uppercase tracking-widest text-[var(--color-critical-red)] mb-5">{isAr ? `الأدوية المختارة (${selectedDrugs.length})` : `Selected Drugs (${selectedDrugs.length})`}</h2>
+              <div className="space-y-2.5 mb-6">
+                {selectedDrugs.map((d, i) => (
+                  <div key={d} className="flex items-center justify-between bg-[var(--bg-0)] rounded-2xl px-5 py-4 border border-[var(--border-subtle)] shadow-sm group hover:border-[var(--color-critical-red)]/30 transition-colors animate-in slide-in-from-left-4" style={{ animationDelay: `${i * 50}ms` }}>
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-critical-red)] shadow-[0_0_8px_rgba(225,29,72,0.8)]" />
+                      <span className="text-[14px] md:text-[15px] font-extrabold text-[var(--text-primary)]">{d}</span>
                     </div>
-                    <button onClick={() => removeDrug(d)} className="text-slate-400 hover:text-rose-500 transition-colors">
-                      <X className="w-4 h-4" />
+                    <button onClick={() => removeDrug(d)} className="text-[var(--text-tertiary)] hover:text-[var(--color-critical-red)] hover:bg-[var(--color-critical-red)]/10 p-1.5 rounded-lg transition-all">
+                      <X className="w-4 h-4 md:w-5 md:h-5" />
                     </button>
                   </div>
                 ))}
@@ -180,34 +189,38 @@ export default function DrugCheckerPage() {
               <button
                 onClick={checkInteractions}
                 disabled={selectedDrugs.length < 2 || isLoading}
-                className="w-full btn-premium bg-gradient-to-r from-rose-600 to-orange-500 border-0 text-white disabled:opacity-40 disabled:cursor-not-allowed justify-center py-4"
+                className="w-full bg-gradient-to-r from-[var(--color-critical-red)] to-rose-500 text-white font-extrabold py-4 md:py-5 rounded-[20px] shadow-[0_10px_25px_-5px_rgba(225,29,72,0.4)] hover:shadow-[0_15px_35px_-5px_rgba(225,29,72,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none flex items-center justify-center gap-3 border-0"
               >
                 {isLoading
-                  ? <><Loader2 className="w-4 h-4 animate-spin" /> {isAr ? "جارٍ التحليل..." : "Analyzing..."}</>
-                  : <><ShieldCheck className="w-4 h-4" /> {isAr ? "فحص التفاعلات" : "Check Interactions"}</>}
+                  ? <><Loader2 className="w-5 h-5 animate-spin" /> <span className="tracking-wide">{isAr ? "جارٍ التحليل..." : "Analyzing Interactions..."}</span></>
+                  : <><ShieldCheck className="w-5 h-5" /> <span className="tracking-wide">{isAr ? "فحص التفاعلات" : "Check Interactions"}</span></>}
               </button>
             </div>
           )}
         </div>
 
         {/* Results Panel */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-3 flex flex-col h-full min-h-[500px] lg:min-h-full">
           {result ? (
-            <div className="premium-card p-8 h-full">
-              <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
-                <ShieldCheck className="w-5 h-5 text-emerald-500" />
-                <h2 className="text-sm font-black uppercase tracking-widest text-slate-700 dark:text-slate-300">Interaction Analysis Report</h2>
-                <span className="ml-auto text-[10px] font-black text-slate-400">Lexicomp · Micromedex 2026</span>
+            <div className="medpulse-card flex flex-col p-6 md:p-8 h-full shadow-2xl border-[var(--border-subtle)]">
+              <div className="flex flex-wrap items-center gap-3 mb-6 pb-5 border-b border-[var(--border-subtle)]">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                  <ShieldCheck className="w-5 h-5 text-emerald-500" />
+                </div>
+                <h2 className="text-xs md:text-sm font-extrabold uppercase tracking-widest text-[var(--text-primary)]">Interaction Analysis Report</h2>
+                <span className="ml-auto text-[9px] md:text-[10px] font-extrabold tracking-widest uppercase text-[var(--text-tertiary)] bg-[var(--bg-1)] px-3 py-1.5 rounded-lg border border-[var(--border-subtle)]">Lexicomp · Micromedex 2026</span>
               </div>
-              <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-black prose-strong:text-rose-600 prose-a:text-sky-500">
+              <div className="prose prose-sm dark:prose-invert max-w-none flex-1 overflow-y-auto custom-scrollbar pr-2 prose-headings:font-extrabold prose-headings:text-[var(--text-primary)] prose-strong:text-[var(--color-critical-red)] prose-a:text-[var(--color-medical-indigo)] prose-p:text-[var(--text-secondary)] prose-p:leading-relaxed prose-li:text-[var(--text-secondary)]">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{result}</ReactMarkdown>
               </div>
             </div>
           ) : (
-            <div className="h-full min-h-64 flex flex-col items-center justify-center text-slate-400 bg-slate-50/50 dark:bg-slate-800/20 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800 p-12">
-              <Pill className="w-16 h-16 opacity-20 mb-4" />
-              <p className="font-black text-lg">{isAr ? "لا يوجد تحليل بعد" : "No Analysis Yet"}</p>
-              <p className="text-sm mt-2 text-center">{isAr ? "أضف دواءين على الأقل من اليسار\nثم انقر «فحص التفاعلات»" : <>Add at least 2 drugs from the left panel<br />then click &quot;Check Interactions&quot;</>}</p>
+            <div className="h-full min-h-[400px] flex flex-col items-center justify-center text-[var(--text-tertiary)] glass level-0 rounded-[32px] border-2 border-dashed border-[var(--border-subtle)] p-12 transition-all hover:bg-[var(--bg-1)]/50">
+              <div className="w-24 h-24 bg-[var(--bg-2)] rounded-3xl flex items-center justify-center mb-6 shadow-sm transform rotate-3">
+                <Pill className="w-12 h-12 opacity-40 text-[var(--color-critical-red)]" />
+              </div>
+              <p className="font-extrabold text-xl text-[var(--text-secondary)]">{isAr ? "لا يوجد تحليل بعد" : "No Analysis Yet"}</p>
+              <p className="text-sm mt-3 text-center opacity-80 leading-relaxed font-medium">{isAr ? "أضف دواءين على الأقل من اليسار\nثم انقر «فحص التفاعلات»" : <>Add at least 2 drugs from the left panel<br />then click &quot;Check Interactions&quot;</>}</p>
             </div>
           )}
         </div>

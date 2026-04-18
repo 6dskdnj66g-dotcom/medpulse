@@ -281,124 +281,144 @@ function EncyclopediaHome() {
   const totalSources = SOURCE_CATEGORIES.reduce((acc, c) => acc + c.sources.length, 0);
 
   return (
-    <div className="max-w-6xl mx-auto p-6 md:p-8 space-y-12 page-transition" dir={dir}>
+    <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-700 relative" dir={dir}>
+
+      {/* Ambient background glows */}
+      <div className="absolute top-[0%] left-[0%] w-[40%] h-[40%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[0%] w-[30%] h-[30%] bg-[var(--color-clinical-violet)]/5 rounded-full blur-[150px] pointer-events-none" />
 
       {/* ── Hero ── */}
-      <div className="relative overflow-hidden glass-panel p-8 md:p-12 rounded-[2.5rem] border border-indigo-500/10">
-        <div className="absolute top-0 right-0 opacity-[0.06] pointer-events-none translate-x-1/4 -translate-y-1/4">
-          <BookOpen className="w-96 h-96 text-indigo-500" />
+      <div className="relative overflow-hidden medpulse-card glass level-2 p-8 md:p-14 border border-[var(--border-subtle)] shadow-[0_20px_40px_-15px_rgba(var(--color-medical-indigo-rgb),0.15)] group">
+        <div className="absolute top-0 right-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none translate-x-1/4 -translate-y-1/4 transition-transform duration-1000 group-hover:rotate-12 group-hover:scale-110">
+          <BookOpen className="w-96 h-96 text-[var(--color-medical-indigo)]" />
         </div>
         <div className="relative z-10 max-w-3xl">
-          <div className="flex items-center gap-2 text-indigo-500 dark:text-indigo-400 text-xs font-black uppercase tracking-[0.2em] mb-4">
-            <ShieldCheck className="w-4 h-4" />
+          <div className="flex items-center gap-3 text-[var(--color-medical-indigo)] text-[11px] md:text-xs font-extrabold uppercase tracking-[0.2em] mb-5 bg-[var(--color-medical-indigo)]/10 w-fit px-4 py-2 rounded-xl backdrop-blur-sm border border-[var(--color-medical-indigo)]/20">
+            <ShieldCheck className="w-4 h-4 md:w-5 md:h-5" />
             <span>{isAr ? "طبعة الذكاء السريري 2026" : "2026 Clinical Intelligence Edition"}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-[var(--text-primary)] mb-6 leading-tight tracking-tight">
             {isAr ? "المكتبة الطبية" : "The Universal"}<br />
-            <span className="medical-gradient-text">{isAr ? "الشاملة" : "Medical Library"}</span>
+            <span className="brand-gradient-text">{isAr ? "الشاملة" : "Medical Library"}</span>
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed mb-8 max-w-2xl">
+          <p className="text-[var(--text-secondary)] text-base md:text-lg leading-relaxed mb-8 max-w-2xl font-medium">
             {isAr
-              ? "مستودع سريري شامل مُفهرس من مراجعات Cochrane ومعايير USMLE والأدبيات الطبية الأولية. بروتوكولات مضمونة الدقة."
+              ? "مستودع سريري شامل مُفهرس من مراجعات Cochrane ومعايير USMLE والأدبيات الطبية الأولية. بروتوكولات لعام 2026 مضمونة الدقة بدمج مباشر لـ RAG."
               : "A comprehensive RAG-enabled clinical repository indexed from Cochrane reviews, USMLE standards, and primary medical literature. Zero-hallucination guaranteed."}
           </p>
-          <div className="flex flex-wrap gap-3">
-            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-2xl flex items-center gap-2 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-sm font-bold text-slate-700 dark:text-slate-200">{isAr ? "18,400+ مجلد موثّق" : "18,400+ Verified Volumes"}</span>
+          <div className="flex flex-wrap gap-4">
+            <div className="bg-[var(--bg-0)]/80 backdrop-blur-md border border-[var(--border-subtle)] px-5 py-3 rounded-2xl flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              </span>
+              <span className="text-[13px] md:text-sm font-extrabold text-[var(--text-primary)] tracking-wide">{isAr ? "18,400+ مجلد موثّق" : "18,400+ Verified Volumes"}</span>
             </div>
-            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-2xl flex items-center gap-2 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-indigo-500" />
-              <span className="text-sm font-bold text-slate-700 dark:text-slate-200">{isAr ? "محدّث مارس 2026" : "Updated March 2026"}</span>
+            <div className="bg-[var(--bg-0)]/80 backdrop-blur-md border border-[var(--border-subtle)] px-5 py-3 rounded-2xl flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow">
+              <span className="w-3 h-3 rounded-full bg-[var(--color-medical-indigo)] shadow-[0_0_10px_rgba(var(--color-medical-indigo-rgb),0.8)]" />
+              <span className="text-[13px] md:text-sm font-extrabold text-[var(--text-primary)] tracking-wide">{isAr ? "محدّث مارس 2026" : "Updated March 2026"}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* ── Search ── */}
-      <div className="relative max-w-2xl mx-auto group">
-        <Search className={`absolute ${dir === "rtl" ? "right-6" : "left-6"} top-1/2 -translate-y-1/2 w-6 h-6 text-slate-400 group-focus-within:text-indigo-500 transition-colors`} />
+      <div className="relative max-w-3xl mx-auto group z-20">
+        <Search className={`absolute ${dir === "rtl" ? "right-6" : "left-6"} top-1/2 -translate-y-1/2 w-6 h-6 text-[var(--text-tertiary)] group-focus-within:text-[var(--color-medical-indigo)] transition-colors`} />
         <input
           type="text"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          placeholder={isAr ? "ابحث في التخصصات السريرية..." : "Search clinical modules (e.g. 'Cardiology', 'Sepsis')"}
-          className={`w-full ${dir === "rtl" ? "pr-16 pl-16" : "pl-16 pr-16"} py-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl text-lg font-bold shadow-xl shadow-indigo-500/5 focus:ring-4 focus:ring-indigo-500/10 transition-all outline-none text-slate-800 dark:text-white placeholder:text-slate-400`}
+          placeholder={isAr ? "ابحث في التخصصات السريرية (مثال: أمراض القلب، الإنتان)..." : "Search clinical modules (e.g. 'Cardiology', 'Sepsis')"}
+          className={`w-full ${dir === "rtl" ? "pr-16 pl-16" : "pl-16 pr-16"} py-5 md:py-6 bg-[var(--bg-0)]/90 backdrop-blur-xl border border-[var(--border-subtle)] rounded-3xl text-base md:text-lg font-bold shadow-lg shadow-[var(--color-medical-indigo)]/5 focus:ring-4 focus:ring-[var(--color-medical-indigo)]/10 focus:border-[var(--color-medical-indigo)]/30 transition-all outline-none text-[var(--text-primary)] placeholder-[var(--text-tertiary)]`}
         />
         {search && (
-          <button onClick={() => setSearch("")} className={`absolute ${dir === "rtl" ? "left-6" : "right-6"} top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors`}>
-            <X className="w-6 h-6" />
+          <button onClick={() => setSearch("")} className={`absolute ${dir === "rtl" ? "left-6" : "right-6"} top-1/2 -translate-y-1/2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] bg-[var(--bg-1)] p-2 rounded-xl transition-all`}>
+            <X className="w-5 h-5" />
           </button>
         )}
       </div>
 
       {/* ── Specialties Grid ── */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filtered.length > 0 ? filtered.map(specialty => (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 relative z-10">
+        {filtered.length > 0 ? filtered.map((specialty, i) => (
           <Link key={specialty.id} href={`/encyclopedia/${specialty.id}`}
-            className={`premium-card p-6 flex flex-col group border-2 border-transparent ${specialty.borderColor} transition-all`}>
-            <div className="flex items-start justify-between mb-6">
-              <div className={`w-14 h-14 ${specialty.iconBg} rounded-[1.25rem] flex items-center justify-center transition-transform group-hover:scale-110 duration-500`}>
-                <specialty.icon className={`w-7 h-7 ${specialty.iconColor}`} />
+            className={`medpulse-card p-6 md:p-8 flex flex-col group border border-[var(--border-subtle)] hover:border-[var(--color-medical-indigo)]/40 transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(var(--color-medical-indigo-rgb),0.2)] bg-[var(--bg-0)] hover:-translate-y-1.5 animate-in slide-in-from-bottom-4`} style={{ animationDelay: `${i * 50}ms` }}>
+            <div className="flex items-start justify-between mb-8">
+              <div className={`w-16 h-16 md:w-20 md:h-20 ${specialty.iconBg} rounded-[24px] flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3 duration-500 border border-[var(--border-subtle)] backdrop-blur-md`}>
+                <specialty.icon className={`w-8 h-8 md:w-10 md:h-10 ${specialty.iconColor}`} />
               </div>
-              <div className="text-right">
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{isAr ? "مقال" : "Articles"}</p>
-                <p className={`text-sm font-black ${specialty.iconColor}`}>{specialty.articles.toLocaleString()}</p>
+              <div className="text-right bg-[var(--bg-1)] px-3 py-1.5 rounded-xl border border-[var(--border-subtle)]">
+                <p className="text-[9px] md:text-[10px] font-extrabold uppercase tracking-widest text-[var(--text-tertiary)] mb-0.5">{isAr ? "مقال" : "Articles"}</p>
+                <p className={`text-[13px] md:text-sm font-black ${specialty.iconColor} tracking-wide`}>{specialty.articles.toLocaleString()}</p>
               </div>
             </div>
-            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3">{isAr ? specialty.labelAr : specialty.label}</h3>
-            <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+            <h3 className="text-xl md:text-2xl font-extrabold text-[var(--text-primary)] mb-3 tracking-tight">{isAr ? specialty.labelAr : specialty.label}</h3>
+            <p className="text-[var(--text-secondary)] text-[13px] md:text-[14px] leading-relaxed font-medium mb-8 flex-1">
               {isAr ? specialty.descriptionAr : specialty.description}
             </p>
-            <div className={`flex items-center gap-2 ${specialty.iconColor} font-black text-xs uppercase tracking-widest pt-4 border-t border-slate-100 dark:border-slate-800/50`}>
-              {isAr ? "دخول المكتبة" : "Enter Library"}
-              <ArrowRight className={`w-4 h-4 group-hover:translate-x-1 transition-transform ${dir === "rtl" ? "rotate-180 group-hover:-translate-x-1 group-hover:translate-x-0" : ""}`} />
+            <div className={`flex items-center justify-between font-extrabold text-[11px] md:text-xs uppercase tracking-widest pt-5 border-t border-[var(--border-subtle)] text-[var(--text-tertiary)] group-hover:${specialty.iconColor} transition-colors`}>
+              <span>{isAr ? "استكشاف التخصص" : "Explore Module"}</span>
+              <div className={`w-8 h-8 rounded-full bg-[var(--bg-1)] group-hover:${specialty.iconBg} flex items-center justify-center transition-colors`}>
+                <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${dir === "rtl" ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />
+              </div>
             </div>
           </Link>
         )) : (
-          <div className="col-span-full py-24 flex flex-col items-center justify-center text-slate-400 space-y-4">
-            <div className="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
-              <Search className="w-10 h-10 opacity-30" />
+          <div className="col-span-full py-24 flex flex-col items-center justify-center text-[var(--text-tertiary)] space-y-5 glass level-1 rounded-[32px] border-2 border-dashed border-[var(--border-subtle)]">
+            <div className="w-24 h-24 bg-[var(--bg-2)] rounded-[24px] flex items-center justify-center shadow-sm transform -rotate-6">
+              <Search className="w-12 h-12 opacity-40 text-[var(--color-medical-indigo)]" />
             </div>
-            <p className="font-bold text-lg">{isAr ? `لا توجد نتائج لـ "${search}"` : `No modules match "${search}"`}</p>
-            <button onClick={() => setSearch("")} className="text-indigo-500 font-bold hover:underline">
-              {isAr ? "إعادة تعيين البحث" : "Reset Search"}
+            <p className="font-extrabold text-xl text-[var(--text-secondary)] mt-4">{isAr ? `لا توجد نتائج مطابقة لـ "${search}"` : `No modules match "${search}"`}</p>
+            <button onClick={() => setSearch("")} className="text-[13px] font-extrabold text-[var(--color-medical-indigo)] hover:text-white hover:bg-[var(--color-medical-indigo)] px-5 py-2.5 rounded-xl border border-[var(--color-medical-indigo)]/30 transition-all shadow-sm">
+              {isAr ? "إعادة تعيين البحث" : "Clear Search Filters"}
             </button>
           </div>
         )}
       </div>
 
       {/* ── Global Medical Sources Panel ── */}
-      <div className="space-y-6">
-        <div className="text-center">
-          <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">
+      <div className="space-y-8 mt-16 relative z-10">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-[24px] bg-[var(--color-vital-cyan)]/10 mb-5 border border-[var(--color-vital-cyan)]/20 shadow-sm">
+            <ExternalLink className="w-8 h-8 text-[var(--color-vital-cyan)]" />
+          </div>
+          <h3 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] mb-3 tracking-tight">
             {isAr ? "سجل المصادر الطبية العالمية" : "Global Medical Sources Registry"}
           </h3>
-          <p className="text-slate-500 dark:text-slate-400 text-sm max-w-2xl mx-auto">
+          <p className="text-[var(--text-secondary)] text-sm md:text-base font-medium max-w-2xl mx-auto leading-relaxed">
             {isAr
-              ? <>MedPulse AI مُزامن مع <strong className="text-slate-700 dark:text-slate-200">{totalSources}+</strong> مصدر طبي معترف به دولياً، محدّث حتى <strong className="text-slate-700 dark:text-slate-200">أبريل 2026</strong>.</>
-              : <>MedPulse AI is synchronized with <strong className="text-slate-700 dark:text-slate-200">{totalSources}+</strong> internationally recognized medical sources, updated to <strong className="text-slate-700 dark:text-slate-200">April 2026</strong>.</>
+              ? <>نظام MedPulse AI مُزامن مباشرةً مع <strong className="text-[var(--text-primary)] font-black">{totalSources}+</strong> مصدر طبي معترف به دولياً، محدّث حتى <strong className="text-[var(--color-medical-indigo)] font-black">أبريل 2026</strong> لضمان أدق بروتوكولات الرعاية.</>
+              : <>MedPulse AI is immediately synchronized with <strong className="text-[var(--text-primary)] font-black">{totalSources}+</strong> internationally recognized medical sources, updated to <strong className="text-[var(--color-medical-indigo)] font-black">April 2026</strong>.</>
             }
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
-          {SOURCE_CATEGORIES.map(cat => (
-            <div key={cat.label} className="premium-card p-6">
-              <h4 className={`text-xs font-black uppercase tracking-widest mb-4 flex items-center gap-2 ${
-                cat.color === "indigo"  ? "text-indigo-600  dark:text-indigo-400"  :
-                cat.color === "emerald" ? "text-emerald-600 dark:text-emerald-400" :
-                cat.color === "teal"    ? "text-teal-600    dark:text-teal-400"    :
-                                          "text-amber-600   dark:text-amber-400"
-              }`}>
-                <span className={`w-2 h-2 rounded-full animate-pulse ${
-                  cat.color === "indigo"  ? "bg-indigo-500"  :
-                  cat.color === "emerald" ? "bg-emerald-500" :
-                  cat.color === "teal"    ? "bg-teal-500"    :
-                                            "bg-amber-500"
-                }`} />
-                {isAr ? cat.labelAr : cat.label}
-              </h4>
-              <div className="flex flex-wrap gap-2">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+          {SOURCE_CATEGORIES.map((cat, i) => (
+            <div key={cat.label} className="medpulse-card glass level-1 p-6 md:p-8 border border-[var(--border-subtle)] hover:shadow-xl transition-shadow animate-in slide-in-from-bottom-8" style={{ animationDelay: `${i * 100}ms` }}>
+              <div className="flex items-center gap-3 mb-6">
+                <span className={`flex h-4 w-4 relative`}>
+                  <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-40 ${
+                    cat.color === "indigo" ? "bg-indigo-500" :
+                    cat.color === "emerald" ? "bg-emerald-500" :
+                    cat.color === "teal" ? "bg-teal-500" : "bg-amber-500"
+                  }`}></span>
+                  <span className={`relative inline-flex rounded-full h-4 w-4 shadow-sm ${
+                    cat.color === "indigo" ? "bg-indigo-500" :
+                    cat.color === "emerald" ? "bg-emerald-500" :
+                    cat.color === "teal" ? "bg-teal-500" : "bg-amber-500"
+                  }`}></span>
+                </span>
+                <h4 className={`text-[12px] md:text-[13px] font-extrabold uppercase tracking-widest ${
+                  cat.color === "indigo"  ? "text-indigo-600  dark:text-indigo-400"  :
+                  cat.color === "emerald" ? "text-emerald-600 dark:text-emerald-400" :
+                  cat.color === "teal"    ? "text-teal-600    dark:text-teal-400"    :
+                                            "text-amber-600   dark:text-amber-400"
+                }`}>
+                  {isAr ? cat.labelAr : cat.label}
+                </h4>
+              </div>
+              <div className="flex flex-wrap gap-2 md:gap-3">
                 {cat.sources.map(src => (
                   <a
                     key={src.label}
@@ -406,10 +426,30 @@ function EncyclopediaHome() {
                     target="_blank"
                     rel="noopener noreferrer"
                     title={`Open ${src.label}`}
-                    className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-1.5 rounded-xl transition-all hover:scale-105 hover:shadow-md cursor-pointer ${cat.badgeClass}`}
+                    className={`inline-flex items-center gap-2 text-[11px] md:text-[12px] font-extrabold px-4 py-2.5 rounded-xl transition-all hover:scale-[1.03] hover:shadow-md cursor-pointer border border-[var(--border-subtle)] bg-[var(--bg-0)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-indigo-500/30`}
                   >
                     {src.label}
-                    <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                    <ExternalLink className="w-3 h-3 opacity-5trabold uppercase tracking-widest ${
+                  cat.color === "indigo"  ? "text-indigo-600  dark:text-indigo-400"  :
+                  cat.color === "emerald" ? "text-emerald-600 dark:text-emerald-400" :
+                  cat.color === "teal"    ? "text-teal-600    dark:text-teal-400"    :
+                                            "text-amber-600   dark:text-amber-400"
+                }`}>
+                  {isAr ? cat.labelAr : cat.label}
+                </h4>
+              </div>
+              <div className="flex flex-wrap gap-2 md:gap-3">
+                {cat.sources.map(src => (
+                  <a
+                    key={src.label}
+                    href={src.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`Open ${src.label}`}
+                    className={`inline-flex items-center gap-2 text-[11px] md:text-[12px] font-extrabold px-4 py-2.5 rounded-xl transition-all hover:scale-[1.03] hover:shadow-md cursor-pointer border border-[var(--border-subtle)] bg-[var(--bg-0)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-indigo-500/30`}
+                  >
+                    {src.label}
+                    <ExternalLink className="w-3 h-3 opacity-50" />
                   </a>
                 ))}
               </div>
