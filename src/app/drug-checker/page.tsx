@@ -36,9 +36,7 @@ export default function DrugCheckerPage() {
   const { lang } = useLanguage();
   const isAr = lang === "ar";
 
-  useEffect(() => {
-    if (!loading && !user) router.replace("/auth/login");
-  }, [loading, user, router]);
+  
 
   const handleInput = (val: string) => {
     setInput(val);
@@ -92,7 +90,7 @@ export default function DrugCheckerPage() {
     }
   };
 
-  if (loading || !user) return null;
+  if (loading) return null;
 
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-10 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 relative">

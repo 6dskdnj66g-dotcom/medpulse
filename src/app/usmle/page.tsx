@@ -484,9 +484,7 @@ export default function USMLEPage() {
   const { addXp } = useAchievement();
   const [mode, setMode] = useState<QuestionMode | null>(null);
 
-  useEffect(() => {
-    if (!loading && !user) router.replace("/auth/login");
-  }, [loading, user, router]);
+  
   const [specialty, setSpecialty] = useState<string | null>(null);
   const [currentQ, setCurrentQ] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -553,7 +551,7 @@ export default function USMLEPage() {
 
   const pct = Math.round((score / questions.length) * 100);
 
-  if (loading || !user) return null;
+  if (loading) return null;
 
   if (!mode) {
     return (

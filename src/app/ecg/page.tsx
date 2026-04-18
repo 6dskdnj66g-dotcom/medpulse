@@ -53,14 +53,12 @@ export default function ECGPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  useEffect(() => {
-    if (!loading && !user) router.replace("/auth/login");
-  }, [loading, user, router]);
+  
 
   const { lang } = useLanguage();
   const isAr = lang === "ar";
 
-  if (loading || !user) return null;
+  if (loading) return null;
 
   const analyzeECG = async (desc?: string) => {
     const query = desc || description;

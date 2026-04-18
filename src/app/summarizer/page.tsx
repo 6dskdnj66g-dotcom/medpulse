@@ -73,9 +73,7 @@ export default function SummarizerPage() {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    if (!loading && !user) router.replace("/auth/login");
-  }, [loading, user, router]);
+  
 
   const handleAnalyze = async () => {
     if ((!inputText.trim() && !image) || isAnalyzing) return;
@@ -144,7 +142,7 @@ export default function SummarizerPage() {
     setError(null);
   };
 
-  if (loading || !user) return null;
+  if (loading) return null;
 
   return (
     <div className="max-w-7xl mx-auto p-4 md:p-10 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 relative">

@@ -43,9 +43,7 @@ export default function ClinicalNotesPage() {
   const { lang } = useLanguage();
   const isAr = lang === "ar";
 
-  useEffect(() => {
-    if (!loading && !user) router.replace("/auth/login");
-  }, [loading, user, router]);
+  
 
   const generate = async () => {
     if (!info.trim() || info.trim().length < 20) return;
@@ -82,7 +80,7 @@ export default function ClinicalNotesPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  if (loading || !user) return null;
+  if (loading) return null;
 
   return (
     <div className="max-w-7xl mx-auto p-4 md:p-10 w-full animate-in fade-in zoom-in-95 duration-700 relative">

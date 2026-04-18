@@ -87,13 +87,9 @@ export default function DashboardPage() {
     return (diff === 0 || diff === 1) ? Number(localStorage.getItem("medpulse_streak") || "0") : 0;
   });
 
-  useEffect(() => {
-    if (!isLoading && !user) {
-      router.replace("/auth/login");
-    }
-  }, [isLoading, user, router]);
+  
 
-  if (isLoading || !user) return null;
+  if (isLoading) return null;
 
   const { current: lvl, next: nextLvl } = getLevel(xp);
   const progress = nextLvl ? ((xp - lvl.xpRequired) / (nextLvl.xpRequired - lvl.xpRequired)) * 100 : 100;

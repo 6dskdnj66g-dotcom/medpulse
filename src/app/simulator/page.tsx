@@ -28,7 +28,6 @@ function SimulatorWard() {
     if (messages.length === 0) {
       startNewCase();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const speakText = (text: string) => {
@@ -347,11 +346,9 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { user, loading } = useSupabaseAuth();
 
-  useEffect(() => {
-    if (!loading && !user) router.replace("/auth/login");
-  }, [loading, user, router]);
+  
 
-  if (loading || !user) return null;
+  if (loading) return null;
   return <>{children}</>;
 }
 
