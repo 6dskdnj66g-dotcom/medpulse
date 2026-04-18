@@ -122,7 +122,7 @@ const SPECIALTIES = [
     labelAr: "الجراحة",
     color: "slate",
     iconBg: "bg-slate-500/10",
-    iconColor: "text-slate-600 dark:text-slate-400",
+    iconColor: "text-slate-600 dark:text-[var(--text-tertiary)]/70",
     borderColor: "hover:border-slate-500/40",
     articles: 2110,
     description: "Perioperative care, surgical oncology, trauma surgery, and laparoscopic techniques — Bailey & Love 28th Ed.",
@@ -281,7 +281,7 @@ function EncyclopediaHome() {
   const totalSources = SOURCE_CATEGORIES.reduce((acc, c) => acc + c.sources.length, 0);
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-700 relative" dir={dir}>
+    <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-12 animate-in fade-in zoom-in-95 duration-700 relative" dir={dir}>
 
       {/* Ambient background glows */}
       <div className="absolute top-[0%] left-[0%] w-[40%] h-[40%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[150px] pointer-events-none" />

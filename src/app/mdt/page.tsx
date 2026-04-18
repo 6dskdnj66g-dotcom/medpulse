@@ -91,7 +91,7 @@ export default function MDTPage() {
   if (loading || !user) return null;
 
   return (
-    <div className="p-4 md:p-8 max-w-[1600px] mx-auto w-full h-full md:h-[calc(100vh-100px)] flex flex-col space-y-6 md:space-y-8 overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 perspective-1000" dir={dir}>
+    <div className="p-4 md:p-8 max-w-[1600px] mx-auto w-full h-[calc(100vh-2rem)] md:h-[calc(100vh-100px)] flex flex-col space-y-6 md:space-y-8 overflow-hidden animate-in fade-in zoom-in-95 duration-700 perspective-1000" dir={dir}>
       <div className="flex justify-between items-start flex-wrap gap-4 px-2">
         <div>
           <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight flex items-center gap-4 mb-2 md:mb-3">

@@ -216,15 +216,15 @@ function SimulatorWard() {
             </div>
             <div className="space-y-4 relative z-10">
               <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
-                <span className="text-[11px] text-slate-400 font-bold uppercase tracking-widest block mb-2">Heart Rate (bpm)</span>
+                <span className="text-[11px] text-[var(--text-tertiary)]/70 font-bold uppercase tracking-widest block mb-2">Heart Rate (bpm)</span>
                 <span className="text-3xl font-black text-rose-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(244,63,94,0.4)]">---</span>
               </div>
               <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
-                <span className="text-[11px] text-slate-400 font-bold uppercase tracking-widest block mb-2">Blood Pressure (mmHg)</span>
+                <span className="text-[11px] text-[var(--text-tertiary)]/70 font-bold uppercase tracking-widest block mb-2">Blood Pressure (mmHg)</span>
                 <span className="text-3xl font-black text-sky-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(56,189,248,0.4)]">---/---</span>
               </div>
               <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
-                <span className="text-[11px] text-slate-400 font-bold uppercase tracking-widest block mb-2">SpO2 (%)</span>
+                <span className="text-[11px] text-[var(--text-tertiary)]/70 font-bold uppercase tracking-widest block mb-2">SpO2 (%)</span>
                 <span className="text-3xl font-black text-indigo-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(129,140,248,0.4)]">--%</span>
               </div>
             </div>

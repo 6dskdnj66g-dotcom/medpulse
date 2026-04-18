@@ -61,9 +61,9 @@ function MetricCard({ label, value, sub, icon: Icon, color, trend }: {
           </div>
         )}
       </div>
-      <p className="text-3xl font-black text-slate-900 dark:text-white mb-1">{value}</p>
-      <p className="text-xs font-black uppercase tracking-widest text-slate-500">{label}</p>
-      {sub && <p className="text-xs text-slate-400 mt-1">{sub}</p>}
+      <p className="text-3xl font-black text-[var(--text-primary)] mb-1">{value}</p>
+      <p className="text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]">{label}</p>
+      {sub && <p className="text-xs text-[var(--text-tertiary)]/70 mt-1">{sub}</p>}
     </div>
   );
 }
@@ -74,13 +74,13 @@ function BarChart({ data, title }: { data: Record<string, number>; title: string
   const max = Math.max(...entries.map(([, v]) => v));
 
   return (
-    <div className="premium-card p-6">
-      <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-5">{title}</h3>
+    <div className="medpulse-card glass level-1 p-6">
+      <h3 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-5">{title}</h3>
       <div className="space-y-3">
         {entries.map(([label, count]) => (
           <div key={label} className="flex items-center gap-3">
-            <span className="text-xs font-bold text-slate-500 w-24 truncate text-right">{label}</span>
-            <div className="flex-1 h-8 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden">
+            <span className="text-xs font-bold text-[var(--text-tertiary)] w-24 truncate text-right">{label}</span>
+            <div className="flex-1 h-8 bg-[var(--bg-2)] rounded-xl overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-indigo-500 to-teal-500 rounded-xl flex items-center justify-end pr-3 transition-all duration-1000"
                 style={{ width: `${Math.round((count / max) * 100)}%` }}
@@ -91,7 +91,7 @@ function BarChart({ data, title }: { data: Record<string, number>; title: string
           </div>
         ))}
         {entries.length === 0 && (
-          <p className="text-center text-slate-400 text-sm py-4">لا توجد بيانات بعد</p>
+          <p className="text-center text-[var(--text-tertiary)]/70 text-sm py-4">لا توجد بيانات بعد</p>
         )}
       </div>
     </div>
@@ -106,17 +106,17 @@ function LiveFeedRow({ visit }: { visit: { page: string; country: string; device
   const timeAgo = Math.round((Date.now() - when.getTime()) / 60000);
 
   return (
-    <div className="flex items-center gap-4 py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
+    <div className="flex items-center gap-4 py-3 border-b border-[var(--border-subtle)] last:border-0">
       <div className={`w-2 h-2 rounded-full flex-shrink-0 ${visit.is_registered ? "bg-emerald-400 animate-pulse" : "bg-slate-300"}`} />
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-bold text-slate-800 dark:text-white truncate">{visit.page}</p>
-        <p className="text-xs text-slate-400">{visit.country || "—"} · {deviceIcon} {visit.browser}</p>
+        <p className="text-sm font-bold text-[var(--text-primary)] truncate">{visit.page}</p>
+        <p className="text-xs text-[var(--text-tertiary)]/70">{visit.country || "—"} · {deviceIcon} {visit.browser}</p>
       </div>
       <div className="text-right">
-        <span className={`text-[10px] font-black px-2 py-1 rounded-full ${visit.is_registered ? "bg-emerald-500/10 text-emerald-600" : "bg-slate-100 dark:bg-slate-800 text-slate-500"}`}>
+        <span className={`text-[10px] font-black px-2 py-1 rounded-full ${visit.is_registered ? "bg-emerald-500/10 text-emerald-600" : "bg-[var(--bg-2)] text-[var(--text-tertiary)]"}`}>
           {visit.is_registered ? "مسجل" : "زائر"}
         </span>
-        <p className="text-[10px] text-slate-400 mt-1">{timeAgo}m ago</p>
+        <p className="text-[10px] text-[var(--text-tertiary)]/70 mt-1">{timeAgo}m ago</p>
       </div>
     </div>
   );
@@ -183,14 +183,14 @@ export default function AdminDashboard() {
             <Shield className="w-7 h-7 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">لوحة تحكم الأدمن</h1>
-            <p className="text-slate-500 text-sm mt-1">MedPulse AI — إحصائيات المنصة في الوقت الفعلي</p>
+            <h1 className="text-3xl font-black text-[var(--text-primary)]">لوحة تحكم الأدمن</h1>
+            <p className="text-[var(--text-tertiary)] text-sm mt-1">MedPulse AI — إحصائيات المنصة في الوقت الفعلي</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={fetchData}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-black hover:bg-slate-200 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--bg-2)] text-slate-600 dark:text-[var(--text-tertiary)]/70 text-xs font-black hover:bg-slate-200 transition-all"
           >
             <RefreshCw className={`w-4 h-4 ${fetching ? "animate-spin" : ""}`} />
             تحديث
@@ -233,7 +233,7 @@ export default function AdminDashboard() {
               className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-black transition-all ${
                 activeTab === tab.id
                   ? "bg-gradient-to-r from-indigo-600 to-teal-600 text-white shadow-lg shadow-indigo-500/20"
-                  : "bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white"
+                  : "bg-[var(--bg-2)] text-[var(--text-tertiary)] hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -287,28 +287,28 @@ export default function AdminDashboard() {
 
           {/* Sources + XP summary */}
           <div className="grid md:grid-cols-3 gap-4 mb-8">
-            <div className="premium-card p-8 md:col-span-1 text-center bg-gradient-to-br from-indigo-500/5 to-teal-500/5">
-              <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">إجمالي XP الممنوح</p>
+            <div className="medpulse-card glass level-1 p-8 md:col-span-1 text-center bg-gradient-to-br from-indigo-500/5 to-teal-500/5">
+              <p className="text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-3">إجمالي XP الممنوح</p>
               <p className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-teal-500 mb-2">
                 {stats?.total_xp_awarded ? (stats.total_xp_awarded / 1000).toFixed(1) + "K" : "—"}
               </p>
-              <p className="text-slate-500 text-sm font-bold">نقاط XP على المنصة</p>
+              <p className="text-[var(--text-tertiary)] text-sm font-bold">نقاط XP على المنصة</p>
             </div>
-            <div className="premium-card p-8 md:col-span-1 text-center bg-gradient-to-br from-emerald-500/5 to-sky-500/5">
-              <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">المصادر الطبية</p>
+            <div className="medpulse-card glass level-1 p-8 md:col-span-1 text-center bg-gradient-to-br from-emerald-500/5 to-sky-500/5">
+              <p className="text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-3">المصادر الطبية</p>
               <p className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-emerald-500 to-sky-500 mb-2">
                 {stats?.total_medical_sources ?? "200+"}
               </p>
-              <p className="text-slate-500 text-sm font-bold">مصدر عالمي وعربي</p>
+              <p className="text-[var(--text-tertiary)] text-sm font-bold">مصدر عالمي وعربي</p>
             </div>
-            <div className="premium-card p-8 md:col-span-1 text-center bg-gradient-to-br from-amber-500/5 to-rose-500/5">
-              <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">معدل التحويل</p>
+            <div className="medpulse-card glass level-1 p-8 md:col-span-1 text-center bg-gradient-to-br from-amber-500/5 to-rose-500/5">
+              <p className="text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-3">معدل التحويل</p>
               <p className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-amber-500 to-rose-500 mb-2">
                 {stats && stats.visits_this_week > 0
                   ? `${Math.round((stats.total_registered_users / stats.visits_this_week) * 100)}%`
                   : "—"}
               </p>
-              <p className="text-slate-500 text-sm font-bold">زائر → مسجل</p>
+              <p className="text-[var(--text-tertiary)] text-sm font-bold">زائر → مسجل</p>
             </div>
           </div>
         </>
@@ -329,9 +329,9 @@ export default function AdminDashboard() {
           />
 
           {/* Live Feed */}
-          <div className="premium-card p-6 md:col-span-2">
+          <div className="medpulse-card glass level-1 p-6 md:col-span-2">
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-sm font-black uppercase tracking-widest text-slate-500">🔴 آخر الزيارات</h3>
+              <h3 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)]">🔴 آخر الزيارات</h3>
               <div className="flex items-center gap-1.5 text-xs font-black text-emerald-600">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 تحديث كل 30 ثانية
@@ -342,7 +342,7 @@ export default function AdminDashboard() {
                 <LiveFeedRow key={i} visit={v} />
               ))}
               {(!data?.recentVisits || data.recentVisits.length === 0) && (
-                <div className="text-center py-12 text-slate-400">
+                <div className="text-center py-12 text-[var(--text-tertiary)]/70">
                   <Globe className="w-10 h-10 mx-auto mb-3 opacity-30" />
                   <p className="font-bold">لا توجد زيارات بعد — قم بتفعيل Supabase</p>
                 </div>
@@ -351,8 +351,8 @@ export default function AdminDashboard() {
           </div>
 
           {/* Devices breakdown */}
-          <div className="premium-card p-6">
-            <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-5">📱 نوع الأجهزة</h3>
+          <div className="medpulse-card glass level-1 p-6">
+            <h3 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-5">📱 نوع الأجهزة</h3>
             {(() => {
               const devices = data?.recentVisits?.reduce((acc: Record<string, number>, v) => {
                 if (v.device_type) acc[v.device_type] = (acc[v.device_type] || 0) + 1;
@@ -366,8 +366,8 @@ export default function AdminDashboard() {
               ];
               return types.map(({ key, label, icon: Icon, color }) => (
                 <div key={key} className="flex items-center gap-4 mb-4">
-                  <Icon className="w-4 h-4 text-slate-400" />
-                  <div className="flex-1 h-8 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden">
+                  <Icon className="w-4 h-4 text-[var(--text-tertiary)]/70" />
+                  <div className="flex-1 h-8 bg-[var(--bg-2)] rounded-xl overflow-hidden">
                     <div
                       className={`h-full bg-gradient-to-r ${color} rounded-xl flex items-center justify-end pr-3 transition-all duration-1000`}
                       style={{ width: `${Math.round(((devices[key] || 0) / total) * 100)}%` }}
@@ -375,15 +375,15 @@ export default function AdminDashboard() {
                       <span className="text-[10px] font-black text-white">{Math.round(((devices[key] || 0) / total) * 100)}%</span>
                     </div>
                   </div>
-                  <span className="text-xs font-black text-slate-500 w-16">{label}</span>
+                  <span className="text-xs font-black text-[var(--text-tertiary)] w-16">{label}</span>
                 </div>
               ));
             })()}
           </div>
 
           {/* Registered vs Guest */}
-          <div className="premium-card p-6">
-            <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-5">👤 مسجل مقابل ضيف</h3>
+          <div className="medpulse-card glass level-1 p-6">
+            <h3 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-5">👤 مسجل مقابل ضيف</h3>
             {(() => {
               const registered = data?.recentVisits?.filter(v => v.is_registered).length || 0;
               const guest = (data?.recentVisits?.length || 0) - registered;
@@ -395,11 +395,11 @@ export default function AdminDashboard() {
                     { label: "زوار ضيوف", count: guest, color: "from-slate-300 to-slate-400", emoji: "👀" },
                   ].map(({ label, count, color, emoji }) => (
                     <div key={label}>
-                      <div className="flex justify-between text-xs font-black text-slate-500 mb-2">
+                      <div className="flex justify-between text-xs font-black text-[var(--text-tertiary)] mb-2">
                         <span>{emoji} {label}</span>
                         <span>{count} ({Math.round((count / total) * 100)}%)</span>
                       </div>
-                      <div className="h-8 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden">
+                      <div className="h-8 bg-[var(--bg-2)] rounded-xl overflow-hidden">
                         <div
                           className={`h-full bg-gradient-to-r ${color} rounded-xl transition-all duration-1000`}
                           style={{ width: `${Math.round((count / total) * 100)}%` }}
@@ -418,11 +418,11 @@ export default function AdminDashboard() {
       {activeTab === "sources" && (
         <div className="space-y-6">
           {/* Seed action */}
-          <div className="premium-card p-8 bg-gradient-to-br from-indigo-500/5 to-teal-500/5">
+          <div className="medpulse-card glass level-1 p-8 bg-gradient-to-br from-indigo-500/5 to-teal-500/5">
             <div className="flex items-start justify-between">
               <div>
-                <h2 className="text-xl font-black text-slate-900 dark:text-white mb-2">🌱 نقل المصادر إلى قاعدة البيانات</h2>
-                <p className="text-sm text-slate-500 font-bold mb-4">
+                <h2 className="text-xl font-black text-[var(--text-primary)] mb-2">🌱 نقل المصادر إلى قاعدة البيانات</h2>
+                <p className="text-sm text-[var(--text-tertiary)] font-bold mb-4">
                   انقر الزر لنقل كل 200+ مصدر طبي عالمي وعربي إلى Supabase. هذه العملية تستغرق ثوانٍ فقط.
                 </p>
                 {seedResult && (
@@ -454,34 +454,34 @@ export default function AdminDashboard() {
               <div key={s.label} className={`premium-card p-6 text-center border border-${s.color}-500/20 bg-${s.color}-500/5`}>
                 <p className="text-3xl mb-2">{s.emoji}</p>
                 <p className={`text-2xl font-black text-${s.color}-600 dark:text-${s.color}-400`}>{s.count}</p>
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-1">{s.label}</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mt-1">{s.label}</p>
               </div>
             ))}
           </div>
 
           {/* Quick links */}
-          <div className="premium-card p-6">
-            <h3 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">🔗 إجراءات سريعة</h3>
+          <div className="medpulse-card glass level-1 p-6">
+            <h3 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-4">🔗 إجراءات سريعة</h3>
             <div className="grid md:grid-cols-3 gap-3">
               <Link href="/library" className="flex items-center gap-3 p-4 rounded-2xl bg-indigo-500/10 hover:bg-indigo-500/20 transition-all">
                 <BookOpen className="w-5 h-5 text-indigo-600" />
                 <div>
                   <p className="text-sm font-black text-indigo-700 dark:text-indigo-300">مكتبة المصادر</p>
-                  <p className="text-xs text-slate-400">عرض + بحث جميع المصادر</p>
+                  <p className="text-xs text-[var(--text-tertiary)]/70">عرض + بحث جميع المصادر</p>
                 </div>
               </Link>
               <Link href="/encyclopedia" className="flex items-center gap-3 p-4 rounded-2xl bg-teal-500/10 hover:bg-teal-500/20 transition-all">
                 <Globe className="w-5 h-5 text-teal-600" />
                 <div>
                   <p className="text-sm font-black text-teal-700 dark:text-teal-300">الموسوعة الطبية</p>
-                  <p className="text-xs text-slate-400">عرض التخصصات والمقالات</p>
+                  <p className="text-xs text-[var(--text-tertiary)]/70">عرض التخصصات والمقالات</p>
                 </div>
               </Link>
               <Link href="/progress" className="flex items-center gap-3 p-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 transition-all">
                 <TrendingUp className="w-5 h-5 text-amber-600" />
                 <div>
                   <p className="text-sm font-black text-amber-700 dark:text-amber-300">تتبع التقدم</p>
-                  <p className="text-xs text-slate-400">XP وإحصائيات المستخدمين</p>
+                  <p className="text-xs text-[var(--text-tertiary)]/70">XP وإحصائيات المستخدمين</p>
                 </div>
               </Link>
             </div>

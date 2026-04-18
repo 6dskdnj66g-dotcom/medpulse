@@ -222,12 +222,12 @@ export default function ECGPage() {
                   )}
                 </div>
               </div>
-              <div id="ecg-content" className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-black prose-strong:text-rose-600 overflow-y-auto max-h-[65vh] p-4 bg-white dark:bg-slate-900 rounded-xl">
+              <div id="ecg-content" className="prose prose-sm dark:prose-invert max-w-none prose-headings:font-black prose-strong:text-rose-600 overflow-y-auto max-h-[65vh] p-4 bg-[var(--bg-0)] rounded-xl">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{result}</ReactMarkdown>
               </div>
             </div>
           ) : (
-            <div className="h-full min-h-64 flex flex-col items-center justify-center text-slate-400 bg-slate-50/50 dark:bg-slate-800/20 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800 p-12">
+            <div className="h-full min-h-64 flex flex-col items-center justify-center text-[var(--text-tertiary)]/70 bg-slate-50/50 dark:bg-slate-800/20 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800 p-12">
               <Activity className="w-16 h-16 opacity-20 mb-4" />
               <p className="font-black text-lg">Awaiting ECG Input</p>
               <p className="text-sm mt-2 text-center">Select a preset scenario or<br />describe the ECG findings manually</p>

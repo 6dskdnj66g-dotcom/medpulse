@@ -71,7 +71,7 @@ export default function LandingPage() {
     <div className="w-full" dir={isAr ? "rtl" : "ltr"}>
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden animate-in fade-in duration-1000">
         {/* Background gradient blobs */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl" />
@@ -90,7 +90,7 @@ export default function LandingPage() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] text-slate-900 dark:text-white max-w-5xl">
+            <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] text-[var(--text-primary)] max-w-5xl">
               {isAr ? (
                 <>
                   منصة الطب<br />
@@ -105,7 +105,7 @@ export default function LandingPage() {
               )}
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-medium max-w-3xl leading-relaxed text-balance">
+            <p className="text-xl md:text-2xl text-[var(--text-tertiary)] dark:text-[var(--text-tertiary)]/70 font-medium max-w-3xl leading-relaxed text-balance">
               {isAr
                 ? "منصة التعليم الطبي الذكية — محاكاة سريرية، مناظرات MDT، تحليل ECG، فحص الأدوية، وأكثر — كل ذلك مدعوم بـ Gemini AI."
                 : "The AI-powered medical education platform — OSCE simulations, MDT debates, ECG analysis, drug checking, and more — all powered by Gemini AI."}
@@ -118,7 +118,7 @@ export default function LandingPage() {
                 <ArrowRight className={`w-5 h-5 ${isAr ? "rotate-180" : ""}`} />
               </Link>
               <Link href="/auth/login"
-                className="py-5 px-10 rounded-3xl text-lg font-black border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-500 text-slate-700 dark:text-slate-300 transition-all">
+                className="py-5 px-10 rounded-3xl text-lg font-black border-2 border-[var(--border-subtle)] hover:border-indigo-500 text-[var(--text-secondary)] dark:text-slate-300 transition-all">
                 {isAr ? "تسجيل الدخول" : "Sign In"}
               </Link>
             </div>
@@ -132,7 +132,7 @@ export default function LandingPage() {
               ].map(b => {
                 const Icon = b.icon;
                 return (
-                  <div key={b.textEn} className="flex items-center gap-2 text-slate-400">
+                  <div key={b.textEn} className="flex items-center gap-2 text-[var(--text-tertiary)]/70">
                     <Icon className="w-4 h-4" />
                     <span className="text-xs font-bold">{isAr ? b.textAr : b.textEn}</span>
                   </div>
@@ -144,13 +144,13 @@ export default function LandingPage() {
       </section>
 
       {/* ── Stats Bar ── */}
-      <section className="border-y border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 py-10">
+      <section className="border-y border-[var(--border-subtle)] bg-[var(--bg-1)] py-10">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {STATS.map(s => (
               <div key={s.value} className="text-center">
                 <p className="text-4xl font-black text-indigo-600 dark:text-indigo-400">{s.value}</p>
-                <p className="text-xs font-black uppercase tracking-widest text-slate-400 mt-1">
+                <p className="text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mt-1">
                   {isAr ? s.labelAr : s.labelEn}
                 </p>
               </div>
@@ -165,10 +165,10 @@ export default function LandingPage() {
           <p className="text-[10px] font-black uppercase tracking-widest text-indigo-500 mb-3">
             {isAr ? "الميزات" : "Features"}
           </p>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-slate-900 dark:text-white">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-[var(--text-primary)]">
             {isAr ? "كل ما تحتاجه في مكان واحد" : "Everything You Need"}
           </h2>
-          <p className="text-slate-500 mt-4 max-w-2xl mx-auto">
+          <p className="text-[var(--text-tertiary)] mt-4 max-w-2xl mx-auto">
             {isAr
               ? "منصة شاملة تجمع أدوات التعليم الطبي الذكية في واجهة واحدة متكاملة."
               : "A complete platform combining AI-powered medical learning tools in one seamless interface."}
@@ -179,14 +179,14 @@ export default function LandingPage() {
           {FEATURES.map(f => {
             const Icon = f.icon;
             return (
-              <div key={f.titleEn} className="premium-card p-6 group hover:scale-[1.02] transition-all">
+              <div key={f.titleEn} className="medpulse-card glass level-1 p-6 group hover:scale-[1.02] transition-all">
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 ${colorMap[f.color]}`}>
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-base font-black text-slate-900 dark:text-white mb-2">
+                <h3 className="text-base font-black text-[var(--text-primary)] mb-2">
                   {isAr ? f.titleAr : f.titleEn}
                 </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <p className="text-sm text-[var(--text-tertiary)] leading-relaxed">
                   {isAr ? f.descAr : f.descEn}
                 </p>
               </div>
@@ -196,12 +196,12 @@ export default function LandingPage() {
       </section>
 
       {/* ── How It Works ── */}
-      <section className="bg-slate-50 dark:bg-slate-900/50 py-24">
+      <section className="bg-[var(--bg-1)] py-24">
         <div className="max-w-4xl mx-auto px-6 md:px-10 text-center">
           <p className="text-[10px] font-black uppercase tracking-widest text-indigo-500 mb-3">
             {isAr ? "كيف تعمل" : "How It Works"}
           </p>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white mb-16">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-[var(--text-primary)] mb-16">
             {isAr ? "ثلاث خطوات للإتقان" : "Three Steps to Mastery"}
           </h2>
           <div className="grid md:grid-cols-3 gap-10">
@@ -214,8 +214,8 @@ export default function LandingPage() {
                 <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-xl shadow-indigo-500/20">
                   {s.step}
                 </div>
-                <h3 className="text-lg font-black text-slate-900 dark:text-white">{isAr ? s.titleAr : s.titleEn}</h3>
-                <p className="text-sm text-slate-500 text-balance leading-relaxed">{isAr ? s.descAr : s.descEn}</p>
+                <h3 className="text-lg font-black text-[var(--text-primary)]">{isAr ? s.titleAr : s.titleEn}</h3>
+                <p className="text-sm text-[var(--text-tertiary)] text-balance leading-relaxed">{isAr ? s.descAr : s.descEn}</p>
               </div>
             ))}
           </div>
@@ -230,10 +230,10 @@ export default function LandingPage() {
               <Shield className="w-8 h-8 text-emerald-500" />
             </div>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-[var(--text-primary)] mb-4">
             {isAr ? "أمان وخصوصية على أعلى مستوى" : "Enterprise-Grade Security"}
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-[var(--text-tertiary)] max-w-2xl mx-auto mb-8 leading-relaxed">
             {isAr
               ? "جميع البيانات مشفرة بـ AES-256 ومتوافقة مع معايير HIPAA و GDPR الدولية لعام 2026. لا مشاركة بيانات مع أطراف ثالثة."
               : "All data encrypted with AES-256, fully compliant with HIPAA & GDPR 2026 international standards. Zero third-party data sharing."}

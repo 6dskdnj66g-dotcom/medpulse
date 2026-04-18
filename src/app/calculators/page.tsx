@@ -100,14 +100,14 @@ function CalcResultWrapper({ id, title, score, risk, label, color, rawData }: {
 function CField({ label, value, onChange, min = 0, max = 100 }: { label: string; value: number; onChange: (v: number) => void; min?: number; max?: number }) {
   return (
     <div>
-      <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">{label}</label>
+      <label className="block text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-2">{label}</label>
       <input
         type="number"
         value={value}
         onChange={e => onChange(Number(e.target.value))}
         min={min}
         max={max}
-        className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-3 text-slate-800 dark:text-white font-bold focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
+        className="w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-[var(--text-primary)] font-bold focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all"
       />
     </div>
   );
@@ -120,7 +120,7 @@ function CCheck({ label, value, onChange }: { label: string; value: boolean; onC
       className={`flex items-center gap-3 p-4 rounded-2xl border transition-all text-left w-full ${
         value
           ? "bg-indigo-500/10 border-indigo-500/40 text-indigo-700 dark:text-indigo-300"
-          : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400"
+          : "bg-[var(--bg-0)] border-[var(--border-subtle)] text-slate-600 dark:text-[var(--text-tertiary)]/70"
       }`}
     >
       <div className={`w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 ${value ? "bg-indigo-500 border-indigo-500" : "border-slate-300"}`}>
@@ -163,7 +163,7 @@ function CURB65Calculator() {
         risk={`${risk.label} — ${risk.management}`}
         rawData={{ confusion, bun, rr, bp, age }}
       />
-      <p className="text-xs text-slate-400 font-bold">[Evidence: IDSA/ATS 2026 Community-Acquired Pneumonia Guidelines]</p>
+      <p className="text-xs text-[var(--text-tertiary)]/70 font-bold">[Evidence: IDSA/ATS 2026 Community-Acquired Pneumonia Guidelines]</p>
     </div>
   );
 }
@@ -207,7 +207,7 @@ function CHADSVASCCalculator() {
           rawData={{ hf, htn, age75, dm, stroke, vascular, age65, female }}
         />
       </div>
-      <p className="text-xs text-slate-400 font-bold">[Evidence: ESC 2026 Atrial Fibrillation Guidelines]</p>
+      <p className="text-xs text-[var(--text-tertiary)]/70 font-bold">[Evidence: ESC 2026 Atrial Fibrillation Guidelines]</p>
     </div>
   );
 }
@@ -250,7 +250,7 @@ function WellsDVTCalculator() {
         risk={`${risk.label} — ${risk.rec}`}
         rawData={checks}
       />
-      <p className="text-xs text-slate-400 font-bold">[Evidence: CHEST/ISTH Antithrombotic Guidelines 2026]</p>
+      <p className="text-xs text-[var(--text-tertiary)]/70 font-bold">[Evidence: CHEST/ISTH Antithrombotic Guidelines 2026]</p>
     </div>
   );
 }
@@ -288,7 +288,7 @@ function WellsPECalculator() {
         risk={`${risk.label} — ${risk.rec}`}
         rawData={checks}
       />
-      <p className="text-xs text-slate-400 font-bold">[Evidence: European Society of Cardiology PE Guidelines 2026]</p>
+      <p className="text-xs text-[var(--text-tertiary)]/70 font-bold">[Evidence: European Society of Cardiology PE Guidelines 2026]</p>
     </div>
   );
 }
@@ -325,7 +325,7 @@ function MELDCalculator() {
           rawData={{ creatinine, bilirubin, inr, sodium }}
         />
       </div>
-      <p className="text-xs text-slate-400 font-bold">[Evidence: AASLD/UNOS MELD-Na 2026 Guidelines]</p>
+      <p className="text-xs text-[var(--text-tertiary)]/70 font-bold">[Evidence: AASLD/UNOS MELD-Na 2026 Guidelines]</p>
     </div>
   );
 }
@@ -362,14 +362,14 @@ function EGFRCalculator() {
         risk={`CKD Stage: ${stage.s}`}
         rawData={{ age, creatinine, female }}
       />
-      <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-4 text-xs text-slate-500 space-y-1">
-        <p className="font-black text-slate-700 dark:text-slate-300 mb-2">Drug Dose Adjustment Thresholds:</p>
+      <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-4 text-xs text-[var(--text-tertiary)] space-y-1">
+        <p className="font-black text-[var(--text-secondary)] dark:text-slate-300 mb-2">Drug Dose Adjustment Thresholds:</p>
         <p>• Metformin: Avoid if eGFR &lt;30, reduce if &lt;45</p>
         <p>• DOACs: Check individual agent — most avoid if eGFR &lt;15-30</p>
         <p>• NSAIDS: Avoid if eGFR &lt;30</p>
         <p>• Contrast: Extra caution if eGFR &lt;45</p>
       </div>
-      <p className="text-xs text-slate-400 font-bold">[Evidence: KDIGO CKD Guidelines 2026 · CKD-EPI 2021 Equation]</p>
+      <p className="text-xs text-[var(--text-tertiary)]/70 font-bold">[Evidence: KDIGO CKD Guidelines 2026 · CKD-EPI 2021 Equation]</p>
     </div>
   );
 }
@@ -404,15 +404,15 @@ function BMICalculator() {
       />
       <div className="grid grid-cols-2 gap-4 text-sm">
         <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-4">
-          <p className="text-xs font-black uppercase text-slate-400 mb-1">Ideal Body Weight (Male)</p>
-          <p className="font-black text-slate-800 dark:text-white">{Math.round(ibw(false))} kg</p>
+          <p className="text-xs font-black uppercase text-[var(--text-tertiary)]/70 mb-1">Ideal Body Weight (Male)</p>
+          <p className="font-black text-[var(--text-primary)]">{Math.round(ibw(false))} kg</p>
         </div>
         <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-4">
-          <p className="text-xs font-black uppercase text-slate-400 mb-1">Ideal Body Weight (Female)</p>
-          <p className="font-black text-slate-800 dark:text-white">{Math.round(ibw(true))} kg</p>
+          <p className="text-xs font-black uppercase text-[var(--text-tertiary)]/70 mb-1">Ideal Body Weight (Female)</p>
+          <p className="font-black text-[var(--text-primary)]">{Math.round(ibw(true))} kg</p>
         </div>
       </div>
-      <p className="text-xs text-slate-400 font-bold">[Evidence: WHO BMI Classification 2026]</p>
+      <p className="text-xs text-[var(--text-tertiary)]/70 font-bold">[Evidence: WHO BMI Classification 2026]</p>
     </div>
   );
 }
@@ -448,14 +448,14 @@ function NIHSSCalculator() {
     <div className="space-y-6">
       <div className="grid gap-3">
         {domains.map(d => (
-          <div key={d.key} className="flex items-center gap-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
-            <p className="flex-1 text-sm font-bold text-slate-700 dark:text-slate-300">{d.label}</p>
+          <div key={d.key} className="flex items-center gap-4 bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-2xl p-4">
+            <p className="flex-1 text-sm font-bold text-[var(--text-secondary)] dark:text-slate-300">{d.label}</p>
             <div className="flex gap-1">
               {Array.from({ length: d.max + 1 }, (_, i) => (
                 <button
                   key={i}
                   onClick={() => setScores(prev => ({ ...prev, [d.key]: i }))}
-                  className={`w-8 h-8 rounded-xl text-xs font-black transition-all ${scores[d.key] === i ? "bg-indigo-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-500 hover:bg-indigo-100"}`}
+                  className={`w-8 h-8 rounded-xl text-xs font-black transition-all ${scores[d.key] === i ? "bg-indigo-500 text-white" : "bg-[var(--bg-2)] text-[var(--text-tertiary)] hover:bg-indigo-100"}`}
                 >
                   {i}
                 </button>
@@ -473,7 +473,7 @@ function NIHSSCalculator() {
         risk={sev.label}
         rawData={scores}
       />
-      <p className="text-xs text-slate-400 font-bold">[Evidence: AHA/ASA Stroke Guidelines 2026]</p>
+      <p className="text-xs text-[var(--text-tertiary)]/70 font-bold">[Evidence: AHA/ASA Stroke Guidelines 2026]</p>
     </div>
   );
 }

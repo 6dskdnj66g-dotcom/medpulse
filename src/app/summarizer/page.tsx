@@ -194,7 +194,7 @@ export default function SummarizerPage() {
         <div className="flex flex-col medpulse-card glass level-1 border-[var(--border-subtle)] shadow-xl overflow-hidden h-full">
           <div className="bg-[var(--bg-1)] border-b border-[var(--border-subtle)] px-5 py-4 flex justify-between items-center bg-opacity-80 backdrop-blur-md">
             <span className="flex items-center space-x-3 text-[13px] font-extrabold uppercase tracking-widest text-[var(--text-primary)]">
-              <ClipboardList className="w-4 h-4 text-slate-400" />
+              <ClipboardList className="w-4 h-4 text-[var(--text-tertiary)]/70" />
               <span>{isAr ? "المدخل السريري" : "Clinical Source Input"}</span>
             </span>
             <div className="flex items-center space-x-3">
@@ -362,7 +362,7 @@ export default function SummarizerPage() {
 
                 {/* Chief Complaint */}
                 {result.chiefComplaint && (
-                  <ResultSection icon={Stethoscope} title="Chief Complaint" colorClass="text-slate-700 dark:text-slate-300" bgClass="bg-[var(--bg-1)] border-[var(--border-subtle)] shadow-sm">
+                  <ResultSection icon={Stethoscope} title="Chief Complaint" colorClass="text-[var(--text-secondary)] dark:text-slate-300" bgClass="bg-[var(--bg-1)] border-[var(--border-subtle)] shadow-sm">
                     {result.chiefComplaint}
                   </ResultSection>
                 )}
