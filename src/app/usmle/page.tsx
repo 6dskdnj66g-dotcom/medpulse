@@ -557,49 +557,52 @@ export default function USMLEPage() {
 
   if (!mode) {
     return (
-      <div className="max-w-4xl mx-auto p-6 md:p-10 w-full page-transition">
+      <div className="max-w-5xl mx-auto p-4 md:p-10 w-full animate-in fade-in zoom-in-95 duration-700 relative">
+      {/* Ambient background glows */}
+      <div className="absolute top-[10%] right-[10%] w-[30%] h-[30%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[20%] left-[5%] w-[40%] h-[40%] bg-[var(--color-vital-cyan)]/5 rounded-full blur-[150px] pointer-events-none" />
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl">
               <Trophy className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-black text-slate-900 dark:text-white">USMLE Clinical Mode</h1>
-              <p className="text-slate-500 text-sm">Step 2 CK Style Questions · {QUESTION_BANK.length} Questions · Evidence-Based 2026</p>
+              <h1 className="text-3xl font-black text-[var(--text-primary)]">USMLE Clinical Mode</h1>
+              <p className="text-[var(--text-tertiary)] text-sm">Step 2 CK Style Questions · {QUESTION_BANK.length} Questions · Evidence-Based 2026</p>
             </div>
           </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <button onClick={() => startExam("mixed")} className="premium-card p-8 text-center group hover:border-indigo-500/50 transition-all">
+          <button onClick={() => startExam("mixed")} className="medpulse-card glass level-1 p-8 text-center group hover:border-indigo-500/50 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] hover:-translate-y-1 transition-all duration-500">
             <Brain className="w-12 h-12 text-indigo-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">Mixed Mode</h3>
-            <p className="text-sm text-slate-500">All specialties, random order</p>
+            <h3 className="text-lg font-black text-[var(--text-primary)] mb-2">Mixed Mode</h3>
+            <p className="text-sm text-[var(--text-tertiary)]">All specialties, random order</p>
             <p className="text-xs font-black text-indigo-500 mt-2">{QUESTION_BANK.length} Questions</p>
           </button>
-          <button onClick={() => { setMode("by-specialty"); setSpecialty(null); }} className="premium-card p-8 text-center group hover:border-teal-500/50 transition-all">
+          <button onClick={() => { setMode("by-specialty"); setSpecialty(null); }} className="medpulse-card glass level-1 p-8 text-center group hover:border-teal-500/50 hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1 transition-all duration-500">
             <BookOpen className="w-12 h-12 text-teal-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">By Specialty</h3>
-            <p className="text-sm text-slate-500">Focus on one discipline</p>
+            <h3 className="text-lg font-black text-[var(--text-primary)] mb-2">By Specialty</h3>
+            <p className="text-sm text-[var(--text-tertiary)]">Focus on one discipline</p>
             <p className="text-xs font-black text-teal-500 mt-2">{specialties.length} Specialties</p>
           </button>
-          <button onClick={() => startExam("exam")} className="premium-card p-8 text-center group hover:border-rose-500/50 transition-all">
+          <button onClick={() => startExam("exam")} className="medpulse-card glass level-1 p-8 text-center group hover:border-rose-500/50 hover:shadow-[0_0_30px_rgba(244,63,94,0.15)] hover:-translate-y-1 transition-all duration-500">
             <Clock className="w-12 h-12 text-rose-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">Exam Mode</h3>
-            <p className="text-sm text-slate-500">Timed, NBME-style</p>
+            <h3 className="text-lg font-black text-[var(--text-primary)] mb-2">Exam Mode</h3>
+            <p className="text-sm text-[var(--text-tertiary)]">Timed, NBME-style</p>
             <p className="text-xs font-black text-rose-500 mt-2">90 sec/question</p>
           </button>
         </div>
 
         {mode === "by-specialty" && !specialty && (
-          <div className="premium-card p-6">
-            <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Choose Specialty</h2>
+          <div className="medpulse-card glass level-1 p-6">
+            <h2 className="text-sm font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-4">Choose Specialty</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
               {specialties.map(sp => (
                 <button key={sp} onClick={() => startExam("by-specialty", sp)}
-                  className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-indigo-500 text-left transition-all group">
+                  className="p-4 rounded-2xl bg-[var(--bg-0)] border border-[var(--border-subtle)] hover:border-indigo-500 text-left transition-all group">
                   <h4 className="font-black text-slate-800 dark:text-white group-hover:text-indigo-600 transition-colors">{sp}</h4>
-                  <p className="text-xs text-slate-400 mt-1">{QUESTION_BANK.filter(q => q.specialty === sp).length} questions</p>
+                  <p className="text-xs text-[var(--text-tertiary)]/70 mt-1">{QUESTION_BANK.filter(q => q.specialty === sp).length} questions</p>
                 </button>
               ))}
             </div>
@@ -613,25 +616,26 @@ export default function USMLEPage() {
     const grade = pct >= 70 ? "PASS" : "NEEDS REVIEW";
     const isPassing = pct >= 70;
     return (
-      <div className="max-w-2xl mx-auto p-6 md:p-10 w-full page-transition text-center">
+      <div className="max-w-3xl mx-auto p-4 md:p-10 w-full animate-in fade-in zoom-in-95 duration-700 relative text-center">
+      <div className="absolute top-[20%] left-[20%] w-[30%] h-[30%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[150px] pointer-events-none" />
         <div className={`w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 ${isPassing ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
           <Award className={`w-12 h-12 ${isPassing ? "text-emerald-500" : "text-rose-500"}`} />
         </div>
-        <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-2">Session Complete</h1>
+        <h1 className="text-4xl font-black text-[var(--text-primary)] mb-2">Session Complete</h1>
         <p className={`text-2xl font-black mb-6 ${isPassing ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>{grade}</p>
-        <div className="premium-card p-8 mb-8">
+        <div className="medpulse-card glass level-1 p-8 mb-8">
           <div className="grid grid-cols-3 gap-6">
             <div>
               <p className="text-4xl font-black text-indigo-600">{score}/{questions.length}</p>
-              <p className="text-xs font-black uppercase text-slate-400 mt-1">Correct</p>
+              <p className="text-xs font-black uppercase text-[var(--text-tertiary)]/70 mt-1">Correct</p>
             </div>
             <div>
               <p className="text-4xl font-black text-slate-800 dark:text-white">{pct}%</p>
-              <p className="text-xs font-black uppercase text-slate-400 mt-1">Score</p>
+              <p className="text-xs font-black uppercase text-[var(--text-tertiary)]/70 mt-1">Score</p>
             </div>
             <div>
               <p className="text-4xl font-black text-amber-500">{score * 15}</p>
-              <p className="text-xs font-black uppercase text-slate-400 mt-1">XP Earned</p>
+              <p className="text-xs font-black uppercase text-[var(--text-tertiary)]/70 mt-1">XP Earned</p>
             </div>
           </div>
         </div>
@@ -644,24 +648,27 @@ export default function USMLEPage() {
 
   const q = questions[currentQ];
   return (
-    <div className="max-w-4xl mx-auto p-6 md:p-10 w-full page-transition">
+    <div className="max-w-5xl mx-auto p-4 md:p-10 w-full animate-in fade-in zoom-in-95 duration-700 relative">
+      {/* Ambient background glows */}
+      <div className="absolute top-[10%] right-[10%] w-[30%] h-[30%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[20%] left-[5%] w-[40%] h-[40%] bg-[var(--color-vital-cyan)]/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
-          <button onClick={() => setMode(null)} className="text-slate-400 hover:text-slate-600 transition-colors">← Exit</button>
-          <span className="text-sm font-black text-slate-500">{q.specialty} · {q.difficulty}</span>
+          <button onClick={() => setMode(null)} className="text-[var(--text-tertiary)]/70 hover:text-slate-600 transition-colors">← Exit</button>
+          <span className="text-sm font-black text-[var(--text-tertiary)]">{q.specialty} · {q.difficulty}</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm font-black text-slate-500">{currentQ + 1} / {questions.length}</span>
+          <span className="text-sm font-black text-[var(--text-tertiary)]">{currentQ + 1} / {questions.length}</span>
           <span className="text-sm font-black text-emerald-600">{score} correct</span>
         </div>
       </div>
 
-      <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full mb-8">
+      <div className="w-full h-1.5 bg-[var(--bg-2)] rounded-full mb-8">
         <div className="h-full bg-indigo-500 rounded-full transition-all" style={{ width: `${((currentQ) / questions.length) * 100}%` }} />
       </div>
 
-      <div className="premium-card p-8 mb-6">
-        <p className="text-slate-700 dark:text-slate-200 font-medium leading-relaxed text-lg">{q.stem}</p>
+      <div className="medpulse-card glass level-1 p-8 mb-6">
+        <p className="text-[var(--text-primary)] font-medium leading-relaxed text-lg">{q.stem}</p>
       </div>
 
       <div className="space-y-3 mb-8">
@@ -677,10 +684,10 @@ export default function USMLEPage() {
           return (
             <button key={idx} className={cls} onClick={() => handleSelect(idx)}>
               <div className="flex items-center gap-4">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0 ${selected === idx ? "bg-indigo-500 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-500"}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0 ${selected === idx ? "bg-indigo-500 text-white" : "bg-[var(--bg-2)] text-[var(--text-tertiary)]"}`}>
                   {String.fromCharCode(65 + idx)}
                 </div>
-                <span className="font-bold text-slate-700 dark:text-slate-300">{opt}</span>
+                <span className="font-bold text-[var(--text-secondary)]">{opt}</span>
                 {showAnswer && idx === q.answer && <CheckCircle className="w-5 h-5 text-emerald-500 ml-auto" />}
                 {showAnswer && idx === selected && selected !== q.answer && <X className="w-5 h-5 text-rose-500 ml-auto" />}
               </div>
@@ -692,8 +699,8 @@ export default function USMLEPage() {
       {showAnswer && (
         <div className="bg-indigo-500/5 border border-indigo-500/20 rounded-3xl p-6 mb-6">
           <h3 className="text-sm font-black uppercase tracking-widest text-indigo-600 mb-3">Explanation</h3>
-          <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{q.explanation}</p>
-          <p className="text-xs text-slate-400 mt-3 font-black">[{q.reference}]</p>
+          <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{q.explanation}</p>
+          <p className="text-xs text-[var(--text-tertiary)]/70 mt-3 font-black">[{q.reference}]</p>
         </div>
       )}
 
