@@ -82,7 +82,7 @@ export default function RootLayout({
       <body
         suppressHydrationWarning
         className="bg-slate-50 text-slate-900 antialiased"
-        style={{ display: 'flex', flexDirection: 'column', height: '100dvh', overflow: 'hidden' }}
+        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
       >
         <LanguageProvider>
           <SupabaseAuthProvider>
@@ -96,7 +96,7 @@ export default function RootLayout({
                   <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
                     <Sidebar />
                     <main
-                      className="flex-1 overflow-y-auto"
+                      className="flex-1 w-full"
                       style={{ minWidth: 0 }}
                     >
                       <ErrorBoundary>

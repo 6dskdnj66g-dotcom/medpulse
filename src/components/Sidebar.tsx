@@ -70,7 +70,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className={`hidden md:flex flex-col w-[280px] h-[calc(100dvh-2rem)] my-4 mx-4 rounded-3xl z-50 glass`} dir={dir}>
+    <div className={`hidden md:flex flex-col w-[280px] h-[calc(100dvh-2rem)] sticky top-4 my-4 mx-4 rounded-3xl z-50 glass`} dir={dir}>
       {/* Logo Section */}
       <div className="p-8 flex flex-col space-y-2">
         <div className="flex items-center gap-4">
