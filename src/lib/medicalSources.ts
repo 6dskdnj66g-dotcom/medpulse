@@ -444,10 +444,29 @@ export const MEDICAL_TEXTBOOKS: MedicalSource[] = [
   // Biochemistry
   { name: "Harper's Illustrated Biochemistry, 32nd Edition", type: "textbook", specialty: "Biochemistry" },
   { name: "Lehninger Principles of Biochemistry, 8th Edition", type: "textbook", specialty: "Biochemistry" },
-  // USMLE prep
-  { name: "First Aid for the USMLE Step 1, 2026 Edition", type: "textbook", specialty: "USMLE" },
-  { name: "First Aid for the USMLE Step 2 CK, 2026 Edition", type: "textbook", specialty: "USMLE" },
-  { name: "Amboss Medical Knowledge Platform 2026", type: "textbook", specialty: "USMLE" },
+  // USMLE prep (Tier 5 — 2025-2026)
+  { name: "First Aid for the USMLE Step 1, 2026 Edition", url: "https://firstaidteam.com", type: "textbook", specialty: "USMLE" },
+  { name: "First Aid for the USMLE Step 2 CK, 2026 Edition", url: "https://firstaidteam.com", type: "textbook", specialty: "USMLE" },
+  { name: "AMBOSS Medical Knowledge Platform 2026", url: "https://www.amboss.com", type: "database", specialty: "USMLE", openAccess: false },
+  { name: "AMBOSS USMLE Prep 2026", url: "https://www.amboss.com/us/usmle", type: "database", specialty: "USMLE" },
+  { name: "UWorld QBank 2025-2026", url: "https://www.uworld.com", type: "database", specialty: "USMLE" },
+  { name: "Pathoma: Fundamentals of Pathology 2025", url: "https://www.pathoma.com", type: "textbook", specialty: "Pathology" },
+  { name: "Boards & Beyond 2025", url: "https://www.boardsbeyond.com", type: "database", specialty: "USMLE" },
+  { name: "Sketchy Medical 2025", url: "https://sketchy.com", type: "database", specialty: "USMLE" },
+  { name: "Osmosis (Elsevier) 2025", url: "https://www.osmosis.org", type: "database", specialty: "Medical Education", openAccess: false },
+  { name: "OnlineMedEd 2025", url: "https://onlinemeded.org", type: "database", specialty: "USMLE" },
+  { name: "StatPearls (NCBI Bookshelf) 2026", url: "https://www.statpearls.com", type: "database", specialty: "General Medicine", openAccess: true },
+  { name: "Divine Intervention Podcasts 2025", url: "https://divineinterventionpodcasts.com", type: "database", specialty: "USMLE" },
+  { name: "AnKing Anki Deck V12 (2025-2026)", url: "https://www.ankipalace.com/anking", type: "database", specialty: "USMLE" },
+  { name: "Life in the Fast Lane (LITFL) 2026", url: "https://litfl.com", type: "database", specialty: "Emergency Medicine", openAccess: true },
+  { name: "Radiopaedia 2026", url: "https://radiopaedia.org", type: "database", specialty: "Radiology", openAccess: true },
+  // Arabic & MENA resources (Tier 6)
+  { name: "Saudi MOH Clinical Protocols 2025", url: "https://www.moh.gov.sa", type: "guideline", region: "mena", language: "arabic", specialty: "General Medicine" },
+  { name: "Saudi Commission for Health Specialties (SCFHS)", url: "https://www.scfhs.org.sa", type: "organization", region: "mena", language: "arabic" },
+  { name: "UAE MOHAP Clinical Guidelines 2025", url: "https://mohap.gov.ae", type: "guideline", region: "mena", language: "bilingual" },
+  { name: "WHO EMRO Publications 2025", url: "https://www.emro.who.int/publications", type: "guideline", region: "mena", language: "bilingual", openAccess: true },
+  { name: "Egyptian Medical Syndicate Guidelines", url: "https://www.ems.org.eg", type: "organization", region: "mena", language: "arabic" },
+  { name: "Webteb — الموسوعة الطبية العربية", url: "https://www.webteb.com", type: "database_arab", region: "arab", language: "arabic", openAccess: true },
   // Open Access Arabic
   { name: "المرجع الطبي العربي الموحد (WHO Arabic Medical Dictionary)", type: "textbook", language: "arabic", region: "mena" },
   { name: "قاموس المصطلحات الطبية الموحد — المنظمة العربية للمعلومات الصحية", type: "textbook", language: "arabic", region: "mena" },

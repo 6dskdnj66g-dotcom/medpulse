@@ -71,7 +71,18 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#4f46e5" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
+        {/* Prevent flash of wrong theme on load */}
         <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            try {
+              var stored = localStorage.getItem('theme');
+              var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              var theme = stored === 'dark' || stored === 'light' ? stored : (prefersDark ? 'dark' : 'light');
+              document.documentElement.classList.add('theme-init');
+              if (theme === 'dark') document.documentElement.classList.add('dark');
+              requestAnimationFrame(function() { document.documentElement.classList.remove('theme-init'); });
+            } catch(e) {}
+          })();
           if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
               navigator.serviceWorker.register('/sw.js').catch(function() {});
@@ -81,8 +92,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="bg-slate-50 text-slate-900 antialiased"
-        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', overflowX: 'hidden' }}
       >
         <LanguageProvider>
           <SupabaseAuthProvider>
@@ -97,7 +107,7 @@ export default function RootLayout({
                     <Sidebar />
                     <main
                       className="flex-1 w-full"
-                      style={{ minWidth: 0 }}
+                      style={{ minWidth: 0, paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
                     >
                       <ErrorBoundary>
                         {children}

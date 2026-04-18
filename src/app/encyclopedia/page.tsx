@@ -281,7 +281,7 @@ function EncyclopediaHome() {
   const totalSources = SOURCE_CATEGORIES.reduce((acc, c) => acc + c.sources.length, 0);
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:p-8 space-y-12 animate-in fade-in zoom-in-95 duration-700 relative" dir={dir}>
+    <div className="max-w-7xl mx-auto w-full p-4 pb-24 md:pb-8 md:p-8 space-y-12 animate-in fade-in zoom-in-95 duration-700 relative overflow-x-hidden" dir={dir}>
 
       {/* Ambient background glows */}
       <div className="absolute top-[0%] left-[0%] w-[40%] h-[40%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[150px] pointer-events-none" />
@@ -340,7 +340,7 @@ function EncyclopediaHome() {
       </div>
 
       {/* ── Specialties Grid ── */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 relative z-10">
         {filtered.length > 0 ? filtered.map((specialty, i) => (
           <Link key={specialty.id} href={`/encyclopedia/${specialty.id}`}
             className={`medpulse-card p-6 md:p-8 flex flex-col group border border-[var(--border-subtle)] hover:border-[var(--color-medical-indigo)]/40 transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(var(--color-medical-indigo-rgb),0.2)] bg-[var(--bg-0)] hover:-translate-y-1.5 animate-in slide-in-from-bottom-4`} style={{ animationDelay: `${i * 50}ms` }}>
