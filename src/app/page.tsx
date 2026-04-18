@@ -8,7 +8,7 @@ import {
   Users, FileText, ChevronRight, Shield, Zap, Globe,
   CheckCircle, ArrowRight
 } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { useLanguage } from "@/components/LanguageContext";
 
 const FEATURES = [
@@ -42,17 +42,18 @@ const colorMap: Record<string, string> = {
 
 export default function LandingPage() {
   const router = useRouter();
-  const { user, isLoading } = useAuth();
+  const { user, loading } = useSupabaseAuth();
   const { lang } = useLanguage();
   const isAr = lang === "ar";
 
   useEffect(() => {
-    if (!isLoading && user) {
+    if (!loading && user) {
       router.replace("/dashboard");
     }
-  }, [isLoading, user, router]);
+  }, [loading, user, router]);
 
-  if (isLoading) {
+  // Only show spinner when Supabase is actively checking session
+  if (loading) {
     return (
       <div className="fixed inset-0 bg-slate-50 dark:bg-[#020617] flex items-center justify-center z-[200]">
         <div className="relative">
@@ -65,6 +66,7 @@ export default function LandingPage() {
     );
   }
 
+  // Authenticated users are redirected above; show landing to guests
   if (user) return null;
 
   return (

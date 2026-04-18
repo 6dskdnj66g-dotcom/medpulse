@@ -10,6 +10,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { SupabaseAuthProvider } from '@/components/SupabaseAuthContext';
 import { VisitorTracker } from '@/components/VisitorTracker';
 import { LanguageProvider } from '@/components/LanguageContext';
+import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'MedPulse AI | Clinical Intelligence Platform 2026',
@@ -105,12 +106,15 @@ export default function RootLayout({
                   <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
                     <Sidebar />
                     <main
-                      className="flex-1 w-full"
-                      style={{ minWidth: 0, paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+                      className="flex-1 w-full flex flex-col"
+                      style={{ minWidth: 0 }}
                     >
                       <ErrorBoundary>
-                        {children}
+                        <div className="flex-1" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
+                          {children}
+                        </div>
                       </ErrorBoundary>
+                      <Footer />
                     </main>
                   </div>
                 </AchievementProvider>
