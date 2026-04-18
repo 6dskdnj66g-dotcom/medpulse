@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   Stethoscope, Activity, FileText, Pill, Sparkles,
@@ -8,6 +9,8 @@ import {
   ShieldCheck, Brain, X, Copy, RefreshCw, Loader2, UploadCloud, Image as ImageIcon
 } from "lucide-react";
 import { useAchievement } from "@/components/AchievementContext";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useLanguage } from "@/components/LanguageContext";
 
 interface SummaryResult {
   chiefComplaint?: string | null;
@@ -58,13 +61,21 @@ function ResultSection({ icon: Icon, title, colorClass, bgClass, children }: {
 }
 
 export default function SummarizerPage() {
+  const router = useRouter();
+  const { user, loading } = useSupabaseAuth();
   const [inputText, setInputText] = useState("");
   const [image, setImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const { addXp } = useAchievement();
+  const { lang } = useLanguage();
+  const isAr = lang === "ar";
   const [result, setResult] = useState<SummaryResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user) router.replace("/auth/login");
+  }, [loading, user, router]);
 
   const handleAnalyze = async () => {
     if ((!inputText.trim() && !image) || isAnalyzing) return;
@@ -133,27 +144,30 @@ export default function SummarizerPage() {
     setError(null);
   };
 
+  if (loading || !user) return null;
+
   return (
     <div className="p-6 md:p-8 max-w-7xl mx-auto w-full transition-colors">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center space-x-2 text-sky-500 text-xs font-bold uppercase tracking-widest mb-3">
           <Activity className="w-4 h-4" />
-          <span>AI Clinical Analysis Engine</span>
+          <span>{isAr ? "محرك التحليل السريري الذكي" : "AI Clinical Analysis Engine"}</span>
         </div>
         <h1 className="text-3xl font-extrabold text-slate-800 mb-2 flex items-center">
           <FileText className="h-8 w-8 text-sky-500 mr-3" />
-          Medical Summarizer
+          {isAr ? "الملخص الطبي الذكي" : "Medical Summarizer"}
         </h1>
         <p className="text-slate-500 text-base max-w-2xl">
-          Paste patient history, lab results, or lecture notes. Our AI extracts structured clinical insights 
-          with zero hallucination — powered by Gemini 1.5 Pro.
+          {isAr
+            ? "الصق تاريخ المريض أو نتائج المختبر أو ملاحظات المحاضرات. يستخرج الذكاء الاصطناعي رؤى سريرية منظمة — مدعوم بـ Gemini."
+            : "Paste patient history, lab results, or lecture notes. Our AI extracts structured clinical insights with zero hallucination — powered by Gemini."}
         </p>
       </div>
 
       {/* Sample loaders */}
       <div className="flex flex-wrap gap-2 mb-6">
-        <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider self-center mr-1">Load sample:</span>
+        <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider self-center mr-1">{isAr ? "نموذج:" : "Load sample:"}</span>
         {SAMPLE_TEXTS.map((s) => (
           <button
             key={s.label}
@@ -171,7 +185,7 @@ export default function SummarizerPage() {
           <div className="bg-slate-50 border-b border-slate-200 px-4 py-3 font-semibold text-slate-700 flex justify-between items-center">
             <span className="flex items-center space-x-2">
               <ClipboardList className="w-4 h-4 text-slate-500" />
-              <span>Clinical Input</span>
+              <span>{isAr ? "المدخل السريري" : "Clinical Input"}</span>
             </span>
             <div className="flex items-center space-x-2">
               <span className="text-xs font-normal text-slate-400 bg-white px-2 py-1 rounded border border-slate-200">
@@ -234,12 +248,12 @@ Example:
               {isAnalyzing ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Analyzing with Gemini AI...</span>
+                  <span>{isAr ? "جارٍ التحليل بـ Gemini AI..." : "Analyzing with Gemini AI..."}</span>
                 </>
               ) : (
                 <>
                   <Sparkles className="w-5 h-5" />
-                  <span>Analyze &amp; Summarize</span>
+                  <span>{isAr ? "تحليل وتلخيص" : "Analyze & Summarize"}</span>
                 </>
               )}
             </button>
@@ -272,7 +286,7 @@ Example:
                   <Brain className="h-10 w-10 text-slate-300" />
                 </div>
                 <div className="text-center">
-                  <p className="font-semibold text-slate-500 mb-1">Awaiting Clinical Input</p>
+                  <p className="font-semibold text-slate-500 mb-1">{isAr ? "في انتظار المدخل السريري" : "Awaiting Clinical Input"}</p>
                   <p className="text-sm text-slate-400">Paste text and click Analyze to generate a structured medical summary.</p>
                 </div>
               </div>

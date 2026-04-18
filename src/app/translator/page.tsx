@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   Languages, ArrowLeftRight, Loader2, Copy, CheckCircle,
   Save, ShieldCheck
@@ -11,7 +12,8 @@ import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { supabase } from "@/lib/supabase";
 
 export default function MedicalTranslatorPage() {
-  const { user } = useSupabaseAuth();
+  const router = useRouter();
+  const { user, loading } = useSupabaseAuth();
   const [text, setText] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +21,10 @@ export default function MedicalTranslatorPage() {
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user) router.replace("/auth/login");
+  }, [loading, user, router]);
 
   const translate = async () => {
     if (!text.trim()) return;
@@ -76,6 +82,8 @@ export default function MedicalTranslatorPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  if (loading || !user) return null;
 
   return (
     <div className="max-w-6xl mx-auto p-6 md:p-10 w-full page-transition">

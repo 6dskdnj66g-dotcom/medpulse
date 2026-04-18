@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { FileText, Loader2, ClipboardEdit, ShieldCheck, Copy, CheckCircle, Download, Save } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { exportMedicalReport } from "@/lib/pdfExport";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/components/LanguageContext";
 
 const TEMPLATES = [
   {
@@ -28,7 +30,8 @@ const TEMPLATES = [
 ];
 
 export default function ClinicalNotesPage() {
-  const { user } = useSupabaseAuth();
+  const router = useRouter();
+  const { user, loading } = useSupabaseAuth();
   const [info, setInfo] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +39,13 @@ export default function ClinicalNotesPage() {
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const { lang } = useLanguage();
+  const isAr = lang === "ar";
+
+  useEffect(() => {
+    if (!loading && !user) router.replace("/auth/login");
+  }, [loading, user, router]);
 
   const generate = async () => {
     if (!info.trim() || info.trim().length < 20) return;
@@ -72,6 +82,8 @@ export default function ClinicalNotesPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  if (loading || !user) return null;
+
   return (
     <div className="max-w-6xl mx-auto p-6 md:p-10 w-full page-transition">
       <div className="mb-10">
@@ -80,13 +92,13 @@ export default function ClinicalNotesPage() {
             <FileText className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">Clinical Notes Generator</h1>
-            <p className="text-slate-500 text-sm">AI-generated SOAP Notes · ACGME & Joint Commission Standards · ICD-11 Codes</p>
+            <h1 className="text-3xl font-black text-slate-900 dark:text-white">{isAr ? "مولد الملاحظات السريرية" : "Clinical Notes Generator"}</h1>
+            <p className="text-slate-500 text-sm">{isAr ? "ملاحظات SOAP بالذكاء الاصطناعي · معايير ACGME · رموز ICD-11" : "AI-generated SOAP Notes · ACGME & Joint Commission Standards · ICD-11 Codes"}</p>
           </div>
         </div>
         <div className="flex items-center gap-2 p-3 bg-teal-500/10 border border-teal-500/20 rounded-2xl">
           <ShieldCheck className="w-4 h-4 text-teal-600 flex-shrink-0" />
-          <p className="text-xs font-bold text-teal-700 dark:text-teal-400">Review all AI-generated notes before clinical use. Physician signature required for medical records.</p>
+          <p className="text-xs font-bold text-teal-700 dark:text-teal-400">{isAr ? "راجع جميع الملاحظات قبل الاستخدام السريري. مطلوب توقيع الطبيب للسجلات الطبية." : "Review all AI-generated notes before clinical use. Physician signature required for medical records."}</p>
         </div>
       </div>
 
@@ -95,13 +107,13 @@ export default function ClinicalNotesPage() {
         <div className="space-y-6">
           <div className="premium-card p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Clinical Information</h2>
+              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">{isAr ? "المعلومات السريرية" : "Clinical Information"}</h2>
               <ClipboardEdit className="w-4 h-4 text-slate-400" />
             </div>
 
             {/* Templates */}
             <div className="mb-4">
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Quick Templates</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{isAr ? "قوالب سريعة" : "Quick Templates"}</p>
               <div className="flex flex-wrap gap-2">
                 {TEMPLATES.map(t => (
                   <button
@@ -128,7 +140,9 @@ export default function ClinicalNotesPage() {
               disabled={isLoading || info.trim().length < 20}
               className="w-full mt-4 btn-premium bg-gradient-to-r from-teal-600 to-cyan-600 border-0 text-white disabled:opacity-40 disabled:cursor-not-allowed justify-center py-4"
             >
-              {isLoading ? <><Loader2 className="w-4 h-4 animate-spin" /> Generating SOAP Note...</> : <><FileText className="w-4 h-4" /> Generate Clinical SOAP Note</>}
+              {isLoading
+                ? <><Loader2 className="w-4 h-4 animate-spin" /> {isAr ? "جارٍ توليد الملاحظة..." : "Generating SOAP Note..."}</>
+                : <><FileText className="w-4 h-4" /> {isAr ? "توليد ملاحظة SOAP" : "Generate Clinical SOAP Note"}</>}
             </button>
           </div>
 

@@ -14,13 +14,45 @@ import { LanguageProvider } from '@/components/LanguageContext';
 
 export const metadata: Metadata = {
   title: 'MedPulse AI | Clinical Intelligence Platform 2026',
-  description: 'AI-powered medical education platform with zero-hallucination clinical knowledge, USMLE prep, drug interactions, ECG interpretation, and clinical calculators.',
-  keywords: ['medical AI', 'clinical knowledge', 'USMLE', 'drug interactions', 'ECG', 'clinical calculators', 'healthcare'],
+  description: 'AI-powered Arabic/English bilingual medical education platform — USMLE prep, MDT debates, OSCE simulator, ECG analysis, drug interaction checker, clinical calculators, and AI professors. Powered by Gemini 2.0 Flash.',
+  keywords: ['medical AI', 'clinical knowledge', 'USMLE', 'drug interactions', 'ECG', 'clinical calculators', 'healthcare', 'مستشفى', 'طب', 'ذكاء اصطناعي طبي', 'OSCE', 'MDT', 'Gemini'],
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
     title: 'MedPulse AI',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'MedPulse AI',
+    title: 'MedPulse AI | Clinical Intelligence Platform 2026',
+    description: 'AI-powered bilingual medical education platform — USMLE, MDT debates, OSCE simulator, ECG analysis, drug checker, and more. Powered by Gemini 2.0 Flash.',
+    locale: 'ar_SA',
+    alternateLocale: ['en_US'],
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'MedPulse AI — Clinical Intelligence Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MedPulse AI | Clinical Intelligence Platform 2026',
+    description: 'AI-powered bilingual medical education — USMLE, MDT, OSCE, ECG, Drug Checker. Powered by Gemini 2.0 Flash.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

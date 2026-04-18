@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { supabase } from "@/lib/supabase";
+import { exportMedicalReport } from "@/lib/pdfExport";
 import {
   FolderHeart, FileText, Activity, Calculator, Clock,
   Search, Download, Trash2,
@@ -190,7 +191,7 @@ export default function ClinicalRecordsPage() {
         {/* Main Content: Record Detail */}
         <div className="lg:col-span-7 xl:col-span-8">
           {selectedRecord ? (
-            <div className="premium-card p-0 flex flex-col h-full min-h-[600px] overflow-hidden">
+            <div id="record-content" className="premium-card p-0 flex flex-col h-full min-h-[600px] overflow-hidden">
               {/* Detail Header */}
               <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/20">
                 <div className="flex items-center gap-4">
@@ -273,7 +274,7 @@ export default function ClinicalRecordsPage() {
                   Clinical Educational Use Only — MedPulse AI v4.0
                 </p>
                 <button 
-                  onClick={() => alert("PDF Regeneration logic based on stored JSON...")}
+                  onClick={() => selectedRecord && exportMedicalReport("record-content", { title: selectedRecord.title, filename: `MedPulse_Record_${selectedRecord.id.slice(0, 8)}` })}
                   className="flex items-center gap-2 px-6 py-2.5 bg-indigo-600 text-white rounded-xl text-xs font-black shadow-lg shadow-indigo-500/30 hover:scale-105 transition-all"
                 >
                   <Download className="w-4 h-4" />

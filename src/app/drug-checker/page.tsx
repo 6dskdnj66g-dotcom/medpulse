@@ -6,6 +6,7 @@ import { Pill, X, AlertTriangle, ShieldCheck, Loader2, Search } from "lucide-rea
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useLanguage } from "@/components/LanguageContext";
 
 const COMMON_DRUGS = [
   "Warfarin", "Aspirin", "Clopidogrel", "Metformin", "Insulin",
@@ -31,6 +32,9 @@ export default function DrugCheckerPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [filtered, setFiltered] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const { lang } = useLanguage();
+  const isAr = lang === "ar";
 
   useEffect(() => {
     if (!loading && !user) router.replace("/auth/login");
@@ -99,13 +103,13 @@ export default function DrugCheckerPage() {
             <Pill className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">Drug Interaction Checker</h1>
-            <p className="text-slate-500 text-sm">Powered by Lexicomp 2026 · Micromedex 2026 · FDA Drug Safety</p>
+            <h1 className="text-3xl font-black text-slate-900 dark:text-white">{isAr ? "فاحص التفاعلات الدوائية" : "Drug Interaction Checker"}</h1>
+            <p className="text-slate-500 text-sm">{isAr ? "مدعوم بـ Lexicomp 2026 · Micromedex 2026 · سلامة الدواء FDA" : "Powered by Lexicomp 2026 · Micromedex 2026 · FDA Drug Safety"}</p>
           </div>
         </div>
         <div className="flex items-center gap-2 p-3 bg-rose-500/10 border border-rose-500/20 rounded-2xl">
           <AlertTriangle className="w-4 h-4 text-rose-600 flex-shrink-0" />
-          <p className="text-xs font-bold text-rose-700 dark:text-rose-400">For pharmacist/physician use only. Always verify with current drug references before clinical decisions.</p>
+          <p className="text-xs font-bold text-rose-700 dark:text-rose-400">{isAr ? "للاستخدام الطبي والصيدلاني فقط. تحقق دائماً من المراجع الدوائية الحالية قبل القرارات السريرية." : "For pharmacist/physician use only. Always verify with current drug references before clinical decisions."}</p>
         </div>
       </div>
 
@@ -113,7 +117,7 @@ export default function DrugCheckerPage() {
         {/* Drug Input Panel */}
         <div className="lg:col-span-2 space-y-6">
           <div className="premium-card p-6">
-            <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Add Medications</h2>
+            <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">{isAr ? "إضافة الأدوية" : "Add Medications"}</h2>
 
             {/* Input */}
             <div className="relative mb-4">
@@ -143,7 +147,7 @@ export default function DrugCheckerPage() {
 
             {/* Quick Add */}
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Quick Add</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{isAr ? "إضافة سريعة" : "Quick Add"}</p>
               <div className="flex flex-wrap gap-1.5">
                 {["Warfarin", "Aspirin", "Amiodarone", "Metformin", "Simvastatin", "Ciprofloxacin", "Fluconazole", "Clarithromycin"].map(d => (
                   <button key={d} onClick={() => addDrug(d)}
@@ -159,7 +163,7 @@ export default function DrugCheckerPage() {
           {/* Selected Drugs */}
           {selectedDrugs.length > 0 && (
             <div className="premium-card p-6">
-              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Selected Drugs ({selectedDrugs.length})</h2>
+              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">{isAr ? `الأدوية المختارة (${selectedDrugs.length})` : `Selected Drugs (${selectedDrugs.length})`}</h2>
               <div className="space-y-2 mb-6">
                 {selectedDrugs.map(d => (
                   <div key={d} className="flex items-center justify-between bg-slate-50 dark:bg-slate-800 rounded-2xl px-4 py-3">
@@ -178,7 +182,9 @@ export default function DrugCheckerPage() {
                 disabled={selectedDrugs.length < 2 || isLoading}
                 className="w-full btn-premium bg-gradient-to-r from-rose-600 to-orange-500 border-0 text-white disabled:opacity-40 disabled:cursor-not-allowed justify-center py-4"
               >
-                {isLoading ? <><Loader2 className="w-4 h-4 animate-spin" /> Analyzing...</> : <><ShieldCheck className="w-4 h-4" /> Check Interactions</>}
+                {isLoading
+                  ? <><Loader2 className="w-4 h-4 animate-spin" /> {isAr ? "جارٍ التحليل..." : "Analyzing..."}</>
+                  : <><ShieldCheck className="w-4 h-4" /> {isAr ? "فحص التفاعلات" : "Check Interactions"}</>}
               </button>
             </div>
           )}
@@ -200,8 +206,8 @@ export default function DrugCheckerPage() {
           ) : (
             <div className="h-full min-h-64 flex flex-col items-center justify-center text-slate-400 bg-slate-50/50 dark:bg-slate-800/20 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800 p-12">
               <Pill className="w-16 h-16 opacity-20 mb-4" />
-              <p className="font-black text-lg">No Analysis Yet</p>
-              <p className="text-sm mt-2 text-center">Add at least 2 drugs from the left panel<br />then click &quot;Check Interactions&quot;</p>
+              <p className="font-black text-lg">{isAr ? "لا يوجد تحليل بعد" : "No Analysis Yet"}</p>
+              <p className="text-sm mt-2 text-center">{isAr ? "أضف دواءين على الأقل من اليسار\nثم انقر «فحص التفاعلات»" : <>Add at least 2 drugs from the left panel<br />then click &quot;Check Interactions&quot;</>}</p>
             </div>
           )}
         </div>

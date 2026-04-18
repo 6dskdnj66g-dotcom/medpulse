@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Activity, Loader2, AlertTriangle, CheckCircle, ArrowRight, Download, Save } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { exportMedicalReport } from "@/lib/pdfExport";
@@ -56,6 +57,9 @@ export default function ECGPage() {
     if (!loading && !user) router.replace("/auth/login");
   }, [loading, user, router]);
 
+  const { lang } = useLanguage();
+  const isAr = lang === "ar";
+
   if (loading || !user) return null;
 
   const analyzeECG = async (desc?: string) => {
@@ -107,19 +111,19 @@ export default function ECGPage() {
             <Activity className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white">ECG Interpretation Engine</h1>
-            <p className="text-slate-500 text-sm">ACC/AHA 2026 · Marriott&#39;s Electrocardiography · Cardiologist-Level Analysis</p>
+            <h1 className="text-3xl font-black text-slate-900 dark:text-white">{isAr ? "محرك تفسير تخطيط القلب" : "ECG Interpretation Engine"}</h1>
+            <p className="text-slate-500 text-sm">{isAr ? "إرشادات ACC/AHA 2026 · تحليل على مستوى أخصائي القلب" : "ACC/AHA 2026 · Marriott's Electrocardiography · Cardiologist-Level Analysis"}</p>
           </div>
         </div>
         <div className="flex items-center gap-2 p-3 bg-rose-500/10 border border-rose-500/20 rounded-2xl">
           <AlertTriangle className="w-4 h-4 text-rose-600 flex-shrink-0" />
-          <p className="text-xs font-bold text-rose-700 dark:text-rose-400">Clinical tool for education and decision support. Always confirm with cardiologist in acute settings.</p>
+          <p className="text-xs font-bold text-rose-700 dark:text-rose-400">{isAr ? "أداة تعليمية لدعم القرار السريري. تأكد دائماً مع أخصائي القلب في الحالات الحادة." : "Clinical tool for education and decision support. Always confirm with cardiologist in acute settings."}</p>
         </div>
       </div>
 
       {/* Preset ECGs */}
       <div className="mb-8">
-        <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">Training Scenarios</h2>
+        <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">{isAr ? "سيناريوهات تدريبية" : "Training Scenarios"}</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {ECG_PRESETS.map(p => (
             <button
@@ -140,7 +144,7 @@ export default function ECGPage() {
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Input */}
         <div className="premium-card p-6">
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">ECG Findings Description</h2>
+          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4">{isAr ? "وصف نتائج تخطيط القلب" : "ECG Findings Description"}</h2>
           <textarea
             value={description}
             onChange={e => setDescription(e.target.value)}
@@ -155,7 +159,9 @@ Example: Rate 95 bpm, irregular rhythm, absent P waves, narrow QRS 80ms, no ST e
             disabled={isLoading || !description.trim()}
             className="w-full btn-premium bg-gradient-to-r from-rose-600 to-orange-500 border-0 text-white disabled:opacity-40 disabled:cursor-not-allowed justify-center py-4"
           >
-            {isLoading ? <><Loader2 className="w-4 h-4 animate-spin" /> Interpreting ECG...</> : <><Activity className="w-4 h-4" /> Interpret ECG</>}
+            {isLoading
+              ? <><Loader2 className="w-4 h-4 animate-spin" /> {isAr ? "جارٍ تفسير تخطيط القلب..." : "Interpreting ECG..."}</>
+              : <><Activity className="w-4 h-4" /> {isAr ? "تفسير تخطيط القلب" : "Interpret ECG"}</>}
           </button>
         </div>
 

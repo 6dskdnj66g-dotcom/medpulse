@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import {
   Users, Activity, Globe, BookOpen, TrendingUp, Award,
@@ -123,6 +124,7 @@ function LiveFeedRow({ visit }: { visit: { page: string; country: string; device
 
 // ── Main Admin Page ──────────────────────────────────────────────────────────
 export default function AdminDashboard() {
+  const router = useRouter();
   const { profile, loading } = useSupabaseAuth();
   const [data, setData] = useState<VisitorData | null>(null);
   const [fetching, setFetching] = useState(true);
@@ -132,13 +134,19 @@ export default function AdminDashboard() {
   const isConfigured = !!(process.env.NEXT_PUBLIC_SUPABASE_URL && !process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('YOUR'));
 
   useEffect(() => {
+    if (!loading && !profile) {
+      router.replace("/auth/login");
+      return;
+    }
     if (!loading && profile && profile.role !== "admin") {
-      // Allow access in dev mode
+      router.replace("/dashboard");
+      return;
     }
     fetchData();
-    const interval = setInterval(fetchData, 30000); // refresh every 30s
+    const interval = setInterval(fetchData, 30000);
     return () => clearInterval(interval);
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, profile]);
 
   async function fetchData() {
     try {
