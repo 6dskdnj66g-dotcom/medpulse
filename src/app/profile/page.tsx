@@ -48,8 +48,8 @@ function StatBadge({ icon: Icon, label, value, color }: { icon: React.ElementTyp
   return (
     <div className={`premium-card p-5 border ${colors[color]}`}>
       <Icon className="w-5 h-5 mb-3" />
-      <p className="text-2xl font-black text-slate-900 dark:text-white">{value}</p>
-      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-1">{label}</p>
+      <p className="text-2xl font-black text-[var(--text-primary)]">{value}</p>
+      <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mt-1">{label}</p>
     </div>
   );
 }
@@ -101,16 +101,16 @@ export default function ProfilePage() {
   if (!user) {
     return (
       <div className="max-w-md mx-auto p-6 py-20 text-center">
-        <div className="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-3xl flex items-center justify-center mx-auto mb-6">
-          <User className="w-10 h-10 text-slate-400" />
+        <div className="w-20 h-20 bg-[var(--bg-2)] rounded-3xl flex items-center justify-center mx-auto mb-6">
+          <User className="w-10 h-10 text-[var(--text-tertiary)]/70" />
         </div>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-3">سجّل دخولك</h2>
-        <p className="text-slate-500 mb-6">قم بتسجيل الدخول لعرض ملفك الشخصي وتتبع تقدمك</p>
+        <h2 className="text-2xl font-black text-[var(--text-primary)] mb-3">سجّل دخولك</h2>
+        <p className="text-[var(--text-tertiary)] mb-6">قم بتسجيل الدخول لعرض ملفك الشخصي وتتبع تقدمك</p>
         <div className="flex gap-3">
           <Link href="/auth/login" className="flex-1 py-3 bg-indigo-600 text-white font-black rounded-2xl text-center hover:bg-indigo-700 transition-all">
             تسجيل الدخول
           </Link>
-          <Link href="/auth/register" className="flex-1 py-3 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 font-black rounded-2xl text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+          <Link href="/auth/register" className="flex-1 py-3 border border-[var(--border-subtle)] text-slate-600 dark:text-[var(--text-tertiary)]/70 font-black rounded-2xl text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
             إنشاء حساب
           </Link>
         </div>
@@ -122,7 +122,7 @@ export default function ProfilePage() {
     <div className="max-w-5xl mx-auto p-6 md:p-10 w-full page-transition">
 
       {/* ── Header ── */}
-      <div className="premium-card p-8 mb-8 bg-gradient-to-br from-indigo-500/5 via-transparent to-teal-500/5">
+      <div className="medpulse-card glass level-1 p-8 mb-8 bg-gradient-to-br from-indigo-500/5 via-transparent to-teal-500/5">
         <div className="flex items-start gap-6">
           {/* Avatar */}
           <div className="relative flex-shrink-0">
@@ -138,10 +138,10 @@ export default function ProfilePage() {
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between">
               <div>
-                <h1 className="text-2xl font-black text-slate-900 dark:text-white">
+                <h1 className="text-2xl font-black text-[var(--text-primary)]">
                   {profile?.full_name || user.email?.split("@")[0]}
                 </h1>
-                <p className="text-slate-500 text-sm font-bold">{user.email}</p>
+                <p className="text-[var(--text-tertiary)] text-sm font-bold">{user.email}</p>
                 <div className="flex items-center gap-2 mt-2">
                   <span className="text-[10px] font-black px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-600 border border-indigo-500/20 uppercase tracking-wider">
                     {profile?.role || "student"}
@@ -152,7 +152,7 @@ export default function ProfilePage() {
                     </span>
                   )}
                   {profile?.country && (
-                    <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500">
+                    <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[var(--bg-2)] text-[var(--text-tertiary)]">
                       🌍 {profile.country}
                     </span>
                   )}
@@ -162,7 +162,7 @@ export default function ProfilePage() {
                 <button
                   onClick={() => setEditing(!editing)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black transition-all ${
-                    editing ? "bg-slate-100 dark:bg-slate-800 text-slate-500" : "bg-indigo-500/10 text-indigo-600 border border-indigo-500/20"
+                    editing ? "bg-[var(--bg-2)] text-[var(--text-tertiary)]" : "bg-indigo-500/10 text-indigo-600 border border-indigo-500/20"
                   }`}
                 >
                   <Edit3 className="w-3.5 h-3.5" />
@@ -175,24 +175,24 @@ export default function ProfilePage() {
             </div>
 
             {profile?.bio && !editing && (
-              <p className="text-sm text-slate-500 mt-3 font-bold">{profile.bio}</p>
+              <p className="text-sm text-[var(--text-tertiary)] mt-3 font-bold">{profile.bio}</p>
             )}
           </div>
         </div>
 
         {/* XP Progress Bar */}
-        <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
-          <div className="flex justify-between text-xs font-black text-slate-400 mb-2">
+        <div className="mt-6 pt-6 border-t border-[var(--border-subtle)]">
+          <div className="flex justify-between text-xs font-black text-[var(--text-tertiary)]/70 mb-2">
             <span>🏆 {currentLevel.title}</span>
             {nextLevel && <span>التالي: {nextLevel.title} ({nextLevel.xpRequired - effectiveXp} XP)</span>}
           </div>
-          <div className="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full">
+          <div className="w-full h-3 bg-[var(--bg-2)] rounded-full">
             <div
               className="h-full bg-gradient-to-r from-indigo-500 to-teal-500 rounded-full transition-all duration-1000"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="flex justify-between text-xs font-black text-slate-400 mt-2">
+          <div className="flex justify-between text-xs font-black text-[var(--text-tertiary)]/70 mt-2">
             <span>{effectiveXp} XP</span>
             {nextLevel && <span>{nextLevel.xpRequired} XP</span>}
           </div>
@@ -218,8 +218,8 @@ export default function ProfilePage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="premium-card p-5">
-            <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">روابط سريعة</h3>
+          <div className="medpulse-card glass level-1 p-5">
+            <h3 className="text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-4">روابط سريعة</h3>
             <div className="space-y-2">
               {[
                 { href: "/usmle",      icon: Brain,        label: "USMLE Mode",         color: "indigo" },
@@ -233,7 +233,7 @@ export default function ProfilePage() {
                   <Link key={link.href} href={link.href}
                     className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
                     <Icon className={`w-4 h-4 text-${link.color}-500`} />
-                    <span className="text-sm font-bold text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white">{link.label}</span>
+                    <span className="text-sm font-bold text-slate-600 dark:text-[var(--text-tertiary)]/70 group-hover:text-slate-900 dark:group-hover:text-white">{link.label}</span>
                   </Link>
                 );
               })}
@@ -243,8 +243,8 @@ export default function ProfilePage() {
 
         {/* Right: Edit Form or Details */}
         <div className="md:col-span-2">
-          <div className="premium-card p-8">
-            <h2 className="text-base font-black uppercase tracking-widest text-slate-500 mb-6">
+          <div className="medpulse-card glass level-1 p-8">
+            <h2 className="text-base font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-6">
               {editing ? "✏️ تعديل الملف الشخصي" : "📋 بيانات الحساب"}
             </h2>
 
@@ -252,26 +252,26 @@ export default function ProfilePage() {
               <div className="space-y-5">
                 {/* Full Name */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">الاسم الكامل</label>
+                  <label className="block text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-2">الاسم الكامل</label>
                   <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]/70" />
                     <input
                       value={form.full_name}
                       onChange={e => update("full_name", e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none"
+                      className="w-full bg-[var(--bg-1)] border border-[var(--border-subtle)] rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none"
                       placeholder="د. محمد أحمد"
                     />
                   </div>
                 </div>
                 {/* Specialty */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">التخصص</label>
+                  <label className="block text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-2">التخصص</label>
                   <div className="relative">
-                    <Stethoscope className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <Stethoscope className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]/70" />
                     <select
                       value={form.specialty}
                       onChange={e => update("specialty", e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none appearance-none"
+                      className="w-full bg-[var(--bg-1)] border border-[var(--border-subtle)] rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none appearance-none"
                     >
                       <option value="">اختر تخصصك</option>
                       {SPECIALTIES.map(s => <option key={s} value={s}>{s}</option>)}
@@ -280,26 +280,26 @@ export default function ProfilePage() {
                 </div>
                 {/* Institution */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">المستشفى / الجامعة</label>
+                  <label className="block text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-2">المستشفى / الجامعة</label>
                   <div className="relative">
-                    <Shield className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <Shield className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]/70" />
                     <input
                       value={form.institution}
                       onChange={e => update("institution", e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none"
+                      className="w-full bg-[var(--bg-1)] border border-[var(--border-subtle)] rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none"
                       placeholder="مستشفى الملك فيصل التخصصي"
                     />
                   </div>
                 </div>
                 {/* Country */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">الدولة</label>
+                  <label className="block text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-2">الدولة</label>
                   <div className="relative">
-                    <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]/70" />
                     <select
                       value={form.country}
                       onChange={e => update("country", e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none appearance-none"
+                      className="w-full bg-[var(--bg-1)] border border-[var(--border-subtle)] rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none appearance-none"
                     >
                       <option value="">اختر دولتك</option>
                       {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
@@ -308,12 +308,12 @@ export default function ProfilePage() {
                 </div>
                 {/* Bio */}
                 <div>
-                  <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">نبذة شخصية</label>
+                  <label className="block text-xs font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-2">نبذة شخصية</label>
                   <textarea
                     value={form.bio}
                     onChange={e => update("bio", e.target.value)}
                     rows={3}
-                    className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none resize-none"
+                    className="w-full bg-[var(--bg-1)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none resize-none"
                     placeholder="اكتب نبذة مختصرة عنك..."
                   />
                 </div>
@@ -336,25 +336,25 @@ export default function ProfilePage() {
                   { label: "آخر نشاط",         value: profile?.last_active || "—",   icon: Calendar },
                   { label: "نوع الحساب",       value: profile?.role || "student",    icon: Award },
                 ].map(({ label, value, icon: Icon }) => (
-                  <div key={label} className="flex items-center gap-4 py-3 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                    <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-4 h-4 text-slate-400" />
+                  <div key={label} className="flex items-center gap-4 py-3 border-b border-[var(--border-subtle)] last:border-0">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--bg-2)] flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-4 h-4 text-[var(--text-tertiary)]/70" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">{label}</p>
-                      <p className="text-sm font-bold text-slate-800 dark:text-white mt-0.5">{value}</p>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)]/70">{label}</p>
+                      <p className="text-sm font-bold text-[var(--text-primary)] mt-0.5">{value}</p>
                     </div>
                   </div>
                 ))}
                 {profile?.bio && (
                   <div className="pt-4">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">نبذة شخصية</p>
-                    <p className="text-sm font-bold text-slate-600 dark:text-slate-400">{profile.bio}</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)]/70 mb-2">نبذة شخصية</p>
+                    <p className="text-sm font-bold text-slate-600 dark:text-[var(--text-tertiary)]/70">{profile.bio}</p>
                   </div>
                 )}
                 <button
                   onClick={() => setEditing(true)}
-                  className="w-full py-3 border border-dashed border-slate-200 dark:border-slate-700 rounded-2xl text-sm font-black text-slate-400 hover:border-indigo-500 hover:text-indigo-500 transition-all mt-4"
+                  className="w-full py-3 border border-dashed border-[var(--border-subtle)] rounded-2xl text-sm font-black text-[var(--text-tertiary)]/70 hover:border-indigo-500 hover:text-indigo-500 transition-all mt-4"
                 >
                   + تعديل بياناتك
                 </button>
