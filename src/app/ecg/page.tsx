@@ -127,25 +127,56 @@ export default function ECGPage() {
       </div>
 
       {/* Preset ECGs */}
-      <div className="mb-10 relative z-10">
-        <h2 className="text-[11px] md:text-xs font-extrabold uppercase tracking-widest text-[var(--text-tertiary)] mb-5">{isAr ? "سيناريوهات تدريبية" : "Training Scenarios"}</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {ECG_PRESETS.map((p, i) => (
-            <button
-              key={p.label}
-              onClick={() => analyzeECG(p.description)}
-              className={`p-5 md:p-6 rounded-[24px] transition-all duration-300 text-left group active:scale-95 animate-in slide-in-from-bottom-4 backdrop-blur-md ${colorMap[p.color]}`}
-              style={{ animationDelay: `${i * 50}ms`, borderWidth: '1px' }}
-            >
-              <div className="flex items-start justify-between mb-3">
-                <span className="text-[14px] md:text-[15px] font-extrabold tracking-wide drop-shadow-sm">{p.label}</span>
-                <div className={`w-8 h-8 rounded-full bg-[var(--bg-0)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 shadow-sm`}>
-                  <ArrowRight className="w-4 h-4" />
+      <div className="mb-10 relative z-10 flex flex-col xl:flex-row gap-8">
+        <div className="flex-1">
+          <h2 className="text-[11px] md:text-xs font-extrabold uppercase tracking-widest text-[var(--text-tertiary)] mb-5">{isAr ? "سيناريوهات تدريبية" : "Training Scenarios"}</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
+            {ECG_PRESETS.map((p, i) => (
+              <button
+                key={p.label}
+                onClick={() => analyzeECG(p.description)}
+                className={`p-5 md:p-6 rounded-[24px] transition-all duration-300 text-left group active:scale-95 animate-in slide-in-from-bottom-4 backdrop-blur-md ${colorMap[p.color]}`}
+                style={{ animationDelay: `${i * 50}ms`, borderWidth: '1px' }}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-[14px] md:text-[15px] font-extrabold tracking-wide drop-shadow-sm">{p.label}</span>
+                  <div className={`w-8 h-8 rounded-full bg-[var(--bg-0)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 shadow-sm`}>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
                 </div>
-              </div>
-              <p className="text-[11px] md:text-xs text-[var(--text-secondary)] line-clamp-3 leading-relaxed font-medium mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity">{p.description}</p>
-            </button>
-          ))}
+                <p className="text-[11px] md:text-xs text-[var(--text-secondary)] line-clamp-3 leading-relaxed font-medium mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity">{p.description}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 3D Realistic Heart Model */}
+        <div className="xl:w-[400px] h-[350px] xl:h-auto rounded-[32px] overflow-hidden border border-rose-500/20 bg-black/5 shadow-2xl relative flex-shrink-0 group">
+          <div className="absolute inset-0 bg-gradient-to-t from-rose-900/60 via-transparent to-transparent pointer-events-none z-10"></div>
+          <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2">
+            <span className="flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+            </span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-white drop-shadow-md">
+              {isAr ? "مجسم قلب حي 3D" : "Live 3D Heart"}
+            </span>
+          </div>
+          {/* Sketchfab iframe for realistic beating heart */}
+          <iframe 
+            title="Animated Human Heart" 
+            frameBorder="0" 
+            allowFullScreen 
+            mozallowfullscreen="true" 
+            webkitallowfullscreen="true" 
+            allow="autoplay; fullscreen; xr-spatial-tracking" 
+            xr-spatial-tracking="true" 
+            execution-while-out-of-viewport="true" 
+            execution-while-not-rendered="true" 
+            web-share="true" 
+            src="https://sketchfab.com/models/0b2e2d83cd4d49d986b6a2e4dc27d14c/embed?autostart=1&preload=1&ui_controls=0&ui_infos=0&ui_watermark=0&transparent=1"
+            className="absolute inset-0 w-full h-full object-cover"
+          ></iframe>
         </div>
       </div>
 

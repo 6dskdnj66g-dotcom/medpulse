@@ -6,7 +6,7 @@ import {
   ArrowLeft, Clock, Send, Loader2, CheckCircle, XCircle,
   AlertCircle, ChevronDown, ChevronUp, Trophy, Target,
   BookOpen, Star, TrendingUp, TrendingDown, User, Stethoscope,
-  RotateCcw, Home, ChevronRight, Activity, Brain
+  RotateCcw, Home, ChevronRight, Activity, Brain, Mic, MicOff, Volume2, VolumeX
 } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageContext";
@@ -247,7 +247,86 @@ function ActivePhase({
 }) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [showScheme, setShowScheme] = useState(false);
+  
+  // Voice & Speech State
+  const [isListening, setIsListening] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  
+  // Setup Speech Recognition
+  const recognitionRef = useRef<any>(null);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        recognitionRef.current = new SpeechRecognition();
+        recognitionRef.current.continuous = false;
+        recognitionRef.current.interimResults = true;
+        recognitionRef.current.lang = isAr ? 'ar-SA' : 'en-US';
+
+        recognitionRef.current.onresult = (event: any) => {
+          let currentTranscript = "";
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            currentTranscript += event.results[i][0].transcript;
+          }
+          setInput(input + (input ? " " : "") + currentTranscript);
+        };
+
+        recognitionRef.current.onerror = (event: any) => {
+          console.error("Speech recognition error", event.error);
+          setIsListening(false);
+        };
+
+        recognitionRef.current.onend = () => {
+          setIsListening(false);
+        };
+      }
+    }
+    
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+      if (typeof window !== "undefined" && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [isAr, setInput, input]);
+
+  // Handle incoming messages to read them aloud
+  useEffect(() => {
+    if (voiceEnabled && messages.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage.role === "assistant") {
+        speakText(lastMessage.content);
+      }
+    }
+  }, [messages, voiceEnabled]);
+
+  const speakText = (text: string) => {
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel(); // Stop current speech
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = isAr ? 'ar-SA' : 'en-US';
+      utterance.rate = 0.95; // Slightly slower for realistic voice
+      
+      utterance.onstart = () => setIsSpeaking(true);
+      utterance.onend = () => setIsSpeaking(false);
+      utterance.onerror = () => setIsSpeaking(false);
+      
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  const toggleListen = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+    } else {
+      setInput(""); // Clear previous input before listening
+      recognitionRef.current?.start();
+      setIsListening(true);
+    }
+  };
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -288,10 +367,41 @@ function ActivePhase({
       </div>
 
       {/* Main area */}
-      <div className="flex flex-1 min-h-0">
+      <div className="flex flex-1 min-h-0 flex-col md:flex-row">
+        
+        {/* 3D Realistic OSCE Environment / Patient Placeholder */}
+        <div className="hidden md:flex w-1/3 min-w-[300px] border-r border-[var(--border-subtle)] bg-black/5 relative group items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-medical-indigo)]/10 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-4 left-4 z-20 flex flex-col gap-1">
+            <span className="flex items-center gap-2">
+              <span className="flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-teal-500"></span>
+              </span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-primary)] drop-shadow-md">
+                {isAr ? "غرفة الفحص 3D" : "Live 3D Exam Room"}
+              </span>
+            </span>
+          </div>
+          {/* Sketchfab iframe for realistic Medical Anatomy/Patient Room */}
+          <iframe 
+            title="3D Patient Exam" 
+            frameBorder="0" 
+            allowFullScreen 
+            mozallowfullscreen="true" 
+            webkitallowfullscreen="true" 
+            allow="autoplay; fullscreen; xr-spatial-tracking" 
+            xr-spatial-tracking="true" 
+            execution-while-out-of-viewport="true" 
+            execution-while-not-rendered="true" 
+            web-share="true" 
+            src="https://sketchfab.com/models/ea21ba37018c4c78ac906a599ccb242e/embed?autostart=1&preload=1&ui_controls=0&ui_infos=0&ui_watermark=0&transparent=1"
+            className="absolute inset-0 w-full h-full mix-blend-multiply dark:mix-blend-lighten"
+          ></iframe>
+        </div>
 
         {/* Chat */}
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex flex-col min-w-0 bg-[var(--bg-0)]">
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {/* Opening context */}
             <div className="mx-auto max-w-lg text-center py-4">
@@ -335,12 +445,42 @@ function ActivePhase({
                 </div>
               </div>
             )}
+            {isSpeaking && (
+              <div className="flex justify-center my-4">
+                <div className="flex items-center gap-2 bg-teal-500/10 text-teal-600 px-4 py-2 rounded-full border border-teal-500/20 text-[10px] font-black tracking-widest uppercase">
+                  <Volume2 className="w-3.5 h-3.5 animate-pulse" />
+                  {isAr ? "المريض يتحدث..." : "Patient Speaking..."}
+                </div>
+              </div>
+            )}
             <div ref={bottomRef} />
           </div>
 
           {/* Input */}
           <div className="flex-shrink-0 border-t border-[var(--border-subtle)] p-3 bg-[var(--bg-0)]/80 backdrop-blur-md">
-            <div className="flex items-end gap-2 max-w-4xl mx-auto">
+            <div className="flex items-center justify-between px-2 mb-2 max-w-4xl mx-auto">
+              <button 
+                onClick={() => setVoiceEnabled(!voiceEnabled)} 
+                className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--text-tertiary)] hover:text-[var(--text-primary)] uppercase tracking-widest transition-colors"
+                title={isAr ? "إيقاف/تشغيل صوت المريض" : "Toggle patient voice"}
+              >
+                {voiceEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+                {voiceEnabled ? (isAr ? "صوت المريض مفعّل" : "Patient Audio On") : (isAr ? "صوت المريض متوقف" : "Patient Audio Off")}
+              </button>
+            </div>
+            <div className="flex items-end gap-2 max-w-4xl mx-auto relative">
+              <button
+                type="button"
+                onClick={toggleListen}
+                className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all ${
+                  isListening
+                    ? "bg-rose-500/10 border border-rose-500/30 text-rose-500 animate-pulse shadow-[0_0_15px_-3px_rgba(244,63,94,0.3)]"
+                    : "bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--color-medical-indigo)] hover:bg-[var(--color-medical-indigo)]/5"
+                }`}
+                title={isAr ? "التحدث بالصوت" : "Speak to Patient"}
+              >
+                {isListening ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
+              </button>
               <textarea
                 ref={textareaRef}
                 value={input}
@@ -348,7 +488,11 @@ function ActivePhase({
                 onKeyDown={handleKeyDown}
                 rows={1}
                 disabled={sending}
-                placeholder={isAr ? "اكتب سؤالك للمريض... (Enter للإرسال)" : "Type your question to the patient... (Enter to send)"}
+                placeholder={
+                  isListening 
+                    ? (isAr ? "تحدث الآن، المايك يستمع..." : "Listening...") 
+                    : (isAr ? "اكتب سؤالك للمريض... (Enter للإرسال)" : "Type your question to the patient... (Enter to send)")
+                }
                 className="flex-1 resize-none bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-[13px] md:text-sm font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-medical-indigo)]/20 focus:border-[var(--color-medical-indigo)]/30 transition-all min-h-[48px] max-h-36 overflow-y-auto"
                 style={{ lineHeight: "1.5" }}
               />
