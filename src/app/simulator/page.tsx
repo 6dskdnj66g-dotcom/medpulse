@@ -1,349 +1,328 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Activity, Stethoscope, HeartPulse, Send, RefreshCw, Loader2, Info, Mic, MicOff, Volume2 } from "lucide-react";
-import { ErrorBoundary } from "@/components/error/ErrorBoundary";
-import { useAchievement } from "@/components/AchievementContext";
+import { useState, useMemo } from "react";
+import {
+  Stethoscope, Filter, Trophy, Clock, Target, ChevronRight,
+  BookOpen, Users, Brain, Heart, Baby, Activity, Pill,
+  AlertCircle, CheckCircle, Star
+} from "lucide-react";
+import Link from "next/link";
+import { useLanguage } from "@/components/LanguageContext";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { ErrorBoundary } from "@/components/error/ErrorBoundary";
+import {
+  OSCE_STATIONS, OSCE_SPECIALTIES, DIFFICULTY_LABELS, STATION_TYPE_LABELS,
+  type OSCEStation
+} from "@/lib/osceStations";
 
-function SimulatorWard() {
-  const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string; id: string }[]>([]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isRecording, setIsRecording] = useState(false);
-  const [_isSpeaking, setIsSpeaking] = useState(false);
-  const { addXp } = useAchievement();
-  const bottomRef = useRef<HTMLDivElement>(null);
-  
-  // Auto-scroll
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+const SPECIALTY_ICONS: Record<string, React.ElementType> = {
+  "Internal Medicine": Stethoscope,
+  "Cardiology": Heart,
+  "Respiratory": Activity,
+  "Neurology": Brain,
+  "Psychiatry": Brain,
+  "Pediatrics": Baby,
+  "OB/GYN": Users,
+  "Surgery": Activity,
+  "Emergency Medicine": AlertCircle,
+  "Gastroenterology": Pill,
+};
 
-  useEffect(() => {
-    if (messages.length === 0) {
-      startNewCase();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+const DIFFICULTY_COLORS: Record<string, string> = {
+  year1: "bg-emerald-500/10 text-emerald-600",
+  year2: "bg-teal-500/10 text-teal-600",
+  year3: "bg-sky-500/10 text-sky-600",
+  year4: "bg-indigo-500/10 text-indigo-600",
+  finals: "bg-amber-500/10 text-amber-600",
+  postgrad: "bg-rose-500/10 text-rose-600",
+};
 
-  const speakText = (text: string) => {
-    if ("speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 1.0;
-      utterance.pitch = 1.0;
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      window.speechSynthesis.speak(utterance);
-    }
-  };
+const TYPE_COLORS: Record<string, string> = {
+  history_taking: "bg-blue-500/10 text-blue-600",
+  examination: "bg-teal-500/10 text-teal-600",
+  communication: "bg-purple-500/10 text-purple-600",
+  procedure: "bg-red-500/10 text-red-600",
+  data_interpretation: "bg-amber-500/10 text-amber-600",
+  mixed: "bg-indigo-500/10 text-indigo-600",
+};
 
-  const toggleRecording = () => {
-    if (isRecording) {
-      setIsRecording(false);
-      return;
-    }
-    
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert("Voice recognition is not supported in this browser.");
-      return;
-    }
-    
-    const recognition = new SpeechRecognition();
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.lang = 'en-US';
-    
-    recognition.onstart = () => setIsRecording(true);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript;
-      setInput((prev) => prev ? prev + " " + transcript : transcript);
-      setIsRecording(false);
-    };
-    recognition.onerror = () => setIsRecording(false);
-    recognition.onend = () => setIsRecording(false);
-    recognition.start();
-  };
-
-  const startNewCase = async () => {
-    if (messages.length > 0) {
-      const userTurns = messages.filter(m => m.role === "user").length;
-      const session = {
-        date: new Date().toISOString(),
-        module: "OSCE Simulator",
-        score: Math.min(userTurns, 10),
-        total: 10,
-      };
-      const stored = JSON.parse(localStorage.getItem("medpulse_sessions") || "[]");
-      stored.unshift(session);
-      localStorage.setItem("medpulse_sessions", JSON.stringify(stored.slice(0, 50)));
-    }
-    setMessages([]);
-    setInput("");
-    setIsLoading(true);
-
-    const initMsg = { id: Date.now().toString(), role: "user" as const, content: "Start a new random clinical simulation case. Describe the patient, vitals, and setting." };
-    
-    const assistantMsg = { id: (Date.now() + 1).toString(), role: "assistant" as const, content: "" };
-    setMessages([assistantMsg]);
-
-    try {
-      const res = await fetch("/api/simulator", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: [initMsg] }),
-      });
-
-      if (!res.body) throw new Error("No stream");
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        const text = decoder.decode(value, { stream: true });
-        setMessages((prev) =>
-          prev.map((m) => m.id === assistantMsg.id ? { ...m, content: m.content + text } : m)
-        );
-      }
-    } catch {
-      setMessages([{ id: "err", role: "assistant", content: "Simulation failed to start. Please reset ward." }]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
-
-    const userMsg = { id: Date.now().toString(), role: "user" as const, content: input.trim() };
-    const assistantMsg = { id: (Date.now() + 1).toString(), role: "assistant" as const, content: "" };
-    
-    const currentMsgs = [...messages];
-    if (currentMsgs[0]?.role === "assistant") {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      currentMsgs.unshift({ role: "user", content: "Start a new random clinical simulation. Describe patient passing..." } as any);
-    }
-
-    setMessages((prev) => [...prev, userMsg, assistantMsg]);
-    setInput("");
-    setIsLoading(true);
-
-    try {
-      const res = await fetch("/api/simulator", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: [
-            ...currentMsgs.map((m) => ({ role: m.role, content: m.content })),
-            userMsg,
-          ],
-        }),
-      });
-
-      if (!res.body) throw new Error("No stream");
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        const text = decoder.decode(value, { stream: true });
-        setMessages((prev) =>
-          prev.map((m) => m.id === assistantMsg.id ? { ...m, content: m.content + text } : m)
-        );
-      }
-      addXp(10, "Clinical Diagnosis Practice");
-    } catch {
-      setMessages((prev) =>
-        prev.map((m) => m.id === assistantMsg.id ? { ...m, content: "⚠️ Connection error." } : m)
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
+function StationCard({ station }: { station: OSCEStation }) {
+  const SpecialtyIcon = SPECIALTY_ICONS[station.specialty] ?? Stethoscope;
+  const diffColor = DIFFICULTY_COLORS[station.difficulty] ?? "bg-slate-500/10 text-slate-600";
+  const typeColor = TYPE_COLORS[station.stationType] ?? "bg-slate-500/10 text-slate-600";
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto w-full h-[calc(100vh-80px)] flex flex-col animate-in fade-in zoom-in-95 duration-700 relative">
-      {/* Background glow */}
-      <div className="absolute top-[10%] left-[10%] w-[30%] h-[30%] bg-[var(--color-medical-rose)]/5 rounded-full blur-[150px] pointer-events-none" />
+    <Link
+      href={`/simulator/${station.id}`}
+      className="group block rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]"
+      style={{
+        background: "var(--bg-2)",
+        border: "1px solid var(--border-subtle)",
+        overflow: "hidden",
+      }}
+    >
+      {/* Specialty color bar */}
+      <div className="h-1 w-full bg-gradient-to-r from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)]" />
 
-      <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-rose-500 to-red-600 rounded-[20px] flex items-center justify-center shadow-[0_0_30px_rgba(244,63,94,0.3)] transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-            <HeartPulse className="w-7 h-7 md:w-8 md:h-8 text-white" />
+      <div className="p-5">
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 group-hover:rotate-3 duration-300`}
+            style={{ background: "var(--bg-3)", border: "1px solid var(--border-subtle)" }}>
+            <SpecialtyIcon className="w-5 h-5" style={{ color: "var(--color-medical-indigo)" }} />
           </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Activity className="w-4 h-4 text-rose-500 opacity-80" />
-              <span className="text-[11px] md:text-xs font-extrabold uppercase tracking-[0.2em] text-[var(--color-medical-rose)] bg-[var(--color-medical-rose)]/10 px-3 py-1 rounded-[8px] border border-[var(--color-medical-rose)]/20 shadow-sm">Interactive Case</span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)] tracking-tight">
-              OSCE Clinical Simulator
-            </h1>
-            <p className="text-[var(--text-secondary)] text-[13px] md:text-sm font-medium mt-2">
-              Interview the patient, order labs, and establish a diagnosis. AI grades your performance.
-            </p>
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <span className={`text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-widest ${diffColor}`}>
+              {DIFFICULTY_LABELS[station.difficulty] ?? station.difficulty}
+            </span>
           </div>
         </div>
-        <button
-          onClick={startNewCase}
-          className="flex items-center space-x-2 bg-[var(--bg-0)] hover:bg-[var(--color-medical-rose)]/5 border border-[var(--border-subtle)] hover:border-[var(--color-medical-rose)]/30 text-[var(--text-primary)] px-5 py-3 rounded-[16px] text-[13px] font-extrabold uppercase tracking-widest transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 group"
+
+        {/* Station ID badge */}
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-[9px] font-black uppercase tracking-widest" style={{ color: "var(--text-tertiary)" }}>
+            {station.id}
+          </span>
+          <div className="h-px flex-1" style={{ background: "var(--border-subtle)" }} />
+        </div>
+
+        {/* Title */}
+        <h3 className="font-extrabold text-sm leading-tight mb-1" style={{ color: "var(--text-primary)" }}>
+          {station.title}
+        </h3>
+        <p className="text-[11px] font-semibold mb-4" style={{ color: "var(--text-tertiary)" }}>
+          {station.titleAr}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide ${typeColor}`}>
+            {STATION_TYPE_LABELS[station.stationType]}
+          </span>
+          <span className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide" style={{ background: "var(--bg-3)", color: "var(--text-secondary)" }}>
+            {station.specialty}
+          </span>
+        </div>
+
+        {/* Footer */}
+        <div
+          className="flex items-center justify-between pt-3"
+          style={{ borderTop: "1px solid var(--border-subtle)" }}
         >
-          <RefreshCw className="w-4 h-4 text-[var(--color-medical-rose)] group-hover:rotate-180 transition-transform duration-500" />
-          <span>New Patient Case</span>
-        </button>
-      </div>
-
-      <div className="flex-1 flex flex-col md:flex-row gap-6 min-h-0 relative z-10">
-        {/* Sidebar */}
-        <div className="w-full md:w-80 flex flex-col gap-6">
-          <div className="medpulse-card glass level-1 bg-slate-900 border-slate-700/50 text-white rounded-[24px] p-6 shadow-2xl relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[var(--color-medical-rose)]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="flex items-center justify-between mb-5 relative z-10">
-              <h2 className="font-extrabold text-slate-100 text-[12px] uppercase tracking-widest flex items-center">
-                <Activity className="w-4 h-4 mr-2 text-rose-400" /> Vitals Monitor
-              </h2>
-              <div className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
-            </div>
-            <div className="space-y-4 relative z-10">
-              <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
-                <span className="text-[11px] text-[var(--text-tertiary)]/70 font-bold uppercase tracking-widest block mb-2">Heart Rate (bpm)</span>
-                <span className="text-3xl font-black text-rose-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(244,63,94,0.4)]">---</span>
-              </div>
-              <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
-                <span className="text-[11px] text-[var(--text-tertiary)]/70 font-bold uppercase tracking-widest block mb-2">Blood Pressure (mmHg)</span>
-                <span className="text-3xl font-black text-sky-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(56,189,248,0.4)]">---/---</span>
-              </div>
-              <div className="bg-slate-800/80 p-4 rounded-[16px] border border-slate-700 shadow-inner backdrop-blur-md">
-                <span className="text-[11px] text-[var(--text-tertiary)]/70 font-bold uppercase tracking-widest block mb-2">SpO2 (%)</span>
-                <span className="text-3xl font-black text-indigo-400 font-mono tracking-tight drop-shadow-[0_0_10px_rgba(129,140,248,0.4)]">--%</span>
-              </div>
-            </div>
+          <div className="flex items-center gap-3 text-[11px]" style={{ color: "var(--text-tertiary)" }}>
+            <span className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {station.durationMinutes} min
+            </span>
+            <span className="flex items-center gap-1">
+              <Target className="w-3 h-3" />
+              {station.markingScheme.totalMarks} marks
+            </span>
           </div>
-
-          <div className="medpulse-card glass level-2 bg-[var(--color-vital-cyan)]/5 border border-[var(--color-vital-cyan)]/10 rounded-[24px] p-6 flex-1 overflow-y-auto">
-            <h3 className="font-extrabold text-[var(--color-vital-cyan)] flex items-center mb-4 text-[13px] uppercase tracking-widest">
-              <Info className="w-4 h-4 mr-2" />
-              How to Play
-            </h3>
-            <ul className="text-[13px] text-[var(--text-secondary)] font-medium space-y-3 list-none">
-              {['Ask the patient questions to gather history.', 'Order specific labs.', 'Perform physical exams.', 'Submit your final diagnosis.'].map((step, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="bg-[var(--color-vital-cyan)]/10 text-[var(--color-vital-cyan)] w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-[10px] font-black">{i + 1}</span>
-                  <span className="mt-0.5 leading-relaxed">{step}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="flex items-center gap-1 text-[11px] font-bold" style={{ color: "var(--color-medical-indigo)" }}>
+            Start
+            <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
+      </div>
+    </Link>
+  );
+}
 
-        {/* Chat Area */}
-        <div className="flex-1 medpulse-card glass level-1 bg-[var(--bg-0)] rounded-[24px] shadow-xl border border-[var(--border-subtle)] flex flex-col relative overflow-hidden">
-          <div className="bg-[var(--bg-1)] bg-opacity-80 backdrop-blur-xl border-b border-[var(--border-subtle)] p-5 flex items-center shadow-sm z-20">
-            <div className="w-10 h-10 rounded-[12px] bg-[var(--color-medical-indigo)]/10 flex items-center justify-center border border-[var(--color-medical-indigo)]/20 mr-4">
-              <Stethoscope className="w-5 h-5 text-[var(--color-medical-indigo)]" />
+function OSCEHome() {
+  const { lang, dir } = useLanguage();
+  const { loading } = useSupabaseAuth();
+  const isAr = lang === "ar";
+  const [specialtyFilter, setSpecialtyFilter] = useState("all");
+  const [difficultyFilter, setDifficultyFilter] = useState("all");
+  const [typeFilter, setTypeFilter] = useState("all");
+  const [showFilters, setShowFilters] = useState(false);
+
+  const filtered = useMemo(() => {
+    return OSCE_STATIONS.filter(s => {
+      if (specialtyFilter !== "all" && s.specialty !== specialtyFilter) return false;
+      if (difficultyFilter !== "all" && s.difficulty !== difficultyFilter) return false;
+      if (typeFilter !== "all" && s.stationType !== typeFilter) return false;
+      return true;
+    });
+  }, [specialtyFilter, difficultyFilter, typeFilter]);
+
+  if (loading) return null;
+
+  const statsBySpecialty = useMemo(() => {
+    const counts: Record<string, number> = {};
+    OSCE_STATIONS.forEach(s => { counts[s.specialty] = (counts[s.specialty] || 0) + 1; });
+    return counts;
+  }, []);
+
+  return (
+    <div className="max-w-7xl mx-auto p-4 pb-24 md:pb-8 md:p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700" dir={dir}>
+
+      {/* ── HERO ── */}
+      <div
+        className="relative rounded-3xl p-6 md:p-10 overflow-hidden"
+        style={{ background: "var(--bg-2)", border: "1px solid var(--border-subtle)" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-medical-indigo)]/5 to-[var(--color-clinical-violet)]/5 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-medical-indigo)]/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-3xl">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-14 h-14 bg-gradient-to-br from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] rounded-2xl flex items-center justify-center shadow-xl">
+              <Stethoscope className="w-7 h-7 text-white" />
             </div>
             <div>
-              <span className="font-extrabold text-[var(--text-primary)] text-[14px] md:text-[15px] block">Examination Room 1</span>
-              <span className="text-[11px] text-[var(--color-medical-indigo)] font-bold uppercase tracking-widest">Active Session</span>
+              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight" style={{ color: "var(--text-primary)" }}>
+                {isAr ? "محاكي OSCE السريري" : "Clinical OSCE Simulator"}
+              </h1>
+              <p className="text-sm font-semibold" style={{ color: "var(--text-secondary)" }}>
+                {isAr ? "تدرب مع مريض AI وممتحن AI — تغذية راجعة فورية" : "Practice with AI Patient & AI Examiner — Instant detailed feedback"}
+              </p>
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[var(--bg-0)] z-10 scroll-smooth">
-            {messages.map((msg, _idx) => (
-              <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} animate-in slide-in-from-bottom-4 fade-in duration-500`}>
-                <div className={`relative max-w-[85%] rounded-[20px] px-6 py-5 shadow-sm text-[14px] leading-relaxed ${
-                  msg.role === "user" 
-                    ? "bg-gradient-to-br from-indigo-600 to-indigo-700 text-white rounded-tr-[4px] shadow-lg shadow-indigo-500/20 font-medium" 
-                    : "bg-[var(--bg-1)] border border-[var(--border-subtle)] text-[var(--text-primary)] rounded-tl-[4px]"
-                }`}>
-                  {msg.role === "assistant" && (
-                    <button 
-                      onClick={() => speakText(msg.content)}
-                      className="absolute top-3 right-3 p-1.5 rounded-[8px] text-[var(--text-tertiary)] hover:text-[var(--color-medical-indigo)] hover:bg-[var(--color-medical-indigo)]/10 transition-colors"
-                      title="Listen"
-                    >
-                      <Volume2 className="w-4 h-4" />
-                    </button>
-                  )}
-                  {msg.content ? (
-                    <div className={msg.role === "assistant" ? "pr-6" : ""}>
-                      <ReactMarkdown 
-                        remarkPlugins={[remarkGfm]}
-                        components={{
-                          a: ({ node: _node, ...props }) => <a className="text-[var(--color-medical-indigo)] font-extrabold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
-                          p: ({ node: _node, ...props }) => <p className="mb-3 last:mb-0 font-medium" {...props} />,
-                          ul: ({ node: _node, ...props }) => <ul className="list-disc pl-5 mb-3 space-y-1" {...props} />,
-                          ol: ({ node: _node, ...props }) => <ol className="list-decimal pl-5 mb-3 space-y-1" {...props} />,
-                          li: ({ node: _node, ...props }) => <li className="mb-1" {...props} />,
-                          strong: ({ node: _node, ...props }) => <strong className="font-extrabold text-[var(--text-primary)]" {...props} />
-                        }}
-                      >
-                        {msg.content}
-                      </ReactMarkdown>
-                    </div>
-                  ) : (
-                    <span className="flex items-center space-x-3 text-[var(--color-medical-indigo)] font-extrabold text-[12px] uppercase tracking-widest">
-                      <div className="flex gap-1">
-                        <span className="w-1.5 h-1.5 bg-[var(--color-medical-indigo)] rounded-full animate-bounce [animation-delay:-0.3s]" />
-                        <span className="w-1.5 h-1.5 bg-[var(--color-medical-indigo)] rounded-full animate-bounce [animation-delay:-0.15s]" />
-                        <span className="w-1.5 h-1.5 bg-[var(--color-medical-indigo)] rounded-full animate-bounce" />
-                      </div>
-                      <span>Thinking...</span>
-                    </span>
-                  )}
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-3 mt-6">
+            {[
+              { label: isAr ? "محطة OSCE" : "OSCE Stations", value: OSCE_STATIONS.length.toString(), icon: Target },
+              { label: isAr ? "تخصصات" : "Specialties", value: OSCE_SPECIALTIES.length.toString(), icon: BookOpen },
+              { label: isAr ? "مستويات صعوبة" : "Difficulty Levels", value: "6", icon: Trophy },
+            ].map(stat => {
+              const Icon = stat.icon;
+              return (
+                <div key={stat.label} className="text-center p-3 rounded-2xl" style={{ background: "var(--bg-3)", border: "1px solid var(--border-subtle)" }}>
+                  <Icon className="w-5 h-5 mx-auto mb-1" style={{ color: "var(--color-medical-indigo)" }} />
+                  <div className="text-2xl font-black" style={{ color: "var(--text-primary)" }}>{stat.value}</div>
+                  <div className="text-[10px] font-bold uppercase tracking-widest" style={{ color: "var(--text-tertiary)" }}>{stat.label}</div>
                 </div>
-              </div>
-            ))}
-            <div ref={bottomRef} />
-          </div>
-
-          <div className="p-4 md:p-5 border-t border-[var(--border-subtle)] bg-[var(--bg-1)] bg-opacity-80 backdrop-blur-xl z-20">
-            <div className="flex items-center space-x-3">
-              <button
-                onClick={toggleRecording}
-                className={`p-3.5 rounded-[16px] transition-all border shadow-sm ${
-                  isRecording 
-                    ? "bg-rose-500/10 text-rose-500 border-rose-500/30 animate-pulse" 
-                    : "bg-[var(--bg-0)] text-[var(--text-secondary)] border-[var(--border-subtle)] hover:border-[var(--color-medical-indigo)]/40 hover:text-[var(--color-medical-indigo)]"
-                }`}
-                title={isRecording ? "Stop Recording" : "Start Voice Input"}
-              >
-                {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
-              </button>
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
-                placeholder="Talk to the patient, order a lab, or state your diagnosis..."
-                className="flex-1 bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[16px] px-5 py-4 text-[14px] text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:border-[var(--color-medical-indigo)] focus:ring-1 focus:ring-[var(--color-medical-indigo)] outline-none transition-all font-bold shadow-inner"
-                disabled={isLoading}
-              />
-              <button
-                onClick={sendMessage}
-                disabled={isLoading || !input.trim()}
-                className="bg-gradient-to-br from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 disabled:from-[var(--bg-2)] disabled:to-[var(--bg-2)] disabled:text-[var(--text-tertiary)] disabled:shadow-none text-white rounded-[16px] h-[54px] w-[54px] flex items-center justify-center transition-all active:scale-95 shadow-[0_5px_15px_rgba(99,102,241,0.3)] disabled:border disabled:border-[var(--border-subtle)] group"
-              >
-                {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />}
-              </button>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>
+
+      {/* ── HOW IT WORKS ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {[
+          { step: "1", title: isAr ? "اختر المحطة" : "Choose Station", desc: isAr ? "اختر التخصص والمستوى" : "Pick specialty & difficulty", icon: Filter },
+          { step: "2", title: isAr ? "ادخل المحطة" : "Enter Station", desc: isAr ? "تحدث مع المريض AI" : "Talk to the AI patient", icon: Users },
+          { step: "3", title: isAr ? "احصل على تغذية راجعة" : "Get Feedback", desc: isAr ? "درجات وتحليل تفصيلي" : "Detailed marks & feedback", icon: Star },
+        ].map(item => {
+          const Icon = item.icon;
+          return (
+            <div key={item.step} className="p-4 rounded-2xl flex items-start gap-3" style={{ background: "var(--bg-2)", border: "1px solid var(--border-subtle)" }}>
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] text-white font-black text-sm flex items-center justify-center flex-shrink-0">
+                {item.step}
+              </div>
+              <div>
+                <p className="font-bold text-sm" style={{ color: "var(--text-primary)" }}>{item.title}</p>
+                <p className="text-xs" style={{ color: "var(--text-secondary)" }}>{item.desc}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ── FILTERS ── */}
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-lg font-extrabold" style={{ color: "var(--text-primary)" }}>
+            {isAr ? `المحطات (${filtered.length})` : `Stations (${filtered.length})`}
+          </h2>
+          <button
+            onClick={() => setShowFilters(f => !f)}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all"
+            style={{
+              background: showFilters ? "rgba(99,102,241,0.1)" : "var(--bg-2)",
+              border: `1px solid ${showFilters ? "rgba(99,102,241,0.3)" : "var(--border-subtle)"}`,
+              color: showFilters ? "var(--color-medical-indigo)" : "var(--text-secondary)",
+            }}
+          >
+            <Filter className="w-4 h-4" />
+            {isAr ? "فلاتر" : "Filters"}
+          </button>
+        </div>
+
+        {showFilters && (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 p-4 rounded-2xl animate-in fade-in duration-300" style={{ background: "var(--bg-2)", border: "1px solid var(--border-subtle)" }}>
+            <div>
+              <label className="block text-[10px] font-black uppercase tracking-widest mb-1.5" style={{ color: "var(--text-tertiary)" }}>
+                {isAr ? "التخصص" : "Specialty"}
+              </label>
+              <select
+                value={specialtyFilter}
+                onChange={e => setSpecialtyFilter(e.target.value)}
+                className="w-full px-3 py-2 rounded-xl text-sm font-semibold border"
+                style={{ background: "var(--bg-3)", color: "var(--text-primary)", borderColor: "var(--border-default)" }}
+              >
+                <option value="all">{isAr ? "كل التخصصات" : "All Specialties"}</option>
+                {OSCE_SPECIALTIES.map(sp => (
+                  <option key={sp} value={sp}>{sp} ({statsBySpecialty[sp] || 0})</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-[10px] font-black uppercase tracking-widest mb-1.5" style={{ color: "var(--text-tertiary)" }}>
+                {isAr ? "المستوى" : "Difficulty"}
+              </label>
+              <select
+                value={difficultyFilter}
+                onChange={e => setDifficultyFilter(e.target.value)}
+                className="w-full px-3 py-2 rounded-xl text-sm font-semibold border"
+                style={{ background: "var(--bg-3)", color: "var(--text-primary)", borderColor: "var(--border-default)" }}
+              >
+                <option value="all">{isAr ? "كل المستويات" : "All Levels"}</option>
+                {Object.entries(DIFFICULTY_LABELS).map(([k, v]) => (
+                  <option key={k} value={k}>{v}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-[10px] font-black uppercase tracking-widest mb-1.5" style={{ color: "var(--text-tertiary)" }}>
+                {isAr ? "نوع المحطة" : "Station Type"}
+              </label>
+              <select
+                value={typeFilter}
+                onChange={e => setTypeFilter(e.target.value)}
+                className="w-full px-3 py-2 rounded-xl text-sm font-semibold border"
+                style={{ background: "var(--bg-3)", color: "var(--text-primary)", borderColor: "var(--border-default)" }}
+              >
+                <option value="all">{isAr ? "كل الأنواع" : "All Types"}</option>
+                {Object.entries(STATION_TYPE_LABELS).map(([k, v]) => (
+                  <option key={k} value={k}>{v}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ── STATION GRID ── */}
+      {filtered.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filtered.map(station => (
+            <StationCard key={station.id} station={station} />
+          ))}
+        </div>
+      ) : (
+        <div className="py-20 flex flex-col items-center justify-center" style={{ color: "var(--text-tertiary)" }}>
+          <Filter className="w-12 h-12 mb-4 opacity-30" />
+          <p className="font-bold text-lg">{isAr ? "لا توجد محطات تطابق الفلاتر" : "No stations match your filters"}</p>
+          <button
+            onClick={() => { setSpecialtyFilter("all"); setDifficultyFilter("all"); setTypeFilter("all"); }}
+            className="mt-4 text-sm font-bold"
+            style={{ color: "var(--color-medical-indigo)" }}
+          >
+            {isAr ? "إزالة الفلاتر" : "Clear Filters"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
   const { loading } = useSupabaseAuth();
-
   if (loading) return null;
   return <>{children}</>;
 }
@@ -352,7 +331,7 @@ export default function Page() {
   return (
     <ErrorBoundary>
       <AuthGuard>
-        <SimulatorWard />
+        <OSCEHome />
       </AuthGuard>
     </ErrorBoundary>
   );
