@@ -85,7 +85,9 @@ export default function ClinicalNotesPage() {
   if (loading || !user) return null;
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:p-10 w-full animate-in fade-in slide-in-from-bottom-8 duration-700">
+    <div className="max-w-7xl mx-auto p-4 md:p-10 w-full animate-in fade-in zoom-in-95 duration-700 relative">
+      <div className="absolute top-[10%] right-[10%] w-[30%] h-[30%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[20%] left-[5%] w-[40%] h-[40%] bg-[var(--color-vital-cyan)]/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="mb-8 md:mb-12">
         <div className="flex items-center gap-4 mb-5">
           <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] rounded-[20px] flex items-center justify-center shadow-xl transform -rotate-3">

@@ -61,7 +61,7 @@ const colorMap: Record<string, string> = {
   orange:  "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
   rose:    "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
   red:     "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20",
-  slate:   "bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20",
+  slate:   "bg-slate-500/10 text-slate-600 dark:text-[var(--text-tertiary)]/70 border-slate-500/20",
   purple:  "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20",
   cyan:    "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20",
   violet:  "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
@@ -106,7 +106,9 @@ export default function DashboardPage() {
   const nextLvlTitle = nextLvl ? (isAr ? nextLvl.titleAr : nextLvl.title) : null;
 
   return (
-    <div className="max-w-6xl mx-auto p-6 md:p-10 w-full page-transition space-y-8">
+    <div className="max-w-6xl mx-auto p-4 md:p-10 w-full animate-in fade-in zoom-in-95 duration-700 relative space-y-8">
+      <div className="absolute top-[10%] right-[10%] w-[30%] h-[30%] bg-[var(--color-medical-indigo)]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[20%] left-[5%] w-[40%] h-[40%] bg-[var(--color-vital-cyan)]/5 rounded-full blur-[150px] pointer-events-none" />
 
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between items-start gap-4">

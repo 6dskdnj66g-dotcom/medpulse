@@ -268,12 +268,16 @@
   }
 }
 
-::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar       { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-default);
+  background: var(--color-medical-indigo);
   border-radius: 9999px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-medical-indigo);
+  background: var(--color-vital-cyan);
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
