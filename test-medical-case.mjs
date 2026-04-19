@@ -10,7 +10,7 @@ async function testMedicalCase() {
     console.log("⏳ ننتظر إجابة الذكاء الاصطناعي...\n");
 
     try {
-        const aiRes = await fetch('http://localhost:3008/api/medical-query', {
+        const aiRes = await fetch('http://localhost:3000/api/medical-query', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
