@@ -770,6 +770,14 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
   const { lang } = useLanguage();
   const isAr = lang === "ar";
 
+  const saveResultLocal = useCallback((scoreTotal: number, maxScore: number, passFail: string, stationId: string) => {
+    try {
+      const history = JSON.parse(localStorage.getItem("osce_history") || "[]");
+      history.push({ stationId, score: scoreTotal, maxScore, passFail, date: new Date().toISOString() });
+      localStorage.setItem("osce_history", JSON.stringify(history));
+    } catch(e) {}
+  }, []);
+
   const station = OSCE_STATIONS.find(s => s.id === stationId);
 
   const [phase, setPhase] = useState<Phase>("brief");
@@ -797,13 +805,15 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
       if (!res.ok) throw new Error("Evaluation failed");
       const data = await res.json() as ExaminerResult;
       setResult(data);
-          onSave?.(data.total_score, data.max_score, data.pass_fail, station.id);
+      if (station) {
+        saveResultLocal(data.total_score, data.max_score, data.pass_fail, station.id);
+      }
     } catch {
       setError(isAr ? "فشل التقييم. يرجى المحاولة مرة أخرى." : "Evaluation failed. Please try again.");
     } finally {
       setEvaluating(false);
     }
-  }, [messages, stationId, isAr]);
+  }, [messages, stationId, isAr, saveResultLocal, station]);
 
   const handleSend = useCallback(async () => {
     const text = input.trim();
