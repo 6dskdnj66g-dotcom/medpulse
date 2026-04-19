@@ -91,7 +91,6 @@ REMINDER: YOU ARE ${station.patientName}, ${station.patientAge} YEARS OLD. THIS 
         system: systemPrompt,
         messages: cappedMessages,
         temperature: 0.45, // Lower = more consistent identity
-        maxTokens: 250,    // Short patient responses
       });
 
       return NextResponse.json({ content: text, role: "patient" });
@@ -142,7 +141,6 @@ Respond ONLY as valid JSON (no markdown, no code blocks, just raw JSON):
         system: systemPrompt,
         prompt: `قيّم أداء هذا الطالب:\n\n${conversationText}\n\nأرجع JSON فقط بدون أي نص إضافي.`,
         temperature: 0.15, // Very low for consistent scoring
-        maxTokens: 1800,
       });
 
       // Robust JSON extraction
