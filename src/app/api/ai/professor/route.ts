@@ -67,14 +67,21 @@ const PROFESSOR_PERSONAS: Record<string, { nameAr: string; systemPrompt: string 
 
 export async function POST(req: Request) {
   try {
-    const { messages, professorId, systemPrompt: customPrompt } = await req.json() as {
+    const { messages, professorId, systemPrompt: customPrompt, lang = 'ar' } = await req.json() as {
       messages: { role: "user" | "assistant"; content: string }[];
       professorId?: string;
       systemPrompt?: string;
+      lang?: string;
     };
 
     const persona = professorId ? PROFESSOR_PERSONAS[professorId] : null;
-    const systemInstruction = customPrompt ?? persona?.systemPrompt ?? `أنت أستاذ طبي خبير. أجب بالعربية الطبية الفصحى مع ذكر المصادر.`;
+    let systemInstruction = customPrompt ?? persona?.systemPrompt ?? `أنت أستاذ طبي خبير. أجب بالعربية الطبية الفصحى مع ذكر المصادر.`;
+
+    if (lang === 'en') {
+      systemInstruction = `${systemInstruction}\n\nCRITICAL DIRECTIVE: The user has selected ENGLISH mode. You MUST translate your persona and respond ENTIRELY in English. Do NOT output any Arabic text under any circumstances.`;
+    } else {
+      systemInstruction = `${systemInstruction}\n\nCRITICAL DIRECTIVE: The user has selected ARABIC mode. You MUST respond ENTIRELY in Arabic.`;
+    }
 
     const groqKey = process.env.GROQ_API_KEY;
 

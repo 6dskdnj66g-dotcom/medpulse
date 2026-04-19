@@ -7,13 +7,17 @@ export const maxDuration = 120;
 
 export async function POST(req: Request) {
   try {
-    const { query } = await req.json();
+    const { query, lang = 'ar' } = await req.json();
 
     if (!query || typeof query !== "string" || query.trim().length < 5) {
       return new Response(JSON.stringify({ error: "A valid clinical query is required (min 5 characters)." }), { status: 400 });
     }
 
     const sanitizedQuery = query.trim().slice(0, 2000);
+    
+    const langInstruction = lang === 'en'
+      ? "\n\nCRITICAL DIRECTIVE: You MUST respond ENTIRELY in English. Your analysis, rationale, and conclusion must all be strictly in English."
+      : "\n\nCRITICAL DIRECTIVE: You MUST respond ENTIRELY in Arabic (Medical Arabic). Your analysis, rationale, and conclusion must all be strictly in Arabic.";
 
     const stream = new ReadableStream({
       async start(controller) {
@@ -26,7 +30,7 @@ export async function POST(req: Request) {
 
           const resultA = await streamText({
             model: groq('llama-3.3-70b-versatile'),
-            system: AGENT_A_PROMPT,
+            system: AGENT_A_PROMPT + langInstruction,
             prompt: `CLINICAL QUERY: ${sanitizedQuery}\n\nProvide a structured evidence-based analysis. Tag every claim with Evidence Level citations (e.g., [Level 1A — NEJM 2025], [Grade A — ACC/AHA 2026]).`,
             temperature: 0.1,
           });
@@ -43,7 +47,7 @@ export async function POST(req: Request) {
 
           const resultB = await streamText({
             model: groq('llama-3.3-70b-versatile'),
-            system: AGENT_B_PROMPT + `\n\n--- Agent A Research Output ---\n${agentAOutput}`,
+            system: AGENT_B_PROMPT + langInstruction + `\n\n--- Agent A Research Output ---\n${agentAOutput}`,
             prompt: `ORIGINAL QUERY: ${sanitizedQuery}\n\nCritically cross-examine the above research output. Identify: (1) drug interactions or contraindications, (2) outdated protocols vs 2026 guidelines, (3) FDA/EMA discrepancies, (4) missing evidence levels or unsupported claims, (5) patient safety concerns.`,
             temperature: 0.1,
           });
@@ -60,7 +64,7 @@ export async function POST(req: Request) {
 
           const resultC = await streamText({
             model: groq('llama-3.3-70b-versatile'),
-            system: AGENT_C_PROMPT,
+            system: AGENT_C_PROMPT + langInstruction,
             prompt: `ORIGINAL CLINICAL QUERY: ${sanitizedQuery}\n\n--- Agent A (Clinical Researcher) ---\n${agentAOutput}\n\n--- Agent B (MDT Reviewer) ---\n${agentBOutput}\n\nSynthesize into a final verified clinical consensus. Resolve all conflicts. Issue actionable recommendations with supreme Evidence-Level badges. Prioritize patient safety above all.`,
             temperature: 0.05,
           });

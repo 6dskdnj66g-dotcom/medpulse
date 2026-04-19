@@ -32,7 +32,7 @@ CRITICAL DIRECTIVES:
 
 export async function POST(req: Request) {
   try {
-    const { text, image } = await req.json();
+    const { text, image, lang = 'ar' } = await req.json();
 
     if ((!text || text.trim().length < 2) && !image) {
       return new Response(
@@ -40,6 +40,10 @@ export async function POST(req: Request) {
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
+
+    const languageInstruction = lang === 'en' 
+      ? "\n\nCRITICAL DIRECTIVE: Translate the summary into ENGLISH. DO NOT output Arabic."
+      : "\n\nCRITICAL DIRECTIVE: Translate the summary into ARABIC. Keep clinical terms in English where appropriate.";
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const messages: any = [
@@ -56,7 +60,7 @@ export async function POST(req: Request) {
 
     const { text: responseText } = await generateText({
       model: google('gemini-2.0-flash'),
-      system: SUMMARIZER_PROMPT,
+      system: SUMMARIZER_PROMPT + languageInstruction,
       messages,
       temperature: 0.1,
     });

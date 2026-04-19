@@ -171,8 +171,7 @@ function BriefPhase({ station, onStart, isAr }: { station: OSCEStation; onStart:
             </div>
             <div>
               <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-1">{station.id}</p>
-              <h1 className="text-xl md:text-2xl font-extrabold text-[var(--text-primary)] leading-tight">{station.title}</h1>
-              <p className="text-sm text-[var(--text-tertiary)] font-medium mt-0.5">{station.titleAr}</p>
+              <h1 className="text-xl md:text-2xl font-extrabold text-[var(--text-primary)] leading-tight">{isAr && station.titleAr ? station.titleAr : station.title}</h1>
             </div>
           </div>
 
@@ -743,7 +742,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
       const res = await fetch("/api/osce/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages, stationId, mode: "examiner_feedback" }),
+        body: JSON.stringify({ messages, stationId, mode: "examiner_feedback", lang: isAr ? 'ar' : 'en' }),
       });
       if (!res.ok) throw new Error("Evaluation failed");
       const data = await res.json() as ExaminerResult;
@@ -770,7 +769,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
       const res = await fetch("/api/osce/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updatedMsgs, stationId, mode: "patient" }),
+        body: JSON.stringify({ messages: updatedMsgs, stationId, mode: "patient", lang: isAr ? 'ar' : 'en' }),
       });
       if (!res.ok) throw new Error("API error");
       const data = await res.json() as { content: string };

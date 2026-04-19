@@ -50,6 +50,7 @@ function StationCard({ station }: { station: OSCEStation }) {
   const SpecialtyIcon = SPECIALTY_ICONS[station.specialty] ?? Stethoscope;
   const diffColor = DIFFICULTY_COLORS[station.difficulty] ?? "bg-slate-500/10 text-slate-600";
   const typeColor = TYPE_COLORS[station.stationType] ?? "bg-slate-500/10 text-slate-600";
+  const { isAr } = useLanguage();
 
   return (
     <Link
@@ -88,11 +89,8 @@ function StationCard({ station }: { station: OSCEStation }) {
 
         {/* Title */}
         <h3 className="font-extrabold text-sm leading-tight mb-1" style={{ color: "var(--text-primary)" }}>
-          {station.title}
+          {isAr && station.titleAr ? station.titleAr : station.title}
         </h3>
-        <p className="text-[11px] font-semibold mb-4" style={{ color: "var(--text-tertiary)" }}>
-          {station.titleAr}
-        </p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mb-4">

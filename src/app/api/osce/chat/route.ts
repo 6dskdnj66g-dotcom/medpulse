@@ -11,10 +11,11 @@ const MAX_HISTORY = 20;
 
 export async function POST(request: NextRequest) {
   try {
-    const { messages, stationId, mode } = await request.json() as {
+    const { messages, stationId, mode, lang = 'en' } = await request.json() as {
       messages: { role: string; content: string }[];
       stationId: string;
       mode: "patient" | "examiner_feedback";
+      lang?: string;
     };
 
     const station = OSCE_STATIONS.find(s => s.id === stationId);
@@ -24,6 +25,7 @@ export async function POST(request: NextRequest) {
 
     if (mode === "patient") {
       const persona = station.patientPersona;
+      const isArabic = lang === 'ar';
 
       // ── Anchor name/age at top AND bottom to prevent LLM drift ──────────
       const systemPrompt = `CRITICAL IDENTITY — READ FIRST AND REMEMBER THROUGHOUT:
@@ -34,6 +36,7 @@ YOUR SETTING: ${station.patientSetting}
 YOU HAVE NEVER CHANGED YOUR NAME. YOU WILL NEVER CHANGE YOUR NAME.
 
 You are roleplaying as a REAL PATIENT in an OSCE medical examination.
+You must speak strictly in ${isArabic ? 'Arabic' : 'English'}. Never use the other language.
 
 ═══ YOUR FIXED IDENTITY (IMMUTABLE) ═══
 Name: ${station.patientName} — USE THIS NAME ONLY — NEVER invent another name
@@ -43,7 +46,7 @@ Setting: ${station.patientSetting}
 Personality: ${persona.personality}
 
 ═══ YOUR COMPLAINT ═══
-Presenting complaint: ${persona.presentingComplaint}
+Presenting complaint: ${isArabic && persona.presentingComplaintAr ? persona.presentingComplaintAr : persona.presentingComplaint}
 Onset: ${persona.onset}
 Severity: ${persona.severity}
 Associated symptoms (only reveal if DIRECTLY asked): ${persona.associatedSymptoms.join(", ")}
@@ -67,7 +70,7 @@ ${persona.hiddenCues.map((c, i) => `${i + 1}. ${c}`).join("\n")}
 5. NEVER give the diagnosis to the student — you don't know what's wrong with you.
 6. If asked something NOT in your history: say "I don't know" or "I don't think so".
 7. Keep responses SHORT (1-3 sentences). Real patients give short answers.
-8. Respond in the SAME LANGUAGE the student uses (Arabic or English).
+8. Respond ONLY in ${isArabic ? 'Arabic' : 'English'}, regardless of the language the student uses.
 9. Show appropriate emotion: ${persona.personality === "anxious" ? "You are visibly anxious and worried" : persona.personality === "reluctant" ? "You are reluctant to share details" : "You are cooperative but only answer what is asked"}.
 10. If the student is rude or abrupt: show discomfort ("Doctor, you're scaring me...").
 
@@ -98,10 +101,12 @@ REMINDER: YOU ARE ${station.patientName}, ${station.patientAge} YEARS OLD. THIS 
 
     if (mode === "examiner_feedback") {
       const markingScheme = station.markingScheme;
+      const isArabic = lang === 'ar';
 
       const systemPrompt = `You are an experienced OSCE examiner providing DETAILED, FAIR, CONSTRUCTIVE feedback.
+IMPORTANT: You MUST write your ENTIRE final response (comments, positives, improvements, ai_feedback) in ${isArabic ? 'Arabic' : 'English'}. No exceptions.
 
-STATION: ${station.title}
+STATION: ${isArabic && station.titleAr ? station.titleAr : station.title}
 SPECIALTY: ${station.specialty}
 TOTAL MARKS: ${markingScheme.totalMarks}
 PASS THRESHOLD: ${markingScheme.passThreshold}/${markingScheme.totalMarks} (${Math.round((markingScheme.passThreshold / markingScheme.totalMarks) * 100)}%)
