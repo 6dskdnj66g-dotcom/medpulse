@@ -130,7 +130,7 @@ function StationCard({ station }: { station: OSCEStation }) {
 
 function OSCEHome() {
   const { lang, dir } = useLanguage();
-  const { loading } = useSupabaseAuth();
+  useSupabaseAuth();
   const isAr = lang === "ar";
   const [specialtyFilter, setSpecialtyFilter] = useState("all");
   const [difficultyFilter, setDifficultyFilter] = useState("all");
@@ -151,8 +151,6 @@ function OSCEHome() {
     OSCE_STATIONS.forEach(s => { counts[s.specialty] = (counts[s.specialty] || 0) + 1; });
     return counts;
   }, []);
-
-  if (loading) return null;
 
   return (
     <div className="max-w-7xl mx-auto p-4 pb-24 md:pb-8 md:p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700" dir={dir}>
@@ -318,8 +316,7 @@ function OSCEHome() {
 }
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
-  const { loading } = useSupabaseAuth();
-  if (loading) return null;
+  const { } = useSupabaseAuth();
   return <>{children}</>;
 }
 

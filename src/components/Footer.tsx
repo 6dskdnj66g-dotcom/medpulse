@@ -51,8 +51,8 @@ export function Footer() {
             </span>
             <p className="text-[10px] font-black text-[var(--text-secondary)] uppercase tracking-widest">
               {isAr
-                ? "مُشغَّل بـ Gemini 2.0 Flash · RAG · إرشادات 2026"
-                : "Powered by Gemini 2.0 Flash · RAG · 2026 Guidelines"}
+                ? "مُشغَّل بالذكاء الاصطناعي · RAG · إرشادات موثّقة"
+                : "Powered by Groq · RAG · Evidence-Based Guidelines"}
             </p>
           </div>
 
@@ -89,8 +89,8 @@ export function Footer() {
           </p>
           <p className="text-[10px] text-[var(--text-tertiary)] font-medium text-center">
             {isAr
-              ? "مبني على: WHO 2026 · NEJM · ACC/AHA · ESC · KDIGO · AAN · ACOG"
-              : "Built on: WHO 2026 · NEJM · ACC/AHA · ESC · KDIGO · AAN · ACOG"}
+              ? "مبني على: WHO · NEJM · ACC/AHA · ESC · KDIGO · AAN · ACOG"
+              : "Built on: WHO · NEJM · ACC/AHA · ESC · KDIGO · AAN · ACOG"}
           </p>
         </div>
       </div>

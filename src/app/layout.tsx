@@ -1,7 +1,7 @@
 // Build trigger: Vercel settings updated
 import type { Metadata } from 'next';
 import './globals.css';
-import { Sidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/components/layout/Sidebar';
 import { Navbar } from '@/components/Navbar';
 import { AuthProvider } from '@/components/AuthContext';
 import { ThemeProvider } from '@/components/ThemeProvider';

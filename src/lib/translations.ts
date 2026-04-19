@@ -12,7 +12,7 @@ export const translations = {
       profile: "My Profile",
       admin: "Admin Panel",
       verifiedContext: "Verified Context",
-      ragDisclaimer: "WHO, NEJM & ACC/AHA 2026 protocols. Zero-hallucination RAG-verified.",
+      ragDisclaimer: "WHO, NEJM & ACC/AHA guidelines. Evidence-based clinical support.",
       xp: "XP",
       level: "Level",
     },
@@ -38,6 +38,10 @@ export const translations = {
       library: "Source Library",
       usmle: "USMLE Mode",
       progress: "My Progress",
+      radiology: "Radiology AI",
+      pathology: "Pathology AI",
+      labResults: "Lab Results",
+      localResources: "Local Curriculum",
     }
   },
   ar: {
@@ -51,7 +55,7 @@ export const translations = {
       profile: "ملفي الشخصي",
       admin: "لوحة الأدمن",
       verifiedContext: "سياق موثق",
-      ragDisclaimer: "بروتوكولات WHO و NEJM لعام 2026. بيانات موثقة ضد الهلوسة.",
+      ragDisclaimer: "بروتوكولات WHO و NEJM. دعم سريري مبني على الأدلة.",
       xp: "نقطة",
       level: "مستوى",
     },
@@ -77,6 +81,10 @@ export const translations = {
       library: "مكتبة المصادر",
       usmle: "وضع USMLE",
       progress: "تقدمي الدراسي",
+      radiology: "الأشعة بالذكاء الاصطناعي",
+      pathology: "علم الأمراض",
+      labResults: "نتائج المختبر",
+      localResources: "المناهج المحلية",
     }
   }
 };

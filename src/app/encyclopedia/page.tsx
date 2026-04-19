@@ -312,7 +312,7 @@ function EncyclopediaHome() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
               </span>
-              <span className="text-[13px] md:text-sm font-extrabold text-[var(--text-primary)] tracking-wide">{isAr ? "18,400+ مجلد موثّق" : "18,400+ Verified Volumes"}</span>
+              <span className="text-[13px] md:text-sm font-extrabold text-[var(--text-primary)] tracking-wide">{isAr ? "308+ مصدر طبي موثّق" : "308+ Verified Medical Sources"}</span>
             </div>
             <div className="bg-[var(--bg-0)]/80 backdrop-blur-md border border-[var(--border-subtle)] px-5 py-3 rounded-2xl flex items-center gap-3 shadow-sm hover:shadow-md transition-shadow">
               <span className="w-3 h-3 rounded-full bg-[var(--color-medical-indigo)] shadow-[0_0_10px_rgba(var(--color-medical-indigo-rgb),0.8)]" />

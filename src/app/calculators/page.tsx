@@ -14,7 +14,7 @@ const CALCULATORS = [
   { id: "wells_pe", label: "Wells PE", subtitle: "PE Probability", icon: Droplets, color: "orange", desc: "Clinical probability for pulmonary embolism" },
   { id: "meld", label: "MELD Score", subtitle: "Liver Disease Severity", icon: Activity, color: "emerald", desc: "Model for End-Stage Liver Disease — transplant prioritization" },
   { id: "egfr", label: "eGFR (CKD-EPI)", subtitle: "Kidney Function", icon: Droplets, color: "teal", desc: "Estimated glomerular filtration rate — 2021 CKD-EPI equation" },
-  { id: "bmi", label: "BMI Calculator", subtitle: "Body Mass Index", icon: Scale, color: "violet", desc: "Body Mass Index with WHO 2026 classification" },
+  { id: "bmi", label: "BMI Calculator", subtitle: "Body Mass Index", icon: Scale, color: "violet", desc: "Body Mass Index with WHO Classification" },
   { id: "nihss", label: "NIHSS", subtitle: "Stroke Severity", icon: Brain, color: "purple", desc: "NIH Stroke Scale — quantifies neurological deficit" },
 ];
 
