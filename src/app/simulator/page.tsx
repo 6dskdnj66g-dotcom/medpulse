@@ -50,7 +50,8 @@ function StationCard({ station }: { station: OSCEStation }) {
   const SpecialtyIcon = SPECIALTY_ICONS[station.specialty] ?? Stethoscope;
   const diffColor = DIFFICULTY_COLORS[station.difficulty] ?? "bg-slate-500/10 text-slate-600";
   const typeColor = TYPE_COLORS[station.stationType] ?? "bg-slate-500/10 text-slate-600";
-  const { isAr } = useLanguage();
+  const { lang } = useLanguage();
+  const isAr = lang === 'ar';
 
   return (
     <Link
