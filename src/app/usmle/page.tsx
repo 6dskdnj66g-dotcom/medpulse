@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { Trophy, Clock, CheckCircle, X, ChevronRight, RotateCcw, Award, BookOpen, Brain, Play, BarChart3, Settings, Languages } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { Trophy, Clock, CheckCircle, X, ChevronRight, RotateCcw, Award, BookOpen, Brain, Play, BarChart3, Settings, Languages, Highlighter, Edit3, BookmarkPlus } from "lucide-react";
 import { useAchievement } from "@/components/AchievementContext";
 
 type Question = {
@@ -42,6 +42,53 @@ export default function USMLEPage() {
   // Timer state
   const [timeLeft, setTimeLeft] = useState<number>(0);
   
+  // Highlighter, Notes, Flashcards state
+  const [highlightMode, setHighlightMode] = useState(false);
+  const stemRef = useRef<HTMLParagraphElement>(null);
+  const [showNotes, setShowNotes] = useState(false);
+  const [personalNotes, setPersonalNotes] = useState<Record<string, string>>({});
+  const [savedFlashcards, setSavedFlashcards] = useState<string[]>([]);
+
+  useEffect(() => {
+    const savedN = localStorage.getItem("usmle_notes");
+    if (savedN) setPersonalNotes(JSON.parse(savedN));
+    const savedF = localStorage.getItem("usmle_flashcards");
+    if (savedF) setSavedFlashcards(JSON.parse(savedF));
+  }, []);
+
+  const handleSaveNote = (id: string, text: string) => {
+    const newNotes = { ...personalNotes, [id]: text };
+    setPersonalNotes(newNotes);
+    localStorage.setItem("usmle_notes", JSON.stringify(newNotes));
+  };
+
+  const handleSaveFlashcard = (q: Question) => {
+    const targetId = q.id || `stem_${currentQ}`;
+    if (savedFlashcards.includes(targetId)) return;
+    const newCards = [...savedFlashcards, targetId];
+    setSavedFlashcards(newCards);
+    localStorage.setItem("usmle_flashcards", JSON.stringify(newCards));
+    alert("Saved to Flashcards!");
+  };
+
+  const applyHighlight = () => {
+    if (!highlightMode) return;
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0 || selection.toString().length < 2) return;
+    
+    // Simplistic visual highlight, works temporarily before component rerenders
+    const range = selection.getRangeAt(0);
+    const span = document.createElement("span");
+    span.style.backgroundColor = "rgba(250, 204, 21, 0.4)"; // yellow-400 low opacity
+    span.style.color = "#fef08a"; // yellow-200
+    span.style.borderRadius = "2px";
+    span.style.padding = "0 2px";
+    try {
+      range.surroundContents(span);
+    } catch(_e) {} // Ignore cross-element highlight errors for simplicity
+    selection.removeAllRanges();
+  };
+
   // Translation state
   const [translations, setTranslations] = useState<Record<string, string>>({});
   const [isTranslating, setIsTranslating] = useState(false);
@@ -51,13 +98,28 @@ export default function USMLEPage() {
     totalAttempted: 0,
     correct: 0,
     streak: 0,
-    bestStreak: 0
+    bestStreak: 0,
+    specialties: {} as Record<string, { attempted: number; correct: number }>
   });
 
-  const updateStats = useCallback((isCorrect: boolean) => {
+  const updateStats = useCallback((isCorrect: boolean, specialty?: string) => {
     setStats(prevStats => {
       const newStats = { ...prevStats };
+      if (!newStats.specialties) newStats.specialties = {};
+      
       newStats.totalAttempted += 1;
+      
+      // Update specialty stats
+      if (specialty) {
+        if (!newStats.specialties[specialty]) {
+          newStats.specialties[specialty] = { attempted: 0, correct: 0 };
+        }
+        newStats.specialties[specialty].attempted += 1;
+        if (isCorrect) {
+          newStats.specialties[specialty].correct += 1;
+        }
+      }
+
       if (isCorrect) {
         newStats.correct += 1;
         newStats.streak += 1;
@@ -90,7 +152,7 @@ export default function USMLEPage() {
       // Auto-submit if time runs out
       setShowAnswer(true);
       const isCorrect = false; // timed out, assume wrong or handle differently
-      updateStats(isCorrect);
+      updateStats(isCorrect, questions[currentQ]?.specialty);
     }
     return () => clearTimeout(timer);
   }, [mode, isTimed, timeLeft, showAnswer, currentQ, questions, updateStats]);
@@ -172,7 +234,7 @@ export default function USMLEPage() {
       addXp(20, "USMLE Question Correct");
     }
     
-    updateStats(isCorrect);
+    updateStats(isCorrect, q.specialty);
   };
 
   const nextQuestion = () => {
@@ -304,6 +366,30 @@ export default function USMLEPage() {
         </button>
         <h1 className="text-3xl font-bold text-white mb-6">Performance Dashboard</h1>
         <div className="bg-gray-800 p-6 rounded-2xl border border-gray-700 mb-6">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><BarChart3 className="text-blue-400 w-5 h-5"/> Performance by Specialty</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {!stats.specialties || Object.keys(stats.specialties).length === 0 ? (
+              <p className="text-gray-400 italic col-span-full">No specialty data yet. Take some quizzes to track your weak areas!</p>
+            ) : (
+              Object.entries(stats.specialties).map(([spec, sStats]) => {
+                if (sStats.attempted === 0) return null;
+                const acc = Math.round((sStats.correct / sStats.attempted) * 100);
+                return (
+                  <div key={spec} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 flex flex-col gap-2 transition hover:bg-gray-700">
+                    <div className="text-gray-300 font-bold whitespace-nowrap overflow-hidden text-ellipsis uppercase tracking-wider text-xs" title={spec}>{spec}</div>
+                    <div className="flex justify-between items-end">
+                      <div className="text-2xl font-bold text-white">{acc}%</div>
+                      <div className="text-sm text-gray-400 font-medium">{sStats.correct} / {sStats.attempted}</div>
+                    </div>
+                    <div className="w-full bg-gray-900 rounded-full h-1.5 mt-1 overflow-hidden">
+                      <div className={`h-full rounded-full transition-all duration-1000 ${acc < 50 ? 'bg-red-500' : acc < 75 ? 'bg-yellow-500' : 'bg-green-500'}`} style={{ width: `${acc}%` }}></div>
+                    </div>
+                  </div>
+                );
+              })
+            )}
+          </div>
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2"><Trophy className="text-yellow-400 w-5 h-5"/> Global Accuracy</h2>
           <p className="text-gray-300">Detailed analytics are saved locally. Keep studying to see weak topics!</p>
           <div className="mt-4 flex gap-4">
             <div className="flex flex-col"><span className="text-sm text-gray-500">Global Accuracy</span><span className="text-2xl font-bold text-white">{stats.totalAttempted > 0 ? Math.round((stats.correct / stats.totalAttempted) * 100) : 0}%</span></div>
@@ -365,7 +451,25 @@ export default function USMLEPage() {
       {/* Question */}
       <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700 shadow-xl">
         <div className="flex justify-between flex-col md:flex-row items-start mb-6">
-          <p className="text-lg text-white leading-relaxed flex-1">{q.stem}</p>
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2 pb-2 border-b border-gray-700/50">
+              <button 
+                onClick={() => setHighlightMode(!highlightMode)}
+                className={`p-1.5 rounded-md text-xs font-semibold flex items-center gap-1 transition ${highlightMode ? "bg-yellow-900/50 text-yellow-400 border border-yellow-700/50" : "bg-gray-700 text-gray-400 hover:text-gray-200"}`}
+                title="Toggle text highlighting"
+              >
+                <Highlighter className="w-4 h-4" /> 
+                {highlightMode ? "Highlighter ON" : "Highlighter OFF"}
+              </button>
+            </div>
+            <p 
+              ref={stemRef}
+              onMouseUp={applyHighlight}
+              className={`text-lg text-white leading-relaxed ${highlightMode ? "cursor-text selection:bg-yellow-500/30 selection:text-yellow-200" : ""}`}
+            >
+              {q.stem}
+            </p>
+          </div>
           <div className="flex justify-end w-full md:w-auto mt-4 md:mt-0">
              <button 
                onClick={() => handleTranslate(q.stem, q.id || `stem_${currentQ}`)}
@@ -480,6 +584,28 @@ export default function USMLEPage() {
             
           </div>
           
+          {showNotes && (
+              <div className="mt-4 p-4 mb-4 bg-gray-800 rounded-xl border border-gray-700 animate-in fade-in zoom-in-95 duration-200">
+                <label className="block text-sm font-semibold text-gray-400 mb-2">Personal Notes for this topic</label>
+                <textarea 
+                  className="w-full h-24 bg-gray-900 border border-gray-600 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-none"
+                  placeholder="Type your notes here... (Saved automatically)"
+                  value={personalNotes[q.id || `stem_${currentQ}`] || ""}
+                  onChange={(e) => handleSaveNote(q.id || `stem_${currentQ}`, e.target.value)}
+                />
+              </div>
+            )}
+          {showNotes && (
+              <div className="mt-4 p-4 mb-4 bg-gray-800 rounded-xl border border-gray-700 animate-in fade-in zoom-in-95 duration-200">
+                <label className="block text-sm font-semibold text-gray-400 mb-2">Personal Notes for this topic</label>
+                <textarea 
+                  className="w-full h-24 bg-gray-900 border border-gray-600 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-none"
+                  placeholder="Type your notes here... (Saved automatically)"
+                  value={personalNotes[q.id || `stem_${currentQ}`] || ""}
+                  onChange={(e) => handleSaveNote(q.id || `stem_${currentQ}`, e.target.value)}
+                />
+              </div>
+            )}
           <button 
             onClick={nextQuestion}
             className="w-full py-4 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-xl transition flex items-center justify-center gap-2 text-lg"
