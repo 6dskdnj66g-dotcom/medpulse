@@ -47,6 +47,7 @@ export interface OSCEStation {
   patientSex: "M" | "F";
   patientSetting: string;
   patientPersona: PatientPersona;
+  interactiveExams?: { name: string; nameAr: string; icon: string; result: string; category: string }[];
   markingScheme: {
     domains: MarkingDomain[];
     totalMarks: number;
@@ -105,6 +106,12 @@ export const OSCE_STATIONS: OSCEStation[] = [
       ],
       physicalFindings: "Diaphoretic, pale, HR 98 irregular, BP 155/95, RR 20, SpO2 96% on air. Chest clear. Quiet heart sounds."
     },
+    interactiveExams: [
+      { name: "Take Vitals (BP, HR, SpO2)", nameAr: "قياس العلامات الحيوية (الضغط، النبض، الأكسجين)", icon: "Activity", result: "BP 155/95 mmHg, HR 98 bpm (irregular), RR 20, SpO2 96% on room air.", category: "Vitals" },
+      { name: "Auscultate Heart", nameAr: "استماع للقلب", icon: "Heart", result: "Quiet heart sounds, S4 gallop present, no murmurs rubs or gallops.", category: "Cardiovascular" },
+      { name: "Auscultate Lungs", nameAr: "استماع للرئتين", icon: "Stethoscope", result: "Clear to auscultation bilaterally, no crackles or wheezes.", category: "Respiratory" },
+      { name: "Examine Legs (Edema)", nameAr: "فحص الساقين (تورم)", icon: "Target", result: "No peripheral edema palpable bilaterally. Calves are soft and non-tender.", category: "Peripheral" },
+    ],
     markingScheme: {
       totalMarks: 30,
       passThreshold: 18,

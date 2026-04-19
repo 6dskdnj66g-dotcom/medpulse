@@ -243,6 +243,7 @@ function ActivePhase({
   onSend: () => void;
   onFinish: () => void;
   isAr: boolean;
+  onSave?: (score: number, max: number, pf: string, id: string) => void;
 }) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -429,7 +430,55 @@ function ActivePhase({
               </div>
             ))}
 
-            {sending && (
+            
+            {/* Interactive Physical Exams */}
+            {station.interactiveExams && (
+              <div className="mx-auto max-w-lg my-6">
+                <div className="bg-[var(--color-medical-indigo)]/5 border border-[var(--color-medical-indigo)]/20 p-4 rounded-2xl">
+                  <p className="text-[11px] font-black uppercase tracking-widest text-[var(--color-medical-indigo)] mb-3 flex items-center gap-1.5">
+                    <Activity className="w-3.5 h-3.5" />
+                    {isAr ? "الفحص السريري التفاعلي" : "Interactive Physical Exams"}
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {station.interactiveExams.map((exam, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          const msg = {
+                            role: "user" as const,
+                            content: isAr ? `[إجراء الطبيب للفحص: "${exam.nameAr}"]` : `[SYSTEM: Student performed "${exam.name}"]`,
+                            timestamp: Date.now()
+                          };
+                          // Add the artificial user command, then the immediate system response
+                          const sysRes = {
+                            role: "assistant" as const,
+                            content: isAr ? `[النتيجة السريرية الثابتة: ${exam.result}]` : `[CLINICAL FINDING: ${exam.result}]`,
+                            timestamp: Date.now() + 100
+                          };
+                          // Since we don't have direct access to setMessages here without modifying the component greatly, we can just send the command as the input if we wanted, but wait wait...
+                          // Let's call the onSend with a specific string, or pass down setMessages.
+                          // Actually, we can just add a property to the input temporarily:
+                          setInput(isAr ? `[نظام الفحص]: قمت بـ "${exam.nameAr}". ما هي النتيجة؟` : `[EXAM]: I am performing "${exam.name}". What is the finding?`);
+                          // Then immediately send it:
+                          setTimeout(() => onSend(), 100);
+                        }}
+                        className="bg-[var(--bg-2)] hover:bg-[var(--color-medical-indigo)]/10 border border-[var(--border-subtle)] hover:border-[var(--color-medical-indigo)]/30 rounded-xl p-3 text-left transition-all group flex items-start gap-3"
+                      >
+                         <div className="bg-[var(--color-medical-indigo)]/10 text-[var(--color-medical-indigo)] p-2 rounded-lg group-hover:scale-110 transition-transform">
+                             <Target className="w-4 h-4" />
+                         </div>
+                         <div>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)] mb-0.5">{exam.category}</p>
+                            <p className="text-[12px] font-bold text-[var(--text-primary)]">{isAr && exam.nameAr ? exam.nameAr : exam.name}</p>
+                         </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+  {sending && (
               <div className="flex gap-3">
                 <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 bg-teal-500/10 border border-teal-500/20">
                   <Loader2 className="w-4 h-4 text-teal-600 animate-spin" />
@@ -566,6 +615,7 @@ function ResultsPhase({
   result: ExaminerResult;
   onRetry: () => void;
   isAr: boolean;
+  onSave?: (score: number, max: number, pf: string, id: string) => void;
 }) {
   const [expandedFeedback, setExpandedFeedback] = useState(false);
 
@@ -727,7 +777,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [evaluating, setEvaluating] = useState(false);
-  const [result, setResult] = useState<ExaminerResult | null>(null);
+  const [result, setResult] = useState<(ExaminerResult & {checklist_eval?: {item: string, earned: number, marks: number}[]}) | null>(null);
   const [error, setError] = useState("");
 
   const handleFinish = useCallback(async () => {
@@ -747,6 +797,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
       if (!res.ok) throw new Error("Evaluation failed");
       const data = await res.json() as ExaminerResult;
       setResult(data);
+          onSave?.(data.total_score, data.max_score, data.pass_fail, station.id);
     } catch {
       setError(isAr ? "فشل التقييم. يرجى المحاولة مرة أخرى." : "Evaluation failed. Please try again.");
     } finally {

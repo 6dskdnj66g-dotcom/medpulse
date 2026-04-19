@@ -130,6 +130,7 @@ Respond ONLY as valid JSON (no markdown, no code blocks, just raw JSON):
   "percentage": <float>,
   "pass_fail": "pass" | "borderline" | "fail",
   "breakdown": [{"name": "<domain>", "earned": <int>, "max": <int>, "comments": "<specific>"}],
+  "checklist_eval": [{"item": "<exact item text>", "earned": <int>, "marks": <int>}],
   "positives": ["<what went well — be specific>"],
   "improvements": ["<what to improve — with HOW, not just what>"],
   "ai_feedback": "<3-4 paragraph Arabic narrative — comprehensive, fair, actionable, cite specific exchanges from the conversation>"
