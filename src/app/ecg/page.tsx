@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Activity, Loader2, AlertTriangle, CheckCircle, ArrowRight, Download, Save } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Activity, Loader2, AlertTriangle, CheckCircle, ArrowRight, Download, Save, Mic, MicOff } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -50,11 +50,61 @@ export default function ECGPage() {
   const [isExporting, setIsExporting] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-
-  
+  const [isListening, setIsListening] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recognitionRef = useRef<any>(null);
 
   const { lang } = useLanguage();
   const isAr = lang === "ar";
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        recognitionRef.current = new SpeechRecognition();
+        recognitionRef.current.continuous = true;
+        recognitionRef.current.interimResults = true;
+        recognitionRef.current.lang = isAr ? 'ar-SA' : 'en-US';
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        recognitionRef.current.onresult = (event: any) => {
+          let finalTranscript = "";
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript + " ";
+            }
+          }
+          if (finalTranscript) {
+            setDescription(description + (description.endsWith(" ") || description === "" ? "" : " ") + finalTranscript);
+          }
+        };
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        recognitionRef.current.onerror = (event: any) => {
+          console.error("Speech recognition error", event.error);
+          setIsListening(false);
+        };
+
+        recognitionRef.current.onend = () => {
+          setIsListening(false);
+        };
+      }
+    }
+    
+    return () => {
+      if (recognitionRef.current) recognitionRef.current.stop();
+    };
+  }, [isAr]);
+
+  const toggleListen = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+    } else {
+      recognitionRef.current?.start();
+      setIsListening(true);
+    }
+  };
 
   const analyzeECG = async (desc?: string) => {
     const query = desc || description;
@@ -177,11 +227,22 @@ export default function ECGPage() {
         <div className="medpulse-card glass level-1 p-6 md:p-8 flex flex-col shadow-lg border-[var(--border-subtle)] h-full">
           <h2 className="text-xs md:text-sm font-extrabold uppercase tracking-widest text-[var(--text-tertiary)] mb-5">{isAr ? "وصف نتائج تخطيط القلب" : "ECG Findings Description"}</h2>
           <div className="relative group flex-1 flex flex-col">
+            <button
+              onClick={toggleListen}
+              className={`absolute top-4 right-4 z-10 p-2.5 rounded-xl transition-all ${
+                isListening 
+                  ? "bg-rose-500 text-white shadow-[0_0_15px_-3px_rgba(244,63,94,0.5)] animate-pulse" 
+                  : "bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-tertiary)] hover:text-rose-500 hover:border-rose-500/30 hover:bg-rose-500/10"
+              }`}
+              title={isAr ? (isListening ? "إيقاف التسجيل" : "تحدث لإدخال البيانات") : (isListening ? "Stop listening" : "Dictate ECG findings")}
+            >
+              {isListening ? <Mic className="w-4 h-4" /> : <MicOff className="w-4 h-4" />}
+            </button>
             <textarea
               value={description}
               onChange={e => setDescription(e.target.value)}
               placeholder="Describe ECG findings: Rate, rhythm, P waves, PR interval, QRS duration/morphology, ST changes, T waves, QTc, axis, bundle branch blocks...&#10;&#10;Example: Rate 95 bpm, irregular rhythm, absent P waves, narrow QRS 80ms, no ST elevation, QTc 420ms..."
-              className="w-full flex-1 min-h-[300px] bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[24px] px-5 py-5 text-[14px] md:text-[15px] font-bold text-[var(--text-primary)] placeholder-[var(--text-tertiary)]/50 focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500/30 outline-none transition-all resize-none shadow-inner leading-loose"
+              className="w-full flex-1 min-h-[300px] bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[24px] px-5 py-5 pr-14 text-[14px] md:text-[15px] font-bold text-[var(--text-primary)] placeholder-[var(--text-tertiary)]/50 focus:ring-4 focus:ring-rose-500/10 focus:border-rose-500/30 outline-none transition-all resize-none shadow-inner leading-loose"
             />
           </div>
           <button

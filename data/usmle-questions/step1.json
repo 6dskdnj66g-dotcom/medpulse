@@ -44814,5 +44814,1813 @@
     "answer": 1,
     "explanation": "The correct answer is B: Cerebral edema. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
     "educationalObjective": "Recognize the clinical presentation and appropriate management related to Cerebral edema."
+  },
+  {
+    "id": "medqa_5101",
+    "step": "Step 1",
+    "specialty": "Pulmonology",
+    "difficulty": "Medium",
+    "vignette": "A 41-year-old woman presents to the emergency room with chest pain. She has had progressive substernal chest pain accompanied by weakness and mild shortness of breath for the past 2 hours. Her past medical history is notable for poorly controlled systemic lupus erythematosus (SLE), Sjogren syndrome, and interstitial lung disease. She was hospitalized last year with pericarditis presumed to be from SLE. Her temperature is 98.6°F (37°C), blood pressure is 106/56 mmHg, pulse is 132/min, and respirations are 26/min. On exam, the skin overlying the internal jugular vein fills at 9 cm above the sternal angle and distant heart sounds are appreciated. There is no friction rub. She is given 1000cc of intravenous fluids with no appreciable change in her blood pressure. An electrocardiogram in this patient would most likely reveal which of the following findings?",
+    "options": [
+      "ST elevations in leads II, III, and aVF",
+      "Polymorphic P waves",
+      "Wide QRS complexes with no P waves",
+      "QRS complex height variation"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: QRS complex height variation. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to QRS complex height variation."
+  },
+  {
+    "id": "medqa_5102",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Hard",
+    "vignette": "A 14-year-old girl is brought to the emergency department because of a 3-day history of worsening confusion, high-grade fever, and a productive cough. She has had recurrent respiratory infections and bulky, foul-smelling, oily stools since infancy. She is at the 14th percentile for height and 8th percentile for weight. Despite appropriate care, the patient dies 2 days after admission. Autopsy of the lungs shows bronchial mucus plugging and bronchiectasis. Which of the following is the most likely underlying cause of this patient's condition?",
+    "options": [
+      "Deletion of phenylalanine codon on chromosome 7",
+      "Mutation of DNAI1 gene on chromosome 9",
+      "Deficiency in apolipoprotein B-48",
+      "Deficiency in alpha-1 antitrypsin"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Deletion of phenylalanine codon on chromosome 7. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Deletion of phenylalanine codon on chromosome 7."
+  },
+  {
+    "id": "medqa_5104",
+    "step": "Step 1",
+    "specialty": "Endocrine",
+    "difficulty": "Medium",
+    "vignette": "A 35-year-old computer programmer presents to the psychiatrist at the request of his mother for his oddities. He explains that he wears an aluminum foil cap while he works because he does not want extraterrestial life to steal his thoughts. He spends his free time building a radio transmitter to contact distant planets. He denies any delusions or hallucinations. He claims that nothing is wrong with his eccentricities and is happy the way his life is. Which of the following personality disorders does this male most likely have?",
+    "options": [
+      "Schizoid",
+      "Schizotypal",
+      "Paranoid",
+      "Borderline"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Schizotypal. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Schizotypal."
+  },
+  {
+    "id": "medqa_5106",
+    "step": "Step 1",
+    "specialty": "Oncology",
+    "difficulty": "Easy",
+    "vignette": "A 48-year-old patient with congestive heart failure is brought into the emergency room after an attempted suicide. He was found by his daughter whom he lives with while trying to suffocate himself. He had recently moved in with his daughter after his house went into foreclosure. The daughter lives in a small two-bedroom apartment that was recently baby proofed for her daughter. She cares for him and tries to help him with all of his medical appointments and taking his medications on time. He is noted to still consume moderate amounts of alcohol. She is concerned her father might try this again because his aunt died from suicide. Which of the circumstances is protective for this patient?",
+    "options": [
+      "Having a support system",
+      "Lack of access to sharp objects",
+      "Lack of illicit drug use",
+      "Lack of immediate family history of suicide"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Having a support system. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Having a support system."
+  },
+  {
+    "id": "medqa_5107",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Medium",
+    "vignette": "A 52-year-old woman complains of severe vomiting for the past 2 hours. She recently had a chemotherapy session for breast cancer. She denies a history of any relevant gastrointestinal diseases, including GERD. The physical exam does not demonstrate any epigastric or abdominal tenderness. The last bowel movement was yesterday and was normal. What is the primary mechanism of the drug which would be prescribed to treat her chief complaint?",
+    "options": [
+      "D1 blocker",
+      "5-HT4 blocker",
+      "5-HT1 blocker",
+      "5-HT3 blocker"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: 5-HT3 blocker. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to 5-HT3 blocker."
+  },
+  {
+    "id": "medqa_5108",
+    "step": "Step 1",
+    "specialty": "Psychiatry",
+    "difficulty": "Hard",
+    "vignette": "A 25-year-old male visits his primary care physician with complaints of hemoptysis and dysuria. Serum blood urea nitrogen and creatinine are elevated, blood pressure is 160/100 mm Hg, and urinalysis shows hematuria and RBC casts. A 24-hour urine excretion yields 1 gm/day protein. A kidney biopsy is obtained, and immunofluorescence shows linear IgG staining in the glomeruli. Which of the following antibodies is likely pathogenic for this patient’s disease?",
+    "options": [
+      "Anti-DNA antibody",
+      "Anti-neutrophil cytoplasmic antibody (C-ANCA)",
+      "Anti-neutrophil perinuclear antibody (P-ANCA)",
+      "Anti-glomerular basement membrane antibody (Anti-GBM)"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Anti-glomerular basement membrane antibody (Anti-GBM). The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Anti-glomerular basement membrane antibody (Anti-GBM)."
+  },
+  {
+    "id": "medqa_5109",
+    "step": "Step 1",
+    "specialty": "Infectious Disease",
+    "difficulty": "Easy",
+    "vignette": "A 31-year-old woman with multiple sclerosis comes to the physician because of a 4-day history of cramps in her left leg. Physical examination shows flexion of the left hip and increased tone in the thigh muscles. A local anesthetic block of which of the following nerves would most likely improve this patient's condition the most?",
+    "options": [
+      "Obturator nerve",
+      "Inferior gluteal nerve",
+      "Femoral nerve",
+      "Superior gluteal nerve"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Femoral nerve. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Femoral nerve."
+  },
+  {
+    "id": "medqa_5114",
+    "step": "Step 1",
+    "specialty": "Surgery",
+    "difficulty": "Hard",
+    "vignette": "A group of neurologists develop a new blood test for Alzheimer's. They are optimistic about the test, as they have found that for any given patient, the test repeatedly produces very similar results. However, they find that the new test results are not necessarily consistent with the gold standard of diagnosis. How would this new test most accurately be described?",
+    "options": [
+      "Valid",
+      "Reliable",
+      "Biased",
+      "Valid and reliable"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Reliable. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Reliable."
+  },
+  {
+    "id": "medqa_5115",
+    "step": "Step 1",
+    "specialty": "Emergency",
+    "difficulty": "Easy",
+    "vignette": "A 6-year-old boy presents with fever, sore throat, hoarseness, and neck enlargement. The symptoms started 3 days ago and progressed gradually with an elevated temperature and swollen lymph nodes. His family immigrated recently from Honduras. He was born via spontaneous vaginal delivery at 39 weeks after an uneventful gestational period and he is now on a catch-up vaccination schedule. He lives with several family members, including his parents, in a small apartment. No one in the apartment smokes tobacco. On presentation, the patient’s blood pressure is 110/75 mm Hg, heart rate is 103/min, respiratory rate is 20/min, and temperature is 39.4°C (102.9°F). On physical examination, the child is acrocyanotic and somnolent. There is widespread cervical edema and enlargement of the cervical lymph nodes. The tonsils are covered with a gray, thick membrane which spreads beyond the tonsillar bed and reveals bleeding, erythematous mucosa with gentle scraping. The lungs are clear to auscultation. Which of the following is the target of the virulence factor produced by the pathologic organism infecting this child?",
+    "options": [
+      "ADP-ribosylation factor 6",
+      "Eukaryotic elongation factor-2 (eEF-2)",
+      "Desmoglein",
+      "RNA polymerase II"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Eukaryotic elongation factor-2 (eEF-2). The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Eukaryotic elongation factor-2 (eEF-2)."
+  },
+  {
+    "id": "medqa_5116",
+    "step": "Step 1",
+    "specialty": "Biostatistics",
+    "difficulty": "Medium",
+    "vignette": "A 45-year-old unconscious man is brought to the emergency department by a friend who witnessed him collapse. They were working in a greenhouse spraying the vegetables when the man started to complain of blurred vision and nausea. On the way to the hospital, the man lost consciousness and lost bladder continence. The patient’s vital signs are as follows: blood pressure 95/60 mm Hg; heart rate 59/min; respiratory rate 22/min; and temperature 36.0℃ (96.8℉). On examination, he is unconscious with a GCS score of 7. His pupils are contracted and react poorly to light. Lung auscultation reveals diffuse wheezing. Cardiac auscultation is significant for bradycardia. Abdominal auscultation reveals increased bowel sounds. A cardiac monitor shows bradycardia with grade 2 AV-block. Which of the following leads to the cardiac manifestations seen in this patient?",
+    "options": [
+      "Activation of M2-cholinergic receptors",
+      "Inhibition of β1-adrenergic receptors",
+      "Activation of M1-cholinergic receptors",
+      "Inhibition of M2-cholinergic receptors"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Activation of M2-cholinergic receptors. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Activation of M2-cholinergic receptors."
+  },
+  {
+    "id": "medqa_5117",
+    "step": "Step 1",
+    "specialty": "Cardiology",
+    "difficulty": "Hard",
+    "vignette": "A 10-year-old boy is brought to the physician by his mother because of a 2-day history of fever and productive cough. He has had similar episodes sporadically in the past with frequent episodes of thick, discolored nasal discharge. Physical examination shows diffuse crackles and rhonchi. An x-ray of the chest is shown. The most likely cause of recurrent infections in this patient is a dysfunction of which of the following cell types?",
+    "options": [
+      "Alveolar macrophages",
+      "Ciliated columnar cells",
+      "Type I pneumocytes",
+      "Type II pneumocytes"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Ciliated columnar cells. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Ciliated columnar cells."
+  },
+  {
+    "id": "medqa_5118",
+    "step": "Step 1",
+    "specialty": "Pulmonology",
+    "difficulty": "Easy",
+    "vignette": "A study is conducted in a hospital to estimate the prevalence of handwashing among healthcare workers. All of the hospital staff members are informed that the study is being conducted for 1 month, and the study method will be a passive observation of their daily routine at the hospital. A total of 89 medical staff members give their consent for the study, and they are followed for a month. This study could most likely suffer from which of the following biases?",
+    "options": [
+      "Observer-expectancy bias",
+      "Berksonian bias",
+      "Attrition bias",
+      "Hawthorne effect"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Hawthorne effect. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Hawthorne effect."
+  },
+  {
+    "id": "medqa_5119",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Medium",
+    "vignette": "A 59-year-old man with angina pectoris comes to the physician because of a 6-month history of shortness of breath on exertion that improves with rest. He has hypertension and hyperlipidemia. Current medications include aspirin, metoprolol, and nitroglycerine. Echocardiography shows left ventricular septal and apical hypokinesis. Cardiac catheterization shows 96% occlusion of the left anterior descending artery. The patient undergoes angioplasty and placement of a stent. The patient's shortness of breath subsequently resolves and follow-up echocardiography one week later shows normal regional contractile function. Which of the following is the most accurate explanation for the changes in echocardiography?",
+    "options": [
+      "Unstable angina pectoris",
+      "Stress cardiomyopathy",
+      "Hibernating myocardium",
+      "Cardiac remodeling"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Hibernating myocardium. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Hibernating myocardium."
+  },
+  {
+    "id": "medqa_5120",
+    "step": "Step 1",
+    "specialty": "Nephrology",
+    "difficulty": "Hard",
+    "vignette": "A 25-year-old woman is brought to the emergency department 12 hours after ingesting 30 tablets of an unknown drug in a suicide attempt. The tablets belonged to her father, who has a chronic heart condition. She has had nausea and vomiting. She also reports blurring and yellowing of her vision. Her temperature is 36.7°C (98°F), pulse is 51/min, and blood pressure is 108/71 mm Hg. Abdominal examination shows diffuse tenderness with no guarding or rebound. Bowel sounds are normal. An ECG shows prolonged PR-intervals and flattened T-waves. Further evaluation is most likely to show which of the following electrolyte abnormalities?",
+    "options": [
+      "Increased serum Na+",
+      "Decreased serum K+",
+      "Decreased serum Na+",
+      "Increased serum K+"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Increased serum K+. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Increased serum K+."
+  },
+  {
+    "id": "medqa_5121",
+    "step": "Step 1",
+    "specialty": "Endocrine",
+    "difficulty": "Easy",
+    "vignette": "A 78-year-old man presents with fatigue and exertional dyspnea. The patient says that symptoms onset gradually 4 weeks ago and have not improved. He denies any history of anemia or nutritional deficiency. Past medical history is significant for ST-elevation myocardial infarction 6 months ago, status post coronary artery bypass graft, complicated by recurrent hemodynamically unstable ventricular tachycardia. Current medications are rosuvastatin, aspirin, and amiodarone. His blood pressure is 100/70 mm Hg, the pulse is 71/min, the temperature is 36.5°C (97.7°F), and the respiratory rate is 16/min. On physical examination, patient appears lethargic and tired. Skin is dry and coarse, and there is generalized pitting edema present. A complete blood count (CBC) and a peripheral blood smear show evidence of normochromic, normocytic anemia. Additional laboratory tests reveal decreased serum level of iron, decreased TIBC (total iron-binding capacity) and increased serum level of ferritin. Which of the following is the most likely etiology of the anemia in this patient?",
+    "options": [
+      "Iron deficiency anemia",
+      "Hemolytic anemia",
+      "Anemia of chronic disease",
+      "Thalassemia"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Anemia of chronic disease. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Anemia of chronic disease."
+  },
+  {
+    "id": "medqa_5124",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Easy",
+    "vignette": "A 75-year-old woman comes to the physician because of a 3-month history of involuntary weight loss and a painless lump on her neck. Physical examination shows a firm, irregular swelling on the right side of the neck. Ultrasonography of the thyroid gland shows a 2-cm nodule with irregular margins and microcalcifications in the right thyroid lobe. A biopsy of the thyroid nodule is performed. Which of the following changes would be most consistent with anaplasia?",
+    "options": [
+      "Negative staining of tumor cells for thyroglobulin",
+      "Reduced number of functional thyroid cells",
+      "Disorganized proliferation of mature thyroid cells",
+      "Increased expression of thyroid transcription factor-1"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Negative staining of tumor cells for thyroglobulin. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Negative staining of tumor cells for thyroglobulin."
+  },
+  {
+    "id": "medqa_5128",
+    "step": "Step 1",
+    "specialty": "Dermatology",
+    "difficulty": "Medium",
+    "vignette": "A 38-year-old woman undergoes a diagnostic hysteroscopy for a 6-month history of small volume intermenstrual bleeding with no other complaints. There is no history of pelvic pain, painful intercourse, or vaginal discharge other than blood. During the procedure, a red beefy pedunculated mass is seen arising from the endometrium of the anterior wall of the uterus that has well-demarcated borders. This mass is resected and sent for histopathological examination. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Endometrial polyp",
+      "Endometrial carcinoma",
+      "Uterine adenomyosis",
+      "Endometrial hyperplasia"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Endometrial polyp. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Endometrial polyp."
+  },
+  {
+    "id": "medqa_5129",
+    "step": "Step 1",
+    "specialty": "OB/GYN",
+    "difficulty": "Hard",
+    "vignette": "A 63-year-old man with a history of hypertension and atrial fibrillation is brought into the emergency room and found to have a ventricular tachyarrhythmia. Ibutilide is discontinued and the patient is switched to another drug that also prolongs the QT interval but is associated with a decreased risk of torsades de pointes. Which drug was most likely administered in this patient?",
+    "options": [
+      "Digoxin",
+      "Esmolol",
+      "Amiodarone",
+      "Quinidine"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Amiodarone. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Amiodarone."
+  },
+  {
+    "id": "medqa_5130",
+    "step": "Step 1",
+    "specialty": "Pediatrics",
+    "difficulty": "Easy",
+    "vignette": "A 45-year-old-man presents to the physician with complaints of intermittent episodes of severe headaches and palpitations. During these episodes, he notices that he sweats profusely and becomes pale in complexion. He describes the episodes as coming and going within the past 2 months. His temperature is 99.3°F (37.4°C), blood pressure is 165/118 mmHg, pulse is 126/min, respirations are 18/min, and oxygen saturation is 90% on room air. Which of the following would be the first medication given to treat this patient’s most likely diagnosis?",
+    "options": [
+      "Phenoxybenzamine",
+      "Pilocarpine",
+      "Prazosin",
+      "Propanolol"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Phenoxybenzamine. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Phenoxybenzamine."
+  },
+  {
+    "id": "medqa_5132",
+    "step": "Step 1",
+    "specialty": "Emergency",
+    "difficulty": "Hard",
+    "vignette": "A 72-year-old man presents to a physician with multiple skin lesions on his trunk, face, neck, and extremities. The lesions are painless, but they itch mildly. He mentions that 3 weeks ago, his skin was completely normal. The lesions developed all over his body just over the past few days. Although he says that he has lost some weight over the last few weeks, there is no history of any other symptoms or known medical disorder. Physical examination reveals the presence of multiple lesions in different areas of his body. The lesions on the back are shown in the image. Further diagnostic evaluation suggests that the skin lesions are associated with internal malignancy, and they are not due to metastases. Which of the following malignancies does the patient most likely have?",
+    "options": [
+      "Glioblastoma multiforme",
+      "Anaplastic astrocytoma",
+      "Medullary carcinoma of thyroid",
+      "Adenocarcinoma of stomach"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Adenocarcinoma of stomach. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Adenocarcinoma of stomach."
+  },
+  {
+    "id": "medqa_5134",
+    "step": "Step 1",
+    "specialty": "Cardiology",
+    "difficulty": "Medium",
+    "vignette": "A 25-year-old woman is brought to the physician by her husband because she has appeared increasingly agitated over the last week. She feels restless, has not been able to sleep well, and has been pacing around her house continuously in an attempt to relieve her symptoms. Two weeks ago, she was diagnosed with schizophrenia and treatment with fluphenazine was initiated. Today, physical examination is interrupted multiple times because she is unable to sit or stand still for more than a couple minutes. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Restless legs syndrome",
+      "Akathisia",
+      "Inadequately treated schizophrenia",
+      "Drug-induced mania"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Akathisia. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Akathisia."
+  },
+  {
+    "id": "medqa_5135",
+    "step": "Step 1",
+    "specialty": "Pulmonology",
+    "difficulty": "Hard",
+    "vignette": "A 33-year-old female with bipolar disorder, well controlled with lithium, presents to your clinic. She would like to discuss pregnancy and her medication. She is in a committed monogamous relationship and because her symptoms are well-controlled, would like to become pregnant. She is worried that her folate levels might be low despite taking multivitamins every day. She would like to know if she needs to wait before becoming pregnant. What is the single most appropriate recommendation at this stage?",
+    "options": [
+      "Discontinue the lithium",
+      "Switch to lamotrigine for the 1st trimester",
+      "The fetus will be at risk for neural tube defects",
+      "She can be maintained on valproate instead"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Discontinue the lithium. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Discontinue the lithium."
+  },
+  {
+    "id": "medqa_5136",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Easy",
+    "vignette": "A 60-year-old patient presents to the urgent care clinic with complaints of pain and abdominal distention for the past several weeks. The pain began with a change in bowel habits 3 months ago, and he gradually defecated less until he became completely constipated, which led to increasing pain and distention. He also mentions that he has lost weight during this period, even though he has not changed his diet. When asked about his family history, the patient reveals that his brother was diagnosed with colorectal cancer at 65 years of age. An abdominal radiograph and CT scan were done which confirmed the diagnosis of obstruction. Which of the following locations in the digestive tract are most likely involved in this patient’s disease process?",
+    "options": [
+      "Small bowel",
+      "Ascending colon",
+      "Cecum",
+      "Sigmoid colon"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Sigmoid colon. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Sigmoid colon."
+  },
+  {
+    "id": "medqa_5138",
+    "step": "Step 1",
+    "specialty": "Endocrine",
+    "difficulty": "Hard",
+    "vignette": "A 79-year-old woman with type 2 diabetes mellitus and hypertension undergoes 99mTc cardiac scintigraphy for the evaluation of a 3-month history of retrosternal chest tightness on exertion. The patient's symptoms are reproduced following the administration of dipyridamole. A repeat ECG shows new ST depression and T wave inversion in leads V5 and V6. Which of the following is the most likely underlying mechanism of this patient's signs and symptoms during the procedure?",
+    "options": [
+      "Transient atrioventricular nodal blockade",
+      "Reduced left ventricular preload",
+      "Dilation of coronary vasculature",
+      "Ruptured cholesterol plaque within a coronary vessel"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Dilation of coronary vasculature. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Dilation of coronary vasculature."
+  },
+  {
+    "id": "medqa_5139",
+    "step": "Step 1",
+    "specialty": "Hematology",
+    "difficulty": "Easy",
+    "vignette": "A 9-year-old healthy female presents to her pediatrician for a healthy child visit. She is doing well in school and has good relationships with her teachers, friends, and family. Her temperature is 98.6°F (37°C), blood pressure is 110/70 mmHg, pulse is 85/min, and respirations are 16/min. On examination, a minimal amount of pubic hair is noted. Her breasts and papillae are slightly elevated with enlargement of the areolas. Which of the following is the most likely Tanner stage of development in this patient?",
+    "options": [
+      "Tanner stage 1",
+      "Tanner stage 2",
+      "Tanner stage 3",
+      "Tanner stage 4"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Tanner stage 2. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Tanner stage 2."
+  },
+  {
+    "id": "medqa_5140",
+    "step": "Step 1",
+    "specialty": "Oncology",
+    "difficulty": "Medium",
+    "vignette": "A 10-year-old boy is brought to his pediatrician over concern for a 2-month history of headaches. Recently, the patient has been experiencing nausea and vomiting, along with some difficulty with coordination during soccer practice last week. On exam, the patient's temperature is 98.2°F (36.8°C), blood pressure is 110/80 mmHg, pulse is 72/min, and respirations are 14/min. On further evaluation, the patient is found to have a well-encapsulated posterior fossa mass. The patient undergoes surgical resection, and the mass is found to be positive for GFAP. Which of the following is derived from the same embryologic germ layer as the cells that comprise this tumor?",
+    "options": [
+      "Ependymal cells",
+      "Melanocytes",
+      "Microglia",
+      "Schwann cells"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Ependymal cells. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Ependymal cells."
+  },
+  {
+    "id": "medqa_5141",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Hard",
+    "vignette": "A 42-year-old woman with hypertension comes to the physician because of a 2-month history of persistent reddening of her face, daytime fatigue, and difficulty concentrating. She has fallen asleep multiple times during important meetings. Her only medication is lisinopril. She is 170 cm (5 ft 7 in) tall and weighs 88 kg (194 lb); BMI is 30 kg/m2. Her blood pressure is 145/85 mm Hg. Physical examination shows erythema of the face that is especially pronounced around the cheeks, nose, and ears. Serum glucose concentration is 120 mg/dL. Which of the following is the most likely cause of this patient's facial discoloration?",
+    "options": [
+      "Antibody-mediated vasculopathy",
+      "Increased cortisol levels",
+      "Increased bradykinin production",
+      "Increased erythropoietin production"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Increased erythropoietin production. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Increased erythropoietin production."
+  },
+  {
+    "id": "medqa_5143",
+    "step": "Step 1",
+    "specialty": "Infectious Disease",
+    "difficulty": "Medium",
+    "vignette": "A 62-year-old female with a history of uncontrolled hypertension undergoes kidney transplantation. One month following surgery she has elevated serum blood urea nitrogen and creatinine and the patient complains of fever and arthralgia. Her medications include tacrolimus and prednisone. If the patient were experiencing acute, cell-mediated rejection, which of the following would you most expect to see upon biopsy of the transplanted kidney?",
+    "options": [
+      "Sloughing of proximal tubular epithelial cells",
+      "Lymphocytic infiltrate of the tubules and interstitium",
+      "Drug precipitation in the renal tubules",
+      "Granular immunofluorescence around the glomerular basement membrane"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Lymphocytic infiltrate of the tubules and interstitium. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Lymphocytic infiltrate of the tubules and interstitium."
+  },
+  {
+    "id": "medqa_5147",
+    "step": "Step 1",
+    "specialty": "Pediatrics",
+    "difficulty": "Hard",
+    "vignette": "A 28-year-old woman presents with a 12-month history of headache, tinnitus, retrobulbar pain, and photopsias. She says the headaches are mild to moderate, intermittent, diffusely localized, and refractory to nonsteroidal anti-inflammatory drugs (NSAIDs). In addition, this past week, she began to have associated dizziness and photopsia with the headaches. Physical examination reveals a body temperature of 36.5°C (97.7°F), blood pressure of 140/80 mm Hg, and a respiratory rate of 13/min and regular. BMI is 29 kg/m2. Neurological examination is significant for peripheral visual field loss in the inferior nasal quadrant, diplopia, bilateral abducens nerve palsy, and papilledema. A T1/T2 MRI of the brain did not identify extra-axial or intra-axial masses or interstitial edema, and a lumbar puncture showed an opening pressure of 27 cm H2O, with a cerebrospinal fluid analysis within the normal range. Which of the following best describes the pathogenic mechanism underlying these findings?",
+    "options": [
+      "Arachnoid granulation adhesions",
+      "Elevated intracranial venous pressure",
+      "Increased cerebrospinal production",
+      "Systemic hypertension"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Elevated intracranial venous pressure. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Elevated intracranial venous pressure."
+  },
+  {
+    "id": "medqa_5149",
+    "step": "Step 1",
+    "specialty": "Emergency",
+    "difficulty": "Medium",
+    "vignette": "A 45-year-old Caucasian male with a history of chronic myeloid leukemia for which he is receiving chemotherapy presents to the emergency room with oliguria and colicky left flank pain. His serum creatinine is 3.0 mg/dL and is urine pH is 5.0. You diagnose nephrolithiasis. His kidney stones, however, are not visible on abdominal x-ray. His stone is most likely composed of which of the following?",
+    "options": [
+      "Calcium oxalate",
+      "Magnesium ammonium phosphate",
+      "Uric acid",
+      "Cystine"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Uric acid. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Uric acid."
+  },
+  {
+    "id": "medqa_5150",
+    "step": "Step 1",
+    "specialty": "Biostatistics",
+    "difficulty": "Hard",
+    "vignette": "A 48-year-old man comes to the physician because of a skin lesion on his nose and in his mouth. The lesions have been gradually increasing in size and are not painful or pruritic. Two months ago, he was treated for esophageal candidiasis. Physical examination shows one pinkish-brown papule on the right wing of the nose and two similar nodular lesions on the hard palate and buccal mucosa. A biopsy of one of the lesions shows spindle-shaped endothelial cells and infiltration of lymphocytes, plasma cells, and macrophages. Which of the following is the most likely causal organism of this patient's condition?",
+    "options": [
+      "Polyomavirus",
+      "Poxvirus",
+      "Epstein-Barr virus",
+      "Human herpes virus 8"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Human herpes virus 8. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Human herpes virus 8."
+  },
+  {
+    "id": "medqa_5156",
+    "step": "Step 1",
+    "specialty": "Hematology",
+    "difficulty": "Hard",
+    "vignette": "A 4-month-old is noted to have a grade 3/6, harsh, systolic ejection murmur heard at the left upper sternal border. The mother reports that the child's lips occasionally turn blue during feeding. A cardiologist recommends surgery. Later, the physician remarks that the infant's congenital abnormality was related to a failure of neural crest cell migration. Prior to surgery, which of the following was a likely finding?",
+    "options": [
+      "Atrial septal defect",
+      "Pulmonic stenosis",
+      "Coarctation of the aorta",
+      "Transposition of the great vessels"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Pulmonic stenosis. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Pulmonic stenosis."
+  },
+  {
+    "id": "medqa_5158",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Medium",
+    "vignette": "A 31-year-old man presents with jaundice, scleral icterus, dark urine, and pruritus. He also says that he has been experiencing abdominal pain shortly after eating. He says that symptoms started a week ago and have not improved. The patient denies any associated fever or recent weight-loss. He is afebrile and vital signs are within normal limits. On physical examination, the patient’s skin appears yellowish. Scleral icterus is present. Remainder of physical examination is unremarkable. Laboratory findings are significant for:\nConjugated bilirubin 5.1 mg/dL\nTotal bilirubin 6.0 mg/dL\nAST 24 U/L\nALT 22 U/L\nAlkaline phosphatase 662 U/L\nA contrast CT of the abdomen is unremarkable. An ultrasound of the right upper quadrant reveals a normal gallbladder, but the common bile duct is not visible. Which of the following is the next best step in the management of this patient?",
+    "options": [
+      "Antibiotics and admit to observation",
+      "HIDA scan",
+      "Endoscopic retrograde cholangiopancreatography (ERCP)",
+      "Serologies for antimitochondrial antibodies"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Endoscopic retrograde cholangiopancreatography (ERCP). The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Endoscopic retrograde cholangiopancreatography (ERCP)."
+  },
+  {
+    "id": "medqa_5160",
+    "step": "Step 1",
+    "specialty": "Infectious Disease",
+    "difficulty": "Easy",
+    "vignette": "A newborn infant with karyotype 46, XY has male internal and external reproductive structures. The lack of a uterus in this infant can be attributed to the actions of which of the following cell types?",
+    "options": [
+      "Sertoli",
+      "Theca",
+      "Granulosa",
+      "Reticularis"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Sertoli. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Sertoli."
+  },
+  {
+    "id": "medqa_5162",
+    "step": "Step 1",
+    "specialty": "Dermatology",
+    "difficulty": "Hard",
+    "vignette": "A 5-year-old boy is brought by his mother to the emergency department with fever, sore throat, runny nose, and rash. The patient’s mother says that symptoms started 3 days ago and that the rash first appeared on his face before spreading. His past medical history is unremarkable. The patient’s family recently moved from Japan to the USA so that the patient's father could work in a famous sushi restaurant in New York. The boy’s vaccination history is not up to date according to US guidelines. His temperature is 38.3°C (101.0°F). On physical examination, there is a maculopapular rash present on the trunk and extremities. There is also significant bilateral cervical lymphadenopathy and small petechial spots on the soft palate. Symptomatic treatment is provided and the patient recovers in 3 days. Which of the following best describes the most likely causative agent responsible for this patient’s condition?",
+    "options": [
+      "Single-stranded positive-sense RNA virus",
+      "Cocci in chains",
+      "Double-stranded RNA virus",
+      "Single-stranded RNA retrovirus"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Single-stranded positive-sense RNA virus. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Single-stranded positive-sense RNA virus."
+  },
+  {
+    "id": "medqa_5163",
+    "step": "Step 1",
+    "specialty": "OB/GYN",
+    "difficulty": "Easy",
+    "vignette": "A 4-year-old girl is brought to the doctor by her mother with the complaint of hearing loss, which her mother noticed a few days ago when the girl stopped responding to her name. The mother is anxious and says, “I want my child to get better even if it requires admission to the hospital.” Her family moved to a 70-year-old family home in Flint, Michigan, in 2012. The girl has a known history of beta-thalassemia trait. She has never been treated for hookworm, as her mother states that they maintain “good hygiene standards” at home. On examination, the girl currently uses only 2-syllable words. She is in the 70th percentile for height and 50th for weight. A Rinne test reveals that the girl’s air conduction is greater than her bone conduction in both ears. She does not respond when the doctor calls her name, except when he is within her line of sight. Her lab parameters are:\nHemoglobin 9.9 gm%\nMean corpuscular volume 80 fl\nRed blood cell distribution width (RDW) 15.9%\nSerum ferritin 150 ng/ml\nTotal iron binding capacity 320 µg/dL\nA peripheral smear shows a microcytic hypochromic anemia with basophilic stippling and a few target cells. Which of the following is the next best step in the management of this patient?",
+    "options": [
+      "Blood transfusion",
+      "Chelation therapy if the blood lead level is more than 25 µg/dL",
+      "Remove and prevent the child from exposure to the source of lead",
+      "Treatment for hookworm"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Remove and prevent the child from exposure to the source of lead. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Remove and prevent the child from exposure to the source of lead."
+  },
+  {
+    "id": "medqa_5165",
+    "step": "Step 1",
+    "specialty": "Surgery",
+    "difficulty": "Hard",
+    "vignette": "A 70-year-old man with loose stools over the last 24 hours, accompanied by abdominal pain, cramps, nausea, and anorexia, was hospitalized. Previously, the man was diagnosed with a lung abscess and was treated with clindamycin for 5 days. Past medical history was significant for non-erosive antral gastritis and hypertension. He takes esomeprazole and losartan. Despite the respiratory improvement, fevers and leukocytosis persisted. Which of the following pathogenic mechanisms would you expect to find in this patient?",
+    "options": [
+      "Glucosylation of Rho family GTPases",
+      "Inactivation of elongation factor EF-2",
+      "ADP-ribosylation of Gs-alpha subunit of G-protein coupled receptors",
+      "Cell membrane degradation by lecithinase"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Glucosylation of Rho family GTPases. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Glucosylation of Rho family GTPases."
+  },
+  {
+    "id": "medqa_5166",
+    "step": "Step 1",
+    "specialty": "Emergency",
+    "difficulty": "Easy",
+    "vignette": "A 23-year-old man is admitted to the intensive care unit with acute respiratory distress syndrome (ARDS) due to influenza A. He has no history of serious illness and does not smoke. An x-ray of the chest shows diffuse bilateral infiltrates. Two weeks later, his symptoms have improved. Pulmonary examination on discharge shows inspiratory crackles at both lung bases. This patient is most likely to develop which of the following long-term complication?",
+    "options": [
+      "Interstitial lung disease",
+      "Spontaneous pneumothorax",
+      "Panacinar emphysema",
+      "Asthma"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Interstitial lung disease. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Interstitial lung disease."
+  },
+  {
+    "id": "medqa_5167",
+    "step": "Step 1",
+    "specialty": "Biostatistics",
+    "difficulty": "Medium",
+    "vignette": "A 49-year-old African American female with a history of chronic myeloid leukemia for which she is receiving chemotherapy presents to the emergency room with oliguria and colicky left flank pain. Her serum creatinine is 3.3 mg/dL. What is the preferred preventative therapy that could have been administered to this patient to prevent her complication of chemotherapy?",
+    "options": [
+      "Diuresis",
+      "Acidification of the urine",
+      "Colchicine",
+      "Steroids"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Diuresis. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Diuresis."
+  },
+  {
+    "id": "medqa_5168",
+    "step": "Step 1",
+    "specialty": "Cardiology",
+    "difficulty": "Hard",
+    "vignette": "A research consortium is studying a new vaccine for respiratory syncytial virus (RSV) in premature infants compared to the current standard of care. 1000 infants were randomized to either the new vaccine group or the standard of care group. In total, 520 receive the new vaccine and 480 receive the standard of care. Of those who receive the new vaccine, 13 contract RSV. Of those who received the standard of care, 30 contract RSV. Which of the following is the absolute risk reduction of this new vaccine?",
+    "options": [
+      "1.7%",
+      "2.5%",
+      "3.75%",
+      "4.3%"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: 3.75%. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to 3.75%."
+  },
+  {
+    "id": "medqa_5170",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Medium",
+    "vignette": "A 63-year-old woman presents to the emergency department after being found unresponsive by her family. Upon presentation she is confused and does not answer questions that are addressed to her. An EKG is obtained and the result is provided here. Which of the following processes would be consistent with the findings seen on this patient's EKG?",
+    "options": [
+      "Acute kidney failure",
+      "Bundle branch conduction changes",
+      "Failure of atrioventricular node conduction",
+      "Interruption of pulmonary perfusion"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Acute kidney failure. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Acute kidney failure."
+  },
+  {
+    "id": "medqa_5172",
+    "step": "Step 1",
+    "specialty": "Endocrine",
+    "difficulty": "Easy",
+    "vignette": "Researchers are studying a farming community with a high incidence of acute myelogenous leukemia (AML). A retrospective cohort study is performed looking at the relationship between exposure to a certain pesticide chemical and the risk of developing AML. In 84 patients who developed AML, 17 had exposure to the pesticide chemical. In the control group of 116 patients, 2 had exposure to the chemical. What is the relative risk of developing AML upon exposure to the pesticide in this study group?",
+    "options": [
+      "Prevalence of cases (84/200) divided by prevalence of controls (116/200)",
+      "Odds of exposure in the cases (17/67) divided by odds of exposure in the controls (2/114)",
+      "Probability of AML among exposed (17/19) divided by probability of AML among unexposed (67/181)",
+      "Total number of cases (84) divided by the total number of study participants (200)"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Probability of AML among exposed (17/19) divided by probability of AML among unexposed (67/181). The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Probability of AML among exposed (17/19) divided by probability of AML among unexposed (67/181)."
+  },
+  {
+    "id": "medqa_5174",
+    "step": "Step 1",
+    "specialty": "Oncology",
+    "difficulty": "Hard",
+    "vignette": "A 19-year-old woman comes to the physician because of episodic, bilateral finger pain and discoloration that occurs with cold weather. Her fingers first turn white, then blue, before eventually returning to a normal skin color. The symptoms have been occurring daily and limit her ability to work. She has no history of serious illness and takes no medication. She does not smoke. Physician examination shows normal capillary refill of the nail beds. The radial pulse is palpable bilaterally. The remainder of the examination shows no abnormalities. Which of the following is the most appropriate pharmacotherapy for this patient?",
+    "options": [
+      "Phenylephrine",
+      "Isosorbide dinitrate",
+      "Nifedipine",
+      "Ergotamine"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Nifedipine. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Nifedipine."
+  },
+  {
+    "id": "medqa_5175",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Easy",
+    "vignette": "A 65-year-old man presents to the emergency department with a complaint of intense pain in his right foot for the past month, along with fever and chills. He denies any traumatic injury to his foot in recent memory. He has a medical history of poorly-controlled type II diabetes and is a former smoker with extensive peripheral vascular disease. On physical exam, the area of his right foot around the hallux is swollen, erythematous, tender to light palpation, and reveals exposed bone. Labs are notable for elevated C-reactive protein and erythrocyte sedimentation rate. The physician obtains a biopsy for culture. What is the most likely causative organism for this patient’s condition?",
+    "options": [
+      "Mycobacterium tuberculosis",
+      "Neisseria gonorrhoeae",
+      "Pasteurella multocida",
+      "Staphylococcus aureus"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Staphylococcus aureus. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Staphylococcus aureus."
+  },
+  {
+    "id": "medqa_5176",
+    "step": "Step 1",
+    "specialty": "Psychiatry",
+    "difficulty": "Medium",
+    "vignette": "A 14-year-old girl with a history of severe persistent asthma presents to her pediatrician after a recent hospital discharge for asthma exacerbation. Her mother is concerned that her daughter continues to wheeze and cough multiple nights per week. She is also concerned that her daughter frequently uses the bathroom to urinate despite no recent change in her diet. She has allergies to pollen and shellfish, but her mother denies any recent exposure. The patient's medications include albuterol, salmeterol, and both inhaled and oral prednisone. What alternative drug can the pediatrician recommend for this patient?",
+    "options": [
+      "Natalizumab",
+      "Omalizumab",
+      "Imatinib",
+      "Nivolumab"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Omalizumab. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Omalizumab."
+  },
+  {
+    "id": "medqa_5177",
+    "step": "Step 1",
+    "specialty": "Infectious Disease",
+    "difficulty": "Hard",
+    "vignette": "A medical student is studying human physiology. She learns that there is a membrane potential across cell membranes in excitable cells. The differential distribution of anions and cations both inside and outside the cells significantly contributes to the genesis of the membrane potential. Which of the following distributions of anions and cations best explains the above phenomenon?",
+    "options": [
+      "High concentration of Na+ outside the cell and high concentration of K+ inside the cell",
+      "High concentration of K+ outside the cell and low concentration of K+ inside the cell",
+      "High concentration of Ca2+ outside the cell and high concentration of Cl- inside the cell",
+      "Low concentration of Cl- outside the cell and high concentration of Cl- inside the cell"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: High concentration of Na+ outside the cell and high concentration of K+ inside the cell. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to High concentration of Na+ outside the cell and high concentration of K+ inside the cell."
+  },
+  {
+    "id": "medqa_5180",
+    "step": "Step 1",
+    "specialty": "OB/GYN",
+    "difficulty": "Hard",
+    "vignette": "A 40-year-old man comes to the physician because of a 1-month history of a painless lump on his neck. Two years ago, he underwent surgery for treatment-resistant hypertension, episodic headaches, and palpitations. Physical examination shows a firm, irregular swelling on the right side of the neck. Ultrasonography of the thyroid gland shows a 2-cm nodule with irregular margins and microcalcifications in the right thyroid lobe. Further evaluation of this patient is most likely to show increased serum concentration of which of the following substances?",
+    "options": [
+      "Calcitonin",
+      "Gastrin",
+      "Metanephrines",
+      "Thyroid-stimulating hormone"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Calcitonin. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Calcitonin."
+  },
+  {
+    "id": "medqa_5182",
+    "step": "Step 1",
+    "specialty": "Surgery",
+    "difficulty": "Medium",
+    "vignette": "A 64-year-old woman with osteoarthritis is brought to the emergency room because of a 2-day history of nausea and vomiting. Over the past few weeks, she has been taking acetaminophen frequently for worsening knee pain. Examination shows scleral icterus and tender hepatomegaly. She appears confused. Serum alanine aminotransferase (ALT) level is 845 U/L, aspartate aminotransferase (AST) is 798 U/L, and alkaline phosphatase is 152 U/L. Which of the following is the most likely underlying mechanism of this patient's liver failure?",
+    "options": [
+      "Glucuronide-conjugate formation",
+      "Salicylic acid formation",
+      "N-acetyl-p-benzoquinoneimine formation",
+      "N-acetylcysteine formation"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: N-acetyl-p-benzoquinoneimine formation. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to N-acetyl-p-benzoquinoneimine formation."
+  },
+  {
+    "id": "medqa_5183",
+    "step": "Step 1",
+    "specialty": "Emergency",
+    "difficulty": "Hard",
+    "vignette": "A 7-year-old girl presents with a lump in her neck which she noticed a few days ago. The patient’s mother states that her daughter’s left eyelid seems to be drooping, making her left eye look small. There is no significant past medical history. On neurological examination, the patient has normal bilateral pupillary reflexes but a miotic left pupil. A lateral radiograph of the chest reveals a mass in the posterior mediastinum with no evidence of bone erosion. An MRI is performed and the results are shown in the image. An imaging-guided biopsy of the mass reveals spindle-shaped cells arranged chaotically, with moderate cytoplasm and small nuclei. Scattered mature ganglion cells with abundant cytoplasm and round to oval nuclei are also present. The biopsy tissue is analyzed with immunohistochemistry and found to be positive for S-100, synaptophysin, chromogranin, and leukocyte common antigen (LCA). Which of the following factors is associated with poor prognosis for this patient’s most likely diagnosis?",
+    "options": [
+      "Detectable levels of homovanillic acid (HVA) and/or vanillylmandelic acid (VMA) in urine",
+      "Age younger than 18 months",
+      "Absence of nodular pattern",
+      "Deletion of short arm of chromosome 1"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Deletion of short arm of chromosome 1. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Deletion of short arm of chromosome 1."
+  },
+  {
+    "id": "medqa_5184",
+    "step": "Step 1",
+    "specialty": "Biostatistics",
+    "difficulty": "Easy",
+    "vignette": "A 45-year-old man presents for a follow-up visit as part of his immigration requirements into the United States. Earlier this week, he was administered the Mantoux tuberculin skin test (TST). Today’s reading, 3 days after being administered the test, he shows an induration of 10 mm. Given his recent immigration from a country with a high prevalence of tuberculosis, he is requested to obtain a radiograph of the chest, which is shown in the image. Which of the following is true regarding this patient’s chest radiograph (CXR)?",
+    "options": [
+      "If the spinous process is not in-between the two clavicular heads, the image is repeated.",
+      "The film is taken in a supine position.",
+      "Posterior ribs 9 and 10 are visible only in an expiratory film.",
+      "The view is anteroposterior (AP)."
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: If the spinous process is not in-between the two clavicular heads, the image is repeated.. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to If the spinous process is not in-between the two clavicular heads, the image is repeated.."
+  },
+  {
+    "id": "medqa_5185",
+    "step": "Step 1",
+    "specialty": "Cardiology",
+    "difficulty": "Medium",
+    "vignette": "A 21-year-old man undergoes orthopedic surgery for a leg fracture that he has sustained in a motorbike accident. After induction of anesthesia with desflurane, the patient's respiratory minute ventilation decreases notably. Which of the following additional effects is most likely to occur in response to this drug?",
+    "options": [
+      "Increased glomerular filtration rate",
+      "Increased cerebral metabolic rate",
+      "Decreased seizure threshold",
+      "Increased intracranial pressure"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Increased intracranial pressure. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Increased intracranial pressure."
+  },
+  {
+    "id": "medqa_5191",
+    "step": "Step 1",
+    "specialty": "Oncology",
+    "difficulty": "Medium",
+    "vignette": "An investigator is studying the mechanism regulating pigment production in the skin. She has isolated a hormone produced by the anterior and intermediate lobe of the pituitary gland that stimulates neural crest-derived cells to produce pigments through the oxidation and polymerization of the amino acid tyrosine. This hormone is most likely cosecreted with a substance that acts on which of the following receptors?",
+    "options": [
+      "Vasopressin receptor",
+      "TSH receptor",
+      "Mu receptor",
+      "Dopamine receptor\n\""
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Mu receptor. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Mu receptor."
+  },
+  {
+    "id": "medqa_5192",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Hard",
+    "vignette": "A 44-year-old woman with type 2 diabetes mellitus comes to the physician with a 3-day history of fever, right calf pain, and swelling. Her temperature is 38.7°C (101.7°F). Physical examination shows a 5 x 6-cm erythematous, warm, raised skin lesion with well-defined margins over the right upper posterior calf. The organism isolated from the lesion forms large mucoid colonies on blood agar. Further evaluation shows that the organism has a thick hyaluronic acid capsule. The causal organism of this patient's condition is most likely to have which of the following additional characteristics?",
+    "options": [
+      "Solubility in bile",
+      "Susceptibility to bacitracin",
+      "Positive coagulase test",
+      "Resistance to optochin\n\""
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Susceptibility to bacitracin. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Susceptibility to bacitracin."
+  },
+  {
+    "id": "medqa_5196",
+    "step": "Step 1",
+    "specialty": "Dermatology",
+    "difficulty": "Easy",
+    "vignette": "A 35-year-old man is pulled out of a burning building. He is unconscious and severely injured. He is transported to the nearest emergency department. Upon arrival, he is stabilized and evaluated for burns and trauma. Approximately 40% of his body is covered in burns. The burned areas appear blackened and charred but the skin is mostly intact. It is noted that the patient has loss of pain sensation in the burnt areas with minimal blanching on palpation. The affected area is soft to when palpated. What category of burn did the patient most likely to suffer from?",
+    "options": [
+      "Superficial (1st degree)",
+      "Deep-partial thickness (3rd degree)",
+      "Superficial-partial thickness (2nd degree)",
+      "Electric burn"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Deep-partial thickness (3rd degree). The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Deep-partial thickness (3rd degree)."
+  },
+  {
+    "id": "medqa_5197",
+    "step": "Step 1",
+    "specialty": "OB/GYN",
+    "difficulty": "Medium",
+    "vignette": "An otherwise healthy 43-year-old woman comes to the physician because of several episodes of involuntary movements of her head over the past few months. They are sometimes associated with neck pain and last minutes to hours. Neurologic examination shows no abnormalities. During examination of the neck, the patient's head turns horizontally to the left. She states this movement is involuntary, and that she is unable to unturn her head. After 5 minutes, her head re-straightens. Which of the following best describes this patient's disorder?",
+    "options": [
+      "Akathisia",
+      "Dystonia",
+      "Chorea",
+      "Athetosis"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Dystonia. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Dystonia."
+  },
+  {
+    "id": "medqa_5199",
+    "step": "Step 1",
+    "specialty": "Surgery",
+    "difficulty": "Easy",
+    "vignette": "A 65-year-old man presents to the emergency department with abdominal pain and a pulsatile abdominal mass. Further examination of the mass shows that it is an abdominal aortic aneurysm. A computed tomography scan with contrast reveals an incidental finding of a horseshoe kidney, and the surgeon is informed of this finding prior to operating on the aneurysm. Which of the following may complicate the surgical approach in this patient?",
+    "options": [
+      "Anomalous origins of multiple renal arteries",
+      "Low glomerular filtration rate due to unilateral renal agenesis",
+      "Proximity of the fused kidney to the celiac artery",
+      "There are no additional complications"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Anomalous origins of multiple renal arteries. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Anomalous origins of multiple renal arteries."
+  },
+  {
+    "id": "medqa_5200",
+    "step": "Step 1",
+    "specialty": "Emergency",
+    "difficulty": "Medium",
+    "vignette": "Thirty minutes after vaginal delivery of a 2780-g (6-lb 2-oz) newborn at term, a 25-year-old woman, gravida 1, para 1, has heavy vaginal bleeding. Her pregnancy was complicated by pre-eclampsia. Her pulse is 111/min and blood pressure is 95/65 mm Hg. Physical examination shows a fundal height 2 inches below the xiphoid process of the sternum. A drug with which of the following mechanisms of action is most appropriate for this patient?",
+    "options": [
+      "Inhibition of norepinephrine reuptake",
+      "Activation of phospholipase C",
+      "Increased synthesis of cyclic AMP",
+      "Binding to prostaglandin I2 receptors"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Activation of phospholipase C. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Activation of phospholipase C."
+  },
+  {
+    "id": "medqa_5201",
+    "step": "Step 1",
+    "specialty": "Biostatistics",
+    "difficulty": "Hard",
+    "vignette": "A 30-year-old African American woman develops a facial rash in a \"butterfly\" pattern over her face and complains of feeling tired and achy in her joints. In the course of a full rheumatologic workup you note that she has anti-snRNP antibodies. Which of the following do snRNPs affect?",
+    "options": [
+      "Polyadenylation of the 3' end of mRNA",
+      "Protection of mRNA from degradation",
+      "Intron removal from the mRNA",
+      "Transcription of mRNA"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Intron removal from the mRNA. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Intron removal from the mRNA."
+  },
+  {
+    "id": "medqa_5202",
+    "step": "Step 1",
+    "specialty": "Cardiology",
+    "difficulty": "Easy",
+    "vignette": "A previously healthy 61-year-old man comes to the physician because of a 6-month history of morning headaches. He also has fatigue and trouble concentrating on his daily tasks at work. He sleeps for 8 hours every night; his wife reports that he sometimes stops breathing for a few seconds while sleeping. His pulse is 71/min and blood pressure is 158/96 mm Hg. He is 178 cm (5 ft 10 in) tall and weighs 100 kg (220 lb); BMI is 31.6 kg/m2 . Which of the following is the most likely cause of this patient's hypertension?",
+    "options": [
+      "Nocturnal upper airway obstruction",
+      "Hypophyseal neoplasm",
+      "Hypersecretion of aldosterone",
+      "Overproduction of cortisol"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Nocturnal upper airway obstruction. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Nocturnal upper airway obstruction."
+  },
+  {
+    "id": "medqa_5204",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Hard",
+    "vignette": "A 41-year-old man comes to the physician because of a 3-week history of fatigue, cough, and a 4.5-kg (10-lb) weight loss. He does not smoke or drink alcohol. He appears emaciated. A chest x-ray shows a calcified nodule in the left lower lobe and left hilar lymphadenopathy. The physician initiates therapy for the condition and informs him that he will have to return for monthly ophthalmologic examination for the next 2 months. These examinations are most likely to evaluate the patient for an adverse effect of a drug with which of the following mechanisms of action?",
+    "options": [
+      "Impaired protein synthesis due to binding to 30S ribosomes",
+      "Impaired synthesis of cell wall polysaccharides",
+      "Impaired protein synthesis due to binding to 50S ribosomes",
+      "Impaired production of hemozoin from heme"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Impaired synthesis of cell wall polysaccharides. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Impaired synthesis of cell wall polysaccharides."
+  },
+  {
+    "id": "medqa_5205",
+    "step": "Step 1",
+    "specialty": "Nephrology",
+    "difficulty": "Easy",
+    "vignette": "A 12-year-old boy is brought in by his mother with a 2-day history of fever and generalized weakness. She says that her son was involved in a school fight with some other kids 4 days ago and sustained minor injuries to the face. He was otherwise well, until this morning, when he complained of pain in his right eye. Physical examination reveals periorbital erythema and edema of the right eye, along with ophthalmoplegia and proptosis. Which of the following findings will most likely be present in this patient on the affected side as a sequela of his current condition?",
+    "options": [
+      "Anesthesia along the CN V3 distribution",
+      "Decreased vision with sparing of the optic disc",
+      "Intact sympathetic innervation to the pupil, but not parasympathetic innervation",
+      "Absent blink reflex"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Absent blink reflex. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Absent blink reflex."
+  },
+  {
+    "id": "medqa_5208",
+    "step": "Step 1",
+    "specialty": "Oncology",
+    "difficulty": "Easy",
+    "vignette": "A 27-year-old pregnant woman presents to an obstetrician at 35 weeks gestation reporting that she noted the presence of a mucus plug in her vaginal discharge this morning. The obstetrician performs an examination and confirms that she is in labor. She was diagnosed with HIV infection 1 year ago. Her current antiretroviral therapy includes abacavir, lamivudine, and nevirapine. Her last HIV RNA level was 2,000 copies/mL 3 weeks ago. Which of the following anti-retroviral drugs should be administered intravenously to the woman during labor?",
+    "options": [
+      "Enfuvirtide",
+      "Nevirapine",
+      "Rilpivirine",
+      "Zidovudine"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Zidovudine. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Zidovudine."
+  },
+  {
+    "id": "medqa_5209",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Medium",
+    "vignette": "A 67-year-old female is brought to the emergency room by her son for unusual behavior. She moved into her son’s house three years ago after her husband passed away. The son reports that when he returned home from work earlier in the day, he found his mother minimally responsive. She regained consciousness soon after his arrival and did not recall the event. The son also reports that for the past two years, his mother has had trouble remembering names and addresses. She still goes shopping on her own and cooks regularly. Her past medical history is notable for major depressive disorder, diabetes mellitus, and hypertension. She takes clomipramine, glyburide, lisinopril, and hydrochlorothiazide. She recently saw her primary care provider who adjusted some of her medication dosages. Her temperature is 99°F (37.2°C), blood pressure is 135/75 mmHg, pulse is 80/min, and respirations are 18/min. On examination, she is easily distractible with disorganized speech. She does not recognize her son and thinks that her intravenous line is a rope. She says she feels fine and would like to go home. Brain imaging would likely reveal which of the following?",
+    "options": [
+      "Normal cerebrum",
+      "Focal atrophy of the frontal and temporal cortices",
+      "Mesial temporal lobe atrophy",
+      "Caudate nucleus atrophy"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Normal cerebrum. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Normal cerebrum."
+  },
+  {
+    "id": "medqa_5211",
+    "step": "Step 1",
+    "specialty": "Infectious Disease",
+    "difficulty": "Easy",
+    "vignette": "A 3-year-old boy is brought to the physician because he is easily fatigued and has not gained weight. He eats 3 meals and has 3 to 4 bowel movements daily with bulky stools that float. He had recurrent episodes of sinusitis in infancy. He is at the 15th percentile for height and 5th percentile for weight. Examination shows pale conjunctivae. A few scattered expiratory crackles are heard in the thorax. There is abdominal distention. Which of the following is the most likely underlying cause of this patient's failure to thrive?",
+    "options": [
+      "Small intestine bacterial overgrowth",
+      "Exocrine pancreatic insufficiency",
+      "Impaired intestinal amino acid transport",
+      "Intestinal inflammatory reaction to gluten"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Exocrine pancreatic insufficiency. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Exocrine pancreatic insufficiency."
+  },
+  {
+    "id": "medqa_5212",
+    "step": "Step 1",
+    "specialty": "Rheumatology",
+    "difficulty": "Medium",
+    "vignette": "A 54-year-old man is brought to the emergency department 30 minutes after being hit by a car while crossing the street. He had a left-sided tonic-clonic seizure and one episode of vomiting while being transported to the hospital. On arrival, he is not oriented to person, place, or time. Physical examination shows flaccid paralysis of all extremities. A CT scan of the head is shown. This patient's symptoms are most likely the result of a hemorrhage in which of the following structures?",
+    "options": [
+      "Into the ventricular system",
+      "Between the skull and the dura mater",
+      "Into the cerebral parenchyma",
+      "Between the arachnoid mater and the pia mater"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Between the arachnoid mater and the pia mater. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Between the arachnoid mater and the pia mater."
+  },
+  {
+    "id": "medqa_5213",
+    "step": "Step 1",
+    "specialty": "Dermatology",
+    "difficulty": "Hard",
+    "vignette": "A 15-month-old girl is brought to the physician because of the sudden appearance of a rash on her trunk that started 6 hours ago and subsequently spread to her extremities. Four days ago, she was taken to the emergency department because of a high fever and vomiting. She was treated with acetaminophen and discharged the next day. The fever persisted for several days and abated just prior to appearance of the rash. Physical examination shows a rose-colored, blanching, maculopapular rash, and postauricular lymphadenopathy. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Nonbullous impetigo",
+      "Roseola infantum",
+      "Rubella",
+      "Erythema infectiosum"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Roseola infantum. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Roseola infantum."
+  },
+  {
+    "id": "medqa_5215",
+    "step": "Step 1",
+    "specialty": "Pediatrics",
+    "difficulty": "Medium",
+    "vignette": "A 68-year-old man is being evaluated in your radiation oncology clinic for treatment of a solid tumor. Your hospital has just purchased a new proton beam purported to deliver targeted radiation with fewer side effects than traditional radiation therapy. The patient expresses strong interest in receiving proton beam therapy, and you feel that he may have a better outcome with this new treatment modality. Later that day, an executive from the patient's insurance company calls to tell you that proton beam therapy will cost the company (but not the patient) a much larger amount of money than traditional therapy. They are willing to pay for proton beam therapy, but request that you convince the patient to undergo traditional therapy instead. You have a longstanding relationship with this insurance company as well as this particular executive. How should you proceed?",
+    "options": [
+      "Discuss the issue of cost to the insurer with your patient, pointing out that keeping his insurance company happy may make them more likely to cover additional treatments in the future",
+      "Proceed with proton beam therapy as discussed at your patient's appointment",
+      "Tell the patient that proton beam therapy will not be covered by his insurance company, so you will need to proceed with traditional radiation therapy",
+      "Call your hospital's ethics committee for a formal consultation"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Proceed with proton beam therapy as discussed at your patient's appointment. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Proceed with proton beam therapy as discussed at your patient's appointment."
+  },
+  {
+    "id": "medqa_5216",
+    "step": "Step 1",
+    "specialty": "Surgery",
+    "difficulty": "Hard",
+    "vignette": "A 2-month-old boy is presented to the clinic for a well-child visit by his parents. They are concerned with his weak cry and difficulty with feeding. Birth history reveals that the boy was born at the 37th week of gestation by cesarean section due to poor fetal movement and fetal distress. His Apgar scores were 3 and 5 at 1st and 5th minute respectively and his birth weight was 2.5 kg (6 lb). His vital signs include heart rate 120/min, respiratory rate 40/min, blood pressure 90/50 mm Hg, and temperature 37.0°C (98.6°F). Physical examination reveals a malnourished boy with a small narrow forehead and a small jaw. His mouth is small and he has comparatively small genitals. He has a poor muscle tone. After repeated follow-up, he gains weight rapidly but his height fails to increase. Developmental milestones are delayed at the age of 3 years. Genetic testing reveals Prader-Willi syndrome. Which of the following is the most common mechanism for the development of this patient’s condition?",
+    "options": [
+      "Heteroplasmy",
+      "Silencing in imprinting region",
+      "Anticipation",
+      "Incomplete penetrance"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Silencing in imprinting region. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Silencing in imprinting region."
+  },
+  {
+    "id": "medqa_5219",
+    "step": "Step 1",
+    "specialty": "Cardiology",
+    "difficulty": "Hard",
+    "vignette": "A 60-year-old man comes to the emergency department because of a 3-day history of fever and shortness of breath. He has a history of COPD treated with inhaled albuterol. His temperature is 39.0°C (102.2°F), pulse is 95/min, respirations are 20/min, and blood pressure is 130/80 mm Hg. Cardiopulmonary examination shows decreased breath sounds and poor air movement over the left lung. A lateral decubitus x-ray of the chest shows a pleural effusion height of 2 cm. Thoracentesis is performed and pleural fluid analysis shows a protein concentration of 4.0 g/dL and LDH of 80 U/L. Which of the following is the most likely underlying cause of this patient's effusion?",
+    "options": [
+      "Impaired lymphatic flow",
+      "Increased pulmonary capillary permeability",
+      "Decreased intrapleural pressure",
+      "Decreased plasma oncotic pressure"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Increased pulmonary capillary permeability. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Increased pulmonary capillary permeability."
+  },
+  {
+    "id": "medqa_5220",
+    "step": "Step 1",
+    "specialty": "Pulmonology",
+    "difficulty": "Easy",
+    "vignette": "A 30-year-old man comes to the physician for follow-up evaluation for hypertension. He reports a 1-month history of episodic throbbing headaches, palpitations, and paroxysmal sweating. Blood pressure is 160/90 mm Hg. He appears pale but physical examination is otherwise unremarkable. Laboratory studies show elevated urine and plasma metanephrines. A CT scan of the abdomen shows a mass in the left adrenal gland. Which of the following is the most appropriate initial pharmacotherapy for this patient?",
+    "options": [
+      "Phenoxybenzamine",
+      "Propranolol",
+      "Clonidine",
+      "Hydrochlorothiazide"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Phenoxybenzamine. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Phenoxybenzamine."
+  },
+  {
+    "id": "medqa_5224",
+    "step": "Step 1",
+    "specialty": "Hematology",
+    "difficulty": "Medium",
+    "vignette": "A 51-year-old woman schedules an appointment with her physician with complaints of upper abdominal pain, nausea, and early satiety for the last 6 months. She has type 1 diabetes for the past 10 years and is on subcutaneous insulin with metformin. She complains of occasional heartburn and lost 4.5 kg (10 lb) in the past 6 months without any changes in her diet. The medical history is significant for long QT syndrome. The vital signs include: pulse 74/min, respirations 18/min, temperature 37.7°C (99.9°F), and blood pressure 140/84 mm Hg. Abdominal examination is negative for organomegaly or a palpable mass, but there is a presence of succussion splash. She has slightly decreased vision in both her eyes and fundoscopy reveals diabetic changes in the retina. Esophagogastroduodenoscopy is performed, which is negative for obstruction, but a small ulcer is noted near the cardiac end of the stomach with some food particles. Which of the following drugs would be inappropriate in the management of this patient’s condition?",
+    "options": [
+      "Bethanechol",
+      "Cisapride",
+      "Erythromycin",
+      "Domperidone"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Cisapride. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Cisapride."
+  },
+  {
+    "id": "medqa_5228",
+    "step": "Step 1",
+    "specialty": "Infectious Disease",
+    "difficulty": "Hard",
+    "vignette": "A 32-year-old woman presents to your office with abdominal pain and bloating over the last month. She also complains of intermittent, copious, non-bloody diarrhea over the same time. Last month, she had a cough that has since improved but has not completely resolved. She has no sick contacts and has not left the country recently. She denies any myalgias, itching, or rashes. Physical and laboratory evaluations are unremarkable. Examination of her stool reveals the causative organism. This organism is most likely transmitted to the human host through which of the following routes?",
+    "options": [
+      "Inhalation",
+      "Penetration of skin",
+      "Animal bite",
+      "Insect bite"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Penetration of skin. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Penetration of skin."
+  },
+  {
+    "id": "medqa_5229",
+    "step": "Step 1",
+    "specialty": "Rheumatology",
+    "difficulty": "Easy",
+    "vignette": "A 78-year-old man presented to his primary physician with a 3-month history of weight loss, fever, fatigue, night sweats, and cough. He is a former smoker. A recent HIV test was negative. A CT scan of the chest reveals a 3 cm lesion in the lower lobe of the left lung and calcification around the left lung hilus. A sputum smear was positive for acid fast organisms. These findings are most consistent with which of the following:",
+    "options": [
+      "Primary tuberculosis",
+      "Adenocarcinoma",
+      "Miliary tuberculosis",
+      "Secondary tuberculosis"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Primary tuberculosis. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Primary tuberculosis."
+  },
+  {
+    "id": "medqa_5230",
+    "step": "Step 1",
+    "specialty": "Dermatology",
+    "difficulty": "Medium",
+    "vignette": "A 45-year-old woman comes to see you for a second opinion regarding an upcoming surgery for pancreatic insulinoma. While taking a surgical history, she tells you she previously had a pituitary tumor resected. For which additional neoplasms might you consider testing her?",
+    "options": [
+      "Medullary thyroid carcinoma",
+      "Pheochromocytoma",
+      "Parathyroid adenoma",
+      "Multiple myeloma"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Parathyroid adenoma. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Parathyroid adenoma."
+  },
+  {
+    "id": "medqa_5231",
+    "step": "Step 1",
+    "specialty": "OB/GYN",
+    "difficulty": "Hard",
+    "vignette": "A 12-year-old girl comes to the clinic with a grossly enlarged abdomen. She has a history of frequent episodes of weakness, sweating, and pallor that are eliminated by eating. Her development has been slow. She started to walk unassisted at 2 years and was not performing well at school. Physical examination reveals a blood pressure of 100/60 mm Hg, heart rate of 80/min, and temperature of 36.9°C (98.4℉). On physical examination, the liver is enlarged, firm, and palpable up to the pelvis. The spleen and kidney are not palpable. Laboratory investigation reveals low blood glucose and pH with high lactate, triglycerides, ketones, and free fatty acids. The liver biopsy revealed high glycogen content. Hepatic glycogen structure was normal. The enzyme assay performed on the biopsy tissue revealed very low glucose-6-phosphatase levels. What is the most likely diagnosis?",
+    "options": [
+      "Cori's disease",
+      "Pompe's disease",
+      "Von-Gierke's disease",
+      "McArdle disease"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Von-Gierke's disease. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Von-Gierke's disease."
+  },
+  {
+    "id": "medqa_5234",
+    "step": "Step 1",
+    "specialty": "Emergency",
+    "difficulty": "Hard",
+    "vignette": "A 23-year-old male presents to the emergency room following a gunshot wound to the leg. On arrival his temperature is 99°F (37.2°C), blood pressure is 90/60 mmHg, pulse is 112/min, respirations are 21/min, and pulse oximetry is 99% on room air. Two large bore IVs are placed and he receives crystalloid fluid replacement followed by 2 units of crossmatched packed red blood cells. Immediately following transfusion, his temperature is 102.2°F (39°C), blood pressure is 93/64 mmHg, pulse is 112/min, respirations are 21/min, and pulse oximetry is 99% on room air. There is oozing from his IV sites. You check the records and realize there was a clerical error with the blood bank. What is the mechanism for his current condition?",
+    "options": [
+      "Preformed antibodies",
+      "Deposition of immune complexes",
+      "T lymphocyte reaction",
+      "Production of leukotrienes"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Preformed antibodies. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Preformed antibodies."
+  },
+  {
+    "id": "medqa_5236",
+    "step": "Step 1",
+    "specialty": "Cardiology",
+    "difficulty": "Medium",
+    "vignette": "A 60-year-old woman with a history of emphysema has been referred by her pulmonologist for follow-up pulmonary function testing. During the test, the patient reaches a point where her airway pressure is equal to the atmospheric pressure. Which of the following is most likely to be found during this respiratory state?",
+    "options": [
+      "Pulmonary vascular resistance is at a maximum",
+      "Pulmonary vascular resistance is at a minimum",
+      "Transmural pressure of the lung-chest wall system is at a maximum",
+      "Transmural pressure of the lung-chest wall system is at a minimum"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Pulmonary vascular resistance is at a minimum. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Pulmonary vascular resistance is at a minimum."
+  },
+  {
+    "id": "medqa_5238",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Easy",
+    "vignette": "A 70-year-old man comes to the physician because of a 6-month-history of worsening shortness of breath on exertion and bouts of coughing while sleeping. He has hypertension, hyperlipidemia, and type 2 diabetes mellitus. Current medications include lisinopril, simvastatin, and insulin. The patient appears tired but in no acute distress. His pulse is 70/min, blood pressure is 140/85 mm Hg, and respirations are 25/min. He has crackles over both lower lung fields and 2+ pitting edema of the lower extremities. An ECG shows T wave inversions in leads V1 to V4. Which of the following agents is most likely to improve the patient's long-term survival?",
+    "options": [
+      "Gemfibrozil",
+      "Metoprolol",
+      "Amlodipine",
+      "Dobutamine"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Metoprolol. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Metoprolol."
+  },
+  {
+    "id": "medqa_5239",
+    "step": "Step 1",
+    "specialty": "Nephrology",
+    "difficulty": "Medium",
+    "vignette": "A 52-year-old woman comes to the physician because of a 1-month history of mild fever, fatigue, and shortness of breath. She has no history of serious medical illness and takes no medications. Cardiopulmonary examination shows a mid-diastolic plopping sound heard best at the apex and bilateral rales at the base of the lungs. Echocardiography shows a pedunculated, heterogeneous mass in the left atrium. A biopsy of the mass shows clusters of mesenchymal cells surrounded by gelatinous material. Further evaluation of this patient is most likely to show which of the following?",
+    "options": [
+      "Increased IL-6 serum concentration",
+      "Axillary lymphadenopathy",
+      "Malignant pleural effusion",
+      "Ash-leaf skin lesions"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Increased IL-6 serum concentration. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Increased IL-6 serum concentration."
+  },
+  {
+    "id": "medqa_5240",
+    "step": "Step 1",
+    "specialty": "Endocrine",
+    "difficulty": "Hard",
+    "vignette": "A 57-year-old man with a history of coronary artery disease has been brought to the emergency department due to the sudden onset of chest pain. He was diagnosed with hypertension 12 years ago and takes enalapril regularly. The patient is hypotensive to 70/42 mm Hg, and on further examination his skin is cold and clammy. He is diagnosed with a life-threatening condition that resulted from inadequate circulation of blood, with decreased cardiac output and high pulmonary capillary wedge pressure. Which of the conditions below can cause the same disorder?\nI. Acute myocardial infarction\nII. Atrial fibrillation\nIII. Hemorrhage\nIV. Valvular stenosis\nV. Pulmonary embolism\nVI. Sepsis",
+    "options": [
+      "I, II, III",
+      "I, IV, VI",
+      "I, II, IV, V",
+      "I, II, IV"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: I, II, IV. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to I, II, IV."
+  },
+  {
+    "id": "medqa_5246",
+    "step": "Step 1",
+    "specialty": "Rheumatology",
+    "difficulty": "Hard",
+    "vignette": "A 13-year-old boy is brought to the emergency department because of a 2-day history of fever, headache, and irritability. He shares a room with his 7-year-old brother, who does not have any symptoms. The patient appears weak and lethargic. His temperature is 39.1°C (102.4°F) and blood pressure is 99/60 mm Hg. Physical examination shows several purple spots over the trunk and extremities. A lumbar puncture is performed. Gram stain of the cerebrospinal fluid shows numerous gram-negative diplococci. Administration of which of the following is most likely to prevent infection of the patient's brother at this time?",
+    "options": [
+      "Penicillin G",
+      "Cephalexin",
+      "Rifampin",
+      "Doxycycline"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Rifampin. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Rifampin."
+  },
+  {
+    "id": "medqa_5247",
+    "step": "Step 1",
+    "specialty": "Dermatology",
+    "difficulty": "Easy",
+    "vignette": "A 75-year-old male presents to his primary care physician complaining of epigastric pain. He has developed progressively worsening epigastric pain, heartburn, and nausea over the past five months. The pain does not change with meals and is not positional. He also reports that he is rarely hungry and has lost ten pounds. The patient immigrated from Japan two years ago to live with his son in the United States. He worked as a fisherman and dock worker for most of his life. His past medical history is notable for gout and gastroesophageal reflux disease. He takes allopurinol and cimetidine. He has a 30 pack-year smoking history and drinks 1-2 alcoholic beverages per day. Physical examination reveals mild epigastric tenderness to palpation and a hard lymph node near his left shoulder. Which of the following substances is most strongly associated with this patient’s condition?",
+    "options": [
+      "Nitrosamine",
+      "Aflatoxin",
+      "Naphthalene",
+      "Asbestos"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Nitrosamine. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Nitrosamine."
+  },
+  {
+    "id": "medqa_5248",
+    "step": "Step 1",
+    "specialty": "OB/GYN",
+    "difficulty": "Medium",
+    "vignette": "A mother brings her 1-year-old daughter who has had several seizures in the past 2 weeks to the pediatrician. The mother explains that the child is unable to crawl, sit, or even hold up her own head. She thinks the weakness is getting worse. The parents of the child are first cousins, and the mother's sister had one child who died before the age of 3 with similar symptoms. Hexosaminidase A activity was assayed in the blood and found to be absent. Which of the following will be found on fundoscopic examination of the child?",
+    "options": [
+      "Papilledema",
+      "Cotton wool spots",
+      "Hollenhorst plaque",
+      "Cherry red spot"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Cherry red spot. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Cherry red spot."
+  },
+  {
+    "id": "medqa_5250",
+    "step": "Step 1",
+    "specialty": "Surgery",
+    "difficulty": "Easy",
+    "vignette": "A 33-year-old man is evaluated by paramedics after being found unconscious outside of his home. He has no palpable pulses. Physical examination shows erythematous marks in a fern-leaf pattern on his lower extremities. An ECG shows ventricular fibrillation. Which of the following is the most likely cause of this patient's findings?",
+    "options": [
+      "Lightning strike",
+      "Hypothermia",
+      "Opioid overdose",
+      "Infective endocarditis"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Lightning strike. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Lightning strike."
+  },
+  {
+    "id": "medqa_5252",
+    "step": "Step 1",
+    "specialty": "Biostatistics",
+    "difficulty": "Hard",
+    "vignette": "A 31-year-old woman delivers a healthy boy at 38 weeks gestation. The delivery is vaginal and uncomplicated. The pregnancy was unremarkable. On examination of the newborn, it is noted that his head is tilted to the left and his chin is rotated to the right. Palpation reveals no masses or infiltration in the neck. The baby also shows signs of left hip dysplasia. Nevertheless, the baby is active and exhibits no signs of other pathology. What is the most probable cause of this patient's condition?",
+    "options": [
+      "Congenital infection",
+      "Basal ganglia abnormalities",
+      "Antenatal trauma",
+      "Intrauterine malposition"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Intrauterine malposition. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Intrauterine malposition."
+  },
+  {
+    "id": "medqa_5253",
+    "step": "Step 1",
+    "specialty": "Cardiology",
+    "difficulty": "Easy",
+    "vignette": "A healthy 30-year-old woman comes to the physician with her husband for preconception counseling. Her husband is healthy but she is concerned because her brother was recently diagnosed with a genetic liver condition for which he takes penicillamine. Her father-in-law has liver cirrhosis and a tremor. The results of genetic testing show that both the patient and her husband are carriers of a mutation in the ATP7B gene. Which of the following is the chance that this patient’s offspring will eventually develop the hereditary condition?",
+    "options": [
+      "0%",
+      "100%",
+      "25%",
+      "50%"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: 25%. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to 25%."
+  },
+  {
+    "id": "medqa_5254",
+    "step": "Step 1",
+    "specialty": "Pulmonology",
+    "difficulty": "Medium",
+    "vignette": "A 20-year-old man who is a biology major presents to his physician for a simple check-up. He is informed that he hasn’t received a hepatitis B vaccine. When the first injection is applied, the medical professional informs him that he will need to come back 2 more times on assigned days, since the vaccine is given in 3 doses. Which of the following antibodies is the physician trying to increase in the college student as a result of the first vaccination?",
+    "options": [
+      "IgA",
+      "IgM",
+      "IgD",
+      "IgE"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: IgM. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to IgM."
+  },
+  {
+    "id": "medqa_5255",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Hard",
+    "vignette": "A 28-year-old woman presents with an abnormal vaginal discharge for the past week. She maintains a monogamous relationship but denies the use of barrier protection with her partner. She is 5 weeks late for her menstrual cycle. Subsequent testing demonstrates a positive pregnancy test. A wet mount demonstrates motile, pear-shaped organisms. Which of the following is the most appropriate treatment for this patient?",
+    "options": [
+      "Azithromycin",
+      "Fluconazole",
+      "Metronidazole",
+      "Ceftriaxone"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Metronidazole. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Metronidazole."
+  },
+  {
+    "id": "medqa_5257",
+    "step": "Step 1",
+    "specialty": "Endocrine",
+    "difficulty": "Medium",
+    "vignette": "A 15-year-old boy comes to the physician for the evaluation of progressive difficulty climbing stairs for the last 2 years. During this period, he has also had problems running and standing up from a seated position. He is at the 50th percentile for height and weight. Examination shows enlarged calf muscles bilaterally and a waddling gait. Which of the following is the most likely cause of this patient's condition?",
+    "options": [
+      "Missense mutation",
+      "Trinucleotide repeat expansions",
+      "Splice site mutation",
+      "Frameshift mutation"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Missense mutation. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Missense mutation."
+  },
+  {
+    "id": "medqa_5258",
+    "step": "Step 1",
+    "specialty": "Hematology",
+    "difficulty": "Hard",
+    "vignette": "A 71-year-old man is admitted to the hospital one hour after he was found unconscious. His pulse is 80/min and systolic blood pressure is 98 mm Hg; diastolic blood pressure cannot be measured. He is intubated and mechanically ventilated with supplemental oxygen at a tidal volume of 450 mL and a respiratory rate of 10/min. Arterial blood gas analysis shows:\nPCO2 43 mm Hg\nO2 saturation 94%\nO2 content 169 mL/L\nPulmonary artery catheterization shows a pulmonary artery pressure of 15 mm Hg and a pulmonary capillary wedge pressure of 7 mm Hg. Bedside indirect calorimetry shows a rate of O2 tissue consumption of 325 mL/min. Given this information, which of the following additional values is sufficient to calculate the cardiac output in this patient?\"",
+    "options": [
+      "End-tidal carbon dioxide pressure",
+      "Total peripheral resistance",
+      "Left ventricular end-diastolic volume",
+      "Pulmonary artery oxygen content"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Pulmonary artery oxygen content. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Pulmonary artery oxygen content."
+  },
+  {
+    "id": "medqa_5259",
+    "step": "Step 1",
+    "specialty": "Oncology",
+    "difficulty": "Easy",
+    "vignette": "A 57-year-old man presents to the office with complaints of perianal pain during defecation and perineal heaviness for 1 month. He also complains of discharge around his anus, and bright red bleeding during defecation. The patient provides a history of having a sexual relationship with other men without using any methods of protection. The physical examination demonstrates edematous verrucous anal folds that are of hard consistency and painful to the touch. A proctosigmoidoscopy reveals an anal canal ulcer with well defined, indurated borders on a white background. A biopsy is taken and the results are pending. What is the most likely diagnosis?",
+    "options": [
+      "Anal fissure",
+      "Anal cancer",
+      "Proctitis",
+      "Polyps"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Anal cancer. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Anal cancer."
+  },
+  {
+    "id": "medqa_5260",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Medium",
+    "vignette": "A 64-year-old male retired farmer presents to the orthopaedic surgery clinic with chronic left knee pain. Radiographic imaging demonstrates severe tricompartmental osteoarthritis. The patient has a history of diabetes mellitus, chronic kidney disease, hypertension, hyperlipidemia, and congestive heart failure. He undergoes a left knee replacement without complications. A Foley catheter was placed in the operating room and removed in the post-anesthesia care unit. He receives subcutaneous heparin and has sequential compression devices in place to prevent deep venous thromboses. On post-operative day 1, he develops suprapubic pain and dysuria and is subsequently found to have a urinary tract infection. He is discharged on post-operative day 2 with an appropriate antibiotic regimen. However, he presents to the emergency room on post-operative day 6 with severe left leg pain. Venous dopplers demonstrate an occlusive thrombus in the popliteal vein. He is readmitted for anticoagulation and monitoring. A quality improvement team in the hospital estimates that the probability of getting both a urinary tract infection and a deep venous thrombosis is 0.00008 in patients undergoing routine total knee replacement. Furthermore, they estimate that the probability of getting a urinary tract infection in a similar patient population is 0.04. Assuming that the development of urinary tract infections and deep venous thromboses are independent, what is the risk of developing a deep venous thrombosis following total knee replacement?",
+    "options": [
+      "0.02",
+      "0.002",
+      "0.0002",
+      "0.00002"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: 0.002. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to 0.002."
+  },
+  {
+    "id": "medqa_5261",
+    "step": "Step 1",
+    "specialty": "Psychiatry",
+    "difficulty": "Hard",
+    "vignette": "A 52-year-man is brought to the physician because of a 2-week history of memory loss. Three weeks ago, he had a cardiac arrest that required cardiopulmonary resuscitation and intravenous epinephrine. On mental status examination, he cannot recall objects shown to him 20 minutes earlier but vividly recalls memories from before the incident. The remainder of the examination shows no abnormalities. Which of the following structures of the brain is most likely affected?",
+    "options": [
+      "Purkinje cells of the cerebellum",
+      "Microglial cells of dorsal midbrain",
+      "Pyramidal cells of the hippocampus",
+      "Astroglial cells of the putamen"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Pyramidal cells of the hippocampus. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Pyramidal cells of the hippocampus."
+  },
+  {
+    "id": "medqa_5266",
+    "step": "Step 1",
+    "specialty": "Pediatrics",
+    "difficulty": "Medium",
+    "vignette": "A 7-year-old boy is brought by his parents to his pediatrician with a one-day history of fever, chills, and pain in the right upper extremity. The patient’s mother says that he has injured his right index finger while playing in the garden 3 days earlier. His temperature is 38.8°C (101.8°F), pulse is 120/min, respiratory rate is 24/min, and blood pressure is 102/70 mm Hg. On physical examination, there is an infected wound present on the tip of the right index finger. Irregular and subcutaneous linear subcutaneous red streaks are seen on the ventral surface of the right forearm, which is warm and tender to palpation. There is painful right infraclavicular lymphadenopathy present. Which of the following is the most common microorganism known to cause this patient’s condition?",
+    "options": [
+      "Aeromonas hydrophila",
+      "Group A β-hemolytic Streptococcus",
+      "Pseudomonas aeruginosa",
+      "Staphylococcus aureus"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Group A β-hemolytic Streptococcus. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Group A β-hemolytic Streptococcus."
+  },
+  {
+    "id": "medqa_5267",
+    "step": "Step 1",
+    "specialty": "Surgery",
+    "difficulty": "Hard",
+    "vignette": "A 7-year-old boy is brought to the emergency department by his parents. He is complaining of left-sided knee pain which has progressively increased in severity over the past 2 days. It started when he was playing football with his brothers but he does not recall falling or getting any injury. Past medical history is significant for prolonged bleeding and easy bruising. His maternal uncle has similar problems. Physical exam reveals swollen and painful left knee. His laboratory investigations reveal:\nHemoglobin 11.8 g/dL\nWBC count 7,000/mL\nPlatelets 250,000/mL\nINR 0.9\naPTT 62 sec, fully corrected with a mixing study\nWhich of the following disorders have the same mode of inheritance as this patient’s disease?",
+    "options": [
+      "Alkaptonuria",
+      "Sickle cell disease",
+      "Duchenne muscular dystrophy",
+      "Huntington's disease"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Duchenne muscular dystrophy. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Duchenne muscular dystrophy."
+  },
+  {
+    "id": "medqa_5269",
+    "step": "Step 1",
+    "specialty": "Biostatistics",
+    "difficulty": "Medium",
+    "vignette": "A 32-year-old man comes to the physician because of a 3-month history of progressively worsening shortness of breath on exertion. He is concerned that he has asthma and would like to be started on albuterol. Which of the following findings is most likely to indicate a different diagnosis in this patient?",
+    "options": [
+      "129% of the predicted diffusion capacity of the lung for carbon monoxide",
+      "Decrease in systolic blood pressure by 16 mm Hg during inspiration",
+      "Decrease in FEV1 by 6% after administration of high-dose methacholine",
+      "Visibility of 11 posterior ribs in the midclavicular line above the diaphragm on chest x-ray"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Decrease in FEV1 by 6% after administration of high-dose methacholine. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Decrease in FEV1 by 6% after administration of high-dose methacholine."
+  },
+  {
+    "id": "medqa_5271",
+    "step": "Step 1",
+    "specialty": "Pulmonology",
+    "difficulty": "Easy",
+    "vignette": "A 28-year-old man comes to the physician because of a 6-month history of progressive fatigue and intermittent diarrhea. During this time, he has had a 6-kg (13-lb) weight loss. Physical examination shows pale conjunctivae. Abdominal examination shows tenderness to palpation in the lower quadrants. An image from a colonoscopy of the descending colon is shown. Further evaluation is most likely to show which of the following findings?",
+    "options": [
+      "Positive lactose hydrogen breath test",
+      "Anti-Saccharomyces cerevisiae antibodies",
+      "Perinuclear antineutrophil cytoplasmic antibodies",
+      "Anti-tissue transglutaminase antibodies"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Perinuclear antineutrophil cytoplasmic antibodies. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Perinuclear antineutrophil cytoplasmic antibodies."
+  },
+  {
+    "id": "medqa_5272",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Medium",
+    "vignette": "A 51-year-old woman comes to the physician because of a 6-month history of fatigue and increased thirst. She has no history of serious medical illness and takes no medications. She is 163 cm (5 ft 4 in) tall and weighs 72 kg (160 lb); BMI is 28 kg/m2. Her fasting serum glucose concentration is 249 mg/dL. Treatment with an oral hypoglycemic agent is begun. Which of the following best describes the mechanism of action of the drug that was most likely prescribed for this patient?",
+    "options": [
+      "Decreased glucagon release",
+      "Increased insulin release",
+      "Decreased carbohydrate hydrolysis",
+      "Decreased hepatic gluconeogenesis"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Decreased hepatic gluconeogenesis. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Decreased hepatic gluconeogenesis."
+  },
+  {
+    "id": "medqa_5273",
+    "step": "Step 1",
+    "specialty": "Nephrology",
+    "difficulty": "Hard",
+    "vignette": "An investigator is conducting an experiment to study different pathways of glucose metabolism. He obtains cells cultured from various tissues to study the effect of increased extracellular glucose concentration. Following the incubation of these cells in 5% dextrose, he measures the intracellular fructose concentration. The concentration of fructose is expected to be highest in cells obtained from which of the following tissues?",
+    "options": [
+      "Ovary",
+      "Kidney",
+      "Lens",
+      "Retina"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Ovary. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Ovary."
+  },
+  {
+    "id": "medqa_5278",
+    "step": "Step 1",
+    "specialty": "Psychiatry",
+    "difficulty": "Medium",
+    "vignette": "A 57-year-old woman with a long-standing history of liver cirrhosis presents to her primary care provider with a complaint of unintended weight loss of 8.2 kg (18.0 lb) within the last month. She has a history of intermittent right upper quadrant pain in her abdomen with decreased appetite for a few years and occasional shortness of breath. The past medical history is significant for hepatitis E infection during her first pregnancy when she was 28 years old, and a history of blood transfusion after an accident 25 years ago. She drinks about 2–3 pints of beer every week on average and does not use tobacco. The vital signs include: blood pressure 110/68 mm Hg, pulse rate 82/min, respiratory rate 11/min, and temperature 37.7 °C (99.9°F). The physical exam is normal except for moderate icterus and tender hepatomegaly. The blood tests show mild anemia with decreased iron stores. Serum electrolytes, blood sugar, and renal function are normal. The chest X-ray is normal. An ultrasound of the abdomen revealed a mass in the liver, which was confirmed with a biopsy to be hepatocellular carcinoma. Which of the following is the strongest causative factor that can be linked to her diagnosis?",
+    "options": [
+      "Shortness of breath",
+      "History of alcoholism",
+      "History of blood transfusion",
+      "Hemochromatosis"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: History of blood transfusion. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to History of blood transfusion."
+  },
+  {
+    "id": "medqa_5279",
+    "step": "Step 1",
+    "specialty": "Infectious Disease",
+    "difficulty": "Hard",
+    "vignette": "A 79-year-old man presents to a physician’s office for a routine appointment. He had a myocardial infarction 3 years ago and was started on aspirin, carvedilol, captopril, and high-dose atorvastatin. He denies shortness of breath or cough. He exercises regularly and is on a healthy diet that is good for his heart. The vital signs include: pulse 80/min, respirations 16/min and blood pressure 122/80 mm Hg. The physical examination reveals an overweight male with a body mass index (BMI) of 28 kg/m2. The fasting lipid profile is as follows:\nTotal cholesterol 200 mg/dL\nHigh-density lipoprotein (HDL)  35 mg/dL\nLow-density lipoprotein (LDL) 140 mg/dL\nTriglycerides 120 mg/dL\nWhich of the following drugs should be added to his regimen?",
+    "options": [
+      "Furosemide",
+      "Orlistat",
+      "Ezetimibe",
+      "Losartan"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Ezetimibe. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Ezetimibe."
+  },
+  {
+    "id": "medqa_5280",
+    "step": "Step 1",
+    "specialty": "Rheumatology",
+    "difficulty": "Easy",
+    "vignette": "A 69-year-old man comes to the physician because of a 4-month history of progressive fatigue, cough, shortness of breath, and a 6.6-kg (14.5-lb) weight loss. For the past week, he has had blood-tinged sputum. He is a retired demolition foreman. There is dullness to percussion and decreased breath sounds over the left lung base. A CT scan of the chest shows a left-sided pleural effusion and circumferential pleural thickening with calcifications on the left hemithorax. Pathologic examination of a biopsy specimen of the thickened tissue is most likely to show which of the following findings?",
+    "options": [
+      "Synaptophysin-positive dark blue cells with hyperchromatic nuclei and scarce cytoplasm",
+      "Calretinin-positive polygonal cells with numerous long surface microvilli",
+      "Napsin-positive cells in an acinar growth pattern with intracytoplasmatic mucin",
+      "Keratin-producing large polygonal cells with intercellular bridges"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Calretinin-positive polygonal cells with numerous long surface microvilli. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Calretinin-positive polygonal cells with numerous long surface microvilli."
+  },
+  {
+    "id": "medqa_5283",
+    "step": "Step 1",
+    "specialty": "Pediatrics",
+    "difficulty": "Easy",
+    "vignette": "A 25-year-old man is rushed to the emergency department following a motor vehicle accident. After an initial evaluation, he is found to have bilateral femoral fractures. After surgical fixation of his fractures, he suddenly starts to feel nauseated and becomes agitated. Past medical history is significant for a thyroid disorder. His temperature is 40.0°C (104°F), blood pressure is 165/100 mm Hg, pulse is 170/min and irregularly irregular, and respirations are 20/min. On physical examination, the patient is confused and delirious. Oriented x 0. Laboratory studies are significant for the following:\nThyroxine (T4), free 5 ng/dL\nThyroid stimulating hormone (TSH) 0.001 mU/L\nThe patient is started on propranolol to control his current symptoms. Which of the following best describes the mechanism of action of this new medication?",
+    "options": [
+      "Inhibition of thyroid peroxidase enzyme",
+      "Inhibition of an underlying autoimmune process",
+      "Decrease the peripheral conversion of T4 to T3",
+      "Interference with enterohepatic circulation and recycling of thyroid hormones"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Decrease the peripheral conversion of T4 to T3. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Decrease the peripheral conversion of T4 to T3."
+  },
+  {
+    "id": "medqa_5286",
+    "step": "Step 1",
+    "specialty": "Biostatistics",
+    "difficulty": "Easy",
+    "vignette": "A 35-year-old Caucasian female with a history of rheumatoid arthritis presents to your clinic with pleuritic chest pain that improves while leaning forward. Which of the following additional findings would you expect to observe in this patient?",
+    "options": [
+      "Increase in jugular venous pressure on inspiration",
+      "Exaggerated amplitude of pulse on inspiration",
+      "Pulsatile abdominal mass",
+      "Continuous machine-like murmur"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Increase in jugular venous pressure on inspiration. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Increase in jugular venous pressure on inspiration."
+  },
+  {
+    "id": "medqa_5289",
+    "step": "Step 1",
+    "specialty": "GI",
+    "difficulty": "Easy",
+    "vignette": "A 41-year-old woman comes to the physician because of a 1-year history of fatigue, irregular menstrual cycles, and recurrent sinus infections. Examination shows hirsutism and hypopigmented linear striations on the abdomen. Serum studies show hypernatremia, hypokalemia, and metabolic alkalosis. A 24-hour urinary cortisol level is elevated. Serum ACTH is also elevated. High-dose dexamethasone does not suppress serum cortisol levels. Which of the following is the most likely underlying cause of this patient's condition?",
+    "options": [
+      "Adrenal adenoma",
+      "Pituitary adenoma",
+      "Pheochromocytoma",
+      "Small cell lung cancer"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Small cell lung cancer. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Small cell lung cancer."
+  },
+  {
+    "id": "medqa_5290",
+    "step": "Step 1",
+    "specialty": "Nephrology",
+    "difficulty": "Medium",
+    "vignette": "A group of investigators is studying thermoregulatory adaptations of the human body. A subject is seated in a thermally insulated isolation chamber with an internal temperature of 48°C (118°F), a pressure of 1 atmosphere, and a relative humidity of 10%. Which of the following is the primary mechanism of heat loss in this subject?",
+    "options": [
+      "Evaporation",
+      "Conduction",
+      "Convection",
+      "Radiation"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Evaporation. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Evaporation."
+  },
+  {
+    "id": "medqa_5291",
+    "step": "Step 1",
+    "specialty": "Endocrine",
+    "difficulty": "Hard",
+    "vignette": "A 52-year-old woman sees you in her office with a complaint of new-onset headaches over the past few weeks. On exam, you find a 2 x 2 cm dark, irregularly shaped, pigmented lesion on her back. She is concerned because her father recently passed away from skin cancer. What tissue type most directly gives rise to the lesion this patient is experiencing?",
+    "options": [
+      "Ectoderm",
+      "Mesoderm",
+      "Neural crest cells",
+      "Endoderm"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Neural crest cells. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Neural crest cells."
+  },
+  {
+    "id": "medqa_5292",
+    "step": "Step 1",
+    "specialty": "Hematology",
+    "difficulty": "Easy",
+    "vignette": "A 19-year-old man is brought to the emergency department following a high-speed motor vehicle collision in which he was a restrained passenger. He complains of pelvic pain and involuntary loss of urine, with constant dribbling. Examination shows perineal bruising and there is pain with manual compression of the pelvis. Pelvic ultrasound shows a normal bladder. Injury to which of the following structures is most likely responsible for this patient's urinary incontinence?",
+    "options": [
+      "Pelvic splanchnic nerves",
+      "Genitofemoral nerve",
+      "Superior gluteal nerve",
+      "Obturator nerve"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Pelvic splanchnic nerves. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Pelvic splanchnic nerves."
+  },
+  {
+    "id": "medqa_5293",
+    "step": "Step 1",
+    "specialty": "Oncology",
+    "difficulty": "Medium",
+    "vignette": "A 29-year-old woman comes to the physician because of a 4-day history of fever with chills, nausea, myalgias, and malaise. One week ago, she returned from a trip to Rhode Island, where she participated in a month-long program to become an assistant park ranger. Laboratory studies show a leukocyte count of 1,400/mm3. A peripheral blood smear shows dark purple, mulberry-like inclusions inside the granulocytes. A presumptive diagnosis is made and pharmacotherapy is initiated with the drug of choice for this condition. The bacteriostatic effect of this drug is most likely due to inhibition of which of the following processes?",
+    "options": [
+      "Transcription of bacterial DNA by RNA-polymerase",
+      "Bacterial topoisomerase II and topoisomerase IV activity",
+      "Peptidoglycan crosslinking and bacterial cell wall synthesis",
+      "Binding of bacterial tRNA to the acceptor site of ribosomes"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Binding of bacterial tRNA to the acceptor site of ribosomes. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Binding of bacterial tRNA to the acceptor site of ribosomes."
+  },
+  {
+    "id": "medqa_5294",
+    "step": "Step 1",
+    "specialty": "Neurology",
+    "difficulty": "Hard",
+    "vignette": "A 32-year-old Caucasian woman presents with a three-month history of weight loss, anxiety, and tremors. She recalls frequent heart palpitations and new discomfort while being outside in the heat. Her labs include a TSH level of 0.1 mIU/L. Additionally, the patient’s serum is positive for antibodies that stimulate the TSH receptor. What process is unique to this patient’s diagnosis?",
+    "options": [
+      "Hyperplasia of thyroid follicular cells",
+      "Lymphocyte-mediated destruction of the thyroid gland",
+      "Elevated levels of cholesterol and low density lipoprotein (LDL)",
+      "Stimulation of retroorbital fibroblasts"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Stimulation of retroorbital fibroblasts. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Stimulation of retroorbital fibroblasts."
+  },
+  {
+    "id": "medqa_5297",
+    "step": "Step 1",
+    "specialty": "Rheumatology",
+    "difficulty": "Hard",
+    "vignette": "A 31-year-old man presents with a headache, myalgias, nausea, irritability, and forgetfulness. He developed these symptoms gradually over the past 3 months. He is a motor mechanic, and he changed his place of work 4 months ago. He smokes a half a pack of cigarettes per day. His vaccinations are up to date. On presentation, his vital signs are as follows: blood pressure is 145/70 mm Hg, heart rate is 94/min, respiratory rate is 17/min, and temperature is 36.8℃ (98.2℉). Physical examination reveals diffuse erythema of the face and chest and slight abdominal distention. Neurological examination shows symmetrical brisk upper and lower extremities reflexes. Blood tests show the following results:\npH 7.31\nPo2 301 mm Hg\nPco2 28 mm Hg\nNa+ 141 mEq/L\nK+ 4.3 mEq/L\nCl- 109 mEq/L\nHCO3- 17 mEq/L\nBase Excess -3 mEq/L\nCarboxyhemoglobin  38%\nMethemoglobin 1%\nSerum cyanide 0.35 mcg/mL (Reference range 0.5–1 mcg/mL)\nWhich of the following statements about the patient’s condition is true?",
+    "options": [
+      "The patient’s symptoms are a consequence of his essential hypertension.",
+      "Chronic cyanide exposure is the main cause of patient’s condition.",
+      "This patient’s symptoms are due to CO-induced inactivation of cytochrome oxidase and carboxyhemoglobin formation.",
+      "Viral infection should be suspected in this patient."
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: This patient’s symptoms are due to CO-induced inactivation of cytochrome oxidase and carboxyhemoglobin formation.. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to This patient’s symptoms are due to CO-induced inactivation of cytochrome oxidase and carboxyhemoglobin formation.."
+  },
+  {
+    "id": "medqa_5298",
+    "step": "Step 1",
+    "specialty": "Dermatology",
+    "difficulty": "Easy",
+    "vignette": "A 38-year-old woman was brought to the emergency department after she experienced dizziness and shortness of breath while walking with her friend. She recently immigrated to the United States and is unable to report her previous medical history. Physical exam reveals pallor underneath her eyelids. Labs are obtained with the following results:\n\nHemoglobin: 8.4 g/dL\nPlatelet count: 62,000/mm^3\nMean corpuscular volume: 89 µm^3\nReticulocyte count: 0.1%\nLactate dehydrogenase: 175 U/L\n\nWhich of the following is associated with the most likely cause of this patient's symptoms?",
+    "options": [
+      "Administration of a 50S ribosomal inhibitor",
+      "Chronic alcohol abuse",
+      "Living in an old house",
+      "Vegan diet"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Administration of a 50S ribosomal inhibitor. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Administration of a 50S ribosomal inhibitor."
+  },
+  {
+    "id": "medqa_5299",
+    "step": "Step 1",
+    "specialty": "OB/GYN",
+    "difficulty": "Medium",
+    "vignette": "A 68-year-old man presents to the office for his annual physical examination. He has no current complaints. Past medical history is unremarkable. He reports a 30-pack-year smoking history but no alcohol or drug use. Review of systems is only remarkable for thicker mucous production that is worse in the morning when he coughs. A non-contrast CT scan of his chest is performed, and the doctor informs him that a 2 cm nodule has been identified in his upper lobe of the left lung near the left main bronchus and that further testing is required to rule out malignancy. The patient is surprised by this news since he has never experienced any alarming symptoms. The doctor informs him that lung cancers don’t usually present with symptoms until late in the course of the disease. The doctor says that sometimes it may take several years before it becomes severe enough to cause symptoms, which is why patients with risk factors for developing lung cancer are screened at an earlier age than the general public. Which of the following concepts is being described by the doctor to this patient?",
+    "options": [
+      "Surveillance bias",
+      "Confounding bias",
+      "Latent period",
+      "Lead time bias"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Latent period. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Latent period."
   }
 ]

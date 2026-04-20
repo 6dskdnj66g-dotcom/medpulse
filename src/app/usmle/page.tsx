@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Trophy, Clock, CheckCircle, X, ChevronRight, RotateCcw, Award, BookOpen, Brain, Play, BarChart3, Settings, Languages, Highlighter, Edit3, BookmarkPlus } from "lucide-react";
+import { Trophy, Clock, CheckCircle, X, ChevronRight, RotateCcw, Award, BookOpen, Brain, Play, BarChart3, Settings, Languages, Highlighter, Sparkles } from "lucide-react";
 import { useAchievement } from "@/components/AchievementContext";
 
 type Question = {
@@ -46,15 +46,21 @@ export default function USMLEPage() {
   // Highlighter, Notes, Flashcards state
   const [highlightMode, setHighlightMode] = useState(false);
   const stemRef = useRef<HTMLParagraphElement>(null);
-  const [showNotes, setShowNotes] = useState(false);
+  const [showNotes] = useState(false);
   const [personalNotes, setPersonalNotes] = useState<Record<string, string>>({});
-  const [savedFlashcards, setSavedFlashcards] = useState<string[]>([]);
+  const [savedFlashcards, setSavedFlashcards] = useState<any[]>([]);
 
   useEffect(() => {
     const savedN = localStorage.getItem("usmle_notes");
     if (savedN) setPersonalNotes(JSON.parse(savedN));
     const savedF = localStorage.getItem("usmle_flashcards");
-    if (savedF) setSavedFlashcards(JSON.parse(savedF));
+    if (savedF) {
+      try {
+        setSavedFlashcards(JSON.parse(savedF));
+      } catch (e) {
+        setSavedFlashcards([]);
+      }
+    }
   }, []);
 
   const handleSaveNote = (id: string, text: string) => {
@@ -63,10 +69,21 @@ export default function USMLEPage() {
     localStorage.setItem("usmle_notes", JSON.stringify(newNotes));
   };
 
-  const handleSaveFlashcard = (q: Question) => {
+  const _handleSaveFlashcard = (q: Question) => {
     const targetId = q.id || `stem_${currentQ}`;
-    if (savedFlashcards.includes(targetId)) return;
-    const newCards = [...savedFlashcards, targetId];
+    if (savedFlashcards.some((fc: any) => fc === targetId || fc.id === targetId)) return;
+    
+    // Create an SRS flashcard object
+    const newFlashcard = {
+      id: targetId,
+      question: q,
+      nextReview: Date.now(), // Due immediately
+      interval: 0,
+      easeFactor: 2.5,
+      repetitions: 0
+    };
+
+    const newCards = [...savedFlashcards, newFlashcard];
     setSavedFlashcards(newCards);
     localStorage.setItem("usmle_flashcards", JSON.stringify(newCards));
     alert("Saved to Flashcards!");
@@ -93,6 +110,10 @@ export default function USMLEPage() {
   // Translation state
   const [translations, setTranslations] = useState<Record<string, string>>({});
   const [isTranslating, setIsTranslating] = useState(false);
+
+  // AI Explanation state
+  const [aiExplanation, setAiExplanation] = useState<string | null>(null);
+  const [isGeneratingAi, setIsGeneratingAi] = useState<boolean>(false);
 
   // Stats
   const [stats, setStats] = useState({
@@ -238,7 +259,58 @@ export default function USMLEPage() {
     updateStats(isCorrect, q.specialty);
   };
 
+  const handleExplainDeeper = async () => {
+    const q = questions[currentQ];
+    if (!q || selectedOption === null) return;
+    setIsGeneratingAi(true);
+    setAiExplanation("");
+
+    try {
+      const isCorrect = selectedOption === q.answer;
+      const prompt = `A user answered a USMLE question. 
+Question Stem: ${q.stem}
+
+Options:
+${q.options.map((opt, i) => `${String.fromCharCode(65 + i)}: ${opt}`).join('\n')}
+
+Correct Answer: ${String.fromCharCode(65 + q.answer)} (${q.options[q.answer]})
+User Selected: ${String.fromCharCode(65 + selectedOption)} (${q.options[selectedOption]})
+
+Please explain CONCISELY why the user's choice was ${isCorrect ? 'correct' : 'wrong'}, and provide the core rationale for the correct answer. Format your response cleanly.`;
+
+      const res = await fetch("/api/medical-query", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+
+      if (!res.body) throw new Error("No response body");
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        if (value) {
+          const chunk = decoder.decode(value, { stream: true });
+          setAiExplanation(prev => (prev || "") + chunk);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      setAiExplanation("Failed to fetch AI explanation. Please try again.");
+    } finally {
+      setIsGeneratingAi(false);
+    }
+  };
+
   const nextQuestion = () => {
+    setAiExplanation(null);
+    setIsGeneratingAi(false);
     if (currentQ < questions.length - 1) {
       setCurrentQ(prev => prev + 1);
       setSelectedOption(null);
@@ -603,7 +675,16 @@ export default function USMLEPage() {
               </div>
             </div>
             
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-end gap-3 mt-4">
+                 <button 
+                   onClick={handleExplainDeeper}
+                   disabled={isGeneratingAi}
+                   className="p-2 px-3 bg-indigo-900/50 hover:bg-indigo-800/80 rounded-lg text-indigo-300 shrink-0 transition flex items-center justify-center gap-2 border border-indigo-700/50"
+                   title="Explain Deeper with AI"
+                 >
+                   <Sparkles className="w-4 h-4 cursor-pointer" />
+                   <span className="text-xs font-semibold">{isGeneratingAi ? "Thinking..." : "Explain Deeper"}</span>
+                 </button>
                  <button 
                    onClick={() => handleTranslate(q.explanation, `expl_${q.id || currentQ}`)}
                    disabled={isTranslating}
@@ -614,6 +695,19 @@ export default function USMLEPage() {
                    <span className="text-xs font-semibold">{isTranslating ? "Translating..." : "ترجمة الشرح"}</span>
                  </button>
             </div>
+            
+            {aiExplanation !== null && (
+              <div className="mt-4 p-5 bg-indigo-950/30 rounded-xl border border-indigo-800/50 mb-4 animate-in fade-in zoom-in slide-in-from-top-4 duration-300">
+                <div className="flex items-center gap-2 mb-3 border-b border-indigo-800/50 pb-2">
+                  <Sparkles className="w-5 h-5 text-indigo-400" />
+                  <h4 className="text-indigo-400 font-bold">AI Deep Dive</h4>
+                </div>
+                <div className="prose prose-invert prose-indigo max-w-none text-gray-300 text-sm space-y-2 whitespace-pre-wrap leading-relaxed">
+                  {aiExplanation}
+                </div>
+              </div>
+            )}
+
             {translations[`expl_${q.id || currentQ}`] && (
               <div className="mt-4 p-4 bg-gray-800/80 rounded-xl border border-gray-700 border-r-4 border-r-blue-500" dir="rtl">
                 <p className="text-gray-300 font-arabic text-md leading-loose">{translations[`expl_${q.id || currentQ}`]}</p>

@@ -11,6 +11,8 @@ import {
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageContext";
 import { OSCE_STATIONS, DIFFICULTY_LABELS, STATION_TYPE_LABELS, type OSCEStation } from "@/lib/osceStations";
+import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { supabase } from "@/lib/supabase";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -269,11 +271,15 @@ function ActivePhase({
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         recognitionRef.current.onresult = (event: any) => {
-          let currentTranscript = "";
+          let finalTranscript = "";
           for (let i = event.resultIndex; i < event.results.length; ++i) {
-            currentTranscript += event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript + " ";
+            }
           }
-          setInput(input + (input ? " " : "") + currentTranscript);
+          if (finalTranscript) {
+            setInput(input + (input.endsWith(" ") || input === "" ? "" : " ") + finalTranscript.trim());
+          }
         };
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -444,20 +450,7 @@ function ActivePhase({
                       <button
                         key={idx}
                         onClick={() => {
-                          const msg = {
-                            role: "user" as const,
-                            content: isAr ? `[إجراء الطبيب للفحص: "${exam.nameAr}"]` : `[SYSTEM: Student performed "${exam.name}"]`,
-                            timestamp: Date.now()
-                          };
-                          // Add the artificial user command, then the immediate system response
-                          const sysRes = {
-                            role: "assistant" as const,
-                            content: isAr ? `[النتيجة السريرية الثابتة: ${exam.result}]` : `[CLINICAL FINDING: ${exam.result}]`,
-                            timestamp: Date.now() + 100
-                          };
-                          // Since we don't have direct access to setMessages here without modifying the component greatly, we can just send the command as the input if we wanted, but wait wait...
-                          // Let's call the onSend with a specific string, or pass down setMessages.
-                          // Actually, we can just add a property to the input temporarily:
+                          // Let's call the onSend with a specific string
                           setInput(isAr ? `[نظام الفحص]: قمت بـ "${exam.nameAr}". ما هي النتيجة؟` : `[EXAM]: I am performing "${exam.name}". What is the finding?`);
                           // Then immediately send it:
                           setTimeout(() => onSend(), 100);
@@ -769,14 +762,36 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
   const { stationId } = use(params);
   const { lang } = useLanguage();
   const isAr = lang === "ar";
+  const { user } = useSupabaseAuth();
 
-  const saveResultLocal = useCallback((scoreTotal: number, maxScore: number, passFail: string, stationId: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const saveResultLocal = useCallback(async (scoreTotal: number, maxScore: number, passFail: string, stationId: string, resultData: any) => {
+    // Save to local storage for guest progress tracking
     try {
       const history = JSON.parse(localStorage.getItem("osce_history") || "[]");
       history.push({ stationId, score: scoreTotal, maxScore, passFail, date: new Date().toISOString() });
       localStorage.setItem("osce_history", JSON.stringify(history));
-    } catch(e) {}
-  }, []);
+    } catch(_e) {}
+
+    // Save to Supabase for authenticated users (as per QA report)
+    if (user) {
+      try {
+        await supabase.from("clinical_records").insert({
+          user_id: user.id,
+          type: "osce_attempt",
+          title: `OSCE: ${stationId} (${passFail.toUpperCase()})`,
+          content: { 
+            score: scoreTotal, 
+            max_score: maxScore, 
+            pass_fail: passFail,
+            details: resultData
+          },
+        });
+      } catch(err) {
+        console.error("Failed to save to Supabase:", err);
+      }
+    }
+  }, [user]);
 
   const station = OSCE_STATIONS.find(s => s.id === stationId);
 
@@ -806,7 +821,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
       const data = await res.json() as ExaminerResult;
       setResult(data);
       if (station) {
-        saveResultLocal(data.total_score, data.max_score, data.pass_fail, station.id);
+        saveResultLocal(data.total_score, data.max_score, data.pass_fail, station.id, data);
       }
     } catch {
       setError(isAr ? "فشل التقييم. يرجى المحاولة مرة أخرى." : "Evaluation failed. Please try again.");

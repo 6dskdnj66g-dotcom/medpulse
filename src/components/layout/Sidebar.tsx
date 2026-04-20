@@ -7,7 +7,7 @@ import {
   Activity, LayoutDashboard, BookOpen, Bot, Brain, HeartPulse,
   Calculator, Pill, Trophy, TrendingUp, LogOut,
   Library, User, LayoutGrid, FileText, Scan, Microscope,
-  TestTube, Languages, FolderOpen, GraduationCap, ShieldCheck, Edit
+  TestTube, Languages, FolderOpen, GraduationCap, ShieldCheck, Edit, Stethoscope
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -43,6 +43,7 @@ export function Sidebar() {
       titleKey: t.sections.clinicalTools,
       items: [
         { href: "/calculators",  icon: Calculator,  label: t.nav.calculators },
+        { href: "/ddx",          icon: Stethoscope, label: t.nav.ddx },
         { href: "/drug-checker", icon: Pill,        label: t.nav.drugChecker },
         { href: "/ecg",          icon: Activity,    label: t.nav.ecg },
         { href: "/radiology",    icon: Scan,        label: t.nav.radiology },

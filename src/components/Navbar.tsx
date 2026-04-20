@@ -49,6 +49,7 @@ const DRAWER_SECTIONS = [
     titleAr: "الأدوات السريرية",
     titleEn: "Clinical Tools",
     items: [
+      { href: "/ddx",          icon: Stethoscope, labelAr: "المُشخِّص التفريقي", labelEn: "AI DDx Generator" },
       { href: "/calculators",  icon: Calculator,  labelAr: "الحاسبات السريرية",  labelEn: "Clinical Calculators" },
       { href: "/drug-checker", icon: Pill,        labelAr: "فاحص الأدوية",       labelEn: "Drug Checker" },
       { href: "/ecg",          icon: Activity,    labelAr: "محلل ECG",            labelEn: "ECG Interpreter" },

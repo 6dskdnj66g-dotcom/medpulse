@@ -36782,5 +36782,1397 @@
     "answer": 1,
     "explanation": "The correct answer is B: Beta-HCG levels and a transvaginal ultrasound. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
     "educationalObjective": "Recognize the clinical presentation and appropriate management related to Beta-HCG levels and a transvaginal ultrasound."
+  },
+  {
+    "id": "medqa_5100",
+    "step": "Step 2 CK",
+    "specialty": "Cardiology",
+    "difficulty": "Easy",
+    "vignette": "A 57-year-old immigrant from Nigeria presents to the emergency department for sudden, severe pain and swelling in her lower extremity. She was at a rehabilitation hospital when her symptoms became apparent. The patient has a past medical history of obesity, diabetes, bipolar disorder, and tonic-clonic seizures. Her current medications include metformin, insulin, lisinopril, and valproic acid. The patient is a prominent IV drug and alcohol user who has presented to the ED many times for intoxication. On physical exam you note anasarca and asymmetric lower extremity swelling. Based on the results of a doppler ultrasound of her swollen lower extremity, heparin is started. The patient is then transferred to the general medicine floor for continued management. Laboratory studies are shown below.\n\nSerum:\nNa+: 137 mEq/L\nK+: 5.5 mEq/L\nCl-: 100 mEq/L\nHCO3-: 24 mEq/L\nUrea nitrogen: 22 mg/dL\nCa2+: 5.7 mg/dL\nCreatinine: 1.7 mg/dL\nGlucose: 70 mg/dL\n\nWhat is the most likely diagnosis?",
+    "options": [
+      "Factor V Leiden",
+      "Prothrombin gene mutation",
+      "Liver failure",
+      "Nephrotic syndrome"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Nephrotic syndrome. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Nephrotic syndrome."
+  },
+  {
+    "id": "medqa_5103",
+    "step": "Step 2 CK",
+    "specialty": "Nephrology",
+    "difficulty": "Easy",
+    "vignette": "A 25-year-old woman presents to a physician for a new patient physical exam. Aside from occasional shin splints, she has a relatively unremarkable medical history. She takes oral contraceptive pills as scheduled and a multivitamin daily. She reports no known drug allergies. All of her age appropriate immunizations are up to date. Her periods have been regular, occurring once every 28 to 30 days with normal flow. She is sexually active with two partners, who use condoms routinely. She works as a cashier at the local grocery store. Her mother has diabetes and coronary artery disease, and her father passed away at age 45 after being diagnosed with colon cancer at age 40. Her grand-aunt underwent bilateral mastectomies after being diagnosed with breast cancer at age 60. Her physical exam is unremarkable. Which of the following is the best recommendation for this patient?",
+    "options": [
+      "Colonoscopy in 5 years",
+      "Colonoscopy in 10 years",
+      "Pap smear with human papillomavirus (HPV) DNA testing now",
+      "Pap smear in 5 years"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Colonoscopy in 5 years. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Colonoscopy in 5 years."
+  },
+  {
+    "id": "medqa_5105",
+    "step": "Step 2 CK",
+    "specialty": "Hematology",
+    "difficulty": "Hard",
+    "vignette": "A 45-year-old homeless man is brought to the emergency department after he was found unconscious at the park. The patient's past medical history is unknown; however, he was admitted to the emergency department 2 times over the past year for severe pain treated with hydromorphone and IV fluids. His temperature is 100°F (37.8°C), blood pressure is 97/48 mmHg, pulse is 140/min, respirations are 18/min, and oxygen saturation is 99% on room air. The patient smells of alcohol and is covered in emesis. Basic laboratory values are ordered as seen below.\n\nHemoglobin: 6 g/dL\nHematocrit: 20%\nLeukocyte count: 6,500/mm^3 with normal differential\nPlatelet count: 197,000/mm^3\nReticulocyte count: 0.4%\n\nWhich of the following is associated with the most likely diagnosis?",
+    "options": [
+      "Benign genetic carrier condition",
+      "Iron deficiency",
+      "Parvovirus B19 infection",
+      "Vitamin B12 deficiency"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Parvovirus B19 infection. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Parvovirus B19 infection."
+  },
+  {
+    "id": "medqa_5110",
+    "step": "Step 2 CK",
+    "specialty": "Rheumatology",
+    "difficulty": "Medium",
+    "vignette": "A 64-year-old male with a history of coronary artery disease, hypertension, hyperlipidemia, and type II diabetes presents to his primary care physician with increasing shortness of breath and ankle swelling over the past month. Which of the following findings is more likely to be seen in left-sided heart failure and less likely to be seen in right-sided heart failure?",
+    "options": [
+      "Increased ejection fraction on echocardiogram",
+      "Basilar crackles on pulmonary auscultation",
+      "Hepatojugular reflex",
+      "Abdominal fullness"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Basilar crackles on pulmonary auscultation. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Basilar crackles on pulmonary auscultation."
+  },
+  {
+    "id": "medqa_5111",
+    "step": "Step 2 CK",
+    "specialty": "Dermatology",
+    "difficulty": "Hard",
+    "vignette": "A 27-year-old woman, gravida 1, para 1, presents to the obstetrics and gynecology clinic because of galactorrhea, fatigue, cold intolerance, hair loss, and unintentional weight gain for the past year. She had placenta accreta during her first pregnancy with an estimated blood loss of 2,000 mL. Her past medical history is otherwise unremarkable. Her vital signs are all within normal limits. Which of the following is the most likely cause of her symptoms?",
+    "options": [
+      "Addison’s disease",
+      "Cushing syndrome",
+      "Hashimoto thyroiditis",
+      "Sheehan’s syndrome"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Sheehan’s syndrome. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Sheehan’s syndrome."
+  },
+  {
+    "id": "medqa_5112",
+    "step": "Step 2 CK",
+    "specialty": "OB/GYN",
+    "difficulty": "Easy",
+    "vignette": "A 54-year-old man is referred to a tertiary care hospital with a history of 5 months of progressive difficulty in walking and left leg numbness. He first noticed mild gait unsteadiness and later developed gradual right leg weakness. His left leg developed progressive numbness and tingling. His blood pressure is 138/88 mm Hg, the heart rate is 72/min, and the temperature is 36.7°C (98.2°F). On physical examination, he is alert and oriented to person, place, and time. Cranial nerves are intact. Muscle strength is 5/5 in both upper extremities and left lower extremity, but 3/5 in the right leg with increased tone. The plantar reflex is extensor on the right. Pinprick sensation is decreased on the left side below the umbilicus. Vibration and joint position senses are decreased in the right foot and leg. All sensations are normal in the upper extremities. Finger-to-nose and heel-to-shin testing are normal. This patient’s lesion is most likely located in which of the following parts of the nervous system?",
+    "options": [
+      "Left hemi-spinal cord",
+      "Right frontal lobe",
+      "Right hemi-spinal cord",
+      "Right pons"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Right hemi-spinal cord. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Right hemi-spinal cord."
+  },
+  {
+    "id": "medqa_5113",
+    "step": "Step 2 CK",
+    "specialty": "Pediatrics",
+    "difficulty": "Medium",
+    "vignette": "An 18-year-old woman presents to the emergency department with severe right lower quadrant discomfort and stomach pain for the past day. She has no significant past medical history. She states that she is sexually active and uses oral contraceptive pills for birth control. Her vital signs include: blood pressure 127/81 mm Hg, pulse 101/min, respiratory rate 19/min, and temperature 39.0°C (102.2°F). Abdominal examination is significant for focal tenderness and guarding in the right lower quadrant. Blood is drawn for lab tests which reveal the following:\nHb% 13 gm/dL\nTotal count (WBC) 15,400 /mm3\nDifferential count\nNeutrophils:  \nSegmented  70%\nBand Form 5%\nLymphocytes 20%\nMonocytes 5%\n What is the next best step in the management of this patient?",
+    "options": [
+      "Pelvic exam",
+      "Ultrasound of the pelvis",
+      "Ultrasound of the appendix",
+      "Upper gastrointestinal series"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Ultrasound of the appendix. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Ultrasound of the appendix."
+  },
+  {
+    "id": "medqa_5122",
+    "step": "Step 2 CK",
+    "specialty": "Hematology",
+    "difficulty": "Medium",
+    "vignette": "A 72-year-old man presents to the emergency department after a fall. The patient was found lying down on the floor in his room in his retirement community. The patient has a past medical history of Alzheimer dementia and a prosthetic valve. His current medications include donepezil and warfarin. His temperature is 97.7°F (36.5°C), blood pressure is 85/50 mmHg, pulse is 160/min, respirations are 13/min, and oxygen saturation is 97% on room air. That patient is started on IV fluids and a type and screen is performed. Laboratory values are ordered as seen below.\n\nHemoglobin: 13 g/dL\nHematocrit: 39%\nLeukocyte count: 5,500 cells/mm^3 with normal differential\nPlatelet count: 225,000/mm^3\n\nINR: 2.5\nAST: 10 U/L\nALT: 12 U/L\n\nA chest radiograph and EKG are performed and are within normal limits. A full physical exam is within normal limits. The patient’s vitals are repeated. His temperature is 99.5°F (37.5°C), blood pressure is 110/70 mmHg, pulse is 90/min, respirations are 10/min, and oxygen saturation is 98% on room air. Which of the following is the best next step in management?",
+    "options": [
+      "CT scan",
+      "Exploratory laparoscopy",
+      "Exploratory laparotomy",
+      "Fresh frozen plasma"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: CT scan. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to CT scan."
+  },
+  {
+    "id": "medqa_5123",
+    "step": "Step 2 CK",
+    "specialty": "Oncology",
+    "difficulty": "Hard",
+    "vignette": "A 46-year-old woman presents to her primary care physician for her annual examination. At her prior exam one year earlier, she had a Pap smear which was within normal limits. Which of the following health screenings is recommended for this patient?",
+    "options": [
+      "Blood glucose and/or HbA1c screening",
+      "Yearly Pap smear",
+      "Bone mineral density screening",
+      "Colorectal screening"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Blood glucose and/or HbA1c screening. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Blood glucose and/or HbA1c screening."
+  },
+  {
+    "id": "medqa_5125",
+    "step": "Step 2 CK",
+    "specialty": "Psychiatry",
+    "difficulty": "Medium",
+    "vignette": "A 13-year-old boy with a history of asthma and seasonal allergies is currently using albuterol to manage his asthma symptoms. Recently, his use of albuterol increased from 1–2 days/week to 4 times/week over the past several weeks, though he does not experience his symptoms daily. The vital signs include: temperature 36.7°C (98.0°F), blood pressure 126/74 mm Hg, heart rate 74/min, and respiratory rate 14/min. His physical examination shows clear, bilateral breath sounds and normal heart sounds. What change should be made to his current treatment regimen?",
+    "options": [
+      "Add salmeterol twice daily",
+      "Add fluticasone daily",
+      "Add formoterol + budesonide twice daily",
+      "Add tiotropium"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Add fluticasone daily. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Add fluticasone daily."
+  },
+  {
+    "id": "medqa_5126",
+    "step": "Step 2 CK",
+    "specialty": "Infectious Disease",
+    "difficulty": "Hard",
+    "vignette": "A 32-year-old woman comes to her physician because of increasing back pain for the past 10 months. The pain is worse in the morning when she wakes up and improves with activity. She used to practice yoga, but stopped 5 months ago as bending forward became increasingly difficult. She has also had bilateral hip pain for the past 4 months. She has not had any change in urination. She has celiac disease and eats a gluten-free diet. Her temperature is 37.1°C (98.8°F), pulse is 65/min, respirations are 13/min, and blood pressure is 116/72 mmHg. Examination shows the range of spinal flexion is limited. Flexion, abduction, and external rotation of bilateral hips produces pain. An x-ray of her pelvis is shown. Further evaluation of this patient is likely to show which of the following?",
+    "options": [
+      "HLA-B27 positive genotype",
+      "Presence of anti-dsDNA antibodies",
+      "High levels of creatine phosphokinase",
+      "Presence of anti-Ro and anti-La antibodies"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: HLA-B27 positive genotype. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to HLA-B27 positive genotype."
+  },
+  {
+    "id": "medqa_5127",
+    "step": "Step 2 CK",
+    "specialty": "Rheumatology",
+    "difficulty": "Easy",
+    "vignette": "A 65-year-old G2P2 presents to her physician for a routine gynecologic check-up. She has been menopausal since 54 years of age, but has not been on hormone replacement therapy. Both pregnancies and deliveries were uneventful. Her husband has been her only sexual partner for the past 30 years. At 45 years of age she underwent a myomectomy for a submucosal uterine fibroid. She has never had any menstrual cycle disturbances. She does not smoke cigarettes and drinks alcohol occasionally. She has had normal Pap smears for the past 30 years. She also had HPV screening 5 years ago with the Pap smear. The co-test results were negative. Her Pap smear at 42 years of age showed a low-grade intraepithelial lesion, but the colposcopy was normal, and the subsequent Pap smear were normal. The screening tests obtained at the current presentation show the following results:\nPap test HPV test\nSpecimen adequacy: satisfactory for evaluation\nInterpretation: negative for intraepithelial lesion or malignancy\nComments: atrophic cellular pattern\nnegative\nWhich of the following would be the most appropriate consideration regarding further screening of this patient?",
+    "options": [
+      "Pap smear and HPV co-testing should be performed every 5 years",
+      "The Pap smear should be repeated every 3 years",
+      "Discontinuing screening in this patient should be considered",
+      "Pap smears should be repeated every 5 years"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Discontinuing screening in this patient should be considered. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Discontinuing screening in this patient should be considered."
+  },
+  {
+    "id": "medqa_5131",
+    "step": "Step 2 CK",
+    "specialty": "Surgery",
+    "difficulty": "Medium",
+    "vignette": "A 57-year-old woman presents to her physician’s office because she is coughing up blood. She says that she first observed a somewhat reddish sputum a few months ago. However, over the past couple of weeks, the amount of blood she coughs has significantly increased. She has been smoking for the past 30 years. She says that she smokes about 2 packs of cigarettes daily. She does not have fever, night sweats, weight loss, or chills. She reports progressive difficulty in breathing. On examination, her vital signs are stable. On auscultation of her chest, she has an expiratory wheeze. Oxygen saturation is 98%. Which of the following would be the next best step in the management of this patient?",
+    "options": [
+      "Chest radiograph",
+      "CT scan",
+      "Endoscopy",
+      "Bronchoscopy"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Chest radiograph. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Chest radiograph."
+  },
+  {
+    "id": "medqa_5133",
+    "step": "Step 2 CK",
+    "specialty": "Biostatistics",
+    "difficulty": "Easy",
+    "vignette": "A 37-year-old man comes to the physician because of increasing swelling and pain of his right knee for the past month. He has not had any trauma to the knee or previous problems with his joints. He has hypertension. His only medication is hydrochlorothiazide. He works as a carpet installer. He drinks two to three beers daily. He is 170 cm (5 ft 7 in) tall and weighs 97 kg (214 lb); BMI is 33.6 kg/m2. His temperature is 37°C (98.6°F), pulse is 88/min, and blood pressure is 122/82 mm Hg. Examination of the right knee shows swelling and erythema; there is fluctuant edema over the lower part of the patella. The range of flexion is limited because of the pain. The skin over the site of his pain is not warm. There is tenderness on palpation of the patella; there is no joint line tenderness. The remainder of the examination shows no abnormalities. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Septic arthritis",
+      "Prepatellar bursitis",
+      "Osteoarthritis",
+      "Osgood-Schlatter disease\n\""
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Prepatellar bursitis. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Prepatellar bursitis."
+  },
+  {
+    "id": "medqa_5137",
+    "step": "Step 2 CK",
+    "specialty": "Nephrology",
+    "difficulty": "Medium",
+    "vignette": "A 45-year-old man comes to the clinic concerned about his recent exposure to radon. He heard from his co-worker that radon exposure can cause lung cancer. He brings in a study concerning the risks of radon exposure. In the study, there were 300 patients exposed to radon, and 18 developed lung cancer over a 10-year period. To compare, there were 500 patients without radon exposure and 11 developed lung cancer over the same 10-year period. If we know that 0.05% of the population has been exposed to radon, what is the attributable risk percent for developing lung cancer over a 10 year period after radon exposure?",
+    "options": [
+      "0.31%",
+      "2.2%",
+      "3.8%",
+      "63.3%"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: 63.3%. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to 63.3%."
+  },
+  {
+    "id": "medqa_5142",
+    "step": "Step 2 CK",
+    "specialty": "Psychiatry",
+    "difficulty": "Easy",
+    "vignette": "Two-hours into recovery from general anesthesia for an orthopedic fracture, a 34-year-old woman develops fever and masseter muscle rigidity with lockjaw. She has no history of a similar episode. She has no history of serious illness and takes no medications. She appears confused. In the recovery room, her blood pressure is 78/50 mm Hg, the pulse is 128/min, the respirations are 42/min, and the temperature is 40.3°C (104.5°F). Cardiopulmonary examination shows no abnormalities. Laboratory studies show:\nSerum  \nNa+ 145 mEq/L\nK+ 6.5 mEq/L\nArterial blood gas on room air  \npH 7.01\nPCO2 78 mm Hg\nHCO3− 14 mEq/L\nPO2 55 mm Hg\nThe patient is reintubated. Which of the following is the most appropriate next step in pharmacotherapy?",
+    "options": [
+      "Cyproheptadine",
+      "Dantrolene",
+      "Labetalol",
+      "Lorazepam"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Dantrolene. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Dantrolene."
+  },
+  {
+    "id": "medqa_5144",
+    "step": "Step 2 CK",
+    "specialty": "Rheumatology",
+    "difficulty": "Hard",
+    "vignette": "A 28-year-old graduate student visits the university health clinic for 3-weeks of epigastric pain that worsens with meals, associated with retrosternal pain, early satiety, and bloating. She denies vomiting blood or blood in her stool. She has been consuming large volumes of caffeinated-drinks and fast-food for a month, as she has been studying for her tests. Her family and personal history are unremarkable with no history of gastrointestinal cancer. Her vital signs are within normal limits. Physical examination is only positive for a mild epigastric tenderness. Which of the following is the most appropriate approach in this case?",
+    "options": [
+      "Upper endoscopy",
+      "Barium swallow radiograph",
+      "Fecal antigen testing for Helicobacter pylori",
+      "Treatment with metoclopramide"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Fecal antigen testing for Helicobacter pylori. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Fecal antigen testing for Helicobacter pylori."
+  },
+  {
+    "id": "medqa_5145",
+    "step": "Step 2 CK",
+    "specialty": "Dermatology",
+    "difficulty": "Easy",
+    "vignette": "A 54-year-old man comes to the physician because of dysphagia and hoarseness of voice for the past 3 months. Initially, he had difficulty swallowing solid food but now has difficulty swallowing porridge and liquids as well. He has recently been choking on his oral secretions. During this period, he has had an 8.2-kg (18-lb) weight loss. He has noticed increasing weakness of both arms over the past year. He appears ill. His temperature is 36.8°C (98.2°F), pulse is 74/min, respirations are 14/min, and blood pressure is 114/74 mmHg. Examination shows tongue atrophy and pooled oral secretions. There is diffuse muscle atrophy with occasional twitching. He is unable to lift his arms above the chest level. Deep tendon reflexes are 3+ in all extremities. Sensation to pinprick, light touch, and vibration is intact. Laboratory studies show:\nHemoglobin 16.1 g/dL\nLeukocyte count 10,900/mm3\nErythrocyte sedimentation rate 20 mm/h\nSerum\nNa+ 133 mEq/L\nK+ 4.2 mEq/L\nCl- 101 mEq/L\nUrea nitrogen 12 mg/dL\nCreatinine 1.1 mg/dL\nCreatine kinase 320 U/L\nAlbumin 4.3 mg/dL\nLactate dehydrogenase 307 U/L\nAn esophagogastroduodenoscopy shows no abnormalities. Which of the following is the most likely cause of this patient's symptoms?\"",
+    "options": [
+      "Destruction of upper and lower motor neurons",
+      "Dilation of the central spinal canal",
+      "Demyelination of peripheral nerves",
+      "Autoimmune destruction of acetylcholine receptors"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Destruction of upper and lower motor neurons. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Destruction of upper and lower motor neurons."
+  },
+  {
+    "id": "medqa_5146",
+    "step": "Step 2 CK",
+    "specialty": "OB/GYN",
+    "difficulty": "Medium",
+    "vignette": "A 63-year-old man with non-Hodgkin lymphoma is brought to the emergency department because of fever and confusion that have progressively worsened over the past 3 days. He also has a 3-day history of loose stools. He returned from France 2 weeks ago where he stayed in the countryside and ate typical French cuisine, including frog, snail, and various homemade cheeses. His last chemotherapy cycle was 3 weeks ago. He is oriented to person but not to place or time. His temperature is 39.5°C (103.1°F), pulse is 110/min, and blood pressure is 100/60 mm Hg. Examination shows cervical and axillary lymphadenopathy. The lungs are clear to auscultation. There is involuntary flexion of the bilateral hips and knees with passive flexion of the neck. Neurologic examination shows no focal findings. Laboratory studies show:\nHemoglobin 9.3 g/dL\nLeukocyte count 3600/mm3\nPlatelet count 151,000/mm3\nSerum\nNa+ 134 mEq/L\nCl- 103 mEq/L\nK+ 3.7 mEq/L\nGlucose 102 mg/dL\nCreatinine 1.3 mg/dL\nA lumbar puncture is performed. Cerebrospinal fluid analysis shows a leukocyte count of 1200/mm3 (76% segmented neutrophils, 24% lymphocytes), a protein concentration of 113 mg/dL, and a glucose concentration of 21 mg/dL. The results of blood cultures are pending. Which of the following is the most appropriate initial pharmacotherapy?\"",
+    "options": [
+      "Ampicillin and cefotaxime",
+      "Acyclovir and dexamethasone",
+      "Acyclovir",
+      "Vancomycin, ampicillin, and cefepime"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Vancomycin, ampicillin, and cefepime. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Vancomycin, ampicillin, and cefepime."
+  },
+  {
+    "id": "medqa_5148",
+    "step": "Step 2 CK",
+    "specialty": "Surgery",
+    "difficulty": "Easy",
+    "vignette": "A 1-month-old girl is brought to the physician for a follow-up examination. The mother has noticed that the girl's neck is always tilted to the right. She was delivered at term, and childbirth was complicated by a breech position. There is no family history of serious illness. She appears healthy. She is at 60th percentile for length and weight. Her temperature is 37.1°C (98.8°F), pulse is 102/min, and respirations are 42/min. Examination shows the head tilted toward the right, and the chin rotated towards the left. Range of motion of the neck is limited. There is a palpable, firm, well-circumscribed mass in the right lower side of the neck. The remainder of the examination shows no abnormalities. Which of the following is the most appropriate next best step in management?",
+    "options": [
+      "CT scan of the neck",
+      "Botulinum toxin injection",
+      "Stretching program",
+      "Myotomy"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Stretching program. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Stretching program."
+  },
+  {
+    "id": "medqa_5151",
+    "step": "Step 2 CK",
+    "specialty": "Cardiology",
+    "difficulty": "Easy",
+    "vignette": "A 3580-g (7-lb 14-oz) male newborn is delivered at 36 weeks' gestation to a 26-year-old woman, gravida 2, para 1 after an uncomplicated pregnancy. His temperature is 36.7°C (98.1°F), heart rate is 96/min, and respirations are 55/min and irregular. Pulse oximetry on room air shows an oxygen saturation of 65% measured in the right hand. He sneezes and grimaces during suction of secretions from his mouth. There is some flexion movement. The trunk is pink and the extremities are blue. The cord is clamped and the newborn is dried and wrapped in a prewarmed towel. Which of the following is the most appropriate next best step in management?",
+    "options": [
+      "Administer erythromycin ophthalmic ointment",
+      "Administer positive pressure ventilation",
+      "Perform endotracheal intubation",
+      "Administer intravenous epinephrine"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Administer positive pressure ventilation. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Administer positive pressure ventilation."
+  },
+  {
+    "id": "medqa_5152",
+    "step": "Step 2 CK",
+    "specialty": "Pulmonology",
+    "difficulty": "Medium",
+    "vignette": "A 29-year-old man comes to the physician with his wife because she has noticed a change in his behavior over the past 2 weeks. His wife reports that he is very distracted and irritable. His colleagues have voiced concerns that he has not been turning up for work regularly and behaves erratically when he does. Previously, her husband had been a reliable and reasonable person. The patient says that he feels “fantastic”; he only needs 4 hours of sleep each night and wakes up cheerful and full of energy each morning. He thinks that his wife is overreacting. The patient has been healthy except for a major depressive episode 5 years ago that was treated with paroxetine. He currently takes no medications. His pulse is 98/min, respirations are 12/min, and blood pressure is 128/62 mm Hg. Mental status examination shows frenzied speech and a flight of ideas. Which of the following is the strongest predisposing factor for this patient's condition?",
+    "options": [
+      "Maternal obstetric complications",
+      "Advanced paternal age",
+      "Genetic predisposition",
+      "Being married"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Genetic predisposition. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Genetic predisposition."
+  },
+  {
+    "id": "medqa_5153",
+    "step": "Step 2 CK",
+    "specialty": "GI",
+    "difficulty": "Hard",
+    "vignette": "A 65-year-old man with decompensated cirrhosis secondary to hepatitis C is brought to the emergency department with 2 episodes of massive hematemesis that started 2 hours ago. He is a liver transplant candidate. The blood pressure is 110/85 mm Hg in the supine position and 90/70 mm Hg after sitting for 3 minutes. The pulse is 110/min, the respirations are 22/min, and the temperature is 36.1°C (97.0°F). The physical examination shows spider angiomata, palmar erythema, and symmetric abdominal distension with positive shifting dullness. The lung and heart examination shows no abnormalities. Two large-bore intravenous lines are obtained. Saline (0.9%) is initiated. Laboratory tests are pending. The most important next step is to administer which of the following intravenous therapies?",
+    "options": [
+      "Fresh frozen plasma",
+      "Octreotide",
+      "Packed red blood cells (RBCs)",
+      "Pantoprazole"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Octreotide. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Octreotide."
+  },
+  {
+    "id": "medqa_5154",
+    "step": "Step 2 CK",
+    "specialty": "Nephrology",
+    "difficulty": "Easy",
+    "vignette": "A 55-year-old man presents to the emergency department with fatigue and a change in his memory. The patient and his wife state that over the past several weeks the patient has been more confused and irritable and has had trouble focusing. He has had generalized and non-specific pain in his muscles and joints and is constipated. His temperature is 99.3°F (37.4°C), blood pressure is 172/99 mmHg, pulse is 79/min, respirations are 14/min, and oxygen saturation is 99% on room air. Physical exam is unremarkable. Laboratory studies are ordered as seen below.\n\nHemoglobin: 9.0 g/dL\nHematocrit: 30%\nLeukocyte count: 6,500/mm^3 with normal differential\nPlatelet count: 166,000/mm^3\nMCV: 78 fL\n\nSerum:\nNa+: 141 mEq/L\nCl-: 103 mEq/L\nK+: 4.6 mEq/L\nHCO3-: 25 mEq/L\nBUN: 20 mg/dL\nGlucose: 99 mg/dL\nCreatinine: 0.9 mg/dL\nCa2+: 10.2 mg/dL\n\nWhich of the following is the most likely diagnosis?",
+    "options": [
+      "Guillain-Barre syndrome",
+      "Heavy metal exposure",
+      "Iron deficiency",
+      "Systemic lupus erythematosus"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Heavy metal exposure. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Heavy metal exposure."
+  },
+  {
+    "id": "medqa_5155",
+    "step": "Step 2 CK",
+    "specialty": "Endocrine",
+    "difficulty": "Medium",
+    "vignette": "A previously healthy 25-year-old male comes to his primary care physician with a painless solitary lesion on his penis that developed 4 days ago. He has not experienced anything like this before. He is currently sexually active with multiple partners and uses condoms inconsistently. His temperature is 37.0°C (98.7°F), pulse is 67/min, respirations are 17/min, and blood pressure is 110/70 mm Hg. Genitourinary examination shows a shallow, nontender, firm ulcer with a smooth base along the shaft of the penis. There is nontender inguinal adenopathy bilaterally. Which of the following is the most appropriate next step to confirm the diagnosis?",
+    "options": [
+      "Swab culture",
+      "Rapid plasma reagin",
+      "Fluorescent treponemal antibody absorption test",
+      "Dark-field microscopy\n\""
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Dark-field microscopy\n\". The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Dark-field microscopy\n\"."
+  },
+  {
+    "id": "medqa_5157",
+    "step": "Step 2 CK",
+    "specialty": "Oncology",
+    "difficulty": "Easy",
+    "vignette": "A 45-year-old man presents to the physician with complaints of burning pain in both feet and lower legs for 3 months. He reports that the pain is especially severe at night. He has a history of diabetes mellitus for the past 5 years, and he frequently skips his oral antidiabetic medications. His temperature is 36.9°C (98.4°F), heart rate is 80/min, respiratory rate is 15/min, and blood pressure is 120/80 mm Hg. His weight is 70 kg (154.3 lb) and height is 165 cm (approx. 5 ft 5 in). The neurologic examination reveals loss of sensations of pain and temperature over the dorsal and ventral sides of the feet and over the distal one-third of both legs. Proprioception is normal; knee jerks and ankle reflexes are also normal. The tone and strength in all muscles are normal. The hemoglobin A1C is 7.8%. Involvement of what type of nerve fibers is the most likely cause of the patient’s symptoms?",
+    "options": [
+      "Aα & Aβ fibers",
+      "Aγ & B fibers",
+      "Aδ & C fibers",
+      "Aγ & C fibers"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Aδ & C fibers. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Aδ & C fibers."
+  },
+  {
+    "id": "medqa_5159",
+    "step": "Step 2 CK",
+    "specialty": "Psychiatry",
+    "difficulty": "Hard",
+    "vignette": "A 5-year-old African-American boy is brought to the physician because of fatigue and night sweats for the past month. During this time, he has also lost 3 kg (6.6 lbs). Before the onset of symptoms, he had been healthy except for a febrile seizure as an infant. His brother had chickenpox 2 months ago. He is at the 75th percentile for height and 50th percentile for weight. He appears markedly fatigued. His temperature is 38°C (100.4°F), pulse is 95/min, respirations are 19/min, and blood pressure is 100/60 mm Hg. Lung and cardiac examination is normal. There are enlarged, nontender lymph nodes bilaterally in the neck. The abdomen is soft and nontender. A complete blood count shows:\nLeukocyte count 8,000/mm3\nHemoglobin 9.1 g/dL\nHematocrit 26.9%\nPlatelet count 34,000/mm3\nSerum\nNa+ 135 mEq/L\nK+ 4.5 mEq/L\nCl- 101 mEq/L\nHCO3- 27 mEq/L\nUrea nitrogen 9 g/dL\nCreatinine 0.7 g/dL\nCa2+ 8.8 mg/dL\nPCR testing demonstrates a 9:22 chromosomal translocation. Which of the following is the most appropriate pharmacotherapy?\"",
+    "options": [
+      "Hydroxyurea",
+      "Transfuse platelets",
+      "Cladribine",
+      "Imatinib"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Imatinib. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Imatinib."
+  },
+  {
+    "id": "medqa_5161",
+    "step": "Step 2 CK",
+    "specialty": "Rheumatology",
+    "difficulty": "Medium",
+    "vignette": "A 32-year-old woman comes to the physician because of increasing muscle weakness in her shoulders and legs for 6 weeks. She is unable to climb stairs or comb her hair. She has also had difficulty swallowing food for the past week. Her symptoms do not improve with rest. Physical examination shows normal muscle tone. There is bilateral weakness of the iliopsoas, hamstring, deltoid, and biceps muscles. Deep tendon reflexes are 2+ bilaterally. Sensation to pinprick, temperature, and vibration is intact. The remainder of the examination shows no abnormalities. Laboratory studies show:\nHemoglobin 10.7 g/dL\nLeukocyte count 10.800/mm3\nErythrocyte sedimentation rate 100 mm/h\nSerum\nGlucose 60 mg/dL\nCreatine kinase 7047 U/L\nLactate dehydrogenase 2785 U/L\nThyroid-stimulating hormone 4.0 μU/mL\nWhich of the following is the most appropriate next step in management?\"",
+    "options": [
+      "Lumbar puncture",
+      "Electromyography",
+      "Tensilon test",
+      "Temporal artery biopsy"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Electromyography. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Electromyography."
+  },
+  {
+    "id": "medqa_5164",
+    "step": "Step 2 CK",
+    "specialty": "Pediatrics",
+    "difficulty": "Medium",
+    "vignette": "A 58-year-old woman presents to her primary care physician with complaints of an aching pain and stiffness in her neck, shoulders, and hips for the past several months. She reports difficulty in rising from a seated position as well as in raising her arms above her head. The patient also states that she has had fatigue and chronic fevers for the past month. Close and careful physical examination reveals normal muscle strength (despite some pain with testing and palpation), but limited range of motion of the neck, shoulders, and hips. There is no evidence in the history or physical examination of giant cell (temporal) arteritis. An initial work-up reveals a hemoglobin of 9 g/dL on a complete blood count. Further laboratory results are still pending. Which of the following results would be expected in the work-up of this patient's presenting condition?",
+    "options": [
+      "Normal erythrocyte sedimentation rate and normal serum creatinine kinase",
+      "Elevated erythrocyte sedimentation rate and normal serum creatinine kinase",
+      "Elevated erythrocyte sedimentation rate and elevated serum creatinine kinase",
+      "Elevated serum C-reactive protein and normal erythrocyte sedimentation rate"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Elevated erythrocyte sedimentation rate and normal serum creatinine kinase. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Elevated erythrocyte sedimentation rate and normal serum creatinine kinase."
+  },
+  {
+    "id": "medqa_5169",
+    "step": "Step 2 CK",
+    "specialty": "Pulmonology",
+    "difficulty": "Easy",
+    "vignette": "A 71-year-old woman comes to her doctor because she is having trouble staying awake in the evening. Over the past year, she has noticed that she gets tired unusually early in the evenings and has trouble staying awake through dinner. She also experiences increased daytime sleepiness, fatigue, and difficulty concentrating. She typically goes to bed around 9 PM and gets out of bed between 2 and 3 AM. She does not have any trouble falling asleep. She takes 30-minute to 1-hour daytime naps approximately 3 times per week. She has no history of severe illness and does not take any medication. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Advanced sleep phase disorder",
+      "Depressive disorder",
+      "Delayed sleep phase disorder",
+      "Non-REM sleep arousal disorder"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Advanced sleep phase disorder. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Advanced sleep phase disorder."
+  },
+  {
+    "id": "medqa_5171",
+    "step": "Step 2 CK",
+    "specialty": "Nephrology",
+    "difficulty": "Hard",
+    "vignette": "A 24-year-old woman, gravida 1, at 35 weeks gestation is admitted to the hospital with regular contractions and pelvic pressure for the last 5 hours. Her pregnancy has been uncomplicated and she has attended many prenatal appointments and followed the physician's advice about screening for diseases, laboratory testing, diet, and exercise. She has had no history of fluid leakage or bleeding. At the hospital, her temperature is 37.2°C (99.0°F), blood pressure is 108/60 mm Hg, pulse is 88/min, and respirations are 16/min. Cervical examination shows 60% effacement and 5 cm dilation with intact membranes. Cardiotocography shows a contraction amplitude of 220 MVU in 10 minutes. Which of the following is the most appropriate pharmacotherapy at this time?",
+    "options": [
+      "Magnesium sulfate",
+      "Oxytocin",
+      "Terbutaline",
+      "No pharmacotherapy at this time"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: No pharmacotherapy at this time. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to No pharmacotherapy at this time."
+  },
+  {
+    "id": "medqa_5173",
+    "step": "Step 2 CK",
+    "specialty": "Hematology",
+    "difficulty": "Medium",
+    "vignette": "A 66-year-old man presents to his family physician complaining of a sandpaper-like sensation when he touches the lesion on his forehead. His medical history is relevant for hypertension and hypercholesterolemia, for which he is taking losartan and atorvastatin. He used to work as a gardener, but he retired 3 years ago. His vital signs are within normal limits. Physical examination of his forehead reveals male-pattern baldness and thin, adherent, yellow-colored skin lesions that feel rough to the touch (see image). His family physician refers to him to a dermatologist for further management and treatment. Which of the following conditions would the patient most likely develop if this skin condition is left untreated?",
+    "options": [
+      "Basal cell carcinoma",
+      "Squamous cell carcinoma",
+      "Mycosis fungoides",
+      "Seborrheic keratosis"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Squamous cell carcinoma. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Squamous cell carcinoma."
+  },
+  {
+    "id": "medqa_5178",
+    "step": "Step 2 CK",
+    "specialty": "Rheumatology",
+    "difficulty": "Easy",
+    "vignette": "A 3-year-old African-American female presents to the emergency department with fatigue. Her parents endorse malaise and weakness on behalf of the patient for two weeks. Her temperature is 98.9°F (37.2°C), blood pressure is 94/70 mmHg, pulse is 102/min, and respirations are 22/min. On physical exam, she is tired-appearing with conjunctival pallor. Her parents report that they immigrated from Liberia before the patient was born. They deny any family history of medical disorders, and the patient has no sick contacts at home.\n\nLaboratory tests are performed and reveal the following:\n\nLeukocyte count: 10,700/mm^3\nHemoglobin: 8.6 g/dL\nHematocrit: 24%\nMean corpuscular volume: 84 µm^3\nPlatelet count: 488,000/mm^3\nReticulocyte index: 3.8%\n\nThe patient should receive which of the following nutritional supplements?",
+    "options": [
+      "Vitamin B6",
+      "Vitamin B9",
+      "Vitamin D",
+      "Iron"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Vitamin B9. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Vitamin B9."
+  },
+  {
+    "id": "medqa_5179",
+    "step": "Step 2 CK",
+    "specialty": "Dermatology",
+    "difficulty": "Medium",
+    "vignette": "A 1-month-old male infant is brought to the physician because of inconsolable crying for the past 3 hours. For the past 3 weeks, he has had multiple episodes of high-pitched unprovoked crying every day that last up to 4 hours and resolve spontaneously. He was born at term and weighed 2966 g (6 lb 9 oz); he now weighs 3800 g (8 lb 6 oz). He is exclusively breast fed. His temperature is 36.9°C (98.4°F) and pulse is 140/min. Examination shows a soft and nontender abdomen. The remainder of the examination shows no abnormalities. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Administer simethicone",
+      "Administer pantoprazole",
+      "Reassurance",
+      "Recommend the use of Gripe water"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Reassurance. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Reassurance."
+  },
+  {
+    "id": "medqa_5181",
+    "step": "Step 2 CK",
+    "specialty": "Pediatrics",
+    "difficulty": "Easy",
+    "vignette": "A 16-year-old girl is brought to the physician because she has not yet had her 1st period. She was born at 39 weeks gestation via spontaneous vaginal delivery. She is up to date on all vaccines and meeting all developmental milestones. She has no history of a serious illness and takes no medications. Physical examination shows underdeveloped breasts with scant pubic and axillary hair. Speculum examination shows a short vagina and no cervix. The remainder of the physical examination shows no abnormalities. Pelvic ultrasound shows no uterus. Which of the following is the most likely karyotype in this patient?",
+    "options": [
+      "45,X",
+      "46,XX",
+      "46,XY",
+      "47,XXY"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: 46,XY. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to 46,XY."
+  },
+  {
+    "id": "medqa_5186",
+    "step": "Step 2 CK",
+    "specialty": "Pulmonology",
+    "difficulty": "Hard",
+    "vignette": "A 64-year-old woman otherwise healthy presents with acute onset severe rectal bleeding. The patient says that 2 hours ago bleeding began suddenly after a difficult bowel movement. She says the blood is bright red, and, initially, bleeding was brisk but now has stopped. The patient denies having any similar symptoms in the past. She has noticed that she bled more easily while having her regular manicure/pedicure for the past 3 months but thought it was nothing serious. No significant past medical history and the patient does not take any current medications. Family history is unremarkable. Review of systems is positive for mild dyspnea on exertion the past 2-3 months. Her vital signs include: temperature 37.0°C (98.6°F), blood pressure 100/65 mm Hg, pulse 95/min, respiratory rate 15/min, and oxygen saturation 97% on room air. A cardiac examination is significant for a 2/6 systolic murmur loudest at the right upper sternal border. Rectal exam shows no evidence of external hemorrhoids, fissures, or lesions. No active bleeding is noted. The stool is guaiac positive. Deficiency of which of the following is most likely the cause of this patient’s condition?",
+    "options": [
+      "Antithrombin III",
+      "von Willebrand factor",
+      "Factor VIII",
+      "ADAMST13 gene mutation"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: von Willebrand factor. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to von Willebrand factor."
+  },
+  {
+    "id": "medqa_5187",
+    "step": "Step 2 CK",
+    "specialty": "GI",
+    "difficulty": "Easy",
+    "vignette": "A 6-month-old girl is brought to the physician because of drooling and excessive crying for 3 days. She calms down when cuddled or with a pacifier in her mouth. She feeds well and has no vomiting or diarrhea. She was breastfed exclusively for 5 months. She is given no medications and was born at 39 weeks gestation via spontaneous vaginal delivery. She is up to date on all vaccines and is meeting all developmental milestones. At the clinic, her weight is 7.3 kg (16 lb 1 oz) and her height is 65.8 cm (25.9 in) in length. She appears irritable. Her pulse is 124/min, the respirations are 32/min, the blood pressure is 92/63 mm Hg, and the temperature is 36.8°C (98.2°F). On physical examination, she has no conjunctivitis, cervical lymphadenopathy, or pharyngeal erythema. Which element of the physical examination is most likely to be present in this patient?",
+    "options": [
+      "Crying on frontal sinus palpation",
+      "Eruption of mandibular incisors",
+      "Erythema and fluctuance of the submandibular area",
+      "The rooting reflex"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Eruption of mandibular incisors. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Eruption of mandibular incisors."
+  },
+  {
+    "id": "medqa_5188",
+    "step": "Step 2 CK",
+    "specialty": "Nephrology",
+    "difficulty": "Medium",
+    "vignette": "A 23-year-old woman gravida 2, para 1 at 12 weeks' gestation comes to the physician for her initial prenatal visit. She feels well. She was treated for genital herpes one year ago and gonorrhea 3 months ago. Medications include folic acid and a multivitamin. Vital signs are within normal limits. Pelvic examination shows a uterus consistent in size with a 12-week gestation. Urine dipstick is positive for leukocyte esterase and nitrite. Urine culture shows E. coli (> 100,000 colony forming units/mL). Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Administer gentamicin",
+      "Perform renal ultrasound",
+      "Perform cystoscopy",
+      "Administer amoxicillin/clavulanate"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Administer amoxicillin/clavulanate. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Administer amoxicillin/clavulanate."
+  },
+  {
+    "id": "medqa_5189",
+    "step": "Step 2 CK",
+    "specialty": "Endocrine",
+    "difficulty": "Hard",
+    "vignette": "A 60-year-old man comes to the physician because of progressive fatigue and shortness of breath for 2 months. The dyspnea occurs on moderate exertion and during the night; he sometimes wakes up coughing and “gasping for air.” He has also had several episodes of heart pounding and palpitations. Two weeks ago, he had a runny nose and a productive cough. He has type 2 diabetes mellitus and peripheral arterial disease. He has never smoked. He drinks one to two beers occasionally. He has a history of intravenous illicit drugs use but has not used in over 25 years. Current medications include aspirin, atorvastatin, and metformin. Vital signs are within normal limits. Examination shows bilateral basilar rales. Cardiac auscultation is shown. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Mitral valve regurgitation",
+      "Tricuspid valve regurgitation",
+      "Aortic valve regurgitation",
+      "Aortic valve stenosis"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Mitral valve regurgitation. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Mitral valve regurgitation."
+  },
+  {
+    "id": "medqa_5190",
+    "step": "Step 2 CK",
+    "specialty": "Hematology",
+    "difficulty": "Easy",
+    "vignette": "A 20-year-old woman college volleyball player presents with left shoulder pain and difficulty elevating her left arm. The patient began to experience dull pain in her left shoulder 5 days ago after a volleyball game. The pain is worse when she sleeps with her arm under the pillow or elevates or abducts her left arm. Her temperature is 37.0℃ (98.6℉), the blood pressure is 110/75 mm Hg, the pulse is 66/min, the respiratory rate is 13/min, and the oxygen saturation is 99% on room air. On physical examination, she is alert and cooperative. The left shoulder is normal on the inspection with no swelling or bony deformities. There is point tenderness to palpation of the anterolateral aspect of the left shoulder. Active range of motion of abduction of the left arm is restricted to 70°. Passive range of motion of abduction of the left arm is normal but elicits pain. Strength in the left shoulder is 4/5 and strength in the right shoulder is 5/5. Deep tendon reflexes are 2+ bilaterally. The sensation is intact. Which of the following is the most likely cause of this patient’s condition?",
+    "options": [
+      "IV disk protrusion at the C4-5 level",
+      "Tear of the supraspinatus muscle",
+      "Intra-articular humeral fracture",
+      "Shoulder joint dislocation"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Tear of the supraspinatus muscle. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Tear of the supraspinatus muscle."
+  },
+  {
+    "id": "medqa_5193",
+    "step": "Step 2 CK",
+    "specialty": "Psychiatry",
+    "difficulty": "Easy",
+    "vignette": "A 67-year-old man is seen on the surgical floor after a transplant procedure. The previous day, the patient had a renal transplant from a matched donor. He is currently recovering and doing well. The patient has a past medical history of IV drug use, diabetes mellitus, oral cold sores, hypertension, renal failure, and dyslipidemia. The patient's current medications include lisinopril, atorvastain, insulin, and aspirin. Prior to the procedure, he was also on dialysis. The patient is started on cyclosporine. The patient successfully recovers over the next few days. Which of the following medications should be started in this patient?",
+    "options": [
+      "Azithromycin",
+      "Low dose acyclovir",
+      "Penicillin",
+      "TMP-SMX"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: TMP-SMX. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to TMP-SMX."
+  },
+  {
+    "id": "medqa_5194",
+    "step": "Step 2 CK",
+    "specialty": "Infectious Disease",
+    "difficulty": "Medium",
+    "vignette": "A 50-year-old woman presents with an acute worsening of a chronic rash on her arms and hands for the past week. She says she first noticed the rash 1 year ago which started as little red spots and gradually increased in size. 7 days ago, she noticed the rash suddenly got much worse and spread to her inguinal area, scalp, and knees, which has steadily worsened. She describes the rash as itchy but generally not painful. She says she feels it is very noticeable now and is causing her significant anxiety and depression in addition to the discomfort. The patient denies any fever, chills, sick contacts, or recent travel, and has no significant past medical history. She denies any alcohol use, smoking history, or recreational drug use. Her family history is significant for Crohn disease in her mother and maternal grandmother. She mentions that she has been excessively stressed the past few weeks as she is starting a new job. Review of systems is significant for early morning swelling of the distal joints in her hands and feet for the past 3 months. The patient is afebrile and her vital signs are within normal limits. On physical examination, there are multiple silvery scaly plaques on the extensor surfaces of her upper extremities bilaterally as shown in the exhibit (see image). Similar lesions are present on both knees, inguinal area, and scalp, involving > 10% of her total body surface area. Laboratory tests are unremarkable. Which of the following is the next best step in the management of this patient?",
+    "options": [
+      "Skin biopsy",
+      "Phototherapy",
+      "Methotrexate",
+      "Infliximab"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Methotrexate. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Methotrexate."
+  },
+  {
+    "id": "medqa_5195",
+    "step": "Step 2 CK",
+    "specialty": "Rheumatology",
+    "difficulty": "Hard",
+    "vignette": "A 1-day-old infant born at full term by uncomplicated spontaneous vaginal delivery is noted to have cyanosis of the oral mucosa. The baby otherwise appears comfortable. On examination, his respiratory rate is 40/min and pulse oximetry is 80%. His left thumb is displaced and hypoplastic. A right ventricular lift is palpated, S1 is normal, S2 is single, and a harsh 3/6 systolic ejection murmur is heard at the left upper sternal border. Chest X-ray is shown. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Transposition of great vessels",
+      "Tetralogy of Fallot",
+      "Ventricular septal defect",
+      "Transient tachypnoea of the newborn"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Tetralogy of Fallot. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Tetralogy of Fallot."
+  },
+  {
+    "id": "medqa_5198",
+    "step": "Step 2 CK",
+    "specialty": "Pediatrics",
+    "difficulty": "Hard",
+    "vignette": "A 35-year-old woman presents to her family physician with a complaint of painful joints for the past 2 weeks. She reports symmetric bilateral joint pain in her hands, knees, and ankles. She has never had this before, and her past medical history is notable only for asthma. She states the pain is worse in the morning and improves throughout the day. Review of systems is notable for a recent low-grade fever with malaise. She works as a school teacher and is sexually active with men and women. Her temperature is 97.9°F (36.6°C), blood pressure is 120/84 mmHg, pulse is 70/min, respirations are 14/min, and oxygen saturation is 97% on room air. The patient is instructed to take ibuprofen and acetaminophen for her joint pain. She returns 1 month later stating that she has not needed to take the medications as her pain has been absent for the past 3 days. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Parvovirus",
+      "Reactive arthritis",
+      "Rheumatoid arthritis",
+      "Transient synovitis"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Parvovirus. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Parvovirus."
+  },
+  {
+    "id": "medqa_5203",
+    "step": "Step 2 CK",
+    "specialty": "Pulmonology",
+    "difficulty": "Medium",
+    "vignette": "A 3-year-old girl is brought to the physician by her parents due to observations of rapid, random, horizontal and vertical eye movements along with occasional jerking movements of her limbs and head. CT scan reveals an abdominal mass that crosses the midline. Further work-up reveals elevated 24-hour urinary homovanillic acid and vanillylmandelic acid. Which of the following diseases pathologically originates from the type of cells as this patient’s most likely diagnosis?",
+    "options": [
+      "Craniopharyngioma",
+      "Hirschsprung disease",
+      "Parinaud syndrome",
+      "Pilocytic astrocytoma"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Hirschsprung disease. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Hirschsprung disease."
+  },
+  {
+    "id": "medqa_5206",
+    "step": "Step 2 CK",
+    "specialty": "Endocrine",
+    "difficulty": "Medium",
+    "vignette": "A 68-year-old man presents with shortness of breath, particularly when walking up stairs and when lying down to go to sleep at night. He also complains of a chronic cough and states that he now uses 2 extra pillows at night. The patient has a history of type 2 diabetes that is well-managed with metformin. He also takes Prozac for a long-standing history of depression. The patient has a 60-pack-year smoking history. He also has a history significant for alcohol abuse, but he quit cold turkey 15 years ago when his brother was killed in a drunk driving accident. Both he and his brother were adopted, and he does not know other members of his biological family. Despite repeated efforts of patient counseling, the patient is not interested in quitting smoking. The physical exam is significant for an obese male using accessory muscles of aspiration. The vital signs include: temperature 36.8°C (98.2°F), heart rate 95/min, respiratory rate 16/min, and blood pressure 130/85 mm Hg. The oxygen saturation is 90% on room air. Additional physical exam findings include cyanotic lips, peripheral edema, hepatomegaly, and ascites. The cardiovascular exam is significant for an S3 heart sound and elevated JVP. The pulmonary exam is significant for expiratory wheezing, diffuse rhonchi, and hyperresonance on percussion. The laboratory test results are as follows:\nBUN 15 mg/dL\npCO2 60 mm Hg\nBicarbonate (HCO3) 32 mmol/L\nCreatinine 0.8 mg/dL\nGlucose 95 mg/dL\nSerum chloride 103 mmol/L\nSerum potassium 3.9 mEq/L\nSerum sodium 140 mEq/L\nTotal calcium 2.3 mmol/L\nHemoglobin 26 g/dL\nBilirubin total 0.9 mg/dL\nBilirubin indirect 0.4 mg/dL\nIron 100\nFerritin 70\nTIBC 300\nThe l posterior-anterior chest X-ray is shown in the image. Which of the following interventions is indicated for decreasing the mortality of this patient?",
+    "options": [
+      "Flu vaccine",
+      "Smoking cessation alone",
+      "Inhaled anticholinergics",
+      "Both smoking cessation and oxygen administration"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Smoking cessation alone. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Smoking cessation alone."
+  },
+  {
+    "id": "medqa_5207",
+    "step": "Step 2 CK",
+    "specialty": "Hematology",
+    "difficulty": "Hard",
+    "vignette": "A 56-year-old woman comes to the physician because of increasing muscle weakness in her shoulders and legs for 1 month. She has difficulties standing up and combing her hair. She also has had a skin rash on her face and hands for the past week. She has hypercholesterolemia treated with simvastatin. She has chronic eczema of her feet that is well-controlled with skin moisturizer and corticosteroid cream. Her mother and sister have thyroid disease. Vital signs are within normal limits. Examination shows facial erythema. A photograph of her hands is shown. Muscle strength is 3/5 in the iliopsoas, hamstring, deltoid, and biceps muscles. Sensation to pinprick, temperature, and vibration is intact. Further evaluation of this patient is most likely to show which of the following?",
+    "options": [
+      "Symptom resolution on statin withdrawal",
+      "Pathological edrophonium test",
+      "Intramuscular inclusion bodies",
+      "Elevated serum CA-125"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Elevated serum CA-125. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Elevated serum CA-125."
+  },
+  {
+    "id": "medqa_5210",
+    "step": "Step 2 CK",
+    "specialty": "Psychiatry",
+    "difficulty": "Hard",
+    "vignette": "A 59-year-old man is brought to the emergency department by a coworker for right arm weakness and numbness. The symptoms started suddenly 2 hours ago. His coworker also noticed his face appears to droop on the right side and his speech is slurred. He has a history of hypertension, hyperlipidemia, type 2 diabetes, and peripheral arterial disease. He works as a partner at a law firm and has been under more stress than usual lately. His father died of a stroke at age 70. The patient has smoked a pack of cigarettes daily for the last 40 years. He drinks two pints (750 mL) of whiskey each week. He takes aspirin, atorvastatin, lisinopril, and metformin daily. He is 167.6 cm (5 ft 6 in) tall and weighs 104.3 kg (230 lb); BMI is 37 kg/m2. His temperature is 37.1°C (98.8°F), pulse is 92/min, respirations are 15/min, and blood pressure is 143/92 mm Hg. He is fully alert and oriented. Neurological examination shows asymmetry of the face with droop of the lips on the right. There is 3/5 strength in right wrist flexion and extension, and right finger abduction. Sensation to light touch and pinprick is reduced throughout the right arm. Which of the following is the strongest predisposing factor for this patient's condition?",
+    "options": [
+      "Hypertension",
+      "Excessive alcohol intake",
+      "Increased stress",
+      "Hyperlipidemia"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Hypertension. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Hypertension."
+  },
+  {
+    "id": "medqa_5214",
+    "step": "Step 2 CK",
+    "specialty": "OB/GYN",
+    "difficulty": "Easy",
+    "vignette": "A 17-year-old boy presents to his primary care physician for eye pain. The patient states that it has been going on for the past 3 days and has been steadily worsening. He recently suffered a superior orbital fracture secondary to playing football without a helmet that required no treatment other than to refrain from contact sports. That patient's past medical history is non-contributory, and his vitals are within normal limits. Physical exam demonstrates pain and swelling inferior to the patient's eye near the lacrimal duct. When pressure is applied to the area expressible pus is noted. Cranial nerves II-XII are grossly intact. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Dacrocystitis",
+      "Hordeolum",
+      "Orbital cellulitis",
+      "Periorbital cellulitis"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Dacrocystitis. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Dacrocystitis."
+  },
+  {
+    "id": "medqa_5217",
+    "step": "Step 2 CK",
+    "specialty": "Emergency",
+    "difficulty": "Easy",
+    "vignette": "A 25-year-old male presents to his primary care physician for pain in his knee. The patient was in a wrestling match when his legs were grabbed from behind and he was taken to the floor. The patient states that the moment this impact happened, he felt a snapping and sudden pain in his knee. When the match ended and he stood back up, his knee felt unstable. Minutes later, his knee was swollen and painful. Since then, the patient claims that he has felt unstable bearing weight on the leg. The patient has no significant past medical history, and is currently taking a multivitamin and protein supplements. On physical exam you note a tender right knee, with erythema and an effusion. Which of the following is the most likely physical exam finding in this patient?",
+    "options": [
+      "Laxity to valgus stress",
+      "Clicking and locking of the joint with motion",
+      "Anterior translation of the tibia relative to the femur",
+      "Posterior translation of the tibia relative to the femur"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Anterior translation of the tibia relative to the femur. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Anterior translation of the tibia relative to the femur."
+  },
+  {
+    "id": "medqa_5218",
+    "step": "Step 2 CK",
+    "specialty": "Biostatistics",
+    "difficulty": "Medium",
+    "vignette": "A 55-year-old man presents to the physician for the evaluation of excessive daytime sleepiness over the past six months. Despite sleeping 8–9 hours a night and taking a nap during the day, he feels drowsy and is afraid to drive. His wife complains of loud snoring and gasping during the night. His blood pressure is 155/95 mm Hg. BMI is 37 kg/m2. Oropharyngeal examination shows a small orifice and an enlarged tongue and uvula. The soft palate is low-lying. The examination of the nasal cavity shows no septal deviation or polyps. Examination of the lungs and heart shows no abnormalities. Polysomnography shows an apnea-hypopnea index of 8 episodes/h. The patient is educated about weight loss, exercise, and regular sleep hours and duration. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Continuous positive airway pressure",
+      "Oral appliances",
+      "Supplemental oxygen",
+      "Upper airway surgery"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Continuous positive airway pressure. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Continuous positive airway pressure."
+  },
+  {
+    "id": "medqa_5221",
+    "step": "Step 2 CK",
+    "specialty": "GI",
+    "difficulty": "Medium",
+    "vignette": "A 2-year-old boy is brought to the physician for the evaluation of fever, breathing difficulty, and cough during the past week. In the past year, the patient was diagnosed with four sinus infections, 3 upper respiratory tract infections, and an episode of severe bronchiolitis requiring hospitalization. Since birth, he has had multiple episodes of oral thrush treated with nystatin, as well as chronic diarrhea and failure to thrive. His temperature is 38.0°C (100.4°F), pulse is 130/min, respirations are 38/min, and blood pressure is 106/63 mm Hg. Pulse oximetry at room air shows an oxygen saturation of 88%. Pulmonary auscultation shows bilateral crackles and wheezing. Physical examination indicates a prominent nasal bridge, hypoplastic nasal wing, a shortened chin, and dysplastic ears. An X-ray of the chest shows hyperinflation of the lungs, interstitial infiltrates, and atelectasis. The patient tests positive for respiratory syncytial virus (RSV) in the nasopharyngeal aspirate. This patient most likely has a deficiency of which of the following?",
+    "options": [
+      "B cells",
+      "Immunoglobulin A",
+      "Interleukin-12 receptor",
+      "T cells"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: T cells. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to T cells."
+  },
+  {
+    "id": "medqa_5222",
+    "step": "Step 2 CK",
+    "specialty": "Nephrology",
+    "difficulty": "Hard",
+    "vignette": "In recent years, psoriasis has been identified as a risk factor for cardiovascular disease. A researcher conducted a study in which he identified 200 patients with psoriasis and 200 patients without psoriasis. The patients were followed for 10 years. At the end of this period, participants' charts were reviewed for myocardial infarction during this time interval.\nMyocardial infarction No myocardial infarction Total\nPsoriasis 12 188 200\nNo psoriasis 4 196 200\nTotal 16 384 400\nWhat is the 10-year risk of myocardial infarction in participants with psoriasis?\"",
+    "options": [
+      "0.5",
+      "0.75",
+      "0.06",
+      "0.02"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: 0.06. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to 0.06."
+  },
+  {
+    "id": "medqa_5223",
+    "step": "Step 2 CK",
+    "specialty": "Endocrine",
+    "difficulty": "Easy",
+    "vignette": "A 36-year-old woman, gravida 3, para 2, at 37 weeks' gestation comes to the emergency department because of sparse vaginal bleeding for 3 hours. She also noticed the bleeding 3 days ago. She has had no prenatal care. Both of her previous children were delivered by lower segment transverse cesarean section. Her temperature is 37.1°C (98.8°F), pulse is 90/min, respirations are 16/min, and blood pressure is 110/80 mm Hg. The abdomen is nontender, and no contractions are felt. Examination shows that the fetus is in a vertex presentation. The fetal heart rate is 160/min and shows no abnormalities. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Perform pelvic examination",
+      "Perform transvaginal sonography",
+      "Perform Kleihauer-Betke test",
+      "Conduct contraction stress test"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Perform transvaginal sonography. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Perform transvaginal sonography."
+  },
+  {
+    "id": "medqa_5225",
+    "step": "Step 2 CK",
+    "specialty": "Oncology",
+    "difficulty": "Hard",
+    "vignette": "A 3-year-old girl is brought to the physician by her parents for complaints of breast development and pubic hair growth for the past 6 months. She has no significant birth or medical history. The temperature is 37.0°C (98.6°F), the pulse is 88/min, and the respirations are 20/min. Physical examination shows enlarged breasts at Tanner stage 3 and pubic hair at stage 2. Height and weight are in the normal range. On GnRH stimulation testing, a luteinizing hormone (LH) response of < 5 IU/L is detected. What is the most appropriate next step in diagnosis?",
+    "options": [
+      "Repeat the GnRH stimulation test to see the LH response",
+      "Use a GnRH test to see the LH:FSH ratio",
+      "Use a leuprolide test to see the estradiol levels",
+      "Use a GnRH test to see the FSH levels"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Use a leuprolide test to see the estradiol levels. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Use a leuprolide test to see the estradiol levels."
+  },
+  {
+    "id": "medqa_5226",
+    "step": "Step 2 CK",
+    "specialty": "Neurology",
+    "difficulty": "Easy",
+    "vignette": "A 19-year-old woman presents to the physician for a routine health maintenance examination. She has a past medical history of gastroesophageal reflux disease. She recently moved to a new city to begin her undergraduate studies. Her father was diagnosed with colon cancer at age 46. Her father's brother died because of small bowel cancer. Her paternal grandfather died because of stomach cancer. She takes a vitamin supplement. Current medications include esomeprazole and a multivitamin. She smoked 1 pack of cigarettes daily for 3 years but quit 2 years ago. She drinks 1–2 alcoholic beverages on the weekends. She appears healthy. Vital signs are within normal limits. Physical examination shows no abnormalities. Colonoscopy is unremarkable. Germline testing via DNA sequencing in this patient shows mutations in DNA repair genes MLH1 and MSH2. Which of the following will this patient most likely require at some point in her life?",
+    "options": [
+      "Annual colonoscopy beginning at 20–25 years of age",
+      "Celecoxib or sulindac therapy",
+      "Measurement of carcinoembryonic antigen and CA 19-9 yearly",
+      "Surgical removal of a desmoid tumor"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Annual colonoscopy beginning at 20–25 years of age. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Annual colonoscopy beginning at 20–25 years of age."
+  },
+  {
+    "id": "medqa_5227",
+    "step": "Step 2 CK",
+    "specialty": "Psychiatry",
+    "difficulty": "Medium",
+    "vignette": "A 61-year-old man presents to the emergency department for the evaluation of polyuria, polydipsia, and confusion. He has a history of the psychiatric disease but is unable to provide additional details. He is admitted to the hospital and his home medications are continued. Routine testing is unrevealing for the etiology of his symptoms. Desmopressin acetate (DDAVP) is given, but no effect is seen on urine output or urine osmolarity. Which of the following medications could have induced this syndrome?",
+    "options": [
+      "Omeprazole",
+      "Nitrofurantoin",
+      "Nafcillin",
+      "Lithium"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Lithium. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Lithium."
+  },
+  {
+    "id": "medqa_5232",
+    "step": "Step 2 CK",
+    "specialty": "Pediatrics",
+    "difficulty": "Easy",
+    "vignette": "A 25-year-old man is brought to the emergency department after his girlfriend discovered him at home in a minimally responsive state. He has a history of drinking alcohol excessively and using illicit drugs. On arrival, he does not respond to commands but withdraws all extremities to pain. His pulse is 90/min, respirations are 8/min, and blood pressure is 130/90 mm Hg. Pulse oximetry while receiving bag-valve-mask ventilation shows an oxygen saturation of 95%. Examination shows cool, dry skin, with scattered track marks on his arms and legs. The pupils are pinpoint and react sluggishly to light. His serum blood glucose level is 80 mg/dL. The most appropriate next step in management is intravenous administration of which of the following?",
+    "options": [
+      "Naloxone",
+      "Phentolamine",
+      "Methadone",
+      "Naltrexone"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Naloxone. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Naloxone."
+  },
+  {
+    "id": "medqa_5233",
+    "step": "Step 2 CK",
+    "specialty": "Surgery",
+    "difficulty": "Medium",
+    "vignette": "A 63-year-old man undergoes uncomplicated laparascopic cholecystectomy for acute cholecystitis and is admitted to the surgical ward for postoperative management. On postoperative day 1, routine laboratory studies reveal an increase in serum creatinine to 1.46 mg/dL from 0.98 mg/dL before the operation; BUN is 37 mg/dL, increased from 18 mg/dL on prior measurement; K is 4.8 mEq/L and CO2 is 19 mEq/L. The patient has an indwelling urinary catheter in place, draining minimal urine over the last few hours. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Obtain urinalysis",
+      "Evaluate urinary catheter for obstruction",
+      "Administer IV fluid bolus",
+      "Initiate emergent hemodialysis"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Evaluate urinary catheter for obstruction. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Evaluate urinary catheter for obstruction."
+  },
+  {
+    "id": "medqa_5235",
+    "step": "Step 2 CK",
+    "specialty": "Biostatistics",
+    "difficulty": "Easy",
+    "vignette": "A 3-year-old boy is brought to the emergency department for evaluation of fever and cough for one week. The mother reports that her son has muscle rigidity and difficulty breathing. He has also had a generalized skin rash for the past 4 days. His symptoms began shortly after returning from a trip to India. His immunizations are up-to-date. His temperature is 38.5°C (101.3°F), pulse is 108/min, respirations are 30/min, and blood pressure is 80/60 mm Hg. Examination shows small, erythematous pustules with hemorrhagic necrosis over the trunk and shoulders and generalized lymphadenopathy. There is dullness to percussion and decreased breath sounds over the right lung base. The liver is palpated 2 to 3 cm below the right costal margin. An x-ray of the chest shows small 1–4 mm pulmonary nodules scattered throughout the lungs, and a right-sided pleural effusion with interstitial infiltrates. Blood smear shows acid-fast bacilli. Further evaluation of this patient is most likely to show which of the following?",
+    "options": [
+      "Decreased IFN-γ levels",
+      "Mutation in WAS gene",
+      "Absent B cells with normal T cell count",
+      "Decreased T-cell receptor excision circles on PCR"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Decreased IFN-γ levels. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Decreased IFN-γ levels."
+  },
+  {
+    "id": "medqa_5237",
+    "step": "Step 2 CK",
+    "specialty": "Pulmonology",
+    "difficulty": "Hard",
+    "vignette": "A 51-year-old woman is brought to the emergency department after not being able to urinate for the past 12 hours. She also complains of a headache that is sharp in nature, 9/10, without radiation, and associated with nausea and vomiting. She neither smokes cigarettes nor drinks alcohol. She complains that her fingers have become numb and very painful on exposure to cold weather during the last few months. She has also noticed her fingers change color from blue to pale to red on cold exposure. Her face looks shiny with thickened, wrinkle-free skin. She has had joint pain and stiffness for the last 20 years. She takes over-the-counter omeprazole for heartburn, which she says improves her symptoms. She has unintentionally lost 9 kg (20 lb) in the last 6 months. She has no previous history of diabetes, hypertension, chest pain, orthopnea, or paroxysmal nocturnal dyspnea. Her mother has rheumatoid arthritis for which she takes methotrexate, and her father takes medications for hypertension and hypercholesterolemia. Her temperature is 37°C (98.6°F), blood pressure is 210/120 mm Hg, pulse is 102/min, respiratory rate is 18/min, and BMI is 22 kg/m2.\nLaboratory test\nComplete blood count:\nHemoglobin    9.5 g/dL\nLeukocytes 15,500/mm3\nPlatelets 90,000/mm3\nSerum haptoglobin 20 mg/dL (30–200 mg/dL)\nSerum creatinine 2.3 mg/dL\nBlood urea nitrogen 83.5 mg/dL\nThe peripheral blood film of the patient shows the following. Which of the following would be the most appropriate treatment for this patient?",
+    "options": [
+      "Nitroprusside",
+      "Labetalol",
+      "Dialysis",
+      "Ramipril"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Ramipril. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Ramipril."
+  },
+  {
+    "id": "medqa_5241",
+    "step": "Step 2 CK",
+    "specialty": "Hematology",
+    "difficulty": "Easy",
+    "vignette": "A 50-year-old man comes to the emergency department because of a severely painful right eye. The pain started an hour ago and is accompanied by frontal headache and nausea. The patient has vomited twice since the onset of the pain. He has type 2 diabetes mellitus. He immigrated to the US from China 10 years ago. He works as an engineer at a local company and has been under a great deal of stress lately. His only medication is metformin. Vital signs are within normal limits. The right eye is red and is hard on palpation. The right pupil is mid-dilated and nonreactive to light. The left pupil is round and reactive to light and accommodation. Which of the following agents is contraindicated in this patient?",
+    "options": [
+      "Topical timolol",
+      "Topical epinephrine",
+      "Topical apraclonidine",
+      "Oral acetazolamide"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Topical epinephrine. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Topical epinephrine."
+  },
+  {
+    "id": "medqa_5242",
+    "step": "Step 2 CK",
+    "specialty": "Oncology",
+    "difficulty": "Medium",
+    "vignette": "A 19-year-old male arrives to student health for an annual check up. He is up to date on his infant and childhood vaccinations up to age 10. At age 12, he received a single dose of the tetanus, diphtheria, and acellular pertussis vaccine, and a quadrivalent meningococcal conjugate vaccine. A month ago, he received the influenza vaccine. The patient has no significant medical history. He takes over the counter ibuprofen for occasional headaches. He has a father with hypertension and hyperlipidemia, and his brother has asthma. He is sexually active with his current girlfriend. He denies tobacco use, illicit drug use, and recent or future travel. The patient’s temperature is 98°F (36.7°C), blood pressure is 118/78 mmHg, pulse is 70/min, and respirations are 14/min with an oxygen saturation of 99% O2 on room air. A physical examination is normal. What of the following is the best recommendation for vaccination?",
+    "options": [
+      "Hepatitis A vaccine",
+      "Herpes zoster vaccine",
+      "Human papilloma virus",
+      "Tetanus and reduced diphtheria toxoid booster"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Human papilloma virus. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Human papilloma virus."
+  },
+  {
+    "id": "medqa_5243",
+    "step": "Step 2 CK",
+    "specialty": "Neurology",
+    "difficulty": "Hard",
+    "vignette": "A 12-year-old girl is brought to the emergency department by her parents due to severe shortness of breath that started 20 minutes ago. She has a history of asthma and her current treatment regime includes a beta-agonist inhaler as well as a medium-dose corticosteroid inhaler. Her mother tells the physician that her daughter was playing outside with her friends when she suddenly started experiencing difficulty breathing and used her inhaler without improvement. On examination, she is struggling to breathe and with subcostal and intercostal retractions. She is leaning forward, and gasping for air and refuses to lie down on the examination table. Her blood pressure is 130/92 mm Hg, the respirations are 27/min, the pulse is 110/min and O2 saturation is 87%. There is prominent expiratory wheezes in all lung fields. The patient is put on a nonrebreather mask with 100% oxygen. An arterial blood gas is collected and sent for analysis. Which of the following is the most appropriate next step in the management of this patient?",
+    "options": [
+      "Inhaled albuterol",
+      "Intravenous corticosteroid",
+      "Inhaled ipratropium bromide",
+      "Inhaled theophylline"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Inhaled albuterol. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Inhaled albuterol."
+  },
+  {
+    "id": "medqa_5244",
+    "step": "Step 2 CK",
+    "specialty": "Psychiatry",
+    "difficulty": "Easy",
+    "vignette": "Over the course of a year, 5 children with identical congenital heart defects were referred to a pediatric cardiac surgeon for evaluation. All 5 children had stable vital signs and were on appropriate medication. Upon review of medical records, all of them had a loud holosystolic murmur over the third intercostal space at the left sternal border. The surgeon ordered echocardiograms for all 5 children and recommended surgical closure of the defect in one of them. Which of the following patients required surgical repair of their defect?",
+    "options": [
+      "A 4-month-old male infant with a 12-mm muscular defect, without heart failure, pulmonary hypertension or growth failure",
+      "A 2-year-old boy with a 2-mm supracristal defect, without heart failure, pulmonary hypertension, or growth failure",
+      "A 5-year-old girl with a 2-mm membranous defect, no heart failure, a Qp:Qs ratio less than 2:1, and no growth failure",
+      "A 7-year-old boy with an 11-mm muscular defect and severe pulmonary vascular disease non-responsive to pulmonary vasodilators"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: A 2-year-old boy with a 2-mm supracristal defect, without heart failure, pulmonary hypertension, or growth failure. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to A 2-year-old boy with a 2-mm supracristal defect, without heart failure, pulmonary hypertension, or growth failure."
+  },
+  {
+    "id": "medqa_5245",
+    "step": "Step 2 CK",
+    "specialty": "Infectious Disease",
+    "difficulty": "Medium",
+    "vignette": "A 35-year-old woman is presenting for a general wellness checkup. She is generally healthy and has no complaints. The patient does not smoke, drinks 1 alcoholic drink per day, and exercises 1 day per week. She recently had silicone breast implants placed 1 month ago. Her family history is notable for a heart attack in her mother and father at the age of 71 and 55 respectively. Her father had colon cancer at the age of 70. Her temperature is 99.0°F (37.2°C), blood pressure is 121/81 mmHg, pulse is 77/min, respirations are 14/min, and oxygen saturation is 98% on room air. Physical exam is unremarkable. Which of the following is the most appropriate initial step in management?",
+    "options": [
+      "Colonoscopy at age 60",
+      "Colonoscopy now",
+      "Mammography at age 50",
+      "Mammography now"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Mammography at age 50. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Mammography at age 50."
+  },
+  {
+    "id": "medqa_5249",
+    "step": "Step 2 CK",
+    "specialty": "Pediatrics",
+    "difficulty": "Hard",
+    "vignette": "A 61-year-old man presents to the emergency department with severe left flank pain radiating to the left groin and severe nausea. His condition started suddenly 3 hours earlier. His past medical history is significant for chronic migraine headaches and type 2 diabetes mellitus. He takes metformin and glyburide for his diabetes and a tablet containing a combination of acetaminophen, aspirin, and caffeine for his headaches. He denies smoking or alcohol use. Today his vital signs reveal: temperature 36.6°C (97.8°F), blood pressure 165/110 mm Hg, and pulse 90/min. The physical examination is unremarkable except for left flank tenderness. A urinalysis reports cola-colored urine with 1+ proteinuria and 2+ hematuria. Intravenous urography shows the classic ‘ring sign’ in the kidneys. Which of the following is the most likely cause of this patient’s condition?",
+    "options": [
+      "Nephrolithiasis",
+      "Renal cell carcinoma",
+      "Renal papillary necrosis",
+      "Polycystic kidney disease"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Renal papillary necrosis. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Renal papillary necrosis."
+  },
+  {
+    "id": "medqa_5251",
+    "step": "Step 2 CK",
+    "specialty": "Emergency",
+    "difficulty": "Medium",
+    "vignette": "A 34-year-old female presents to a counselor at the urging of her parents because they are concerned that she might be depressed. After recently breaking up with her long-term boyfriend, she moved back in with her parents because she could not handle making decisions alone. Soon after their breakup, she started going on 5–7 dates a week. She has been unemployed for 3 years, as her boyfriend took care of all the bills. In the past year, she thought of looking for a job but never felt confident enough to start the process. Her mom arranges her doctors appointments and handles her car maintenance. She describes feeling uneasy when she is alone. She has hypothyroidism treated with levothyroxine. She does not smoke or drink alcohol. Vital signs are normal. Mental status exam shows a neutral affect. Neurologic examination shows no focal findings. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Separation anxiety disorder",
+      "Dependent personality disorder",
+      "Histrionic personality disorder",
+      "Borderline personality disorder"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Dependent personality disorder. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Dependent personality disorder."
+  },
+  {
+    "id": "medqa_5256",
+    "step": "Step 2 CK",
+    "specialty": "Nephrology",
+    "difficulty": "Easy",
+    "vignette": "A 53-year-old woman presents to her primary care physician with complaints of pain and swelling in her hands and fingers. She states that she has had these symptoms since she was in her 20s, but they have recently become more severe. She states that her wedding ring no longer fits, due to increased swelling of her fingers. She is a 30-pack-year smoker with a body mass index (BMI) of 31 kg/m2. The vital signs include: blood pressure 122/78 mm Hg, heart rate 72/min, and respiratory rate 15/min. On physical exam, a mild systolic murmur is heard over the apex, and her lungs are clear bilaterally. There is swelling of all the digits bilaterally, and a yellow-white plaque is noted beneath 3 of her nail beds. When asked about the plaques, she states that she was given itraconazole for them about 3 weeks ago; however, the plaques did not resolve. When asked further about joint pain, she notes that she has had shoulder and knee pain for the last several years, although she has not sought medical care for this. Which of the following is the best initial step in this patient’s therapeutic management?",
+    "options": [
+      "Administer indomethacin and sulfasalazine",
+      "Administer indomethacin and methotrexate",
+      "Administer indomethacin",
+      "Administer methotrexate"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Administer indomethacin and methotrexate. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Administer indomethacin and methotrexate."
+  },
+  {
+    "id": "medqa_5262",
+    "step": "Step 2 CK",
+    "specialty": "Infectious Disease",
+    "difficulty": "Easy",
+    "vignette": "A 28-year-old woman comes to the physician because she had a positive pregnancy test at home. She reports feeling nauseated and has vomited several times over the past week. During this period, she has also had increased urinary frequency. She is sexually active with her boyfriend and they use condoms inconsistently. Her last menstrual period was 5 weeks ago. Physical examination shows no abnormalities. A urine pregnancy test is positive. A pap smear is positive for a high-grade squamous intraepithelial lesion. Colposcopy shows cervical intraepithelial neoplasia grade II and III. Which of the following is the most appropriate next step in the management of this patient?",
+    "options": [
+      "Reevaluation with cytology and colposcopy 6 weeks after birth",
+      "Endocervical curettage",
+      "Perform loop electrosurgical excision",
+      "Diagnostic excisional procedure\n\""
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Reevaluation with cytology and colposcopy 6 weeks after birth. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Reevaluation with cytology and colposcopy 6 weeks after birth."
+  },
+  {
+    "id": "medqa_5263",
+    "step": "Step 2 CK",
+    "specialty": "Rheumatology",
+    "difficulty": "Medium",
+    "vignette": "A 55-year-old woman presents to the emergency department with retrosternal pain that started this evening. The patient states that her symptoms started as she was going to bed after taking her medications. She describes the pain as sudden in onset, worse with swallowing, and not associated with exertion. The patient has a past medical history of diabetes, anemia, and congestive heart failure and is currently taking metoprolol, insulin, metformin, iron, and lisinopril. Her temperature is 99.2°F (37.3°C), blood pressure is 125/63 mmHg, pulse is 90/min, respirations are 14/min, and oxygen saturation is 100% on room air. Physical exam is notable for an obese woman who appears uncomfortable. An initial electrocardiogram (ECG) demonstrates sinus rhythm, and a set of troponins are pending. Which of the following is the most likely diagnosis?",
+    "options": [
+      "Esophageal rupture",
+      "Esophagitis",
+      "Myocardial infarction",
+      "Pulmonary embolism"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Esophagitis. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Esophagitis."
+  },
+  {
+    "id": "medqa_5264",
+    "step": "Step 2 CK",
+    "specialty": "Dermatology",
+    "difficulty": "Hard",
+    "vignette": "A 28-year-old man comes to the physician for a follow-up examination after a previous visit showed an elevated serum calcium level. He has a history of bipolar disorder. His mother had a parathyroidectomy in her 30s. The patient does not drink alcohol or smoke. Current medications include lithium and a daily multivitamin. His vital signs are within normal limits. Physical examination shows no abnormalities. Laboratory studies show:\nSerum\nSodium 146 mEq/L\nPotassium 3.7 mEq/L\nCalcium 11.2 mg/dL\nMagnesium 2.3 mEq/L\nPTH 610 pg/mL\nAlbumin 4.2 g/dL\n24-hour urine\nCalcium 23 mg\nWhich of the following is the most likely cause of this patient’s findings?\"",
+    "options": [
+      "Excess calcium intake",
+      "Abnormal calcium sensing receptors",
+      "Lithium toxicity",
+      "Parathyroid adenoma"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Abnormal calcium sensing receptors. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Abnormal calcium sensing receptors."
+  },
+  {
+    "id": "medqa_5265",
+    "step": "Step 2 CK",
+    "specialty": "OB/GYN",
+    "difficulty": "Easy",
+    "vignette": "A 55-year-old woman with type 2 diabetes mellitus presents to her physician with intermittent nausea for the past 2 months. Her symptoms are exacerbated within one hour after eating. She has no other history of a serious illness. She takes metformin and injects insulin. Her vitals are normal. Abdominal examination is normal. An ECG shows normal sinus rhythm with no evidence of ischemia. Hemoglobin A1c is 7%. A gastric emptying scan shows 60% of her meal in the stomach 75 minutes after eating. Which of the following is the most appropriate pharmacotherapy at this time?",
+    "options": [
+      "Dimenhydrinate",
+      "Metoclopramide",
+      "Octreotide",
+      "Ondansetron"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Metoclopramide. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Metoclopramide."
+  },
+  {
+    "id": "medqa_5268",
+    "step": "Step 2 CK",
+    "specialty": "Emergency",
+    "difficulty": "Easy",
+    "vignette": "A 34-year-old woman presents to her primary care provider after intermittently passing bright pink urine over several days. She is concerned this discoloration is due to blood. Her medical history is unremarkable, she denies being sick in the past weeks and has only taken a couple of diclofenac capsules for pelvic pain associated to her menstrual period. She does not drink alcohol or smoke cigarettes. At the doctor’s office, her blood pressure  is 150/90 mm Hg, pulse is 80/min, respiratory rate is 18/min, and temperature is 36.5°C (97.7°F). On physical exam, she has 2+ pitting edema up to her knees. A urinalysis is taken which shows red blood cells, red blood cell casts, and acanthocytes. No proteinuria was detected. Her serum creatinine is 2.4 mg/dL, blood urea nitrogen 42 mg/dL, serum potassium 4.8 mEq/L, serum sodium 140 mEq/L, serum chloride 102 mEq/L. Which of the following is the most appropriate next step in the management of this case?",
+    "options": [
+      "Discontinuation of NSAID",
+      "Fomepizole",
+      "Intravenous fluid therapy and electrolyte correction",
+      "Renal biopsy"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Renal biopsy. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Renal biopsy."
+  },
+  {
+    "id": "medqa_5270",
+    "step": "Step 2 CK",
+    "specialty": "Cardiology",
+    "difficulty": "Hard",
+    "vignette": "A 25-year-old man is brought to the emergency department by the police after a motor vehicle accident. He was reportedly speeding in a residential area and collided with a tree. He was later found by police naked in the street, screaming \"shoot me so the devil will leave\". A review of his medical record is unremarkable. At the hospital, he continues to act agitated and bizarre. His temperature is 37.0°C (98.6°F), the blood pressure is 140/86 mm Hg, and the heart rate is 90/min. The physical exam is notable for agitation, pacing around the room, occasionally yelling at the staff to help him \"kill the devil\". An ocular exam is significant for mild horizontal nystagmus. The patient appears to be drooling and has some difficulty with coordination. Which of the following is the most likely cause of this patient's presentation?",
+    "options": [
+      "Cocaine intoxication",
+      "Central nervous system infection",
+      "Phencyclidine (PCP) intoxication",
+      "Serotonin syndrome"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Phencyclidine (PCP) intoxication. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Phencyclidine (PCP) intoxication."
+  },
+  {
+    "id": "medqa_5274",
+    "step": "Step 2 CK",
+    "specialty": "Endocrine",
+    "difficulty": "Easy",
+    "vignette": "A 21-year-old primigravid woman comes to the physician at 10 weeks' gestation because of progressive fatigue for the past 3 weeks. She reports that she has had a 3.2-kg (7-lb) weight loss after conceiving despite an increase in appetite. She has become increasingly anxious and has trouble falling asleep. There is no personal or family history of serious illness. Medications include folic acid and a multivitamin. She is 165 cm (5 ft 5 in) tall and weighs 55 kg (120 lb); BMI is 20 kg/m2. Her temperature is 37.4°C (99.4°F), pulse is 120/min, respirations are 18/min, and blood pressure is 150/70 mm Hg. The globes of the eyes are prominent. The thyroid gland is firm and diffusely enlarged. Neurologic examination shows a fine resting tremor of the hands. There is a midsystolic click at the apex and a grade 2/6 early systolic murmur at the upper left sternal border. Serum thyroid-stimulating hormone concentration is 0.1 μU/mL. An ECG is normal except for sinus tachycardia. Which of the following is the most appropriate next step in management?",
+    "options": [
+      "Lugol's iodine",
+      "Thyroidectomy",
+      "Propylthiouracil",
+      "Atenolol"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Propylthiouracil. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Propylthiouracil."
+  },
+  {
+    "id": "medqa_5275",
+    "step": "Step 2 CK",
+    "specialty": "Hematology",
+    "difficulty": "Medium",
+    "vignette": "A 52-year-old unconscious man is brought to the emergency department. He was found unresponsive on the sidewalk in the snow. He is recognized by the staff as a local homeless man and IV drug user. Rapid warming procedures are initiated. At physical examination, he is dirty and disheveled and unrousable with a blood pressure of 100/76 mm Hg and a temperature of 37.2°C (99°F). He is thin with apparent weight loss. Both arms have indications of recent IV injection stigmata. A head MRI reveals multiple hyperintense signals in the meninges with multiple tiny contrast-enhancing lesions in the cerebellum and cerebral cortex. A chest X-ray is within normal limits. Mild dilatation of the ventricles is also appreciated. Cerebrospinal analysis fluid (CSF) analysis reveals:\nCSF opening pressure 25 cm H20\nCSF total leukocyte count 580/mm3\nLymphocytes 90%\nNeutrophils 10%\nCSF protein 176 mg/dL\nCSF glucose 21 mg/dL\nA specimen stains are positive for acid-fast bacilli. CSF culture is pending. Appropriate antibacterial medication is initiated. Which of the following is true regarding the immediate future management of this patient?",
+    "options": [
+      "Acyclovir should be started empirically as well",
+      "Check liver enzymes regularly",
+      "Verify response to antibiotic therapy",
+      "Treatment should only be started after CSF culture results"
+    ],
+    "answer": 1,
+    "explanation": "The correct answer is B: Check liver enzymes regularly. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Check liver enzymes regularly."
+  },
+  {
+    "id": "medqa_5276",
+    "step": "Step 2 CK",
+    "specialty": "Oncology",
+    "difficulty": "Hard",
+    "vignette": "A 23-year-old male presents to the emergency department. He was brought in by police for shouting on a subway. The patient claims that little people were trying to kill him, and he was acting within his rights to defend himself. The patient has a past medical history of marijuana and IV drug use as well as multiple suicide attempts. He is currently homeless. While in the ED, the patient is combative and refuses a physical exam. He is given IM haloperidol and diphenhydramine. The patient is transferred to the inpatient psychiatric unit and is continued on haloperidol throughout the next week. Though he is no longer aggressive, he is seen making \"armor\" out of paper plates and plastic silverware to defend himself. The patient is switched onto risperidone. The following week the patient is still seen gathering utensils, and muttering about people trying to harm him. The patient's risperidone is discontinued. Which of the following is the best next step in management?",
+    "options": [
+      "Fluphenazine",
+      "Thioridazine",
+      "Olanzapine",
+      "Clozapine"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Clozapine. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Clozapine."
+  },
+  {
+    "id": "medqa_5277",
+    "step": "Step 2 CK",
+    "specialty": "Neurology",
+    "difficulty": "Easy",
+    "vignette": "An 18-year-old man presents to his primary care provider before leaving for college. He has no complaints. His past medical history is significant for asthma, acne vulgaris, and infectious mononucleosis at age 16. His home medications include doxycycline and albuterol as needed. His family history is significant for colon cancer in his father at age 50, his paternal grandfather at age 55, and an uncle at age 45. His father underwent testing for mutations in the APC gene, which were negative. There is no family history of dental abnormalities or other malignancy. The patient denies any recent weight loss, abdominal pain, hematochezia, melena, or other changes in the appearance of his stools. This patient should be screened for colorectal cancer (CRC) under which of the following protocols?",
+    "options": [
+      "Colonoscopy every 1-2 years beginning at age 25",
+      "Colonoscopy every 5 years beginning at age 40",
+      "Colonoscopy every 10 years beginning at age 50",
+      "Prophylactic colectomy"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Colonoscopy every 1-2 years beginning at age 25. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Colonoscopy every 1-2 years beginning at age 25."
+  },
+  {
+    "id": "medqa_5281",
+    "step": "Step 2 CK",
+    "specialty": "Dermatology",
+    "difficulty": "Medium",
+    "vignette": "A 57-year-old man presents with acute-onset nausea and left flank pain. He says his symptoms suddenly started 10 hours ago and have not improved. He describes the pain as severe, colicky, intermittent, and localized to the left flank. The patient denies any fever, chills, or dysuria. His past medical history is significant for nephrolithiasis, incidentally diagnosed 10 months ago on a routine ultrasound, for which he has not been treated. His family history is unremarkable. The patient is afebrile, and his vital signs are within normal limits. On physical examination, he is writhing in pain and moaning. Severe left costovertebral angle tenderness is noted. Gross hematuria is present on urinalysis. A non-contrast CT of the abdomen and pelvis reveals a 12-mm obstructing calculus at the left ureterovesical junction. Initial management, consisting of IV fluid resuscitation, antiemetics, and analgesia, is administered. Which of the following is the best next step in the management of this patient?",
+    "options": [
+      "Ureteroscopy",
+      "Percutaneous nephrostolithotomy (PCNL)",
+      "Extracorporeal shockwave lithotripsy (ESWL)",
+      "24-hour urine chemistry"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Ureteroscopy. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Ureteroscopy."
+  },
+  {
+    "id": "medqa_5282",
+    "step": "Step 2 CK",
+    "specialty": "OB/GYN",
+    "difficulty": "Hard",
+    "vignette": "A 27-year-old woman is brought to the physician by her parents because they are concerned about her mood. They say that she has “not been herself” since the death of her friend, who was killed 3 weeks ago when the fighter jet he piloted was shot down overseas. She says that since the incident, she feels sad and alone. She reports having repeated nightmares about her friend's death. Her appetite has decreased, but she is still eating regularly and is otherwise able to take care of herself. She does not leave her home for any social activities and avoids visits from friends. She went back to work after taking 1 week off after the incident. Her vital signs are within normal limits. Physical examination shows no abnormalities. On mental status examination, she appears sad, has a full range of affect, and is cooperative. In addition to taking measures to evaluate this patient's anxiety, which of the following is the most appropriate statement by the physician at this time?",
+    "options": [
+      "\"\"\"I understand that the sudden loss of your friend has affected you deeply. Sometimes in situations like yours, people have thoughts that life is not worth living; have you had such thoughts?\"\"\"",
+      "\"\"\"Your grief over the loss of your friend appears to have a negative effect on your social and functional capabilities. I recommend starting antidepressants to help you deal with this challenge.\"\"\"",
+      "\"\"\"I can see that you have gone through a lot recently, but I think that your reaction is especially severe and has persisted for longer than normal. Would you be open to therapy or medication to help you manage better?\"\"\"",
+      "\"\"\"I'm so sorry, but the loss of loved ones is a part of life. Let's try to find better ways for you to deal with this event.\"\"\"\n\""
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: \"\"\"I understand that the sudden loss of your friend has affected you deeply. Sometimes in situations like yours, people have thoughts that life is not worth living; have you had such thoughts?\"\"\". The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to \"\"\"I understand that the sudden loss of your friend has affected you deeply. Sometimes in situations like yours, people have thoughts that life is not worth living; have you had such thoughts?\"\"\"."
+  },
+  {
+    "id": "medqa_5284",
+    "step": "Step 2 CK",
+    "specialty": "Surgery",
+    "difficulty": "Medium",
+    "vignette": "A 25-year-old medical student returns from a volunteer mission trip in Nicaragua with persistent cough and occasional hemoptysis for 3 weeks. A purified protein derivative test revealing a 20 mm wheal and a chest radiograph with hilar lymphadenopathy support a diagnosis of active tuberculosis. The patient is started on appropriate therapy. Among the prescribed medications, one drug inhibits carbohydrate polymerization of the pathogen's cell wall. What is the most likely complaint that the patient may present with because of this drug?",
+    "options": [
+      "Joint pain",
+      "Leg numbness",
+      "Orange colored urine",
+      "Vision changes"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Vision changes. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Vision changes."
+  },
+  {
+    "id": "medqa_5285",
+    "step": "Step 2 CK",
+    "specialty": "Emergency",
+    "difficulty": "Hard",
+    "vignette": "A 23-year-old man presents to the emergency department with a chief complaint of being assaulted on the street. The patient claims that he has been followed by the government for quite some time and that he was assaulted by a government agent but was able to escape. He often hears voices telling him to hide. The patient has an unknown past medical history and admits to smoking marijuana frequently. On physical exam, the patient has no signs of trauma. When interviewing the patient, he is seen conversing with an external party that is not apparent to you. The patient states that he is afraid for his life and that agents are currently pursuing him. What is the best initial response to this patient’s statement?",
+    "options": [
+      "I don’t think any agents are pursuing you.",
+      "I think you are safe from the agents here.",
+      "It sounds like you have been going through some tough experiences lately.",
+      "You have a mental disorder but don’t worry we will help you."
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: It sounds like you have been going through some tough experiences lately.. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to It sounds like you have been going through some tough experiences lately.."
+  },
+  {
+    "id": "medqa_5287",
+    "step": "Step 2 CK",
+    "specialty": "Cardiology",
+    "difficulty": "Medium",
+    "vignette": "A 27-year-old man presents to his primary care physician after a recent illness. For the past 48 hours the patient has experienced constant vomiting and diarrhea with a high fever. He is feeling better today and wants to be seen to ensure he is healthy. The patient has a past medical history of schizophrenia well controlled with risperidone and lithium. He takes ibuprofen for knee pain and attempts to stay well hydrated. Laboratory values are ordered as seen below.\n\nSerum:\nNa+: 123 mEq/L\nCl-: 90 mEq/L\nK+: 3.8 mEq/L\nHCO3-: 29 mEq/L\nBUN: 42 mg/dL\nGlucose: 109 mg/dL\nCreatinine: 1.9 mg/dL\nCa2+: 10.2 mg/dL\n\nWhich of the following is the most likely explanation for this patient’s laboratory derangements?",
+    "options": [
+      "Aldosterone-secreting mass",
+      "Intrarenal injury",
+      "Psychogenic polydipsia",
+      "Volume depletion"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Volume depletion. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Volume depletion."
+  },
+  {
+    "id": "medqa_5288",
+    "step": "Step 2 CK",
+    "specialty": "Pulmonology",
+    "difficulty": "Hard",
+    "vignette": "A 46-year-old woman comes to the emergency department because of intermittent abdominal pain and vomiting for 2 days. The abdominal pain is colicky and diffuse. The patient's last bowel movement was 3 days ago. She has had multiple episodes of upper abdominal pain that radiates to her scapulae and vomiting over the past 3 months; her symptoms subsided after taking ibuprofen. She has coronary artery disease, type 2 diabetes mellitus, gastroesophageal reflux disease, and osteoarthritis of both knees. Current medications include aspirin, atorvastatin, rabeprazole, insulin, and ibuprofen. She appears uncomfortable. Her temperature is 39°C (102.2°F), pulse is 111/min, and blood pressure is 108/68 mm Hg. Examination shows dry mucous membranes. The abdomen is distended and tympanitic with diffuse tenderness; bowel sounds are high-pitched. Rectal examination shows a collapsed rectum. Her hemoglobin concentration is 13.8 g/dL, leukocyte count is 14,400/mm3, and platelet count is 312,000/mm3. An x-ray of the abdomen is shown. Which of the following is the most likely cause of this patient's findings?",
+    "options": [
+      "Cholecystoenteric fistula",
+      "Cecal torsion",
+      "Bowel infarction",
+      "Viscus perforation"
+    ],
+    "answer": 0,
+    "explanation": "The correct answer is A: Cholecystoenteric fistula. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Cholecystoenteric fistula."
+  },
+  {
+    "id": "medqa_5295",
+    "step": "Step 2 CK",
+    "specialty": "Psychiatry",
+    "difficulty": "Easy",
+    "vignette": "A 59-year-old Caucasian man presents with a one-month history of left flank fullness and pain. The patient has stable angina, which is controlled with medications including atorvastatin, metoprolol, and aspirin. His vital signs are within normal limits. BMI is 32 kg/m2. Clinical examination reveals a 10 x 10-cm palpable mass in the left flank. Testicular examination indicates left varicocele. Laboratory parameters are as follows:\nUrine\nBlood 3+\nWBC none\nRBC 65/hpf without dysmorphic features\nAbdominal CT scan confirms the presence of a large solid mass originating in the left kidney with impingement on the left renal vein. Based on the most likely diagnosis, which of the following is considered a risk factor in this patient?",
+    "options": [
+      "Atorvastatin",
+      "Caucasian race",
+      "Lynch syndrome",
+      "Obesity"
+    ],
+    "answer": 3,
+    "explanation": "The correct answer is D: Obesity. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Obesity."
+  },
+  {
+    "id": "medqa_5296",
+    "step": "Step 2 CK",
+    "specialty": "Infectious Disease",
+    "difficulty": "Medium",
+    "vignette": "Two hours after undergoing laparoscopic roux-en-Y gastric bypass surgery, a 44-year-old man complains of pain in the site of surgery and nausea. He has vomited twice in the past hour. He has hypertension, type 2 diabetes mellitus, and hypercholesterolemia. Current medications include insulin, atorvastatin, hydrochlorothiazide, acetaminophen, and prophylactic subcutaneous heparin. He drinks two to three beers daily and occasionally more on weekends. He is 177 cm (5 ft 10 in) tall and weighs 130 kg (286 lb); BMI is 41.5 kg/m2. His temperature is 37.3°C (99.1°F), pulse is 103/min, and blood pressure is 122/82 mm Hg. Examination shows five laparoscopic incisions with no erythema or discharge. The abdomen is soft and non-distended. There is slight diffuse tenderness to palpation. Bowel sounds are reduced. Laboratory studies show:\nHematocrit 45%\nSerum\nNa+ 136 mEq/L\nK+ 3.5 mEq/L\nCl- 98 mEq/L\nUrea nitrogen 31 mg/dL\nGlucose 88 mg/dL\nCreatinine 1.1 mg/dL\nArterial blood gas analysis on room air shows:\npH 7.28\npCO2 32 mm Hg\npO2 74 mm Hg\nHCO3- 14.4 mEq/L\nWhich of the following is the most likely cause for the acid-base status of this patient?\"",
+    "options": [
+      "Uremia",
+      "Early dumping syndrome",
+      "Hypoxia",
+      "Late dumping syndrome"
+    ],
+    "answer": 2,
+    "explanation": "The correct answer is C: Hypoxia. The patient's clinical presentation aligns most consistently with this diagnosis/mechanism.",
+    "educationalObjective": "Recognize the clinical presentation and appropriate management related to Hypoxia."
   }
 ]

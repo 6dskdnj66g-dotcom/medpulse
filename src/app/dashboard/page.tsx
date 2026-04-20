@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   TrendingUp, Brain, Activity, BookOpen, Pill, Zap,
@@ -10,6 +10,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { useAchievement } from "@/components/AchievementContext";
 import { useLanguage } from "@/components/LanguageContext";
+import { supabase } from "@/lib/supabase";
 
 const LEVEL_THRESHOLDS = [
   { level: 1, title: "Medical Student",         titleAr: "طالب طب",           xpRequired: 0,    color: "slate" },
@@ -67,25 +68,54 @@ const colorMap: Record<string, string> = {
 };
 
 export default function DashboardPage() {
-  const { isLoading } = useAuth();
+  const { user, isLoading } = useAuth();
   const { xp } = useAchievement();
   const { lang } = useLanguage();
   const isAr = lang === "ar";
 
-  const [sessions] = useState<Session[]>(() => {
-    if (typeof window === "undefined") return [];
-    const stored = localStorage.getItem("medpulse_sessions");
-    return stored ? (JSON.parse(stored) as Session[]) : [];
-  });
-  const [streak] = useState<number>(() => {
-    if (typeof window === "undefined") return 0;
-    const lastDate = localStorage.getItem("medpulse_last_date");
-    if (!lastDate) return 0;
-    const diff = Math.floor((Date.now() - new Date(lastDate).getTime()) / 86400000);
-    return (diff === 0 || diff === 1) ? Number(localStorage.getItem("medpulse_streak") || "0") : 0;
-  });
+  const [sessions, setSessions] = useState<Session[]>([]);
+  const [streak, setStreak] = useState<number>(0);
+  const [osceAttempts, setOsceAttempts] = useState<number>(0);
 
-  
+  useEffect(() => {
+    if (!user) return;
+
+    async function fetchData() {
+      // Fetch streak & possibly other profile data if available
+      try {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("streak_days")
+          .eq("id", user!.id)
+          .single();
+        if (profile?.streak_days) setStreak(profile.streak_days);
+      } catch (_e) {}
+
+      // Fetch clinical_records
+      try {
+        const { data: records } = await supabase
+          .from("clinical_records")
+          .select("*")
+          .eq("user_id", user!.id)
+          .order("created_at", { ascending: false });
+        
+        if (records) {
+          const formatted: Session[] = records.map((r) => ({
+            date: r.created_at,
+            module: r.module || "Unknown",
+            score: r.score || 0,
+            total: r.total || 0,
+          }));
+          setSessions(formatted);
+
+          // Calculate OSCE specific attempts
+          const osceCount = records.filter(r => r.module === "OSCE" || r.module === "Simulator").length;
+          setOsceAttempts(osceCount);
+        }
+      } catch (_err) {}
+    }
+    fetchData();
+  }, [user]);
 
   if (isLoading) return null;
 
@@ -171,7 +201,7 @@ export default function DashboardPage() {
           { label: isAr ? "إجمالي XP" : "Total XP",      value: xp,            icon: Star,   color: "amber" },
           { label: isAr ? "الدقة" : "Accuracy",           value: `${accuracy}%`, icon: Target, color: "emerald" },
           { label: isAr ? "أيام التواصل" : "Day Streak",  value: streak,         icon: Flame,  color: "orange" },
-          { label: isAr ? "جلسات" : "Sessions",           value: sessions.length,icon: Activity,color: "indigo" },
+          { label: isAr ? "محاولات OSCE" : "OSCE Attempts", value: osceAttempts,   icon: Activity,color: "indigo" },
         ].map(stat => {
           const Icon = stat.icon;
           return (
@@ -214,7 +244,7 @@ export default function DashboardPage() {
       <div className="grid md:grid-cols-2 gap-8">
         <div className="medpulse-card p-6 md:p-8 flex flex-col h-full hover:scale-100">
           <h2 className="text-[12px] font-black uppercase tracking-[0.2em] text-[var(--text-tertiary)] mb-6">
-            {isAr ? "الجلسات الأخيرة" : "Recent Sessions"}
+            {isAr ? "سجلات ECG و DDx الأخيرة" : "Recent ECG / DDx Records"}
           </h2>
           {sessions.length === 0 ? (
             <div className="text-center py-10 flex-1 flex flex-col items-center justify-center">
