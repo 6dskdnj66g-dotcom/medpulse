@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MedPulse AI
+
+**Arabic Clinical Intelligence Platform** — A comprehensive bilingual medical education platform built with Next.js 15, TypeScript, and Tailwind CSS.
+
+**Built by Hassanin Salah**
+
+## Features
+
+- **USMLE Question Bank** — 5,300+ Step 1 & Step 2 CK board-style questions with AI explanations
+- **OSCE Simulator** — Realistic clinical scenarios with patient interactions and rubric scoring
+- **AI Professors** — Grok-powered medical tutors for Q&A
+- **Clinical Tools** — Drug checker, ECG analyzer, differential diagnosis, medical calculator
+- **Medical Encyclopedia** — Bilingual (English/Arabic) clinical reference
+- **MDT Debates** — Multi-disciplinary team case discussions
+- **Flashcards (SRS)** — Spaced repetition learning system
+- **Progress Tracking** — Analytics dashboard with specialty-level breakdown
+
+## Stack
+
+- **Framework**: Next.js 15 App Router
+- **UI**: Tailwind CSS 4 + shadcn/ui
+- **AI**: xAI Grok (primary) / Groq fallback
+- **Auth/DB**: Supabase
+- **Language**: TypeScript 5
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+XAI_API_KEY=         # xAI Grok API key
+GROQ_API_KEY=        # Groq fallback key
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+```
 
-## Learn More
+## Medical Disclaimer
 
-To learn more about Next.js, take a look at the following resources:
+This platform is for **educational purposes only**. It does not replace consultation with a licensed physician, diagnosis, or treatment.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2026 MedPulse AI · Built by Hassanin Salah · Based on WHO · NEJM · ACC/AHA · ESC guidelines

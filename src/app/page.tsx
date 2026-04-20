@@ -175,6 +175,11 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
+
+            <p className="text-[11px] text-slate-500 font-medium mt-6">
+              {isAr ? "بناء:" : "Built by"}{" "}
+              <span className="text-slate-400 font-semibold">Hassanin Salah</span>
+            </p>
           </div>
 
           {/* Right: Inline BMI demo */}

@@ -1,7 +1,9 @@
 {
-  "name": "healthtech-platform",
+  "name": "medpulse-ai",
   "version": "0.1.0",
   "private": true,
+  "author": "Hassanin Salah",
+  "description": "MedPulse AI — Arabic Clinical Intelligence Platform for medical education",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

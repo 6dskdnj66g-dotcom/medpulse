@@ -86,6 +86,10 @@ export function Footer() {
         <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-[10px] text-[var(--text-tertiary)] font-medium">
             © 2026 MedPulse AI · {isAr ? "جميع الحقوق محفوظة" : "All rights reserved"}
+            {" · "}
+            <span className="text-[var(--text-secondary)] font-semibold">
+              {isAr ? "بناء: Hassanin Salah" : "Built by Hassanin Salah"}
+            </span>
           </p>
           <p className="text-[10px] text-[var(--text-tertiary)] font-medium text-center">
             {isAr
