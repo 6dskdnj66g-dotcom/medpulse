@@ -8,6 +8,7 @@ import {
   Newspaper, Award, X, Lock, Unlock, ChevronRight, ArrowUpRight
 } from "lucide-react";
 import Link from "next/link";
+import { CURATED_BOOKS } from "@/lib/ncbi";
 import { ALL_MEDICAL_SOURCES, type MedicalSource } from "@/lib/medicalSources";
 import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
 import { useLanguage } from "@/components/LanguageContext";
@@ -387,6 +388,47 @@ export default function SourceLibraryPage() {
               </div>
             );
           })}
+        </div>
+      </div>
+
+      {/* ── Curated Books Section ── */}
+      <div className="mb-10 relative z-10">
+        <div className="flex items-center justify-between mb-5">
+          <div>
+            <h2 className="text-xl font-extrabold text-[var(--text-primary)]">
+              {isAr ? "📚 كتب طبية مجانية" : "📚 Free Medical Books"}
+            </h2>
+            <p className="text-[var(--text-tertiary)] text-xs mt-0.5 font-medium">
+              {isAr ? "مصدر: NCBI Bookshelf — نص كامل، وصول مفتوح" : "Source: NCBI Bookshelf — full text, open access"}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Link href="/library/search"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--color-medical-indigo)] text-xs font-bold transition">
+              <Search className="w-3.5 h-3.5" />
+              {isAr ? "بحث" : "Search"}
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {CURATED_BOOKS.map(book => (
+            <Link key={book.id} href={`/library/books/${book.id}`}
+              className="medpulse-card glass level-1 border border-[var(--border-subtle)] rounded-2xl p-4 hover:border-[var(--color-medical-indigo)]/40 hover:shadow-[0_4px_20px_rgba(99,102,241,0.1)] transition-all group flex flex-col gap-2">
+              <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 bg-indigo-500/10 border border-indigo-500/20`}>
+                <BookOpen className="w-4 h-4 text-indigo-400" />
+              </div>
+              <div>
+                <p className="text-[12px] font-extrabold text-[var(--text-primary)] leading-snug group-hover:text-[var(--color-medical-indigo)] transition-colors line-clamp-2">
+                  {book.title}
+                </p>
+                <p className="text-[10px] text-[var(--text-tertiary)] mt-0.5 line-clamp-1">{book.specialty}</p>
+              </div>
+              <span className="mt-auto text-[10px] text-[var(--color-medical-indigo)] font-bold flex items-center gap-0.5">
+                {isAr ? "اقرأ الآن" : "Read Now"} <ArrowUpRight className="w-3 h-3" />
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
 

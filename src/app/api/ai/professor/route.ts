@@ -1,6 +1,8 @@
 // src/app/api/ai/professor/route.ts
 import { streamText } from "ai";
 import { createGroq } from "@ai-sdk/groq";
+import { z } from "zod";
+import { sanitizeInput } from "@/lib/ai/grok";
 
 export const maxDuration = 60;
 
@@ -65,14 +67,31 @@ const PROFESSOR_PERSONAS: Record<string, { nameAr: string; systemPrompt: string 
   },
 };
 
+const requestSchema = z.object({
+  professorId: z.enum(["cardiology", "internal", "neurology", "emergency", "pharma", "peds"]).optional(),
+  lang:        z.enum(["ar", "en"]).default("ar"),
+  systemPrompt: z.string().max(3000).optional(),
+  messages:    z.array(z.object({
+    role:    z.enum(["user", "assistant"]),
+    content: z.string().min(1).max(4000),
+  })).min(1).max(50),
+});
+
 export async function POST(req: Request) {
   try {
-    const { messages, professorId, systemPrompt: customPrompt, lang = 'ar' } = await req.json() as {
-      messages: { role: "user" | "assistant"; content: string }[];
-      professorId?: string;
-      systemPrompt?: string;
-      lang?: string;
-    };
+    const raw = await req.json();
+    const parsed = requestSchema.safeParse(raw);
+    if (!parsed.success) {
+      return Response.json({ error: "Invalid request", details: parsed.error.flatten() }, { status: 400 });
+    }
+
+    const { messages: rawMessages, professorId, systemPrompt: customPrompt, lang } = parsed.data;
+
+    // Sanitize all user message content against prompt injection
+    const messages = rawMessages.map(m => ({
+      ...m,
+      content: m.role === "user" ? sanitizeInput(m.content, 4000) : m.content,
+    }));
 
     const persona = professorId ? PROFESSOR_PERSONAS[professorId] : null;
     let systemInstruction = customPrompt ?? persona?.systemPrompt ?? `أنت أستاذ طبي خبير. أجب بالعربية الطبية الفصحى مع ذكر المصادر.`;
