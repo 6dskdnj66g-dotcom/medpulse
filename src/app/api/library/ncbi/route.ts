@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchNCBI, fetchPMCArticle, fetchBookContent, fetchArticleSummaries } from "@/lib/ncbi";
+import { searchNCBI, fetchPMCArticle, fetchBookContent, fetchArticleSummaries } from "@/features/library/services/ncbi";
 import { headers } from "next/headers";
 
 const rateLimitStore = new Map<string, number[]>();
@@ -69,3 +69,4 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: msg }, { status: 502 });
   }
 }
+

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { supabase, type Profile } from "@/lib/supabase";
+import { supabase, type Profile } from "@/core/database/supabase";
 import type { Session, User } from "@supabase/supabase-js";
 
 interface AuthContextType {
@@ -113,3 +113,4 @@ export function useSupabaseAuth() {
   if (!ctx) throw new Error("useSupabaseAuth must be used within SupabaseAuthProvider");
   return ctx;
 }
+

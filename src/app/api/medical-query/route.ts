@@ -1,6 +1,6 @@
 import { streamText } from 'ai';
 import { createGroq } from '@ai-sdk/groq';
-import { MEGA_SOURCE_PROMPT, SOURCE_STATS } from '@/lib/medicalSources';
+import { MEGA_SOURCE_PROMPT, SOURCE_STATS } from '@/features/library/services/medicalSources';
 
 const groq = createGroq({
   apiKey: process.env.GROQ_API_KEY,
@@ -57,4 +57,5 @@ export async function POST(req: Request) {
     );
   }
 }
+
 

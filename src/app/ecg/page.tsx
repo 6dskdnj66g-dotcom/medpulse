@@ -2,12 +2,12 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Activity, Loader2, AlertTriangle, CheckCircle, ArrowRight, Download, Save, Mic, MicOff } from "lucide-react";
-import { useLanguage } from "@/components/LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { exportMedicalReport } from "@/lib/pdfExport";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { supabase } from "@/lib/supabase";
+import { exportMedicalReport } from "@/core/utils/pdfExport";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { supabase } from "@/core/database/supabase";
 
 const ECG_PRESETS = [
   {
@@ -318,3 +318,4 @@ export default function ECGPage() {
     </div>
   );
 }
+

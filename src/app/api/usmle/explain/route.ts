@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { callGrok, sanitizeInput, checkRateLimit } from "@/lib/ai/grok";
+import { callGrok, sanitizeInput, checkRateLimit } from "@/core/ai/providers/grok";
 import { headers } from "next/headers";
 
 export async function POST(req: NextRequest) {
@@ -60,3 +60,4 @@ Provide a structured explanation with these sections:
 
   return NextResponse.json({ explanation: result.content });
 }
+

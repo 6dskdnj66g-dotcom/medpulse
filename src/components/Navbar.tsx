@@ -8,10 +8,10 @@ import {
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThemeToggle } from "./ThemeToggle";
-import { LanguageToggle } from "./LanguageToggle";
-import { useLanguage } from "./LanguageContext";
-import { useSupabaseAuth } from "./SupabaseAuthContext";
+import { ThemeToggle } from "@/core/ui/ThemeToggle";
+import { LanguageToggle } from "@/core/ui/LanguageToggle";
+import { useLanguage } from "@/core/i18n/LanguageContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { DevRoleToggle } from "./DevRoleToggle";
 
 const BOTTOM_NAV_ITEMS = [
@@ -285,3 +285,4 @@ export function Navbar() {
     </>
   );
 }
+

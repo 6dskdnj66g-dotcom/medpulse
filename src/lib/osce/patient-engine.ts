@@ -170,7 +170,7 @@ NOW respond as ${name}. Follow ALL rules. 1-2 sentences only.
 
 // ── Adapter: OSCEScenario → legacy OSCEStation shape ────────────────────────
 // Allows new scenarios to work with the existing simulator UI
-import type { OSCEStation, PatientPersona } from "@/lib/osceStations";
+import type { OSCEStation, PatientPersona } from "@/features/osce/services/osceStations";
 
 export function scenarioToStation(s: OSCEScenario): OSCEStation {
   const persona: PatientPersona = {
@@ -227,3 +227,4 @@ export function scenarioToStation(s: OSCEScenario): OSCEStation {
     tags: [s.specialty.toLowerCase(), s.stationType],
   };
 }
+

@@ -1,7 +1,7 @@
 import { streamText } from 'ai';
 import { createGroq } from '@ai-sdk/groq';
 const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
-import { AGENT_A_PROMPT, AGENT_B_PROMPT, AGENT_C_PROMPT } from '@/lib/mdt-agents';
+import { AGENT_A_PROMPT, AGENT_B_PROMPT, AGENT_C_PROMPT } from '@/core/ai/mdt-agents';
 
 export const maxDuration = 120;
 
@@ -101,4 +101,5 @@ export async function POST(req: Request) {
     });
   }
 }
+
 

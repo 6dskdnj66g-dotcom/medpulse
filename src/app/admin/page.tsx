@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import {
   Users, Activity, Globe, BookOpen, TrendingUp, Award,
   Eye, Smartphone, Monitor, RefreshCw, Database, Zap,

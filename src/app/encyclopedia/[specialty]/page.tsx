@@ -10,7 +10,7 @@ import {
   Send, Bot, AlertTriangle, Dna, FileText
 } from "lucide-react";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
-import { FlashcardDeck } from "@/components/FlashcardDeck";
+import { FlashcardDeck } from "@/core/ui/FlashcardDeck";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 

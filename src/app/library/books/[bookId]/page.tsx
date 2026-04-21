@@ -1,7 +1,7 @@
 // src/app/library/books/[bookId]/page.tsx
 // Server component — NCBI Bookshelf internal reader
 
-import { fetchBookContent, CURATED_BOOKS } from "@/lib/ncbi";
+import { fetchBookContent, CURATED_BOOKS } from "@/features/library/services/ncbi";
 import Link from "next/link";
 import { ArrowLeft, BookOpen, Users, Calendar, AlertCircle, ChevronRight } from "lucide-react";
 import { BookTools } from "./BookTools";

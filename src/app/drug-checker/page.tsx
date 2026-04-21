@@ -4,8 +4,8 @@ import { useState, useRef } from "react";
 import { Pill, X, AlertTriangle, ShieldCheck, Loader2, Search } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { useLanguage } from "@/components/LanguageContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 const COMMON_DRUGS = [
   "Warfarin", "Aspirin", "Clopidogrel", "Metformin", "Insulin",
@@ -222,3 +222,4 @@ export default function DrugCheckerPage() {
     </div>
   );
 }
+

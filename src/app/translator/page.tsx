@@ -7,8 +7,8 @@ import {
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { supabase } from "@/lib/supabase";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { supabase } from "@/core/database/supabase";
 
 export default function MedicalTranslatorPage() {
   const { user } = useSupabaseAuth();
@@ -178,3 +178,4 @@ export default function MedicalTranslatorPage() {
     </div>
   );
 }
+

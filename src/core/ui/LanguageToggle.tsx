@@ -1,6 +1,6 @@
 "use client";
 
-import { useLanguage } from "./LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 export function LanguageToggle() {
   const { lang, setLanguage } = useLanguage();
@@ -30,3 +30,4 @@ export function LanguageToggle() {
     </div>
   );
 }
+

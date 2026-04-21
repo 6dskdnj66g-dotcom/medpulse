@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { supabase } from "@/lib/supabase";
-import { exportMedicalReport } from "@/lib/pdfExport";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { supabase } from "@/core/database/supabase";
+import { exportMedicalReport } from "@/core/utils/pdfExport";
 import {
   FolderHeart, FileText, Activity, Calculator, Clock,
   Search, Download, Trash2,
@@ -298,3 +298,4 @@ export default function ClinicalRecordsPage() {
     </div>
   );
 }
+

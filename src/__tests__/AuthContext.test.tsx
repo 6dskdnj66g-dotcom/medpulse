@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { AuthProvider, useAuth } from '../components/AuthContext';
+import { AuthProvider, useAuth } from '@/core/auth/AuthContext';
 import { Role } from '../types/auth';
 import React from 'react';
 
@@ -113,3 +113,4 @@ describe('AuthContext', () => {
     expect(document.cookie).toContain(`user-role=${Role.STUDENT}`);
   });
 });
+

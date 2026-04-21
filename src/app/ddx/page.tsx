@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { useLanguage } from "@/components/LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 import { Stethoscope, AlertTriangle, Send, Loader2, RefreshCw } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
@@ -239,3 +239,4 @@ export default function DDxPage() {
     </div>
   );
 }
+

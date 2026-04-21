@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateText } from "ai";
 import { createGroq } from "@ai-sdk/groq";
-import { OSCE_STATIONS } from "@/lib/osceStations";
+import { OSCE_STATIONS } from "@/features/osce/services/osceStations";
 
 const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -165,3 +165,4 @@ Respond ONLY as valid JSON (no markdown, no code blocks, just raw JSON):
     return NextResponse.json({ error: "AI service error" }, { status: 500 });
   }
 }
+

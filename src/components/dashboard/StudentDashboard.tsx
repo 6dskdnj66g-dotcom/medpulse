@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ArrowRight, Search, Sparkles, Activity, ShieldCheck, Clock, Brain, HeartPulse } from "lucide-react";
-import { useLanguage } from "@/components/LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 const SAVED_SETS = [
   { id: 1, title: "Cardiology: Arrhythmias", count: "45 Flashcards", savedAt: "Saved 2 days ago" },
@@ -207,3 +207,4 @@ export function StudentDashboard() {
     </div>
   );
 }
+

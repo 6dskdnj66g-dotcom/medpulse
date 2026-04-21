@@ -1,7 +1,7 @@
 // src/app/library/articles/[pmcId]/page.tsx
 // Server component — full PMC open-access article reader
 
-import { fetchPMCArticle } from "@/lib/ncbi";
+import { fetchPMCArticle } from "@/features/library/services/ncbi";
 import { ArticleTools } from "./ArticleTools";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Users, Tag, BookOpen, AlertCircle } from "lucide-react";

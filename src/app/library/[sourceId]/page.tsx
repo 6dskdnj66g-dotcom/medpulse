@@ -7,8 +7,8 @@ import {
   AlertTriangle,
   ChevronDown, ChevronUp, ExternalLink
 } from "lucide-react";
-import { getTextbookBySlug, type TextbookChapter } from "@/lib/textbookRegistry";
-import { useLanguage } from "@/components/LanguageContext";
+import { getTextbookBySlug, type TextbookChapter } from "@/features/library/services/textbookRegistry";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 interface ChapterContent {
   definition: string;

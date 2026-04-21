@@ -5,8 +5,8 @@ import {
   AlertCircle, CheckCircle, Edit3, PenTool, ShieldCheck,
   TrendingUp, Users, BookOpen, Activity
 } from "lucide-react";
-import { useLanguage } from "@/components/LanguageContext";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 
 interface PlatformStats {
   total_users?: number;
@@ -273,3 +273,4 @@ export function ProfessorDashboard() {
     </div>
   );
 }
+

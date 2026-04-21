@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { Search, Brain, ShieldCheck, AlertTriangle, Send, Loader2, BookMarked, UserCheck } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useLanguage } from "@/components/LanguageContext";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 
 export default function MDTPage() {
   useSupabaseAuth();
@@ -210,3 +210,4 @@ export default function MDTPage() {
     </div>
   );
 }
+

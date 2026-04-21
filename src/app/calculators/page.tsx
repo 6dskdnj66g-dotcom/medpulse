@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { Calculator, Heart, Activity, Droplets, Scale, Brain, ChevronDown, ChevronUp, CheckCircle, Info, Download, Save, Loader2 } from "lucide-react";
-import { exportMedicalReport } from "@/lib/pdfExport";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { supabase } from "@/lib/supabase";
+import { exportMedicalReport } from "@/core/utils/pdfExport";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { supabase } from "@/core/database/supabase";
 
 // ── Calculator Definitions ─────────────────────────────────────────────────
 const CALCULATORS = [
@@ -562,3 +562,4 @@ export default function CalculatorsPage() {
     </div>
   );
 }
+

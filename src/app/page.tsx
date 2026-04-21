@@ -8,8 +8,8 @@ import {
   Brain, HeartPulse, BookOpen, Pill, Activity, Trophy,
   Users, FileText, ChevronRight, CheckCircle, X, Calculator
 } from "lucide-react";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { useLanguage } from "@/components/LanguageContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 // ── Honest feature list (only real features) ─────────────────────────────────
 const FEATURES = [
@@ -345,3 +345,4 @@ export default function LandingPage() {
     </div>
   );
 }
+

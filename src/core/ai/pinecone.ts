@@ -1,3 +1,5 @@
+import "server-only";
+
 // Pinecone adapter - gracefully handles missing configuration
 // The vector store is optional for local development.
 // When PINECONE_API_KEY is set, real RAG queries are made.

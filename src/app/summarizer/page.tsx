@@ -8,8 +8,8 @@ import {
   ShieldCheck, Brain, X, Copy, RefreshCw, Loader2, UploadCloud, Image as ImageIcon
 } from "lucide-react";
 import { useAchievement } from "@/components/AchievementContext";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { useLanguage } from "@/components/LanguageContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 interface SummaryResult {
   chiefComplaint?: string | null;
@@ -456,3 +456,4 @@ export default function SummarizerPage() {
     </div>
   );
 }
+

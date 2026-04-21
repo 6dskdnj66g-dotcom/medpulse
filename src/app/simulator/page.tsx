@@ -7,13 +7,13 @@ import {
   AlertCircle, Star
 } from "lucide-react";
 import Link from "next/link";
-import { useLanguage } from "@/components/LanguageContext";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import {
   OSCE_STATIONS, OSCE_SPECIALTIES, DIFFICULTY_LABELS, STATION_TYPE_LABELS,
   type OSCEStation
-} from "@/lib/osceStations";
+} from "@/features/osce/services/osceStations";
 
 const SPECIALTY_ICONS: Record<string, React.ElementType> = {
   "Internal Medicine": Stethoscope,
@@ -329,3 +329,4 @@ export default function Page() {
     </ErrorBoundary>
   );
 }
+

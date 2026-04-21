@@ -10,10 +10,10 @@ import {
   TestTube, Languages, FolderOpen, GraduationCap, ShieldCheck, Edit, Stethoscope
 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { LanguageToggle } from "@/components/LanguageToggle";
-import { useLanguage } from "@/components/LanguageContext";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { ThemeToggle } from "@/core/ui/ThemeToggle";
+import { LanguageToggle } from "@/core/ui/LanguageToggle";
+import { useLanguage } from "@/core/i18n/LanguageContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { DevRoleToggle } from "@/components/DevRoleToggle";
 
 export function Sidebar() {
@@ -202,3 +202,4 @@ export function Sidebar() {
     </div>
   );
 }
+

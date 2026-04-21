@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { Activity, ShieldAlert, ExternalLink } from "lucide-react";
-import { useLanguage } from "./LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 export function Footer() {
   const { lang, dir } = useLanguage();
@@ -101,3 +101,4 @@ export function Footer() {
     </footer>
   );
 }
+

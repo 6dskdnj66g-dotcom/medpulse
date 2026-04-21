@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useSupabaseAuth } from '@/components/SupabaseAuthContext';
+import { useSupabaseAuth } from '@/core/auth/SupabaseAuthContext';
 import {
   Bot, Lock, ShieldCheck, Send, X, Loader2,
   Brain, HeartPulse, Stethoscope, Microscope,
@@ -10,7 +10,7 @@ import {
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useLanguage } from "@/components/LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 interface Message {
   id: string;
@@ -507,3 +507,4 @@ export default function Page() {
     </ErrorBoundary>
   );
 }
+

@@ -1,5 +1,5 @@
 "use client";
-import { useLanguage } from "@/components/LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 import { Construction } from "lucide-react";
 
 export default function Page() {
@@ -19,3 +19,4 @@ export default function Page() {
     </div>
   );
 }
+

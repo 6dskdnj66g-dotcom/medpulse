@@ -8,10 +8,10 @@ import {
   Newspaper, Award, X, Lock, Unlock, ChevronRight, ArrowUpRight
 } from "lucide-react";
 import Link from "next/link";
-import { CURATED_BOOKS } from "@/lib/ncbi";
-import { ALL_MEDICAL_SOURCES, type MedicalSource } from "@/lib/medicalSources";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { useLanguage } from "@/components/LanguageContext";
+import { CURATED_BOOKS } from "@/features/library/services/ncbi";
+import { ALL_MEDICAL_SOURCES, type MedicalSource } from "@/features/library/services/medicalSources";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 // ── Type configs ─────────────────────────────────────────────────────────────
 const TYPE_CONFIG: Record<string, { labelAr: string; labelEn: string; icon: React.ElementType; color: string }> = {
@@ -621,3 +621,4 @@ export default function SourceLibraryPage() {
     </div>
   );
 }
+

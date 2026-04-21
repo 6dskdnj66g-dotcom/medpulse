@@ -4,10 +4,10 @@ import { useState } from "react";
 import { FileText, Loader2, ClipboardEdit, ShieldCheck, Copy, CheckCircle, Download, Save } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { exportMedicalReport } from "@/lib/pdfExport";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { supabase } from "@/lib/supabase";
-import { useLanguage } from "@/components/LanguageContext";
+import { exportMedicalReport } from "@/core/utils/pdfExport";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { supabase } from "@/core/database/supabase";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 const TEMPLATES = [
   {
@@ -233,3 +233,4 @@ export default function ClinicalNotesPage() {
     </div>
   );
 }
+

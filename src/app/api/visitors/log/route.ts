@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseAdmin } from '@/lib/supabase';
+import { createSupabaseAdmin } from '@/core/database/supabase';
 
 // POST /api/visitors/log — Track a page visit
 export async function POST(req: NextRequest) {
@@ -73,3 +73,4 @@ export async function GET(_req: NextRequest) {
     return NextResponse.json({ error: 'Failed to get visitor stats' }, { status: 500 });
   }
 }
+

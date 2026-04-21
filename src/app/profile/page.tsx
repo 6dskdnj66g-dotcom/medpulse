@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { useAchievement } from "@/components/AchievementContext";
 import Link from "next/link";
 import {

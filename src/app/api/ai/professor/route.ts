@@ -2,7 +2,7 @@
 import { streamText } from "ai";
 import { createGroq } from "@ai-sdk/groq";
 import { z } from "zod";
-import { sanitizeInput } from "@/lib/ai/grok";
+import { sanitizeInput } from "@/core/ai/providers/grok";
 
 export const maxDuration = 60;
 
@@ -121,3 +121,4 @@ export async function POST(req: Request) {
     return Response.json({ error: "AI service error" }, { status: 500 });
   }
 }
+

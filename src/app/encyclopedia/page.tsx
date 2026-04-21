@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
-import { useLanguage } from "@/components/LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 const SPECIALTIES = [
   {
@@ -448,3 +448,4 @@ export default function Page() {
     </ErrorBoundary>
   );
 }
+

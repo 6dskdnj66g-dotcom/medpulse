@@ -3,13 +3,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Navbar } from '@/components/Navbar';
-import { AuthProvider } from '@/components/AuthContext';
-import { ThemeProvider } from '@/components/ThemeProvider';
-import { AchievementProvider } from '@/components/AchievementContext';
-import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { SupabaseAuthProvider } from '@/components/SupabaseAuthContext';
-import { VisitorTracker } from '@/components/VisitorTracker';
-import { LanguageProvider } from '@/components/LanguageContext';
+import { AppProviders } from '@/core/providers/AppProviders';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
@@ -94,34 +88,23 @@ export default function RootLayout({
         suppressHydrationWarning
         style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', overflowX: 'hidden' }}
       >
-        <LanguageProvider>
-          <SupabaseAuthProvider>
-            <AuthProvider>
-              <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                <AchievementProvider>
-                  <VisitorTracker />
-                  {/* Mobile top nav */}
-                  <Navbar />
-                  {/* Desktop: sidebar + content */}
-                  <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-                    <Sidebar />
-                    <main
-                      className="flex-1 w-full flex flex-col"
-                      style={{ minWidth: 0 }}
-                    >
-                      <ErrorBoundary>
-                        <div className="flex-1" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
-                          {children}
-                        </div>
-                      </ErrorBoundary>
-                      <Footer />
-                    </main>
-                  </div>
-                </AchievementProvider>
-              </ThemeProvider>
-            </AuthProvider>
-          </SupabaseAuthProvider>
-        </LanguageProvider>
+        <AppProviders>
+          {/* Mobile top nav */}
+          <Navbar />
+          {/* Desktop: sidebar + content */}
+          <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+            <Sidebar />
+            <main
+              className="flex-1 w-full flex flex-col"
+              style={{ minWidth: 0 }}
+            >
+              <div className="flex-1" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
+                {children}
+              </div>
+              <Footer />
+            </main>
+          </div>
+        </AppProviders>
       </body>
     </html>
   );

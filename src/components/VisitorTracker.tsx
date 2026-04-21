@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { useSupabaseAuth } from "./SupabaseAuthContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 
 // Generates or retrieves a persistent session ID for the visitor
 function getSessionId(): string {

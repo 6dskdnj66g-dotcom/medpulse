@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { Upload, FileImage, Loader2, FileText, CheckCircle2 } from "lucide-react";
-import { useLanguage } from "@/components/LanguageContext";
+import { useLanguage } from "@/core/i18n/LanguageContext";
 
 export default function RadiologyPage() {
   const { lang, dir } = useLanguage();
@@ -158,3 +158,4 @@ export default function RadiologyPage() {
     </div>
   );
 }
+

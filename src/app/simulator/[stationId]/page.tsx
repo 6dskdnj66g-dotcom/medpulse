@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/app/simulator/[stationId]/page.tsx
 "use client";
 
@@ -9,10 +10,10 @@ import {
   RotateCcw, Home, ChevronRight, Activity, Brain, Mic, MicOff, Volume2, VolumeX
 } from "lucide-react";
 import Link from "next/link";
-import { useLanguage } from "@/components/LanguageContext";
-import { OSCE_STATIONS, DIFFICULTY_LABELS, STATION_TYPE_LABELS, type OSCEStation } from "@/lib/osceStations";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
-import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/core/i18n/LanguageContext";
+import { OSCE_STATIONS, DIFFICULTY_LABELS, STATION_TYPE_LABELS, type OSCEStation } from "@/features/osce/services/osceStations";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
+import { supabase } from "@/core/database/supabase";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -210,7 +211,7 @@ function BriefPhase({ station, onStart, isAr }: { station: OSCEStation; onStart:
               {isAr ? "توزيع الدرجات" : "Marking Domains"} — {station.markingScheme.totalMarks} {isAr ? "درجة" : "marks total"}
             </p>
             <div className="flex flex-wrap gap-2">
-              {station.markingScheme.domains.map(d => (
+              {station.markingScheme.domains.map( (d: any) => (
                 <span key={d.name} className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)]">
                   {d.name} <span className="text-[var(--text-tertiary)]">({d.maxMarks})</span>
                 </span>
@@ -446,7 +447,7 @@ function ActivePhase({
                     {isAr ? "الفحص السريري التفاعلي" : "Interactive Physical Exams"}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {station.interactiveExams.map((exam, idx) => (
+                    {station.interactiveExams.map( (exam: any, idx: number) => (
                       <button
                         key={idx}
                         onClick={() => {
@@ -561,14 +562,14 @@ function ActivePhase({
 
           {showScheme && (
             <div className="p-4 space-y-4">
-              {station.markingScheme.domains.map(d => (
+              {station.markingScheme.domains.map( (d: any) => (
                 <div key={d.name} className="space-y-2">
                   <p className="text-[11px] font-black text-[var(--text-primary)] flex items-center justify-between">
                     <span>{d.name}</span>
                     <span className="text-[var(--text-tertiary)]">{d.maxMarks}m</span>
                   </p>
                   <ul className="space-y-1">
-                    {d.criteria.map((c, j) => (
+                    {d.criteria.map( (c: any, j: number) => (
                       <li key={j} className="flex items-start gap-1.5 text-[11px] text-[var(--text-secondary)] font-medium">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[var(--color-medical-indigo)]/40 mt-1.5" />
                         <span>{c.item} <span className="text-[var(--text-tertiary)]">({c.marks})</span></span>
@@ -585,7 +586,7 @@ function ActivePhase({
               {isAr ? "نقاط التعلم" : "Learning Points"}
             </p>
             <ul className="space-y-2">
-              {station.learningPoints.map((lp, i) => (
+              {station.learningPoints.map( (lp: any, i: number) => (
                 <li key={i} className="flex items-start gap-2 text-[11px] text-[var(--text-secondary)] font-medium">
                   <Star className="w-3 h-3 text-amber-500 flex-shrink-0 mt-0.5" />
                   {lp}
@@ -717,7 +718,7 @@ function ResultsPhase({
           {isAr ? "النقاط التعليمية الرئيسية" : "Key Learning Points"}
         </p>
         <ul className="space-y-2">
-          {station.learningPoints.map((lp, i) => (
+          {station.learningPoints.map( (lp: any, i: number) => (
             <li key={i} className="flex items-start gap-2 text-[13px] text-[var(--text-secondary)] font-medium">
               <Star className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
               {lp}
@@ -793,7 +794,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
     }
   }, [user]);
 
-  const station = OSCE_STATIONS.find(s => s.id === stationId);
+  const station = OSCE_STATIONS.find( (s: any) => s.id === stationId);
 
   const [phase, setPhase] = useState<Phase>("brief");
   const [messages, setMessages] = useState<Message[]>([]);

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseAdmin } from '@/lib/supabase';
+import { createSupabaseAdmin } from '@/core/database/supabase';
 
 // POST /api/progress — Save a learning session
 export async function POST(req: NextRequest) {
@@ -69,3 +69,4 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Failed to fetch progress' }, { status: 500 });
   }
 }
+

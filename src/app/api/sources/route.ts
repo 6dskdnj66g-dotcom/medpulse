@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseAdmin } from '@/lib/supabase';
+import { createSupabaseAdmin } from '@/core/database/supabase';
 
 // GET /api/sources?type=journal&region=arab&specialty=Cardiology&q=search
 export async function GET(req: NextRequest) {
@@ -33,3 +33,4 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Failed to fetch sources' }, { status: 500 });
   }
 }
+

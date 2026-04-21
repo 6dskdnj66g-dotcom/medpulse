@@ -7,10 +7,10 @@ import {
   HeartPulse, MessageSquare, FileText, Trophy, Flame, Star,
   ChevronRight, CheckCircle, XCircle, Target, Users
 } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/core/auth/useAuth";
 import { useAchievement } from "@/components/AchievementContext";
-import { useLanguage } from "@/components/LanguageContext";
-import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/core/i18n/LanguageContext";
+import { supabase } from "@/core/database/supabase";
 
 const LEVEL_THRESHOLDS = [
   { level: 1, title: "Medical Student",         titleAr: "طالب طب",           xpRequired: 0,    color: "slate" },
@@ -68,7 +68,7 @@ const colorMap: Record<string, string> = {
 };
 
 export default function DashboardPage() {
-  const { user, isLoading } = useAuth();
+  const { user, loading: isLoading } = useAuth();
   const { xp } = useAchievement();
   const { lang } = useLanguage();
   const isAr = lang === "ar";
@@ -323,3 +323,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

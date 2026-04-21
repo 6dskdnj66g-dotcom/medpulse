@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseAdmin } from '@/lib/supabase';
-import { ALL_MEDICAL_SOURCES } from '@/lib/medicalSources';
+import { createSupabaseAdmin } from '@/core/database/supabase';
+import { ALL_MEDICAL_SOURCES } from '@/features/library/services/medicalSources';
 
 // POST /api/admin/seed-sources
 // Seeds all medical sources into Supabase database
@@ -60,3 +60,4 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to get stats' }, { status: 500 });
   }
 }
+

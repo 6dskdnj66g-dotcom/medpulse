@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSupabaseAuth } from "@/components/SupabaseAuthContext";
+import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { Mail, Lock, User, Eye, EyeOff, Brain, AlertCircle, CheckCircle } from "lucide-react";
 
 const ROLES = [

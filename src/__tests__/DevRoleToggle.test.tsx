@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { DevRoleToggle } from '../components/DevRoleToggle';
 import { Role } from '../types/auth';
 
-jest.mock('../components/AuthContext');
-import { useAuth } from '../components/AuthContext';
+jest.mock('@/core/auth/AuthContext');
+import { useAuth } from '@/core/auth/AuthContext';
 const mockUseAuth = useAuth as jest.Mock;
 
 describe('DevRoleToggle', () => {
@@ -67,3 +67,4 @@ describe('DevRoleToggle', () => {
     expect(toggleRole).toHaveBeenCalledWith(Role.STUDENT);
   });
 });
+
