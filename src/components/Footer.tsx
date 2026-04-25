@@ -59,9 +59,9 @@ export function Footer() {
           {/* Links */}
           <nav className="flex flex-wrap items-center gap-x-4 gap-y-1">
             {[
-              { labelAr: "سياسة الخصوصية", labelEn: "Privacy Policy",  href: "#" },
-              { labelAr: "شروط الاستخدام",  labelEn: "Terms of Use",    href: "#" },
-              { labelAr: "تواصل معنا",       labelEn: "Contact",         href: "#" },
+              { labelAr: "سياسة الخصوصية", labelEn: "Privacy Policy", href: "/privacy" },
+              { labelAr: "شروط الاستخدام",  labelEn: "About Us", href: "/about" },
+              { labelAr: "تواصل معنا",       labelEn: "Pricing", href: "/pricing" },
             ].map(l => (
               <Link
                 key={l.labelEn}
@@ -88,7 +88,7 @@ export function Footer() {
             © 2026 MedPulse AI · {isAr ? "جميع الحقوق محفوظة" : "All rights reserved"}
             {" · "}
             <span className="text-[var(--text-secondary)] font-semibold">
-              {isAr ? "بناء: Hassanin Salah" : "Built by Hassanin Salah"}
+              {isAr ? "بناء: Hasanain salah" : "Built by Hasanain salah"}
             </span>
           </p>
           <p className="text-[10px] text-[var(--text-tertiary)] font-medium text-center">
