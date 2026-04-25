@@ -20,8 +20,8 @@ export function Footer() {
           <ShieldAlert className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
           <p className="text-[11px] md:text-[12px] font-semibold text-amber-700 dark:text-amber-400 leading-relaxed">
             {isAr
-              ? "⚕️ تنبيه طبي: هذه المنصة مخصصة للتعليم الطبي والمساعدة البحثية فقط. لا تُغني عن استشارة طبيب مرخص أو التشخيص أو العلاج. في حالات الطوارئ اتصل بالإسعاف فوراً (911/997/998/999). المعلومات مبنية على إرشادات 2026 لكن لا تحل محل التقييم السريري الشخصي."
-              : "⚕️ Medical Disclaimer: This platform is for educational and research purposes only. It does not replace consultation with a licensed physician, diagnosis, or treatment. In emergencies, call emergency services immediately. Information is based on 2026 guidelines but does not substitute personal clinical assessment."}
+              ? "⚕️ تنبيه طبي: هذه المنصة مخصصة للتعليم الطبي والمساعدة البحثية فقط. لا تُغني عن استشارة طبيب مرخص أو التشخيص أو العلاج. في حالات الطوارئ اتصل بالإسعاف فوراً (911/997/998/999). المعلومات مبنية على إرشادات سريرية موثقة ولا تحل محل التقييم السريري الشخصي."
+              : "⚕️ Medical Disclaimer: This platform is for educational and research purposes only. It does not replace consultation with a licensed physician, diagnosis, or treatment. In emergencies, call emergency services immediately. Information is based on verified clinical guidelines but does not substitute personal clinical assessment."}
           </p>
         </div>
       </div>
@@ -60,8 +60,8 @@ export function Footer() {
           <nav className="flex flex-wrap items-center gap-x-4 gap-y-1">
             {[
               { labelAr: "سياسة الخصوصية", labelEn: "Privacy Policy", href: "/privacy" },
-              { labelAr: "شروط الاستخدام",  labelEn: "About Us", href: "/about" },
-              { labelAr: "تواصل معنا",       labelEn: "Pricing", href: "/pricing" },
+              { labelAr: "من نحن",           labelEn: "About Us",       href: "/about" },
+              { labelAr: "التسعير",          labelEn: "Pricing",        href: "/pricing" },
             ].map(l => (
               <Link
                 key={l.labelEn}
@@ -88,7 +88,7 @@ export function Footer() {
             © 2026 MedPulse AI · {isAr ? "جميع الحقوق محفوظة" : "All rights reserved"}
             {" · "}
             <span className="text-[var(--text-secondary)] font-semibold">
-              {isAr ? "بناء: Hasanain salah" : "Built by Hasanain salah"}
+              {isAr ? "بناء: Hassanin Salah" : "Built by Hassanin Salah"}
             </span>
           </p>
           <p className="text-[10px] text-[var(--text-tertiary)] font-medium text-center">

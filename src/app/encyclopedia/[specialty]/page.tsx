@@ -784,7 +784,7 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
                   <div className="flex items-center space-x-4">
                     <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-black text-xs text-slate-500">HP</div>
                     <div>
-                      <p className="text-sm font-black text-slate-800 dark:text-white">Hasanain Salah Noori</p>
+                      <p className="text-sm font-black text-slate-800 dark:text-white">Hassanin Salah</p>
                       <p className="text-[10px] font-bold text-slate-400 uppercase">Lead Clinical Reviewer</p>
                     </div>
                   </div>

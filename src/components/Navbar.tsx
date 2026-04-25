@@ -149,7 +149,7 @@ export function Navbar() {
               <span className="text-xl font-black bg-clip-text text-transparent bg-gradient-to-br from-indigo-500 via-teal-400 to-emerald-400 uppercase tracking-tighter block">
                 MedPulse
               </span>
-              <span className="text-[9px] font-black tracking-[0.25em] text-indigo-500/70 uppercase">AI ELITE</span>
+              <span className="text-[9px] font-black tracking-[0.25em] text-indigo-500/70 uppercase">AI</span>
             </div>
           </div>
           <button

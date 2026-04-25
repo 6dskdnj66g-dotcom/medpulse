@@ -21,6 +21,7 @@ export const translations = {
       clinicalModules: "Clinical Modules",
       clinicalTools: "Clinical Tools",
       libraryProgress: "Library & Progress",
+      learningTools: "Learning Tools",
       account: "Account",
     },
     nav: {
@@ -43,6 +44,12 @@ export const translations = {
       pathology: "Pathology AI",
       labResults: "Lab Results",
       localResources: "Local Curriculum",
+      srs: "Flashcard SRS",
+      reasoning: "Clinical Reasoning",
+      anatomy: "Anatomy Atlas",
+      imageBank: "Image Bank",
+      procedures: "Procedures",
+      saudiExams: "Saudi Exams",
     }
   },
   ar: {
@@ -66,6 +73,7 @@ export const translations = {
       clinicalTools: "الأدوات السريرية",
       libraryProgress: "المكتبة والتقدم",
       account: "الحساب",
+      learningTools: "أدوات التعلم",
     },
     nav: {
       encyclopedia: "الموسوعة الطبية",
@@ -87,6 +95,12 @@ export const translations = {
       pathology: "علم الأمراض",
       labResults: "نتائج المختبر",
       localResources: "المناهج المحلية",
+      srs: "بطاقات SRS",
+      reasoning: "التفكير السريري",
+      anatomy: "أطلس التشريح",
+      imageBank: "بنك الصور",
+      procedures: "الإجراءات السريرية",
+      saudiExams: "الاختبارات السعودية",
     }
   }
 };

@@ -7,7 +7,8 @@ import {
   Activity, LayoutDashboard, BookOpen, Bot, Brain, HeartPulse,
   Calculator, Pill, Trophy, TrendingUp, LogOut,
   Library, User, LayoutGrid, FileText, Scan, Microscope,
-  TestTube, Languages, FolderOpen, GraduationCap, ShieldCheck, Edit, Stethoscope
+  TestTube, Languages, FolderOpen, GraduationCap, ShieldCheck, Edit, Stethoscope,
+  Repeat, FlaskConical, Layers, Images, Video, Award
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/core/ui/ThemeToggle";
@@ -60,6 +61,17 @@ export function Sidebar() {
         { href: "/library",          icon: Library,       label: t.nav.library },
         { href: "/local-resources",  icon: GraduationCap, label: t.nav.localResources },
         { href: "/progress",         icon: TrendingUp,    label: t.nav.progress },
+      ],
+    },
+    {
+      titleKey: t.sections.learningTools,
+      items: [
+        { href: "/srs",          icon: Repeat,       label: t.nav.srs },
+        { href: "/reasoning",    icon: FlaskConical, label: t.nav.reasoning },
+        { href: "/anatomy",      icon: Layers,       label: t.nav.anatomy },
+        { href: "/image-bank",   icon: Images,       label: t.nav.imageBank },
+        { href: "/procedures",   icon: Video,        label: t.nav.procedures },
+        { href: "/saudi-exams",  icon: Award,        label: t.nav.saudiExams },
       ],
     },
     {

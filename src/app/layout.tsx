@@ -1,15 +1,17 @@
-// Build trigger: Vercel settings updated
 import type { Metadata } from 'next';
 import './globals.css';
-import { Sidebar } from '@/components/layout/Sidebar';
-import { Navbar } from '@/components/Navbar';
 import { AppProviders } from '@/core/providers/AppProviders';
-import { Footer } from '@/components/Footer';
+import { AppShell } from '@/components/layout/AppShell';
 
 export const metadata: Metadata = {
-  title: 'MedPulse AI | Clinical Intelligence Platform 2026',
-  description: 'AI-powered Arabic/English bilingual medical education platform — USMLE prep, MDT debates, OSCE simulator, ECG analysis, drug interaction checker, clinical calculators, and AI professors. Powered by Gemini 2.0 Flash.',
-  keywords: ['medical AI', 'clinical knowledge', 'USMLE', 'drug interactions', 'ECG', 'clinical calculators', 'healthcare', 'مستشفى', 'طب', 'ذكاء اصطناعي طبي', 'OSCE', 'MDT', 'Gemini'],
+  title: {
+    default: 'MedPulse AI — Clinical Intelligence Platform',
+    template: '%s | MedPulse AI',
+  },
+  description: 'Free Arabic-first medical education platform. USMLE prep, OSCE simulator, ECG analysis, clinical calculators, drug checker, AI professors. Built by Hassanin Salah.',
+  keywords: ['medical AI', 'clinical knowledge', 'USMLE', 'drug interactions', 'ECG', 'clinical calculators', 'healthcare', 'مستشفى', 'طب', 'ذكاء اصطناعي طبي', 'OSCE', 'MDT'],
+  authors: [{ name: 'Hassanin Salah' }],
+  creator: 'Hassanin Salah',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -19,8 +21,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'MedPulse AI',
-    title: 'MedPulse AI | Clinical Intelligence Platform 2026',
-    description: 'AI-powered bilingual medical education platform — USMLE, MDT debates, OSCE simulator, ECG analysis, drug checker, and more. Powered by Gemini 2.0 Flash.',
+    title: 'MedPulse AI — Clinical Intelligence Platform',
+    description: 'Free Arabic-first medical education platform. USMLE, MDT debates, OSCE simulator, ECG analysis, drug checker, and more.',
     locale: 'ar_SA',
     alternateLocale: ['en_US'],
     images: [
@@ -34,8 +36,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MedPulse AI | Clinical Intelligence Platform 2026',
-    description: 'AI-powered bilingual medical education — USMLE, MDT, OSCE, ECG, Drug Checker. Powered by Gemini 2.0 Flash.',
+    title: 'MedPulse AI — Clinical Intelligence Platform',
+    description: 'Free Arabic medical education — USMLE, MDT, OSCE, ECG, Drug Checker. Built by Hassanin Salah.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -65,7 +67,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#4f46e5" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
-        {/* Prevent flash of wrong theme on load */}
+        {/* Prevent flash of wrong theme */}
         <script dangerouslySetInnerHTML={{ __html: `
           (function() {
             try {
@@ -89,21 +91,7 @@ export default function RootLayout({
         style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', overflowX: 'hidden' }}
       >
         <AppProviders>
-          {/* Mobile top nav */}
-          <Navbar />
-          {/* Desktop: sidebar + content */}
-          <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-            <Sidebar />
-            <main
-              className="flex-1 w-full flex flex-col"
-              style={{ minWidth: 0 }}
-            >
-              <div className="flex-1" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
-                {children}
-              </div>
-              <Footer />
-            </main>
-          </div>
+          <AppShell>{children}</AppShell>
         </AppProviders>
       </body>
     </html>

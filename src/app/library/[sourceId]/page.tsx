@@ -521,7 +521,7 @@ export default function TextbookPage() {
                 )}
                 <div className="p-4 rounded-xl" style={{ background: "rgba(91,108,255,0.06)", border: "1px solid rgba(91,108,255,0.15)" }}>
                   <h3 className="font-extrabold text-xs mb-2" style={{ color: "var(--color-medical-indigo)" }}>
-                    🏛️ {isAr ? "توصيات الإرشادات 2026" : "2026 Guidelines Summary"}
+                    🏛️ {isAr ? "توصيات الإرشادات السريرية" : "Clinical Guidelines Summary"}
                   </h3>
                   <p className="text-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>{content.management.guidelines_summary}</p>
                 </div>

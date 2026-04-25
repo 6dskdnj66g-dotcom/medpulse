@@ -1,110 +1,101 @@
-# MedPulse — Phase 1 Audit Report
-**Date:** April 17, 2026  
-**Auditor:** Sovereign Architect Pass  
-**Status:** ✅ COMPLETE — Build passes 0 errors · 0 TypeScript errors · 36 pages
+# Phase 6 Forensic Audit — MedPulse AI
+Generated: 2026-04-25
 
 ---
 
-## Routes Audited (17 routes)
+## Layout Files (17 total — should be 2)
 
-| Route | Status | Notes |
-|-------|--------|-------|
-| `/` | ✅ Real | Role-based dashboard (Student/Professor) |
-| `/admin` | ✅ Real | Live Supabase analytics, visitor tracking |
-| `/auth/login` | ✅ Real | Supabase email + Google OAuth |
-| `/auth/register` | ✅ Real | Role-based registration |
-| `/calculators` | ✅ Real | 8 clinical calculators with formulas |
-| `/drug-checker` | ✅ Real | Drug interaction checker via Gemini |
-| `/ecg` | ✅ Real | ECG analysis + 6 preset scenarios |
-| `/encyclopedia` | ✅ Real | 13 specialties + sources registry |
-| `/encyclopedia/[specialty]` | ✅ Real | Per-specialty modules, AI chat, flashcards |
-| `/library` | ✅ Real | 200+ verified medical sources |
-| `/mdt` | ✅ Real | 3-agent MDT debate system |
-| `/notes` | ✅ Real | SOAP editor + AI + PDF export |
-| `/professors` | ✅ Real | 4 AI professor chatbots |
-| `/profile` | ✅ Real | Full CRUD, Supabase sync |
-| `/progress` | ✅ Real | XP, level, streak, session history |
-| `/records` | ✅ Real | Clinical portfolio from Supabase |
-| `/simulator` | ✅ Real | OSCE simulator with patient AI |
-| `/summarizer` | ✅ Real | Document summarizer + image support |
-| `/translator` | ✅ Real | AR↔EN medical translator |
-| `/usmle` | ✅ Real | 12-question bank with USMLE format |
+| File | Lines | Issue |
+|------|-------|-------|
+| `src/app/layout.tsx` | 111 | ROOT — renders Sidebar + Navbar on every page including landing |
+| `src/app/admin/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/calculators/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/dashboard/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/drug-checker/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/ecg/layout.tsx` | 6 | **Deprecated "Gemini 2.0 Flash" in metadata** — FIX |
+| `src/app/library/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/mdt/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/notes/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/professors/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/profile/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/progress/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/records/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/simulator/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/summarizer/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/translator/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
+| `src/app/usmle/layout.tsx` | 6 | Metadata only (passthrough) — KEEP |
 
----
+Note: the 16 per-route layouts are metadata-only (6 lines each). They are valid Next.js SEO optimization, not problematic. The real issue is the root layout.
 
-## Dead Code Purged
-
-| Item | Action |
-|------|--------|
-| `src/components/CalculatorsWidget.tsx` | ❌ DELETED — unused component |
-| `src/__tests__/CalculatorsWidget.test.tsx` | ❌ DELETED — tested deleted component |
-| `CalculatorsWidget` import in `layout.tsx` | ❌ REMOVED |
-| `GLOBAL_MEDICAL_SOURCES` export in encyclopedia page | 🔧 Changed to non-exported `const` |
-| `useRouter` import + `const router` in admin page | ❌ REMOVED |
-| Unused icon imports (Clock, Map, Stethoscope, AlertTriangle, Plus, ShieldCheck, ChevronRight, X, Bookmark, Camera, RotateCcw, Target, RefreshCw, Loader2, FileText, GraduationCap, BookMarked, PlayCircle, UserCircle, Languages, Filter, ExternalLink, Volume2, Database, Search, ShieldAlert) | ❌ REMOVED across 16 files |
+### Architecture Problem
+Root layout renders `<Navbar />` + `<Sidebar />` on EVERY page including:
+- Landing page `/` (should have NO shell)
+- Auth pages `/auth/*` (should have NO shell)
+Fix: `AppShell` client component that uses `usePathname()` to conditionally show/hide the shell.
 
 ---
 
-## Critical Bugs Fixed
+## Navigation Components
 
-| Bug | File | Fix |
-|-----|------|-----|
-| Missing icon imports (`Brain`, `Baby`, `Pill`, `Bone`, `Eye`, `Microscope`) | `encyclopedia/[specialty]/page.tsx` | Added to lucide imports |
-| `google()` called without import | `api/flashcards/route.ts` | Replaced `createGroq` with `google` from `@ai-sdk/google` |
-| `google()` called without import | `api/medical-summarizer/route.ts` | Same fix |
-| `google()` called without import | `api/simulator/route.ts` | Same fix |
-| `fetchProfile` used before declaration | `SupabaseAuthContext.tsx` | Moved to arrow function before `useEffect` |
-| `fetchRecords` used before declaration | `records/page.tsx` | Moved to arrow function before `useEffect` |
-| `setState` in `useEffect` body | `LanguageContext.tsx` | Converted to lazy `useState` initializer |
-| `setState` in `useEffect` body | `library/page.tsx` | Converted to lazy `useState` initializer |
-| `setState` in `useEffect` body | `progress/page.tsx` | Converted to lazy `useState` initializer |
-| `setLoading(false)` in `useEffect` | `SupabaseAuthContext.tsx` | Converted to `useState(isConfigured)` |
-| `<a href="/encyclopedia">` (internal link) | `admin/page.tsx` | Replaced with `<Link>` from next/link |
-| `Date.now()` in render phase | `admin/page.tsx` | Added `eslint-disable-next-line` (legitimate time display) |
-| `content: any` type | `records/page.tsx` | Changed to `Record<string, unknown>` with safe casting helper |
-| `metadata: Record<string, any>` | `lib/pdfExport.ts` | Changed to `Record<string, unknown>` |
-| `model: google('gemini-1.5-flash')` (deprecated) | 3 API routes | Updated to `gemini-2.0-flash` |
-| TypeScript errors suppressed globally | `next.config.ts` | Removed `ignoreBuildErrors` and `ignoreDuringBuilds` |
+| File | Role | Action |
+|------|------|--------|
+| `src/components/layout/Sidebar.tsx` | Desktop sidebar (hidden on mobile) | KEEP + fix |
+| `src/components/Sidebar.tsx` | Re-export only | KEEP (thin wrapper) |
+| `src/components/Navbar.tsx` | Mobile top bar + drawer + bottom tabs | KEEP + fix |
+
+The Sidebar and Navbar are complementary (different CSS breakpoints), not true duplicates.
+Real problem: root layout renders both on pages that should have no shell.
+Fix: wrap in `AppShell` that checks current path.
 
 ---
 
-## API Routes Status
+## Deprecated Marketing Text — 8 instances in 6 files
 
-| Endpoint | Status |
-|----------|--------|
-| `/api/mdt-debate` | ✅ Real — streams 3 Gemini agents |
-| `/api/ecg-analysis` | ✅ Real — ECG interpretation |
-| `/api/drug-interaction` | ✅ Real — Drug interaction checker |
-| `/api/generate-notes` | ✅ Real — SOAP note generator |
-| `/api/medical-query` | ✅ Real — Encyclopedia AI chat |
-| `/api/medical-summarizer` | ✅ Real — Document summarizer |
-| `/api/translate` | ✅ Real — Medical translator |
-| `/api/simulator` | ✅ Real — OSCE patient AI |
-| `/api/flashcards` | ✅ Real — AI flashcard generator |
-| `/api/admin/seed-sources` | ✅ Real — Seeds Supabase sources |
-| `/api/visitors/log` | ✅ Real — Analytics tracking |
-| `/api/progress` | ⚠️ Stub — minimal implementation |
-| `/api/sources` | ⚠️ Stub — minimal implementation |
+| File | Line | Issue | Fix |
+|------|------|-------|-----|
+| `src/app/layout.tsx` | 10,22,37 | "Clinical Intelligence Platform 2026" | Remove "2026" |
+| `src/app/layout.tsx` | 11,23,38 | "Powered by Gemini 2.0 Flash" | Remove Gemini refs |
+| `src/app/layout.tsx` | 12 | "Gemini" keyword | Remove from keywords |
+| `src/app/ecg/layout.tsx` | 4 | "powered by Gemini 2.0 Flash" | Fix description |
+| `src/components/Navbar.tsx` | 152 | "AI ELITE" branding tag | Remove |
+| `src/components/Footer.tsx` | 23 | "إرشادات 2026" in disclaimer | → "إرشادات سريرية" |
+| `src/app/api/medical-query/route.ts` | 13 | "April 2026" + "ELITE BOARD-CERTIFIED" | Fix |
+| `src/app/api/medical-query/route.ts` | 21,26 | "ESC 2026", "2026 Guidelines" | Fix |
+| `src/app/library/[sourceId]/page.tsx` | 524 | "2026 Guidelines Summary" | Fix |
 
 ---
 
-## Build Results
+## Spelling Errors ("Hasanain" → "Hassanin")
 
-```
-✓ Compiled successfully
-✓ Linting and type checks: 0 errors
-✓ Generating static pages (36/36)
-TypeScript errors: 0
-ESLint errors: 0
-```
+| File | Line | Text |
+|------|------|------|
+| `src/components/Footer.tsx` | 91 | "Hasanain salah" |
+| `src/app/about/page.tsx` | 68 | "Hasanain salah" |
+| `src/app/encyclopedia/[specialty]/page.tsx` | 787 | "Hasanain Salah Noori" |
 
 ---
 
-## Remaining Warnings (non-blocking)
+## Footer Link Issues
 
-All remaining warnings are benign:
-- `react-hooks/exhaustive-deps` on intentional single-fire effects
-- `@typescript-eslint/no-unused-vars` on ReactMarkdown `node` destructure parameters (already prefixed with `_`)
-- `react-hooks/set-state-in-effect` on `setMounted(true)` — standard SSR hydration pattern
+| Label (Arabic) | Label (English) | href | Issue |
+|----------------|-----------------|------|-------|
+| سياسة الخصوصية | Privacy Policy | /privacy | ✓ OK |
+| شروط الاستخدام | About Us | /about | Arabic = "Terms", English = "About" — mismatch |
+| تواصل معنا | Pricing | /pricing | Arabic = "Contact Us", English = "Pricing" — mismatch |
 
-These are suppressed with targeted inline `eslint-disable` comments where appropriate.
+Fix: Unify label → "About Us" / "من نحن" and "Pricing" / "التسعير"
+
+---
+
+## Landing Page Status
+- `app/page.tsx` already IS a proper landing page ✓
+- Shows landing to visitors, redirects logged-in users to /dashboard ✓
+- BUT root layout applies shell to it (Sidebar + Navbar visible) — needs AppShell fix
+
+---
+
+## Files NOT to Touch
+- `data/usmle-questions/` — question bank
+- `src/app/simulator/` — OSCE scenarios
+- `src/app/admin/` — admin functionality
+- Arabic translations in `src/lib/translations.ts`
