@@ -2,10 +2,49 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseAdmin } from '@/core/database/supabase';
 import { ALL_MEDICAL_SOURCES } from '@/features/library/services/medicalSources';
 
+// ── Auth guard helper ─────────────────────────────────────────────────────────
+async function verifyAdmin(req: NextRequest): Promise<{ authorized: boolean; error?: string }> {
+  const adminClient = createSupabaseAdmin();
+
+  // Extract access token from cookie or Authorization header
+  const accessToken =
+    req.cookies.get('sb-access-token')?.value ??
+    req.cookies.getAll().find(c => c.name.includes('auth-token'))?.value ??
+    req.headers.get('authorization')?.replace('Bearer ', '');
+
+  if (!accessToken) {
+    return { authorized: false, error: 'Authentication required' };
+  }
+
+  const { data: { user }, error } = await adminClient.auth.getUser(accessToken);
+  if (error || !user) {
+    return { authorized: false, error: 'Invalid or expired session' };
+  }
+
+  // Check profile role
+  const { data: profile } = await adminClient
+    .from('profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single();
+
+  if (!profile || profile.role !== 'admin') {
+    return { authorized: false, error: 'Admin access required' };
+  }
+
+  return { authorized: true };
+}
+
 // POST /api/admin/seed-sources
 // Seeds all medical sources into Supabase database
-export async function POST(_req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
+    // ── Verify admin access ─────────────────────────────────────────────────
+    const auth = await verifyAdmin(req);
+    if (!auth.authorized) {
+      return NextResponse.json({ error: auth.error }, { status: 403 });
+    }
+
     const adminClient = createSupabaseAdmin();
 
     // Clear existing sources first

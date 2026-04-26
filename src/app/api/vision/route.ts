@@ -1,68 +1,61 @@
 import { NextRequest } from "next/server";
+import { streamText } from "ai";
+import { google } from "@ai-sdk/google";
+
+export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   try {
     const { imageBase64, prompt } = await req.json();
 
-    if (!imageBase64) {
-      return new Response(JSON.stringify({ error: "Missing image" }), { status: 400 });
+    if (!imageBase64 || typeof imageBase64 !== "string") {
+      return new Response(JSON.stringify({ error: "Missing or invalid image" }), { status: 400 });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      return new Response(JSON.stringify({ error: "Missing GEMINI_API_KEY setting" }), { status: 500 });
+    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: "AI vision service not configured" }),
+        { status: 503 }
+      );
     }
 
-    const defaultPrompt = prompt || "Analyze this radiology image (X-ray/MRI). Provide a structured clinical radiology report including Findings, Impression, and Recommendations.";
+    const defaultPrompt =
+      prompt && typeof prompt === "string" && prompt.trim().length > 0
+        ? prompt.trim().slice(0, 2000)
+        : "Analyze this radiology image (X-ray/MRI). Provide a structured clinical radiology report including Findings, Impression, and Recommendations.";
 
     // Strip data url prefix if present
     const cleanBase64 = imageBase64.replace(/^data:image\/(png|jpeg|jpg|webp);base64,/, "");
 
-    const payload = {
-      contents: [
+    const result = await streamText({
+      model: google("gemini-2.0-flash"),
+      messages: [
         {
-          parts: [
+          role: "user",
+          content: [
+            { type: "text", text: defaultPrompt },
             {
-              text: defaultPrompt
+              type: "image",
+              image: cleanBase64,
             },
-            {
-              inlineData: {
-                mimeType: "image/jpeg",
-                data: cleanBase64
-              }
-            }
-          ]
-        }
+          ],
+        },
       ],
-      generationConfig: {
-        temperature: 0.2,
-      }
-    };
-
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent?alt=sse&key=${apiKey}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload)
+      temperature: 0.2,
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      return new Response(JSON.stringify({ error: errorText }), { status: response.status });
-    }
-
-    return new Response(response.body, {
-      status: 200,
+    return result.toTextStreamResponse({
       headers: {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache, no-transform',
-        'Connection': 'keep-alive',
+        "Content-Type": "text/plain; charset=utf-8",
+        "X-Content-Type-Options": "nosniff",
       },
     });
-
   } catch (error: unknown) {
     console.error("Vision API Error:", error);
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : String(error) }), { status: 500 });
+    return new Response(
+      JSON.stringify({ error: "Failed to analyze image. Please try again." }),
+      { status: 500 }
+    );
   }
 }
+

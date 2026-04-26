@@ -24,6 +24,27 @@ export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return new Response(
+        JSON.stringify({ error: "Valid messages array is required." }),
+        { status: 400 }
+      );
+    }
+
+    // Sanitize user messages to prevent prompt injection
+    const sanitizedMessages = messages.slice(-30).map((m: { role: string; content: string }) => ({
+      role: m.role === "assistant" ? "assistant" : "user",
+      content: m.role === "user"
+        ? m.content
+            .replace(/ignore\s+(?:all\s+)?previous\s+instructions?/gi, "")
+            .replace(/\[SYSTEM\]/gi, "")
+            .replace(/system\s*:/gi, "")
+            .replace(/<\|.*?\|>/g, "")
+            .trim()
+            .slice(0, 4000)
+        : m.content,
+    }));
+
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -34,7 +55,7 @@ export async function POST(req: Request) {
         model: "llama-3.3-70b-versatile",
         messages: [
           { role: "system", content: DDX_PROMPT },
-          ...messages
+          ...sanitizedMessages
         ],
         temperature: 0.1,
         stream: true

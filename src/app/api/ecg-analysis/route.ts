@@ -69,17 +69,26 @@ export async function POST(req: Request) {
   try {
     const { description } = await req.json();
 
-    if (!description || description.trim().length < 10) {
+    if (!description || typeof description !== "string" || description.trim().length < 10) {
       return new Response(
-        JSON.stringify({ error: "Please provide ECG findings or description." }),
+        JSON.stringify({ error: "Please provide ECG findings or description (min 10 characters)." }),
         { status: 400 }
       );
     }
 
+    // Sanitize input — strip prompt injection patterns, limit length
+    const sanitizedDesc = description
+      .replace(/ignore\s+(?:all\s+)?previous\s+instructions?/gi, "")
+      .replace(/\[SYSTEM\]/gi, "")
+      .replace(/system\s*:/gi, "")
+      .replace(/<\|.*?\|>/g, "")
+      .trim()
+      .slice(0, 4000);
+
     const result = await streamText({
       model: groq('llama-3.3-70b-versatile'),
       system: ECG_ANALYSIS_PROMPT,
-      prompt: `Interpret the following ECG findings systematically:\n\n${description}`,
+      prompt: `Interpret the following ECG findings systematically:\n\n${sanitizedDesc}`,
       temperature: 0.1,
     });
 

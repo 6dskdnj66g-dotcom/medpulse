@@ -43,14 +43,40 @@ export async function POST(req: Request) {
   try {
     const { drugs } = await req.json();
 
-    if (!drugs || drugs.length < 2) {
+    if (!Array.isArray(drugs) || drugs.length < 2) {
       return new Response(
         JSON.stringify({ error: "Please provide at least 2 drugs to check interactions." }),
         { status: 400 }
       );
     }
 
-    const drugList = drugs.join(', ');
+    if (drugs.length > 10) {
+      return new Response(
+        JSON.stringify({ error: "Maximum 10 drugs per interaction check." }),
+        { status: 400 }
+      );
+    }
+
+    // Sanitize drug names — strip injection patterns, limit length
+    const sanitizedDrugs = drugs
+      .filter((d: unknown) => typeof d === "string" && d.trim().length > 0)
+      .map((d: string) =>
+        d.replace(/ignore\s+(?:all\s+)?previous\s+instructions?/gi, "")
+         .replace(/\[SYSTEM\]/gi, "")
+         .replace(/system\s*:/gi, "")
+         .replace(/<\|.*?\|>/g, "")
+         .trim()
+         .slice(0, 100)
+      );
+
+    if (sanitizedDrugs.length < 2) {
+      return new Response(
+        JSON.stringify({ error: "Please provide at least 2 valid drug names." }),
+        { status: 400 }
+      );
+    }
+
+    const drugList = sanitizedDrugs.join(', ');
 
     const result = await streamText({
       model: groq('llama-3.3-70b-versatile'),

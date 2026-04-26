@@ -4,6 +4,7 @@ import { AppProviders } from '@/core/providers/AppProviders';
 import { AppShell } from '@/components/layout/AppShell';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://medpulse.ai'),
   title: {
     default: 'MedPulse AI — Clinical Intelligence Platform',
     template: '%s | MedPulse AI',
