@@ -24,7 +24,7 @@ export default function PricingPage() {
           </h1>
           <p className="text-lg text-[var(--text-secondary)] font-medium">
             {isAr 
-              ? "اختر الباقة التي تناسب رحلتك الطبية. جميع الباقات الآن مجانية بالكامل במהלך فترة الإطلاق التجريبي (Beta)." 
+              ? "اختر الباقة التي تناسب رحلتك الطبية. جميع الباقات مجانية بالكامل خلال فترة الإطلاق التجريبي (Beta)." 
               : "Choose the plan that fits your medical journey. All plans are currently free during our Beta launch."}
           </p>
         </div>
