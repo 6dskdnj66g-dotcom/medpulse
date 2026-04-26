@@ -1,0 +1,473 @@
+[
+  {
+    "id": "PRES-001", "category": "presentation", "title": "Abdominal pain",
+    "description": "Acute and chronic abdominal pain across surgical and medical causes",
+    "organSystems": ["Gastrointestinal", "Genitourinary", "Gynaecological"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE CG164", "NICE NG121"]
+  },
+  {
+    "id": "PRES-002", "category": "presentation", "title": "Chest pain",
+    "description": "Acute and chronic chest pain including cardiac, respiratory and musculoskeletal causes",
+    "organSystems": ["Cardiovascular", "Respiratory", "Musculoskeletal"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG185", "NICE CG95"]
+  },
+  {
+    "id": "PRES-003", "category": "presentation", "title": "Breathlessness",
+    "description": "Acute and chronic dyspnoea across cardiorespiratory and other causes",
+    "organSystems": ["Respiratory", "Cardiovascular"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["BTS/SIGN Asthma", "NICE NG115", "NICE NG185"]
+  },
+  {
+    "id": "PRES-004", "category": "presentation", "title": "Headache",
+    "description": "Primary and secondary headache syndromes including red flag presentations",
+    "organSystems": ["Neurological"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE CG150", "NICE NG12"]
+  },
+  {
+    "id": "PRES-005", "category": "presentation", "title": "Confusion and delirium",
+    "description": "Acute and chronic confusion in adults, delirium superimposed on dementia",
+    "organSystems": ["Neurological", "Psychiatric"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE CG103", "NICE NG97"]
+  },
+  {
+    "id": "PRES-006", "category": "presentation", "title": "Collapse and loss of consciousness",
+    "description": "Syncope, seizures and other causes of collapse",
+    "organSystems": ["Cardiovascular", "Neurological"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE CG109", "NICE CG137"]
+  },
+  {
+    "id": "PRES-007", "category": "presentation", "title": "Fever",
+    "description": "Fever in adults and children including sepsis recognition",
+    "organSystems": ["Infectious Disease", "Haematological"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG51", "NICE CG160"]
+  },
+  {
+    "id": "PRES-008", "category": "presentation", "title": "Palpitations",
+    "description": "Arrhythmias and non-cardiac causes of palpitations",
+    "organSystems": ["Cardiovascular"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE CG180", "NICE NG196"]
+  },
+  {
+    "id": "PRES-009", "category": "presentation", "title": "Nausea and vomiting",
+    "description": "Gastrointestinal, neurological, metabolic and drug-related causes",
+    "organSystems": ["Gastrointestinal", "Neurological", "Endocrine"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": []
+  },
+  {
+    "id": "PRES-010", "category": "presentation", "title": "Weight loss",
+    "description": "Unintentional weight loss including malignancy and systemic causes",
+    "organSystems": ["Gastrointestinal", "Endocrine", "Oncology"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE NG12"]
+  },
+  {
+    "id": "PRES-011", "category": "presentation", "title": "Fatigue and tiredness",
+    "description": "Chronic fatigue, anaemia and systemic disease",
+    "organSystems": ["Haematological", "Endocrine", "Psychiatric"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"]
+  },
+  {
+    "id": "PRES-012", "category": "presentation", "title": "Urinary symptoms",
+    "description": "LUTS, UTI, incontinence and haematuria",
+    "organSystems": ["Genitourinary"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG7", "NICE CG148"]
+  },
+  {
+    "id": "PRES-013", "category": "presentation", "title": "Dizziness and vertigo",
+    "description": "Central and peripheral causes of dizziness",
+    "organSystems": ["Neurological", "ENT"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"]
+  },
+  {
+    "id": "PRES-014", "category": "presentation", "title": "Rash",
+    "description": "Dermatological presentations including drug rashes and systemic disease",
+    "organSystems": ["Dermatological"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE CG153"]
+  },
+  {
+    "id": "PRES-015", "category": "presentation", "title": "Fits and seizures",
+    "description": "First seizure assessment, epilepsy management, status epilepticus",
+    "organSystems": ["Neurological"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE CG137", "NICE NG217"]
+  },
+  {
+    "id": "PRES-016", "category": "presentation", "title": "Joint pain and swelling",
+    "description": "Acute and chronic arthropathies, crystal arthropathies",
+    "organSystems": ["Musculoskeletal"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE NG100", "NICE NG136"]
+  },
+  {
+    "id": "PRES-017", "category": "presentation", "title": "Altered behaviour and psychiatric presentations",
+    "description": "Psychiatric emergencies, psychosis, depression, anxiety",
+    "organSystems": ["Psychiatric"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE CG90", "NICE CG38", "MHA 1983"]
+  },
+  {
+    "id": "PRES-018", "category": "presentation", "title": "Vaginal bleeding",
+    "description": "Abnormal uterine bleeding, obstetric emergencies, ectopic pregnancy",
+    "organSystems": ["Gynaecological", "Obstetric"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["RCOG", "NICE CG154"]
+  },
+  {
+    "id": "PRES-019", "category": "presentation", "title": "Haemoptysis",
+    "description": "Blood in sputum — respiratory, cardiac and vascular causes",
+    "organSystems": ["Respiratory"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE NG12", "NICE NG122"]
+  },
+  {
+    "id": "PRES-020", "category": "presentation", "title": "Dysphagia",
+    "description": "Oropharyngeal and oesophageal swallowing difficulty",
+    "organSystems": ["Gastrointestinal"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE NG83"]
+  },
+  {
+    "id": "PRES-021", "category": "presentation", "title": "Back pain",
+    "description": "Mechanical and serious (red flag) back pain",
+    "organSystems": ["Musculoskeletal", "Neurological"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE NG59"]
+  },
+  {
+    "id": "PRES-022", "category": "presentation", "title": "Oedema",
+    "description": "Peripheral and pulmonary oedema including heart failure and hypoalbuminaemia",
+    "organSystems": ["Cardiovascular", "Renal"],
+    "themes": ["readiness-to-practice"]
+  },
+  {
+    "id": "PRES-023", "category": "presentation", "title": "Overdose and poisoning",
+    "description": "Common overdoses (paracetamol, opioids, TCAs) and emergency management",
+    "organSystems": ["Toxicology"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["TOXBASE", "NICE CG134"]
+  },
+  {
+    "id": "PRES-024", "category": "presentation", "title": "Shock",
+    "description": "Hypovolaemic, cardiogenic, distributive and obstructive shock",
+    "organSystems": ["Cardiovascular"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"]
+  },
+  {
+    "id": "PRES-025", "category": "presentation", "title": "Neck lump",
+    "description": "Lymphadenopathy, thyroid and salivary gland masses",
+    "organSystems": ["ENT", "Endocrine", "Oncology"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE NG12"]
+  },
+  {
+    "id": "PRES-026", "category": "presentation", "title": "Trauma",
+    "description": "Primary and secondary survey, ATLS principles",
+    "organSystems": ["Emergency", "Surgical"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"]
+  },
+  {
+    "id": "PRES-027", "category": "presentation", "title": "Red eye",
+    "description": "Acute and chronic red eye including sight-threatening conditions",
+    "organSystems": ["Ophthalmic"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"]
+  },
+  {
+    "id": "COND-001", "category": "condition", "title": "Acute coronary syndromes (ACS)",
+    "description": "STEMI, NSTEMI, unstable angina — diagnosis and management",
+    "organSystems": ["Cardiovascular"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG185", "ESC STEMI 2023"]
+  },
+  {
+    "id": "COND-002", "category": "condition", "title": "Heart failure",
+    "description": "Systolic and diastolic heart failure, acute pulmonary oedema",
+    "organSystems": ["Cardiovascular"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG106"]
+  },
+  {
+    "id": "COND-003", "category": "condition", "title": "Atrial fibrillation",
+    "description": "Paroxysmal and permanent AF, rate vs rhythm control, anticoagulation",
+    "organSystems": ["Cardiovascular"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG196", "NICE CG180"]
+  },
+  {
+    "id": "COND-004", "category": "condition", "title": "Hypertension",
+    "description": "Primary and secondary hypertension, management and target organs",
+    "organSystems": ["Cardiovascular"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG136"]
+  },
+  {
+    "id": "COND-005", "category": "condition", "title": "Pulmonary embolism",
+    "description": "DVT, PE — risk stratification, CTPA, anticoagulation",
+    "organSystems": ["Respiratory", "Cardiovascular"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG158", "ESC PE 2019"]
+  },
+  {
+    "id": "COND-006", "category": "condition", "title": "Asthma",
+    "description": "Chronic management and acute exacerbations including life-threatening",
+    "organSystems": ["Respiratory"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["BTS/SIGN Asthma 2022"]
+  },
+  {
+    "id": "COND-007", "category": "condition", "title": "COPD",
+    "description": "GOLD classification, inhaler therapy, exacerbation management",
+    "organSystems": ["Respiratory"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG115", "GOLD 2023"]
+  },
+  {
+    "id": "COND-008", "category": "condition", "title": "Pneumonia",
+    "description": "CAP, HAP, aspiration — CURB-65, antibiotic choice",
+    "organSystems": ["Respiratory"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["BTS CAP 2009", "NICE NG191"]
+  },
+  {
+    "id": "COND-009", "category": "condition", "title": "Stroke and TIA",
+    "description": "Ischaemic stroke, haemorrhagic stroke, thrombolysis, secondary prevention",
+    "organSystems": ["Neurological", "Cardiovascular"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG128"]
+  },
+  {
+    "id": "COND-010", "category": "condition", "title": "Meningitis and encephalitis",
+    "description": "Bacterial and viral meningitis, LP timing, empirical antibiotics",
+    "organSystems": ["Neurological", "Infectious Disease"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG240"]
+  },
+  {
+    "id": "COND-011", "category": "condition", "title": "Epilepsy and seizures",
+    "description": "First seizure, epilepsy classification, AED choice, status epilepticus",
+    "organSystems": ["Neurological"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE CG137", "NICE NG217"]
+  },
+  {
+    "id": "COND-012", "category": "condition", "title": "Type 1 diabetes mellitus",
+    "description": "Insulin regimens, hypoglycaemia, DKA, long-term complications",
+    "organSystems": ["Endocrine"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG17", "NICE NG18", "JBDS DKA 2023"]
+  },
+  {
+    "id": "COND-013", "category": "condition", "title": "Type 2 diabetes mellitus",
+    "description": "Stepwise management, SGLT2i, GLP-1, HbA1c targets, complications screening",
+    "organSystems": ["Endocrine"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG28"]
+  },
+  {
+    "id": "COND-014", "category": "condition", "title": "Thyroid disorders",
+    "description": "Hypothyroidism, hyperthyroidism, thyroid storm, thyroid cancer",
+    "organSystems": ["Endocrine"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["BTA 2019", "NICE CG132"]
+  },
+  {
+    "id": "COND-015", "category": "condition", "title": "Acute kidney injury (AKI)",
+    "description": "KDIGO staging, pre-renal/renal/post-renal, nephrotoxins, renal replacement",
+    "organSystems": ["Renal"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG148", "KDIGO 2012"]
+  },
+  {
+    "id": "COND-016", "category": "condition", "title": "Chronic kidney disease (CKD)",
+    "description": "eGFR staging, proteinuria, anaemia of CKD, dialysis planning",
+    "organSystems": ["Renal"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG203"]
+  },
+  {
+    "id": "COND-017", "category": "condition", "title": "Sepsis",
+    "description": "Sepsis-3 definition, qSOFA, Sepsis-6 bundle, septic shock",
+    "organSystems": ["Infectious Disease"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG51", "Surviving Sepsis 2021"]
+  },
+  {
+    "id": "COND-018", "category": "condition", "title": "Gastrointestinal bleeding",
+    "description": "Upper and lower GI bleeding, Rockford/Blatchford scores, endoscopy",
+    "organSystems": ["Gastrointestinal"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE CG141", "BSG 2021"]
+  },
+  {
+    "id": "COND-019", "category": "condition", "title": "Inflammatory bowel disease",
+    "description": "Crohn's disease and ulcerative colitis — diagnosis and management",
+    "organSystems": ["Gastrointestinal"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG129", "NICE CG166"]
+  },
+  {
+    "id": "COND-020", "category": "condition", "title": "Liver disease",
+    "description": "Alcoholic liver disease, NAFLD, hepatitis B/C, cirrhosis, ascites",
+    "organSystems": ["Hepatology"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["EASL 2018", "NICE CG115"]
+  },
+  {
+    "id": "COND-021", "category": "condition", "title": "Anaemia",
+    "description": "Iron deficiency, B12/folate, haemolytic, aplastic — investigation and treatment",
+    "organSystems": ["Haematological"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["BSH 2021"]
+  },
+  {
+    "id": "COND-022", "category": "condition", "title": "Venous thromboembolism (VTE)",
+    "description": "DVT and PE prevention, prophylaxis, DOAC management",
+    "organSystems": ["Haematological", "Cardiovascular"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE NG89", "NICE NG158"]
+  },
+  {
+    "id": "COND-023", "category": "condition", "title": "Pre-eclampsia and eclampsia",
+    "description": "BP criteria, HELLP syndrome, magnesium sulphate, delivery decision",
+    "organSystems": ["Obstetric"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["NICE NG133", "RCOG GTG48"]
+  },
+  {
+    "id": "COND-024", "category": "condition", "title": "Appendicitis",
+    "description": "Alvarado score, imaging, laparoscopic appendicectomy",
+    "organSystems": ["Surgical"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE CG121"]
+  },
+  {
+    "id": "COND-025", "category": "condition", "title": "Bowel obstruction",
+    "description": "Small and large bowel obstruction — causes, imaging, management",
+    "organSystems": ["Surgical", "Gastrointestinal"],
+    "themes": ["readiness-to-practice"]
+  },
+  {
+    "id": "COND-026", "category": "condition", "title": "Ectopic pregnancy",
+    "description": "Risk factors, beta-hCG, TVUSS, surgical vs medical management",
+    "organSystems": ["Gynaecological"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["RCOG GTG21", "NICE CG154"]
+  },
+  {
+    "id": "COND-027", "category": "condition", "title": "Depression",
+    "description": "PHQ-9, SSRI choice, CBT, suicidality assessment",
+    "organSystems": ["Psychiatric"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE CG90", "NICE NG222"]
+  },
+  {
+    "id": "COND-028", "category": "condition", "title": "Psychosis and schizophrenia",
+    "description": "First episode psychosis, antipsychotic choice, mental health legislation",
+    "organSystems": ["Psychiatric"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE CG178", "MHA 1983"]
+  },
+  {
+    "id": "COND-029", "category": "condition", "title": "Anaphylaxis",
+    "description": "Adrenaline dosing, Resuscitation Council algorithm, biphasic reaction",
+    "organSystems": ["Allergy", "Emergency"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["RCUK Anaphylaxis 2021", "NICE CG134"]
+  },
+  {
+    "id": "COND-030", "category": "condition", "title": "Alcohol use disorder",
+    "description": "AUDIT score, withdrawal, Wernicke's encephalopathy, detox protocols",
+    "organSystems": ["Psychiatric", "Hepatology"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["NICE CG100", "NICE CG115"]
+  },
+  {
+    "id": "SKILL-001", "category": "skill", "title": "Venepuncture and IV cannulation",
+    "description": "Safe technique, complications, choosing appropriate vein",
+    "organSystems": ["Clinical Skills"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"]
+  },
+  {
+    "id": "SKILL-002", "category": "skill", "title": "ECG interpretation",
+    "description": "Systematic ECG reading, common arrhythmias, ST changes, axis",
+    "organSystems": ["Cardiovascular"],
+    "themes": ["readiness-to-practice"]
+  },
+  {
+    "id": "SKILL-003", "category": "skill", "title": "Arterial blood gas interpretation",
+    "description": "Systematic ABG analysis, acid-base disorders, compensation",
+    "organSystems": ["Respiratory"],
+    "themes": ["readiness-to-practice"]
+  },
+  {
+    "id": "SKILL-004", "category": "skill", "title": "Prescribing safely",
+    "description": "Drug dosing, interaction checking, allergy documentation, BNF use",
+    "organSystems": ["Clinical Skills"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["BNF", "GMC Good Prescribing"]
+  },
+  {
+    "id": "SKILL-005", "category": "skill", "title": "Urinary catheterisation",
+    "description": "Male and female catheterisation, sterile technique, complications",
+    "organSystems": ["Clinical Skills"],
+    "themes": ["readiness-to-practice"]
+  },
+  {
+    "id": "SKILL-006", "category": "skill", "title": "ABCDE assessment",
+    "description": "Systematic acutely unwell patient assessment and immediate intervention",
+    "organSystems": ["Emergency"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"]
+  },
+  {
+    "id": "PROF-001", "category": "professional-knowledge", "title": "Consent and capacity",
+    "description": "Mental Capacity Act 2005, Gillick competence, valid consent, DNACPR",
+    "organSystems": ["Professional"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["MCA 2005", "GMC Consent 2020"]
+  },
+  {
+    "id": "PROF-002", "category": "professional-knowledge", "title": "Confidentiality",
+    "description": "Data Protection Act, when to breach, GDPR, sharing with families",
+    "organSystems": ["Professional"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["GMC Confidentiality 2017"]
+  },
+  {
+    "id": "PROF-003", "category": "professional-knowledge", "title": "Safeguarding adults and children",
+    "description": "Recognition of abuse, mandatory reporting, safeguarding referral process",
+    "organSystems": ["Professional"],
+    "themes": ["readiness-to-practice", "delivering-safe-care"],
+    "keyGuidelines": ["Children Act 1989", "Care Act 2014"]
+  },
+  {
+    "id": "PROF-004", "category": "professional-knowledge", "title": "Duty of candour",
+    "description": "Statutory duty of candour, apologising to patients, never events",
+    "organSystems": ["Professional"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["GMC GMP 2024", "Health and Social Care Act 2008"]
+  },
+  {
+    "id": "PROF-005", "category": "professional-knowledge", "title": "End of life care",
+    "description": "Liverpool Care Pathway successor, DNACPR, anticipatory prescribing",
+    "organSystems": ["Professional", "Palliative"],
+    "themes": ["readiness-to-practice", "managing-uncertainty"],
+    "keyGuidelines": ["NICE NG31", "GMC EOLC 2010"]
+  },
+  {
+    "id": "PROF-006", "category": "professional-knowledge", "title": "Mental health legislation",
+    "description": "Mental Health Act 1983 (amended 2007) — sections 2, 3, 4, 5(2), 135, 136",
+    "organSystems": ["Psychiatric", "Professional"],
+    "themes": ["readiness-to-practice"],
+    "keyGuidelines": ["MHA 1983/2007"]
+  }
+]

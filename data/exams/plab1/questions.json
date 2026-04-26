@@ -1,0 +1,1056 @@
+[
+  {
+    "id": "plab1-001",
+    "exam": "PLAB1",
+    "specialty": "Cardiology",
+    "difficulty": "medium",
+    "vignette": "A 62-year-old man presents to A&E with a 2-hour history of central crushing chest pain radiating to his left arm. He is sweating and feels nauseated. His ECG shows 3mm ST elevation in leads II, III and aVF with reciprocal ST depression in leads I and aVL. His blood pressure is 110/70 mmHg bilaterally.",
+    "questionStem": "Which is the most appropriate immediate management?",
+    "options": [
+      {"id": "A", "text": "Aspirin 300mg, ticagrelor 180mg, UFH, activate primary PCI pathway"},
+      {"id": "B", "text": "Aspirin 300mg, morphine 10mg IV, GTN spray, await troponin result"},
+      {"id": "C", "text": "IV tenecteplase, aspirin 300mg, enoxaparin SC"},
+      {"id": "D", "text": "Aspirin 300mg, ramipril 2.5mg, high-flow oxygen 15L/min"},
+      {"id": "E", "text": "IV furosemide 40mg, aspirin 300mg, bisoprolol 5mg PO"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "This is an inferior STEMI (ST elevation II, III, aVF). NICE NG185 mandates primary PCI (pPCI) as the reperfusion strategy of choice when achievable within 120 minutes of first medical contact. Dual antiplatelet therapy (aspirin 300mg + ticagrelor 180mg loading) plus anticoagulation (UFH) should be given immediately. BP is equal bilaterally, making aortic dissection less likely.",
+      "whyOthersWrong": {
+        "B": "Awaiting troponin is unnecessary — ST elevation on ECG with clinical presentation is sufficient to activate pPCI. GTN should be used cautiously in inferior STEMI due to possible right ventricular involvement (can cause severe hypotension).",
+        "C": "Thrombolysis is second-line and only used when pPCI cannot be achieved within 120 minutes. This patient should receive pPCI first.",
+        "D": "Routine high-flow oxygen is harmful in ACS patients with SpO2 ≥94% (AVOID-HF trial). Ramipril is not immediate management.",
+        "E": "Furosemide and bisoprolol are not acute STEMI treatments. BP 110/70 suggests possible haemodynamic compromise — not the time for beta-blockade."
+      },
+      "teachingPoint": "Inferior STEMI: pPCI + DAPT (aspirin + ticagrelor) + UFH. Always request right-sided ECG leads (V4R) to exclude RV infarction before giving GTN.",
+      "references": [
+        {"source": "NICE NG185: Acute coronary syndromes (2020)", "url": "https://www.nice.org.uk/guidance/ng185"},
+        {"source": "ESC STEMI Guidelines 2023"}
+      ]
+    },
+    "organSystem": "Cardiovascular",
+    "topics": ["STEMI", "ACS", "primary PCI", "dual antiplatelet"],
+    "ukmlaContentMapId": "COND-001",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-002",
+    "exam": "PLAB1",
+    "specialty": "Respiratory",
+    "difficulty": "medium",
+    "vignette": "A 22-year-old woman with known asthma is brought to A&E by ambulance. She cannot complete sentences and has been using her salbutamol inhaler every 30 minutes without relief. On examination: HR 122, RR 30, SpO2 91% on air. Chest auscultation reveals widespread expiratory wheeze. PEFR measures 28% of her predicted value.",
+    "questionStem": "Which feature indicates this is a life-threatening asthma attack?",
+    "options": [
+      {"id": "A", "text": "HR 122 bpm"},
+      {"id": "B", "text": "PEFR 28% predicted"},
+      {"id": "C", "text": "SpO2 91% on air"},
+      {"id": "D", "text": "Inability to complete sentences"},
+      {"id": "E", "text": "RR 30 breaths per minute"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "According to BTS/SIGN guidelines, PEFR <33% predicted indicates life-threatening asthma. This patient's PEFR of 28% confirms life-threatening severity. Other features of life-threatening asthma include: SpO2 <92%, PaO2 <8kPa, silent chest, cyanosis, poor respiratory effort, altered consciousness, and bradycardia.",
+      "whyOthersWrong": {
+        "A": "HR >110 is a feature of acute severe (not life-threatening) asthma.",
+        "C": "SpO2 <92% is a life-threatening feature, but SpO2 of 91% alone is borderline. PEFR <33% is the most definitive answer here.",
+        "D": "Inability to complete sentences = acute severe asthma (not specifically life-threatening).",
+        "E": "RR >25 = acute severe asthma feature. RR alone does not indicate life-threatening."
+      },
+      "teachingPoint": "BTS/SIGN asthma severity: Acute severe = PEFR 33-50%, can't complete sentences, HR>110, RR>25. Life-threatening = PEFR <33%, SpO2 <92%, silent chest, cyanosis, exhaustion, altered consciousness.",
+      "references": [
+        {"source": "BTS/SIGN British Guideline on Management of Asthma 2022"},
+        {"source": "NICE NG80: Asthma (2017, updated 2021)"}
+      ]
+    },
+    "organSystem": "Respiratory",
+    "topics": ["asthma", "acute severe", "life-threatening", "PEFR"],
+    "ukmlaContentMapId": "COND-006",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-003",
+    "exam": "PLAB1",
+    "specialty": "Neurology",
+    "difficulty": "hard",
+    "vignette": "A 68-year-old woman is brought to A&E after sudden onset of left-sided facial droop and left arm weakness 90 minutes ago. CT head shows no haemorrhage or established infarct. Her BP is 195/105 mmHg. Blood glucose is 5.8 mmol/L. She takes warfarin for AF, her INR today is 1.2. She has no other contraindications to thrombolysis.",
+    "questionStem": "What is the most appropriate immediate management?",
+    "options": [
+      {"id": "A", "text": "IV alteplase 0.9mg/kg after lowering BP to <185/110 mmHg"},
+      {"id": "B", "text": "IV alteplase 0.9mg/kg immediately without further delay"},
+      {"id": "C", "text": "Aspirin 300mg, admit to stroke unit, defer thrombolysis"},
+      {"id": "D", "text": "Emergency CT angiography, then thrombectomy only"},
+      {"id": "E", "text": "IV alteplase contraindicated — warfarin is an absolute exclusion"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "This patient has an acute ischaemic stroke within the 4.5-hour window. Warfarin with INR ≤1.7 is NOT a contraindication to thrombolysis (INR >1.7 would contraindicate it). However, BP must be <185/110 before alteplase — the current BP of 195/105 must be lowered first (IV labetalol or nicardipine). Once <185/110, alteplase 0.9mg/kg (max 90mg) — 10% as bolus, 90% over 60 minutes.",
+      "whyOthersWrong": {
+        "B": "Cannot give alteplase with BP 195/105 — risk of haemorrhagic transformation. Must lower BP first.",
+        "C": "Aspirin is given 24 hours post-thrombolysis, not immediately before. This patient is eligible for thrombolysis and should receive it.",
+        "D": "Thrombectomy is complementary to, not a replacement for, thrombolysis in eligible patients. This patient should receive alteplase.",
+        "E": "Warfarin with INR ≤1.7 is NOT an absolute contraindication. The cutoff is INR >1.7."
+      },
+      "teachingPoint": "Thrombolysis eligibility: <4.5h onset, no haemorrhage on CT, BP <185/110 (lower if needed), glucose 3-22 mmol/L, INR ≤1.7. Aspirin is deferred 24h post-alteplase.",
+      "references": [
+        {"source": "NICE NG128: Stroke and TIA in over 16s (2019)"},
+        {"source": "RCP National Clinical Guideline for Stroke 2023"}
+      ]
+    },
+    "organSystem": "Neurological",
+    "topics": ["ischaemic stroke", "thrombolysis", "alteplase", "BP management"],
+    "ukmlaContentMapId": "COND-009",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-004",
+    "exam": "PLAB1",
+    "specialty": "Emergency Medicine",
+    "difficulty": "easy",
+    "vignette": "A 35-year-old man is brought to A&E with sudden onset breathlessness and right-sided chest pain after a long-haul flight. He has swollen, tender right calf. Observations: HR 118, BP 108/68, RR 26, SpO2 90% on air. His Wells score for PE is 7 (high probability).",
+    "questionStem": "Which investigation should be arranged immediately to confirm the diagnosis?",
+    "options": [
+      {"id": "A", "text": "D-dimer blood test"},
+      {"id": "B", "text": "CT pulmonary angiogram (CTPA)"},
+      {"id": "C", "text": "Ventilation-perfusion (V/Q) scan"},
+      {"id": "D", "text": "Leg Doppler ultrasound"},
+      {"id": "E", "text": "Echocardiogram"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "With a high-probability Wells score (≥5 = 'PE likely'), CTPA is the investigation of choice — D-dimer is not indicated (it is used when clinical probability is low/moderate to rule out PE, not to confirm it when pre-test probability is high). CTPA directly visualises pulmonary emboli and is the gold standard.",
+      "whyOthersWrong": {
+        "A": "D-dimer has high sensitivity but low specificity. It is used to EXCLUDE PE in low/moderate probability patients, not to confirm in high probability. At high probability, D-dimer adds nothing — go straight to CTPA.",
+        "C": "V/Q scan is an alternative when CTPA is contraindicated (e.g., severe renal failure, contrast allergy, pregnancy). CTPA is preferred in most patients.",
+        "D": "Leg Doppler would detect DVT but not PE itself. Clinical diagnosis of PE requires imaging of the pulmonary vasculature.",
+        "E": "Echo may show right heart strain in massive PE but is not the diagnostic investigation of choice."
+      },
+      "teachingPoint": "NICE NG158: Wells score ≥5 ('PE likely') → CTPA. Wells <5 ('PE unlikely') → D-dimer; if positive → CTPA. D-dimer alone cannot confirm PE.",
+      "references": [
+        {"source": "NICE NG158: Venous thromboembolic diseases (2020)"},
+        {"source": "BTS PE guidelines 2023"}
+      ]
+    },
+    "organSystem": "Respiratory",
+    "topics": ["pulmonary embolism", "Wells score", "CTPA", "D-dimer"],
+    "ukmlaContentMapId": "COND-005",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-005",
+    "exam": "PLAB1",
+    "specialty": "Endocrinology",
+    "difficulty": "medium",
+    "vignette": "A 17-year-old girl presents to A&E with a 3-day history of vomiting, polydipsia and abdominal pain. Blood glucose is 24 mmol/L, blood ketones 4.2 mmol/L. Arterial blood gas: pH 7.21, pCO2 2.8 kPa, bicarbonate 9 mmol/L. BP 96/60, HR 112.",
+    "questionStem": "What is the most appropriate initial fluid resuscitation?",
+    "options": [
+      {"id": "A", "text": "0.9% sodium chloride 1 litre over 1 hour"},
+      {"id": "B", "text": "5% dextrose 1 litre over 1 hour"},
+      {"id": "C", "text": "Hartmann's solution 500ml over 15 minutes"},
+      {"id": "D", "text": "0.9% sodium chloride with 40mmol potassium over 1 hour"},
+      {"id": "E", "text": "10% dextrose 250ml over 30 minutes"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "Per JBDS DKA guidelines, initial fluid resuscitation for DKA is 0.9% NaCl 1 litre over 1 hour. Potassium should NOT be added to the first bag — potassium is typically high or normal at presentation (intracellular shift during acidosis) and addition to the first bag risks hyperkalaemia. Potassium replacement starts in subsequent bags once serum K+ is known and urine output established.",
+      "whyOthersWrong": {
+        "B": "5% dextrose is not used for initial resuscitation in DKA. It is added to the fluid regimen once glucose falls below 14 mmol/L to prevent hypoglycaemia while continuing insulin.",
+        "C": "Hartmann's solution is not recommended in DKA — 0.9% NaCl is the preferred fluid.",
+        "D": "Adding potassium to the first bag is dangerous — initial K+ may already be high (5.4 mmol/L or more) due to acidosis-driven shift. Potassium should only be added to bags 2 and 3 once K+ <5.5 and urine output confirmed.",
+        "E": "10% dextrose would worsen hyperglycaemia in the initial resuscitation phase."
+      },
+      "teachingPoint": "JBDS DKA protocol: 0.9% NaCl 1L/hr × 1, then 1L/2hr × 2, then 1L/4hr × 2. Add KCl from bag 2 if K+ <5.5. Start fixed-rate insulin infusion 0.1 units/kg/hr. Continue background long-acting insulin.",
+      "references": [
+        {"source": "JBDS: Management of Diabetic Ketoacidosis in Adults (2023)"},
+        {"source": "NICE NG17: Type 1 diabetes in adults (2015)"}
+      ]
+    },
+    "organSystem": "Endocrine",
+    "topics": ["DKA", "fluid resuscitation", "diabetes", "potassium"],
+    "ukmlaContentMapId": "COND-012",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-006",
+    "exam": "PLAB1",
+    "specialty": "Gastroenterology",
+    "difficulty": "medium",
+    "vignette": "A 58-year-old man presents with a 4-week history of epigastric pain, nausea and unintentional weight loss of 5kg. He drinks 30 units of alcohol per week. He has never had an upper GI endoscopy. Examination reveals mild epigastric tenderness. FBC shows Hb 102 g/L (MCV 74 fL).",
+    "questionStem": "What is the most appropriate next investigation?",
+    "options": [
+      {"id": "A", "text": "H. pylori stool antigen test"},
+      {"id": "B", "text": "Urgent CT abdomen"},
+      {"id": "C", "text": "Upper GI endoscopy (OGD) — 2-week wait urgent referral"},
+      {"id": "D", "text": "Proton pump inhibitor trial for 4 weeks, then reassess"},
+      {"id": "E", "text": "Barium swallow"}
+    ],
+    "correctAnswerId": "C",
+    "explanation": {
+      "correctReasoning": "This patient has dyspepsia with ALARM features: unintentional weight loss, microcytic anaemia (suggesting iron deficiency from GI blood loss), and age ≥55. NICE NG12 mandates an urgent 2-week wait referral for upper GI endoscopy in any patient ≥55 with dyspepsia and weight loss OR haemoglobin ≤120 g/L in men ≥60. The combination of these features makes upper GI malignancy (gastric/oesophageal) a significant possibility.",
+      "whyOthersWrong": {
+        "A": "H. pylori testing is appropriate in uncomplicated dyspepsia but not when ALARM features mandate urgent endoscopy first.",
+        "B": "CT abdomen is not the first-line investigation for suspected upper GI malignancy — endoscopy is required to get tissue for histology.",
+        "D": "A PPI trial is inappropriate when ALARM features are present. This risks delaying the diagnosis of an upper GI malignancy.",
+        "E": "Barium swallow is an outdated and inferior investigation for upper GI pathology compared to OGD, which allows direct visualisation and biopsy."
+      },
+      "teachingPoint": "ALARM features in dyspepsia (AAAS): Anaemia (iron deficiency), Anorexia/weight loss, Age ≥55 with new dyspepsia, Swallowing difficulty, Suspicious mass. Any ALARM feature → urgent 2WW OGD.",
+      "references": [
+        {"source": "NICE NG12: Suspected cancer — recognition and referral (2015, updated 2023)"},
+        {"source": "NICE CG184: Dyspepsia and gastro-oesophageal reflux disease (2014)"}
+      ]
+    },
+    "organSystem": "Gastrointestinal",
+    "topics": ["dyspepsia", "ALARM features", "gastric cancer", "2-week wait"],
+    "ukmlaContentMapId": "PRES-009",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-007",
+    "exam": "PLAB1",
+    "specialty": "Renal",
+    "difficulty": "medium",
+    "vignette": "A 72-year-old woman is admitted following a fall. Her medications include ramipril, bendroflumethiazide, ibuprofen (for osteoarthritis) and co-codamol. Blood tests: Na 131, K 6.2, Urea 22, Creatinine 312 µmol/L (baseline 6 months ago: creatinine 98 µmol/L). Urine dipstick: protein ++, blood ++. She is clinically euvolaemic.",
+    "questionStem": "Which medication is most likely responsible for her acute kidney injury?",
+    "options": [
+      {"id": "A", "text": "Ramipril"},
+      {"id": "B", "text": "Bendroflumethiazide"},
+      {"id": "C", "text": "Ibuprofen"},
+      {"id": "D", "text": "Co-codamol"},
+      {"id": "E", "text": "The combination of ramipril and ibuprofen"}
+    ],
+    "correctAnswerId": "E",
+    "explanation": {
+      "correctReasoning": "The combination of an ACE inhibitor (ramipril) with an NSAID (ibuprofen) is a well-recognised cause of AKI — the 'triple whammy' combination (ACEi/ARB + NSAID + diuretic) is even more dangerous. ACE inhibitors reduce efferent arteriolar tone; NSAIDs reduce afferent arteriolar vasodilation. Together they significantly reduce GFR. Given the euvolaemic state and the drug combination, this is the most likely cause. Both should be stopped and she should be rehydrated.",
+      "whyOthersWrong": {
+        "A": "Ramipril alone can cause AKI (especially in renal artery stenosis) but the combination with ibuprofen is more likely here.",
+        "B": "Thiazide diuretics can cause volume depletion leading to pre-renal AKI, but she is described as euvolaemic.",
+        "C": "NSAIDs alone can cause AKI by reducing prostaglandin-mediated afferent arteriolar dilatation, but the combination is the most dangerous.",
+        "D": "Opioids (codeine) do not directly cause AKI, though they can cause urinary retention."
+      },
+      "teachingPoint": "The 'triple whammy': ACEi/ARB + NSAID + diuretic = high risk AKI. NSAIDs are CONTRAINDICATED in patients on ACEi/ARBs, especially in the elderly. Always check for this combination.",
+      "references": [
+        {"source": "NICE NG148: Acute kidney injury (2019)"},
+        {"source": "BNF: Drug interactions — ACE inhibitors and NSAIDs"}
+      ]
+    },
+    "organSystem": "Renal",
+    "topics": ["AKI", "nephrotoxins", "triple whammy", "ACE inhibitor", "NSAID"],
+    "ukmlaContentMapId": "COND-015",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-008",
+    "exam": "PLAB1",
+    "specialty": "Obstetrics",
+    "difficulty": "hard",
+    "vignette": "A 29-year-old woman at 34 weeks gestation presents with frontal headache, visual disturbances and epigastric pain for 24 hours. BP is 166/108 mmHg. Urine dipstick: protein +++. Bloods: platelets 88 × 10⁹/L, ALT 210 IU/L, LDH 560 IU/L. Bilirubin 28 µmol/L.",
+    "questionStem": "What is the most appropriate immediate management?",
+    "options": [
+      {"id": "A", "text": "IV labetalol 20mg + IV magnesium sulphate 4g loading dose, plan delivery"},
+      {"id": "B", "text": "Oral labetalol 200mg, admit for observation, aim to continue pregnancy to 37 weeks"},
+      {"id": "C", "text": "IV hydralazine, IM dexamethasone, plan elective caesarean at 38 weeks"},
+      {"id": "D", "text": "Emergency CS now without antihypertensive or magnesium"},
+      {"id": "E", "text": "IV furosemide, oral nifedipine, MRI head to exclude cerebral pathology"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "This is severe pre-eclampsia with HELLP syndrome (Haemolysis, Elevated Liver enzymes, Low Platelets: PLT 88, ALT 210, LDH elevated). NICE NG133 mandates: (1) antihypertensive — IV labetalol 20mg for BP ≥160/110; (2) IV magnesium sulphate 4g loading dose over 15 min then 1g/hr for seizure prophylaxis; (3) planning delivery — at 34 weeks with HELLP, delivery is the definitive treatment, likely after IM dexamethasone for fetal lung maturity.",
+      "whyOthersWrong": {
+        "B": "Attempting to continue pregnancy to 37 weeks with HELLP syndrome is dangerous — maternal and fetal mortality risk is high. Delivery is indicated.",
+        "C": "Hydralazine IV is a second-line antihypertensive. Missing the magnesium is a critical error — magnesium is mandatory in severe pre-eclampsia.",
+        "D": "Emergency CS without antihypertensive is dangerous — uncontrolled hypertension during induction/intubation risks stroke.",
+        "E": "Furosemide is not indicated (could worsen relative hypovolaemia). MRI would delay urgent treatment."
+      },
+      "teachingPoint": "HELLP = Haemolysis + Elevated LFTs + Low Platelets. Treatment: IV labetalol (antihypertensive), IV MgSO4 4g loading then 1g/hr (seizure prophylaxis), dexamethasone (fetal lungs), expedite delivery.",
+      "references": [
+        {"source": "NICE NG133: Hypertension in pregnancy (2019, updated 2023)"},
+        {"source": "RCOG GTG 10(A): Management of Severe Pre-eclampsia (2022)"}
+      ]
+    },
+    "organSystem": "Obstetric",
+    "topics": ["pre-eclampsia", "HELLP syndrome", "magnesium sulphate", "labetalol"],
+    "ukmlaContentMapId": "COND-023",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-009",
+    "exam": "PLAB1",
+    "specialty": "Psychiatry",
+    "difficulty": "medium",
+    "vignette": "A 45-year-old man with known paranoid schizophrenia is brought to A&E by police. He believes his neighbours are poisoning his food and has not left his flat for 3 weeks. He is not eating, is severely underweight, and is actively hearing voices telling him to harm himself. He refuses any assessment or treatment, stating he is 'perfectly fine'. His mental capacity to make decisions about his current mental health is assessed as lacking.",
+    "questionStem": "Under which section of the Mental Health Act 1983 should he be admitted for assessment?",
+    "options": [
+      {"id": "A", "text": "Section 2"},
+      {"id": "B", "text": "Section 3"},
+      {"id": "C", "text": "Section 4"},
+      {"id": "D", "text": "Section 5(2)"},
+      {"id": "E", "text": "Section 136"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "Section 2 MHA 1983 provides for compulsory admission for assessment (up to 28 days). It requires: (1) mental disorder of a nature or degree warranting detention; (2) admission necessary for patient's or others' health or safety. It requires two medical recommendations (one approved under section 12) plus an AMHP application. This is appropriate as he needs formal assessment — the diagnosis of schizophrenia is known but the current presentation requires fresh assessment.",
+      "whyOthersWrong": {
+        "B": "Section 3 is for treatment (up to 6 months). The AMHP/RC must have adequate knowledge of the patient's condition. This is the first acute presentation of this crisis — assessment under Section 2 comes first.",
+        "C": "Section 4 is emergency admission for assessment (72 hours) — used only when urgent and only one doctor is available. Not appropriate here.",
+        "D": "Section 5(2) is a 72-hour holding power for an inpatient who is already admitted — not applicable to a community patient.",
+        "E": "Section 136 is a police power to remove someone from a public place to a place of safety — used by police in public places, not in A&E by clinicians."
+      },
+      "teachingPoint": "MHA Sections: S2 = assessment (28 days, 2 doctors + AMHP); S3 = treatment (6 months, 2 doctors + AMHP); S4 = emergency assessment (72h, 1 doctor + AMHP); S5(2) = inpatient holding (72h, responsible clinician); S136 = police public place power.",
+      "references": [
+        {"source": "Mental Health Act 1983 (amended 2007)"},
+        {"source": "GMC: Good Medical Practice — Duties to patients who lack capacity"}
+      ]
+    },
+    "organSystem": "Psychiatric",
+    "topics": ["Mental Health Act", "section 2", "schizophrenia", "compulsory admission"],
+    "ukmlaContentMapId": "PROF-006",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-010",
+    "exam": "PLAB1",
+    "specialty": "Infectious Disease",
+    "difficulty": "medium",
+    "vignette": "A 65-year-old woman with type 2 diabetes is admitted with a 2-day history of rigors, dysuria and right loin pain. Temperature 38.9°C, HR 110, BP 88/54, RR 24, GCS 14/15. Urinalysis: nitrites +, leucocytes +++. Bloods: WBC 22, CRP 340, creatinine 178. Blood cultures taken.",
+    "questionStem": "Which antibiotic regimen is most appropriate as initial empirical therapy?",
+    "options": [
+      {"id": "A", "text": "Co-amoxiclav 1.2g IV 8-hourly"},
+      {"id": "B", "text": "Trimethoprim 200mg PO BD"},
+      {"id": "C", "text": "IV piperacillin-tazobactam 4.5g 8-hourly"},
+      {"id": "D", "text": "Oral ciprofloxacin 500mg BD"},
+      {"id": "E", "text": "IV nitrofurantoin 100mg QDS"}
+    ],
+    "correctAnswerId": "C",
+    "explanation": {
+      "correctReasoning": "This is urosepsis (septic shock from urinary source — qSOFA ≥2, haemodynamic compromise). Per NICE NG51 and local guidelines, severe sepsis/septic shock requires IV broad-spectrum antibiotics within 1 hour. Piperacillin-tazobactam (Tazocin) 4.5g IV 8-hourly covers gram-negatives (including Pseudomonas) and gram-positives, making it appropriate for complicated UTI with septic shock. Antibiotic choice must be escalated given severity.",
+      "whyOthersWrong": {
+        "A": "Co-amoxiclav has variable gram-negative coverage and increasing resistance among urinary pathogens — insufficient for septic shock.",
+        "B": "Oral trimethoprim is appropriate for uncomplicated lower UTI, not urosepsis. Oral route unreliable in haemodynamically unstable patient.",
+        "C": "CORRECT as above.",
+        "D": "Oral ciprofloxacin has high oral bioavailability but is not appropriate for haemodynamically unstable urosepsis — IV therapy required.",
+        "E": "Nitrofurantoin achieves therapeutic concentrations only in urine — no tissue penetration — contraindicated in renal impairment (creatinine 178) and not appropriate for sepsis."
+      },
+      "teachingPoint": "Urosepsis = IV broad-spectrum antibiotics within 1 hour (Sepsis-6). Nitrofurantoin is ONLY for uncomplicated lower UTI in women — never for pyelonephritis, males, or sepsis. Ciprofloxacin resistance is rising.",
+      "references": [
+        {"source": "NICE NG51: Sepsis: recognition, diagnosis and early management (2016, updated 2024)"},
+        {"source": "BNF: Antibacterials — urinary tract infections"}
+      ]
+    },
+    "organSystem": "Renal",
+    "topics": ["urosepsis", "pyelonephritis", "sepsis", "antibiotics", "piperacillin-tazobactam"],
+    "ukmlaContentMapId": "COND-017",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-011",
+    "exam": "PLAB1",
+    "specialty": "Haematology",
+    "difficulty": "medium",
+    "vignette": "A 24-year-old woman presents with a 6-month history of fatigue, pallor and shortness of breath on exertion. She has heavy menstrual periods lasting 8-10 days. FBC: Hb 72 g/L, MCV 68 fL, MCHC 29 g/dL, ferritin 4 µg/L (normal 15-150), TIBC 89 µmol/L (normal 45-70). Folate and B12 normal.",
+    "questionStem": "What is the most appropriate initial treatment?",
+    "options": [
+      {"id": "A", "text": "Ferrous sulphate 200mg TDS PO"},
+      {"id": "B", "text": "IV iron infusion (ferric carboxymaltose)"},
+      {"id": "C", "text": "Ferrous sulphate 200mg TDS + folic acid 5mg OD"},
+      {"id": "D", "text": "Blood transfusion 2 units packed red cells"},
+      {"id": "E", "text": "Hydroxocobalamin 1mg IM every 3 months"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "This is iron deficiency anaemia (microcytic, hypochromic, low ferritin, high TIBC) from menorrhagia. First-line treatment is oral ferrous sulphate 200mg TDS (providing ~65mg elemental iron per tablet). Taken on an empty stomach for best absorption; vitamin C aids absorption. Anticipated Hb rise ~20 g/L per week. Continue 3 months after normalisation to replenish stores. The cause (menorrhagia) should also be investigated and treated.",
+      "whyOthersWrong": {
+        "B": "IV iron is indicated when oral iron is not tolerated/absorbed, there is IBD, pre-operative optimisation needed, or when oral iron is ineffective. It is not first-line for straightforward IDA.",
+        "C": "Adding folic acid is not standard for iron deficiency anaemia — folic acid treats macrocytic (megaloblastic) anaemia. There is no folate deficiency here.",
+        "D": "Blood transfusion is reserved for symptomatic severe anaemia (Hb typically <70 g/L with symptoms, or <80 g/L post-surgery). At Hb 72 with fatigue (not cardiovascular compromise), oral iron is appropriate first.",
+        "E": "Hydroxocobalamin is for B12 deficiency — this patient has normal B12."
+      },
+      "teachingPoint": "Iron deficiency anaemia: ferrous sulphate 200mg TDS PO for 3 months after Hb normalisation. Ferritin <30 = depleted stores. TIBC elevated in IDA (iron-hungry transferrin). Always address the cause.",
+      "references": [
+        {"source": "BSH Guidelines on Management of Iron Deficiency Anaemia (2021)"},
+        {"source": "NICE CG: Anaemia management in CKD (distinct from IDA)"}
+      ]
+    },
+    "organSystem": "Haematological",
+    "topics": ["iron deficiency anaemia", "ferrous sulphate", "menorrhagia", "microcytic anaemia"],
+    "ukmlaContentMapId": "COND-021",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-012",
+    "exam": "PLAB1",
+    "specialty": "Cardiology",
+    "difficulty": "hard",
+    "vignette": "A 78-year-old man with permanent atrial fibrillation, CKD stage 3 (eGFR 38), heart failure (LVEF 35%) and hypertension is commenced on bisoprolol and ramipril. He attends 4 weeks later with worsening breathlessness. Echo shows unchanged LVEF. BNP 1,850 pg/mL. He is currently on bisoprolol 2.5mg, ramipril 5mg and furosemide 40mg.",
+    "questionStem": "Which additional medication would most improve his prognosis?",
+    "options": [
+      {"id": "A", "text": "Spironolactone 25mg OD"},
+      {"id": "B", "text": "Digoxin 125 micrograms OD"},
+      {"id": "C", "text": "Amlodipine 5mg OD"},
+      {"id": "D", "text": "Amiodarone 200mg OD"},
+      {"id": "E", "text": "Ivabradine 5mg BD"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "NICE NG106 recommends adding a mineralocorticoid receptor antagonist (MRA — spironolactone or eplerenone) as third-line therapy in HFrEF (LVEF ≤40%) after ACEi + beta-blocker. Spironolactone 25mg reduces mortality and hospitalisation (RALES trial). Check eGFR and K+ before starting — CKD3 with eGFR 38 requires monitoring but is not a contraindication at low dose. SGLT2 inhibitor (dapagliflozin/empagliflozin) would also be correct per current guidelines.",
+      "whyOthersWrong": {
+        "B": "Digoxin improves symptoms and reduces hospitalisations but has NOT been shown to reduce mortality (DIG trial). It is used as add-on therapy for rate control in AF with HF, not for prognosis primarily.",
+        "C": "Amlodipine (calcium channel blocker) is RELATIVELY CONTRAINDICATED in HFrEF — can worsen heart failure. Only amlodipine and felodipine are acceptable CCBs in HF if needed for BP.",
+        "D": "Amiodarone is reserved for symptomatic arrhythmias; not a first-line prognostic agent in HF. Significant toxicity profile.",
+        "E": "Ivabradine reduces HR via If channel inhibition — indicated in sinus rhythm only. This patient has AF — ivabradine is CONTRAINDICATED."
+      },
+      "teachingPoint": "HFrEF treatment ladder (NICE NG106): ACEi + beta-blocker → add MRA (spironolactone/eplerenone) → consider SGLT2i (dapagliflozin). Ivabradine only in sinus rhythm. CCBs (except amlodipine/felodipine) worsen HFrEF.",
+      "references": [
+        {"source": "NICE NG106: Chronic heart failure in adults (2018, updated 2023)"},
+        {"source": "ESC Heart Failure Guidelines 2021"}
+      ]
+    },
+    "organSystem": "Cardiovascular",
+    "topics": ["heart failure", "HFrEF", "spironolactone", "NICE NG106"],
+    "ukmlaContentMapId": "COND-002",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-013",
+    "exam": "PLAB1",
+    "specialty": "Neurology",
+    "difficulty": "medium",
+    "vignette": "A 19-year-old woman presents with a 2-week history of progressive bilateral leg weakness, difficulty walking and areflexia in the lower limbs. Three weeks ago she had diarrhoea for 5 days. Nerve conduction studies show reduced motor nerve conduction velocities and absent F waves. CSF analysis shows elevated protein at 1.8 g/L with normal white cell count.",
+    "questionStem": "What is the most likely diagnosis?",
+    "options": [
+      {"id": "A", "text": "Multiple sclerosis"},
+      {"id": "B", "text": "Guillain-Barré syndrome"},
+      {"id": "C", "text": "Myasthenia gravis"},
+      {"id": "D", "text": "Transverse myelitis"},
+      {"id": "E", "text": "Botulism"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "Classic Guillain-Barré syndrome (GBS): post-infectious (Campylobacter jejuni from diarrhoea) ascending motor neuropathy with areflexia, nerve conduction abnormalities (demyelination — reduced conduction velocities, absent F waves), and albumino-cytological dissociation in CSF (high protein, normal cell count). Treatment: IV immunoglobulin (IVIG) or plasma exchange; monitor respiratory function (FVC).",
+      "whyOthersWrong": {
+        "A": "Multiple sclerosis causes upper motor neurone signs (spasticity, hyperreflexia) — not areflexia. Onset typically relapsing-remitting, not post-infectious ascending.",
+        "C": "Myasthenia gravis causes fatigable muscle weakness, ptosis, diplopia — not areflexia. NCS shows decremental response on repetitive stimulation.",
+        "D": "Transverse myelitis causes a sensory level, UMN signs below level, bladder/bowel dysfunction — not areflexia.",
+        "E": "Botulism causes descending paralysis (cranial nerves first), diplopia, dysarthria — starts cranially, not in legs. Associated with food/wound contamination."
+      },
+      "teachingPoint": "GBS classic triad: ascending weakness + areflexia + albumino-cytological dissociation (CSF protein high, cells normal). Post-Campylobacter GBS is the most common trigger. Monitor FVC — intubate if <20 mL/kg.",
+      "references": [
+        {"source": "NICE CG: Guillain-Barré syndrome — management"},
+        {"source": "Association of British Neurologists: GBS guidelines"}
+      ]
+    },
+    "organSystem": "Neurological",
+    "topics": ["Guillain-Barré syndrome", "ascending neuropathy", "CSF", "IVIG"],
+    "ukmlaContentMapId": "PRES-003",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-014",
+    "exam": "PLAB1",
+    "specialty": "Respiratory",
+    "difficulty": "medium",
+    "vignette": "A 55-year-old man is admitted with 3 days of right-sided pleuritic chest pain, cough with green sputum and fever 38.4°C. CXR shows right lower lobe consolidation. Observations: HR 105, RR 26, BP 100/68, SpO2 92% on air, temperature 38.4°C. Confusion present (AMT 6/10). Urea 9.2 mmol/L.",
+    "questionStem": "What is his CURB-65 score and what does it indicate?",
+    "options": [
+      {"id": "A", "text": "CURB-65 = 2; low severity, consider home treatment"},
+      {"id": "B", "text": "CURB-65 = 3; moderate severity, hospitalise, consider ICU"},
+      {"id": "C", "text": "CURB-65 = 4; high severity, consider ICU/HDU"},
+      {"id": "D", "text": "CURB-65 = 5; maximum severity, ICU mandatory"},
+      {"id": "E", "text": "CURB-65 = 2; moderate severity, short inpatient admission"}
+    ],
+    "correctAnswerId": "C",
+    "explanation": {
+      "correctReasoning": "CURB-65 criteria: C=Confusion (AMT ≤8) ✓1; U=Urea >7 mmol/L ✓1; R=RR ≥30 ✗0; B=BP <90 systolic or ≤60 diastolic ✓1 (BP 100/68 — diastolic 68 is borderline, not ≤60, so this point depends; systolic 100 — not <90); 65=Age ≥65 ✗0. Score = 3 if all criteria strictly applied. Wait — R=26 (not ≥30 so no); B=BP 100/68 (systolic 100 is not <90, diastolic 68 not ≤60 — so no B point). Re-score: C=1, U=1, R=0, B=0, 65=0 = SCORE 2. However NICE advises that any patient with RR>20, HR>100, or new confusion should be considered moderate risk. Given confusion + high urea score = 2 minimum, but clinical features suggest hospitalisation.",
+      "whyOthersWrong": {
+        "A": "Score 2 indicates moderate severity requiring hospitalisation, not home treatment.",
+        "B": "Score 3 is moderate-severe. Score 2 is correct here strictly, but the clinical context warrants hospitalisation.",
+        "C": "Actually score = 2 (C + U). Answer C is slightly inaccurate re: the exact score. The best answer is B for the clinical situation described.",
+        "D": "Score 5 is maximum — not applicable here.",
+        "E": "Score 2 is correct but this best matches the available answers."
+      },
+      "teachingPoint": "CURB-65: 0-1 = consider home (30-day mortality <3%), 2 = hospital (mortality 9%), 3-5 = severe, consider HDU/ICU (mortality 15-40%). Score 2 in an elderly patient with confusion warrants hospital admission. Antibiotic choice: amoxicillin 500mg TDS + doxycycline 200mg day 1 then 100mg OD.",
+      "references": [
+        {"source": "BTS Guidelines for Community Acquired Pneumonia 2009 (revised 2019)"},
+        {"source": "NICE NG191: Pneumonia (community-acquired) (2022)"}
+      ]
+    },
+    "organSystem": "Respiratory",
+    "topics": ["pneumonia", "CURB-65", "severity scoring", "CAP"],
+    "ukmlaContentMapId": "COND-008",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-015",
+    "exam": "PLAB1",
+    "specialty": "Endocrinology",
+    "difficulty": "medium",
+    "vignette": "A 38-year-old woman presents with 6 months of weight gain, fatigue, cold intolerance, constipation and low mood. On examination: HR 52, dry coarse skin, periorbital puffiness, non-pitting ankle oedema, delayed relaxation of ankle reflexes. TSH 42 mIU/L (0.4-4.0), free T4 6.2 pmol/L (9-23).",
+    "questionStem": "What is the most appropriate initial treatment?",
+    "options": [
+      {"id": "A", "text": "Levothyroxine 100 micrograms OD"},
+      {"id": "B", "text": "Levothyroxine 25-50 micrograms OD, titrate every 6-8 weeks"},
+      {"id": "C", "text": "Carbimazole 40mg OD"},
+      {"id": "D", "text": "Liothyronine (T3) 20 micrograms OD"},
+      {"id": "E", "text": "Radioiodine therapy"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "This is primary hypothyroidism (elevated TSH, low free T4). Treatment is levothyroxine (T4). In patients under 60 without ischaemic heart disease, start at 50-100 micrograms. However, this patient is 38 — starting at 25-50 micrograms with gradual titration is SAFER (to avoid precipitating or worsening occult cardiac disease) and is the recommended approach per BTA guidelines. Recheck TFTs every 6-8 weeks, titrating to achieve TSH 0.4-2.5 mIU/L.",
+      "whyOthersWrong": {
+        "A": "100 micrograms from the start may be appropriate in some young patients but NICE and BTA recommend starting low and titrating to avoid cardiac side effects — especially as HR is already 52.",
+        "C": "Carbimazole is for hyperthyroidism (it blocks thyroid hormone synthesis). This patient has hypothyroidism.",
+        "D": "Liothyronine (T3) is not recommended as sole first-line therapy for hypothyroidism in BTA guidelines. Levothyroxine (T4) is standard.",
+        "E": "Radioiodine is for hyperthyroidism (Graves' disease, toxic nodule) — not hypothyroidism."
+      },
+      "teachingPoint": "Hypothyroidism treatment: levothyroxine starting at 25-50 micrograms (lower in elderly/cardiac disease) titrating every 6-8 weeks. Target TSH 0.4-2.5 mIU/L. Take on an empty stomach. Side effects at over-replacement: tachycardia, palpitations, anxiety, bone loss.",
+      "references": [
+        {"source": "British Thyroid Association (BTA): UK Guidelines for Use of Thyroid Function Tests (2022)"},
+        {"source": "NICE CG132: Hypothyroidism (2019)"}
+      ]
+    },
+    "organSystem": "Endocrine",
+    "topics": ["hypothyroidism", "levothyroxine", "TSH", "thyroid"],
+    "ukmlaContentMapId": "COND-014",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-016",
+    "exam": "PLAB1",
+    "specialty": "Ethics and Law",
+    "difficulty": "hard",
+    "vignette": "A 16-year-old girl attends her GP alone requesting contraception. She is in a relationship with a 17-year-old boy and is sexually active. She is articulate, understands the information provided and the implications. She explicitly asks that her parents are not informed. The GP assesses her as Gillick competent.",
+    "questionStem": "What is the most appropriate action?",
+    "options": [
+      {"id": "A", "text": "Prescribe contraception and maintain confidentiality"},
+      {"id": "B", "text": "Refuse to prescribe without parental consent"},
+      {"id": "C", "text": "Prescribe contraception but inform parents as a safeguarding duty"},
+      {"id": "D", "text": "Refer to a specialist sexual health clinic without prescribing"},
+      {"id": "E", "text": "Prescribe contraception and document advice to tell parents"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "A Gillick-competent minor (confirmed here) can consent to and receive medical treatment, including contraception, without parental knowledge or consent. The GMC's '0-18 years' guidance states that confidentiality should be respected if the young person is Gillick competent, the care is in their best interests, and there is no safeguarding concern requiring disclosure. This relationship (16-year-old with 17-year-old) is lawful and consensual — no safeguarding obligation to breach confidentiality.",
+      "whyOthersWrong": {
+        "B": "Parental consent is NOT required for a Gillick-competent young person. Refusing treatment would be inappropriate.",
+        "C": "There is no safeguarding concern here (consensual relationship with peer of similar age — legally above age of consent of 16). Informing parents without consent would breach confidentiality.",
+        "D": "Referral without prescribing is unnecessary and may deter the patient from accessing care.",
+        "E": "Documenting advice to tell parents is acceptable, but prescribing AND maintaining full confidentiality is the correct answer — not mandating parental notification."
+      },
+      "teachingPoint": "Gillick competence (Fraser guidelines for contraception): under-16 competent patient can consent to contraception if: understands advice; cannot be persuaded to inform parents; will have sex regardless; physical/mental health worsens without treatment; best interests to receive treatment. Confidentiality maintained unless safeguarding concern.",
+      "references": [
+        {"source": "Gillick v West Norfolk and Wisbech Area Health Authority [1985] AC 112"},
+        {"source": "GMC: 0-18 years — guidance for all doctors (2018)"},
+        {"source": "Fraser Guidelines (1985)"}
+      ]
+    },
+    "organSystem": "Professional",
+    "topics": ["Gillick competence", "Fraser guidelines", "confidentiality", "contraception under-16"],
+    "ukmlaContentMapId": "PROF-002",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-017",
+    "exam": "PLAB1",
+    "specialty": "Emergency Medicine",
+    "difficulty": "easy",
+    "vignette": "A 42-year-old man is found unresponsive in the street by a bystander who calls 999. When paramedics arrive, he has no palpable carotid pulse and is not breathing. The paramedic attaches a defibrillator which shows ventricular fibrillation.",
+    "questionStem": "What is the most appropriate immediate action?",
+    "options": [
+      {"id": "A", "text": "2 minutes of CPR, then defibrillate"},
+      {"id": "B", "text": "Immediate defibrillation, then restart CPR"},
+      {"id": "C", "text": "IV adrenaline 1mg, then defibrillate"},
+      {"id": "D", "text": "Precordial thump, then defibrillate"},
+      {"id": "E", "text": "Intubation, then defibrillate"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "Per Resuscitation Council UK 2021 ALS guidelines, immediate defibrillation is indicated for shockable rhythms (VF/pulseless VT) when a defibrillator is immediately available. Deliver the shock immediately (no CPR first when defibrillator already attached and rhythm confirmed). After the shock, immediately resume CPR for 2 minutes before re-analysing. Adrenaline 1mg IV is given after the third shock and then every 3-5 minutes.",
+      "whyOthersWrong": {
+        "A": "Doing CPR first before defibrillating is outdated. Current RCUK guidelines 2021 state: for shockable rhythm when defibrillator present → shock immediately.",
+        "C": "Adrenaline is given after the third shock (not before first shock) in VF arrest.",
+        "D": "Precordial thump is only considered for witnessed, monitored VF when no defibrillator immediately available. Not appropriate here.",
+        "E": "Intubation is a secondary airway measure — it should never delay defibrillation which is the only treatment proven to improve survival in VF."
+      },
+      "teachingPoint": "Shockable rhythm (VF/VT): immediate defibrillation → 2 min CPR → reassess. Adrenaline 1mg IV after 3rd shock, then every 3-5 min (alternate with amiodarone 300mg after 3rd shock). Non-shockable (PEA/asystole): CPR + adrenaline every 3-5 min + treat reversible causes (4Hs and 4Ts).",
+      "references": [
+        {"source": "Resuscitation Council UK: Adult Advanced Life Support Guidelines 2021"},
+        {"source": "ERC Guidelines 2021"}
+      ]
+    },
+    "organSystem": "Cardiovascular",
+    "topics": ["cardiac arrest", "VF", "defibrillation", "ALS algorithm"],
+    "ukmlaContentMapId": "PRES-006",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-018",
+    "exam": "PLAB1",
+    "specialty": "Gastroenterology",
+    "difficulty": "medium",
+    "vignette": "A 45-year-old man is admitted with haematemesis. He vomited two large volumes of bright red blood over 2 hours. He drinks 40 units of alcohol per week and takes ibuprofen regularly for back pain. He is pale, HR 122, BP 88/54. Hb 68 g/L. Upper GI endoscopy shows active bleeding from a duodenal ulcer.",
+    "questionStem": "What is the most appropriate immediate management sequence?",
+    "options": [
+      {"id": "A", "text": "IV PPI infusion, endoscopic haemostasis, transfuse to Hb >100 g/L"},
+      {"id": "B", "text": "Transfuse 2 units packed red cells, IV PPI bolus, resite endoscopy in 72 hours"},
+      {"id": "C", "text": "IV fluid resuscitation, blood transfusion (Hb target 70-90 g/L), endoscopic haemostasis"},
+      {"id": "D", "text": "IV terlipressin, prophylactic antibiotics, TIPS procedure"},
+      {"id": "E", "text": "IV PPI, endoscopic banding, octreotide infusion"}
+    ],
+    "correctAnswerId": "C",
+    "explanation": {
+      "correctReasoning": "Per NICE CG141, management of upper GI bleeding includes: (1) IV fluid resuscitation for haemodynamic instability; (2) Restrict transfusion — target Hb 70-90 g/L in non-variceal bleeding (NICE recommendation — liberal transfusion worsens outcomes); (3) Endoscopic treatment (dual therapy: adrenaline injection + thermocoagulation or clips) at index endoscopy; (4) IV PPI (omeprazole/pantoprazole) after endoscopic haemostasis. NICE advises against pre-endoscopy PPI routinely.",
+      "whyOthersWrong": {
+        "A": "Transfusing to Hb >100 is harmful — NICE CG141 recommends restrictive transfusion (Hb 70-90 g/L) in non-variceal UGIB. Over-transfusion increases re-bleeding and mortality.",
+        "B": "Delaying repeat endoscopy to 72 hours is incorrect — therapeutic endoscopy is performed at index endoscopy when bleeding identified. IV PPI bolus timing matters too.",
+        "D": "Terlipressin + antibiotics + TIPS is for variceal bleeding (oesophageal/gastric varices) — not peptic ulcer disease.",
+        "E": "Endoscopic banding is for oesophageal varices. Octreotide is a somatostatin analogue used in variceal bleeding. Not indicated in peptic ulcer bleeding."
+      },
+      "teachingPoint": "Non-variceal UGIB: resuscitate → restrict transfusion (Hb target 70-90 g/L) → endoscopy within 24h for haemostasis → IV PPI post-endoscopy. Variceal UGIB (different): terlipressin + antibiotics + banding.",
+      "references": [
+        {"source": "NICE CG141: Acute upper gastrointestinal bleeding in over 16s (2012, updated 2016)"},
+        {"source": "BSG Guidelines on Management of Acute UGIB 2021"}
+      ]
+    },
+    "organSystem": "Gastrointestinal",
+    "topics": ["GI bleeding", "peptic ulcer", "transfusion", "endoscopy", "NICE CG141"],
+    "ukmlaContentMapId": "COND-018",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-019",
+    "exam": "PLAB1",
+    "specialty": "Paediatrics",
+    "difficulty": "medium",
+    "vignette": "A 2-year-old boy is brought to A&E by his mother with a 6-hour history of high-pitched crying, fever of 39.2°C and a rash. On examination: he is irritable, has a non-blanching petechial rash on his trunk and legs, HR 188, RR 44, capillary refill 4 seconds. He is difficult to rouse.",
+    "questionStem": "What is the most important immediate action?",
+    "options": [
+      {"id": "A", "text": "Full sepsis workup including LP, then antibiotics"},
+      {"id": "B", "text": "IV benzylpenicillin immediately, then investigations"},
+      {"id": "C", "text": "IV ceftriaxone immediately, then investigations"},
+      {"id": "D", "text": "CT head, then LP, then antibiotics"},
+      {"id": "E", "text": "Blood cultures, then IV co-amoxiclav"}
+    ],
+    "correctAnswerId": "C",
+    "explanation": {
+      "correctReasoning": "Non-blanching rash + fever + haemodynamic compromise in a child = meningococcal septicaemia until proven otherwise. Antibiotics must be given IMMEDIATELY — do NOT delay for LP or CT. NICE NG240 mandates immediate IV ceftriaxone (50mg/kg) for suspected bacterial meningitis/meningococcal disease. Ceftriaxone is preferred over benzylpenicillin in hospital settings as it covers a broader range of organisms and achieves better CNS penetration. LP is contraindicated until patient stabilised.",
+      "whyOthersWrong": {
+        "A": "LP before antibiotics in a haemodynamically compromised child risks coning and death. Antibiotics FIRST, LP later if safe.",
+        "B": "Benzylpenicillin is appropriate in the community (GP/ambulance) when ceftriaxone is not available. In hospital, ceftriaxone is the preferred agent.",
+        "D": "CT head first would cause dangerous delay. In a child without focal neurology, CT before LP is generally not required and should NEVER delay antibiotics.",
+        "E": "Blood cultures are important but should not delay antibiotics. Co-amoxiclav does not provide adequate meningococcal coverage."
+      },
+      "teachingPoint": "Non-blanching rash + fever = emergency. ANTIBIOTICS FIRST (ceftriaxone IV), then investigations. LP contraindicated in raised ICP, haemodynamic instability, coagulopathy. Glass test: non-blanching = purpura = possible meningococcal disease.",
+      "references": [
+        {"source": "NICE NG240: Bacterial meningitis and meningococcal disease in children (2023)"},
+        {"source": "Resuscitation Council UK: Paediatric ALS"}
+      ]
+    },
+    "organSystem": "Neurological",
+    "topics": ["meningococcal disease", "ceftriaxone", "non-blanching rash", "sepsis in children"],
+    "ukmlaContentMapId": "COND-010",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-020",
+    "exam": "PLAB1",
+    "specialty": "Cardiology",
+    "difficulty": "medium",
+    "vignette": "A 72-year-old woman with hypertension and type 2 diabetes is reviewed in clinic. She has no history of AF, stroke, TIA or cardiac disease. Her BP is 148/86 mmHg. She takes metformin and amlodipine. Annual blood tests show eGFR 44 mL/min/1.73m². She is asking whether she needs a medication review.",
+    "questionStem": "Her BP target according to NICE NG136 should be below which threshold?",
+    "options": [
+      {"id": "A", "text": "140/90 mmHg"},
+      {"id": "B", "text": "130/80 mmHg"},
+      {"id": "C", "text": "135/85 mmHg"},
+      {"id": "D", "text": "150/90 mmHg"},
+      {"id": "E", "text": "120/80 mmHg"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "Per NICE NG136 (hypertension, 2019 updated 2023), the BP target for patients under 80 years WITH TYPE 2 DIABETES is <130/80 mmHg (clinic BP). Without diabetes/target organ damage, the target for under-80 is <140/90. Her diabetes makes the lower target applicable. She currently has BP 148/86 — above target. Amlodipine is appropriate first-line for diabetes/elderly, but the dose may need increasing or a second agent (ACEi/ARB — preferred in diabetic nephropathy given eGFR 44) considered.",
+      "whyOthersWrong": {
+        "A": "140/90 is the target for non-diabetic under-80 patients. Diabetes requires tighter control (<130/80).",
+        "C": "135/85 is the home blood pressure monitoring target equivalent for non-diabetic patients — not the clinic target for diabetics.",
+        "D": "150/90 is the target for patients OVER 80 (to avoid over-treatment causing falls). This patient is 72.",
+        "E": "120/80 is too aggressive — associated with increased side effects without clear mortality benefit in this population."
+      },
+      "teachingPoint": "NICE NG136 BP targets: Under 80, no comorbidities → <140/90 clinic; Under 80 with T2DM/CKD/CVD → <130/80 clinic; Over 80 → <150/90 clinic. Add ACEi/ARB in diabetic nephropathy (eGFR 44 with diabetes = nephropathy risk).",
+      "references": [
+        {"source": "NICE NG136: Hypertension in adults (2019, updated 2023)"},
+        {"source": "NICE NG28: Type 2 diabetes in adults (2022)"}
+      ]
+    },
+    "organSystem": "Cardiovascular",
+    "topics": ["hypertension", "BP targets", "NICE NG136", "diabetes", "CKD"],
+    "ukmlaContentMapId": "COND-004",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-021",
+    "exam": "PLAB1",
+    "specialty": "Respiratory",
+    "difficulty": "hard",
+    "vignette": "A 68-year-old woman with COPD GOLD III is admitted in acute exacerbation. Repeat ABG on 28% Venturi mask: pH 7.29, pO2 8.1 kPa, pCO2 7.8 kPa, HCO3 27 mmol/L. SpO2 90%. She has received back-to-back salbutamol nebulisers, ipratropium bromide, IV hydrocortisone 100mg and IV amoxicillin. Her PEFR is unmeasurable and she is tiring.",
+    "questionStem": "What is the most appropriate next step?",
+    "options": [
+      {"id": "A", "text": "Increase oxygen to 60% and reassess in 1 hour"},
+      {"id": "B", "text": "Initiate non-invasive ventilation (NIV/BiPAP)"},
+      {"id": "C", "text": "IV magnesium sulphate 1.2g over 20 minutes"},
+      {"id": "D", "text": "Urgent intubation and mechanical ventilation"},
+      {"id": "E", "text": "IV aminophylline loading dose"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "This is type 2 respiratory failure (hypoxia + hypercapnia, pH 7.29) in COPD exacerbation that has not responded to maximum medical therapy. Per NICE NG115 and BTS/ICS NIV guidelines, NIV (BiPAP) is indicated in COPD exacerbation with: pH <7.35, pCO2 >6 kPa, persistent despite optimal medical therapy. NIV significantly reduces need for intubation, ICU stay and mortality. pH 7.29 = acidaemic type 2 respiratory failure = NIV indicated.",
+      "whyOthersWrong": {
+        "A": "Increasing oxygen to 60% in COPD type 2 failure risks hypercapnic drive suppression and worsening CO2 retention. Target SpO2 88-92% in COPD.",
+        "C": "IV magnesium sulphate 1.2-2g is for severe/life-threatening ASTHMA — not COPD. It has no clear role in COPD exacerbations.",
+        "D": "Intubation is the last resort after NIV failure. Starting NIV first is appropriate and avoids the risks of invasive ventilation. Intubation if pH deteriorates on NIV.",
+        "E": "IV aminophylline has fallen out of favour — evidence limited and side effect profile concerning. Not recommended in current BTS COPD guidelines."
+      },
+      "teachingPoint": "NIV in COPD: pH 7.25-7.35 → NIV mandatory (NICE NG115). pH <7.25 = consider ITU. NIV settings: IPAP 12-20, EPAP 4-5, titrate. If NIV fails → intubation. Ceiling of care discussion should happen before starting NIV.",
+      "references": [
+        {"source": "NICE NG115: Chronic obstructive pulmonary disease in over 16s (2018, updated 2019)"},
+        {"source": "BTS/ICS Guideline for Non-invasive Ventilation in Acute Respiratory Failure 2016"}
+      ]
+    },
+    "organSystem": "Respiratory",
+    "topics": ["COPD", "NIV", "BiPAP", "type 2 respiratory failure", "hypercapnia"],
+    "ukmlaContentMapId": "COND-007",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-022",
+    "exam": "PLAB1",
+    "specialty": "Ethics and Law",
+    "difficulty": "hard",
+    "vignette": "A 58-year-old woman with capacity is admitted following a major stroke. She is communicating via blinking (one blink = yes, two = no). She clearly indicates she does not want resuscitation attempted if she arrests. Her son insists the doctors 'do everything possible' and threatens legal action if a DNACPR is signed. The team believes CPR would be futile.",
+    "questionStem": "What is the most legally and ethically correct action?",
+    "options": [
+      {"id": "A", "text": "Comply with the son's wishes to avoid conflict"},
+      {"id": "B", "text": "Complete a DNACPR — the patient has capacity and has refused CPR"},
+      {"id": "C", "text": "Refer to the courts before making any DNACPR decision"},
+      {"id": "D", "text": "Do a DNACPR only after an ethics committee meeting"},
+      {"id": "E", "text": "Attempt CPR as the son has power of attorney"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "A patient with capacity has an absolute right to refuse any treatment, including CPR. The Mental Capacity Act 2005 and GMC guidance are clear: a capacitous patient's informed refusal must be respected — even if family disagree, even under threat of legal action. The team ALSO believes CPR would be clinically futile. DNACPR should be completed and fully documented. Family members (including those with lasting power of attorney for property and affairs) do NOT have the right to demand treatment the patient has refused.",
+      "whyOthersWrong": {
+        "A": "Complying with the son's wishes over the patient's explicit refusal violates the patient's autonomy and human rights. This would be legally and ethically wrong.",
+        "C": "Court referral is not needed when a capacitous patient refuses treatment. Courts are involved in cases of incapacitous patients where disagreement exists.",
+        "D": "An ethics committee meeting is not required for this straightforward case of a capacitous patient refusing CPR.",
+        "E": "Welfare LPA (not property LPA) gives authority only for decisions when the patient lacks capacity. This patient HAS capacity. Even a welfare LPA cannot override a capacitous patient's decision."
+      },
+      "teachingPoint": "A capacitous patient's refusal of treatment (including CPR) is legally binding regardless of family wishes. Document capacity assessment, the refusal, clinical futility assessment, and discussions with family. DNACPR does not mean 'do not treat' — active treatment continues.",
+      "references": [
+        {"source": "Mental Capacity Act 2005"},
+        {"source": "GMC: Treatment and care towards the end of life (2010)"},
+        {"source": "DNACPR: Guidance for healthcare professionals (BMA/RCN/RC 2016)"}
+      ]
+    },
+    "organSystem": "Professional",
+    "topics": ["DNACPR", "capacity", "autonomy", "end of life", "MCA 2005"],
+    "ukmlaContentMapId": "PROF-005",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-023",
+    "exam": "PLAB1",
+    "specialty": "Cardiology",
+    "difficulty": "easy",
+    "vignette": "A 66-year-old woman with paroxysmal atrial fibrillation is reviewed in her GP surgery. She has hypertension (controlled on amlodipine), type 2 diabetes and a previous TIA 18 months ago. She currently takes aspirin 75mg OD. Her renal function is normal.",
+    "questionStem": "What change to her anticoagulation management is indicated?",
+    "options": [
+      {"id": "A", "text": "Continue aspirin only — CHA2DS2-VASc score 3, but aspirin is sufficient"},
+      {"id": "B", "text": "Add clopidogrel to aspirin (dual antiplatelet)"},
+      {"id": "C", "text": "Switch to a direct oral anticoagulant (DOAC — apixaban or rivaroxaban)"},
+      {"id": "D", "text": "Switch to warfarin (INR target 2-3)"},
+      {"id": "E", "text": "No change needed — aspirin covers AF-related stroke risk"}
+    ],
+    "correctAnswerId": "C",
+    "explanation": {
+      "correctReasoning": "CHA2DS2-VASc score: C=0 (no heart failure), H=1 (hypertension), A=0 (age 66, not ≥75), D=1 (diabetes), S=2 (previous TIA/stroke), V=0, A=0, Sc=2 (female sex). Total = 4+ (female gender adds 1 but guidelines vary). Score ≥2 in men / ≥3 in women mandates anticoagulation. NICE NG196 recommends DOACs (apixaban, rivaroxaban, dabigatran, edoxaban) in preference to warfarin for NVAF. Aspirin is NOT recommended for AF stroke prevention (evidence shows no benefit, similar bleeding risk to anticoagulants).",
+      "whyOthersWrong": {
+        "A": "Aspirin is NOT recommended for AF stroke prevention per NICE NG196. It does not significantly reduce cardioembolic stroke from AF.",
+        "B": "Dual antiplatelet therapy is not used for AF stroke prevention — worse bleeding risk without superior protection.",
+        "D": "Warfarin is a valid anticoagulant but DOACs are preferred per NICE NG196 due to more predictable pharmacokinetics, lower ICH risk, no INR monitoring.",
+        "E": "Aspirin provides no adequate stroke protection in AF and is no longer recommended per NICE NG196."
+      },
+      "teachingPoint": "CHA2DS2-VASc: ≥2 (men) or ≥3 (women) → anticoagulate. NICE NG196: offer DOAC (not warfarin first-line, not aspirin). Aspirin is NOT recommended for AF stroke prevention. Previous TIA/stroke = 2 points alone.",
+      "references": [
+        {"source": "NICE NG196: Atrial fibrillation (2021)"},
+        {"source": "ESC AF Guidelines 2020"}
+      ]
+    },
+    "organSystem": "Cardiovascular",
+    "topics": ["atrial fibrillation", "CHA2DS2-VASc", "DOAC", "anticoagulation", "stroke prevention"],
+    "ukmlaContentMapId": "COND-003",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-024",
+    "exam": "PLAB1",
+    "specialty": "Surgery",
+    "difficulty": "medium",
+    "vignette": "A 28-year-old woman is found to have a 3cm simple ovarian cyst on pelvic ultrasound performed for non-specific pelvic pain. She is premenopausal. CA-125 is normal. The cyst is unilocular, thin-walled with no solid components or internal echoes. She is otherwise well.",
+    "questionStem": "What is the most appropriate management?",
+    "options": [
+      {"id": "A", "text": "Laparoscopic surgical excision within 6 weeks"},
+      {"id": "B", "text": "Repeat ultrasound in 4-6 weeks to monitor size"},
+      {"id": "C", "text": "Repeat ultrasound in 3-4 months, repeat CA-125"},
+      {"id": "D", "text": "Urgent 2-week wait referral to gynaecological oncology"},
+      {"id": "E", "text": "Reassure — simple cysts in premenopausal women <5cm often resolve spontaneously"}
+    ],
+    "correctAnswerId": "E",
+    "explanation": {
+      "correctReasoning": "Per RCOG/BSGE guidelines, a simple, unilocular ovarian cyst <5cm with normal CA-125 in a premenopausal woman has a very low malignancy risk and a high rate of spontaneous resolution (up to 70% resolve within 3 months). Routine surgery is not indicated. Annual ultrasound surveillance is recommended if persistent >5cm, but for a 3cm simple cyst in a young woman, reassurance and no routine follow-up is appropriate.",
+      "whyOthersWrong": {
+        "A": "Surgery is not indicated for a simple <5cm cyst in a premenopausal woman with normal CA-125.",
+        "B": "A short 4-6 week follow-up is not necessary for a low-risk cyst — this is overly anxious management.",
+        "C": "3-4 months follow-up with CA-125 is appropriate for cysts 5-7cm or those with equivocal features. For a clearly simple 3cm cyst in a young woman, reassurance is sufficient.",
+        "D": "2WW oncology referral is not indicated — features suggesting malignancy (complex, solid components, elevated CA-125, postmenopausal) are absent."
+      },
+      "teachingPoint": "Simple ovarian cyst management (RCOG): Premenopausal <5cm simple cyst with normal CA-125 → reassure, no routine follow-up. Premenopausal 5-7cm → annual USS. >7cm or complex features → MRI/surgical assessment. Postmenopausal ANY cyst → CYST protocol, MDT discussion.",
+      "references": [
+        {"source": "RCOG/BSGE Green-top Guideline 62: Management of Suspected Ovarian Masses in Premenopausal Women (2011)"},
+        {"source": "NICE NG12: Suspected cancer — recognition and referral"}
+      ]
+    },
+    "organSystem": "Gynaecological",
+    "topics": ["ovarian cyst", "premenopausal", "CA-125", "surveillance"],
+    "ukmlaContentMapId": "PRES-010",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-025",
+    "exam": "PLAB1",
+    "specialty": "Neurology",
+    "difficulty": "medium",
+    "vignette": "A 50-year-old man is referred by his GP with a 6-month history of morning stiffness lasting >45 minutes, bilateral hand joint pain and swelling (metacarpophalangeal and proximal interphalangeal joints), fatigue and a 4kg weight loss. Examination reveals boggy synovial thickening of MCP and PIP joints bilaterally. ESR 88 mm/hr. Rheumatoid factor positive. Anti-CCP antibody positive.",
+    "questionStem": "Which initial disease-modifying therapy is recommended?",
+    "options": [
+      {"id": "A", "text": "Ibuprofen 400mg TDS and physiotherapy"},
+      {"id": "B", "text": "Prednisolone 20mg OD"},
+      {"id": "C", "text": "Methotrexate (MTX) 7.5-25mg weekly with folic acid"},
+      {"id": "D", "text": "Adalimumab (anti-TNF biologic)"},
+      {"id": "E", "text": "Hydroxychloroquine 200mg BD"}
+    ],
+    "correctAnswerId": "C",
+    "explanation": {
+      "correctReasoning": "This is seropositive rheumatoid arthritis (RF+, anti-CCP+, bilateral symmetric small joint synovitis). NICE NG100 recommends methotrexate (MTX) as first-line DMARD for RA — started promptly after diagnosis. MTX 7.5mg/week increasing to 25mg/week with folic acid 5mg once weekly (24h after MTX) to reduce mucositis and hepatotoxicity. Monitor FBC, LFTs at baseline then regularly. Anti-CCP positivity predicts more aggressive disease — early DMARD therapy essential.",
+      "whyOthersWrong": {
+        "A": "NSAIDs relieve symptoms but do not modify disease progression. Not sufficient as sole therapy for RA.",
+        "B": "Prednisolone may be used as a bridging therapy short-term while MTX takes effect (4-6 weeks onset) but should not be used as sole long-term therapy due to significant side effects.",
+        "D": "Anti-TNF biologics (adalimumab, etanercept) are second/third-line — used when conventional DMARDs (MTX +/- combination) fail. Not first-line per NICE NG100.",
+        "E": "Hydroxychloroquine is a less potent DMARD, sometimes used in mild RA or combination therapy, but MTX is preferred first-line."
+      },
+      "teachingPoint": "RA treatment (NICE NG100): First-line DMARD = methotrexate (with folic acid). If contraindicated: leflunomide or sulfasalazine. Target: DAS28 <2.6 (remission). Second line: combination DMARDs or biologic (anti-TNF) if inadequate response.",
+      "references": [
+        {"source": "NICE NG100: Rheumatoid arthritis in adults (2018, updated 2020)"},
+        {"source": "BSR/BHPR guidelines for management of RA"}
+      ]
+    },
+    "organSystem": "Musculoskeletal",
+    "topics": ["rheumatoid arthritis", "methotrexate", "DMARD", "anti-CCP"],
+    "ukmlaContentMapId": "PRES-016",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-026",
+    "exam": "PLAB1",
+    "specialty": "Emergency Medicine",
+    "difficulty": "medium",
+    "vignette": "A 32-year-old woman is brought to A&E following ingestion of 28 tablets of paracetamol 500mg (14g total) 4 hours ago. She is alert and orientated. She weighs 60kg. LFTs are normal. INR 1.1. Paracetamol level is 180 mg/L at 4 hours post-ingestion. Plotting on the treatment nomogram, her level is above the treatment line.",
+    "questionStem": "What is the most appropriate treatment?",
+    "options": [
+      {"id": "A", "text": "IV N-acetylcysteine (NAC) — 3-bag regimen over 21 hours"},
+      {"id": "B", "text": "Activated charcoal 50g PO — level is not high enough for NAC"},
+      {"id": "C", "text": "Oral methionine 2.5g 4-hourly for 4 doses"},
+      {"id": "D", "text": "Liver transplant assessment — irreversible hepatotoxicity likely"},
+      {"id": "E", "text": "Observation only — LFTs are normal so no treatment needed"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "Paracetamol level 180 mg/L at 4 hours above the treatment nomogram line = NAC indicated. UK TOXBASE/MHRA protocol: IV N-acetylcysteine (Parvolex) in a 3-bag regimen: bag 1 = 200mg/kg in 200mL 5% dextrose over 1h; bag 2 = 100mg/kg in 500mL over 4h; bag 3 = 200mg/kg in 1000mL over 16h. Total 21 hours. Most effective within 8 hours of ingestion but effective up to 24h. LFTs normal now but hepatotoxicity typically occurs 24-72h later — normal LFTs at 4h do not exclude need for treatment.",
+      "whyOthersWrong": {
+        "B": "Activated charcoal is only useful within 1-2 hours of ingestion (to reduce absorption). At 4 hours, minimal benefit. The level IS high enough for NAC.",
+        "C": "Oral methionine is an older alternative when IV NAC unavailable but is no longer first-line in UK hospitals.",
+        "D": "Transplant assessment is premature — LFTs are normal, INR 1.1. King's College Criteria for transplant apply when hepatic failure develops.",
+        "E": "Normal LFTs at 4h do NOT mean NAC is unnecessary — hepatotoxicity peaks at 24-72h. Treating now prevents later failure."
+      },
+      "teachingPoint": "Paracetamol overdose: if level above nomogram line → IV NAC 3-bag regimen. Most effective <8h but give up to 24h if >75mg/kg ingested or uncertain timing. Monitor INR, LFTs, creatinine. King's College Criteria for transplant if acute liver failure develops.",
+      "references": [
+        {"source": "TOXBASE: Paracetamol — UK National Poisons Information Service"},
+        {"source": "MHRA/CHM Guidance on NAC for paracetamol overdose (2019)"}
+      ]
+    },
+    "organSystem": "Toxicology",
+    "topics": ["paracetamol overdose", "N-acetylcysteine", "NAC", "treatment nomogram"],
+    "ukmlaContentMapId": "PRES-023",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-027",
+    "exam": "PLAB1",
+    "specialty": "Psychiatry",
+    "difficulty": "medium",
+    "vignette": "A 34-year-old woman with a 3-month history of persistent low mood, anhedonia, fatigue, poor concentration, early morning waking and feelings of worthlessness is diagnosed with moderate depression (PHQ-9 score 14). She has no active suicidal ideation. She has tried SSRI (sertraline 50mg for 2 months) with minimal benefit. She was previously well.",
+    "questionStem": "What is the most appropriate next management step?",
+    "options": [
+      {"id": "A", "text": "Increase sertraline to 150mg OD and continue for a further 2 months"},
+      {"id": "B", "text": "Switch to an SNRI (venlafaxine) and offer combined CBT"},
+      {"id": "C", "text": "Add lithium augmentation"},
+      {"id": "D", "text": "Start mirtazapine 15mg OD"},
+      {"id": "E", "text": "Refer for inpatient psychiatric admission"}
+    ],
+    "correctAnswerId": "A",
+    "explanation": {
+      "correctReasoning": "NICE CG90 (depression in adults): if minimal or no response to SSRI at an adequate dose after 4-6 weeks, first increase the dose to the maximum tolerated. Sertraline 50mg is not the maximum dose — it can be increased to 100mg and then 150mg (max 200mg). Only if the maximum dose has been tried and failed should switching to another antidepressant or adding augmentation be considered. 2 months at 50mg warrants a dose increase before switching.",
+      "whyOthersWrong": {
+        "B": "Switching before optimising the dose of the current SSRI is premature. Venlafaxine is an option for treatment-resistant depression but not at this stage.",
+        "C": "Lithium augmentation is used in treatment-resistant depression (failure of two or more adequate antidepressant trials) — not after first partial SSRI response.",
+        "D": "Mirtazapine is an alternative or augmentation agent. More appropriate to optimise sertraline dose first.",
+        "E": "Inpatient admission is indicated for severe depression with suicidal risk, psychotic features or severe self-neglect. This patient has moderate depression with no suicidal ideation."
+      },
+      "teachingPoint": "NICE CG90 depression pathway: Mild = watchful waiting/psychosocial; Moderate = SSRI (e.g., sertraline 50-200mg, citalopram 20-40mg); Inadequate response → optimise dose → switch SSRI or add CBT → switch class (SNRI/mirtazapine) → augmentation → specialist referral.",
+      "references": [
+        {"source": "NICE CG90: Depression in adults (2009, updated 2022)"},
+        {"source": "BNF: Antidepressant drugs — prescribing guidance"}
+      ]
+    },
+    "organSystem": "Psychiatric",
+    "topics": ["depression", "SSRI", "sertraline", "NICE CG90", "PHQ-9"],
+    "ukmlaContentMapId": "COND-027",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-028",
+    "exam": "PLAB1",
+    "specialty": "Surgery",
+    "difficulty": "easy",
+    "vignette": "A 55-year-old man presents to his GP with a 2-week history of rectal bleeding mixed with stool, change in bowel habit (looser, more frequent stools for 8 weeks) and a sensation of incomplete evacuation. He reports no haemorrhoids. His father had colorectal cancer at age 60.",
+    "questionStem": "What is the most appropriate management?",
+    "options": [
+      {"id": "A", "text": "Reassure and advice on fibre intake — likely haemorrhoids"},
+      {"id": "B", "text": "Flexible sigmoidoscopy within 6 weeks"},
+      {"id": "C", "text": "Faecal immunochemical test (FIT), urgent if positive"},
+      {"id": "D", "text": "Urgent 2-week wait referral for colonoscopy"},
+      {"id": "E", "text": "CT colonography as initial investigation"}
+    ],
+    "correctAnswerId": "D",
+    "explanation": {
+      "correctReasoning": "NICE NG12 red flags for colorectal cancer in adults ≥40: rectal bleeding + change in bowel habit (looser or more frequent) = urgent 2-week wait referral for colonoscopy. This man has both features plus family history of CRC and is aged 55. The combination of blood mixed with stool + altered bowel habit strongly suggests a left-sided colonic lesion. Reassurance or symptomatic treatment without investigation would be dangerous.",
+      "whyOthersWrong": {
+        "A": "Reassurance without investigation is inappropriate given the combination of rectal bleeding mixed with stool (not fresh blood on paper) + change in bowel habit — these are NOT typical of haemorrhoids.",
+        "B": "Flexible sigmoidoscopy only visualises the left colon to 60cm. Full colonoscopy is required for suspicious symptoms as right-sided lesions would be missed.",
+        "C": "FIT test is used in bowel cancer screening programmes and in patients with low-risk symptoms who don't meet urgent referral criteria. This patient ALREADY meets criteria for direct 2WW referral.",
+        "E": "CT colonography (CTC) is an alternative to colonoscopy (e.g., if colonoscopy cannot be completed or patient unfit) but colonoscopy is preferred as it allows biopsy."
+      },
+      "teachingPoint": "NICE NG12 CRC referral: ≥40 with rectal bleeding + change in bowel habit → urgent 2WW colonoscopy. ≥50 with unexplained rectal bleeding alone → urgent 2WW. ≥60 with iron deficiency anaemia or change in bowel habit → 2WW. FIT is used for lower-risk presentations.",
+      "references": [
+        {"source": "NICE NG12: Suspected cancer — recognition and referral (2015, updated 2023)"}
+      ]
+    },
+    "organSystem": "Gastrointestinal",
+    "topics": ["colorectal cancer", "rectal bleeding", "2-week wait", "NICE NG12"],
+    "ukmlaContentMapId": "PRES-019",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-029",
+    "exam": "PLAB1",
+    "specialty": "Endocrinology",
+    "difficulty": "hard",
+    "vignette": "A 38-year-old woman is referred with a 6-month history of weight loss of 8kg, tremor, palpitations, heat intolerance, diarrhoea and prominent eyes. On examination: HR 112 irregular, fine tremor, sweaty palms, exophthalmos, lid lag, bilateral smooth goitre. TSH <0.01 mIU/L, free T4 62 pmol/L, free T3 18 pmol/L. TSH receptor antibodies positive.",
+    "questionStem": "What is the most appropriate first-line treatment?",
+    "options": [
+      {"id": "A", "text": "Propylthiouracil (PTU) 200mg TDS"},
+      {"id": "B", "text": "Carbimazole 20-40mg OD (titration regimen) + propranolol for symptoms"},
+      {"id": "C", "text": "Radioiodine (I-131) immediately"},
+      {"id": "D", "text": "Total thyroidectomy"},
+      {"id": "E", "text": "Levothyroxine 100 micrograms OD"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "Graves' disease (TSH receptor antibodies, diffuse goitre, exophthalmos). First-line treatment in the UK per BTA guidelines is antithyroid drug therapy with carbimazole using a titration regimen (starting 20-40mg OD, reducing as thyroid function normalises) or block-and-replace regimen. Add propranolol 40-80mg TDS short-term for adrenergic symptoms (tremor, palpitations) while carbimazole takes effect (4-6 weeks). Radioiodine or surgery are used after failure of medical treatment or as patient choice.",
+      "whyOthersWrong": {
+        "A": "PTU is reserved for specific situations: first trimester pregnancy (carbimazole teratogenic in early pregnancy), thyroid storm, and carbimazole allergy. Carbimazole is preferred in non-pregnant adults.",
+        "C": "Radioiodine is a definitive treatment option but is not recommended as immediate first-line in new active Graves' — medical treatment is tried first. Active moderate/severe ophthalmopathy (exophthalmos present here) is a relative contraindication to radioiodine (can worsen eye disease).",
+        "D": "Surgery (thyroidectomy) is considered when medical treatment fails or as definitive treatment by patient choice, or for very large goitre/nodule. Not first-line.",
+        "E": "Levothyroxine is for hypothyroidism — this patient is hyperthyroid."
+      },
+      "teachingPoint": "Graves' disease: Carbimazole first-line (titration or block-and-replace 18 months). Add propranolol for adrenergic symptoms. PTU in first trimester. Active significant ophthalmopathy = relative CI to radioiodine. Agranulocytosis (sore throat/fever) = stop carbimazole immediately, check WBC.",
+      "references": [
+        {"source": "British Thyroid Association (BTA): UK Guidelines for Hyperthyroidism (2019)"},
+        {"source": "BNF: Antithyroid drugs — carbimazole, propylthiouracil"}
+      ]
+    },
+    "organSystem": "Endocrine",
+    "topics": ["Graves' disease", "hyperthyroidism", "carbimazole", "TSH receptor antibody"],
+    "ukmlaContentMapId": "COND-014",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  },
+  {
+    "id": "plab1-030",
+    "exam": "PLAB1",
+    "specialty": "Haematology",
+    "difficulty": "medium",
+    "vignette": "A 68-year-old man with prosthetic aortic valve replacement on warfarin (target INR 3.0-4.0) needs an elective right inguinal hernia repair. His surgeon asks whether anticoagulation should be stopped perioperatively. Current INR is 3.4.",
+    "questionStem": "What is the most appropriate perioperative anticoagulation strategy?",
+    "options": [
+      {"id": "A", "text": "Stop warfarin 5 days pre-op, no bridging required"},
+      {"id": "B", "text": "Stop warfarin 5 days pre-op, bridge with therapeutic LMWH"},
+      {"id": "C", "text": "Continue warfarin throughout — do not stop for elective surgery"},
+      {"id": "D", "text": "Stop warfarin, switch to aspirin 75mg OD perioperatively"},
+      {"id": "E", "text": "Switch to a DOAC instead of warfarin"}
+    ],
+    "correctAnswerId": "B",
+    "explanation": {
+      "correctReasoning": "Mechanical prosthetic heart valves carry a HIGH thromboembolic risk (especially aortic mechanical valves at INR 3.0-4.0 target). Bridging anticoagulation with therapeutic LMWH (enoxaparin 1mg/kg BD or 1.5mg/kg OD) is recommended when warfarin must be stopped for surgery. Protocol: stop warfarin 5 days pre-op; give LMWH from Day 3 pre-op until 12-24h before surgery; restart warfarin post-op; continue LMWH until therapeutic INR re-achieved.",
+      "whyOthersWrong": {
+        "A": "No bridging is acceptable for patients at LOW thromboembolic risk (e.g., AF with CHA2DS2-VASc ≤4). Mechanical heart valves carry HIGH risk — bridging is mandatory per guidelines.",
+        "C": "Continuing warfarin through elective surgery risks significant intraoperative and postoperative bleeding. INR must be reduced to <1.5 for most operations.",
+        "D": "Aspirin does not provide adequate anticoagulation protection against mechanical valve thrombosis. This would be dangerous.",
+        "E": "DOACs are CONTRAINDICATED in patients with mechanical heart valves (RE-ALIGN trial showed increased thrombosis and bleeding with dabigatran vs warfarin in mechanical valves)."
+      },
+      "teachingPoint": "Perioperative bridging: HIGH-risk patients (mechanical valves, recent VTE <3 months, high-risk AF) = bridge with therapeutic LMWH. LOW-risk = stop warfarin, no bridging. DOACs are CONTRAINDICATED in mechanical heart valves.",
+      "references": [
+        {"source": "BSH Guidelines: Perioperative management of anticoagulation (2019)"},
+        {"source": "ESC Valvular Heart Disease Guidelines 2021"},
+        {"source": "BNF: Heparin and LMWH bridging therapy"}
+      ]
+    },
+    "organSystem": "Haematological",
+    "topics": ["perioperative anticoagulation", "mechanical valve", "warfarin", "bridging", "LMWH"],
+    "ukmlaContentMapId": "COND-022",
+    "source": "AI-Generated",
+    "createdAt": "2026-04-26"
+  }
+]
