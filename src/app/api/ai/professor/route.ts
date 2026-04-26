@@ -101,38 +101,39 @@ export async function POST(req: Request) {
       systemInstruction = `${systemInstruction}\n\nCRITICAL DIRECTIVE: The user has selected ARABIC mode. You MUST respond ENTIRELY in Arabic.`;
     }
 
-    // NATIVE GOOGLE SEARCH GROUNDING ENFORCEMENT
+    // RAG ENFORCEMENT DIRECTIVE FOR GROQ TOOL CALLING
     systemInstruction += `
 
-[CRITICAL GROUNDING DIRECTIVE]
-You MUST act purely as a medical knowledge orchestrator. 
-Your primary task is to use your built-in Google Search Grounding to find reliable medical guidelines (NICE, NIH, UpToDate, AHA, etc.) for the user's query.
-- NEVER invent or hallucinate clinical answers from your general weights. ALWAYS search.
-- When generating your final response, explicitly cite the Medical Sources you found via your Search Grounding.
-- If you absolutely cannot find a reliable medical source via search, immediately state: "أعتذر، لم أتمكن من إيجاد السند الطبي الموثق في المراجع العالمية المعتمدة حالياً."`;
+[CRITICAL RAG ENFORCEMENT]
+You are equipped with the 'free_medical_search' tool. You MUST USE IT to answer all clinical queries.
+1. ALWAYS call the tool first to fetch guidelines (e.g. from NIH, NICE, AHA).
+2. If the tool returns results, formulate your answer based ONLY on those results.
+3. If the tool finds no results or fails, you MUST say: "أعتذر، لم أتمكن من إيجاد السند الطبي الموثق في المراجع العالمية المعتمدة حالياً."
+4. Do NOT hallucinate. Do NOT answer from memory.
+5. ALWAYS list the URLs given by the tool at the very end of your response under the heading "المصادر / Sources:".`;
 
-    const geminiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    const groqKey = process.env.GROQ_API_KEY;
 
-    if (geminiKey) {
-      const { createGoogleGenerativeAI } = await import("@ai-sdk/google");
-      const googleAi = createGoogleGenerativeAI({ apiKey: geminiKey });
+    if (groqKey) {
+      const groq = createGroq({ apiKey: groqKey });
+      const { freeMedicalSearchTool } = await import("@/core/ai/tools/free-medical-search");
       
       const result = await streamText({
-        // @ts-expect-error - Vercel AI SDK types may flag this config in older patches, but it's valid
-        model: googleAi("gemini-2.0-flash", {
-          useSearchGrounding: true,
-        }),
+        model: groq("llama-3.3-70b-versatile"),
         system: systemInstruction,
         messages,
-        temperature: 0.1, // Near zero for highest accuracy and lowest hallucination
+        temperature: 0.1, // Decrease temperature for more reliable tool usage and less hallucination
+        tools: {
+          free_medical_search: freeMedicalSearchTool,
+        },
+        maxSteps: 3, // Allow the model to call the tool, receive the result, and then generate the final response
       });
       return result.toTextStreamResponse();
     }
 
-    return Response.json({ error: "No GOOGLE_GENERATIVE_AI_API_KEY configured for professors RAG" }, { status: 503 });
+    return Response.json({ error: "No GROQ_API_KEY configured for professors RAG" }, { status: 503 });
   } catch (err) {
     console.error("Professor API error:", err);
     return Response.json({ error: "AI service error inside RAG Professor node" }, { status: 500 });
   }
 }
-
