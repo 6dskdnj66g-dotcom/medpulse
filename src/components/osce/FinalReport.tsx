@@ -178,25 +178,61 @@ export function FinalReport({ station, session, onRetry }: FinalReportProps) {
       </div>
 
       {/* AI Feedback */}
-      {session.finalFeedback && (
-        <div className="rounded-2xl p-5 border" style={{ background: "var(--bg-2)", borderColor: "var(--border-subtle)" }}>
-          <button
-            onClick={() => setShowFeedback(p => !p)}
-            className="flex items-center justify-between w-full text-left"
-          >
-            <p className="text-[11px] font-black uppercase tracking-widest text-[var(--color-medical-indigo)] flex items-center gap-1.5">
-              <Brain className="w-3.5 h-3.5" />
-              Examiner AI Feedback
-            </p>
-            {showFeedback ? <ChevronUp className="w-4 h-4 text-[var(--text-tertiary)]" /> : <ChevronDown className="w-4 h-4 text-[var(--text-tertiary)]" />}
-          </button>
-          {showFeedback && (
-            <p className="mt-3 text-sm text-[var(--text-secondary)] font-medium leading-relaxed whitespace-pre-wrap">
-              {session.finalFeedback}
-            </p>
-          )}
-        </div>
-      )}
+      <div className="rounded-2xl p-5 border" style={{ background: "var(--bg-2)", borderColor: "var(--border-subtle)" }}>
+        <button
+          onClick={() => setShowFeedback(p => !p)}
+          className="flex items-center justify-between w-full text-left"
+        >
+          <p className="text-[11px] font-black uppercase tracking-widest text-[var(--color-medical-indigo)] flex items-center gap-1.5">
+            <Brain className="w-3.5 h-3.5" />
+            Examiner AI Feedback
+          </p>
+          {showFeedback ? <ChevronUp className="w-4 h-4 text-[var(--text-tertiary)]" /> : <ChevronDown className="w-4 h-4 text-[var(--text-tertiary)]" />}
+        </button>
+        {showFeedback && (
+          <div className="mt-4">
+            {session.finalFeedback ? (
+              <p className="text-sm text-[var(--text-secondary)] font-medium leading-relaxed whitespace-pre-wrap">
+                {session.finalFeedback}
+              </p>
+            ) : (
+              <div className="text-center py-4 bg-[var(--bg-1)] rounded-xl border border-[var(--border-subtle)] border-dashed">
+                <p className="text-xs text-[var(--text-tertiary)] mb-3">No deep AI analysis found for this session.</p>
+                <button
+                  onClick={async () => {
+                    const transcript = session.messages.map(m => `${m.role}: ${m.content}`).join('\\n');
+                    try {
+                      const res = await fetch('/api/osce/evaluate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ stationId: station.id, transcript }),
+                      });
+                      if (!res.ok) throw new Error('Evaluation failed');
+                      const reader = res.body?.getReader();
+                      if (!reader) return;
+                      const decoder = new TextDecoder();
+                      session.finalFeedback = "";
+                      while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        session.finalFeedback += decoder.decode(value, { stream: true });
+                        // Re-render
+                        setShowFeedback(true);
+                      }
+                    } catch (e) {
+                      console.error('AI Eval failed', e);
+                    }
+                  }}
+                  className="px-4 py-2 bg-[var(--color-medical-indigo)]/10 text-[var(--color-medical-indigo)] hover:bg-[var(--color-medical-indigo)]/20 transition-colors text-[11px] font-black uppercase tracking-widest rounded-lg flex items-center gap-2 mx-auto"
+                >
+                  <Brain className="w-3.5 h-3.5" />
+                  Generate AI Analysis Now
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
       {/* Learning objectives */}
       <div className="rounded-2xl p-5 border" style={{ background: "var(--bg-2)", borderColor: "var(--border-subtle)" }}>

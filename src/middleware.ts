@@ -4,18 +4,30 @@ import { NextRequest, NextResponse } from 'next/server';
 // Each entry: [windowStartMs, hitCount]
 const rlStore = new Map<string, [number, number]>();
 
-function rateLimit(ip: string, maxPerMinute: number): boolean {
+interface RateLimitResult {
+  success: boolean;
+  limit: number;
+  remaining: number;
+  reset: number;
+}
+
+function rateLimit(ip: string, maxPerMinute: number): RateLimitResult {
   const now    = Date.now();
   const window = 60_000;
   const entry  = rlStore.get(ip);
 
   if (!entry || now - entry[0] > window) {
     rlStore.set(ip, [now, 1]);
-    return true;
+    return { success: true, limit: maxPerMinute, remaining: maxPerMinute - 1, reset: now + window };
   }
-  if (entry[1] >= maxPerMinute) return false;
+  
+  const [start, count] = entry;
+  if (count >= maxPerMinute) {
+    return { success: false, limit: maxPerMinute, remaining: 0, reset: start + window };
+  }
+  
   entry[1]++;
-  return true;
+  return { success: true, limit: maxPerMinute, remaining: maxPerMinute - entry[1], reset: start + window };
 }
 
 // Clean up stale entries periodically (runs in the same process, not worker-safe
@@ -29,6 +41,13 @@ function maybeSweep() {
   for (const [key, [start]] of rlStore) {
     if (now - start > 60_000) rlStore.delete(key);
   }
+}
+
+function appendRateLimitHeaders(res: NextResponse, rl: RateLimitResult) {
+  res.headers.set('X-RateLimit-Limit', rl.limit.toString());
+  res.headers.set('X-RateLimit-Remaining', rl.remaining.toString());
+  res.headers.set('X-RateLimit-Reset', rl.reset.toString());
+  return res;
 }
 
 export async function middleware(req: NextRequest) {
@@ -49,17 +68,30 @@ export async function middleware(req: NextRequest) {
                     pathname.startsWith('/api/ecg-analysis') ||
                     pathname.startsWith('/api/vision');
 
-  if (isAIRoute && !rateLimit(ip, 20)) {
-    return NextResponse.json(
-      { error: 'Rate limit exceeded. Please wait a moment before trying again.' },
-      { status: 429, headers: { 'Retry-After': '60' } }
-    );
-  }
-
-  // Library NCBI proxy: slightly more permissive (30 req/min)
-  if (pathname.startsWith('/api/library/') && !rateLimit(`lib_${ip}`, 30)) {
-    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
-  }
+                    if (isAIRoute) {
+                      const rl = rateLimit(ip, 20);
+                      if (!rl.success) {
+                        const res = NextResponse.json(
+                          { error: 'Rate limit exceeded. Please wait a moment before trying again.' },
+                          { status: 429, headers: { 'Retry-After': '60' } }
+                        );
+                        return appendRateLimitHeaders(res, rl);
+                      }
+                      // If success, we just proceed, but we can't easily append headers to NextResponse.next() 
+                      // without cloning or setting them on a new response. 
+                      // For simplicity, we only append them when rejected, or we can use the pattern:
+                      // const response = NextResponse.next(); appendRateLimitHeaders(response, rl); return response;
+                      // However, auth guard is below. We will handle auth first.
+                    }
+                  
+                    // Library NCBI proxy: slightly more permissive (30 req/min)
+                    if (pathname.startsWith('/api/library/')) {
+                      const rl = rateLimit(`lib_${ip}`, 30);
+                      if (!rl.success) {
+                         const res = NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+                         return appendRateLimitHeaders(res, rl);
+                      }
+                    }
 
   // ── Admin / Profile auth guard ───────────────────────────────────────────────
   if (pathname.startsWith('/admin') || pathname.startsWith('/profile')) {
