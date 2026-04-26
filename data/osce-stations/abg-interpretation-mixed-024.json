@@ -1,0 +1,210 @@
+{
+  "id": "abg-interpretation-mixed-024",
+  "exam": "PLAB2",
+  "title": "Data interpretation — arterial blood gas: mixed acid-base",
+  "category": "data-interpretation",
+  "specialty": "Internal Medicine",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 on the medical ward. Mrs Louise Young, a 68-year-old with COPD and chronic kidney disease, has been admitted with worsening breathlessness. An ABG taken on 4L O2 has been sent. Please interpret this ABG and explain your clinical management.",
+  "examinerNotes": "Mixed acid-base disorder: type 2 respiratory failure (hypercapnia from COPD) PLUS metabolic acidosis (from AKI). pH 7.28, PaCO2 8.2, PaO2 8.1, HCO3 22, BE -4. Candidate must identify BOTH components. Target SpO2 88-92% in COPD. Consider NIV for type 2 failure.",
+  "patient": {
+    "id": "patient-024",
+    "name": "Louise Young",
+    "age": 68,
+    "gender": "F",
+    "occupation": "Retired",
+    "presentingComplaint": "Worsening breathlessness over 5 days",
+    "reasonForAttendance": "Can't get off the sofa — too breathless",
+    "history": {
+      "hpi": {
+        "site": "Chest, generalised",
+        "onset": "5 days",
+        "character": "Progressive breathlessness, purulent sputum for 3 days",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Green sputum", "Wheeze", "Confusion over last day", "Ankle swelling"],
+        "timing": "Progressive 5 days",
+        "exacerbatingFactors": "Any movement",
+        "relievingFactors": "Sitting upright",
+        "severity": "Cannot speak in full sentences"
+      },
+      "pmh": [
+        { "condition": "COPD GOLD IV", "yearDiagnosed": 2012, "controlled": false },
+        { "condition": "Chronic kidney disease Stage 3", "yearDiagnosed": 2018, "controlled": false },
+        { "condition": "Type 2 diabetes", "yearDiagnosed": 2014, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Tiotropium", "dose": "18mcg", "frequency": "once daily" },
+        { "name": "Salmeterol/fluticasone", "dose": "500/50", "frequency": "twice daily" },
+        { "name": "Metformin", "dose": "500mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 45, "quitDate": "2012" },
+        "alcohol": { "units": 5, "pattern": "Occasional" },
+        "occupation": "Retired"
+      },
+      "systemsReview": {
+        "cardiovascular": "Ankle oedema",
+        "respiratory": "Severe COPD exacerbation",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Oliguria in last 24h — AKI",
+        "neurological": "Confusion — CO2 narcosis",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Diabetes",
+        "haematological": "Normal",
+        "psychiatric": "Confused"
+      }
+    },
+    "examination": {
+      "general": "Confused, distressed, cyanotic lips, using accessory muscles, barrel chest",
+      "vitalSigns": { "bp": "138/82", "hr": 108, "rr": 28, "temp": 38.1, "spo2": 84 },
+      "cardiovascular": "Tachycardia, raised JVP, bilateral ankle oedema",
+      "respiratory": "Bilateral wheeze, reduced air entry at bases, prolonged expiration, hyperresonance",
+      "abdominal": "Normal",
+      "neurological": "Confused — GCS 12 — CO2 narcosis",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "abg-mixed",
+        "type": "blood-test",
+        "name": "Arterial Blood Gas (on 4L O2)",
+        "shortName": "ABG",
+        "triggerKeywords": ["abg", "blood gas", "acid base", "ph", "co2", "interpret abg"],
+        "result": {
+          "values": {
+            "pH": { "value": 7.28, "unit": "", "range": "7.35-7.45", "flag": "L" },
+            "PaO2": { "value": 8.1, "unit": "kPa", "range": "11-14", "flag": "L" },
+            "PaCO2": { "value": 8.2, "unit": "kPa", "range": "4.5-6.0", "flag": "H" },
+            "HCO3": { "value": 22, "unit": "mmol/L", "range": "22-29" },
+            "BE": { "value": -4, "unit": "mmol/L", "range": "-2 to +2", "flag": "L" },
+            "SaO2": { "value": 84, "unit": "%", "range": "95-98", "flag": "L" }
+          }
+        },
+        "interpretation": "MIXED DISORDER: (1) Type 2 respiratory failure — HIGH CO2 8.2 causing acidosis (chronic type 2 COPD with acute exacerbation); (2) Metabolic acidosis — base excess -4, normal HCO3 (expected compensation absent = additional metabolic component, likely from AKI). Total acidosis more severe than either alone. Requires NIV for type 2 failure + treat COPD exacerbation + investigate AKI.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Confused and frightened",
+    "communicationStyle": "Confused responses, needs simple questions",
+    "hiddenConcerns": [],
+    "doNotVolunteer": []
+  },
+  "primaryDiagnosis": "Acute on Chronic Type 2 Respiratory Failure with Metabolic Acidosis (COPD exacerbation + AKI)",
+  "differentialDiagnoses": [
+    "Pure type 2 failure from COPD",
+    "Metabolic acidosis from sepsis",
+    "Opioid-induced respiratory depression"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Systematic ABG interpretation",
+          "detailedExpectation": "pH (acidaemia), PaCO2 (respiratory component), HCO3/BE (metabolic component)",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Identifies type 2 respiratory failure",
+          "detailedExpectation": "Hypoxia + hypercapnia = type 2 failure",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["type 2", "type ii", "hypercapnia", "high co2", "raised co2", "respiratory acidosis"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Identifies metabolic acidosis component",
+          "detailedExpectation": "Base excess -4 indicates additional metabolic acidosis",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["metabolic acidosis", "base excess", "be", "metabolic component", "mixed"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Controlled oxygen — target SpO2 88-92% in COPD",
+          "detailedExpectation": "Reduces oxygen to 28% Venturi mask — not high-flow oxygen",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["88-92", "88%", "92%", "controlled oxygen", "venturi", "28%", "copd target"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Initiates NIV (non-invasive ventilation)",
+          "detailedExpectation": "CPAP/BiPAP — NIV for type 2 failure not responding to initial treatment",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["niv", "bipap", "cpap", "non-invasive ventilation", "ventilation"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Treats COPD exacerbation — nebs, steroids, antibiotics",
+          "detailedExpectation": "Salbutamol/ipratropium nebs + prednisolone + antibiotic (doxycycline/co-amoxiclav)",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["salbutamol", "prednisolone", "antibiotic", "steroid", "nebuliser"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Investigates and manages AKI",
+          "detailedExpectation": "Checks U&E, considers stopping nephrotoxics (metformin), fluid challenge",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["aki", "renal", "kidney", "metformin", "stop metformin", "u&e"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Explains ABG interpretation and plan",
+          "detailedExpectation": "Clear explanation to patient/examiner of findings and management",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 21,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "BTS/ICS Guideline for NIV in COPD 2016" },
+    { "source": "NICE NG191: COPD management" }
+  ],
+  "ukmlaContentMapIds": ["abg-interpretation", "type-2-respiratory-failure", "copd"],
+  "learningObjectives": [
+    "Interpret arterial blood gas systematically",
+    "Identify mixed acid-base disorders",
+    "Set appropriate oxygen targets in COPD",
+    "Initiate NIV for type 2 respiratory failure"
+  ],
+  "tags": ["data-interpretation", "abg", "copd", "respiratory", "acid-base", "plab2"]
+}

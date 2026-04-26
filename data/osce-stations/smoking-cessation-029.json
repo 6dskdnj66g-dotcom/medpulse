@@ -1,0 +1,198 @@
+{
+  "id": "smoking-cessation-029",
+  "exam": "PLAB2",
+  "title": "Brief intervention — smoking cessation (5 As)",
+  "category": "communication-skills",
+  "specialty": "General Practice",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 GP. Mr Colin Ward, a 52-year-old maintenance engineer, has attended for a blood pressure review. His BP is controlled at 128/78. He is a 30-year smoker (20/day). You notice this has not been addressed at previous appointments. Please conduct a brief smoking cessation intervention using the 5 As approach.",
+  "examinerNotes": "Smoking cessation 5 As station: Ask (about smoking), Assess (motivation to quit, readiness), Advise (benefits of quitting), Assist (NRT, varenicline, bupropion, stop smoking services), Arrange (follow-up). Candidate should NOT lecture or be judgmental. Motivational interviewing approach preferred.",
+  "patient": {
+    "id": "patient-029",
+    "name": "Colin Ward",
+    "age": 52,
+    "gender": "M",
+    "occupation": "Maintenance engineer",
+    "maritalStatus": "Married, wife is a non-smoker",
+    "presentingComplaint": "Attending for BP check",
+    "reasonForAttendance": "Just my regular blood pressure check-up",
+    "history": {
+      "hpi": {
+        "site": "Not applicable",
+        "onset": "Not applicable",
+        "character": "30 pack-years, 20/day since age 22",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Morning cough", "Slightly reduced exercise tolerance"],
+        "timing": "30 years smoking",
+        "exacerbatingFactors": "Stress — smokes more at work",
+        "relievingFactors": "Cigarettes reduce stress he feels",
+        "severity": "Not applicable"
+      },
+      "pmh": [
+        { "condition": "Hypertension", "yearDiagnosed": 2018, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Father", "condition": "COPD from smoking, died aged 68" }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "current", "packYears": 30 },
+        "alcohol": { "units": 15, "pattern": "Evenings and weekends" },
+        "occupation": "Maintenance engineer — stressful job"
+      },
+      "systemsReview": {
+        "cardiovascular": "Controlled hypertension",
+        "respiratory": "Morning cough, no wheeze currently",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Stressed at work, uses cigarettes as coping mechanism"
+      }
+    },
+    "examination": {
+      "general": "Well man, smell of cigarettes on clothing",
+      "vitalSigns": { "bp": "128/78", "hr": 72, "rr": 16, "temp": 36.7, "spo2": 97 },
+      "cardiovascular": "Normal",
+      "respiratory": "Mild wheeze right base",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Not expecting to discuss smoking. Slightly defensive but open if approached correctly. Has thought about quitting before. His father's death from COPD worries him.",
+    "communicationStyle": "Direct. Defensive if lectured. Open to discussion if non-judgmental approach. Will say 'I know it's bad but it helps me with stress.'",
+    "hiddenConcerns": [
+      "I watched my dad die gasping for breath — that really scared me",
+      "My wife has been asking me to quit for years",
+      "I tried patches once but it didn't work",
+      "I'm not sure I'm ready to give up but I know I should"
+    ],
+    "doNotVolunteer": [
+      "Father's death from COPD — only if asked about family history or what motivates him",
+      "Previous attempt with patches — only if asked about previous quit attempts",
+      "Wife's wishes — only if asked about support at home"
+    ]
+  },
+  "primaryDiagnosis": "Current smoker — 30 pack-years — requiring cessation support",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Ask — confirms smoking status and quantifies",
+          "detailedExpectation": "How much, how long, pack-years, type (cigarettes/roll-ups/e-cigarettes)",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["smoking", "cigarettes", "how many", "how long", "pack years"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Assess — explores motivation and readiness to quit",
+          "detailedExpectation": "Scale of readiness, previous attempts, barriers",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Advise — gives clear advice to stop",
+          "detailedExpectation": "Clearly advises stopping smoking as the most important thing for health",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["advise", "recommend", "stop smoking", "quit", "best thing you can do"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Assist — offers evidence-based cessation support",
+          "detailedExpectation": "Varenicline (most effective) OR combination NRT, OR bupropion — not just willpower",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["varenicline", "champix", "nrt", "nicotine replacement", "patch", "gum", "bupropion", "prescription", "medication"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Refers to NHS Stop Smoking Service",
+          "detailedExpectation": "Behavioural support doubles success rates — combined with pharmacotherapy",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["stop smoking", "service", "support", "cessation service", "nhs", "counselling", "group"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Arrange — follow-up appointment",
+          "detailedExpectation": "Books follow-up in 1-2 weeks to review progress",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["follow-up", "follow up", "see you", "next appointment", "come back"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction and permission to discuss",
+          "detailedExpectation": "Asks permission to discuss smoking — 'Is it OK if we talk about your smoking today?'",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Non-judgmental, motivational approach",
+          "detailedExpectation": "Does not lecture, explores ambivalence, affirms strengths",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Explores patient's own reasons for quitting",
+          "detailedExpectation": "Elicits patient's motivation (father, wife, health) rather than imposing",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 21,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "NICE PH10: Smoking cessation services" },
+    { "source": "NICE NG92: Stop smoking interventions and services" }
+  ],
+  "ukmlaContentMapIds": ["smoking-cessation", "brief-intervention", "5As"],
+  "learningObjectives": [
+    "Apply 5 As framework for smoking cessation",
+    "Recommend evidence-based cessation pharmacotherapy",
+    "Use motivational interviewing techniques",
+    "Refer to NHS Stop Smoking Service"
+  ],
+  "tags": ["communication", "smoking-cessation", "brief-intervention", "gp", "public-health", "plab2"]
+}

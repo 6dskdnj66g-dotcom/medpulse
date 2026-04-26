@@ -1,0 +1,215 @@
+{
+  "id": "breaking-bad-news-cancer-013",
+  "exam": "PLAB2",
+  "title": "Breaking bad news — new lung cancer diagnosis",
+  "category": "breaking-bad-news",
+  "specialty": "Respiratory",
+  "difficulty": "fy2-level",
+  "durationMinutes": 10,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 doctor in the respiratory outpatient clinic. Mr Thomas Griffiths, a 64-year-old retired carpenter, had a CT chest 2 weeks ago following an abnormal CXR. The CT confirms a 5cm right upper lobe mass consistent with primary lung carcinoma. Staging is currently being arranged. He has attended today for his results. Please break this news using appropriate communication skills.",
+  "examinerNotes": "Lung cancer breaking bad news station. Candidate should use SPIKES framework. Key errors to penalise: using jargon, giving false hope, not using the word 'cancer', not allowing silence, giving too much information at once. Warning shot essential before giving news.",
+  "patient": {
+    "id": "patient-013",
+    "name": "Thomas Griffiths",
+    "age": 64,
+    "gender": "M",
+    "occupation": "Retired carpenter",
+    "maritalStatus": "Married, 2 adult children",
+    "presentingComplaint": "Attending for CT results",
+    "reasonForAttendance": "I'm here to find out what the scan showed. I've been worried sick.",
+    "history": {
+      "hpi": {
+        "site": "Not applicable",
+        "onset": "Not applicable",
+        "character": "Not applicable",
+        "radiation": "Not applicable",
+        "associatedSymptoms": [],
+        "timing": "Not applicable",
+        "exacerbatingFactors": "Not applicable",
+        "relievingFactors": "Not applicable",
+        "severity": "Very anxious waiting for results"
+      },
+      "pmh": [
+        { "condition": "COPD", "yearDiagnosed": 2016, "controlled": true },
+        { "condition": "Hypertension", "yearDiagnosed": 2012, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Salbutamol", "dose": "100mcg", "frequency": "PRN" },
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Father", "condition": "Lung cancer", "ageAtDiagnosis": 68 }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 40, "quitDate": "2019" },
+        "alcohol": { "units": 10, "pattern": "Social" },
+        "occupation": "Retired carpenter"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Cough, breathlessness (from COPD)",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Very anxious"
+      }
+    },
+    "examination": {
+      "general": "Well-dressed man, visibly anxious, sitting on edge of chair",
+      "vitalSigns": { "bp": "138/86", "hr": 88, "rr": 16, "temp": 36.7, "spo2": 96 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Extremely anxious. Half-suspects the news is bad. Will become emotional and tearful when told. May initially be in shock and struggle to process information. Will ask 'Is it cancer?' directly. May become angry briefly, then tearful. Will ask about prognosis and whether it's curable.",
+    "communicationStyle": "Direct questions. Will push for specific answers. May become upset and need time. Partner called Joan waiting outside.",
+    "hiddenConcerns": [
+      "My father died from lung cancer — is this the same?",
+      "Am I going to die from this?",
+      "Will I be able to see my grandchildren grow up?",
+      "Should I have come sooner when I first started coughing?"
+    ],
+    "doNotVolunteer": [
+      "Do not volunteer family history unless asked",
+      "Do not ask about prognosis unless doctor says it is cancer — then will ask directly"
+    ]
+  },
+  "primaryDiagnosis": "Primary Lung Carcinoma (right upper lobe, staging pending)",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Sets up private environment (SPIKES-S)",
+          "detailedExpectation": "Mentions/checks private room, no interruptions, turns off pager",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["private", "quiet", "phone", "pager", "turn off", "close the door"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Assesses patient's perception (SPIKES-P)",
+          "detailedExpectation": "'What do you understand about why you had the scan?' or similar",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Asks patient's invitation/preference (SPIKES-I)",
+          "detailedExpectation": "'Are you happy for me to share the results with you today?'",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Offers to have partner/relative present",
+          "detailedExpectation": "Offers to bring Joan in before giving news",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["partner", "relative", "family", "someone with you", "bring them in"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Gives warning shot before bad news",
+          "detailedExpectation": "'I'm afraid the news is not what we hoped for' or equivalent",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Gives diagnosis clearly and honestly — uses the word 'cancer'",
+          "detailedExpectation": "States 'cancer' or 'tumour' — does not avoid the word when asked directly",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["cancer", "tumour", "malignant", "malignancy", "carcinoma"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Explains next steps (staging, MDT, oncology)",
+          "detailedExpectation": "Outlines: staging scans, MDT meeting, referral to oncology/thoracic surgery",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["staging", "mdt", "oncology", "specialist", "next steps", "meeting", "team"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Avoids giving specific prognosis statistics",
+          "detailedExpectation": "Does not give survival statistics without patient asking; appropriate response to prognosis question",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Empathic response to patient's distress (SPIKES-E)",
+          "detailedExpectation": "Allows silence after delivering news, acknowledges emotions",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Checks understanding regularly",
+          "detailedExpectation": "Pauses to check comprehension, uses simple language",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Safety nets — follow-up, written information, support",
+          "detailedExpectation": "Offers written information, follow-up appointment, Macmillan nurse contact",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["written", "follow-up", "macmillan", "nurse", "leaflet", "helpline", "appointment"]
+          }
+        }
+      ]
+    },
+    "totalMaxScore": 24,
+    "passingScore": 15
+  },
+  "references": [
+    { "source": "Baile WF et al. SPIKES — A six-step protocol for delivering bad news. Oncologist 2000" },
+    { "source": "NICE NG122: Lung cancer" }
+  ],
+  "ukmlaContentMapIds": ["breaking-bad-news", "communication-skills", "lung-cancer"],
+  "learningObjectives": [
+    "Apply SPIKES framework for breaking bad news",
+    "Use appropriate warning shots before disclosing diagnosis",
+    "Respond empathically to patient distress",
+    "Handle direct questions about prognosis appropriately"
+  ],
+  "tags": ["communication", "breaking-bad-news", "cancer", "spikes", "lung-cancer", "plab2"]
+}

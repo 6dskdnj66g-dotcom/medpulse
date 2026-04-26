@@ -1,0 +1,182 @@
+{
+  "id": "angry-patient-delayed-results-015",
+  "exam": "PLAB2",
+  "title": "Dealing with an angry patient — delayed test results",
+  "category": "communication-skills",
+  "specialty": "General Practice",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 GP trainee. Mr Keith Lambert, a 52-year-old lorry driver, has come to see you. He had a prostate biopsy 6 weeks ago and was told he would receive his results within 2 weeks. He has not received results and is extremely angry. You have the results: Gleason 3+3=6, organ-confined prostate cancer. Please manage this situation.",
+  "examinerNotes": "De-escalation station combined with breaking bad news. Candidate must: acknowledge anger, apologise for delay (institutional not personal), not become defensive, de-escalate before delivering cancer diagnosis. Must use SPIKES after de-escalation. Critical error: defending the system, dismissing anger.",
+  "patient": {
+    "id": "patient-015",
+    "name": "Keith Lambert",
+    "age": 52,
+    "gender": "M",
+    "occupation": "Lorry driver",
+    "maritalStatus": "Married",
+    "presentingComplaint": "Furious about 6-week wait for biopsy results — came in demanding answers",
+    "reasonForAttendance": "I'm absolutely furious. Six weeks and nobody has bothered to contact me. I've been going out of my mind with worry.",
+    "history": {
+      "hpi": {
+        "site": "Not applicable",
+        "onset": "Not applicable",
+        "character": "Extremely angry, voice raised, arms crossed, pacing",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Anxiety", "Sleeplessness worrying about results", "Has not told wife as didn't want to worry her"],
+        "timing": "6 weeks of waiting",
+        "exacerbatingFactors": "Being dismissed or made to feel unimportant",
+        "relievingFactors": "Being heard and acknowledged",
+        "severity": "Very distressed"
+      },
+      "pmh": [
+        { "condition": "Hypertension", "yearDiagnosed": 2018, "controlled": true },
+        { "condition": "Elevated PSA", "yearDiagnosed": 2024, "controlled": false, "notes": "Led to biopsy" }
+      ],
+      "drugHistory": [
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Father", "condition": "Prostate cancer", "ageAtDiagnosis": 68 }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 20 },
+        "alcohol": { "units": 15, "pattern": "Evenings" },
+        "occupation": "HGV driver — DVLA implications if cancer requires treatment"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Normal",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Lower urinary tract symptoms (slow stream, frequency) for 2 years — reason for PSA check",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxiety from waiting"
+      }
+    },
+    "examination": {
+      "general": "Angry, standing, arms crossed, voice raised",
+      "vitalSigns": { "bp": "146/92", "hr": 94, "rr": 16, "temp": 36.8, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Angry initially. Once acknowledged: scared, vulnerable, worried about cancer. Will ask 'Is it cancer?'. If handled poorly will escalate and refuse to engage.",
+    "communicationStyle": "Initially confrontational. If doctor listens and apologises sincerely, he will gradually calm down. Underneath the anger is profound fear.",
+    "hiddenConcerns": [
+      "My dad died from prostate cancer — I've been thinking about nothing else",
+      "I haven't slept properly for 6 weeks",
+      "My wife doesn't know I had the biopsy",
+      "What does this mean for my job — can I still drive?"
+    ],
+    "doNotVolunteer": [
+      "Father's death from prostate cancer — only if anger calms and doctor asks about family history or why he's so worried",
+      "Wife doesn't know — only if asked who is supporting him",
+      "Work concerns — only after anger calms and doctor asks about impact on his life"
+    ]
+  },
+  "primaryDiagnosis": "Gleason 3+3=6 (Grade Group 1) Organ-Confined Prostate Cancer — localised, low-risk",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Allows patient to express anger without interrupting",
+          "detailedExpectation": "Listens actively, does not interrupt or become defensive",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Acknowledges the anger as legitimate",
+          "detailedExpectation": "'I understand why you're angry' or equivalent — validates emotion",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Apologises for the delay sincerely",
+          "detailedExpectation": "Institutional apology — 'I am sorry this happened' without blaming individuals",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["sorry", "apologise", "apology", "should not have happened", "you're right to be"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Transitions appropriately to delivering results",
+          "detailedExpectation": "Uses warning shot before delivering cancer diagnosis",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Delivers diagnosis clearly with empathy",
+          "detailedExpectation": "States prostate cancer, Gleason low-grade, organ-confined — positive framing appropriate",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["cancer", "prostate cancer", "biopsy result", "tumour", "malignant"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Explains this is low-grade, treatable, often curable",
+          "detailedExpectation": "Reassures about low Gleason score, good prognosis, multidisciplinary plan",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Does not escalate or become defensive",
+          "detailedExpectation": "Maintains calm professional composure throughout",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Addresses underlying fear not just surface anger",
+          "detailedExpectation": "Recognises fear under anger, asks about patient's concerns",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 21,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "GMC: Good medical practice — communication" },
+    { "source": "NICE NG131: Prostate cancer — diagnosis and management" }
+  ],
+  "ukmlaContentMapIds": ["de-escalation", "prostate-cancer", "communication-skills"],
+  "learningObjectives": [
+    "De-escalate an angry patient using active listening",
+    "Apologise appropriately without blaming colleagues",
+    "Transition from de-escalation to breaking bad news",
+    "Explain low-grade prostate cancer sensitively"
+  ],
+  "tags": ["communication", "de-escalation", "angry-patient", "breaking-bad-news", "prostate", "plab2"]
+}

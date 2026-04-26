@@ -1,0 +1,177 @@
+{
+  "id": "confidentiality-15yo-016",
+  "exam": "PLAB2",
+  "title": "Confidentiality — 15-year-old requesting contraception",
+  "category": "ethical-dilemma",
+  "specialty": "General Practice",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 GP trainee. Emily Wood, a 15-year-old girl, has attended the surgery alone. She has told the receptionist she wants to discuss contraception. Her parents are not aware she is here. Please consult with Emily.",
+  "examinerNotes": "Fraser competence/Gillick competence station. Candidate must: assess competence, not refuse to help, not automatically involve parents, apply Gillick/Fraser criteria. Candidate must assess for safeguarding concerns, coercion, consent, safety. Should prescribe combined oral contraceptive or give emergency contraception if eligible. Must not breach confidentiality unless safeguarding concern.",
+  "patient": {
+    "id": "patient-016",
+    "name": "Emily Wood",
+    "age": 15,
+    "gender": "F",
+    "occupation": "GCSE student",
+    "presentingComplaint": "Wants to discuss contraception confidentially",
+    "reasonForAttendance": "I want to go on the pill. I don't want my mum to know I'm here.",
+    "history": {
+      "hpi": {
+        "site": "Not applicable",
+        "onset": "Currently in a relationship",
+        "character": "In a relationship with a 16-year-old boy from school, consensual, wants protection",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Not sexually active yet but about to be", "Knows about condoms but wants more reliable contraception"],
+        "timing": "Planning for upcoming sexual activity",
+        "exacerbatingFactors": "Pressure to maintain confidentiality",
+        "relievingFactors": "Being treated respectfully",
+        "severity": "Not applicable"
+      },
+      "pmh": [],
+      "drugHistory": [],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 2, "pattern": "Occasional at parties" },
+        "occupation": "GCSE student, Year 10"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Normal",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Not yet sexually active",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxious about confidentiality"
+      }
+    },
+    "examination": {
+      "general": "Anxious teenager, fidgeting",
+      "vitalSigns": { "bp": "112/70", "hr": 82, "rr": 16, "temp": 36.6, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Anxious, embarrassed. Will refuse to proceed if doctor threatens to contact parents. Mature and thoughtful for her age — understands the information clearly.",
+    "communicationStyle": "Shy initially but articulate when made to feel comfortable. Will ask directly if the doctor will tell her parents.",
+    "hiddenConcerns": [
+      "I'm terrified my mum will find out — she's very strict",
+      "I know exactly what I want and what the risks are",
+      "My boyfriend is 16, we've been together 8 months — this is my decision"
+    ],
+    "doNotVolunteer": [
+      "Boyfriend's age — only if specifically asked about his age",
+      "Whether she is currently sexually active — will say 'not yet' if directly asked",
+      "How long they have been together — only if asked"
+    ]
+  },
+  "primaryDiagnosis": "Request for contraception — Gillick-competent minor",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Assesses Gillick/Fraser competence",
+          "detailedExpectation": "Understands the information, consequences, implications — demonstrates competence",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Screens for safeguarding concerns and coercion",
+          "detailedExpectation": "Asks age of partner, whether relationship is consensual, any pressure",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["partner", "age", "how old", "relationship", "pressure", "forced", "consensual", "safe"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Addresses confidentiality concerns",
+          "detailedExpectation": "Explicitly confirms GP will maintain confidentiality if Gillick competent and no safeguarding concern",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["confidential", "confidentiality", "private", "not tell", "won't tell your parents", "between us"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Prescribes or arranges appropriate contraception",
+          "detailedExpectation": "COCP, progestogen-only pill, LARC, or emergency contraception if appropriate",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["pill", "contraception", "cocp", "pop", "implant", "injection", "contraceptive"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Explains circumstances when confidentiality could be broken",
+          "detailedExpectation": "Serious harm or safeguarding risk — explains this honestly",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Encourages parental involvement without coercion",
+          "detailedExpectation": "Gently encourages Emily to consider telling parents — without threatening",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Non-judgmental, age-appropriate approach",
+          "detailedExpectation": "Treats 15-year-old with respect, does not lecture or moralize",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Checks understanding of contraception",
+          "detailedExpectation": "Ensures Emily understands how to use contraception",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 20,
+    "passingScore": 12
+  },
+  "references": [
+    { "source": "Gillick v West Norfolk and Wisbech Area Health Authority [1985]" },
+    { "source": "Fraser Guidelines (1985)" },
+    { "source": "GMC: 0-18 years: guidance for all doctors (2007)" }
+  ],
+  "ukmlaContentMapIds": ["consent-capacity", "confidentiality", "contraception"],
+  "learningObjectives": [
+    "Apply Gillick competence framework",
+    "Screen for safeguarding and coercion",
+    "Manage confidentiality in a minor",
+    "Prescribe contraception to a competent minor"
+  ],
+  "tags": ["communication", "ethics", "confidentiality", "contraception", "gillick", "adolescent", "plab2"]
+}

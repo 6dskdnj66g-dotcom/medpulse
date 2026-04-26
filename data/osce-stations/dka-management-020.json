@@ -1,0 +1,243 @@
+{
+  "id": "dka-management-020",
+  "exam": "PLAB2",
+  "title": "Emergency management — diabetic ketoacidosis (DKA)",
+  "category": "emergency-management",
+  "specialty": "Endocrinology",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 on the medical take. Mr Carl Hughes, a 24-year-old with known Type 1 diabetes, presents via ambulance with a 2-day history of vomiting and increased thirst. He missed his insulin doses. BGL 28 mmol/L, ketones 4.2 mmol/L, pH 7.20 on ABG. Please manage this patient.",
+  "examinerNotes": "Moderate-severe DKA. Fixed rate insulin infusion (FRIII), IV 0.9% NaCl with careful K+ replacement, monitoring, DO NOT stop long-acting insulin, DO NOT use bicarbonate unless pH <6.9. Key error: stopping long-acting insulin, giving glucose before glucose <14mmol/L.",
+  "patient": {
+    "id": "patient-020",
+    "name": "Carl Hughes",
+    "age": 24,
+    "gender": "M",
+    "occupation": "IT technician",
+    "presentingComplaint": "Vomiting, high blood sugar, missed insulin doses",
+    "reasonForAttendance": "Been vomiting for 2 days, checked my blood sugar and it was sky high — ambulance brought me in",
+    "history": {
+      "hpi": {
+        "site": "Not applicable — systemic",
+        "onset": "2 days",
+        "character": "Vomiting, excessive thirst, lethargy",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Nausea and vomiting", "Abdominal cramping", "Excessive thirst", "Polyuria", "Drowsiness", "Fruity breath"],
+        "timing": "2 days, worsening",
+        "exacerbatingFactors": "Missing insulin doses",
+        "relievingFactors": "Nothing has helped",
+        "severity": "Severe — very unwell"
+      },
+      "pmh": [
+        { "condition": "Type 1 Diabetes Mellitus", "yearDiagnosed": 2015, "controlled": false, "notes": "Has had DKA once before 3 years ago" }
+      ],
+      "drugHistory": [
+        { "name": "Insulin glargine (Lantus)", "dose": "22 units", "frequency": "bedtime — MISSED for 2 days" },
+        { "name": "Insulin aspart (NovoRapid)", "dose": "variable with meals", "frequency": "with meals — MISSED" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 8, "pattern": "Weekends" },
+        "occupation": "IT technician"
+      },
+      "systemsReview": {
+        "cardiovascular": "Tachycardia",
+        "respiratory": "Kussmaul breathing — deep sighing",
+        "gastrointestinal": "Vomiting, nausea, abdominal cramps",
+        "genitourinary": "Polyuria",
+        "neurological": "Mildly drowsy but responsive",
+        "musculoskeletal": "Generalised weakness",
+        "dermatological": "Normal",
+        "endocrine": "T1DM",
+        "haematological": "Normal",
+        "psychiatric": "Normal when awake"
+      }
+    },
+    "examination": {
+      "general": "Unwell young man, Kussmaul breathing, fruity breath (ketones), dry mouth and skin, sunken eyes",
+      "vitalSigns": { "bp": "104/68", "hr": 118, "rr": 24, "temp": 37.3, "spo2": 98, "bgl": 28 },
+      "cardiovascular": "Tachycardia, dry mucous membranes, reduced skin turgor — moderate dehydration",
+      "respiratory": "Deep sighing respirations (Kussmaul)",
+      "abdominal": "Mild diffuse tenderness",
+      "neurological": "GCS 14 (E4V4M6), mildly drowsy",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "abg-dka-mgmt",
+        "type": "blood-test",
+        "name": "Arterial Blood Gas",
+        "shortName": "ABG",
+        "triggerKeywords": ["abg", "blood gas", "arterial", "ph", "acidosis"],
+        "result": {
+          "values": {
+            "pH": { "value": 7.20, "unit": "", "range": "7.35-7.45", "flag": "L" },
+            "PaO2": { "value": 12.8, "unit": "kPa", "range": "11-14" },
+            "PaCO2": { "value": 2.6, "unit": "kPa", "range": "4.5-6.0", "flag": "L" },
+            "HCO3": { "value": 8, "unit": "mmol/L", "range": "22-29", "flag": "L" },
+            "Lactate": { "value": 1.4, "unit": "mmol/L", "range": "<2.0" }
+          }
+        },
+        "interpretation": "Severe metabolic acidosis with respiratory compensation — DKA confirmed. pH 7.20 = moderate-severe DKA.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "ues-dka-mgmt",
+        "type": "blood-test",
+        "name": "Urea and Electrolytes",
+        "shortName": "U&E",
+        "triggerKeywords": ["u&e", "potassium", "electrolytes", "sodium", "renal"],
+        "result": {
+          "values": {
+            "Sodium": { "value": 130, "unit": "mmol/L", "range": "135-145", "flag": "L" },
+            "Potassium": { "value": 5.4, "unit": "mmol/L", "range": "3.5-5.0", "flag": "H" },
+            "Urea": { "value": 9.8, "unit": "mmol/L", "range": "2.5-7.5", "flag": "H" },
+            "Creatinine": { "value": 128, "unit": "µmol/L", "range": "60-110", "flag": "H" }
+          }
+        },
+        "interpretation": "Hyperkalaemia (shifts from intracellular during acidosis — TOTAL body K is depleted). Pre-renal AKI. Hyponatraemia. CRITICAL: start potassium replacement once K <5.5 and urine output established.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Drowsy but answers questions. Scared. Knows what DKA is from previous admission.",
+    "communicationStyle": "Short responses, drowsy. Cooperative.",
+    "hiddenConcerns": [
+      "I've had this before — is it dangerous again?",
+      "I feel awful"
+    ],
+    "doNotVolunteer": [
+      "Not applicable — emergency scenario"
+    ]
+  },
+  "primaryDiagnosis": "Diabetic Ketoacidosis (DKA) — moderate-severe, precipitated by insulin omission",
+  "differentialDiagnoses": [
+    "Hyperosmolar hyperglycaemic state (HHS)",
+    "Lactic acidosis",
+    "Alcoholic ketoacidosis",
+    "Starvation ketoacidosis"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Identifies DKA using diagnostic criteria",
+          "detailedExpectation": "BGL >11, ketones >3, pH <7.3 or bicarbonate <15",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["dka", "diabetic ketoacidosis", "ketoacidosis"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Identifies precipitant (insulin omission)",
+          "detailedExpectation": "Asks about missed insulin doses, infection as trigger",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["insulin", "missed", "omit", "forget", "infection", "trigger", "precipitant"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Orders appropriate urgent investigations",
+          "detailedExpectation": "ABG, U&E, FBC, glucose, ketones, blood cultures",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["abg", "blood gas", "electrolytes", "u&e", "blood cultures", "potassium"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "IV fluid resuscitation — 0.9% NaCl",
+          "detailedExpectation": "1L 0.9% NaCl over 1 hour initially, then per JBDS protocol",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["saline", "0.9%", "nacl", "fluid", "iv fluid", "resuscitation"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Fixed rate insulin infusion (FRIII)",
+          "detailedExpectation": "0.1 units/kg/hour IV insulin infusion — NOT subcutaneous",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["insulin infusion", "iv insulin", "fixed rate", "friii", "0.1 units", "insulin drip"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Potassium replacement strategy",
+          "detailedExpectation": "K+ replacement once K <5.5 and urine output established — DO NOT give K if anuric",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["potassium", "replace potassium", "k+", "potassium replacement"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Continues long-acting insulin — does NOT stop it",
+          "detailedExpectation": "Long-acting background insulin should be continued",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["long-acting", "background insulin", "lantus", "glargine", "continue insulin"]
+          }
+        },
+        {
+          "id": "cm-5",
+          "criterion": "Monitoring plan — hourly glucose, 2-hourly ketones/ABG",
+          "detailedExpectation": "Hourly glucose, 2-hourly VBG/ketones until resolution",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["monitor", "hourly", "ketones", "glucose monitoring", "vbg"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Reassures and explains to patient",
+          "detailedExpectation": "Brief clear communication while managing emergency",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 21,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "JBDS: The Management of Diabetic Ketoacidosis in Adults 2023" }
+  ],
+  "ukmlaContentMapIds": ["dka", "emergency-management", "insulin"],
+  "learningObjectives": [
+    "Diagnose DKA using diagnostic criteria",
+    "Initiate correct fluid and insulin therapy",
+    "Monitor and replace potassium safely",
+    "Continue background insulin throughout treatment"
+  ],
+  "tags": ["emergency", "dka", "diabetes", "endocrinology", "plab2"]
+}

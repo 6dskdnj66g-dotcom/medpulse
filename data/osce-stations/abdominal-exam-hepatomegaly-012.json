@@ -1,0 +1,228 @@
+{
+  "id": "abdominal-exam-hepatomegaly-012",
+  "exam": "PLAB2",
+  "title": "Abdominal examination — palpable liver",
+  "category": "focused-examination",
+  "specialty": "Gastroenterology",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY1 in the hepatology clinic. Mr Brian Cooper, a 58-year-old man, has been referred by his GP with abnormal liver function tests and right upper quadrant fullness. Please perform an abdominal examination and present your findings.",
+  "examinerNotes": "Hepatomegaly due to alcohol-related liver disease or hepatic metastases. Examination findings: hepatomegaly 4cm below costal margin, smooth, non-tender. Signs of chronic liver disease (spider naevi, palmar erythema, leukonychia, jaundice). Candidate should comment on these peripheral signs and assess for ascites.",
+  "patient": {
+    "id": "patient-012",
+    "name": "Brian Cooper",
+    "age": 58,
+    "gender": "M",
+    "occupation": "Retired HGV driver",
+    "presentingComplaint": "Abnormal liver tests, right upper quadrant fullness",
+    "reasonForAttendance": "Referred with abnormal liver tests",
+    "history": {
+      "hpi": {
+        "site": "Right upper quadrant — fullness",
+        "onset": "Gradual, noticed over last few months",
+        "character": "Feeling of fullness, mild ache",
+        "radiation": "Right shoulder occasionally",
+        "associatedSymptoms": ["Fatigue", "Mild jaundice (partner noticed)", "Ankle swelling", "Reduced appetite"],
+        "timing": "Months",
+        "exacerbatingFactors": "Nothing specific",
+        "relievingFactors": "Nothing specific",
+        "severity": "Mild ache 3/10"
+      },
+      "pmh": [
+        { "condition": "Type 2 diabetes", "yearDiagnosed": 2015, "controlled": false },
+        { "condition": "Hypertension", "yearDiagnosed": 2012, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Metformin", "dose": "1g", "frequency": "twice daily" },
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 30 },
+        "alcohol": { "units": 50, "pattern": "Heavy daily drinker — 4-6 cans lager per day for 20 years" },
+        "occupation": "Retired HGV driver"
+      },
+      "systemsReview": {
+        "cardiovascular": "Ankle swelling",
+        "respiratory": "Normal",
+        "gastrointestinal": "RUQ fullness, jaundice, reduced appetite",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Spider naevi on chest and back (patient noticed)",
+        "endocrine": "Diabetes",
+        "haematological": "Bruising easily",
+        "psychiatric": "Normal"
+      }
+    },
+    "examination": {
+      "general": "Mildly icteric, palmar erythema, leukonychia, spider naevi x5 on chest and arms, gynaecomastia",
+      "vitalSigns": { "bp": "128/78", "hr": 82, "rr": 16, "temp": 36.8, "spo2": 98 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Hepatomegaly — liver palpable 4cm below right costal margin, smooth edge, non-tender. Mild splenomegaly. No ascites. No caput medusae. Shifting dullness negative.",
+      "neurological": "Normal — no flapping tremor",
+      "musculoskeletal": "Bilateral pitting ankle oedema"
+    },
+    "investigations": [
+      {
+        "id": "lfts",
+        "type": "blood-test",
+        "name": "Liver Function Tests",
+        "shortName": "LFTs",
+        "triggerKeywords": ["lfts", "liver function", "liver tests", "bilirubin", "alt", "ast", "ggt", "liver blood"],
+        "result": {
+          "values": {
+            "Bilirubin": { "value": 48, "unit": "µmol/L", "range": "<21", "flag": "H" },
+            "ALT": { "value": 125, "unit": "IU/L", "range": "<45", "flag": "H" },
+            "AST": { "value": 189, "unit": "IU/L", "range": "<40", "flag": "H" },
+            "GGT": { "value": 398, "unit": "IU/L", "range": "<65", "flag": "H" },
+            "ALP": { "value": 210, "unit": "IU/L", "range": "40-130", "flag": "H" },
+            "Albumin": { "value": 29, "unit": "g/L", "range": "35-50", "flag": "L" }
+          }
+        },
+        "interpretation": "Marked hepatitic picture with hyperbilirubinaemia and hypoalbuminaemia. AST:ALT ratio >1.5 suggests alcohol-related liver disease. GGT markedly elevated — typical of alcohol use.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "uss-liver",
+        "type": "imaging-ultrasound",
+        "name": "Abdominal Ultrasound",
+        "shortName": "USS Abdomen",
+        "triggerKeywords": ["ultrasound", "uss", "liver scan", "ultrasound liver", "abdominal scan"],
+        "result": "Enlarged liver 18cm with coarsened echogenicity and nodular surface. Mild splenomegaly 14cm. No focal liver lesions. No ascites. No biliary dilatation. Portal vein diameter 14mm (upper limit).",
+        "imageUrl": "/osce-assets/uss-cirrhotic-liver.png",
+        "interpretation": "Findings consistent with alcoholic cirrhosis. No focal lesions. Mild portal hypertension.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Defensive about alcohol. Cooperative for examination but reluctant to answer detailed questions about drinking.",
+    "communicationStyle": "Answers briefly. Minimises alcohol intake when asked.",
+    "hiddenConcerns": [
+      "Am I going to need a liver transplant?",
+      "Is this from the drinking?",
+      "My wife has been telling me to stop for years"
+    ],
+    "doNotVolunteer": [
+      "Actual alcohol intake — will say 'social drinker' unless pressed with specific questions about daily units",
+      "Duration of heavy drinking — only if specifically asked for how long"
+    ]
+  },
+  "primaryDiagnosis": "Alcohol-Related Liver Disease (cirrhosis) with hepatomegaly",
+  "differentialDiagnoses": [
+    "Non-alcoholic fatty liver disease (NAFLD)",
+    "Hepatic metastases",
+    "Viral hepatitis (B or C)",
+    "Haemochromatosis",
+    "Primary biliary cholangitis"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "General inspection — peripheral signs of liver disease",
+          "detailedExpectation": "Jaundice, spider naevi, palmar erythema, leukonychia, gynaecomastia",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Correct liver palpation technique",
+          "detailedExpectation": "Starts from RIF, moves towards costal margin on inspiration",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Measures hepatomegaly below costal margin",
+          "detailedExpectation": "States extent of hepatomegaly in centimetres",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Assesses for ascites — shifting dullness",
+          "detailedExpectation": "Performs shifting dullness test correctly",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Orders appropriate investigations",
+          "detailedExpectation": "LFTs and USS abdomen",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["liver function", "lfts", "ultrasound", "liver scan"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Correctly identifies hepatomegaly",
+          "detailedExpectation": "States palpable liver with size below costal margin",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["hepatomegaly", "enlarged liver", "liver enlarged", "palpable liver"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Links findings to alcohol-related liver disease",
+          "detailedExpectation": "Names ALD or cirrhosis as likely cause",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["alcohol", "alcoholic", "alcohol-related", "cirrhosis", "liver disease"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction, consent, positioning, exposure",
+          "detailedExpectation": "Patient supine, fully exposed abdomen",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Sensitive approach when discussing alcohol history",
+          "detailedExpectation": "Non-judgmental approach to alcohol use",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 22,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "BSG Guidelines on Management of Alcohol-Related Liver Disease 2020" },
+    { "source": "NICE CG115: Alcohol-use disorders" }
+  ],
+  "ukmlaContentMapIds": ["abdominal-examination", "hepatomegaly", "liver-disease"],
+  "learningObjectives": [
+    "Perform systematic abdominal examination",
+    "Identify peripheral stigmata of chronic liver disease",
+    "Correctly palpate and measure hepatomegaly",
+    "Assess for ascites using shifting dullness"
+  ],
+  "tags": ["gastroenterology", "examination", "hepatomegaly", "liver-disease", "plab2"]
+}

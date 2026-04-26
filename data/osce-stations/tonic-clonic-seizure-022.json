@@ -1,0 +1,193 @@
+{
+  "id": "tonic-clonic-seizure-022",
+  "exam": "PLAB2",
+  "title": "Emergency management — status epilepticus",
+  "category": "emergency-management",
+  "specialty": "Neurology",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 in the ED resuscitation bay. Mr Marcus Jenkins, a 35-year-old known epileptic, was found by his partner having a generalised tonic-clonic seizure 25 minutes ago. He is still seizing. IV access is in place. Please manage this emergency.",
+  "examinerNotes": "Status epilepticus (>5 min or recurrent without recovery). Treatment ladder: IV lorazepam 4mg → repeat → phenytoin/levetiracetam/valproate → general anaesthesia. ABCDEs first. Check glucose immediately. Call anaesthetics early. Critical error: not giving benzodiazepine as first-line.",
+  "patient": {
+    "id": "patient-022",
+    "name": "Marcus Jenkins",
+    "age": 35,
+    "gender": "M",
+    "occupation": "Delivery driver",
+    "presentingComplaint": "Ongoing generalised tonic-clonic seizure for 25 minutes",
+    "reasonForAttendance": "Partner called 999 when seizure did not stop",
+    "history": {
+      "hpi": {
+        "site": "Whole body — generalised",
+        "onset": "25 minutes ago",
+        "character": "Tonic-clonic, bilateral limbs, still ongoing",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Cyanosis", "Tongue biting", "Urinary incontinence", "Foaming at mouth"],
+        "timing": "Continuous for 25 minutes — status epilepticus",
+        "exacerbatingFactors": "Missed anti-epileptic medications for 3 days",
+        "relievingFactors": "Nothing has stopped it",
+        "severity": "Life-threatening — status epilepticus"
+      },
+      "pmh": [
+        { "condition": "Epilepsy (temporal lobe)", "yearDiagnosed": 2016, "controlled": false, "notes": "Missed medications for 3 days" }
+      ],
+      "drugHistory": [
+        { "name": "Levetiracetam", "dose": "1g", "frequency": "twice daily — MISSED for 3 days" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "current", "packYears": 10 },
+        "alcohol": { "units": 20, "pattern": "Regular — potential trigger" },
+        "occupation": "Delivery driver"
+      },
+      "systemsReview": {
+        "cardiovascular": "Tachycardia",
+        "respiratory": "At risk of aspiration",
+        "gastrointestinal": "Urinary incontinence",
+        "genitourinary": "Incontinence during seizure",
+        "neurological": "Ongoing tonic-clonic seizure",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Normal between seizures"
+      }
+    },
+    "examination": {
+      "general": "Ongoing tonic-clonic movement, cyanotic, foaming, tongue biting",
+      "vitalSigns": { "bp": "168/102", "hr": 142, "rr": 28, "temp": 38.2, "spo2": 86, "gcs": 3 },
+      "cardiovascular": "Tachycardia",
+      "respiratory": "Irregular, at risk of aspiration",
+      "abdominal": "Normal",
+      "neurological": "GCS 3, still seizing, pupils equal and reactive",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "glucose-seizure",
+        "type": "blood-test",
+        "name": "Point-of-care blood glucose",
+        "shortName": "BGL",
+        "triggerKeywords": ["glucose", "sugar", "bgl", "blood sugar", "hypoglycaemia"],
+        "result": {
+          "values": {
+            "Blood glucose": { "value": 5.8, "unit": "mmol/L", "range": "3.9-7.8" }
+          }
+        },
+        "interpretation": "Normal blood glucose — hypoglycaemia is NOT the cause of this seizure.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Unconscious — no meaningful response possible during seizure",
+    "communicationStyle": "Cannot communicate — obtunded. Information from partner.",
+    "hiddenConcerns": [],
+    "doNotVolunteer": []
+  },
+  "primaryDiagnosis": "Status Epilepticus — precipitated by anti-epileptic drug withdrawal",
+  "differentialDiagnoses": [
+    "Non-epileptic attack disorder (NEAD)",
+    "Hypoglycaemia",
+    "Hyponatraemia",
+    "Cerebral haemorrhage",
+    "Drug intoxication"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Identifies status epilepticus",
+          "detailedExpectation": "Seizure >5 minutes or failure to recover between seizures = status epilepticus",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["status epilepticus", "status", "prolonged seizure", "25 minutes"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Checks blood glucose immediately",
+          "detailedExpectation": "Blood glucose is immediate investigation to exclude hypoglycaemia",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "glucose-seizure"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "ABCDE approach — oxygen and airway",
+          "detailedExpectation": "High-flow oxygen, recovery position if not actively seizing, airway adjuncts",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["airway", "oxygen", "recovery position", "abcde", "sats"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "IV lorazepam 4mg as first-line (or IV diazepam)",
+          "detailedExpectation": "Benzodiazepine first-line: IV lorazepam 4mg (preferred) or IV diazepam 10mg",
+          "weight": 4,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["lorazepam", "diazepam", "benzo", "benzodiazepine", "4mg", "ativan"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Second-line antiepileptic (phenytoin, levetiracetam, valproate) if no response",
+          "detailedExpectation": "IV phenytoin 20mg/kg or levetiracetam 60mg/kg or sodium valproate 40mg/kg",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["phenytoin", "levetiracetam", "valproate", "second line", "keppra"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Calls anaesthetics early for intubation if not responding",
+          "detailedExpectation": "RSI/general anaesthesia for refractory status epilepticus",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["anaesthetic", "intubation", "rsi", "general anaesthetic", "itu", "theatre"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Communication with partner/family",
+          "detailedExpectation": "Brief explanation to partner about what is happening",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 18,
+    "passingScore": 11
+  },
+  "references": [
+    { "source": "NICE CG137: Epilepsies — status epilepticus management" },
+    { "source": "Convulsive Status Epilepticus treatment algorithm NICE 2022" }
+  ],
+  "ukmlaContentMapIds": ["status-epilepticus", "seizure", "emergency-management"],
+  "learningObjectives": [
+    "Recognise status epilepticus",
+    "Apply treatment ladder correctly",
+    "Identify when to call anaesthetics",
+    "Check blood glucose in any seizure"
+  ],
+  "tags": ["emergency", "neurology", "seizure", "status-epilepticus", "plab2"]
+}

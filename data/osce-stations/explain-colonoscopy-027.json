@@ -1,0 +1,203 @@
+{
+  "id": "explain-colonoscopy-027",
+  "exam": "PLAB2",
+  "title": "Procedure explanation — colonoscopy consent",
+  "category": "procedure-explanation",
+  "specialty": "Gastroenterology",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 in gastroenterology outpatients. Mr Paul Graham, a 55-year-old civil servant, has been referred for a colonoscopy following rectal bleeding and a change in bowel habit. He has never had the procedure before and is very anxious. Please explain the procedure and consent him.",
+  "examinerNotes": "Colonoscopy consent station. Candidate must explain: bowel prep (laxative the day before), sedation options (IV sedation/GTN), flexible camera through the back passage, air insufflation, can take biopsies, polyp removal. Risks: perforation (1:1000), bleeding, missed polyps, incomplete exam, reaction to sedation. Candidate must mention cancer screening context.",
+  "patient": {
+    "id": "patient-027",
+    "name": "Paul Graham",
+    "age": 55,
+    "gender": "M",
+    "occupation": "Civil servant",
+    "maritalStatus": "Married",
+    "presentingComplaint": "Referred for colonoscopy for rectal bleeding and bowel changes",
+    "reasonForAttendance": "I've been told I need a camera examination of my bowel. I'm very worried.",
+    "history": {
+      "hpi": {
+        "site": "Rectum, colon",
+        "onset": "6 weeks of rectal bleeding and change in bowel habit",
+        "character": "Fresh blood mixed with stool, looser stools",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Rectal bleeding 6 weeks", "Looser stools", "Weight loss 3kg", "Some lower abdominal cramping"],
+        "timing": "6 weeks",
+        "exacerbatingFactors": "Eating",
+        "relievingFactors": "Nothing",
+        "severity": "Mild-moderate symptoms"
+      },
+      "pmh": [
+        { "condition": "Hypertension", "yearDiagnosed": 2016, "controlled": true },
+        { "condition": "Type 2 diabetes", "yearDiagnosed": 2019, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Ramipril", "dose": "5mg", "frequency": "once daily" },
+        { "name": "Metformin", "dose": "500mg", "frequency": "twice daily" },
+        { "name": "Aspirin", "dose": "75mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Mother", "condition": "Bowel cancer", "ageAtDiagnosis": 62 }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 15, "quitDate": "2010" },
+        "alcohol": { "units": 12, "pattern": "Social weekends" },
+        "occupation": "Civil servant"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Normal",
+        "gastrointestinal": "Rectal bleeding, change in bowel habit",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Diabetes",
+        "haematological": "Normal",
+        "psychiatric": "Anxious about cancer"
+      }
+    },
+    "examination": {
+      "general": "Anxious but well-looking man",
+      "vitalSigns": { "bp": "132/82", "hr": 76, "rr": 14, "temp": 36.7, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Mild left lower quadrant tenderness",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Very anxious about cancer and the procedure. Will ask 'is this cancer?' and 'will it hurt?'",
+    "communicationStyle": "Anxious, asks direct questions. Needs clear explanation. Will ask about cancer diagnosis possibility.",
+    "hiddenConcerns": [
+      "My mother died of bowel cancer — is this what I have?",
+      "Will the camera be painful?",
+      "Do I have to be awake for it?",
+      "Will I need to take time off work?"
+    ],
+    "doNotVolunteer": [
+      "Family history of bowel cancer — only if asked",
+      "Aspirin — only if asked about blood thinners"
+    ]
+  },
+  "primaryDiagnosis": "Rectal bleeding with change in bowel habit — 2-week wait colonoscopy for possible colorectal carcinoma",
+  "differentialDiagnoses": [
+    "Colorectal carcinoma",
+    "Adenomatous polyp",
+    "Inflammatory bowel disease",
+    "Diverticular disease",
+    "Haemorrhoids"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Checks patient understanding",
+          "detailedExpectation": "What does patient understand about why they need colonoscopy",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Asks about anticoagulants/blood thinners",
+          "detailedExpectation": "Aspirin — must be stopped before polypectomy",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["aspirin", "blood thinners", "anticoagulant", "warfarin", "clopidogrel", "blood thinning"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Explains bowel preparation",
+          "detailedExpectation": "Laxative solution day before, clear fluids, empty bowel needed",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["bowel prep", "laxative", "preparation", "clear out", "liquid diet"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Explains procedure clearly",
+          "detailedExpectation": "Flexible camera, back passage, air to open up, can take samples/remove polyps, sedation option",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Explains main risks — perforation and bleeding",
+          "detailedExpectation": "Perforation 1:1000, bleeding (higher if polyp removed), missed polyps, incomplete exam",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["perforation", "bleeding", "risk", "incomplete", "tear"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Addresses sedation and pain",
+          "detailedExpectation": "Intravenous sedation option (not general anaesthetic), may feel some discomfort/bloating",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["sedation", "sedative", "comfortable", "pain", "gas and air", "discomfort"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Addresses cancer anxiety sensitively",
+          "detailedExpectation": "Responds to cancer question appropriately — explains colonoscopy is to investigate",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Confirms consent and questions addressed",
+          "detailedExpectation": "Patient agrees, opportunity for questions given",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 18,
+    "passingScore": 11
+  },
+  "references": [
+    { "source": "BSG Guidelines on Colonoscopy 2020" },
+    { "source": "NICE NG12: Suspected cancer — recognition and referral" }
+  ],
+  "ukmlaContentMapIds": ["colonoscopy", "consent", "colorectal-cancer"],
+  "learningObjectives": [
+    "Consent a patient for colonoscopy",
+    "Explain bowel preparation",
+    "Discuss risks including perforation",
+    "Address anxiety about cancer diagnosis sensitively"
+  ],
+  "tags": ["procedure", "consent", "colonoscopy", "gastroenterology", "plab2"]
+}

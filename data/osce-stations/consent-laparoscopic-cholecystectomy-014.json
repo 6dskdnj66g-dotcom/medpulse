@@ -1,0 +1,211 @@
+{
+  "id": "consent-laparoscopic-cholecystectomy-014",
+  "exam": "PLAB2",
+  "title": "Informed consent — laparoscopic cholecystectomy",
+  "category": "informed-consent",
+  "specialty": "Surgery",
+  "difficulty": "fy2-level",
+  "durationMinutes": 10,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 doctor in the surgical pre-assessment clinic. Mrs Jennifer Liu, a 43-year-old teacher, is scheduled for elective laparoscopic cholecystectomy next week for symptomatic gallstones. She has been seen by the consultant but has not yet been consented. Please consent her for this procedure.",
+  "examinerNotes": "Surgical consent station. Candidate must explain: procedure (4 small incisions, CO2, camera, removal of gallbladder), benefits (resolution of symptoms, prevent complications), risks (bleeding, infection, bile duct injury 0.3%, bile leak, conversion to open, anaesthetic). Must give opportunity to ask questions. Must not use excessive jargon.",
+  "patient": {
+    "id": "patient-014",
+    "name": "Jennifer Liu",
+    "age": 43,
+    "gender": "F",
+    "occupation": "Primary school teacher",
+    "maritalStatus": "Married, 2 children",
+    "presentingComplaint": "Here to sign consent for gallbladder surgery",
+    "reasonForAttendance": "I'm having my gallbladder out next week and need to sign the consent form",
+    "history": {
+      "hpi": {
+        "site": "Right upper quadrant — gallstone colic",
+        "onset": "2 years of episodes",
+        "character": "Episodic right upper quadrant colicky pain, worse after fatty food",
+        "radiation": "Right shoulder",
+        "associatedSymptoms": ["Nausea after eating", "One episode of jaundice last year"],
+        "timing": "Episodic",
+        "exacerbatingFactors": "Fatty foods",
+        "relievingFactors": "Fasting, analgesics",
+        "severity": "Severe during attacks 8/10, attacks lasting 4-6 hours"
+      },
+      "pmh": [
+        { "condition": "Asthma (mild)", "yearDiagnosed": 2010, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Salbutamol", "dose": "100mcg", "frequency": "PRN" }
+      ],
+      "allergies": [
+        { "agent": "Codeine", "reaction": "Nausea and drowsiness", "severity": "mild" }
+      ],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 6, "pattern": "Social" },
+        "occupation": "Teacher"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Mild asthma",
+        "gastrointestinal": "Gallstone symptoms as above",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxious about surgery"
+      }
+    },
+    "examination": {
+      "general": "Well woman, not in pain today",
+      "vitalSigns": { "bp": "118/72", "hr": 74, "rr": 14, "temp": 36.6, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Non-tender, no organomegaly",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Anxious about the operation. Concerned about risks. Has heard 'keyhole surgery' is routine but worried about complications. Will ask several questions.",
+    "communicationStyle": "Intelligent, asks direct questions. Will ask: 'What if it goes wrong? What are the chances of something serious?', 'How long will I be off work?', 'Is there any other option?'",
+    "hiddenConcerns": [
+      "I'm scared of general anaesthetic",
+      "What if they damage something while they're in there?",
+      "How long will I need off work? I can't leave my class for too long",
+      "My sister had complications after her gallbladder surgery"
+    ],
+    "doNotVolunteer": [
+      "Codeine allergy — only if asked about allergies",
+      "Concerns about anaesthetic — only if doctor asks about concerns or worries",
+      "Sister's complications — only if asked about family surgical history"
+    ]
+  },
+  "primaryDiagnosis": "Symptomatic Cholelithiasis (gallstones) — for elective laparoscopic cholecystectomy",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Checks patient understanding of planned procedure",
+          "detailedExpectation": "Asks what patient understands about the operation",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Confirms allergies and relevant medical history",
+          "detailedExpectation": "Confirms codeine allergy, asthma — relevant to anaesthesia",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["allergy", "allergies", "medication", "medical history"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Explains procedure clearly in lay terms",
+          "detailedExpectation": "4 small cuts, camera, CO2 gas, clips/staples on bile duct and artery, removes gallbladder through small incision",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Explains benefits of procedure",
+          "detailedExpectation": "Relief of pain, prevention of serious complications (cholangitis, pancreatitis)",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Explains common risks",
+          "detailedExpectation": "Bleeding, infection, hernia, general anaesthetic risks",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["bleeding", "infection", "risk", "complication", "anaesthetic"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Explains serious specific risks including bile duct injury",
+          "detailedExpectation": "Bile duct injury (0.3%), conversion to open operation, bile leak",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["bile duct", "bile", "open operation", "convert to open", "bile leak", "duct injury"]
+          }
+        },
+        {
+          "id": "cm-5",
+          "criterion": "Discusses recovery and return to work",
+          "detailedExpectation": "Typically 1-2 weeks off work, full recovery 2-3 weeks",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["recovery", "work", "time off", "back to work"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self and purpose of appointment",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Uses lay language throughout — minimal jargon",
+          "detailedExpectation": "Consistently uses patient-friendly language",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Invites and addresses questions",
+          "detailedExpectation": "Creates opportunity for patient to ask questions, answers appropriately",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-4",
+          "criterion": "Confirms voluntary consent without coercion",
+          "detailedExpectation": "Confirms patient can withdraw at any time, decision is voluntary",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 22,
+    "passingScore": 14
+  },
+  "references": [
+    { "source": "GMC: Consent — patients and doctors making decisions together (2008)" },
+    { "source": "Montgomery v Lanarkshire Health Board [2015] — patient-specific risk disclosure" }
+  ],
+  "ukmlaContentMapIds": ["informed-consent", "surgical-consent"],
+  "learningObjectives": [
+    "Obtain valid informed consent for a surgical procedure",
+    "Explain procedure in lay terms",
+    "Disclose material risks including bile duct injury",
+    "Apply Montgomery principles of consent"
+  ],
+  "tags": ["communication", "consent", "surgery", "cholecystectomy", "plab2"]
+}

@@ -1,0 +1,193 @@
+{
+  "id": "explain-mri-claustrophobic-028",
+  "exam": "PLAB2",
+  "title": "Procedure explanation — MRI for a claustrophobic patient",
+  "category": "procedure-explanation",
+  "specialty": "Radiology",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 in neurology outpatients. Mrs Sandra Blake, a 48-year-old woman, has been referred for an MRI brain to investigate recurrent headaches. She has told reception she is severely claustrophobic. She is considering refusing the scan. Please counsel her.",
+  "examinerNotes": "MRI in claustrophobic patient. Candidate must explain: what MRI involves (noisy, enclosed tunnel, 30-60 min), why it's needed, options for claustrophobia (open MRI, pre-medication with short-acting benzodiazepine, patient communication button, headphones). Candidate should NOT minimise the patient's concern.",
+  "patient": {
+    "id": "patient-028",
+    "name": "Sandra Blake",
+    "age": 48,
+    "gender": "F",
+    "occupation": "Librarian",
+    "maritalStatus": "Married",
+    "presentingComplaint": "Needs MRI brain but has severe claustrophobia",
+    "reasonForAttendance": "I've been told I need a brain scan but I know I will not be able to cope in one of those tunnel machines. I'm going to cancel it.",
+    "history": {
+      "hpi": {
+        "site": "Head",
+        "onset": "6 months of recurrent headaches",
+        "character": "Recurrent unilateral headaches with visual aura",
+        "radiation": "Behind eyes",
+        "associatedSymptoms": ["Visual aura with zigzag lines", "Nausea", "Photophobia with attacks"],
+        "timing": "Recurrent, 3-4 per month",
+        "exacerbatingFactors": "Stress, missing meals",
+        "relievingFactors": "Sumatriptan",
+        "severity": "Severe during attacks — bedridden for 4-6 hours"
+      },
+      "pmh": [
+        { "condition": "Migraines with aura", "yearDiagnosed": 2024, "controlled": false },
+        { "condition": "Anxiety disorder", "yearDiagnosed": 2019, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Sumatriptan", "dose": "50mg", "frequency": "PRN for migraines" },
+        { "name": "Sertraline", "dose": "50mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 5, "pattern": "Social" },
+        "occupation": "Librarian"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Normal",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Normal",
+        "neurological": "Migraines with aura",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxiety disorder, claustrophobia"
+      }
+    },
+    "examination": {
+      "general": "Anxious woman",
+      "vitalSigns": { "bp": "118/74", "hr": 82, "rr": 16, "temp": 36.6, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Anxious and already decided to cancel. Needs to be convinced without feeling pressured. History of panic attacks in enclosed spaces.",
+    "communicationStyle": "Determined initially but open to reasonable solutions. Will ask 'is there any other way?' and 'what will happen if I don't have the scan?'",
+    "hiddenConcerns": [
+      "I had a panic attack in a lift last year — this is my worst fear",
+      "What if I can't breathe in there?",
+      "Can't I have a CT scan instead?"
+    ],
+    "doNotVolunteer": [
+      "Panic attack history — only if asked about previous experiences in confined spaces",
+      "Previous anxiety episodes — only if asked"
+    ]
+  },
+  "primaryDiagnosis": "Migraines with aura requiring MRI brain — claustrophobia management needed",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Explores nature and severity of claustrophobia",
+          "detailedExpectation": "Asks about previous experiences, what exactly triggers panic",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Explains why MRI is needed over CT",
+          "detailedExpectation": "MRI provides better soft tissue detail, no radiation, superior for brain imaging",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["mri is better", "no radiation", "soft tissue", "ct alternative", "why mri"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Explains what MRI involves clearly",
+          "detailedExpectation": "Tunnel scanner, very loud noise, 30-60 minutes, need to stay still",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Offers pre-medication with benzodiazepine",
+          "detailedExpectation": "Short-acting benzodiazepine (lorazepam or diazepam) before scan with escort",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["sedation", "medication", "lorazepam", "diazepam", "benzodiazepine", "tablet before", "anti-anxiety", "relaxant"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Offers practical coping strategies",
+          "detailedExpectation": "Panic button/buzzer, headphones/music, keeping eyes closed, radiographer talking throughout",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["button", "buzzer", "headphones", "music", "eyes closed", "communication", "radiographer"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Mentions open MRI as alternative",
+          "detailedExpectation": "Open MRI scanner less claustrophobic — may be available",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["open mri", "wider scanner", "open scanner"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Validates and does not dismiss claustrophobia",
+          "detailedExpectation": "Takes concern seriously — does not say 'it's not that bad'",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Respects patient's right to refuse",
+          "detailedExpectation": "Does not coerce — explains consequences without pressure",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 20,
+    "passingScore": 12
+  },
+  "references": [
+    { "source": "RCR: MRI in claustrophobic patients — guidance" },
+    { "source": "BNF: Benzodiazepines for procedural anxiety" }
+  ],
+  "ukmlaContentMapIds": ["mri", "claustrophobia", "consent", "communication-skills"],
+  "learningObjectives": [
+    "Counsel a claustrophobic patient about MRI",
+    "Offer practical coping strategies",
+    "Arrange pre-medication when appropriate",
+    "Respect patient autonomy"
+  ],
+  "tags": ["procedure", "communication", "mri", "claustrophobia", "radiology", "plab2"]
+}

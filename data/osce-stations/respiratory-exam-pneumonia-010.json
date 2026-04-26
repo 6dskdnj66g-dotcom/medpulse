@@ -1,0 +1,220 @@
+{
+  "id": "respiratory-exam-pneumonia-010",
+  "exam": "PLAB2",
+  "title": "Respiratory examination — consolidation findings",
+  "category": "focused-examination",
+  "specialty": "Respiratory",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY1 on the acute medical ward. Mrs Dorothy Hughes, a 72-year-old woman, was admitted 24 hours ago with fever and breathlessness. Her CXR shows right lower lobe opacification. Please perform a respiratory examination and present your findings.",
+  "examinerNotes": "Right lower lobe pneumonia with consolidation. Expected findings: reduced expansion right base, dull percussion right base, bronchial breathing and coarse crackles right lower zone, increased tactile vocal fremitus.",
+  "patient": {
+    "id": "patient-010",
+    "name": "Dorothy Hughes",
+    "age": 72,
+    "gender": "F",
+    "occupation": "Retired nurse",
+    "presentingComplaint": "Fever and breathlessness",
+    "reasonForAttendance": "Admitted yesterday with chest infection",
+    "history": {
+      "hpi": {
+        "site": "Right chest",
+        "onset": "3 days ago",
+        "character": "Pleuritic right chest pain, productive cough green sputum",
+        "radiation": "None",
+        "associatedSymptoms": ["Fever 39.1°C", "Green productive cough", "Breathlessness", "Reduced appetite"],
+        "timing": "3 days, worsening",
+        "exacerbatingFactors": "Deep breathing, movement",
+        "relievingFactors": "Paracetamol helps fever",
+        "severity": "Cannot walk to bathroom without breathlessness"
+      },
+      "pmh": [
+        { "condition": "COPD GOLD II", "yearDiagnosed": 2016, "controlled": true },
+        { "condition": "Type 2 diabetes", "yearDiagnosed": 2014, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Salbutamol", "dose": "100mcg", "frequency": "PRN" },
+        { "name": "Tiotropium", "dose": "18mcg", "frequency": "once daily" },
+        { "name": "Metformin", "dose": "500mg", "frequency": "twice daily" }
+      ],
+      "allergies": [
+        { "agent": "Penicillin", "reaction": "Rash", "severity": "mild" }
+      ],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 25, "quitDate": "2010" },
+        "alcohol": { "units": 4, "pattern": "Rarely" },
+        "occupation": "Retired nurse"
+      },
+      "systemsReview": {
+        "cardiovascular": "No chest pain other than pleuritic",
+        "respiratory": "Breathlessness, cough, fever as above",
+        "gastrointestinal": "Reduced appetite",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Diabetes",
+        "haematological": "Normal",
+        "psychiatric": "Normal"
+      }
+    },
+    "examination": {
+      "general": "Flushed woman, tachypnoeic 24/min, using accessory muscles mildly",
+      "vitalSigns": { "bp": "118/72", "hr": 102, "rr": 24, "temp": 38.4, "spo2": 92 },
+      "cardiovascular": "Tachycardia, otherwise normal",
+      "respiratory": "Reduced expansion right base. Dullness to percussion right base. Bronchial breathing right lower zone. Coarse crepitations right lower and mid zones. Vocal resonance increased right base.",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "cxr-pneumonia",
+        "type": "imaging-xray",
+        "name": "Chest X-ray",
+        "shortName": "CXR",
+        "triggerKeywords": ["chest x-ray", "cxr", "chest radiograph"],
+        "result": "Right lower lobe consolidation. Air bronchograms visible. No pleural effusion. No pneumothorax.",
+        "imageUrl": "/osce-assets/cxr-rlz-pneumonia.png",
+        "interpretation": "Right lower lobe consolidation consistent with community-acquired pneumonia.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "sputum-pneumonia",
+        "type": "swab-microbiology",
+        "name": "Sputum Culture and Sensitivity",
+        "shortName": "Sputum C&S",
+        "triggerKeywords": ["sputum", "sputum culture", "culture", "microbiology", "sputum sample"],
+        "result": "Gram-positive diplococci on Gram stain. Awaiting culture — likely Streptococcus pneumoniae.",
+        "interpretation": "Streptococcal pneumonia most likely. Sensitivities pending. First-line treatment: amoxicillin (but ALLERGY — must use doxycycline or clarithromycin).",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Tired and breathless but tries to be cooperative. Former nurse so understands the examination.",
+    "communicationStyle": "Short responses due to breathlessness. Cooperative.",
+    "hiddenConcerns": [
+      "Will I need to stay in hospital long?",
+      "I know I have penicillin allergy — will that affect treatment?"
+    ],
+    "doNotVolunteer": [
+      "Penicillin allergy — only if asked about allergies",
+      "COPD history — only if asked about lung conditions"
+    ]
+  },
+  "primaryDiagnosis": "Community-Acquired Pneumonia — right lower lobe",
+  "differentialDiagnoses": [
+    "COPD exacerbation",
+    "Pulmonary embolism",
+    "Pleural effusion",
+    "Lung cancer with post-obstructive pneumonia"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Correct respiratory inspection",
+          "detailedExpectation": "Respiratory rate, use of accessory muscles, chest shape, symmetry",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Percussion correctly identifies dullness",
+          "detailedExpectation": "Percusses both sides systematically, identifies dullness right base",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Auscultation identifies bronchial breathing and crackles",
+          "detailedExpectation": "Auscultates both sides systematically, identifies bronchial breathing",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Vocal resonance or tactile fremitus assessed",
+          "detailedExpectation": "Checks for increased VR/TVF over consolidation",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Correctly identifies pneumonia/consolidation",
+          "detailedExpectation": "States pneumonia or consolidation as diagnosis",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["pneumonia", "consolidation", "chest infection", "lower lobe"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Notes penicillin allergy in management",
+          "detailedExpectation": "Selects clarithromycin or doxycycline (not amoxicillin) given penicillin allergy",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["clarithromycin", "doxycycline", "allergy", "penicillin", "not amoxicillin"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "CURB-65 severity assessment",
+          "detailedExpectation": "Calculates or references CURB-65",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["curb", "curb-65", "severity", "score", "admission"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction, consent, exposure",
+          "detailedExpectation": "Introduces self, gains consent, exposes chest adequately",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Explains findings in lay terms",
+          "detailedExpectation": "Explains consolidation/pneumonia to patient",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 22,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "BTS Guidelines for Community Acquired Pneumonia 2009 (updated 2019)" },
+    { "source": "NICE NG191: Pneumonia (community-acquired)" }
+  ],
+  "ukmlaContentMapIds": ["respiratory-examination", "pneumonia", "curb65"],
+  "learningObjectives": [
+    "Perform systematic respiratory examination",
+    "Identify signs of consolidation",
+    "Calculate CURB-65 severity score",
+    "Select appropriate antibiotic accounting for penicillin allergy"
+  ],
+  "tags": ["respiratory", "examination", "pneumonia", "consolidation", "plab2"]
+}

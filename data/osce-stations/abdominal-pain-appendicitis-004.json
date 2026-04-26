@@ -1,0 +1,277 @@
+{
+  "id": "abdominal-pain-appendicitis-004",
+  "exam": "PLAB2",
+  "title": "22-year-old man with right iliac fossa pain",
+  "category": "history-taking",
+  "specialty": "Surgery",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY1 doctor in the ED surgical assessment unit. Mr Jake Morrison, a 22-year-old student, presents with a 6-hour history of abdominal pain. Please take a focused history, request appropriate investigations, and formulate a differential diagnosis.",
+  "examinerNotes": "Classic acute appendicitis: central pain migrating to RIF, anorexia, nausea, low-grade fever. Alvarado score >7. Candidate should not give opioids withholding — current guidance says analgesia does not mask signs. Needs surgical review.",
+  "patient": {
+    "id": "patient-004",
+    "name": "Jake Morrison",
+    "age": 22,
+    "gender": "M",
+    "occupation": "University student",
+    "presentingComplaint": "Stomach pain that started in the middle and moved to the right side",
+    "reasonForAttendance": "I've had bad stomach pain all day and it keeps getting worse",
+    "history": {
+      "hpi": {
+        "site": "Started around the belly button, now mainly bottom right of stomach",
+        "onset": "Gradual, started about 6 hours ago",
+        "character": "Constant dull ache, getting worse",
+        "radiation": "No radiation",
+        "associatedSymptoms": ["Nausea", "No appetite since yesterday", "One episode of vomiting", "Slight fever"],
+        "timing": "Continuous, gradually worsening over 6 hours",
+        "exacerbatingFactors": "Moving, walking, pressing on the area",
+        "relievingFactors": "Lying still",
+        "severity": "7 out of 10",
+        "previousEpisodes": "Never had this before"
+      },
+      "pmh": [],
+      "drugHistory": [],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 10, "pattern": "Weekends only" },
+        "occupation": "Second year university student"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Normal",
+        "gastrointestinal": "No diarrhoea, last opened bowels yesterday",
+        "genitourinary": "No dysuria, no haematuria",
+        "neurological": "Normal",
+        "musculoskeletal": "No testicular pain",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxious about what is wrong"
+      }
+    },
+    "examination": {
+      "general": "Uncomfortable, lying still, flushed",
+      "vitalSigns": { "bp": "122/78", "hr": 98, "rr": 16, "temp": 37.9, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Maximal tenderness McBurney's point. Rovsing's sign positive. Rebound tenderness RIF. Guarding. Psoas sign positive.",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "fbc-appendix",
+        "type": "blood-test",
+        "name": "Full Blood Count",
+        "shortName": "FBC",
+        "triggerKeywords": ["fbc", "full blood count", "blood count", "white cells"],
+        "result": {
+          "values": {
+            "Haemoglobin": { "value": 148, "unit": "g/L", "range": "130-170" },
+            "White cells": { "value": 14.8, "unit": "x10^9/L", "range": "4.0-11.0", "flag": "H" },
+            "Neutrophils": { "value": 11.2, "unit": "x10^9/L", "range": "1.8-7.5", "flag": "H" },
+            "Platelets": { "value": 310, "unit": "x10^9/L", "range": "150-400" }
+          }
+        },
+        "interpretation": "Leukocytosis with neutrophilia — consistent with acute appendicitis.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "crp-appendix",
+        "type": "blood-test",
+        "name": "C-Reactive Protein",
+        "shortName": "CRP",
+        "triggerKeywords": ["crp", "c reactive protein", "inflammatory marker"],
+        "result": {
+          "values": {
+            "CRP": { "value": 42, "unit": "mg/L", "range": "<5", "flag": "H" }
+          }
+        },
+        "interpretation": "Elevated CRP supporting acute inflammatory process.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "urinalysis-appendix",
+        "type": "urinalysis",
+        "name": "Urinalysis (urine dipstick)",
+        "shortName": "MSU/Dipstick",
+        "triggerKeywords": ["urine", "urinalysis", "dipstick", "msu", "urine test"],
+        "result": "Trace leucocytes. No nitrites. No blood. No glucose. No protein. May see sterile pyuria with adjacent appendicitis.",
+        "interpretation": "Near-normal urinalysis. Trace leucocytes may represent proximity of appendix to ureter — does not confirm UTI.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "uss-appendix",
+        "type": "imaging-ultrasound",
+        "name": "Abdominal Ultrasound",
+        "shortName": "USS Abdomen",
+        "triggerKeywords": ["ultrasound", "uss", "scan", "abdominal scan", "us abdomen"],
+        "result": "Non-compressible appendix 9mm diameter with periappendiceal fat stranding. Findings consistent with acute appendicitis. No perforation seen. No free fluid.",
+        "imageUrl": "/osce-assets/uss-appendicitis.png",
+        "interpretation": "ACUTE APPENDICITIS confirmed on ultrasound. Dilated non-compressible appendix.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "In pain, anxious about what is wrong. Hoping it is nothing serious. Worried about missing university exams.",
+    "communicationStyle": "Direct, answers questions clearly. Young man, slightly embarrassed about the pain.",
+    "hiddenConcerns": [
+      "Could this be my appendix? My friend had to have his out",
+      "I have exams in 2 weeks — will I be okay by then?",
+      "Will I need an operation?"
+    ],
+    "doNotVolunteer": [
+      "Anorexia — only mention if asked specifically about appetite",
+      "That the pain started in the middle and moved — only if asked where it started",
+      "No testicular pain — only if directly asked about testicular symptoms"
+    ]
+  },
+  "primaryDiagnosis": "Acute Appendicitis",
+  "differentialDiagnoses": [
+    "Mesenteric adenitis",
+    "Renal colic (ureteric stone)",
+    "Right-sided inguinal hernia",
+    "Crohn's disease (ileitis)",
+    "Meckel's diverticulum",
+    "Testicular torsion"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Establishes pain history with SOCRATES including migration",
+          "detailedExpectation": "Elicits central-to-RIF migration — pathognomonic feature of appendicitis",
+          "weight": 4,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Asks about anorexia and gastrointestinal symptoms",
+          "detailedExpectation": "Specifically asks about appetite, nausea, vomiting, bowel habit change",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["appetite", "eating", "nausea", "vomiting", "sick", "bowel", "opened your bowels"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Asks about urinary symptoms to rule out renal colic",
+          "detailedExpectation": "Asks about dysuria, haematuria, frequency",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["urine", "water", "dysuria", "burning", "blood in urine", "frequency", "waterworks"]
+          }
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Asks about testicular symptoms (young male)",
+          "detailedExpectation": "Rules out testicular torsion in young man",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["testicle", "testicular", "scrotum", "groin pain"]
+          }
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Orders appropriate investigations",
+          "detailedExpectation": "FBC, CRP, urinalysis, USS abdomen",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["blood test", "fbc", "crp", "urine test", "ultrasound", "scan"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Identifies appendicitis as primary diagnosis",
+          "detailedExpectation": "States appendicitis as most likely diagnosis",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["appendicitis", "appendix", "inflamed appendix"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Calculates or references Alvarado score",
+          "detailedExpectation": "References RIF tenderness, elevated temperature, leukocytosis, migration, anorexia",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["alvarado", "score", "high risk appendicitis", "appendicitis score"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Appropriate initial management",
+          "detailedExpectation": "IV access, fluids, analgesia, NBM, surgical review, IV antibiotics pre-op",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["nil by mouth", "nbm", "analgesia", "surgical", "surgery", "iv access", "fluids", "antibiotics"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self, confirms identity",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Empathy for young patient in pain",
+          "detailedExpectation": "Acknowledges pain, age-appropriate explanation",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Explains plan clearly",
+          "detailedExpectation": "Explains likely appendicitis, investigations, possible surgery",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 25,
+    "passingScore": 15
+  },
+  "references": [
+    { "source": "NICE CG121: Appendicitis" },
+    { "source": "Alvarado Score for acute appendicitis" }
+  ],
+  "ukmlaContentMapIds": ["acute-appendicitis", "acute-abdomen"],
+  "learningObjectives": [
+    "Recognise classic migration of pain as hallmark of appendicitis",
+    "Apply Alvarado score for clinical probability",
+    "Rule out differential diagnoses with targeted history",
+    "Plan surgical management and appropriate investigations"
+  ],
+  "tags": ["surgery", "emergency", "appendicitis", "abdominal-pain", "history-taking", "plab2"]
+}

@@ -1,0 +1,183 @@
+{
+  "id": "interpreter-needed-017",
+  "exam": "PLAB2",
+  "title": "Communication with language barrier — use of interpreter",
+  "category": "communication-skills",
+  "specialty": "General Practice",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 GP. Mrs Fatima Al-Rashid, a 45-year-old Iraqi woman, attends with her 19-year-old son Khalid who acts as an informal interpreter. She has Type 2 diabetes with poor control (HbA1c 10.2%). You need to discuss her medication, lifestyle, and arrange follow-up. Consider the limitations of using her son as interpreter.",
+  "examinerNotes": "Language barrier and family interpreter station. Key issues: son may not translate accurately, patient may withhold information with son present (domestic violence screening, reproductive health), GDPR/confidentiality. Candidate must: recognise limitations of family interpreter, offer professional interpreter, check understanding of medication regime.",
+  "patient": {
+    "id": "patient-017",
+    "name": "Fatima Al-Rashid",
+    "age": 45,
+    "gender": "F",
+    "occupation": "Housewife",
+    "presentingComplaint": "Attending with son for diabetes review",
+    "reasonForAttendance": "Son speaks: My mother is here for her diabetes check-up",
+    "history": {
+      "hpi": {
+        "site": "Not applicable",
+        "onset": "Diabetes diagnosed 5 years ago",
+        "character": "Poor glycaemic control, polydipsia and polyuria continuing",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Polydipsia", "Polyuria", "Fatigue", "Foot numbness"],
+        "timing": "5 years",
+        "exacerbatingFactors": "Not taking medications regularly",
+        "relievingFactors": "When she does take medication helps",
+        "severity": "Moderate symptoms"
+      },
+      "pmh": [
+        { "condition": "Type 2 Diabetes", "yearDiagnosed": 2019, "controlled": false },
+        { "condition": "Hypertension", "yearDiagnosed": 2020, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Metformin", "dose": "1g", "frequency": "twice daily" },
+        { "name": "Gliclazide", "dose": "80mg", "frequency": "once daily" },
+        { "name": "Ramipril", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 0, "pattern": "None" },
+        "occupation": "Housewife, arrived in UK 3 years ago",
+        "diet": "Traditional Iraqi diet, high carbohydrate"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Normal",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Polyuria",
+        "neurological": "Foot numbness bilaterally",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Diabetes as above",
+        "haematological": "Normal",
+        "psychiatric": "Anxious"
+      }
+    },
+    "examination": {
+      "general": "Overweight woman (BMI 31), sitting with son who translates",
+      "vitalSigns": { "bp": "138/84", "hr": 76, "rr": 16, "temp": 36.7, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "Reduced vibration sense bilaterally in feet",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Embarrassed and anxious in front of son. Will answer differently if son is asked to leave. May have things she cannot discuss in front of him.",
+    "communicationStyle": "Responds via son. Nods and shakes head. Occasionally says 'naam' (yes) or 'la' (no) in Arabic. If given chance to speak privately would reveal she sometimes skips medication when son is not watching.",
+    "hiddenConcerns": [
+      "Does not always understand the medication instructions",
+      "Son does not always translate what she says accurately",
+      "She is worried about her feet but embarrassed to mention",
+      "She would like to speak privately without son present"
+    ],
+    "doNotVolunteer": [
+      "Medication non-compliance — son does not know she skips doses",
+      "Desire to speak privately — only if doctor offers this opportunity",
+      "Foot symptoms — only if directly asked through proper interpretation"
+    ]
+  },
+  "primaryDiagnosis": "Poorly Controlled Type 2 Diabetes with peripheral neuropathy",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Acknowledges limitations of using family interpreter",
+          "detailedExpectation": "Explains professional interpreter should be used — offers telephone interpreter",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["professional interpreter", "telephone interpreter", "language line", "trained interpreter", "official interpreter"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Offers to see patient alone at some point",
+          "detailedExpectation": "Offers opportunity for patient to speak privately",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["alone", "privately", "private", "on your own", "without"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Addresses patient directly, not just son",
+          "detailedExpectation": "Makes eye contact with patient, addresses her, not just son",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Reviews medications with clear instructions",
+          "detailedExpectation": "Confirms patient understands each medication, timing, importance of compliance",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["medication", "tablets", "taking", "when to take", "compliance", "instructions"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Plans follow-up and specialist interpreter for next appointment",
+          "detailedExpectation": "Books follow-up with professional interpreter arranged",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["follow-up", "next appointment", "interpreter", "book"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Cultural sensitivity",
+          "detailedExpectation": "Respectful of cultural background, religious considerations",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Use of visual aids and simple language",
+          "detailedExpectation": "Offers written information, diagrams where possible",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["written", "leaflet", "diagram", "picture", "written information"]
+          }
+        }
+      ]
+    },
+    "totalMaxScore": 16,
+    "passingScore": 10
+  },
+  "references": [
+    { "source": "GMC: Good medical practice — patients with communication difficulties" },
+    { "source": "NHS England: Patient interpreter services guidance" }
+  ],
+  "ukmlaContentMapIds": ["language-barrier", "interpreter", "diabetes-management"],
+  "learningObjectives": [
+    "Recognise limitations of informal interpretation by family",
+    "Arrange appropriate professional interpreter services",
+    "Communicate effectively with language barriers",
+    "Maintain patient dignity and confidentiality"
+  ],
+  "tags": ["communication", "language-barrier", "interpreter", "diabetes", "cultural-sensitivity", "plab2"]
+}

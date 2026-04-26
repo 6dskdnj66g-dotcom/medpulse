@@ -1,0 +1,230 @@
+{
+  "id": "dysphagia-oesophageal-ca-006",
+  "exam": "PLAB2",
+  "title": "60-year-old man with progressive difficulty swallowing",
+  "category": "history-taking",
+  "specialty": "Gastroenterology",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 doctor in the GP surgery. Mr Robert Caldwell, a 60-year-old retired publican, presents with a 4-month history of difficulty swallowing. Please take a focused history and determine the most likely diagnosis.",
+  "examinerNotes": "Progressive dysphagia solids > liquids in an elderly man with significant alcohol and smoking history — oesophageal carcinoma until proven otherwise. Must elicit progressive nature, weight loss, GORD history. Needs urgent 2-week wait endoscopy referral.",
+  "patient": {
+    "id": "patient-006",
+    "name": "Robert Caldwell",
+    "age": 60,
+    "gender": "M",
+    "occupation": "Retired publican",
+    "presentingComplaint": "Difficulty swallowing — food seems to get stuck",
+    "reasonForAttendance": "I keep choking on my food. Solid food sticks. Starting to worry me.",
+    "history": {
+      "hpi": {
+        "site": "Feels food sticking behind the breastbone",
+        "onset": "Gradual, started 4 months ago with occasional difficulty with bread and meat",
+        "character": "Food sticking, requiring water to wash it down",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Weight loss 6kg in 4 months", "Reduced appetite", "Hoarse voice for 3 weeks", "Occasional regurgitation of food"],
+        "timing": "Progressive — now occurring with every meal",
+        "exacerbatingFactors": "Solid foods, bread, meat",
+        "relievingFactors": "Soft foods and liquids — started living on soups",
+        "severity": "Now struggling with soft foods too, can only swallow liquids without difficulty",
+        "previousEpisodes": "History of GORD for 15 years, on antacids"
+      },
+      "pmh": [
+        { "condition": "Gastro-oesophageal reflux disease", "yearDiagnosed": 2009, "controlled": false },
+        { "condition": "Hypertension", "yearDiagnosed": 2012, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Omeprazole", "dose": "20mg", "frequency": "once daily" },
+        { "name": "Ramipril", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 30, "quitDate": "2018" },
+        "alcohol": { "units": 35, "pattern": "Heavy drinker — worked in pub trade for 30 years, now drinks 5 units daily" },
+        "occupation": "Retired publican — worked in pubs for 30 years"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Some cough, hoarse voice",
+        "gastrointestinal": "Dysphagia, regurgitation, weight loss, no haematemesis, no melaena",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxious about symptoms, worried"
+      }
+    },
+    "examination": {
+      "general": "Cachectic man, BMI 21, hoarse voice",
+      "vitalSigns": { "bp": "128/80", "hr": 78, "rr": 16, "temp": 36.9, "spo2": 98 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal, hoarse voice noted",
+      "abdominal": "No hepatomegaly, left supraclavicular lymph node palpable",
+      "neurological": "Normal",
+      "musculoskeletal": "No peripheral lymphadenopathy"
+    },
+    "investigations": [
+      {
+        "id": "ogt-scope",
+        "type": "endoscopy",
+        "name": "Upper GI Endoscopy (OGD)",
+        "shortName": "OGD",
+        "triggerKeywords": ["endoscopy", "ogd", "gastroscopy", "upper gi scope", "scope", "camera"],
+        "result": "Irregular, ulcerated, friable mass at 30-35cm from incisors in the mid-oesophagus. Biopsies taken. Lumen significantly narrowed.",
+        "imageUrl": "/osce-assets/ogd-oesophageal-ca.png",
+        "interpretation": "Mid-oesophageal carcinoma. Biopsy pending — likely squamous cell carcinoma given risk factors. Urgent staging CT required.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "cxr-oeso",
+        "type": "imaging-xray",
+        "name": "Chest X-ray",
+        "shortName": "CXR",
+        "triggerKeywords": ["chest x-ray", "cxr", "chest radiograph"],
+        "result": "Widening of mediastinum in mid-zone. No pulmonary metastases. Left hilar enlargement.",
+        "imageUrl": "/osce-assets/cxr-oesophageal-ca.png",
+        "interpretation": "Mediastinal widening and hilar enlargement — raises concern for mediastinal extension of oesophageal tumour.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Stoic but clearly worried. Has been avoiding seeking help. Knows something is wrong but scared to hear it.",
+    "communicationStyle": "Brief answers. Minimises problems. Direct when asked specific questions.",
+    "hiddenConcerns": [
+      "I know this sounds bad — my wife thinks it might be cancer",
+      "I've been putting off coming for months",
+      "The hoarse voice started recently and really scared me"
+    ],
+    "doNotVolunteer": [
+      "Hoarse voice — only if asked about changes to voice",
+      "Weight loss amount — will say 'a bit' unless asked how much",
+      "GORD history — only if asked about heartburn or reflux",
+      "Alcohol units per week — will underestimate unless pressed specifically"
+    ]
+  },
+  "primaryDiagnosis": "Oesophageal Carcinoma (mid-oesophagus, likely squamous cell)",
+  "differentialDiagnoses": [
+    "Oesophageal stricture (peptic/benign)",
+    "Achalasia",
+    "Extrinsic compression (mediastinal lymph nodes)",
+    "Pharyngeal pouch",
+    "Oesophageal web (Plummer-Vinson)"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Characterises dysphagia — solids vs liquids, progressive",
+          "detailedExpectation": "Establishes whether for solids first (mechanical obstruction) and progression",
+          "weight": 4,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Asks about associated weight loss",
+          "detailedExpectation": "Quantifies unintentional weight loss",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["weight", "lost weight", "weight loss"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Elicits alcohol and smoking history",
+          "detailedExpectation": "Key risk factors for oesophageal SCC",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["alcohol", "drink", "smoking", "smoke", "cigarettes"]
+          }
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Asks about GORD history",
+          "detailedExpectation": "Risk factor for adenocarcinoma — Barrett's oesophagus",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["heartburn", "reflux", "gord", "indigestion", "acid"]
+          }
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Refers for urgent OGD",
+          "detailedExpectation": "Recognises need for urgent upper GI endoscopy",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "ogt-scope"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Identifies oesophageal cancer as primary concern",
+          "detailedExpectation": "Raises possibility of oesophageal cancer",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["oesophageal cancer", "oesophageal carcinoma", "cancer of the oesophagus", "cancer of the food pipe"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Urgent 2-week wait referral",
+          "detailedExpectation": "Refers urgently to gastroenterology or upper GI surgery",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["urgent", "2 week", "two week", "refer", "gastroenterology", "2ww", "endoscopy"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Sensitively raises concern about serious diagnosis",
+          "detailedExpectation": "Raises cancer possibility without certainty, compassionately",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 22,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "NICE NG12: Suspected cancer — recognition and referral" },
+    { "source": "NICE NG83: Oesophago-gastric cancer" }
+  ],
+  "ukmlaContentMapIds": ["dysphagia", "oesophageal-cancer"],
+  "learningObjectives": [
+    "Differentiate mechanical from motility dysphagia",
+    "Identify risk factors for oesophageal carcinoma",
+    "Recognise red flag symptoms requiring 2-week wait referral",
+    "Sensitively communicate concern about malignancy"
+  ],
+  "tags": ["gastroenterology", "oncology", "dysphagia", "cancer", "history-taking", "plab2"]
+}

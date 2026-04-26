@@ -1,0 +1,357 @@
+{
+  "id": "chest-pain-stemi-001",
+  "exam": "PLAB2",
+  "title": "47-year-old man with central chest pain",
+  "category": "history-taking",
+  "specialty": "Cardiology",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are a Foundation Year 2 doctor working in the Emergency Department. Mr David Thompson, a 47-year-old electrician, has been brought in by ambulance with central chest pain that started approximately 2 hours ago. His vital signs on arrival: BP 152/94 mmHg, HR 102 bpm, RR 20, SpO2 96% on air, Temp 36.8°C. An ECG has been performed and is available on request. Please take a focused history, request appropriate investigations, and explain your initial management plan to the patient. You do NOT need to perform a physical examination.",
+  "examinerNotes": "Story consistent with acute inferior STEMI. Candidate should: take SOCRATES pain history, elicit cardiovascular risk factors, request ECG and troponin promptly, recognise STEMI, initiate aspirin 300mg + ticagrelor 180mg + UFH, arrange primary PCI within 120 minutes.",
+  "patient": {
+    "id": "patient-001",
+    "name": "David Thompson",
+    "age": 47,
+    "gender": "M",
+    "ethnicity": "White British",
+    "occupation": "Electrician",
+    "maritalStatus": "Married, 2 children",
+    "presentingComplaint": "Central crushing chest pain for 2 hours",
+    "reasonForAttendance": "I've got really bad chest pain, doctor",
+    "history": {
+      "hpi": {
+        "site": "Central chest, retrosternal — patient places clenched fist on sternum",
+        "onset": "Sudden, while sitting watching TV after dinner",
+        "character": "Crushing, like a heavy weight on my chest",
+        "radiation": "Down the inside of my left arm, and into my jaw on the left side",
+        "associatedSymptoms": ["Sweating heavily", "Mild nausea, no vomiting", "Feels short of breath"],
+        "timing": "Started 2 hours ago, constant — not coming and going",
+        "exacerbatingFactors": "Worse when I tried to walk",
+        "relievingFactors": "Nothing has helped",
+        "severity": "9 out of 10 — worst pain I've ever had",
+        "previousEpisodes": "Had some chest tightness on exertion last month but it went away"
+      },
+      "pmh": [
+        { "condition": "Hypertension", "yearDiagnosed": 2017, "controlled": true, "notes": "Last BP 138/85 four months ago" }
+      ],
+      "drugHistory": [
+        { "name": "Ramipril", "dose": "10mg", "frequency": "once daily", "indication": "Hypertension" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Father", "condition": "Myocardial infarction", "ageAtDiagnosis": 52, "ageAtDeath": 58 },
+        { "relation": "Brother", "condition": "Hypertension" }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 20, "quitDate": "2020" },
+        "alcohol": { "units": 12, "pattern": "2 pints most weeknights" },
+        "occupation": "Self-employed electrician",
+        "diet": "Mostly takeaway, lots of red meat"
+      },
+      "systemsReview": {
+        "cardiovascular": "Some ankle swelling at end of long days",
+        "respiratory": "No cough, no wheeze",
+        "gastrointestinal": "No abdominal pain",
+        "genitourinary": "Normal",
+        "neurological": "No headache, no weakness",
+        "musculoskeletal": "Occasional back ache from work",
+        "dermatological": "Normal",
+        "endocrine": "No polyuria",
+        "haematological": "No bruising",
+        "psychiatric": "Stressed about work"
+      }
+    },
+    "examination": {
+      "general": "Diaphoretic, anxious-looking man, clutching chest, in obvious distress",
+      "vitalSigns": { "bp": "152/94", "hr": 102, "rr": 20, "temp": 36.8, "spo2": 96 },
+      "cardiovascular": "Heart sounds I and II normal, no murmurs, JVP not elevated",
+      "respiratory": "Equal bilateral air entry, vesicular breath sounds",
+      "abdominal": "Soft, non-tender",
+      "neurological": "Alert, GCS 15, no focal deficit",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "ecg-12-lead",
+        "type": "ecg",
+        "name": "12-lead Electrocardiogram",
+        "shortName": "ECG",
+        "triggerKeywords": ["ecg", "electrocardiogram", "ekg", "12 lead", "trace", "heart tracing"],
+        "result": "Sinus rhythm at 102 bpm. ST elevation 2.5mm in lead II, 3mm in lead III, 2mm in lead aVF. Reciprocal ST depression 1.5mm in leads I and aVL. Q waves developing in lead III. Corrected QT 420ms.",
+        "imageUrl": "/osce-assets/ecg-inferior-stemi.png",
+        "interpretation": "ACUTE INFERIOR ST-ELEVATION MYOCARDIAL INFARCTION. Territory: inferior, supplied by right coronary artery. Reciprocal changes confirm diagnosis.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "troponin-hs",
+        "type": "blood-test",
+        "name": "High-sensitivity Troponin I",
+        "shortName": "Troponin",
+        "triggerKeywords": ["troponin", "cardiac marker", "cardiac enzyme", "trop"],
+        "result": {
+          "values": {
+            "Troponin I (hs)": { "value": 287, "unit": "ng/L", "range": "<14", "flag": "H" }
+          },
+          "text": "Significantly elevated. Repeat at 3 hours recommended."
+        },
+        "interpretation": "Markedly elevated troponin consistent with acute myocardial necrosis.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "fbc",
+        "type": "blood-test",
+        "name": "Full Blood Count",
+        "shortName": "FBC",
+        "triggerKeywords": ["fbc", "full blood count", "cbc", "complete blood count"],
+        "result": {
+          "values": {
+            "Haemoglobin": { "value": 145, "unit": "g/L", "range": "130-170" },
+            "White cells": { "value": 11.2, "unit": "x10^9/L", "range": "4.0-11.0", "flag": "H" },
+            "Platelets": { "value": 245, "unit": "x10^9/L", "range": "150-400" }
+          }
+        },
+        "interpretation": "Mild leukocytosis (stress response). Otherwise unremarkable.",
+        "urgency": "routine",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "ues",
+        "type": "blood-test",
+        "name": "Urea & Electrolytes",
+        "shortName": "U&E",
+        "triggerKeywords": ["u&e", "urea", "electrolyte", "creatinine", "renal function", "kidney function"],
+        "result": {
+          "values": {
+            "Sodium": { "value": 138, "unit": "mmol/L", "range": "135-145" },
+            "Potassium": { "value": 4.2, "unit": "mmol/L", "range": "3.5-5.0" },
+            "Urea": { "value": 5.8, "unit": "mmol/L", "range": "2.5-7.5" },
+            "Creatinine": { "value": 89, "unit": "µmol/L", "range": "60-110" },
+            "eGFR": { "value": ">90", "unit": "mL/min/1.73m²", "range": ">60" }
+          }
+        },
+        "interpretation": "Normal renal function. Important for contrast safety for PCI.",
+        "urgency": "routine",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "cxr",
+        "type": "imaging-xray",
+        "name": "Erect Chest X-ray (PA)",
+        "shortName": "CXR",
+        "triggerKeywords": ["chest x-ray", "cxr", "chest radiograph", "chest film", "x-ray chest"],
+        "result": "Cardiac silhouette normal size. Lungs clear. No pneumothorax. No widened mediastinum. No effusion.",
+        "imageUrl": "/osce-assets/cxr-normal.png",
+        "interpretation": "Normal chest x-ray — excludes aortic dissection and pneumothorax.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Anxious and frightened. Worried this is 'the big one' like his father. May ask 'am I going to die, doctor?'",
+    "communicationStyle": "Speaks in short sentences due to pain and anxiety. Cooperative. Uses lay language only.",
+    "hiddenConcerns": [
+      "I'm scared this is what killed my dad",
+      "Worried about my wife and kids",
+      "Don't want to lose my business — I'm self-employed",
+      "Scared of needles"
+    ],
+    "doNotVolunteer": [
+      "Severity score — only give 9/10 if asked on a scale of 0 to 10",
+      "Family history — only mention if asked about family history",
+      "Smoking history — only mention if asked about smoking",
+      "Previous chest tightness — only if asked 'have you had this before?'",
+      "Hypertension — only if asked about medical conditions or medications",
+      "ECG findings — you are a layperson and do not know",
+      "Troponin or blood test results"
+    ]
+  },
+  "primaryDiagnosis": "Acute Inferior ST-Elevation Myocardial Infarction (STEMI)",
+  "differentialDiagnoses": [
+    "Aortic dissection",
+    "Pulmonary embolism",
+    "Acute pericarditis",
+    "Oesophageal spasm",
+    "Tension pneumothorax"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Establishes pain characteristics using SOCRATES",
+          "detailedExpectation": "Asks about Site, Onset, Character, Radiation, Associated symptoms, Timing, Exacerbating/relieving factors, Severity",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Asks about cardiovascular risk factors",
+          "detailedExpectation": "Smoking, hypertension, diabetes, hypercholesterolaemia, family history of CVD",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["smoking", "smoke", "cigarette", "high blood pressure", "hypertension", "diabetes", "cholesterol", "family history"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Takes a drug history including allergies",
+          "detailedExpectation": "Current medications, doses, compliance, any allergies",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["medication", "medicine", "tablet", "drug", "allergy", "allergic"]
+          }
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Requests 12-lead ECG",
+          "detailedExpectation": "Promptly requests ECG",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "ecg-12-lead"
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Requests troponin",
+          "detailedExpectation": "Orders cardiac biomarker",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "troponin-hs"
+        },
+        {
+          "id": "dg-6",
+          "criterion": "Requests basic bloods",
+          "detailedExpectation": "Orders FBC and U&E",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["fbc", "full blood count", "u&e", "urea", "renal function"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Correctly identifies STEMI from ECG",
+          "detailedExpectation": "States diagnosis of STEMI/inferior MI after viewing ECG",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["stemi", "st elevation", "myocardial infarction", "heart attack", "inferior mi"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Initiates dual antiplatelet therapy",
+          "detailedExpectation": "Aspirin 300mg AND second antiplatelet (ticagrelor 180mg or clopidogrel 600mg)",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["aspirin", "ticagrelor", "clopidogrel", "antiplatelet", "dapt"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Considers analgesia and GTN",
+          "detailedExpectation": "GTN if BP allows; morphine for pain",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["gtn", "glyceryl trinitrate", "morphine", "analgesia", "pain relief"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Activates primary PCI pathway",
+          "detailedExpectation": "Recognises need for primary PCI within 120 minutes",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["pci", "cath lab", "catheter lab", "interventional cardiology", "percutaneous coronary", "ppci"]
+          }
+        },
+        {
+          "id": "cm-5",
+          "criterion": "Oxygen appropriately — only if SpO2 <94%",
+          "detailedExpectation": "Does NOT routinely give oxygen (SpO2 96%)",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduces self with name and role",
+          "detailedExpectation": "Gives name, role, confirms patient identity",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["my name is", "i am dr", "i'm dr", "foundation year", "fy2"]
+          }
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Demonstrates empathy",
+          "detailedExpectation": "Acknowledges patient's pain and anxiety",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Explains diagnosis in lay terms",
+          "detailedExpectation": "Uses 'heart attack' or 'blocked artery', avoids jargon",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-4",
+          "criterion": "Explains treatment plan and seeks consent",
+          "detailedExpectation": "Outlines next steps, gains agreement",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-5",
+          "criterion": "Addresses patient concerns (ICE)",
+          "detailedExpectation": "Asks about or responds to patient's worries",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 30,
+    "passingScore": 18
+  },
+  "references": [
+    { "source": "NICE NG185: Acute coronary syndromes" },
+    { "source": "ESC Guidelines for ACS 2023", "section": "STEMI management" }
+  ],
+  "ukmlaContentMapIds": ["acute-coronary-syndrome", "chest-pain"],
+  "learningObjectives": [
+    "Recognise the typical clinical presentation of STEMI",
+    "Take a focused cardiovascular history using SOCRATES",
+    "Identify ST elevation on a 12-lead ECG and localise the territory",
+    "Initiate immediate STEMI management per NICE NG185",
+    "Activate primary PCI pathway within target times"
+  ],
+  "tags": ["cardiology", "emergency", "stemi", "history-taking", "plab2"]
+}

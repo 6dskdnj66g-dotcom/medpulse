@@ -1,0 +1,274 @@
+{
+  "id": "weight-loss-malignancy-005",
+  "exam": "PLAB2",
+  "title": "68-year-old man with weight loss and fatigue",
+  "category": "history-taking",
+  "specialty": "Respiratory",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 doctor in the GP surgery. Mr Geoffrey Barnes, a 68-year-old retired factory worker, has presented with a 3-month history of unintentional weight loss and fatigue. Please take a history to identify the likely cause and plan appropriate investigations.",
+  "examinerNotes": "This is a suspected lung malignancy scenario. Key features: 40 pack-year smoking history, haemoptysis (volunteered only when asked), weight loss, fatigue, COPD background. Candidate should elicit red flag symptoms, consider lung cancer, and refer urgently via 2-week wait pathway.",
+  "patient": {
+    "id": "patient-005",
+    "name": "Geoffrey Barnes",
+    "age": 68,
+    "gender": "M",
+    "occupation": "Retired factory worker",
+    "maritalStatus": "Widowed",
+    "presentingComplaint": "I've been losing weight without trying and feeling exhausted all the time for 3 months",
+    "reasonForAttendance": "My daughter made me come — she says I look like I've lost a lot of weight",
+    "history": {
+      "hpi": {
+        "site": "Not applicable — systemic complaint",
+        "onset": "Gradual over 3 months",
+        "character": "Unintentional weight loss, profound fatigue, reduced exercise tolerance",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Weight loss 8kg over 3 months", "Fatigue — can barely walk to the shops", "Persistent cough worse over last 6 weeks", "Occasional blood in sputum when coughing", "Night sweats once or twice a week", "Loss of appetite"],
+        "timing": "Progressive over 3 months",
+        "exacerbatingFactors": "Exertion makes breathlessness worse",
+        "relievingFactors": "Rest",
+        "severity": "Fatigue preventing normal activities",
+        "previousEpisodes": "Some breathlessness for years from COPD but this cough and weight loss is new"
+      },
+      "pmh": [
+        { "condition": "COPD GOLD III", "yearDiagnosed": 2015, "controlled": false, "notes": "Former smoker, had 2 exacerbations last year" },
+        { "condition": "Hypertension", "yearDiagnosed": 2010, "controlled": true },
+        { "condition": "Asbestosis (occupational)", "yearDiagnosed": 2019, "controlled": false }
+      ],
+      "drugHistory": [
+        { "name": "Tiotropium", "dose": "18 micrograms", "frequency": "once daily" },
+        { "name": "Salmeterol/fluticasone", "dose": "500/50", "frequency": "twice daily" },
+        { "name": "Salbutamol", "dose": "100 micrograms", "frequency": "PRN" },
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Brother", "condition": "Lung cancer", "ageAtDiagnosis": 65 }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 40, "quitDate": "2015" },
+        "alcohol": { "units": 14, "pattern": "Social at weekends" },
+        "occupation": "Retired factory worker, 30 years asbestos exposure",
+        "occupationalExposure": "Significant asbestos exposure in shipyard for 30 years",
+        "livingArrangement": "Lives alone, daughter visits weekly"
+      },
+      "systemsReview": {
+        "cardiovascular": "No chest pain, no palpitations",
+        "respiratory": "Cough, haemoptysis, worsening dyspnoea",
+        "gastrointestinal": "Reduced appetite, no dysphagia, no abdominal pain",
+        "genitourinary": "Normal",
+        "neurological": "No headache, no confusion, no focal weakness",
+        "musculoskeletal": "Generalised weakness due to fatigue, no bone pain",
+        "dermatological": "No lumps",
+        "endocrine": "No heat/cold intolerance",
+        "haematological": "Haemoptysis as above",
+        "psychiatric": "Low mood, worried about health"
+      }
+    },
+    "examination": {
+      "general": "Cachectic elderly man, BMI 18. Pale.",
+      "vitalSigns": { "bp": "132/82", "hr": 82, "rr": 18, "temp": 37.1, "spo2": 94 },
+      "cardiovascular": "Normal",
+      "respiratory": "Reduced air entry right lower zone. Dullness to percussion right base. Bronchial breathing.",
+      "abdominal": "No hepatosplenomegaly",
+      "neurological": "Normal",
+      "musculoskeletal": "No clubbing. No lymphadenopathy."
+    },
+    "investigations": [
+      {
+        "id": "cxr-lung-ca",
+        "type": "imaging-xray",
+        "name": "Chest X-ray (PA)",
+        "shortName": "CXR",
+        "triggerKeywords": ["chest x-ray", "cxr", "chest radiograph", "chest film"],
+        "result": "5cm irregular opacity right lower lobe. Right hilar enlargement. Small right pleural effusion. Hyperinflated lung fields consistent with COPD.",
+        "imageUrl": "/osce-assets/cxr-lung-ca.png",
+        "interpretation": "Large right lower lobe mass with hilar enlargement and pleural effusion — HIGHLY SUSPICIOUS FOR LUNG CARCINOMA. Urgent CT chest/abdomen/pelvis required.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "ct-chest-lung-ca",
+        "type": "imaging-ct",
+        "name": "CT Chest/Abdomen/Pelvis (staging)",
+        "shortName": "CT CAP",
+        "triggerKeywords": ["ct chest", "ct scan", "staging ct", "ct cap", "ct abdomen", "ct pelvis"],
+        "result": "5.2cm spiculated mass right lower lobe. Ipsilateral hilar and mediastinal lymphadenopathy. Right pleural effusion. Adrenal nodule 2.1cm right side. No brain or bone metastases identified on chest cut.",
+        "imageUrl": "/osce-assets/ct-lung-ca.png",
+        "interpretation": "Findings consistent with right lower lobe lung carcinoma, likely Stage IIIB/IVA given mediastinal nodes and adrenal lesion. Needs MDT discussion and histological confirmation.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "fbc-lung-ca",
+        "type": "blood-test",
+        "name": "Full Blood Count",
+        "shortName": "FBC",
+        "triggerKeywords": ["fbc", "full blood count", "blood count"],
+        "result": {
+          "values": {
+            "Haemoglobin": { "value": 108, "unit": "g/L", "range": "130-170", "flag": "L" },
+            "MCV": { "value": 78, "unit": "fL", "range": "80-100", "flag": "L" },
+            "White cells": { "value": 9.2, "unit": "x10^9/L", "range": "4.0-11.0" },
+            "Platelets": { "value": 420, "unit": "x10^9/L", "range": "150-400", "flag": "H" }
+          }
+        },
+        "interpretation": "Microcytic anaemia — likely anaemia of chronic disease or iron deficiency from malignancy. Thrombocytosis — reactive in malignancy.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Stoic and somewhat resigned. Not wanting to cause fuss. Minimises symptoms. Will become visibly worried if doctor mentions cancer.",
+    "communicationStyle": "Typical retired working man — answers briefly, doesn't volunteer information, slightly defensive. Uses 'a bit' to understate symptoms.",
+    "hiddenConcerns": [
+      "My brother died of lung cancer — I'm terrified it's the same",
+      "I don't want to be a burden on my daughter",
+      "I keep coughing up blood but I was scared to mention it"
+    ],
+    "doNotVolunteer": [
+      "Haemoptysis — only if asked 'have you coughed up any blood?'",
+      "Night sweats — only if asked about sweating at night",
+      "Family history of cancer — only if asked about family health history",
+      "Asbestos exposure — only if asked about occupational exposure or his work",
+      "The full 8kg weight loss — will say 'a bit' unless pressed for specific amount"
+    ]
+  },
+  "primaryDiagnosis": "Lung Carcinoma (likely NSCLC — adenocarcinoma or squamous cell)",
+  "differentialDiagnoses": [
+    "COPD exacerbation",
+    "Tuberculosis",
+    "Mesothelioma (given asbestos exposure)",
+    "Pneumonia with effusion",
+    "Lymphoma"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Systematic enquiry into weight loss",
+          "detailedExpectation": "Quantifies weight loss, establishes it is unintentional",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Screens for respiratory red flag symptoms",
+          "detailedExpectation": "Asks specifically about haemoptysis, cough, dyspnoea, hoarseness",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["blood", "coughing blood", "haemoptysis", "cough", "breathless", "hoarse"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Smoking history with pack-year calculation",
+          "detailedExpectation": "Asks about smoking, calculates or estimates pack-years",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["smoking", "smoke", "cigarettes", "tobacco", "pack years"]
+          }
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Occupational exposure history",
+          "detailedExpectation": "Asks about occupational exposures — specifically asbestos",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["work", "occupation", "job", "exposure", "asbestos", "chemicals", "dust"]
+          }
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Orders chest X-ray as first investigation",
+          "detailedExpectation": "CXR is the initial investigation for suspected lung cancer",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "cxr-lung-ca"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Identifies lung cancer as primary concern",
+          "detailedExpectation": "Raises possibility of malignancy or lung cancer",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["cancer", "malignancy", "tumour", "lung cancer", "carcinoma", "growth"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Refers via 2-week wait urgent pathway",
+          "detailedExpectation": "Recognises need for urgent referral to respiratory or oncology",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["urgent", "2 week", "two week", "refer", "respiratory", "oncology", "2ww"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Plans CT staging",
+          "detailedExpectation": "Orders or plans CT chest for staging",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "ct-chest-lung-ca"
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Non-alarmist approach when raising concern",
+          "detailedExpectation": "Raises concern about serious diagnosis sensitively without certainty",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Addresses patient's unspoken concerns",
+          "detailedExpectation": "Creates opportunity for patient to voice fears",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 25,
+    "passingScore": 15
+  },
+  "references": [
+    { "source": "NICE NG122: Lung cancer — diagnosis and management" },
+    { "source": "NICE NG12: Suspected cancer recognition and referral" }
+  ],
+  "ukmlaContentMapIds": ["lung-cancer", "haemoptysis", "weight-loss"],
+  "learningObjectives": [
+    "Screen for red flag symptoms of lung malignancy",
+    "Elicit relevant occupational and smoking history",
+    "Identify indications for 2-week wait referral",
+    "Sensitively communicate concern about malignancy"
+  ],
+  "tags": ["respiratory", "oncology", "lung-cancer", "history-taking", "red-flags", "plab2"]
+}

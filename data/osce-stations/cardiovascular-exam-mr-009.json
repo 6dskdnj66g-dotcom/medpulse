@@ -1,0 +1,233 @@
+{
+  "id": "cardiovascular-exam-mr-009",
+  "exam": "PLAB2",
+  "title": "Cardiovascular examination — identify the murmur",
+  "category": "focused-examination",
+  "specialty": "Cardiology",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 doctor in cardiology outpatients. Mr Samuel Okafor, a 65-year-old man, has been referred by his GP with exertional breathlessness and a cardiac murmur detected on routine examination. Please perform a focused cardiovascular examination and present your findings to the examiner.",
+  "examinerNotes": "Mitral regurgitation station. Candidate should correctly identify the pansystolic murmur at apex radiating to axilla. Expected findings: displaced apex beat, soft S1, pansystolic murmur grade 3/6 at apex radiating to left axilla. Causes: mitral valve prolapse, ischemic MR.",
+  "patient": {
+    "id": "patient-009",
+    "name": "Samuel Okafor",
+    "age": 65,
+    "gender": "M",
+    "occupation": "Retired teacher",
+    "presentingComplaint": "Breathlessness on exertion",
+    "reasonForAttendance": "My GP heard something wrong with my heart",
+    "history": {
+      "hpi": {
+        "site": "Not applicable — examination station",
+        "onset": "Gradual",
+        "character": "Breathlessness climbing one flight of stairs",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Exertional breathlessness", "Mild ankle swelling"],
+        "timing": "6 months",
+        "exacerbatingFactors": "Exertion",
+        "relievingFactors": "Rest",
+        "severity": "Moderate — limits activity"
+      },
+      "pmh": [
+        { "condition": "Hypertension", "yearDiagnosed": 2010, "controlled": true },
+        { "condition": "Previous anterior MI", "yearDiagnosed": 2018, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Bisoprolol", "dose": "5mg", "frequency": "once daily" },
+        { "name": "Ramipril", "dose": "10mg", "frequency": "once daily" },
+        { "name": "Aspirin", "dose": "75mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 15 },
+        "alcohol": { "units": 8, "pattern": "Social" },
+        "occupation": "Retired teacher"
+      },
+      "systemsReview": {
+        "cardiovascular": "Exertional breathlessness, ankle swelling",
+        "respiratory": "Normal",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Normal"
+      }
+    },
+    "examination": {
+      "general": "Well-looking man, no distress at rest",
+      "vitalSigns": { "bp": "138/84", "hr": 76, "rr": 16, "temp": 36.8, "spo2": 97 },
+      "cardiovascular": "JVP not elevated. Apex beat displaced to 6th intercostal space, anterior axillary line. Soft S1, normal S2. Pansystolic murmur grade 3/6 at apex radiating to left axilla. No thrills. No S3 on this occasion.",
+      "respiratory": "Clear",
+      "abdominal": "No hepatomegaly",
+      "neurological": "Normal",
+      "musculoskeletal": "Mild bilateral ankle pitting oedema"
+    },
+    "investigations": [
+      {
+        "id": "echo-mr",
+        "type": "imaging-ultrasound",
+        "name": "Echocardiogram",
+        "shortName": "Echo",
+        "triggerKeywords": ["echo", "echocardiogram", "ultrasound heart", "cardiac echo"],
+        "result": "Left ventricular dilation. EF 45%. Moderate-severe mitral regurgitation with eccentric jet directed posteriorly. Mitral valve prolapse. No significant aortic valve disease.",
+        "imageUrl": "/osce-assets/echo-mr.png",
+        "interpretation": "Moderate-severe mitral regurgitation due to mitral valve prolapse. Left ventricular dysfunction (EF 45%) — likely consequence of chronic volume overload plus prior MI.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "ecg-mr",
+        "type": "ecg",
+        "name": "12-lead ECG",
+        "shortName": "ECG",
+        "triggerKeywords": ["ecg", "electrocardiogram", "ecg"],
+        "result": "Sinus rhythm 76 bpm. P mitrale (bifid P waves in V1). Q waves V1-V3 (previous anterior MI). LVH by voltage criteria. No current ischaemia.",
+        "imageUrl": "/osce-assets/ecg-lvh-mr.png",
+        "interpretation": "LVH and P mitrale consistent with chronic mitral regurgitation and volume overload. Evidence of previous anterior MI.",
+        "urgency": "routine",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Calm and cooperative. Slightly anxious about what the doctor will find.",
+    "communicationStyle": "Cooperative, allows examination. Asks 'what did you find?' at the end.",
+    "hiddenConcerns": [
+      "Will I need an operation?",
+      "Is my heart getting worse?"
+    ],
+    "doNotVolunteer": [
+      "Details of previous MI unless asked",
+      "All medications unless specifically asked"
+    ]
+  },
+  "primaryDiagnosis": "Mitral Regurgitation (moderate-severe) due to Mitral Valve Prolapse",
+  "differentialDiagnoses": [
+    "Aortic stenosis",
+    "Ventricular septal defect",
+    "Tricuspid regurgitation",
+    "Innocent flow murmur"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Inspects correctly — jaundice, pallor, cyanosis, clubbing, splinter haemorrhages",
+          "detailedExpectation": "Systematic peripheral examination from hands to face",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Assesses JVP correctly",
+          "detailedExpectation": "Identifies JVP height and waveform",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Palpates apex beat and identifies displacement",
+          "detailedExpectation": "Correctly identifies lateral displacement of apex beat",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Auscultates correctly in all areas with diaphragm and bell",
+          "detailedExpectation": "Auscultates apex, lower left sternal edge, aortic area, pulmonary area",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Listens in axilla for radiation",
+          "detailedExpectation": "Correctly checks for axillary radiation of murmur",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Correctly identifies murmur as pansystolic at apex",
+          "detailedExpectation": "States: pansystolic, loudest at apex, radiates to axilla",
+          "weight": 4,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["pansystolic", "pan-systolic", "mitral regurgitation", "mr", "apex", "axilla"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "States mitral regurgitation as diagnosis",
+          "detailedExpectation": "Correctly identifies the valvular lesion",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["mitral regurgitation", "mitral regurg", "mr", "leaky mitral"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Plans appropriate investigations",
+          "detailedExpectation": "Requests echocardiogram as primary investigation",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "echo-mr"
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction, consent, chaperone",
+          "detailedExpectation": "Introduces self, gains consent, offers chaperone",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Patient positioned correctly at 45 degrees",
+          "detailedExpectation": "Positions patient at 45° for JVP assessment, then supine for examination",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Explains findings to patient",
+          "detailedExpectation": "Clearly explains findings in lay terms",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 26,
+    "passingScore": 16
+  },
+  "references": [
+    { "source": "ESC Guidelines on valvular heart disease 2021" },
+    { "source": "NICE NG208: Heart valve disease" }
+  ],
+  "ukmlaContentMapIds": ["cardiac-examination", "mitral-regurgitation"],
+  "learningObjectives": [
+    "Perform a systematic cardiovascular examination",
+    "Identify and characterise a pansystolic murmur at the apex",
+    "Correctly diagnose mitral regurgitation",
+    "Plan appropriate investigations including echocardiogram"
+  ],
+  "tags": ["cardiology", "examination", "murmur", "mitral-regurgitation", "plab2"]
+}

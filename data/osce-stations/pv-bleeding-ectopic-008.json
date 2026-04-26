@@ -1,0 +1,243 @@
+{
+  "id": "pv-bleeding-ectopic-008",
+  "exam": "PLAB2",
+  "title": "28-year-old woman with lower abdominal pain and missed period",
+  "category": "history-taking",
+  "specialty": "OB/GYN",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 in the ED. Ms Amara Osei, a 28-year-old healthcare assistant, presents with 5 days of right-sided lower abdominal pain and light vaginal bleeding. Her last menstrual period was 7 weeks ago. Please take a focused history and formulate your management plan.",
+  "examinerNotes": "Ectopic pregnancy until proven otherwise. Key features: missed period, vaginal bleeding, unilateral pain, prior ectopic/PID risk. Candidate must do urgent beta-hCG and transvaginal USS. Must NOT do cervical examination if ectopic suspected without USS first.",
+  "patient": {
+    "id": "patient-008",
+    "name": "Amara Osei",
+    "age": 28,
+    "gender": "F",
+    "occupation": "Healthcare assistant",
+    "maritalStatus": "In relationship",
+    "presentingComplaint": "Lower right abdominal pain and some bleeding",
+    "reasonForAttendance": "I've had a pain on my right side for 5 days and some bleeding. My period is late.",
+    "history": {
+      "hpi": {
+        "site": "Right iliac fossa — lower right abdomen",
+        "onset": "5 days ago, gradual onset",
+        "character": "Constant cramping, sometimes sharp",
+        "radiation": "Some shoulder tip pain when lying down (diaphragm irritation)",
+        "associatedSymptoms": ["Light vaginal bleeding — darker than normal period", "Right shoulder tip pain", "Nausea", "Feeling faint when standing"],
+        "timing": "Continuous for 5 days, getting slightly worse",
+        "exacerbatingFactors": "Movement, lying down makes shoulder tip pain worse",
+        "relievingFactors": "Nothing helps much",
+        "severity": "6-7 out of 10 pain",
+        "previousEpisodes": "Had a pregnancy outside the womb 2 years ago — right tube, treated with methotrexate"
+      },
+      "pmh": [
+        { "condition": "Previous ectopic pregnancy", "yearDiagnosed": 2022, "controlled": true, "notes": "Right tube, managed with methotrexate" },
+        { "condition": "Pelvic inflammatory disease", "yearDiagnosed": 2020, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Folic acid", "dose": "400 micrograms", "frequency": "once daily", "notes": "Started 2 months ago when trying to conceive" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 0, "pattern": "None — trying to conceive" },
+        "occupation": "Healthcare assistant",
+        "sexualHistory": "In monogamous relationship, actively trying to conceive for 3 months"
+      },
+      "systemsReview": {
+        "cardiovascular": "Feeling dizzy when standing — postural hypotension",
+        "respiratory": "Normal",
+        "gastrointestinal": "Nausea, no vomiting",
+        "genitourinary": "LMP 7 weeks ago. Light vaginal bleeding for 5 days. Right shoulder tip pain.",
+        "neurological": "Feeling faint",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxious and upset"
+      },
+      "obstetricGynaecological": {
+        "parity": "P0",
+        "gravida": "G2",
+        "lmp": "7 weeks ago",
+        "cycleRegularity": "Regular 28-day cycles",
+        "contraception": "None — actively trying to conceive"
+      }
+    },
+    "examination": {
+      "general": "Pale woman, in pain, looks unwell",
+      "vitalSigns": { "bp": "98/60", "hr": 116, "rr": 20, "temp": 37.1, "spo2": 98 },
+      "cardiovascular": "Tachycardia, mild postural hypotension (20mmHg drop)",
+      "respiratory": "Normal",
+      "abdominal": "Tenderness right iliac fossa. Guarding. Peritonism. Cervical excitation on gentle examination.",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "beta-hcg",
+        "type": "blood-test",
+        "name": "Serum beta-hCG (quantitative)",
+        "shortName": "beta-hCG",
+        "triggerKeywords": ["beta hcg", "hcg", "pregnancy test", "beta human chorionic", "serum pregnancy test"],
+        "result": {
+          "values": {
+            "Serum beta-hCG": { "value": 2840, "unit": "IU/L", "range": "Varies by gestational age", "flag": "H" }
+          },
+          "text": "Positive — significant level. Expected intrauterine sac should be visible at this level on transvaginal USS."
+        },
+        "interpretation": "Positive pregnancy test with beta-hCG 2840 IU/L. At this level, an intrauterine pregnancy should be visible on TVUSS. Absence on USS confirms ectopic or complete miscarriage.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "tvuss-ectopic",
+        "type": "imaging-ultrasound",
+        "name": "Transvaginal Ultrasound",
+        "shortName": "TVUSS",
+        "triggerKeywords": ["ultrasound", "tvuss", "transvaginal", "scan", "pelvic scan", "tv scan"],
+        "result": "Empty uterine cavity. No intrauterine pregnancy. Right adnexal mass 2.8cm with ring sign (ectopic ring). Free fluid in pouch of Douglas (haemoperitoneum). No left-sided adnexal mass.",
+        "imageUrl": "/osce-assets/tvuss-ectopic.png",
+        "interpretation": "ECTOPIC PREGNANCY confirmed in right fallopian tube with haemoperitoneum. EMERGENCY surgical consultation required immediately.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Frightened, in pain. Knows what an ectopic is because she had one before. Terrified of losing the tube and her fertility.",
+    "communicationStyle": "Direct, healthcare background, understands some medical terminology. Emotional about fertility concerns.",
+    "hiddenConcerns": [
+      "I had an ectopic before — am I going to lose my tube?",
+      "We've been trying for a baby for 3 months",
+      "The shoulder pain really scared me — I know that can mean blood"
+    ],
+    "doNotVolunteer": [
+      "Previous ectopic — only if asked about previous pregnancies or gynaecological history",
+      "Previous PID — only if asked about previous infections or STIs",
+      "Shoulder tip pain — only if asked about shoulder or referred pain symptoms",
+      "Folic acid — only if asked about medications"
+    ]
+  },
+  "primaryDiagnosis": "Ruptured Ectopic Pregnancy (right fallopian tube) with haemoperitoneum",
+  "differentialDiagnoses": [
+    "Threatened miscarriage",
+    "Complete miscarriage",
+    "Ovarian cyst torsion",
+    "Appendicitis",
+    "PID"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Establishes menstrual history and LMP",
+          "detailedExpectation": "Confirms missed period, calculates approximate gestation",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["period", "lmp", "last menstrual", "missed period", "gestation"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Asks about previous ectopic and risk factors",
+          "detailedExpectation": "Previous ectopic, PID, IUD, tubal surgery",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["previous pregnancy", "ectopic", "pelvic infection", "pid", "previous"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Asks about shoulder tip pain",
+          "detailedExpectation": "Specifically asks about referred diaphragmatic pain — haemoperitoneum sign",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["shoulder", "shoulder pain", "tip pain"]
+          }
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Orders beta-hCG urgently",
+          "detailedExpectation": "Quantitative serum beta-hCG is essential",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "beta-hcg"
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Orders transvaginal ultrasound",
+          "detailedExpectation": "TVUSS to locate pregnancy and identify haemoperitoneum",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "tvuss-ectopic"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Identifies ectopic pregnancy as diagnosis",
+          "detailedExpectation": "States ectopic pregnancy as primary diagnosis",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["ectopic", "ectopic pregnancy", "pregnancy outside", "tubal pregnancy"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Recognises haemodynamic instability",
+          "detailedExpectation": "Notes tachycardia, hypotension, calls senior/surgery immediately",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["resuscitate", "resuscitation", "surgery", "surgical", "laparoscopy", "call senior", "gynae", "iv access", "fluids", "blood", "cross match"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Sensitive communication about fertility",
+          "detailedExpectation": "Acknowledges distress, addresses fertility concerns appropriately",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 23,
+    "passingScore": 14
+  },
+  "references": [
+    { "source": "RCOG Green-top Guideline 21: Ectopic pregnancy and miscarriage" },
+    { "source": "NICE CG154: Ectopic pregnancy and miscarriage" }
+  ],
+  "ukmlaContentMapIds": ["ectopic-pregnancy", "acute-pelvic-pain"],
+  "learningObjectives": [
+    "Identify risk factors for ectopic pregnancy",
+    "Recognise signs of haemoperitoneum",
+    "Order appropriate investigations (beta-hCG and TVUSS)",
+    "Manage haemodynamically unstable ectopic pregnancy"
+  ],
+  "tags": ["obstetrics", "gynaecology", "emergency", "ectopic", "history-taking", "plab2"]
+}

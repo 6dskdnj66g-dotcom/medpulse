@@ -1,0 +1,226 @@
+{
+  "id": "anaphylaxis-management-019",
+  "exam": "PLAB2",
+  "title": "Emergency management — anaphylaxis",
+  "category": "emergency-management",
+  "specialty": "Emergency Medicine",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY1 doctor on a medical ward. A nursing colleague calls you urgently: a 28-year-old woman, Miss Rachel Parker, has developed sudden urticaria, facial swelling, and is struggling to breathe 10 minutes after receiving IV co-amoxiclav for a UTI. She is conscious but distressed. Manage this emergency.",
+  "examinerNotes": "Anaphylaxis from penicillin antibiotic. Candidate must: recognise anaphylaxis (3 criteria: sudden onset, life-threatening ABC compromise, skin changes), give IM adrenaline FIRST (0.5mg 1:1000 anterolateral thigh), then position, oxygen, IV access, fluids, antihistamine (second-line), steroid (second-line). Critical error: giving IV adrenaline instead of IM, delaying adrenaline for other interventions.",
+  "patient": {
+    "id": "patient-019",
+    "name": "Rachel Parker",
+    "age": 28,
+    "gender": "F",
+    "occupation": "Nursery teacher",
+    "presentingComplaint": "Sudden urticaria, angioedema, difficulty breathing after IV antibiotics",
+    "reasonForAttendance": "Reaction to antibiotics",
+    "history": {
+      "hpi": {
+        "site": "Generalised rash, face swelling, throat tightness",
+        "onset": "10 minutes after IV co-amoxiclav",
+        "character": "Sudden, rapidly worsening",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Generalised urticaria", "Angioedema lips and tongue", "Throat tightness and stridor", "Hypotension", "Tachycardia"],
+        "timing": "Acute, 10 minutes ago",
+        "exacerbatingFactors": "Ongoing exposure if antibiotic continues",
+        "relievingFactors": "Nothing yet",
+        "severity": "Severe — life-threatening"
+      },
+      "pmh": [],
+      "drugHistory": [
+        { "name": "Co-amoxiclav IV", "dose": "1.2g", "frequency": "just administered — trigger", "notes": "Prescribed for UTI" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 6, "pattern": "Social" },
+        "occupation": "Nursery teacher"
+      },
+      "systemsReversion": {
+        "cardiovascular": "Hypotension, tachycardia",
+        "respiratory": "Stridor, wheeze, dyspnoea",
+        "gastrointestinal": "Nausea",
+        "genitourinary": "Normal",
+        "neurological": "Anxious, alert",
+        "musculoskeletal": "Normal",
+        "dermatological": "Generalised urticaria, angioedema",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Terrified"
+      },
+      "systemsReview": {
+        "cardiovascular": "Hypotension BP 80/50, tachycardia HR 130",
+        "respiratory": "Stridor, wheeze",
+        "gastrointestinal": "Nausea",
+        "genitourinary": "Normal",
+        "neurological": "Alert but terrified",
+        "musculoskeletal": "Normal",
+        "dermatological": "Generalised urticaria",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxious"
+      }
+    },
+    "examination": {
+      "general": "Distressed, flushed, urticarial rash all over body, angioedema lips",
+      "vitalSigns": { "bp": "80/50", "hr": 132, "rr": 28, "temp": 37.0, "spo2": 91 },
+      "cardiovascular": "Tachycardia, hypotension",
+      "respiratory": "Stridor, wheeze bilaterally, dyspnoea",
+      "abdominal": "Normal",
+      "neurological": "Alert and oriented, GCS 15",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Terrified, struggling to breathe, unable to speak in full sentences due to stridor",
+    "communicationStyle": "Short words only due to airway compromise. Cooperative.",
+    "hiddenConcerns": [
+      "Am I going to be able to breathe?",
+      "What is happening to me?"
+    ],
+    "doNotVolunteer": [
+      "Not applicable — emergency scenario"
+    ]
+  },
+  "primaryDiagnosis": "Anaphylaxis due to Penicillin (co-amoxiclav)",
+  "differentialDiagnoses": [
+    "Vasovagal syncope",
+    "Panic attack",
+    "Hereditary angioedema",
+    "Severe asthma exacerbation"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Recognises anaphylaxis diagnosis",
+          "detailedExpectation": "States anaphylaxis: sudden onset + life-threatening ABC + skin changes",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["anaphylaxis", "anaphylactic", "allergic reaction", "anaphylactic shock"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Stops the causative agent",
+          "detailedExpectation": "Instructs to stop/remove co-amoxiclav infusion immediately",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["stop", "remove", "antibiotic", "co-amoxiclav", "infusion", "stop the drug"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Gives IM adrenaline 0.5mg (1:1000) FIRST",
+          "detailedExpectation": "IM adrenaline is first-line — 0.5mg of 1:1000 solution into anterolateral thigh",
+          "weight": 5,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["adrenaline", "epinephrine", "0.5mg", "im adrenaline", "intramuscular", "anterolateral thigh", "1:1000"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Positions patient appropriately",
+          "detailedExpectation": "Supine with legs elevated (or sitting up if breathless)",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["lie flat", "legs up", "supine", "position", "sit up"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "High-flow oxygen",
+          "detailedExpectation": "15L via non-rebreather mask",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["oxygen", "o2", "high flow", "non-rebreather", "mask"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "IV access and fluid bolus",
+          "detailedExpectation": "IV access and 500ml crystalloid bolus for hypotension",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["iv access", "cannula", "fluids", "saline", "500ml", "bolus"]
+          }
+        },
+        {
+          "id": "cm-5",
+          "criterion": "Chlorphenamine and hydrocortisone (second-line)",
+          "detailedExpectation": "Chlorphenamine 10mg IV + hydrocortisone 200mg IV after adrenaline",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["chlorphenamine", "antihistamine", "hydrocortisone", "steroid", "second line"]
+          }
+        },
+        {
+          "id": "cm-6",
+          "criterion": "Calls for help — senior/anaesthetics",
+          "detailedExpectation": "2222 emergency call, alerts senior, calls anaesthetics given stridor",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["2222", "crash team", "help", "senior", "anaesthetics", "resus team", "call for help"]
+          }
+        },
+        {
+          "id": "cm-7",
+          "criterion": "Plans observation for biphasic reaction",
+          "detailedExpectation": "Minimum 6 hours observation after treatment",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["observe", "6 hours", "biphasic", "monitor"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Reassures patient throughout",
+          "detailedExpectation": "Brief clear communication while managing emergency",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 23,
+    "passingScore": 14
+  },
+  "references": [
+    { "source": "Resuscitation Council UK: Anaphylaxis Algorithm 2021" },
+    { "source": "NICE CG134: Anaphylaxis" }
+  ],
+  "ukmlaContentMapIds": ["anaphylaxis", "emergency-management"],
+  "learningObjectives": [
+    "Recognise anaphylaxis using diagnostic criteria",
+    "Give IM adrenaline as first-line treatment",
+    "Sequence anaphylaxis treatment correctly",
+    "Call for appropriate help"
+  ],
+  "tags": ["emergency", "anaphylaxis", "adrenaline", "plab2"]
+}

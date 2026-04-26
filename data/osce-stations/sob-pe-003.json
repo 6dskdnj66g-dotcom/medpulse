@@ -1,0 +1,303 @@
+{
+  "id": "sob-pe-003",
+  "exam": "PLAB2",
+  "title": "55-year-old woman with shortness of breath after a flight",
+  "category": "history-taking",
+  "specialty": "Respiratory",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 doctor in the Emergency Department. Mrs Patricia Hennessey, a 55-year-old office manager, presents with 4 hours of sudden onset shortness of breath and left-sided pleuritic chest pain. She returned from a 10-hour flight from Sydney 2 days ago. Please take a history focused on the likely diagnosis and request appropriate investigations.",
+  "examinerNotes": "This is a pulmonary embolism scenario. Key features: immobility (long-haul flight), pleuritic chest pain, calf swelling (DVT), tachycardia. Wells score should be calculated. CTPA is the investigation of choice. Candidate should anticoagulate promptly.",
+  "patient": {
+    "id": "patient-003",
+    "name": "Patricia Hennessey",
+    "age": 55,
+    "gender": "F",
+    "occupation": "Office manager",
+    "maritalStatus": "Married",
+    "presentingComplaint": "Sudden shortness of breath and sharp chest pain when breathing in",
+    "reasonForAttendance": "I can't breathe properly and my chest hurts when I take a deep breath",
+    "history": {
+      "hpi": {
+        "site": "Left-sided chest pain, worse on breathing in",
+        "onset": "Sudden, started 4 hours ago at rest",
+        "character": "Sharp, stabbing — pleuritic",
+        "radiation": "No radiation",
+        "associatedSymptoms": ["Shortness of breath at rest", "Left calf pain and swelling for 3 days", "Mild cough — no sputum", "Heart racing"],
+        "timing": "Came on suddenly, continuous since then",
+        "exacerbatingFactors": "Deep breathing, movement",
+        "relievingFactors": "Sitting still, nothing relieves it much",
+        "severity": "7 out of 10 chest pain. Breathless walking a few steps.",
+        "previousEpisodes": "No previous similar episodes"
+      },
+      "pmh": [
+        { "condition": "Hypertension", "yearDiagnosed": 2018, "controlled": true },
+        { "condition": "Combined oral contraceptive pill", "yearDiagnosed": 2015, "controlled": true, "notes": "Progesterone-only now due to age" }
+      ],
+      "drugHistory": [
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" },
+        { "name": "Cerazette (desogestrel)", "dose": "75 micrograms", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Sister", "condition": "Deep vein thrombosis during pregnancy" }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 10, "quitDate": "2010" },
+        "alcohol": { "units": 6, "pattern": "Occasional" },
+        "occupation": "Office manager — sedentary job",
+        "travel": "Returned from Sydney 2 days ago — 10-hour flight, sat in window seat, minimal mobility"
+      },
+      "systemsReview": {
+        "cardiovascular": "Palpitations noted (tachycardia)",
+        "respiratory": "SOB and pleuritic chest pain as above",
+        "gastrointestinal": "No haemoptysis",
+        "genitourinary": "Normal",
+        "neurological": "No syncope, no dizziness",
+        "musculoskeletal": "Left calf pain and swelling for 3 days",
+        "dermatological": "Left calf redness",
+        "endocrine": "Normal",
+        "haematological": "No bleeding tendency",
+        "psychiatric": "Anxious"
+      }
+    },
+    "examination": {
+      "general": "Anxious woman, tachypnoeic at rest, using accessory muscles",
+      "vitalSigns": { "bp": "118/76", "hr": 112, "rr": 24, "temp": 37.4, "spo2": 93 },
+      "cardiovascular": "Tachycardia. No murmurs. No raised JVP.",
+      "respiratory": "Reduced air entry left base. No wheeze. Dull to percussion left base.",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Left calf swollen 3cm greater than right, tender on palpation, erythematous — DVT signs"
+    },
+    "investigations": [
+      {
+        "id": "ctpa",
+        "type": "imaging-ct",
+        "name": "CT Pulmonary Angiogram",
+        "shortName": "CTPA",
+        "triggerKeywords": ["ctpa", "ct pulmonary", "ct angio", "pulmonary angiogram", "ct pa"],
+        "result": "Filling defects in right main pulmonary artery and bilateral segmental pulmonary arteries consistent with pulmonary emboli. Small right-sided pleural effusion.",
+        "imageUrl": "/osce-assets/ctpa-pe.png",
+        "interpretation": "BILATERAL PULMONARY EMBOLI confirmed. Saddle embolus extending into right main pulmonary artery. Significant clot burden.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "ecg-pe",
+        "type": "ecg",
+        "name": "12-lead ECG",
+        "shortName": "ECG",
+        "triggerKeywords": ["ecg", "electrocardiogram", "heart tracing", "ekg"],
+        "result": "Sinus tachycardia 112 bpm. S1Q3T3 pattern (S wave in I, Q wave and inverted T wave in III). Right axis deviation. No ST elevation.",
+        "imageUrl": "/osce-assets/ecg-pe-pattern.png",
+        "interpretation": "S1Q3T3 pattern and sinus tachycardia — classic (though non-specific) findings in PE. Sinus tachycardia is the most common ECG finding.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "ddimer",
+        "type": "blood-test",
+        "name": "D-dimer",
+        "shortName": "D-dimer",
+        "triggerKeywords": ["d-dimer", "d dimer", "ddimer"],
+        "result": {
+          "values": {
+            "D-dimer": { "value": 3840, "unit": "ng/mL", "range": "<500", "flag": "H" }
+          }
+        },
+        "interpretation": "Markedly elevated D-dimer. Note: high pre-test probability means D-dimer is not needed for diagnosis — CTPA should be performed regardless.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "abg-pe",
+        "type": "blood-test",
+        "name": "Arterial Blood Gas",
+        "shortName": "ABG",
+        "triggerKeywords": ["abg", "arterial blood gas", "blood gas", "arterial gas"],
+        "result": {
+          "values": {
+            "pH": { "value": 7.48, "unit": "", "range": "7.35-7.45", "flag": "H" },
+            "PaO2": { "value": 7.8, "unit": "kPa", "range": "11-14", "flag": "L" },
+            "PaCO2": { "value": 3.8, "unit": "kPa", "range": "4.5-6.0", "flag": "L" },
+            "HCO3": { "value": 21, "unit": "mmol/L", "range": "22-29", "flag": "L" },
+            "SaO2": { "value": 93, "unit": "%", "range": "95-98", "flag": "L" }
+          }
+        },
+        "interpretation": "Type 1 respiratory failure (hypoxia without hypercapnia). Respiratory alkalosis due to hyperventilation. Consistent with PE.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Frightened and anxious. Concerned about the pain and inability to breathe. Asking if this could be a blood clot.",
+    "communicationStyle": "Short of breath so speaks in short sentences. Cooperative and answers directly.",
+    "hiddenConcerns": [
+      "Is this a blood clot from the flight? I heard about this happening",
+      "My sister had a clot — am I at higher risk?",
+      "I'm meant to fly back to visit family next month"
+    ],
+    "doNotVolunteer": [
+      "Calf swelling — only mention if asked about leg symptoms",
+      "Family history — only if asked about family history of clotting",
+      "Oral contraceptive pill history — only if asked about medications",
+      "Details of flight — only if asked about recent travel or immobility"
+    ]
+  },
+  "primaryDiagnosis": "Pulmonary Embolism (PE) — bilateral, high-risk",
+  "differentialDiagnoses": [
+    "Pneumonia",
+    "Pleuritis",
+    "Pneumothorax",
+    "Aortic dissection",
+    "Acute coronary syndrome",
+    "Musculoskeletal chest pain"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Establishes pleuritic nature of chest pain",
+          "detailedExpectation": "Asks about sharp pain worsened by breathing — key PE feature",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["breathing in", "deep breath", "pleuritic", "sharp", "stabbing", "worse when breathing"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Identifies DVT symptoms",
+          "detailedExpectation": "Asks about calf pain, swelling, redness",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["calf", "leg", "swelling", "swollen", "leg pain", "dvt", "clot in leg"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Asks about recent immobility or travel",
+          "detailedExpectation": "Specifically asks about long-haul flight, prolonged immobility, surgery",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["flight", "travel", "immobile", "surgery", "long journey", "car", "flying", "plane"]
+          }
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Asks about risk factors for VTE",
+          "detailedExpectation": "OCP, pregnancy, malignancy, thrombophilia, previous VTE, family history",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["pill", "contraceptive", "cancer", "thrombophilia", "previous clot", "family history", "pregnancy"]
+          }
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Requests CTPA",
+          "detailedExpectation": "Orders CT pulmonary angiogram as definitive investigation",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "ctpa"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Identifies PE as diagnosis",
+          "detailedExpectation": "States pulmonary embolism as primary differential",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["pulmonary embolism", "pe", "blood clot in lung", "clot in lung"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Calculates or applies Wells score",
+          "detailedExpectation": "References Wells criteria or clinical probability assessment",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["wells", "probability", "pre-test", "clinical probability", "risk score"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Initiates anticoagulation",
+          "detailedExpectation": "Prescribes LMWH or direct oral anticoagulant (apixaban/rivaroxaban) promptly",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["heparin", "anticoagul", "lmwh", "enoxaparin", "apixaban", "rivaroxaban", "blood thinner"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Considers thrombolysis for massive PE",
+          "detailedExpectation": "Aware of thrombolysis for haemodynamically unstable PE",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["thrombolysis", "tpa", "alteplase", "unstable", "massive pe"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self, confirms patient identity",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Empathy",
+          "detailedExpectation": "Acknowledges breathlessness and pain",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Explains diagnosis and management in lay terms",
+          "detailedExpectation": "Uses 'blood clot' not PE, explains treatment",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 27,
+    "passingScore": 16
+  },
+  "references": [
+    { "source": "NICE NG158: Venous thromboembolic diseases" },
+    { "source": "ESC Guidelines on acute pulmonary embolism 2019" }
+  ],
+  "ukmlaContentMapIds": ["pulmonary-embolism", "dvt", "anticoagulation"],
+  "learningObjectives": [
+    "Identify risk factors for venous thromboembolism",
+    "Apply Wells score for PE clinical probability",
+    "Select CTPA as definitive investigation for PE",
+    "Initiate appropriate anticoagulation for confirmed PE",
+    "Recognise features of massive PE requiring thrombolysis"
+  ],
+  "tags": ["respiratory", "emergency", "pe", "dvt", "anticoagulation", "history-taking", "plab2"]
+}

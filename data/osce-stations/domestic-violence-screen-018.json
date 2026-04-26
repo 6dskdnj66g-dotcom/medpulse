@@ -1,0 +1,186 @@
+{
+  "id": "domestic-violence-screen-018",
+  "exam": "PLAB2",
+  "title": "Sensitive history — domestic violence screening",
+  "category": "communication-skills",
+  "specialty": "General Practice",
+  "difficulty": "fy2-level",
+  "durationMinutes": 10,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 GP. Mrs Helen Fletcher, a 34-year-old woman, has attended her third appointment in 2 months with soft tissue injuries. Today she has a bruised forearm and says she fell down stairs. Previous attendances were for a black eye (walked into a door) and rib bruising (car accident). Please take a sensitive history.",
+  "examinerNotes": "Domestic violence station. Candidate must: use DASH screening, ask directly about abuse after building rapport, not interrogate in front of partner (partner is in waiting room), provide safety information, involve MARAC/IDVA if high risk. Must not minimise or dismiss. Critical error: having the partner present during questioning.",
+  "patient": {
+    "id": "patient-018",
+    "name": "Helen Fletcher",
+    "age": 34,
+    "gender": "F",
+    "occupation": "Part-time supermarket worker",
+    "maritalStatus": "Married, 2 young children",
+    "presentingComplaint": "Bruised forearm — says she fell down stairs",
+    "reasonForAttendance": "I fell down the stairs this morning. My arm really hurts.",
+    "history": {
+      "hpi": {
+        "site": "Right forearm",
+        "onset": "This morning",
+        "character": "Bruised, painful forearm, no fracture",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Bruising forearm", "Flinches when examined"],
+        "timing": "This morning",
+        "exacerbatingFactors": "Movement",
+        "relievingFactors": "Rest",
+        "severity": "Painful 5/10"
+      },
+      "pmh": [
+        { "condition": "Depression (current)", "yearDiagnosed": 2022, "controlled": false, "notes": "Started after previous injuries" },
+        { "condition": "Anxiety", "yearDiagnosed": 2022, "controlled": false }
+      ],
+      "drugHistory": [
+        { "name": "Sertraline", "dose": "50mg", "frequency": "once daily" },
+        { "name": "Diazepam", "dose": "2mg", "frequency": "PRN (prescribed by previous GP)" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "current", "packYears": 5 },
+        "alcohol": { "units": 5, "pattern": "Social" },
+        "occupation": "Part-time supermarket worker",
+        "livingArrangement": "Lives with husband Mark (39) and 2 children aged 4 and 7"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Normal",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Recurrent soft tissue injuries",
+        "dermatological": "Multiple bruises at various healing stages on arms",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Depression, anxiety, low self-esteem"
+      }
+    },
+    "examination": {
+      "general": "Anxious woman, avoids eye contact, speaks quietly, flinches when examined",
+      "vitalSigns": { "bp": "122/76", "hr": 88, "rr": 16, "temp": 36.7, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Bruising right forearm. Multiple bruises at various stages of healing on upper arms. X-ray no fracture."
+    },
+    "investigations": [],
+    "emotionalState": "Frightened, defensive initially. Will deny abuse if asked bluntly without rapport. If asked gently in a safe space will gradually open up. Will cry when discussing children. Is considering leaving but terrified.",
+    "communicationStyle": "Quiet, evasive initially. If made to feel safe and not judged will gradually confide. Watches the door nervously. Will admit to abuse when directly but gently asked after trust established.",
+    "hiddenConcerns": [
+      "Mark hits me and the children sometimes",
+      "I'm scared to leave — he threatened to take the children",
+      "I don't want my kids taken away from me",
+      "I feel like it's my fault",
+      "I've thought about leaving but I have nowhere to go"
+    ],
+    "doNotVolunteer": [
+      "Abuse — will deny initially with standard story. Will open up only if doctor creates private, non-judgmental space",
+      "Children witnessing violence — only if directly asked about children's safety",
+      "Thoughts of leaving — only if trust is established"
+    ]
+  },
+  "primaryDiagnosis": "Domestic Violence (intimate partner violence) — high-risk pattern",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Ensures patient is seen alone — without partner present",
+          "detailedExpectation": "Confirms partner is NOT in room, creates safe space",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Builds rapport before asking directly about abuse",
+          "detailedExpectation": "Spends time building trust before direct questioning",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Asks directly about domestic abuse in a non-judgmental way",
+          "detailedExpectation": "'Sometimes when people have injuries like this, it can be because someone has hurt them at home — is that something that might be happening to you?'",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Asks about children's safety",
+          "detailedExpectation": "Asks if children are safe, whether they witness or experience violence",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["children", "kids", "safe", "children safe", "children witness", "children harmed"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Provides safety information — IDVA/helpline",
+          "detailedExpectation": "National Domestic Violence Hotline, IDVA (Independent Domestic Violence Advisor) referral",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["helpline", "idva", "domestic violence", "marac", "support", "safe house", "refuge", "national domestic"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Documents accurately with patient's consent",
+          "detailedExpectation": "Explains will document injuries accurately — may be needed as evidence",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["document", "record", "notes", "evidence", "photograph"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Empathic, non-judgmental approach throughout",
+          "detailedExpectation": "Never blames patient, validates her feelings, does not minimise",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Respects patient's autonomy — she decides when/if to act",
+          "detailedExpectation": "Does not pressure patient to leave immediately",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 21,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "NICE PH50: Domestic violence and abuse — multi-agency response" },
+    { "source": "DASH Risk Identification Checklist" }
+  ],
+  "ukmlaContentMapIds": ["domestic-violence", "safeguarding", "communication-skills"],
+  "learningObjectives": [
+    "Identify pattern of injuries consistent with intimate partner violence",
+    "Create safe space for disclosure",
+    "Ask directly about domestic abuse sensitively",
+    "Provide appropriate safety information and referrals"
+  ],
+  "tags": ["communication", "safeguarding", "domestic-violence", "sensitive", "gp", "plab2"]
+}

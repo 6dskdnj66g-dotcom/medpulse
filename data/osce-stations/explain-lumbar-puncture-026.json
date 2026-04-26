@@ -1,0 +1,201 @@
+{
+  "id": "explain-lumbar-puncture-026",
+  "exam": "PLAB2",
+  "title": "Procedure explanation — lumbar puncture consent",
+  "category": "procedure-explanation",
+  "specialty": "Neurology",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 on the neurology ward. Mr Stewart Price, a 45-year-old accountant, was admitted with a severe headache and fever. CT head is normal. Lumbar puncture has been recommended to rule out bacterial meningitis. He is anxious and needs you to explain the procedure and obtain consent.",
+  "examinerNotes": "Lumbar puncture consent and explanation. Candidate must explain: position (lateral decubent or sitting), landmark (L3/L4 or L4/L5), purpose (CSF analysis for infection/SAH), risks (post-LP headache, infection, bleeding, back pain, very rarely nerve damage), benefits, contraindications (raised ICP, bleeding disorder, skin infection at site). Must not proceed without CT head (done and normal).",
+  "patient": {
+    "id": "patient-026",
+    "name": "Stewart Price",
+    "age": 45,
+    "gender": "M",
+    "occupation": "Accountant",
+    "maritalStatus": "Married, 3 children",
+    "presentingComplaint": "Severe headache and fever — needs LP for meningitis",
+    "reasonForAttendance": "Admitted with severe headache and neck stiffness — being asked to have a lumbar puncture",
+    "history": {
+      "hpi": {
+        "site": "Global headache",
+        "onset": "12 hours ago",
+        "character": "Severe headache, stiff neck, fever",
+        "radiation": "Into neck",
+        "associatedSymptoms": ["Fever 39.2°C", "Neck stiffness", "Photophobia", "Vomiting"],
+        "timing": "12 hours, ongoing",
+        "exacerbatingFactors": "Light, movement",
+        "relievingFactors": "Lying still in dark",
+        "severity": "9/10"
+      },
+      "pmh": [
+        { "condition": "Hypertension", "yearDiagnosed": 2018, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 8, "pattern": "Social" },
+        "occupation": "Accountant"
+      },
+      "systemsReview": {
+        "cardiovascular": "Normal",
+        "respiratory": "Normal",
+        "gastrointestinal": "Vomiting",
+        "genitourinary": "Normal",
+        "neurological": "Headache, neck stiffness, photophobia",
+        "musculoskeletal": "Normal",
+        "dermatological": "No rash",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Very anxious about LP"
+      }
+    },
+    "examination": {
+      "general": "Ill-looking man, lying still with eyes shut",
+      "vitalSigns": { "bp": "128/82", "hr": 102, "rr": 18, "temp": 39.2, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "GCS 15. Neck stiffness. Positive Kernig's sign. Photophobia.",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [],
+    "emotionalState": "Very anxious about needles going near his spine. Worried about paralysis. Will ask 'can it paralyse me?' and 'what if I move?'",
+    "communicationStyle": "Anxious but intelligent. Will ask specific questions. Needs clear reassurance.",
+    "hiddenConcerns": [
+      "I'm terrified of being paralysed",
+      "Will it hurt a lot?",
+      "Why can't you just treat me without the LP?",
+      "What happens if it comes back positive for meningitis?"
+    ],
+    "doNotVolunteer": [
+      "Fear of paralysis — only if doctor asks about concerns",
+      "Worry about pain — only if asked specifically"
+    ]
+  },
+  "primaryDiagnosis": "Possible bacterial meningitis — lumbar puncture required for diagnosis",
+  "differentialDiagnoses": [
+    "Bacterial meningitis (Streptococcus pneumoniae, Neisseria meningitidis)",
+    "Viral meningitis",
+    "SAH (CT negative does not fully exclude)"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Checks patient understanding of why LP is needed",
+          "detailedExpectation": "Confirms patient knows about headache/meningitis investigation",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Confirms CT head has been done and is normal",
+          "detailedExpectation": "Confirms no raised intracranial pressure before proceeding",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["ct", "scan", "normal ct", "ct done", "brain scan normal", "intracranial pressure"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Explains purpose of LP clearly",
+          "detailedExpectation": "To check for infection in the fluid around the brain and spinal cord",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Explains procedure in lay terms",
+          "detailedExpectation": "Position (curled up on side), local anaesthetic, needle in lower back L3/L4, small sample of fluid",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Explains common risks",
+          "detailedExpectation": "Post-LP headache (15-25%), backache, bruising, local infection",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["headache", "post-lp", "back pain", "infection", "risk", "bruising"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Addresses concern about paralysis",
+          "detailedExpectation": "Explains needle goes below spinal cord (L3/L4) — paralysis risk extremely low",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["paralysis", "nerve damage", "paralysed", "safe level", "below the cord", "l3", "l4"]
+          }
+        },
+        {
+          "id": "cm-5",
+          "criterion": "Explains alternative — empirical antibiotics — and why LP is preferred",
+          "detailedExpectation": "Antibiotics can be started but LP is needed to identify organism and guide treatment",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction",
+          "detailedExpectation": "Introduces self",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Empathy for anxious patient",
+          "detailedExpectation": "Addresses anxiety, provides reassurance without dismissing concerns",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Confirms voluntary consent",
+          "detailedExpectation": "Patient confirms they consent, right to refuse explained",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 21,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "NICE NG240: Meningitis (bacterial) and meningococcal disease" },
+    { "source": "GMC: Consent — patients and doctors making decisions together" }
+  ],
+  "ukmlaContentMapIds": ["lumbar-puncture", "consent", "meningitis"],
+  "learningObjectives": [
+    "Consent a patient for lumbar puncture",
+    "Explain procedure in lay terms",
+    "Address fear of paralysis accurately",
+    "Confirm CT head before LP"
+  ],
+  "tags": ["procedure", "consent", "lumbar-puncture", "meningitis", "neurology", "plab2"]
+}

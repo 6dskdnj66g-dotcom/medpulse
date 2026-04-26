@@ -1,0 +1,229 @@
+{
+  "id": "ecg-interpretation-stemi-023",
+  "exam": "PLAB2",
+  "title": "Data interpretation — ECG: inferior STEMI",
+  "category": "data-interpretation",
+  "specialty": "Cardiology",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY1 doctor in the ED. A 62-year-old man presents with central chest pain for 90 minutes. An ECG has been performed. Please interpret this ECG and explain your initial management. The examiner will show you the ECG trace.",
+  "examinerNotes": "Inferior STEMI: ST elevation II, III, aVF with reciprocal changes I, aVL. Candidate must: correctly identify inferior STEMI, localise to RCA territory, activate cath lab, initiate DAPT + UFH, avoid GTN until right ventricular involvement excluded. No oxygen if SpO2 >94%.",
+  "patient": {
+    "id": "patient-023",
+    "name": "George Patterson",
+    "age": 62,
+    "gender": "M",
+    "occupation": "Bus driver",
+    "presentingComplaint": "Central chest pain for 90 minutes, crushing, radiating to jaw",
+    "reasonForAttendance": "Chest pain that won't go away",
+    "history": {
+      "hpi": {
+        "site": "Central chest",
+        "onset": "90 minutes ago at rest",
+        "character": "Crushing",
+        "radiation": "Left arm and jaw",
+        "associatedSymptoms": ["Sweating", "Nausea"],
+        "timing": "Continuous 90 minutes",
+        "exacerbatingFactors": "Exertion",
+        "relievingFactors": "Nothing",
+        "severity": "9/10"
+      },
+      "pmh": [
+        { "condition": "Hypertension", "yearDiagnosed": 2015, "controlled": true },
+        { "condition": "Type 2 diabetes", "yearDiagnosed": 2018, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" },
+        { "name": "Metformin", "dose": "1g", "frequency": "twice daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Father", "condition": "MI at 58" }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 25, "quitDate": "2015" },
+        "alcohol": { "units": 10, "pattern": "Social" },
+        "occupation": "Bus driver"
+      },
+      "systemsReview": {
+        "cardiovascular": "Chest pain as above",
+        "respiratory": "Normal",
+        "gastrointestinal": "Nausea",
+        "genitourinary": "Normal",
+        "neurological": "Normal",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Diabetes",
+        "haematological": "Normal",
+        "psychiatric": "Anxious"
+      }
+    },
+    "examination": {
+      "general": "Diaphoretic, in pain",
+      "vitalSigns": { "bp": "140/88", "hr": 96, "rr": 18, "temp": 36.9, "spo2": 97 },
+      "cardiovascular": "Tachycardia, normal heart sounds",
+      "respiratory": "Clear",
+      "abdominal": "Normal",
+      "neurological": "Normal",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "ecg-inferior-stemi",
+        "type": "ecg",
+        "name": "12-lead ECG — INFERIOR STEMI",
+        "shortName": "ECG",
+        "triggerKeywords": ["ecg", "electrocardiogram", "interpret"],
+        "result": "Rate 96 bpm, regular sinus rhythm. ST elevation 3mm in II, 4mm in III, 3mm in aVF. Reciprocal ST depression in leads I and aVL (2mm). Q waves developing in III. Normal QRS morphology. QTc 420ms.",
+        "imageUrl": "/osce-assets/ecg-inferior-stemi-023.png",
+        "interpretation": "INFERIOR STEMI (ST elevation in inferior leads II, III, aVF with reciprocal changes). Territory: inferior wall LV, typically right coronary artery (RCA). Activate cath lab immediately. Note: must exclude RV involvement — right-sided leads (V4R) should be performed.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "rv-leads",
+        "type": "ecg",
+        "name": "Right-sided ECG leads (V4R)",
+        "shortName": "Right ECG",
+        "triggerKeywords": ["right sided", "v4r", "right ventricular", "right leads", "rv infarct"],
+        "result": "ST elevation in V4R of 1.5mm — RIGHT VENTRICULAR INFARCTION confirmed.",
+        "imageUrl": "/osce-assets/ecg-rv-stemi.png",
+        "interpretation": "Right ventricular infarction — CRITICAL: avoid nitrates (cause severe hypotension in RVI), use volume loading first for hypotension.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "In pain, anxious",
+    "communicationStyle": "Short answers due to pain",
+    "hiddenConcerns": [
+      "Am I having a heart attack?",
+      "I drive a bus — will I be able to work again?"
+    ],
+    "doNotVolunteer": [
+      "ECG interpretation — patient cannot interpret their own ECG"
+    ]
+  },
+  "primaryDiagnosis": "Acute Inferior STEMI with Right Ventricular Infarction",
+  "differentialDiagnoses": [
+    "Posterior STEMI",
+    "Pericarditis",
+    "LBBB (new onset)",
+    "Benign early repolarisation"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Systematic ECG interpretation approach",
+          "detailedExpectation": "Rate, rhythm, axis, P wave, PR interval, QRS, ST, T, QT",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Identifies ST elevation in inferior leads",
+          "detailedExpectation": "States ST elevation in II, III, aVF",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["ii", "iii", "avf", "inferior", "st elevation", "st elevations"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Identifies reciprocal changes",
+          "detailedExpectation": "Notes ST depression in I and aVL",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["reciprocal", "avl", "lead i", "depression", "reciprocal changes"]
+          }
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Requests right-sided leads (V4R) for RV involvement",
+          "detailedExpectation": "Requests V4R to exclude RV infarction — critical in inferior STEMI",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "rv-leads"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Diagnoses inferior STEMI",
+          "detailedExpectation": "States inferior STEMI and RCA territory",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["inferior stemi", "stemi", "st elevation", "inferior mi", "rca", "right coronary"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Activates primary PCI — door-to-balloon <90 min",
+          "detailedExpectation": "Cath lab activation, PCI",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["pci", "cath lab", "ppci", "primary pci", "catheter lab", "balloon"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Avoids nitrates given RV infarction",
+          "detailedExpectation": "States GTN/nitrates are CONTRAINDICATED in RV infarction",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["no gtn", "avoid nitrate", "contraindicated", "rv", "right ventricle", "volume load"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Dual antiplatelet therapy",
+          "detailedExpectation": "Aspirin 300mg + ticagrelor or clopidogrel",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["aspirin", "ticagrelor", "clopidogrel", "antiplatelet", "dapt"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Explains ECG and diagnosis in lay terms",
+          "detailedExpectation": "Explains heart attack clearly to patient",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 23,
+    "passingScore": 14
+  },
+  "references": [
+    { "source": "NICE NG185: Acute coronary syndromes" },
+    { "source": "ESC STEMI guidelines 2023" }
+  ],
+  "ukmlaContentMapIds": ["ecg-interpretation", "inferior-stemi", "rv-infarction"],
+  "learningObjectives": [
+    "Systematically interpret a 12-lead ECG",
+    "Identify inferior STEMI and localise to RCA",
+    "Recognise importance of right-sided leads",
+    "Know contraindications in RV infarction"
+  ],
+  "tags": ["cardiology", "ecg", "stemi", "data-interpretation", "plab2"]
+}

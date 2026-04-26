@@ -1,0 +1,187 @@
+{
+  "id": "cxr-interpretation-pneumothorax-025",
+  "exam": "PLAB2",
+  "title": "Data interpretation — CXR: tension pneumothorax",
+  "category": "data-interpretation",
+  "specialty": "Emergency Medicine",
+  "difficulty": "fy1-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY1 in the resuscitation bay. Mr Owen Bradley, a 20-year-old man, has been brought by ambulance after a road traffic accident. He has become increasingly distressed with tachycardia HR 134, hypotension BP 82/50, tracheal deviation to the left and absent breath sounds on the right. A CXR has been taken. Please interpret the CXR and manage this patient.",
+  "examinerNotes": "Tension pneumothorax is a CLINICAL DIAGNOSIS — do NOT wait for imaging. Candidate must recognise tension pneumothorax from clinical signs and perform needle decompression IMMEDIATELY. Critical error: waiting for CXR before treating, giving too much oxygen without treating the pneumothorax.",
+  "patient": {
+    "id": "patient-025",
+    "name": "Owen Bradley",
+    "age": 20,
+    "gender": "M",
+    "occupation": "Student",
+    "presentingComplaint": "Worsening breathlessness and chest pain after RTA, hypotensive",
+    "reasonForAttendance": "Involved in road traffic accident, passenger, seatbelt injury",
+    "history": {
+      "hpi": {
+        "site": "Right chest",
+        "onset": "30 minutes after RTA",
+        "character": "Sharp right chest pain, progressive breathlessness",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Tachycardia", "Hypotension", "Worsening distress", "Tracheal deviation left"],
+        "timing": "Rapidly worsening over 30 minutes",
+        "exacerbatingFactors": "All movement and breathing",
+        "relievingFactors": "Nothing",
+        "severity": "Severe — haemodynamically compromised"
+      },
+      "pmh": [],
+      "drugHistory": [],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 10, "pattern": "Weekends" },
+        "occupation": "University student"
+      },
+      "systemsReview": {
+        "cardiovascular": "Tachycardia 134, hypotension 82/50",
+        "respiratory": "Absent breath sounds right, tracheal deviation to left",
+        "gastrointestinal": "Possible abdominal injury from seatbelt",
+        "genitourinary": "Normal",
+        "neurological": "GCS 14",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Terrified"
+      }
+    },
+    "examination": {
+      "general": "Distressed young man, cyanotic, using accessory muscles",
+      "vitalSigns": { "bp": "82/50", "hr": 134, "rr": 32, "temp": 37.0, "spo2": 86 },
+      "cardiovascular": "Tachycardia, hypotension — haemodynamically unstable, distended neck veins",
+      "respiratory": "Absent breath sounds right side. Hyper-resonance right side. Tracheal deviation to LEFT. Tachypnoeic.",
+      "abdominal": "Mild tenderness seatbelt area",
+      "neurological": "GCS 14",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "cxr-tension-ptx",
+        "type": "imaging-xray",
+        "name": "Erect Chest X-ray",
+        "shortName": "CXR",
+        "triggerKeywords": ["chest x-ray", "cxr", "chest film", "radiograph", "x-ray"],
+        "result": "Large right-sided pneumothorax with complete collapse of right lung. Mediastinal shift to the LEFT. Tracheal deviation to left. Flattening of right hemidiaphragm. No rib fractures visible.",
+        "imageUrl": "/osce-assets/cxr-tension-pneumothorax.png",
+        "interpretation": "TENSION PNEUMOTHORAX — RIGHT SIDE. THIS IS A CLINICAL DIAGNOSIS. DO NOT WAIT FOR CXR. Immediate needle decompression required: 2nd intercostal space, midclavicular line, right side. Follow with chest drain.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Terrified, in extreme distress, struggling to breathe",
+    "communicationStyle": "Single words only",
+    "hiddenConcerns": [],
+    "doNotVolunteer": []
+  },
+  "primaryDiagnosis": "Tension Pneumothorax — right-sided, post-traumatic",
+  "differentialDiagnoses": [
+    "Simple pneumothorax",
+    "Haemothorax",
+    "Cardiac tamponade",
+    "Massive haemothorax"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Identifies tension pneumothorax from clinical signs",
+          "detailedExpectation": "Tracheal deviation + absent breath sounds + hypotension = tension pneumo",
+          "weight": 4,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["tension pneumothorax", "tension ptx", "tension", "pneumothorax"]
+          }
+        },
+        {
+          "id": "dg-2",
+          "criterion": "States this is a CLINICAL DIAGNOSIS — does not wait for CXR",
+          "detailedExpectation": "Proceeds to treatment based on clinical signs, not waiting for imaging",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["clinical", "don't wait", "immediately", "no time", "treat first"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Immediate needle decompression — correct site",
+          "detailedExpectation": "2nd ICS MCL right side — 14G cannula",
+          "weight": 5,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["needle", "decompression", "2nd intercostal", "second intercostal", "midclavicular", "14g", "cannula"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Chest drain insertion after needle decompression",
+          "detailedExpectation": "Definitive treatment: chest drain 4th/5th ICS anterior axillary line",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["chest drain", "thoracocentesis", "drain", "4th", "5th intercostal"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "High-flow oxygen and resuscitation",
+          "detailedExpectation": "15L O2, IV access, fluids for hypotension",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["oxygen", "iv access", "fluids", "resuscitation"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Calls for immediate senior/surgical help",
+          "detailedExpectation": "Cardiothoracic or trauma team involvement",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["senior", "help", "trauma", "cardiothoracic", "call", "surgical"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Communicates urgency clearly",
+          "detailedExpectation": "Brief clear instructions to team",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 21,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "Advanced Trauma Life Support (ATLS) 10th Edition" },
+    { "source": "BTS Guidelines on Spontaneous Pneumothorax 2023" }
+  ],
+  "ukmlaContentMapIds": ["tension-pneumothorax", "chest-trauma", "emergency-management"],
+  "learningObjectives": [
+    "Recognise tension pneumothorax as a clinical diagnosis",
+    "Perform needle decompression at correct site",
+    "Not delay treatment for imaging",
+    "Know definitive management with chest drain"
+  ],
+  "tags": ["emergency", "trauma", "pneumothorax", "data-interpretation", "cxr", "plab2"]
+}

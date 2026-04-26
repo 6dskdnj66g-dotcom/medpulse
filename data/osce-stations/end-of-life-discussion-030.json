@@ -1,0 +1,203 @@
+{
+  "id": "end-of-life-discussion-030",
+  "exam": "PLAB2",
+  "title": "Goals of care — end-of-life discussion",
+  "category": "communication-skills",
+  "specialty": "Palliative Care",
+  "difficulty": "registrar-level",
+  "durationMinutes": 10,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are a registrar on the oncology ward. Mrs Florence Chambers, an 81-year-old woman with metastatic pancreatic cancer (diagnosed 3 months ago, now liver metastases, performance status 3), has been admitted with aspiration pneumonia. She is alert and oriented. Her oncologist has documented that curative treatment is not possible. Please have a goals of care discussion with Mrs Chambers.",
+  "examinerNotes": "End-of-life goals of care station. Candidate must: establish what patient knows and understands about her condition, explore her wishes and priorities, explain that cure is not possible (if not already known), discuss DNACPR (sensitively — not abruptly), ensure her values guide the care plan, explore what matters most to her. Critical errors: using DNACPR as the opener, not exploring patient's understanding first, making decision without patient input.",
+  "patient": {
+    "id": "patient-030",
+    "name": "Florence Chambers",
+    "age": 81,
+    "gender": "F",
+    "occupation": "Retired headmistress",
+    "maritalStatus": "Widowed, 2 adult children",
+    "presentingComplaint": "Admitted with aspiration pneumonia, goals of care discussion needed",
+    "reasonForAttendance": "I'm in hospital again. I know things aren't good. I'd like to be honest about what's happening.",
+    "history": {
+      "hpi": {
+        "site": "Not applicable — end-of-life context",
+        "onset": "Terminal diagnosis 3 months ago",
+        "character": "Metastatic pancreatic cancer, now with aspiration pneumonia",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Significant weight loss 15kg in 3 months", "Fatigue — bedridden for 2 weeks", "Pain from liver metastases", "Reduced appetite"],
+        "timing": "Declining over 3 months",
+        "exacerbatingFactors": "Not applicable",
+        "relievingFactors": "Morphine helps pain",
+        "severity": "Performance status 3 — limited self-care"
+      },
+      "pmh": [
+        { "condition": "Pancreatic cancer (metastatic)", "yearDiagnosed": 2024, "controlled": false, "notes": "Liver metastases, palliative only" },
+        { "condition": "Atrial fibrillation", "yearDiagnosed": 2018, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Morphine", "dose": "10mg", "frequency": "4-hourly PRN" },
+        { "name": "Apixaban", "dose": "5mg", "frequency": "twice daily" },
+        { "name": "Ondansetron", "dose": "4mg", "frequency": "PRN" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 3, "pattern": "Small glass of wine occasionally" },
+        "occupation": "Retired headmistress",
+        "livingArrangement": "Lives alone with care package, daughter lives 2 hours away"
+      },
+      "systemsReview": {
+        "cardiovascular": "AF",
+        "respiratory": "Aspiration pneumonia current admission",
+        "gastrointestinal": "Reduced appetite, nausea",
+        "genitourinary": "Normal",
+        "neurological": "Alert, fully oriented",
+        "musculoskeletal": "Generalised weakness",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxious about dying but accepting"
+      }
+    },
+    "examination": {
+      "general": "Frail, cachectic elderly woman, alert and oriented, in some pain",
+      "vitalSigns": { "bp": "112/68", "hr": 94, "rr": 22, "temp": 38.1, "spo2": 93 },
+      "cardiovascular": "Irregular — AF, normal heart sounds",
+      "respiratory": "Coarse crackles right base, breathless at rest",
+      "abdominal": "Tender hepatomegaly — liver metastases",
+      "neurological": "GCS 15, alert, cooperative",
+      "musculoskeletal": "Severely deconditioned"
+    },
+    "investigations": [],
+    "emotionalState": "Dignified and clear-headed despite serious illness. Has already thought about death. Will be distressed if DNACPR is raised bluntly. Wants to discuss openly but on her terms. Deeply values honesty.",
+    "communicationStyle": "Articulate former headmistress. Direct and thoughtful. Will ask 'Am I dying, doctor?' and 'How long do I have?' and 'I don't want to die in hospital — is that possible?'",
+    "hiddenConcerns": [
+      "I want to die at home, not in hospital",
+      "I'm worried about being in pain at the end",
+      "I don't want aggressive treatment — I've seen what that does",
+      "My daughter is coming tomorrow and I need to have some things settled",
+      "I'd like to say goodbye properly to my children"
+    ],
+    "doNotVolunteer": [
+      "Wish to die at home — only if asked about her preferences and what matters to her",
+      "Fear of pain at end of life — only if asked what worries her most",
+      "Don't want aggressive treatment — only if asked about her thoughts on treatment"
+    ]
+  },
+  "primaryDiagnosis": "Metastatic Pancreatic Cancer — terminal. Aspiration pneumonia as immediate precipitant. Goals of care: palliative/comfort focus.",
+  "differentialDiagnoses": [],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Establishes patient's understanding of her condition",
+          "detailedExpectation": "'What do you understand about where things are with your health?' — before delivering news",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Explores patient's values and priorities",
+          "detailedExpectation": "'What matters most to you?' — home, comfort, family",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Asks about wishes for end of life",
+          "detailedExpectation": "Place of death preference, Advance Care Plan, ADRT",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["where", "home", "hospice", "preference", "wishes", "advance", "end of life", "dying"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Confirms palliative intent clearly and sensitively",
+          "detailedExpectation": "Confirms cure is not possible, focus is on quality of life and comfort",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Discusses DNACPR sensitively — not as opening statement",
+          "detailedExpectation": "Raises CPR/DNACPR only after establishing context and values — not as opener",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["cpr", "resuscitation", "dnacpr", "dnar", "do not resuscitate"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Plans appropriate palliative support",
+          "detailedExpectation": "Palliative care team, hospice, community nurse support, anticipatory prescribing",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["palliative", "hospice", "community nurse", "pain control", "symptom control", "macmillan"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction — calm, sits at same level, no barriers",
+          "detailedExpectation": "Sets up properly — private, sits down, unhurried",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Allows silence — does not fill every pause",
+          "detailedExpectation": "Comfortable with silence after delivering difficult information",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Responds to 'how long do I have?' appropriately",
+          "detailedExpectation": "Honest but not giving specific predictions — discusses uncertainty sensitively",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-4",
+          "criterion": "Respects patient autonomy throughout",
+          "detailedExpectation": "Patient-directed — her values guide the plan",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 24,
+    "passingScore": 15
+  },
+  "references": [
+    { "source": "NICE NG31: Care of dying adults in the last days of life" },
+    { "source": "GMC: Treatment and care towards the end of life (2010)" }
+  ],
+  "ukmlaContentMapIds": ["end-of-life-care", "palliative-care", "dnacpr"],
+  "learningObjectives": [
+    "Conduct a goals of care discussion",
+    "Explore patient values and preferences",
+    "Discuss DNACPR sensitively",
+    "Plan appropriate palliative support"
+  ],
+  "tags": ["palliative-care", "end-of-life", "communication", "dnacpr", "goals-of-care", "plab2"]
+}

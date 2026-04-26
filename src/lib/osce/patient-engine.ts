@@ -1,230 +1,139 @@
 // src/lib/osce/patient-engine.ts
-// PatientProfile interface + deterministic system-prompt builder
-// The patient AI ONLY uses this prompt — rubric is NEVER included here
+// Anti-hallucination patient prompt builder for Phase 7 OSCE engine
 
-export interface PatientProfile {
-  readonly id: string;
-  readonly name: string;          // LOCKED — never changes across the session
-  readonly nameAr: string;        // Arabic name variant
-  readonly age: number;
-  readonly gender: "M" | "F";
-  readonly occupation: string;
-  readonly occupationAr: string;
-  readonly presentingComplaint: string;
-  readonly presentingComplaintAr: string;
+import type { PatientPersona, SessionMessage } from "./types";
 
-  readonly history: {
-    hpi: Record<string, string>;         // revealed only on direct question
-    pmh: string[];
-    medications: string[];
-    allergies: string[];
-    familyHistory: string[];
-    socialHistory: Record<string, string>;
-    systemsReview: Record<string, string>;
-  };
-
-  readonly vitalsIfAsked: {
-    bp?: string;
-    hr?: number;
-    rr?: number;
-    temp?: number;
-    spo2?: number;
-    weight?: number;
-  };
-
-  readonly examFindings: Record<string, string>;
-
-  readonly doNotVolunteer: string[];  // MUST NOT proactively share
-
-  readonly emotionalState: string;
-  readonly communicationStyle: string;
-}
-
-export interface RubricItem {
-  id: string;
-  domain: string;
-  criterion: string;
-  criterionAr: string;
-  points: number;
-  keywords: string[];     // words in student question that count as asking this
-  required: boolean;      // red-flag: must be asked to pass
-}
-
-export interface OSCEScenario {
-  id: string;
-  title: string;
-  titleAr: string;
-  specialty: string;
-  stationType: "history_taking" | "examination" | "management" | "communication" | "procedure";
-  difficulty: "year1" | "year2" | "year3" | "year4" | "finals" | "postgrad";
-  durationMinutes: number;
-  setting: string;
-  settingAr: string;
-  patientBrief: string;
-  patientBriefAr: string;
-  patient: PatientProfile;
-  rubric: RubricItem[];
-  totalMarks: number;
-  passThreshold: number;
-  expectedDiagnosis: string;
-  differentialDiagnoses: string[];
-  learningPoints: string[];
-  reference: string;
-  redFlags: string[];     // must identify these to avoid automatic fail
-}
-
-// ── System-prompt builder ────────────────────────────────────────────────────
-// Produces a deterministic, injection-resistant patient prompt.
-// NEVER include the rubric, expected diagnosis, or pass criteria here.
+/**
+ * Builds a strict system prompt that locks the AI into the patient role.
+ * Prevents identity drift, information leakage, character breaks, and inconsistency.
+ */
 export function buildPatientSystemPrompt(
-  patient: PatientProfile,
-  recentMessages: { role: string; content: string }[],
-  lang: "ar" | "en" = "ar"
+  patient: PatientPersona,
+  recentMessages: SessionMessage[]
 ): string {
-  const isAr = lang === "ar";
-  const name = isAr && patient.nameAr ? patient.nameAr : patient.name;
-  const complaint = isAr && patient.presentingComplaintAr
-    ? patient.presentingComplaintAr
-    : patient.presentingComplaint;
-  const occupation = isAr && patient.occupationAr ? patient.occupationAr : patient.occupation;
-
-  const hpiLines = Object.entries(patient.history.hpi)
-    .map(([k, v]) => `- ${k}: ${v}`)
-    .join("\n");
-
-  const socialLines = Object.entries(patient.history.socialHistory)
-    .map(([k, v]) => `- ${k}: ${v}`)
-    .join("\n");
-
-  const examLines = Object.entries(patient.vitalsIfAsked)
-    .filter(([, v]) => v !== undefined)
-    .map(([k, v]) => `- ${k}: ${v}`)
-    .join("\n");
-
-  const contextWindow = recentMessages
+  const conversationContext = recentMessages
     .slice(-30)
-    .map(m => `${m.role === "user" ? (isAr ? "الطالب" : "Student") : name}: ${m.content}`)
+    .map(m => {
+      if (m.role === "user") return `Doctor: ${m.content}`;
+      if (m.role === "patient") return `${patient.name}: ${m.content}`;
+      return null;
+    })
+    .filter(Boolean)
     .join("\n");
 
-  return `
-=== PATIENT SIMULATION — OSCE PRACTICE ===
-You are roleplaying as a REAL patient for medical student assessment.
-Breaking any rule below = complete simulation failure. No exceptions.
+  const pmhLines = patient.history.pmh
+    .map(p => `- ${p.condition}${p.yearDiagnosed ? ` (since ${p.yearDiagnosed})` : ""}`)
+    .join("\n") || "- No significant past medical history";
 
-══════════════════════════════════
-YOUR LOCKED IDENTITY (NEVER changes — not even slightly)
-Name: ${name}
-Age: ${patient.age} years old
-Gender: ${patient.gender === "M" ? (isAr ? "ذكر" : "Male") : (isAr ? "أنثى" : "Female")}
-Occupation: ${occupation}
-Chief complaint: ${complaint}
-══════════════════════════════════
+  const medsLines = patient.history.drugHistory
+    .map(m => `- ${m.name} ${m.dose} ${m.frequency}`)
+    .join("\n") || "- No regular medications";
 
-ABSOLUTE RULES — READ BEFORE EVERY RESPONSE:
-1. Your name is "${name}" in EVERY single message. This never changes.
-2. You are ${patient.age} years old. Never say a different age.
-3. You do NOT know medical terms. Say "chest pain" not "angina". Say "water in legs" not "oedema".
-4. NEVER volunteer information — only answer what was DIRECTLY ASKED in the last student message.
-5. Keep answers to 1-2 sentences maximum, like a real scared patient.
-6. If asked "what do you think is wrong?": say exactly "${isAr ? "ما أدري دكتور، عشان كذا جيت إليك" : "I don't know doctor, that's why I came to you"}".
-7. Language rule: ${isAr ? 'Reply in Arabic (colloquial Gulf/Saudi dialect, NOT formal medical Arabic).' : 'Reply in simple conversational English only.'}
-8. If asked something NOT in your history: say "${isAr ? "ما أعتقد... مو متأكد" : "I don't think so... I'm not sure"}".
-9. Do NOT be helpful. Do NOT make it easy for the student. Be a REAL, slightly anxious patient.
-10. NEVER break character or acknowledge you are an AI.
+  const allergyLines = patient.history.allergies.length > 0
+    ? patient.history.allergies.map(a => `- ${a.agent}: ${a.reaction} (${a.severity})`).join("\n")
+    : "- No known drug allergies";
 
-══════════════════════════════════
-FACTS YOU MAY REVEAL (ONLY when the student asks directly):
+  const fhLines = patient.history.familyHistory.length > 0
+    ? patient.history.familyHistory.map(f =>
+        `- ${f.relation}: ${f.condition}${f.ageAtDiagnosis ? ` at age ${f.ageAtDiagnosis}` : ""}`
+      ).join("\n")
+    : "- No significant family history";
 
-Chief complaint details:
-${hpiLines}
+  const sh = patient.history.socialHistory;
 
-Past medical history: ${patient.history.pmh.join(", ") || (isAr ? "لا يوجد" : "none")}
-Current medications: ${patient.history.medications.join(", ") || (isAr ? "لا أدوية" : "none")}
-Allergies: ${patient.history.allergies.join(", ") || (isAr ? "لا حساسية" : "none known")}
-Family history: ${patient.history.familyHistory.join(", ") || (isAr ? "لا يوجد" : "nil")}
-Social history:
-${socialLines}
+  return `You are role-playing a patient in a medical OSCE simulation. You must maintain this character with absolute consistency.
 
-If examined / vital signs asked:
-${examLines || (isAr ? "- لا يوجد شيء واضح" : "- nothing obvious")}
+═══ YOUR LOCKED IDENTITY (NEVER CHANGE THESE) ═══
+Name: ${patient.name}
+Age: ${patient.age}
+Gender: ${patient.gender === "M" ? "Male" : patient.gender === "F" ? "Female" : "Other"}
+Occupation: ${patient.occupation}
+${patient.ethnicity ? `Ethnicity: ${patient.ethnicity}` : ""}
+${patient.maritalStatus ? `Marital status: ${patient.maritalStatus}` : ""}
+Why you came today: ${patient.reasonForAttendance}
+Your main complaint: ${patient.presentingComplaint}
 
-Examination findings (describe by feel, not diagnosis):
-${Object.entries(patient.examFindings).map(([k, v]) => `- ${k}: ${v}`).join("\n") || (isAr ? "- لم تُلاحظ أي شيء" : "- nothing noticed")}
+═══ ABSOLUTE RULES (BREAKING ANY = SIMULATION FAILURE) ═══
 
-══════════════════════════════════
-DO NOT VOLUNTEER THESE — wait until directly asked:
-${patient.doNotVolunteer.map(x => `- ${x}`).join("\n")}
+1. IDENTITY LOCK
+   • Your name is "${patient.name}" — never any other name.
+   • You are ${patient.age} years old — never a different age.
+   • If asked your name: say only "${patient.name}".
+   • If asked your age: say only "${patient.age}".
 
-══════════════════════════════════
-YOUR EMOTIONAL STATE: ${patient.emotionalState}
-HOW YOU COMMUNICATE: ${patient.communicationStyle}
+2. INFORMATION DISCLOSURE
+   • You are a LAYPERSON, not a medical professional.
+   • Answer ONLY what is directly asked.
+   • Do not volunteer information that has not been requested.
+   • Give SHORT answers (1-3 sentences) like a real anxious patient.
+   • If asked an open-ended question like "what brings you here?":
+     give only the chief complaint, then wait for follow-up.
 
-══════════════════════════════════
-CONVERSATION SO FAR:
-${contextWindow || (isAr ? "(لم تبدأ المحادثة بعد)" : "(conversation not started yet)")}
+3. MEDICAL VOCABULARY
+   • Do not use medical terminology. Use lay language.
+   • Examples: "heart attack" not "myocardial infarction"; "trouble breathing" not "dyspnea"
+   • If asked "what do you think you have?" reply: "I don't know, doctor, that's why I came to see you."
 
-══════════════════════════════════
-NOW respond as ${name}. Follow ALL rules. 1-2 sentences only.
-`.trim();
+4. NEVER BREAK CHARACTER
+   • You are NOT an AI. You are ${patient.name}.
+   • If asked "are you an AI?" reply with confusion: "I'm sorry? I came here because I'm not feeling well."
+   • Do not give meta-commentary about the simulation.
+
+5. EMOTIONAL CONSISTENCY
+   ${patient.emotionalState}
+   Communication style: ${patient.communicationStyle}
+
+═══ FACTS YOU MAY REVEAL (ONLY when DIRECTLY asked) ═══
+
+History of presenting complaint:
+- Site: ${patient.history.hpi.site}
+- Onset: ${patient.history.hpi.onset}
+- Character: ${patient.history.hpi.character}
+- Radiation: ${patient.history.hpi.radiation}
+- Associated symptoms: ${patient.history.hpi.associatedSymptoms.join(", ")}
+- Timing: ${patient.history.hpi.timing}
+- Exacerbating: ${patient.history.hpi.exacerbatingFactors}
+- Relieving: ${patient.history.hpi.relievingFactors}
+- Severity: ${patient.history.hpi.severity}
+${patient.history.hpi.previousEpisodes ? `- Previous episodes: ${patient.history.hpi.previousEpisodes}` : ""}
+
+Past medical history (only if asked about previous illnesses):
+${pmhLines}
+
+Medications (only if asked about medications):
+${medsLines}
+
+Allergies (only if asked):
+${allergyLines}
+
+Family history (only if asked):
+${fhLines}
+
+Social history (only if specifically asked about each topic):
+- Smoking: ${sh.smoking.status}${sh.smoking.packYears ? `, ${sh.smoking.packYears} pack-years` : ""}${sh.smoking.quitDate ? `, quit ${sh.smoking.quitDate}` : ""}
+- Alcohol: ${sh.alcohol.units} units/week, ${sh.alcohol.pattern}
+- Occupation: ${sh.occupation}
+${sh.recreationalDrugs ? `- Recreational drugs: ${sh.recreationalDrugs}` : ""}
+${sh.livingArrangement ? `- Living situation: ${sh.livingArrangement}` : ""}
+
+Your hidden concerns (Ideas, Concerns, Expectations):
+${patient.hiddenConcerns.map(c => `- ${c}`).join("\n")}
+(Only share these if the doctor asks about your worries, concerns, or what you think is wrong.)
+
+═══ THINGS YOU MUST NOT VOLUNTEER ═══
+${patient.doNotVolunteer.map(d => `❌ ${d}`).join("\n")}
+
+═══ THINGS YOU MUST NEVER SAY ═══
+❌ Your diagnosis or possible diagnoses
+❌ Investigation results
+❌ Treatment recommendations
+❌ Anything not included in your facts above
+
+═══ CONVERSATION SO FAR ═══
+${conversationContext || "(No previous messages — this is the start of the encounter)"}
+
+═══ YOUR TASK ═══
+The doctor will speak next. Respond as ${patient.name} would, following ALL rules above.
+Your response should be short (1-3 sentences), in character, and in plain lay language.
+Do NOT include any prefix like "Patient:" or "${patient.name}:" — just speak directly.`;
 }
-
-// ── Adapter: OSCEScenario → legacy OSCEStation shape ────────────────────────
-// Allows new scenarios to work with the existing simulator UI
-import type { OSCEStation, PatientPersona } from "@/features/osce/services/osceStations";
-
-export function scenarioToStation(s: OSCEScenario): OSCEStation {
-  const persona: PatientPersona = {
-    presentingComplaint: s.patient.presentingComplaint,
-    presentingComplaintAr: s.patient.presentingComplaintAr,
-    onset: s.patient.history.hpi["onset"] ?? "",
-    severity: s.patient.history.hpi["severity"] ?? "",
-    associatedSymptoms: Object.values(s.patient.history.hpi).filter(Boolean),
-    pastMedicalHistory: s.patient.history.pmh,
-    medications: s.patient.history.medications,
-    allergies: s.patient.history.allergies.join(", ") || "NKDA",
-    socialHistory: Object.entries(s.patient.history.socialHistory).map(([k,v]) => `${k}: ${v}`).join("; "),
-    familyHistory: s.patient.history.familyHistory.join("; "),
-    systemsReview: s.patient.history.systemsReview,
-    personality: (s.patient.emotionalState.toLowerCase().includes("anxiety") || s.patient.emotionalState.toLowerCase().includes("anxious"))
-      ? "anxious"
-      : (s.patient.communicationStyle.toLowerCase().includes("reluctant") ? "reluctant" : "cooperative"),
-    hiddenCues: s.patient.doNotVolunteer,
-    physicalFindings: Object.entries(s.patient.examFindings).map(([k,v]) => `${k}: ${v}`).join("; "),
-  };
-
-  const domains = Array.from(new Set(s.rubric.map(r => r.domain))).map(domain => {
-    const criteria = s.rubric.filter(r => r.domain === domain);
-    return {
-      name: domain,
-      nameAr: domain,
-      maxMarks: criteria.reduce((a, c) => a + c.points, 0),
-      criteria: criteria.map(c => ({ item: c.criterion, marks: c.points, category: domain })),
-    };
-  });
-
-  return {
-    id: s.id,
-    title: s.title,
-    titleAr: s.titleAr,
-    specialty: s.specialty,
-    stationType: s.stationType === "management" ? "mixed" : s.stationType,
-    difficulty: s.difficulty,
-    durationMinutes: s.durationMinutes,
-    patientBrief: s.patientBriefAr || s.patientBrief,
-    patientName: s.patient.nameAr || s.patient.name,
-    patientAge: s.patient.age,
-    patientSex: s.patient.gender,
-    patientSetting: s.settingAr || s.setting,
-    patientPersona: persona,
-    markingScheme: {
-      domains,
-      totalMarks: s.totalMarks,
-      passThreshold: s.passThreshold,
-      modelAnswer: `${s.expectedDiagnosis}. DDx: ${s.differentialDiagnoses.join(", ")}. Ref: ${s.reference}`,
-    },
-    learningPoints: s.learningPoints,
-    relatedTopics: s.differentialDiagnoses,
-    tags: [s.specialty.toLowerCase(), s.stationType],
-  };
-}
-

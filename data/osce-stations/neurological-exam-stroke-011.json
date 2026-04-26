@@ -1,0 +1,205 @@
+{
+  "id": "neurological-exam-stroke-011",
+  "exam": "PLAB2",
+  "title": "Neurological examination — right-sided weakness",
+  "category": "focused-examination",
+  "specialty": "Neurology",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 on the stroke ward. Mr Dennis Whitfield, a 70-year-old retired builder, was admitted 48 hours ago following sudden onset right-sided weakness. Please perform a focused upper and lower limb neurological examination and present your findings including localisation.",
+  "examinerNotes": "Left MCA territory stroke. Upper motor neurone signs right side: increased tone, brisk reflexes, extensor plantar, reduced power right arm>leg, pronator drift. Candidate should localise to cortex/internal capsule and name MCA territory.",
+  "patient": {
+    "id": "patient-011",
+    "name": "Dennis Whitfield",
+    "age": 70,
+    "gender": "M",
+    "occupation": "Retired builder",
+    "presentingComplaint": "Right arm and leg weakness after sudden onset 2 days ago",
+    "reasonForAttendance": "Admitted to stroke ward 2 days ago",
+    "history": {
+      "hpi": {
+        "site": "Right arm and leg",
+        "onset": "Sudden, 2 days ago while watching TV",
+        "character": "Weakness and heaviness, arm worse than leg",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Right arm weakness", "Right leg weakness", "Slurred speech initially (improved)", "Right facial droop (mild, improved)"],
+        "timing": "Sudden onset, partially improved",
+        "exacerbatingFactors": "Movement",
+        "relievingFactors": "Rest",
+        "severity": "Right arm 2/5, right leg 4/5"
+      },
+      "pmh": [
+        { "condition": "Atrial fibrillation", "yearDiagnosed": 2018, "controlled": true },
+        { "condition": "Hypertension", "yearDiagnosed": 2010, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Apixaban", "dose": "5mg", "frequency": "twice daily" },
+        { "name": "Bisoprolol", "dose": "5mg", "frequency": "once daily" },
+        { "name": "Ramipril", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [],
+      "socialHistory": {
+        "smoking": { "status": "ex", "packYears": 20 },
+        "alcohol": { "units": 10, "pattern": "Social" },
+        "occupation": "Retired builder"
+      },
+      "systemsReview": {
+        "cardiovascular": "AF, hypertension",
+        "respiratory": "Normal",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Normal",
+        "neurological": "Right-sided weakness as above",
+        "musculoskeletal": "Normal",
+        "dermatological": "Normal",
+        "endocrine": "Normal",
+        "haematological": "On anticoagulation",
+        "psychiatric": "Normal"
+      }
+    },
+    "examination": {
+      "general": "Alert man, right arm resting in slight flexion, right leg extended",
+      "vitalSigns": { "bp": "148/88", "hr": 82, "rr": 16, "temp": 36.9, "spo2": 98 },
+      "cardiovascular": "Irregularly irregular — AF. Normal heart sounds.",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "Alert, oriented. Right upper limb: tone increased, power 2/5, brisk reflexes, pronator drift positive. Right lower limb: tone increased, power 4/5, brisk reflexes, extensor plantar. Left side normal. No cerebellar signs. Mild expressive dysphasia improved. Right facial droop mild.",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "mri-brain-stroke",
+        "type": "imaging-mri",
+        "name": "MRI Brain (DWI)",
+        "shortName": "MRI Brain",
+        "triggerKeywords": ["mri", "mri brain", "diffusion weighted", "dwi", "brain mri"],
+        "result": "Diffusion restriction in left MCA territory (frontal, parietal, internal capsule). Established cortical infarct. No haemorrhage on FLAIR.",
+        "imageUrl": "/osce-assets/mri-mca-stroke.png",
+        "interpretation": "Left MCA territory ischaemic infarct confirmed on DWI. Explains right-sided weakness and expressive dysphasia (Broca's area involvement).",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Frustrated with disability. Trying to be positive. Worried about recovery and independence.",
+    "communicationStyle": "Mild expressive dysphasia — knows what he wants to say but takes time. Patient and cooperative.",
+    "hiddenConcerns": [
+      "Will I recover fully?",
+      "Will I be able to drive again?",
+      "Am I going to have another stroke?"
+    ],
+    "doNotVolunteer": [
+      "AF diagnosis — only if asked about medical conditions or heart conditions",
+      "Apixaban — only if asked about medications"
+    ]
+  },
+  "primaryDiagnosis": "Left MCA Territory Ischaemic Stroke with right hemiparesis",
+  "differentialDiagnoses": [
+    "Haemorrhagic stroke",
+    "Subdural haematoma",
+    "Todd's paresis post-seizure",
+    "Cerebral tumour",
+    "Multiple sclerosis"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Assesses tone in all limbs",
+          "detailedExpectation": "Tests for upper motor neurone increase in tone (spasticity/clasp-knife)",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Tests power systematically (MRC grading)",
+          "detailedExpectation": "Tests shoulder abduction, elbow flexion/extension, wrist, grip, hip flexion, knee extension/flexion, ankle",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Tests reflexes bilaterally",
+          "detailedExpectation": "Biceps, triceps, supinator, knee, ankle jerk. Identifies brisk reflexes right side",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Performs plantar reflex",
+          "detailedExpectation": "Babinski test — identifies extensor plantar right (UMN sign)",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Checks pronator drift",
+          "detailedExpectation": "Arms outstretched with eyes closed — right arm pronates and drifts down",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Correctly localises to UMN lesion",
+          "detailedExpectation": "States upper motor neurone signs in right limbs",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["upper motor neurone", "umn", "umn lesion", "cortical", "pyramidal tract"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Localises to left MCA territory",
+          "detailedExpectation": "States left hemisphere/MCA territory",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["left", "mca", "middle cerebral artery", "left hemisphere"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction, consent, adaptation for dysphasia",
+          "detailedExpectation": "Patient explanation adapted for communication difficulty",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Explains findings to patient sensitively",
+          "detailedExpectation": "Explains neurological findings in lay terms",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 22,
+    "passingScore": 13
+  },
+  "references": [
+    { "source": "NICE NG128: Stroke and transient ischaemic attack in over 16s" }
+  ],
+  "ukmlaContentMapIds": ["neurological-examination", "stroke", "mca-infarct"],
+  "learningObjectives": [
+    "Perform systematic neurological examination of limbs",
+    "Identify upper motor neurone signs",
+    "Localise lesion to MCA territory",
+    "Differentiate UMN from LMN patterns"
+  ],
+  "tags": ["neurology", "examination", "stroke", "hemiparesis", "plab2"]
+}

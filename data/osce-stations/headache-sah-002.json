@@ -1,0 +1,298 @@
+{
+  "id": "headache-sah-002",
+  "exam": "PLAB2",
+  "title": "38-year-old woman with sudden severe headache",
+  "category": "history-taking",
+  "specialty": "Neurology",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 doctor in the Emergency Department. Ms Claire Bowman, a 38-year-old teacher, presents with the worst headache of her life that started suddenly 3 hours ago. She is alert and oriented. Please take a history focused on ruling in or out a serious intracranial cause.",
+  "examinerNotes": "Story is consistent with subarachnoid haemorrhage (thunderclap headache). Candidate must elicit 'worst headache of my life', sudden onset, stiff neck, photophobia. Key investigations: urgent CT head then LP if CT negative. No LP until CT done.",
+  "patient": {
+    "id": "patient-002",
+    "name": "Claire Bowman",
+    "age": 38,
+    "gender": "F",
+    "occupation": "Secondary school teacher",
+    "maritalStatus": "Married",
+    "presentingComplaint": "Worst headache I have ever had, came on suddenly",
+    "reasonForAttendance": "My head is absolutely killing me — it came out of nowhere",
+    "history": {
+      "hpi": {
+        "site": "Back of head and neck, spreading to whole head",
+        "onset": "Sudden — 'like being hit with a bat', occurred during light exercise in garden",
+        "character": "Severe, constant, like pressure inside the skull",
+        "radiation": "Into neck and upper back",
+        "associatedSymptoms": ["Stiff neck", "Sensitivity to light", "Nausea", "Vomited once"],
+        "timing": "3 hours ago, not worsening but not improving",
+        "exacerbatingFactors": "Bright lights, movement, noise",
+        "relievingFactors": "Lying still in the dark, nothing has helped significantly",
+        "severity": "10 out of 10 — I have never had a headache like this in my life",
+        "previousEpisodes": "History of mild migraines since age 25, but nothing like this"
+      },
+      "pmh": [
+        { "condition": "Migraines", "yearDiagnosed": 2010, "controlled": true, "notes": "Occasional, not requiring regular medication" },
+        { "condition": "Hypertension", "yearDiagnosed": 2022, "controlled": true }
+      ],
+      "drugHistory": [
+        { "name": "Sumatriptan", "dose": "50mg", "frequency": "PRN for migraines" },
+        { "name": "Amlodipine", "dose": "5mg", "frequency": "once daily" }
+      ],
+      "allergies": [],
+      "familyHistory": [
+        { "relation": "Mother", "condition": "Brain aneurysm, operated on aged 52" }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 8, "pattern": "Social drinking at weekends" },
+        "occupation": "Teacher, physically active"
+      },
+      "systemsReview": {
+        "cardiovascular": "No chest pain, no palpitations",
+        "respiratory": "No symptoms",
+        "gastrointestinal": "Nausea and vomiting as above",
+        "genitourinary": "Normal",
+        "neurological": "No weakness, no visual disturbance, no seizures, no loss of consciousness",
+        "musculoskeletal": "Neck stiffness as above",
+        "dermatological": "No rash",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Anxious"
+      }
+    },
+    "examination": {
+      "general": "Alert, oriented, distressed, lying very still, shielding eyes from light",
+      "vitalSigns": { "bp": "148/88", "hr": 88, "rr": 16, "temp": 37.2, "spo2": 99 },
+      "cardiovascular": "Normal",
+      "respiratory": "Normal",
+      "abdominal": "Normal",
+      "neurological": "GCS 15, no focal deficits, Kernig's sign positive, neck stiffness present, photophobia",
+      "musculoskeletal": "Neck stiffness"
+    },
+    "investigations": [
+      {
+        "id": "ct-head",
+        "type": "imaging-ct",
+        "name": "CT Head (non-contrast)",
+        "shortName": "CT Head",
+        "triggerKeywords": ["ct head", "ct scan", "ct brain", "head ct", "brain scan", "computed tomography head"],
+        "result": "Hyperdense blood visible in basal cisterns and Sylvian fissures. Star-shaped hyperdensity in suprasellar cistern. No hydrocephalus. No midline shift.",
+        "imageUrl": "/osce-assets/ct-sah.png",
+        "interpretation": "SUBARACHNOID HAEMORRHAGE confirmed. Blood in basal cisterns characteristic of aneurysmal SAH. Urgent neurosurgical referral required.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "fbc-sah",
+        "type": "blood-test",
+        "name": "Full Blood Count",
+        "shortName": "FBC",
+        "triggerKeywords": ["fbc", "full blood count", "blood count"],
+        "result": {
+          "values": {
+            "Haemoglobin": { "value": 132, "unit": "g/L", "range": "120-160" },
+            "White cells": { "value": 12.1, "unit": "x10^9/L", "range": "4.0-11.0", "flag": "H" },
+            "Platelets": { "value": 289, "unit": "x10^9/L", "range": "150-400" }
+          }
+        },
+        "interpretation": "Mild reactive leukocytosis. No thrombocytopenia.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      },
+      {
+        "id": "coag-sah",
+        "type": "blood-test",
+        "name": "Coagulation Screen",
+        "shortName": "Coag",
+        "triggerKeywords": ["coagulation", "coag", "clotting", "pt", "inr", "aptt"],
+        "result": {
+          "values": {
+            "PT": { "value": 11.8, "unit": "seconds", "range": "9.5-13.5" },
+            "APTT": { "value": 28, "unit": "seconds", "range": "25-35" },
+            "INR": { "value": 1.0, "unit": "", "range": "0.9-1.2" }
+          }
+        },
+        "interpretation": "Normal coagulation. No anticoagulation effect.",
+        "urgency": "urgent",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Frightened and in severe pain. Trying to stay still. Very worried. May mention that this is nothing like her usual migraines.",
+    "communicationStyle": "Answers in short sentences due to severe pain. Cooperative. Winces at bright light.",
+    "hiddenConcerns": [
+      "Am I going to be okay? Is this a brain bleed?",
+      "My mother had a brain aneurysm — is this the same thing?",
+      "I have two young children at home"
+    ],
+    "doNotVolunteer": [
+      "Family history of aneurysm — only if specifically asked about family history of neurological or vascular conditions",
+      "That this is different from her usual migraines — only if asked to compare",
+      "Severity score — only if asked on a scale of 0 to 10"
+    ]
+  },
+  "primaryDiagnosis": "Subarachnoid Haemorrhage (SAH) due to ruptured intracranial aneurysm",
+  "differentialDiagnoses": [
+    "Thunderclap migraine",
+    "Meningitis",
+    "Hypertensive emergency",
+    "Cerebral venous thrombosis",
+    "Reversible cerebral vasoconstriction syndrome (RCVS)"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Establishes nature of headache — thunderclap onset",
+          "detailedExpectation": "Asks about onset speed, identifies sudden maximum-intensity onset ('like being hit')",
+          "weight": 4,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-2",
+          "criterion": "Elicits meningeal irritation symptoms",
+          "detailedExpectation": "Asks about neck stiffness, photophobia, phonophobia, Kernig's sign",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["neck stiff", "stiff neck", "photophobia", "light sensitive", "sensitive to light", "kernig"]
+          }
+        },
+        {
+          "id": "dg-3",
+          "criterion": "Differentiates from previous migraines",
+          "detailedExpectation": "Specifically asks if this is different from previous headaches",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "dg-4",
+          "criterion": "Asks about loss of consciousness or focal neurology",
+          "detailedExpectation": "Asks about LOC, seizures, weakness, speech problems, visual disturbance",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["consciousness", "passed out", "fainted", "seizure", "fit", "weakness", "arm", "face", "vision", "speech"]
+          }
+        },
+        {
+          "id": "dg-5",
+          "criterion": "Requests urgent CT head",
+          "detailedExpectation": "Orders CT head as priority investigation",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "investigation-requested",
+          "investigationId": "ct-head"
+        },
+        {
+          "id": "dg-6",
+          "criterion": "Asks about family history of aneurysm or SAH",
+          "detailedExpectation": "Specifically asks about family history of aneurysm, SAH, or polycystic kidney disease",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["family history", "aneurysm", "bleed", "brain bleed", "polycystic kidney"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Recognises SAH as diagnosis",
+          "detailedExpectation": "States subarachnoid haemorrhage as primary differential",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "diagnosis-stated",
+          "keywordMatchers": {
+            "primary": ["subarachnoid", "sah", "brain bleed", "bleed on the brain", "haemorrhage"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "States LP only after CT — never before",
+          "detailedExpectation": "Correctly sequences CT before LP; does not recommend LP before CT",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Plans urgent neurosurgical referral",
+          "detailedExpectation": "Refers to neurosurgery/neurology for aneurysm management",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["neurosurgery", "neurosurgical", "neurology", "refer", "specialist", "aneurysm"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "Manages pain and provides supportive care",
+          "detailedExpectation": "Analgesia, anti-emetics, bed rest, monitoring",
+          "weight": 2,
+          "required": false,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["pain relief", "analgesia", "morphine", "codeine", "anti-emetic", "paracetamol", "monitoring"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Introduction and identity confirmation",
+          "detailedExpectation": "Introduces self, confirms patient name",
+          "weight": 1,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-2",
+          "criterion": "Empathic response to severe pain",
+          "detailedExpectation": "Acknowledges severity, reassures patient is safe",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-3",
+          "criterion": "Clear explanation of investigation plan",
+          "detailedExpectation": "Explains what tests are needed and why",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        },
+        {
+          "id": "ip-4",
+          "criterion": "Addresses patient's concerns",
+          "detailedExpectation": "Responds to fear and family concern",
+          "weight": 1,
+          "required": false,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 31,
+    "passingScore": 19
+  },
+  "references": [
+    { "source": "NICE CG176: Headaches in over 12s" },
+    { "source": "BMJ Best Practice: Subarachnoid Haemorrhage" }
+  ],
+  "ukmlaContentMapIds": ["headache", "subarachnoid-haemorrhage"],
+  "learningObjectives": [
+    "Recognise thunderclap headache as a red flag requiring urgent investigation",
+    "Differentiate SAH from migraine using history alone",
+    "Sequence CT head before lumbar puncture correctly",
+    "Identify Ottawa SAH Rule criteria",
+    "Plan emergency referral to neurosurgery"
+  ],
+  "tags": ["neurology", "emergency", "sah", "headache", "history-taking", "plab2"]
+}

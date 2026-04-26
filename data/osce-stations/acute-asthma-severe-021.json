@@ -1,0 +1,221 @@
+{
+  "id": "acute-asthma-severe-021",
+  "exam": "PLAB2",
+  "title": "Emergency management — life-threatening asthma",
+  "category": "emergency-management",
+  "specialty": "Respiratory",
+  "difficulty": "fy2-level",
+  "durationMinutes": 8,
+  "readingTimeMinutes": 1.5,
+  "candidateInstructions": "You are an FY2 in the ED. Miss Zara Khan, a 22-year-old student, has been brought in by ambulance with severe wheeze and breathlessness that started 3 hours ago. PEFR is 28% of predicted. She is unable to complete sentences. Please manage her.",
+  "examinerNotes": "Life-threatening asthma (PEFR <33%). Candidate must recognise severity, back-to-back nebs, IV magnesium sulphate (evidence-based for severe/life-threatening), call anaesthetics given PEFR <33%. Candidate should NOT give non-selective beta-blockers.",
+  "patient": {
+    "id": "patient-021",
+    "name": "Zara Khan",
+    "age": 22,
+    "gender": "F",
+    "occupation": "Pharmacy student",
+    "presentingComplaint": "Unable to breathe, severe wheeze",
+    "reasonForAttendance": "Can't breathe properly — wheeze started suddenly",
+    "history": {
+      "hpi": {
+        "site": "Chest — generalised wheeze",
+        "onset": "3 hours ago, triggered by cat exposure",
+        "character": "Cannot complete sentences, widespread wheeze",
+        "radiation": "Not applicable",
+        "associatedSymptoms": ["Cannot speak in full sentences", "Tachycardia HR 128", "Cyanosis — lips blue"],
+        "timing": "3 hours",
+        "exacerbatingFactors": "Cat exposure",
+        "relievingFactors": "Salbutamol gave no relief",
+        "severity": "PEFR 28% predicted — life-threatening"
+      },
+      "pmh": [
+        { "condition": "Asthma since age 6", "yearDiagnosed": 2008, "controlled": false },
+        { "condition": "Eczema", "yearDiagnosed": 2006, "controlled": true },
+        { "condition": "Previous ICU admission for asthma 1 year ago", "yearDiagnosed": 2023, "controlled": false }
+      ],
+      "drugHistory": [
+        { "name": "Salbutamol MDI", "dose": "100mcg", "frequency": "PRN" },
+        { "name": "Beclomethasone 200mcg", "dose": "200mcg", "frequency": "twice daily" }
+      ],
+      "allergies": [
+        { "agent": "Aspirin", "reaction": "Worsens asthma", "severity": "severe" },
+        { "agent": "NSAIDs", "reaction": "Worsens asthma", "severity": "severe" }
+      ],
+      "familyHistory": [
+        { "relation": "Mother", "condition": "Asthma" }
+      ],
+      "socialHistory": {
+        "smoking": { "status": "never" },
+        "alcohol": { "units": 4, "pattern": "Social" },
+        "occupation": "Pharmacy student"
+      },
+      "systemsReview": {
+        "cardiovascular": "Tachycardia",
+        "respiratory": "Life-threatening asthma",
+        "gastrointestinal": "Normal",
+        "genitourinary": "Normal",
+        "neurological": "Agitated, confused — life-threatening feature",
+        "musculoskeletal": "Normal",
+        "dermatological": "Eczema",
+        "endocrine": "Normal",
+        "haematological": "Normal",
+        "psychiatric": "Terrified"
+      }
+    },
+    "examination": {
+      "general": "Pale, sweating, can't speak, using all accessory muscles, cyanotic lips",
+      "vitalSigns": { "bp": "118/74", "hr": 128, "rr": 32, "temp": 37.1, "spo2": 88 },
+      "cardiovascular": "Tachycardia — pulsus paradoxus",
+      "respiratory": "Near-silent chest on auscultation (very little air entry), widespread wheeze, severe intercostal and subcostal recession. PEFR 28%",
+      "abdominal": "Normal",
+      "neurological": "Agitated, confused",
+      "musculoskeletal": "Normal"
+    },
+    "investigations": [
+      {
+        "id": "abg-asthma",
+        "type": "blood-test",
+        "name": "Arterial Blood Gas",
+        "shortName": "ABG",
+        "triggerKeywords": ["abg", "blood gas", "arterial gas", "ph"],
+        "result": {
+          "values": {
+            "pH": { "value": 7.30, "unit": "", "range": "7.35-7.45", "flag": "L" },
+            "PaO2": { "value": 6.2, "unit": "kPa", "range": "11-14", "flag": "L" },
+            "PaCO2": { "value": 5.4, "unit": "kPa", "range": "4.5-6.0" },
+            "HCO3": { "value": 19, "unit": "mmol/L", "range": "22-29", "flag": "L" }
+          }
+        },
+        "interpretation": "Type 1 respiratory failure. RISING CO2 (should be low in asthma — rising CO2 = patient tiring = IMMINENT RESPIRATORY ARREST. This is a CRITICAL sign requiring immediate ITU/anaesthetic team involvement.",
+        "urgency": "stat",
+        "requiresExplicitRequest": true
+      }
+    ],
+    "emotionalState": "Terrified, unable to speak due to breathlessness",
+    "communicationStyle": "Single words only. Nodding/shaking head.",
+    "hiddenConcerns": [
+      "I was in ICU last year — this feels the same",
+      "I'm scared I'm going to die"
+    ],
+    "doNotVolunteer": [
+      "Previous ICU admission — only if asked about hospitalisation",
+      "Aspirin allergy — only if asked about allergies"
+    ]
+  },
+  "primaryDiagnosis": "Life-threatening Asthma (PEFR <33%)",
+  "differentialDiagnoses": [
+    "Pneumothorax",
+    "Anaphylaxis",
+    "Foreign body aspiration",
+    "Acute severe COPD"
+  ],
+  "rubric": {
+    "domains": {
+      "dataGathering": [
+        {
+          "id": "dg-1",
+          "criterion": "Correctly classifies as life-threatening (PEFR <33%)",
+          "detailedExpectation": "States life-threatening asthma features: PEFR <33%, silent chest, cyanosis, confusion",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["life-threatening", "pefr", "silent chest", "33%", "near-fatal"]
+          }
+        }
+      ],
+      "clinicalManagement": [
+        {
+          "id": "cm-1",
+          "criterion": "Oxygen to maintain SpO2 94-98%",
+          "detailedExpectation": "Controlled oxygen — target SpO2 94-98%",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["oxygen", "94-98", "target spo2", "controlled oxygen"]
+          }
+        },
+        {
+          "id": "cm-2",
+          "criterion": "Back-to-back salbutamol nebulisers",
+          "detailedExpectation": "Salbutamol 5mg nebulised continuously or back-to-back",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["salbutamol", "nebuliser", "back-to-back", "continuous"]
+          }
+        },
+        {
+          "id": "cm-3",
+          "criterion": "Ipratropium bromide nebulised",
+          "detailedExpectation": "0.5mg ipratropium bromide nebulised",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["ipratropium", "ipratropium bromide", "atrovent"]
+          }
+        },
+        {
+          "id": "cm-4",
+          "criterion": "IV magnesium sulphate",
+          "detailedExpectation": "IV magnesium 1.2-2g over 20 minutes — evidence-based in life-threatening asthma",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["magnesium", "magnesium sulphate", "iv magnesium"]
+          }
+        },
+        {
+          "id": "cm-5",
+          "criterion": "Systemic corticosteroids",
+          "detailedExpectation": "Prednisolone 40mg oral or hydrocortisone 100mg IV",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["prednisolone", "hydrocortisone", "steroid", "corticosteroid"]
+          }
+        },
+        {
+          "id": "cm-6",
+          "criterion": "Calls anaesthetics/ITU — rising CO2 is ominous",
+          "detailedExpectation": "Recognises rising CO2 as sign of fatigue and impending arrest — ITU referral",
+          "weight": 3,
+          "required": true,
+          "detectionMethod": "keyword",
+          "keywordMatchers": {
+            "primary": ["anaesthetic", "itu", "icu", "intubation", "senior", "escalate", "itu referral"]
+          }
+        }
+      ],
+      "interpersonalSkills": [
+        {
+          "id": "ip-1",
+          "criterion": "Reassures patient while managing emergency",
+          "detailedExpectation": "Brief, calm communication",
+          "weight": 2,
+          "required": true,
+          "detectionMethod": "ai-evaluation"
+        }
+      ]
+    },
+    "totalMaxScore": 20,
+    "passingScore": 12
+  },
+  "references": [
+    { "source": "BTS/SIGN British Guideline on Management of Asthma 2022" }
+  ],
+  "ukmlaContentMapIds": ["asthma", "life-threatening-asthma", "emergency-management"],
+  "learningObjectives": [
+    "Classify asthma severity correctly",
+    "Identify life-threatening features",
+    "Administer IV magnesium sulphate for severe asthma",
+    "Recognise rising CO2 as sign of fatigue"
+  ],
+  "tags": ["emergency", "asthma", "respiratory", "life-threatening", "plab2"]
+}
