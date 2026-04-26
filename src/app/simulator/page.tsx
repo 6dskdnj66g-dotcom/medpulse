@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   Stethoscope, Filter, Trophy, Clock, Target, ChevronRight,
   BookOpen, Users, Brain, Heart, Baby, Activity, Pill,
-  AlertCircle, Star
+  AlertCircle, Star, Zap
 } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/core/i18n/LanguageContext";
@@ -14,6 +14,22 @@ import {
   OSCE_STATIONS, OSCE_SPECIALTIES, DIFFICULTY_LABELS, STATION_TYPE_LABELS,
   type OSCEStation
 } from "@/features/osce/services/osceStations";
+
+// ── New-format station metadata type ──────────────────────────────────────────
+interface NewStationMeta {
+  id: string;
+  exam: string;
+  title: string;
+  category: string;
+  specialty: string;
+  difficulty: string;
+  durationMinutes: number;
+  tags: string[];
+  patientName: string;
+  rubricTotalMaxScore: number;
+  rubricPassingScore: number;
+  isNewFormat: true;
+}
 
 const SPECIALTY_ICONS: Record<string, React.ElementType> = {
   "Internal Medicine": Stethoscope,
@@ -128,6 +144,78 @@ function StationCard({ station }: { station: OSCEStation }) {
   );
 }
 
+const NEW_DIFF_COLORS: Record<string, string> = {
+  "fy1-level": "bg-emerald-500/10 text-emerald-600",
+  "fy2-level": "bg-indigo-500/10 text-indigo-600",
+  "registrar-level": "bg-rose-500/10 text-rose-600",
+};
+
+const NEW_CAT_COLORS: Record<string, string> = {
+  "history-taking": "bg-blue-500/10 text-blue-600",
+  "focused-examination": "bg-teal-500/10 text-teal-600",
+  "communication-skills": "bg-purple-500/10 text-purple-600",
+  "breaking-bad-news": "bg-pink-500/10 text-pink-600",
+  "informed-consent": "bg-amber-500/10 text-amber-600",
+  "emergency-management": "bg-red-500/10 text-red-600",
+  "data-interpretation": "bg-cyan-500/10 text-cyan-600",
+  "procedure-explanation": "bg-orange-500/10 text-orange-600",
+  "ethical-dilemma": "bg-violet-500/10 text-violet-600",
+};
+
+function NewStationCard({ station }: { station: NewStationMeta }) {
+  const SpecialtyIcon = SPECIALTY_ICONS[station.specialty] ?? Stethoscope;
+  const diffColor = NEW_DIFF_COLORS[station.difficulty] ?? "bg-slate-500/10 text-slate-600";
+  const catColor = NEW_CAT_COLORS[station.category] ?? "bg-slate-500/10 text-slate-600";
+
+  return (
+    <Link
+      href={`/simulator/${station.id}`}
+      className="group block rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98]"
+      style={{ background: "var(--bg-2)", border: "1px solid var(--border-subtle)", overflow: "hidden" }}
+    >
+      <div className="h-1 w-full bg-gradient-to-r from-teal-500 to-[var(--color-medical-indigo)]" />
+      <div className="p-5">
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 duration-300"
+            style={{ background: "var(--bg-3)", border: "1px solid var(--border-subtle)" }}>
+            <SpecialtyIcon className="w-5 h-5 text-teal-600" />
+          </div>
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <span className="text-[8px] font-black px-1.5 py-0.5 rounded-full bg-teal-500/10 text-teal-600 border border-teal-500/20 uppercase tracking-widest flex items-center gap-0.5">
+              <Zap className="w-2.5 h-2.5" />PLAB2
+            </span>
+            <span className={`text-[9px] font-black px-2 py-1 rounded-full uppercase tracking-widest ${diffColor}`}>
+              {station.difficulty.replace("-level", "")}
+            </span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-[9px] font-black uppercase tracking-widest" style={{ color: "var(--text-tertiary)" }}>{station.id}</span>
+          <div className="h-px flex-1" style={{ background: "var(--border-subtle)" }} />
+        </div>
+        <h3 className="font-extrabold text-sm leading-tight mb-2" style={{ color: "var(--text-primary)" }}>{station.title}</h3>
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide ${catColor}`}>
+            {station.category.replace(/-/g, " ")}
+          </span>
+          <span className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide" style={{ background: "var(--bg-3)", color: "var(--text-secondary)" }}>
+            {station.specialty}
+          </span>
+        </div>
+        <div className="flex items-center justify-between pt-3" style={{ borderTop: "1px solid var(--border-subtle)" }}>
+          <div className="flex items-center gap-3 text-[11px]" style={{ color: "var(--text-tertiary)" }}>
+            <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{station.durationMinutes} min</span>
+            <span className="flex items-center gap-1"><Target className="w-3 h-3" />{station.rubricTotalMaxScore} pts</span>
+          </div>
+          <div className="flex items-center gap-1 text-[11px] font-bold text-teal-600">
+            Start<ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 function OSCEHome() {
   const { lang, dir } = useLanguage();
   useSupabaseAuth();
@@ -136,6 +224,15 @@ function OSCEHome() {
   const [difficultyFilter, setDifficultyFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [showFilters, setShowFilters] = useState(false);
+  const [newStations, setNewStations] = useState<NewStationMeta[]>([]);
+  const [activeTab, setActiveTab] = useState<"all" | "plab2" | "classic">("all");
+
+  useEffect(() => {
+    fetch("/api/osce/stations")
+      .then(r => r.ok ? r.json() : [])
+      .then((data: NewStationMeta[]) => setNewStations(data.map(s => ({ ...s, isNewFormat: true }))))
+      .catch(() => setNewStations([]));
+  }, []);
 
   const filtered = useMemo(() => {
     return OSCE_STATIONS.filter(s => {
@@ -181,9 +278,9 @@ function OSCEHome() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-3 mt-6">
             {[
-              { label: isAr ? "محطة OSCE" : "OSCE Stations", value: OSCE_STATIONS.length.toString(), icon: Target },
+              { label: isAr ? "محطة OSCE" : "OSCE Stations", value: (OSCE_STATIONS.length + newStations.length).toString(), icon: Target },
               { label: isAr ? "تخصصات" : "Specialties", value: OSCE_SPECIALTIES.length.toString(), icon: BookOpen },
-              { label: isAr ? "مستويات صعوبة" : "Difficulty Levels", value: "6", icon: Trophy },
+              { label: isAr ? "PLAB 2 جديد" : "PLAB 2 New", value: newStations.length.toString(), icon: Trophy },
             ].map(stat => {
               const Icon = stat.icon;
               return (
@@ -217,11 +314,44 @@ function OSCEHome() {
         ))}
       </div>
 
-      {/* ── FILTERS ── */}
-      <div>
+      {/* ── TABS ── */}
+      <div className="flex gap-2 flex-wrap">
+        {[
+          { id: "all", label: `All (${OSCE_STATIONS.length + newStations.length})` },
+          { id: "plab2", label: `PLAB 2 — New (${newStations.length})` },
+          { id: "classic", label: `Classic (${OSCE_STATIONS.length})` },
+        ].map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id as "all" | "plab2" | "classic")}
+            className={`px-4 py-2 rounded-xl text-sm font-black transition-all ${activeTab === tab.id ? "bg-[var(--color-medical-indigo)] text-white" : "bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)]"}`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* ── PLAB2 NEW STATIONS ── */}
+      {(activeTab === "all" || activeTab === "plab2") && newStations.length > 0 && (
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-2 h-2 rounded-full bg-teal-500"></div>
+            <h2 className="text-lg font-extrabold" style={{ color: "var(--text-primary)" }}>
+              PLAB 2 Stations <span className="text-sm font-bold text-teal-600 ml-1">NEW — Phase 7</span>
+            </h2>
+            <span className="ml-auto text-xs text-[var(--text-tertiary)] font-medium">{newStations.length} stations · Anti-hallucination AI · Live rubric scoring</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {newStations.map(s => <NewStationCard key={s.id} station={s} />)}
+          </div>
+        </div>
+      )}
+
+      {/* ── FILTERS (classic only) ── */}
+      {(activeTab === "all" || activeTab === "classic") && <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-extrabold" style={{ color: "var(--text-primary)" }}>
-            {isAr ? `المحطات (${filtered.length})` : `Stations (${filtered.length})`}
+            {activeTab === "all" ? "Classic Stations" : isAr ? `المحطات (${filtered.length})` : `Stations (${filtered.length})`}
           </h2>
           <button
             onClick={() => setShowFilters(f => !f)}
@@ -289,28 +419,26 @@ function OSCEHome() {
             </div>
           </div>
         )}
-      </div>
-
-      {/* ── STATION GRID ── */}
-      {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map(station => (
-            <StationCard key={station.id} station={station} />
-          ))}
-        </div>
-      ) : (
-        <div className="py-20 flex flex-col items-center justify-center" style={{ color: "var(--text-tertiary)" }}>
-          <Filter className="w-12 h-12 mb-4 opacity-30" />
-          <p className="font-bold text-lg">{isAr ? "لا توجد محطات تطابق الفلاتر" : "No stations match your filters"}</p>
-          <button
-            onClick={() => { setSpecialtyFilter("all"); setDifficultyFilter("all"); setTypeFilter("all"); }}
-            className="mt-4 text-sm font-bold"
-            style={{ color: "var(--color-medical-indigo)" }}
-          >
-            {isAr ? "إزالة الفلاتر" : "Clear Filters"}
-          </button>
-        </div>
-      )}
+        {filtered.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map(station => (
+              <StationCard key={station.id} station={station} />
+            ))}
+          </div>
+        ) : (
+          <div className="py-12 flex flex-col items-center justify-center" style={{ color: "var(--text-tertiary)" }}>
+            <Filter className="w-12 h-12 mb-4 opacity-30" />
+            <p className="font-bold text-lg">{isAr ? "لا توجد محطات تطابق الفلاتر" : "No stations match your filters"}</p>
+            <button
+              onClick={() => { setSpecialtyFilter("all"); setDifficultyFilter("all"); setTypeFilter("all"); }}
+              className="mt-4 text-sm font-bold"
+              style={{ color: "var(--color-medical-indigo)" }}
+            >
+              {isAr ? "إزالة الفلاتر" : "Clear Filters"}
+            </button>
+          </div>
+        )}
+      </div>}
     </div>
   );
 }

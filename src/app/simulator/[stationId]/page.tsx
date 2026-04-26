@@ -17,7 +17,7 @@ import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { supabase } from "@/core/database/supabase";
 
 // ── New format imports ────────────────────────────────────────────────────────
-import type { OSCEStation, OSCESession, SessionMessage, SessionScores } from "@/lib/osce/types";
+import type { OSCEStation, OSCESession, SessionScores } from "@/lib/osce/types";
 import { SessionManager } from "@/lib/osce/session-manager";
 import { InvestigationDetector } from "@/lib/osce/investigation-detector";
 import { StationBriefing } from "@/components/osce/StationBriefing";
@@ -690,7 +690,6 @@ function NewFormatActivePage({
   const sessionMgr = useRef<SessionManager | null>(null);
   const invDetector = useRef<InvestigationDetector | null>(null);
   const [messages, setMessages] = useState<NewMessage[]>([]);
-  const [session, setSession] = useState<OSCESession | null>(null);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -707,7 +706,6 @@ function NewFormatActivePage({
   useEffect(() => {
     sessionMgr.current = new SessionManager(station);
     invDetector.current = new InvestigationDetector(station);
-    setSession(sessionMgr.current.getSession());
     sessionMgr.current.startActive();
   }, [station]);
 
@@ -833,7 +831,6 @@ function NewFormatActivePage({
     if (sessionMgr.current) {
       sessionMgr.current.updateScores(scores);
       sessionMgr.current.complete();
-      setSession(sessionMgr.current.getSession());
     }
     onComplete();
   }

@@ -3,6 +3,72 @@
 
 import type { PatientPersona, SessionMessage } from "./types";
 
+// ── Legacy types (kept for backward compatibility with data/osce-scenarios/) ──
+
+export interface PatientProfile {
+  readonly id: string;
+  readonly name: string;
+  readonly nameAr: string;
+  readonly age: number;
+  readonly gender: "M" | "F";
+  readonly occupation: string;
+  readonly occupationAr: string;
+  readonly presentingComplaint: string;
+  readonly presentingComplaintAr: string;
+  readonly history: {
+    hpi: Record<string, string>;
+    pmh: string[];
+    medications: string[];
+    allergies: string[];
+    familyHistory: string[];
+    socialHistory: Record<string, string>;
+    systemsReview: Record<string, string>;
+  };
+  readonly vitalsIfAsked: {
+    bp?: string; hr?: number; rr?: number; temp?: number; spo2?: number; weight?: number;
+  };
+  readonly examFindings: Record<string, string>;
+  readonly doNotVolunteer: string[];
+  readonly emotionalState: string;
+  readonly communicationStyle: string;
+}
+
+export interface LegacyRubricItem {
+  id: string;
+  domain: string;
+  criterion: string;
+  criterionAr: string;
+  points: number;
+  keywords: string[];
+  required: boolean;
+}
+
+// Alias used by rubric-analyzer.ts
+export type RubricItem = LegacyRubricItem;
+
+export interface OSCEScenario {
+  id: string;
+  title: string;
+  titleAr: string;
+  specialty: string;
+  stationType: "history_taking" | "examination" | "management" | "communication" | "procedure";
+  difficulty: "year1" | "year2" | "year3" | "year4" | "finals" | "postgrad";
+  durationMinutes: number;
+  setting: string;
+  settingAr: string;
+  patientBrief: string;
+  patientBriefAr: string;
+  patient: PatientProfile;
+  rubric: LegacyRubricItem[];
+  totalMarks: number;
+  passThreshold: number;
+  expectedDiagnosis: string;
+  differentialDiagnoses: string[];
+  learningPoints: string[];
+  reference: string;
+  redFlags: string[];
+}
+
 /**
  * Builds a strict system prompt that locks the AI into the patient role.
  * Prevents identity drift, information leakage, character breaks, and inconsistency.
