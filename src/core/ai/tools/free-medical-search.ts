@@ -43,7 +43,7 @@ export const freeMedicalSearchTool = tool({
       // Take the top 4 results to save tokens
       const topResults = searchResults.results.slice(0, 4);
       
-      const formattedResults = topResults.map((r: any) => `TITLE: ${r.title}\nURL: ${r.url}\nCONTENT_SNIPPET: ${r.description}`).join("\n\n---\n\n");
+      const formattedResults = topResults.map((r: { title: string; url: string; description: string }) => `TITLE: ${r.title}\nURL: ${r.url}\nCONTENT_SNIPPET: ${r.description}`).join("\n\n---\n\n");
       
       const responseText = `SEARCH RESULTS FOR "${query}":\n\n${formattedResults}`;
       
