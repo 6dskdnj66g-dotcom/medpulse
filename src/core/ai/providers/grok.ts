@@ -47,12 +47,16 @@ export async function callGrok(
   const apiKey = process.env.XAI_API_KEY;
 
   if (!apiKey) {
-    // Graceful fallback — try Groq if available
+    // Fallback chain: Groq → Google Gemini
     const groqKey = process.env.GROQ_API_KEY;
     if (groqKey) {
       return callGroqFallback(messages, { temperature, maxTokens, addDisclaimer });
     }
-    return { error: true, message: "No AI API key configured. Set XAI_API_KEY or GROQ_API_KEY in environment." };
+    const geminiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    if (geminiKey) {
+      return callGeminiFallback(messages, { temperature, maxTokens, addDisclaimer });
+    }
+    return { error: true, message: "No AI API key configured. Set XAI_API_KEY, GROQ_API_KEY, or GOOGLE_GENERATIVE_AI_API_KEY." };
   }
 
   try {
@@ -124,6 +128,11 @@ async function callGroqFallback(
     });
 
     if (!res.ok) {
+      // Groq rate limited or down → cascade to Gemini
+      if (process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+        console.warn("Groq fallback failed (status " + res.status + "), cascading to Google Gemini");
+        return callGeminiFallback(messages, options);
+      }
       return { error: true, message: "فشل الاتصال — حاول مرة أخرى" };
     }
 
@@ -132,7 +141,59 @@ async function callGroqFallback(
     if (options.addDisclaimer) content += MEDICAL_DISCLAIMER;
     return { error: false, content };
   } catch {
+    // Network error → try Gemini
+    if (process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+      return callGeminiFallback(messages, options);
+    }
     return { error: true, message: "خطأ في الشبكة" };
+  }
+}
+
+// ── Google Gemini fallback ───────────────────────────────────────────────────
+async function callGeminiFallback(
+  messages: GrokMessage[],
+  options: { temperature: number; maxTokens: number; addDisclaimer: boolean }
+): Promise<GrokResult> {
+  try {
+    const { generateText } = await import("ai");
+    const { createGoogleGenerativeAI } = await import("@ai-sdk/google");
+    const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY! });
+
+    const systemMsg = messages.find(m => m.role === "system");
+    const chatMsgs = messages.filter(m => m.role !== "system").map(m => ({
+      role: m.role as "user" | "assistant",
+      content: m.content,
+    }));
+
+    const model = google("gemini-2.0-flash");
+    const system = systemMsg?.content;
+    const temperature = options.temperature;
+    
+    let text: string;
+    if (chatMsgs.length > 0) {
+      const result = await generateText({
+        model,
+        system,
+        messages: chatMsgs,
+        temperature,
+      });
+      text = result.text;
+    } else {
+      const result = await generateText({
+        model,
+        system,
+        prompt: system ?? "Hello",
+        temperature,
+      });
+      text = result.text;
+    }
+
+    let content = text ?? "";
+    if (options.addDisclaimer) content += MEDICAL_DISCLAIMER;
+    return { error: false, content };
+  } catch (e) {
+    console.error("Gemini fallback error:", e);
+    return { error: true, message: "فشل جميع مزودي الذكاء الاصطناعي — حاول مرة أخرى" };
   }
 }
 

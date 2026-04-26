@@ -2,9 +2,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateText } from "ai";
 import { createGroq } from "@ai-sdk/groq";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { OSCE_STATIONS } from "@/features/osce/services/osceStations";
 
-const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
+const groq = process.env.GROQ_API_KEY
+  ? createGroq({ apiKey: process.env.GROQ_API_KEY })
+  : null;
+
+const google = process.env.GOOGLE_GENERATIVE_AI_API_KEY
+  ? createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY })
+  : null;
+
+function getModel() {
+  if (groq) return groq("llama-3.3-70b-versatile");
+  if (google) return google("gemini-2.0-flash");
+  throw new Error("No AI provider configured. Set GROQ_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY.");
+}
 
 // Cap history sent to API to prevent context overflow and name drift
 const MAX_HISTORY = 20;
@@ -89,12 +102,29 @@ REMINDER: YOU ARE ${station.patientName}, ${station.patientAge} YEARS OLD. THIS 
         content: m.content,
       }));
 
-      const { text } = await generateText({
-        model: groq("llama-3.3-70b-versatile"),
-        system: systemPrompt,
-        messages: cappedMessages,
-        temperature: 0.45, // Lower = more consistent identity
-      });
+      let text: string;
+      try {
+        const result = await generateText({
+          model: getModel(),
+          system: systemPrompt,
+          messages: cappedMessages,
+          temperature: 0.45,
+        });
+        text = result.text;
+      } catch (primaryErr) {
+        // If primary fails (e.g. Groq rate limited), try Google Gemini directly
+        if (google) {
+          const fallbackResult = await generateText({
+            model: google("gemini-2.0-flash"),
+            system: systemPrompt,
+            messages: cappedMessages,
+            temperature: 0.45,
+          });
+          text = fallbackResult.text;
+        } else {
+          throw primaryErr;
+        }
+      }
 
       return NextResponse.json({ content: text, role: "patient" });
     }
@@ -142,12 +172,28 @@ Respond ONLY as valid JSON (no markdown, no code blocks, just raw JSON):
         .map(m => `${m.role === "user" ? "الطالب" : "المريض"}: ${m.content}`)
         .join("\n");
 
-      const { text } = await generateText({
-        model: groq("llama-3.3-70b-versatile"),
-        system: systemPrompt,
-        prompt: `قيّم أداء هذا الطالب:\n\n${conversationText}\n\nأرجع JSON فقط بدون أي نص إضافي.`,
-        temperature: 0.15, // Very low for consistent scoring
-      });
+      let text: string;
+      try {
+        const result = await generateText({
+          model: getModel(),
+          system: systemPrompt,
+          prompt: `قيّم أداء هذا الطالب:\n\n${conversationText}\n\nأرجع JSON فقط بدون أي نص إضافي.`,
+          temperature: 0.15,
+        });
+        text = result.text;
+      } catch (primaryErr) {
+        if (google) {
+          const fallbackResult = await generateText({
+            model: google("gemini-2.0-flash"),
+            system: systemPrompt,
+            prompt: `قيّم أداء هذا الطالب:\n\n${conversationText}\n\nأرجع JSON فقط بدون أي نص إضافي.`,
+            temperature: 0.15,
+          });
+          text = fallbackResult.text;
+        } else {
+          throw primaryErr;
+        }
+      }
 
       // Robust JSON extraction
       const jsonMatch = text.match(/\{[\s\S]*\}/);
