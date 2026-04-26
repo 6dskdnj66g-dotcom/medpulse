@@ -130,23 +130,23 @@ export default function LandingPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-24 grid md:grid-cols-2 gap-12 items-center w-full">
           {/* Left: Text */}
           <div>
-            <div className="inline-flex items-center gap-2 bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
               <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-              {isAr ? "الذكاء الاصطناعي الطبي العربي" : "Arabic Medical AI Platform"}
+              {isAr ? "دليلك السريري الشامل" : "The Ultimate Clinical Platform"}
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6">
+            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6 drop-shadow-2xl">
               {isAr ? (
-                <>طبيبك<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-teal-400">الذكي</span><br />بالعربية</>
+                <>أهلاً بك في<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-teal-400">ميدبالس</span><br />الطبية</>
               ) : (
-                <>Your Clinical<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-teal-400">AI Partner</span><br />in Arabic</>
+                <>Welcome to<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-teal-400">MedPulse</span></>
               )}
             </h1>
 
             <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-xl font-medium">
               {isAr
-                ? "منصة تعليمية طبية شاملة: حاسبات سريرية، محاكي OSCE، محلل ECG، أساتذة AI، ومكتبة 308+ مصدر طبي موثق. مجاني تماماً."
-                : "A comprehensive Arabic medical education platform: clinical calculators, OSCE simulator, ECG analyzer, AI professors, and 308+ verified sources. Completely free."}
+                ? "منصة طبية متكاملة بمعايير عالمية: حاسبات سريرية، محاكي تدريب، أطباء متخصصين، ومكتبة 308+ مصدر طبي موثق. مجاني تماماً."
+                : "A world-class integrated medical platform: clinical calculators, training simulators, specialist tools, and 308+ verified sources. Completely free."}
             </p>
 
             <div className="flex flex-wrap gap-4">
