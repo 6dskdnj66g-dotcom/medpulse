@@ -1,5 +1,17 @@
 import { MedicalSource } from "@/types/medical";
 
+interface EuropePmcItem {
+  pmid?: string;
+  id?: string;
+  title: string;
+  authorString?: string;
+  journalTitle?: string;
+  bookOrReportDetails?: { publisher?: string };
+  pubYear: string;
+  doi?: string;
+  abstractText?: string;
+}
+
 export async function fetchClinicalEvidence(query: string, limit: number = 4): Promise<MedicalSource[]> {
   const encodedQuery = encodeURIComponent(`(${query}) AND (HAS_ABSTRACT:y) AND (SRC:MED)`);
   const endpoint = `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${encodedQuery}&format=json&resultType=core&pageSize=${limit}`;
@@ -12,10 +24,10 @@ export async function fetchClinicalEvidence(query: string, limit: number = 4): P
     }
 
     const data = await response.json();
-    const results: any[] = data.resultList?.result || [];
+    const results: EuropePmcItem[] = data.resultList?.result || [];
 
     return results.map((item): MedicalSource => ({
-      id: item.pmid || item.id,
+      id: item.pmid ?? item.id ?? crypto.randomUUID(),
       title: item.title,
       authors: item.authorString || "Unknown Authors",
       journal: item.journalTitle || item.bookOrReportDetails?.publisher || "Unknown Journal",

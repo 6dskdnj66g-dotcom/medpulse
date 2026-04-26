@@ -1,35 +1,36 @@
 "use server";
 
 import Groq from "groq-sdk";
-import { fetchClinicalEvidence } from "@/lib/medical-api/europe-pmc";
-import { STRICT_CLINICAL_SYSTEM_PROMPT } from "@/lib/ai/prompts";
+import { fetchGlobalEvidence } from "@/lib/medical-api/multi-fetcher";
+import { buildAgentPrompt, MedPulseAgent, RESEARCH_AGENTS } from "@/lib/ai/agent-registry";
 import { ValidatedResponse } from "@/types/medical";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-export async function processClinicalQuery(userQuery: string): Promise<ValidatedResponse> {
-  if (!userQuery || userQuery.trim() === "") {
-    throw new Error("Query cannot be empty.");
+export async function processClinicalQuery(
+  userQuery: string,
+  agentType: MedPulseAgent = "PROFESSOR"
+): Promise<ValidatedResponse> {
+  if (!userQuery.trim()) throw new Error("Query cannot be empty.");
+
+  if (!RESEARCH_AGENTS.has(agentType)) {
+    throw new Error("Invalid routing: Evidence fetcher invoked for non-research agent.");
   }
 
-  const evidence = await fetchClinicalEvidence(userQuery, 4);
+  const evidence = await fetchGlobalEvidence(userQuery);
 
   if (evidence.length === 0) {
     return {
-      content:
-        "Insufficient clinical evidence found in the connected databases to answer this query. Please refine your search terms.",
+      content: "Insufficient clinical evidence found in connected global databases.",
       sources: [],
     };
   }
 
   const formattedContext = evidence
-    .map(
-      (doc, index) =>
-        `[Source ${index + 1}]\nTitle: ${doc.title}\nJournal: ${doc.journal} (${doc.publicationYear})\nAbstract: ${doc.summary}`
-    )
+    .map((doc, idx) => `[${idx + 1}] ${doc.title}\nSource: ${doc.journal}\nSummary: ${doc.summary}`)
     .join("\n\n");
 
-  const systemPrompt = STRICT_CLINICAL_SYSTEM_PROMPT.replace("{CONTEXT}", formattedContext);
+  const systemPrompt = buildAgentPrompt(agentType, { evidence: formattedContext });
 
   const completion = await groq.chat.completions.create({
     model: "llama3-8b-8192",
@@ -41,7 +42,7 @@ export async function processClinicalQuery(userQuery: string): Promise<Validated
   });
 
   return {
-    content: completion.choices[0].message.content ?? "System processing error.",
+    content: completion.choices[0].message.content ?? "System error.",
     sources: evidence,
   };
 }
