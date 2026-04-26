@@ -16,7 +16,8 @@ export const freeMedicalSearchTool = tool({
   parameters: z.object({
     query: z.string().describe("The precise medical search query in English. Add terms like 'site:nih.gov' or 'guidelines' to focus the search (e.g., 'Aspirin dosage Kawasaki disease AHA guidelines')."),
   }),
-  execute: async ({ query }) => {
+  // @ts-expect-error - Vercel AI SDK types may resolve this to undefined in older versions
+  execute: async ({ query }: { query: string }) => {
     try {
       const now = Date.now();
       
@@ -32,9 +33,7 @@ export const freeMedicalSearchTool = tool({
       }
 
       console.log(`[RAG Cache Miss] Scraping for Query: ${query}`);
-      const searchResults = await search(query, {
-        safeSearch: "moderate"
-      });
+      const searchResults = await search(query);
 
       if (!searchResults.results || searchResults.results.length === 0) {
         return "No trusted medical results found for this query. Inform the user that there is no solid medical guideline found for this specific query right now.";

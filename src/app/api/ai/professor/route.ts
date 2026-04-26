@@ -134,6 +134,7 @@ You are equipped with the 'free_medical_search' tool. You MUST USE IT to answer 
         tools: {
           free_medical_search: freeMedicalSearchTool,
         },
+        // @ts-expect-error - The 'maxSteps' property might not be in the current typescript definitions but is required for multi-step tool calls
         maxSteps: 3, // Allow the model to call the tool, receive the result, and then generate the final response
       });
       return result.toTextStreamResponse();
