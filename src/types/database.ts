@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 ﻿export type ExamType = 'usmle_step1' | 'usmle_step2' | 'usmle_step3' | 'plab1' | 'plab2_osce';
 export type QuestionFormat = 'single_best' | 'extended_matching' | 'ospe_station';
 export type CognitiveLevel = 'recall' | 'application' | 'analysis';

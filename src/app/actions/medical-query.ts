@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 ﻿"use server";
 
 import { classifyQuery, aggregateSourcesSmart, synthesizeMultiSource } from "@/lib/medical-sources";

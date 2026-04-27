@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { ThemeProvider } from "@/core/ui/ThemeProvider";
@@ -9,6 +9,8 @@ import { SupabaseAuthProvider } from "@/core/auth/SupabaseAuthContext";
 import { AchievementProvider } from "@/components/AchievementContext";
 import { ErrorBoundary } from "@/core/ui/ErrorBoundary";
 import { VisitorTracker } from "@/components/VisitorTracker";
+import { SourceReaderProvider } from "@/contexts/SourceReaderContext";
+import { SourceReaderDrawer } from "@/components/medical/SourceReaderDrawer";
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
@@ -17,13 +19,15 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <AchievementProvider>
             <VisitorTracker />
-            <ErrorBoundary>
-              {children}
-            </ErrorBoundary>
+            <SourceReaderProvider>
+              <ErrorBoundary>
+                {children}
+              </ErrorBoundary>
+              <SourceReaderDrawer />
+            </SourceReaderProvider>
           </AchievementProvider>
         </ThemeProvider>
       </SupabaseAuthProvider>
     </LanguageProvider>
   );
 }
-
