@@ -6,6 +6,9 @@ import { searchClinicalTrials } from './sources/clinicaltrials';
 import { searchStatPearls } from './sources/statpearls';
 import { searchDrug } from './sources/rxnorm';
 import { searchFDADrugLabel, searchFDAAdverseEvents } from './sources/openfda';
+import { searchDailyMed } from './sources/dailymed';
+import { searchMedlinePlus } from './sources/medlineplus';
+import { searchWHO } from './sources/who';
 import { scoreSource } from './scorer';
 
 export async function aggregateSourcesSmart(
@@ -47,10 +50,24 @@ export async function aggregateSourcesSmart(
     for (const drug of classification.drugNames.slice(0, 2)) {
       fetchPromises.push(searchDrug(drug));
       fetchPromises.push(searchFDADrugLabel(drug));
+      fetchPromises.push(searchDailyMed(drug));
       if (classification.questionType === 'factual') {
         fetchPromises.push(searchFDAAdverseEvents(drug));
       }
     }
+  }
+
+  // WHO guidelines for guideline-focused queries
+  if (classification.needsGuidelines || classification.primaryIntent === 'guideline') {
+    fetchPromises.push(searchWHO(searchQuery, { maxResults: 2 }));
+  }
+
+  // MedlinePlus for patient-education / conceptual queries
+  if (
+    classification.questionType === 'conceptual' ||
+    classification.primaryIntent === 'educational'
+  ) {
+    fetchPromises.push(searchMedlinePlus(searchQuery, { maxResults: 2 }));
   }
 
   const results = await Promise.allSettled(fetchPromises);
