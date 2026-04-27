@@ -44,7 +44,7 @@ ${sourcesBlock}
 اكتب إجابة شاملة تستخدم هذه المصادر فقط، مع citations مرقّمة [1] [2] إلخ.`;
 
   const completion = await groq.chat.completions.create({
-    model: 'llama3-8b-8192',
+    model: 'llama-3.3-70b-versatile',
     messages: [
       { role: 'system', content: SYSTEM_PROMPT },
       { role: 'user', content: userMessage },
@@ -56,7 +56,7 @@ ${sourcesBlock}
   const answer = completion.choices[0]?.message?.content || '';
   const usage = completion.usage;
 
-  // Groq llama3-8b-8192 pricing: $0.05/M input, $0.08/M output
+  // Groq llama-3.3-70b-versatile pricing: $0.05/M input, $0.08/M output
   const cost =
     ((usage?.prompt_tokens || 0) * 0.00000005) +
     ((usage?.completion_tokens || 0) * 0.00000008);

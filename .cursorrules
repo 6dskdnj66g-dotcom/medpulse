@@ -1,0 +1,48 @@
+# MedPulse AI — Cursor Rules
+
+## Project Context
+- Educational medical platform for Arab medical students
+- Next.js 15 App Router + TypeScript strict + Supabase + Grok API
+- Multi-source medical evidence aggregation system
+- NOT for clinical diagnosis — educational only
+
+## Before Writing Any Code
+1. Read `docs/ARCHITECTURE.md`
+2. Read `docs/PATTERNS.md`
+3. Search the codebase for similar functionality
+4. If similar pattern exists, EXTEND it — don't create new
+
+## Architecture Rules (NON-NEGOTIABLE)
+- Single Grok client: `lib/services/ai/grok-client.ts`
+- Single Supabase access: `lib/repositories/`
+- Business logic: `lib/services/` only
+- API routes: thin (validate, call service, return)
+
+## Code Style
+- Functions < 50 lines
+- Files < 300 lines
+- No `any` without `// @ts-expect-error: <reason>`
+- All async ops: try/catch with typed errors
+- All fetches: `AbortSignal.timeout(10000)`
+- All inputs: validate with Zod
+
+## Forbidden
+- ❌ Duplicating logic across files
+- ❌ Bypassing repositories for DB access
+- ❌ Inline business logic in routes/components
+- ❌ Hardcoded API URLs
+- ❌ `dangerouslySetInnerHTML`
+- ❌ Exposing internal errors in production
+- ❌ Adding features without updating docs
+
+## When Adding Features
+1. Update `docs/PATTERNS.md` if new pattern
+2. Update `docs/DECISIONS.md` if architectural choice
+3. Add at least 1 test for critical path
+4. JSDoc for public APIs
+
+## When in Doubt
+- Composition over inheritance
+- Pure functions over classes
+- Explicit over clever
+- ASK before assuming

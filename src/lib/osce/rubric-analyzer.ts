@@ -55,17 +55,12 @@ export async function scoreSessionWithAI(
   redFlags: string[],
   lang: "ar" | "en" = "ar"
 ): Promise<ExaminerScore> {
-  const groqKey = process.env.GROQ_API_KEY;
-  const xaiKey = process.env.XAI_API_KEY;
-
-  const apiKey = xaiKey || groqKey;
-  const endpoint = xaiKey
-    ? "https://api.x.ai/v1/chat/completions"
-    : "https://api.groq.com/openai/v1/chat/completions";
-  const model = xaiKey ? "grok-2-latest" : "llama-3.3-70b-versatile";
+  const apiKey = process.env.GROQ_API_KEY;
+  const endpoint = "https://api.groq.com/openai/v1/chat/completions";
+  const model = "llama-3.3-70b-versatile";
 
   if (!apiKey) {
-    throw new Error("No AI API key configured");
+    throw new Error("GROQ_API_KEY not configured");
   }
 
   const totalMaxMarks = rubric.reduce((a, r) => a + r.points, 0);
