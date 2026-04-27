@@ -1,11 +1,28 @@
-"use server";
+﻿"use server";
 
-import Groq from "groq-sdk";
-import { fetchGlobalEvidence } from "@/lib/medical-api/multi-fetcher";
-import { buildAgentPrompt, MedPulseAgent, RESEARCH_AGENTS } from "@/lib/ai/agent-registry";
-import { ValidatedResponse } from "@/types/medical";
+import { classifyQuery, aggregateSourcesSmart, synthesizeMultiSource } from "@/lib/medical-sources";
+import { MedPulseAgent, RESEARCH_AGENTS } from "@/lib/ai/agent-registry";
+import { ValidatedResponse, EvidenceLevel, MedicalSource as UISource } from "@/types/medical";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+function mapStudyTypeToEvidenceLevel(studyType: string): EvidenceLevel {
+  switch (studyType) {
+    case 'meta-analysis':
+    case 'systematic-review':
+    case 'guideline':
+      return '1a';
+    case 'rct':
+      return '1b';
+    case 'cohort':
+      return '2b';
+    case 'case-control':
+      return '3';
+    case 'case-report':
+    case 'review':
+      return '4';
+    default:
+      return 'GPP';
+  }
+}
 
 export async function processClinicalQuery(
   userQuery: string,
@@ -17,32 +34,41 @@ export async function processClinicalQuery(
     throw new Error("Invalid routing: Evidence fetcher invoked for non-research agent.");
   }
 
-  const evidence = await fetchGlobalEvidence(userQuery);
+  const classification = await classifyQuery(userQuery);
 
-  if (evidence.length === 0) {
-    return {
-      content: "Insufficient clinical evidence found in connected global databases.",
-      sources: [],
-    };
+  const timeoutGuard = new Promise<any[]>((_, reject) =>
+    setTimeout(() => reject(new Error('Timeout')), 4000)
+  );
+
+  let rawSources: any[];
+  try {
+    rawSources = (await Promise.race([
+      aggregateSourcesSmart(classification),
+      timeoutGuard
+    ])) as any[];
+  } catch (error) {
+    rawSources = [];
   }
 
-  const formattedContext = evidence
-    .map((doc, idx) => `[${idx + 1}] ${doc.title}\nSource: ${doc.journal}\nSummary: ${doc.summary}`)
-    .join("\n\n");
+  // Slice aggregated sources array to a strict MAXIMUM OF 5 TOP-SCORED SOURCES
+  const limitedSources = rawSources.slice(0, 5);
 
-  const systemPrompt = buildAgentPrompt(agentType, { evidence: formattedContext });
+  const synthesized = await synthesizeMultiSource(userQuery, limitedSources);
 
-  const completion = await groq.chat.completions.create({
-    model: "llama3-8b-8192",
-    temperature: 0.0,
-    messages: [
-      { role: "system", content: systemPrompt },
-      { role: "user", content: userQuery },
-    ],
-  });
+  const mappedSources: UISource[] = synthesized.sources.map((src: any) => ({
+    id: src.id,
+    title: src.title,
+    authors: src.authors ? src.authors.join(", ") : "Unknown",
+    journal: src.journal || src.source,
+    publicationYear: src.year ? src.year.toString() : "N/A",
+    doi: src.doi || '',
+    url: src.url,
+    summary: src.abstract || 'No abstract available',
+    evidenceLevel: mapStudyTypeToEvidenceLevel(src.studyType)
+  }));
 
   return {
-    content: completion.choices[0].message.content ?? "System error.",
-    sources: evidence,
+    content: synthesized.answer,
+    sources: mappedSources,
   };
 }
