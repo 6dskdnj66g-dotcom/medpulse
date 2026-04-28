@@ -78,3 +78,30 @@ export async function callGroq(
     );
   }
 }
+
+export async function streamGroq(
+  messages: GroqMessage[],
+  options: GroqOptions = {}
+): Promise<ReadableStream<Uint8Array>> {
+  const { model = MODEL, temperature = 0.1, maxTokens = 2000 } = options;
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) throw new AIServiceError('GROQ_API_KEY not configured');
+
+  try {
+    const client = new Groq({ apiKey });
+    const stream = await client.chat.completions.create({
+      model,
+      messages,
+      temperature,
+      max_tokens: maxTokens,
+      stream: true,
+    });
+    return stream.toReadableStream() as ReadableStream<Uint8Array>;
+  } catch (error) {
+    if (error instanceof AIServiceError) throw error;
+    throw new AIServiceError(
+      `GROQ stream failed: ${error instanceof Error ? error.message : 'Unknown'}`,
+      error
+    );
+  }
+}

@@ -2,6 +2,7 @@
 // Separate AI call for rubric evaluation — NEVER shares rubric with patient AI
 // Temperature 0.1 for deterministic, consistent scoring
 
+import { callGroq } from '@/lib/services/ai/groq-client';
 import type { RubricItem } from "./patient-engine";
 
 export interface RubricUpdate {
@@ -55,14 +56,6 @@ export async function scoreSessionWithAI(
   redFlags: string[],
   lang: "ar" | "en" = "ar"
 ): Promise<ExaminerScore> {
-  const apiKey = process.env.GROQ_API_KEY;
-  const endpoint = "https://api.groq.com/openai/v1/chat/completions";
-  const model = "llama-3.3-70b-versatile";
-
-  if (!apiKey) {
-    throw new Error("GROQ_API_KEY not configured");
-  }
-
   const totalMaxMarks = rubric.reduce((a, r) => a + r.points, 0);
   const domains = Array.from(new Set(rubric.map(r => r.domain)));
 
@@ -108,34 +101,15 @@ Score this performance and return ONLY this JSON structure:
   "missed_red_flags": ["<red flags not addressed>"]
 }`;
 
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model,
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt },
-      ],
-      temperature: 0.1,
-      max_tokens: 1500,
-    }),
-    signal: AbortSignal.timeout(50_000),
-  });
+  const groqResponse = await callGroq(
+    [
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userPrompt },
+    ],
+    { model: "llama-3.3-70b-versatile", temperature: 0.1, maxTokens: 1500 }
+  );
 
-  if (!res.ok) {
-    const err = await res.text().catch(() => "unknown error");
-    throw new Error(`Examiner AI failed: ${res.status} ${err}`);
-  }
-
-  const data = await res.json() as {
-    choices: { message: { content: string } }[];
-  };
-
-  const raw = data.choices[0]?.message?.content ?? "";
+  const raw = groqResponse.content;
   const jsonMatch = raw.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error("No JSON in examiner response");
 

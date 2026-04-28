@@ -1,3 +1,5 @@
+import { streamGroq, type GroqMessage } from '@/lib/services/ai/groq-client';
+
 export const maxDuration = 60;
 
 const DDX_PROMPT = `
@@ -32,7 +34,7 @@ export async function POST(req: Request) {
     }
 
     // Sanitize user messages to prevent prompt injection
-    const sanitizedMessages = messages.slice(-30).map((m: { role: string; content: string }) => ({
+    const sanitizedMessages = messages.slice(-30).map((m: { role: string; content: string }): GroqMessage => ({
       role: m.role === "assistant" ? "assistant" : "user",
       content: m.role === "user"
         ? m.content
@@ -45,28 +47,12 @@ export async function POST(req: Request) {
         : m.content,
     }));
 
-    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
-        messages: [
-          { role: "system", content: DDX_PROMPT },
-          ...sanitizedMessages
-        ],
-        temperature: 0.1,
-        stream: true
-      })
-    });
+    const streamBody = await streamGroq(
+      [{ role: "system", content: DDX_PROMPT }, ...sanitizedMessages],
+      { model: "llama-3.3-70b-versatile", temperature: 0.1 }
+    );
 
-    if (!response.ok) {
-      throw new Error(`Groq API error: ${response.statusText}`);
-    }
-
-    return new Response(response.body, {
+    return new Response(streamBody, {
       headers: {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',

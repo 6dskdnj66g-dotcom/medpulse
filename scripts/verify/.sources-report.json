@@ -4,7 +4,7 @@
     "available": true,
     "passed": true,
     "count": 2,
-    "duration": 2117,
+    "duration": 2187,
     "warnings": []
   },
   {
@@ -12,7 +12,7 @@
     "available": true,
     "passed": true,
     "count": 2,
-    "duration": 1714,
+    "duration": 1547,
     "warnings": []
   },
   {
@@ -20,7 +20,7 @@
     "available": true,
     "passed": true,
     "count": 2,
-    "duration": 720,
+    "duration": 654,
     "warnings": []
   },
   {
@@ -28,7 +28,7 @@
     "available": true,
     "passed": true,
     "count": 2,
-    "duration": 636,
+    "duration": 543,
     "warnings": []
   },
   {
@@ -36,7 +36,7 @@
     "available": true,
     "passed": true,
     "count": 2,
-    "duration": 835,
+    "duration": 1063,
     "warnings": []
   },
   {
@@ -44,7 +44,7 @@
     "available": true,
     "passed": true,
     "count": 1,
-    "duration": 3174,
+    "duration": 3414,
     "warnings": []
   },
   {
@@ -52,7 +52,7 @@
     "available": true,
     "passed": true,
     "count": 1,
-    "duration": 1814,
+    "duration": 1439,
     "warnings": []
   }
 ]

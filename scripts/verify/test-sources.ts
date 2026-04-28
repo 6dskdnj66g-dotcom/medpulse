@@ -19,7 +19,7 @@ function validateSource(s: Record<string, unknown>, name: string): string[] {
   return w;
 }
 
-async function runSource(name: string, file: string, fn: () => Promise<Record<string, unknown>[]>) {
+async function runSource<T extends object>(name: string, file: string, fn: () => Promise<T[]>) {
   const available = existsSync(join(root, file));
   if (!available) {
     console.log(`  ${name}: ⏭️  SKIPPED`);
@@ -33,7 +33,7 @@ async function runSource(name: string, file: string, fn: () => Promise<Record<st
     const warnings: string[] = [];
     if (!Array.isArray(data)) throw new Error('Not an array');
     if (data.length === 0) warnings.push('Empty results');
-    else data.slice(0, 2).forEach(item => warnings.push(...validateSource(item, name)));
+    else data.slice(0, 2).forEach(item => warnings.push(...validateSource(item as Record<string, unknown>, name)));
     const passed = data.length > 0;
     console.log(`  ${name}: ${passed && warnings.length === 0 ? '✅' : passed ? '⚠️' : '⚠️'} ${data.length} results in ${duration}ms${warnings.length > 0 ? ` (${warnings.length} warnings)` : ''}`);
     results.push({ source: name, available: true, passed, count: data.length, duration, warnings });
@@ -50,31 +50,31 @@ async function main() {
 
   await runSource('PubMed', 'src/lib/services/medical-sources/sources/pubmed.ts', async () => {
     const m = await import('@/lib/services/medical-sources/sources/pubmed');
-    return m.searchPubMed('hypertension treatment', { maxResults: 2 }) as Promise<Record<string, unknown>[]>;
+    return m.searchPubMed('hypertension treatment', { maxResults: 2 });
   });
   await runSource('OpenAlex', 'src/lib/services/medical-sources/sources/openalex.ts', async () => {
     const m = await import('@/lib/services/medical-sources/sources/openalex');
-    return m.searchOpenAlex('diabetes type 2', { maxResults: 2 }) as Promise<Record<string, unknown>[]>;
+    return m.searchOpenAlex('diabetes type 2', { maxResults: 2 });
   });
   await runSource('EuropePMC', 'src/lib/services/medical-sources/sources/europepmc.ts', async () => {
     const m = await import('@/lib/services/medical-sources/sources/europepmc');
-    return m.searchEuropePMC('covid vaccine', { maxResults: 2 }) as Promise<Record<string, unknown>[]>;
+    return m.searchEuropePMC('covid vaccine', { maxResults: 2 });
   });
   await runSource('ClinicalTrials', 'src/lib/services/medical-sources/sources/clinicaltrials.ts', async () => {
     const m = await import('@/lib/services/medical-sources/sources/clinicaltrials');
-    return m.searchClinicalTrials('cancer immunotherapy', { maxResults: 2 }) as Promise<Record<string, unknown>[]>;
+    return m.searchClinicalTrials('cancer immunotherapy', { maxResults: 2 });
   });
   await runSource('StatPearls', 'src/lib/services/medical-sources/sources/statpearls.ts', async () => {
     const m = await import('@/lib/services/medical-sources/sources/statpearls');
-    return m.searchStatPearls('asthma', { maxResults: 2 }) as Promise<Record<string, unknown>[]>;
+    return m.searchStatPearls('asthma', { maxResults: 2 });
   });
   await runSource('RxNorm', 'src/lib/services/medical-sources/sources/rxnorm.ts', async () => {
     const m = await import('@/lib/services/medical-sources/sources/rxnorm');
-    return m.searchDrug('metformin') as Promise<Record<string, unknown>[]>;
+    return m.searchDrug('metformin');
   });
   await runSource('OpenFDA', 'src/lib/services/medical-sources/sources/openfda.ts', async () => {
     const m = await import('@/lib/services/medical-sources/sources/openfda');
-    return m.searchFDADrugLabel('aspirin') as Promise<Record<string, unknown>[]>;
+    return m.searchFDADrugLabel('aspirin');
   });
 
   console.log('\n' + '═'.repeat(70));
