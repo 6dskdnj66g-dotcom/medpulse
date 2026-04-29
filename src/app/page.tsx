@@ -178,7 +178,7 @@ export default function LandingPage() {
 
             <p className="text-[11px] text-slate-500 font-medium mt-6">
               {isAr ? "بناء:" : "Built by"}{" "}
-              <span className="text-slate-400 font-semibold">Hassanin Salah</span>
+              <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 tracking-wide">Hasanain Salah</span>
             </p>
           </div>
 

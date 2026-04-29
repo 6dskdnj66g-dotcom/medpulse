@@ -106,7 +106,7 @@ export default function RegisterPage() {
                   type="text"
                   value={form.fullName}
                   onChange={e => update("fullName", e.target.value)}
-                  placeholder="د. محمد أحمد"
+                  placeholder="د. حسنين صلاح"
                   required
                   className="w-full bg-[var(--bg-0)] border border-[var(--border-subtle)] rounded-[20px] pl-12 pr-5 py-4 text-[15px] text-[var(--text-primary)] font-bold placeholder-[var(--text-tertiary)]/50 focus:ring-4 focus:ring-[var(--color-medical-indigo)]/10 focus:border-[var(--color-medical-indigo)]/30 outline-none transition-all shadow-inner"
                 />

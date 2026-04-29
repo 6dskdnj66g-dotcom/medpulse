@@ -64,8 +64,8 @@ export default function AboutPage() {
           <p className="text-lg font-medium text-[var(--text-tertiary)] mb-2">
             {isAr ? "تم التصميم والبناء بشغف بواسطة" : "Architected and engineered with passion by"}
           </p>
-          <div className="text-3xl font-black bg-gradient-to-r from-indigo-500 to-teal-400 bg-clip-text text-transparent inline-block tracking-tight mb-2">
-            Hassanin Salah
+          <div className="text-3xl font-black bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent inline-block tracking-tight mb-2">
+            Hasanain Salah
           </div>
           <p className="text-[var(--text-secondary)] font-semibold">
             {isAr ? "كبير مهندسي النظم ومنشئ المشروع" : "Distinguished Systems Architect & Creator"}
