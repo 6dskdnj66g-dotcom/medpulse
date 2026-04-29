@@ -20,8 +20,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Initial mock login
     const mockUser: User = {
       id: "usr_123",
-      name: "د. حسنين صلاح",
-      email: "dr.hasanain@medpulse.io",
+      name: "Dr. User",
+      email: "user@medpulse.io",
       role: Role.STUDENT,
     };
     

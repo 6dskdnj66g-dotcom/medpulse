@@ -259,7 +259,7 @@ export default function ProfilePage() {
                       value={form.full_name}
                       onChange={e => update("full_name", e.target.value)}
                       className="w-full bg-[var(--bg-1)] border border-[var(--border-subtle)] rounded-2xl pl-11 pr-4 py-3 text-sm font-bold focus:ring-4 focus:ring-indigo-500/20 outline-none"
-                      placeholder="د. حسنين صلاح"
+                      placeholder="د. محمد أحمد"
                     />
                   </div>
                 </div>
