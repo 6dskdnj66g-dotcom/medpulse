@@ -30,3 +30,48 @@ Review these documents before making architectural changes:
 - **Next.js:** Use App Router (Next.js 15.5+), React 19, and Tailwind 4. Implement strict Server Components by default; only use `use client` when interactivity or hooks are strictly required.
 - **Supabase:** Strictly adhere to Row Level Security (RLS) policies. Maintain zero-trust interactions from the client.
 - **Flutter:** (When applicable in subdirectories) Ensure state management is scalable, isolate heavy computations, and implement null safety strictly.
+
+---
+
+# AI Agent Guidelines for MedPulse
+
+Any AI assistant (Claude Code, GitHub Copilot, Cursor, etc.) working on this repo MUST follow these rules.
+
+## Branch Strategy
+- NEVER commit to `main` directly — it is protected
+- Create branches with these prefixes ONLY:
+  - `feature/` for new features
+  - `fix/` for bug fixes
+  - `chore/` for maintenance/tooling
+  - `refactor/` for refactoring
+  - `docs/` for documentation
+- NEVER use auto-generated names like `copilot/worktree-`
+- Branch names: lowercase kebab-case, max 5 words
+
+## Before Every Commit
+Run locally and confirm SUCCESS:
+```bash
+npm run build
+npm run lint
+```
+If either fails, FIX before committing. Do not commit broken code.
+
+## TypeScript Rules
+- Avoid `any` — use `unknown`, generics, or specific types
+- If `any` is truly necessary, add `// eslint-disable-next-line @typescript-eslint/no-explicit-any` with a comment explaining why
+- All exported functions need explicit return types where reasonable
+
+## Pull Request Requirements
+- One logical change per PR
+- PR title follows Conventional Commits: `<type>(<scope>): <description>`
+  - Examples: `feat(auth): add magic link login`, `fix(dashboard): resolve loading state`
+- Wait for Vercel preview AND GitHub Actions CI to succeed before requesting merge
+- Never bypass branch protection
+
+## Forbidden Actions
+- Direct pushes to `main`
+- Force pushes to shared branches
+- Committing `.env`, secrets, API keys, or credentials
+- Auto-generated branch names (copilot/worktree-*, etc.)
+- Disabling tests, type checks, or linters to "make it pass"
+- Modifying files outside the scope of the current task

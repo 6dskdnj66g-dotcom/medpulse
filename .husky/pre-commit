@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+echo "🔍 Running pre-commit build check..."
+npm run build || { echo "❌ Build failed. Fix errors before committing."; exit 1; }
+echo "✅ Pre-commit checks passed"
