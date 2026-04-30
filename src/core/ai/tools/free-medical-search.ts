@@ -3,9 +3,18 @@ import { z } from "zod";
 import { search } from "duck-duck-scrape";
 import { createGroq } from "@ai-sdk/groq";
 
-// Simple in-memory global cache to save tokens and speed up identical searches
 const searchCache = new Map<string, { data: string; timestamp: number }>();
-const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
+const SEARCH_TIMEOUT_MS = 8_000;
+
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms)
+    ),
+  ]);
+}
 
 /**
  * Detects if a string contains Arabic characters
@@ -70,12 +79,18 @@ export const freeMedicalSearchTool = tool({
       }
 
       console.log(`[RAG Cache Miss] Scraping for Query: ${experimentalQuery}`);
-      // Use site restrictions for high authority, but also allow general search if needed
-      const searchResults = await search(`${experimentalQuery} site:nih.gov OR site:nice.org.uk OR site:uptodate.com`);
+      const searchResults = await withTimeout(
+        search(`${experimentalQuery} site:nih.gov OR site:nice.org.uk OR site:uptodate.com`),
+        SEARCH_TIMEOUT_MS,
+        'primary search'
+      );
 
       if (!searchResults.results || searchResults.results.length === 0) {
-        // Fallback search without site restrictions if specific sites yield nothing
-        const generalResults = await search(experimentalQuery);
+        const generalResults = await withTimeout(
+          search(experimentalQuery),
+          SEARCH_TIMEOUT_MS,
+          'fallback search'
+        );
         if (!generalResults.results || generalResults.results.length === 0) {
           return "No trusted medical results found for this query.";
         }
