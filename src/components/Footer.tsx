@@ -88,7 +88,7 @@ export function Footer() {
             © 2026 MedPulse AI · {isAr ? "جميع الحقوق محفوظة" : "All rights reserved"}
             {" · "}
             <span className="text-[var(--text-secondary)] font-semibold">
-              {isAr ? "بناء: Hassanin Salah" : "Built by Hassanin Salah"}
+              {isAr ? "بناء: Hasanain Salah" : "Built by Hasanain Salah"}
             </span>
           </p>
           <p className="text-[10px] text-[var(--text-tertiary)] font-medium text-center">
