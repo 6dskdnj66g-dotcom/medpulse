@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     default: 'MedPulse AI — Clinical Intelligence Platform',
     template: '%s | MedPulse AI',
   },
-  description: 'Free Arabic-first medical education platform. USMLE prep, OSCE simulator, ECG analysis, clinical calculators, drug checker, AI professors. Built by Hassanin Salah.',
+  description: 'Free Arabic-first medical education platform. USMLE prep, OSCE simulator, ECG analysis, clinical calculators, drug checker, AI professors. Built by Hasanain Salah.',
   keywords: ['medical AI', 'clinical knowledge', 'USMLE', 'drug interactions', 'ECG', 'clinical calculators', 'healthcare', 'مستشفى', 'طب', 'ذكاء اصطناعي طبي', 'OSCE', 'MDT'],
-  authors: [{ name: 'Hassanin Salah' }],
-  creator: 'Hassanin Salah',
+  authors: [{ name: 'Hasanain Salah' }],
+  creator: 'Hasanain Salah',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'MedPulse AI — Clinical Intelligence Platform',
-    description: 'Free Arabic medical education — USMLE, MDT, OSCE, ECG, Drug Checker. Built by Hassanin Salah.',
+    description: 'Free Arabic medical education — USMLE, MDT, OSCE, ECG, Drug Checker. Built by Hasanain Salah.',
     images: ['/og-image.png'],
   },
   robots: {
