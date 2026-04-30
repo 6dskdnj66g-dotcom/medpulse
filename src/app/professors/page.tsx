@@ -207,6 +207,9 @@ function ChatModal({
     };
     setMessages((prev) => [...prev, assistantMsg]);
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 45_000);
+
     try {
       const professorId = Object.keys({cardiology:'',internal:'',neurology:'',emergency:'',pharmacology:'',pediatrics:''})
         .find(k => professor.specialty.toLowerCase().includes(k)) || undefined;
@@ -222,7 +225,13 @@ function ChatModal({
             { role: "user", content: query },
           ],
         }),
+        signal: controller.signal,
       });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error((errData as { error?: string }).error ?? `HTTP ${res.status}`);
+      }
 
       if (!res.body) throw new Error("No stream");
       const reader = res.body.getReader();
@@ -231,28 +240,31 @@ function ChatModal({
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
-        const text = decoder.decode(value, { stream: true });
+        const chunk = decoder.decode(value, { stream: true });
         setMessages((prev) =>
           prev.map((m) =>
             m.id === assistantMsg.id
-              ? { ...m, content: m.content + text }
+              ? { ...m, content: m.content + chunk }
               : m
           )
         );
       }
-    } catch {
+    } catch (err) {
+      const isTimeout = err instanceof Error && err.name === "AbortError";
+      const errorContent = isTimeout
+        ? "⚠️ " + (isAr
+            ? "انتهت مهلة الطلب (45 ثانية). خادم الذكاء الاصطناعي يستغرق وقتاً أطول من المعتاد. يرجى المحاولة مرة أخرى."
+            : "Request timed out (45s). The AI is taking longer than expected. Please try again.")
+        : "⚠️ " + (isAr
+            ? "خط بيانات العيادة غير متاح مؤقتاً. يرجى المحاولة مرة أخرى."
+            : "Clinical data pipeline temporarily unavailable. Please try again.");
       setMessages((prev) =>
         prev.map((m) =>
-          m.id === assistantMsg.id
-            ? {
-                ...m,
-                content:
-                  "⚠️ Clinical data pipeline temporarily unavailable. Please try again or consult your institution's clinical resources.",
-              }
-            : m
+          m.id === assistantMsg.id ? { ...m, content: errorContent } : m
         )
       );
     } finally {
+      clearTimeout(timeoutId);
       setIsLoading(false);
     }
   };

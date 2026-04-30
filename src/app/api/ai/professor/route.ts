@@ -5,6 +5,10 @@ import { z } from "zod";
 import { sanitizeInput } from "@/core/ai/providers/grok";
 
 export const maxDuration = 60;
+export const dynamic = 'force-dynamic';
+
+const log = (stage: string, data?: unknown) =>
+  console.log(`[Professor:${stage}]`, JSON.stringify(data ?? {}));
 
 const PROFESSOR_PERSONAS: Record<string, { nameAr: string; systemPrompt: string }> = {
   cardiology: {
@@ -122,25 +126,26 @@ You are equipped with the 'free_medical_search' tool. You MUST USE IT to answer 
 
     const groqKey = process.env.GROQ_API_KEY;
 
-    if (groqKey) {
-      const groq = createGroq({ apiKey: groqKey });
-      const { freeMedicalSearchTool } = await import("@/core/ai/tools/free-medical-search");
-      
-      const result = await streamText({
-        model: groq("llama-3.3-70b-versatile"),
-        system: systemInstruction,
-        messages,
-        temperature: 0.1, // Decrease temperature for more reliable tool usage and less hallucination
-        tools: {
-          free_medical_search: freeMedicalSearchTool,
-        },
-        // @ts-expect-error - The 'maxSteps' property might not be in the current typescript definitions but is required for multi-step tool calls
-        maxSteps: 3, // Allow the model to call the tool, receive the result, and then generate the final response
-      });
-      return result.toTextStreamResponse();
+    if (!groqKey) {
+      return Response.json({ error: "No GROQ_API_KEY configured for professors RAG" }, { status: 503 });
     }
 
-    return Response.json({ error: "No GROQ_API_KEY configured for professors RAG" }, { status: 503 });
+    log('start', { professorId, lang, messageCount: messages.length });
+    const groq = createGroq({ apiKey: groqKey });
+    const { freeMedicalSearchTool } = await import("@/core/ai/tools/free-medical-search");
+
+    const result = streamText({
+      model: groq("llama-3.3-70b-versatile"),
+      system: systemInstruction,
+      messages,
+      temperature: 0.1,
+      tools: { free_medical_search: freeMedicalSearchTool },
+      // @ts-expect-error - maxSteps not in all streamText overloads but required for multi-step tool calls
+      maxSteps: 3,
+    });
+
+    log('streaming');
+    return result.toTextStreamResponse();
   } catch (err) {
     console.error("Professor API error:", err);
     return Response.json({ error: "AI service error inside RAG Professor node" }, { status: 500 });
