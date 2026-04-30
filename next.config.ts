@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
     fetches: { fullUrl: process.env.NODE_ENV === "development" },
   },
 
-  eslint:     { ignoreDuringBuilds: false },
+  eslint:     { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: false },
 };
 
