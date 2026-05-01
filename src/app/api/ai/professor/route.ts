@@ -10,6 +10,9 @@ export const dynamic = 'force-dynamic';
 const log = (stage: string, data?: unknown) =>
   console.log(`[Professor:${stage}]`, JSON.stringify(data ?? {}));
 
+// Only env vars actually consumed by this route
+const REQUIRED_ENV = ['GROQ_API_KEY'] as const;
+
 const PROFESSOR_PERSONAS: Record<string, { nameAr: string; systemPrompt: string }> = {
   cardiology: {
     nameAr: "د. أحمد الكردي",
@@ -90,6 +93,14 @@ const requestSchema = z.object({
 });
 
 export async function POST(req: Request) {
+  const missing = REQUIRED_ENV.filter((k) => !process.env[k]);
+  if (missing.length) {
+    return Response.json(
+      { error: `Server misconfigured. Missing env vars: ${missing.join(', ')}` },
+      { status: 500 }
+    );
+  }
+
   try {
     const raw = await req.json();
     const parsed = requestSchema.safeParse(raw);
@@ -140,8 +151,11 @@ You are equipped with the 'free_medical_search' tool. You MUST USE IT to answer 
       messages,
       temperature: 0.1,
       tools: { free_medical_search: freeMedicalSearchTool },
-      // @ts-expect-error - maxSteps not in all streamText overloads but required for multi-step tool calls
-      maxSteps: 3,
+      // maxSteps:1 keeps the pipeline within Vercel Hobby's 10s budget.
+      // Increase to 2 once upgraded to Vercel Pro (60s limit).
+      // @ts-expect-error - maxSteps not in all streamText overloads
+      maxSteps: 1,
+      abortSignal: AbortSignal.timeout(25_000),
     });
 
     log('streaming');
