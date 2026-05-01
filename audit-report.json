@@ -1,0 +1,370 @@
+{
+  "timestamp": "2026-05-01T16:46:19.840Z",
+  "base": "https://medpulse-ai-five.vercel.app",
+  "totalAgents": 18,
+  "totalTests": 28,
+  "summary": {
+    "✅ Working": 20,
+    "⏱️ Slow": 0,
+    "❌ Timeout": 0,
+    "🔴 HTTP": 3,
+    "⚠️ Empty": 5,
+    "❌ Error": 0
+  },
+  "results": [
+    {
+      "agent": "Professor AI (llama-3.3-70b + free_medical_search tool)",
+      "endpoint": "/api/ai/professor",
+      "results": [
+        {
+          "question": "What is the first-line treatment for community-acquired pneumonia?",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 9468,
+          "responsePreview": "",
+          "responseLength": 0
+        },
+        {
+          "question": "Briefly explain the pathophysiology of type 2 diabetes.",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 734,
+          "responsePreview": "",
+          "responseLength": 0
+        }
+      ]
+    },
+    {
+      "agent": "DDx Engine (Groq direct API, SSE stream)",
+      "endpoint": "/api/ddx",
+      "results": [
+        {
+          "question": "Patient: 35-year-old male, sudden onset pleuritic chest pain, shortness of breat",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 1056,
+          "responsePreview": "data: {\"id\":\"chatcmpl-7e3a1856-188f-402f-afd3-3b0971dae46e\",\"object\":\"chat.completion.chunk\",\"created\":1777653861,\"model\":\"llama-3.3-70b-versatile\",\"system_fingerprint\":\"fp_dae98b5ecb\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"\"},\"logprobs\":null,\"finish_reason\":null}],\"x_groq\":{\"id\":\"req_01kqj6tjwdfwcstj004c8z787m\",\"seed\":503942380}}\n\ndata: {\"id\":\"chatcmpl-7e3a1856-188f-402f-afd",
+          "responseLength": 5341
+        },
+        {
+          "question": "Patient: 60-year-old female, progressive dysphagia to solids, weight loss, no re",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 977,
+          "responsePreview": "data: {\"id\":\"chatcmpl-98109b0e-6e4e-43ed-83ce-24d406465db1\",\"object\":\"chat.completion.chunk\",\"created\":1777653864,\"model\":\"llama-3.3-70b-versatile\",\"system_fingerprint\":\"fp_0761e44d7b\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"\"},\"logprobs\":null,\"finish_reason\":null}],\"x_groq\":{\"id\":\"req_01kqj6tp0rfwnad5tce33c1m9q\",\"seed\":226412422}}\n\ndata: {\"id\":\"chatcmpl-98109b0e-6e4e-43ed-83c",
+          "responseLength": 5341
+        }
+      ]
+    },
+    {
+      "agent": "Drug Interaction Analyzer (Groq streamText)",
+      "endpoint": "/api/drug-interaction",
+      "results": [
+        {
+          "question": "warfarin + aspirin",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 1420,
+          "responsePreview": "## Interaction Summary\nState the overall interaction severity: MAJOR\n\n## Interaction Details\nThe interaction between warfarin and aspirin is due to the additive effect of both drugs on platelet aggregation and the coagulation pathway. \n- Mechanism of interaction: Aspirin inhibits platelet aggregation by irreversibly inhibiting cyclooxygenase (COX), leading to a decrease in thromboxane A2 productio",
+          "responseLength": 1955
+        },
+        {
+          "question": "metformin + contrast + lisinopril",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 597,
+          "responsePreview": "## Interaction Summary\nThe overall interaction severity is MODERATE.\n\n## Interaction Details\n1. **Metformin and Contrast Dye**: The mechanism of interaction involves the risk of lactic acidosis and nephrotoxicity when metformin is used with iodine-based contrast agents. Clinical consequences may include increased serum creatinine levels, acute kidney injury, and lactic acidosis. Severity rating: M",
+          "responseLength": 1854
+        }
+      ]
+    },
+    {
+      "agent": "ECG Analysis Engine (Groq streamText)",
+      "endpoint": "/api/ecg-analysis",
+      "results": [
+        {
+          "question": "HR 145bpm, irregularly irregular, no distinct P waves, narrow QRS, no ST changes",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 892,
+          "responsePreview": "## ECG Interpretation Report\n\n### 1. Technical Quality\nThe ECG tracing is of sufficient quality to allow for interpretation. \nRate: 145bpm | Rhythm: Irregularly irregular | Axis: Not specified, assuming normal for the purpose of this interpretation.\n\n### 2. Rate\nThe heart rate is 145bpm, which is elevated (tachycardia).\n\n### 3. Rhythm\nP waves are not distinct, suggesting an irregular rhythm. The r",
+          "responseLength": 2658
+        },
+        {
+          "question": "HR 32bpm, wide QRS 160ms, LBBB morphology, occasional P waves with no fixed PR i",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 790,
+          "responsePreview": "## ECG Interpretation Report\n\n### 1. Technical Quality\nThe ECG tracing is technically adequate for interpretation, with clear P, QRS, and T waveforms where visible. \nRate: 32 bpm | Rhythm: Irregular | Axis: Not specified due to LBBB\n\n### 2. Rate\nThe heart rate is 32 beats per minute, which is considered bradycardic.\n\n### 3. Rhythm\nP waves are occasionally present but do not have a fixed relationsh",
+          "responseLength": 2400
+        }
+      ]
+    },
+    {
+      "agent": "Clinical Notes Generator (Groq streamText)",
+      "endpoint": "/api/generate-notes",
+      "results": [
+        {
+          "question": "45 year old male, BP 160/100, headache, blurred vision, no known hypertension, o",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 636,
+          "responsePreview": "# SOAP NOTE — [Date: April 2026]\n\n## S — SUBJECTIVE\nChief Complaint (CC): The patient presents with a complaint of headache and blurred vision.\nHistory of Present Illness (HPI): The patient reports that the headache started 2 days ago and has been constant since then. He describes the headache as a dull ache, primarily located in the occipital region, with no radiation to other areas. The patient ",
+          "responseLength": 4084
+        },
+        {
+          "question": "28yo female, 32 weeks pregnant, blood pressure 155/95, proteinuria +2, headache,",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 755,
+          "responsePreview": "# SOAP NOTE — April 10, 2026\n\n## S — SUBJECTIVE\nChief Complaint (CC): The patient presents with a headache and edema in both legs.\nHistory of Present Illness (HPI): The patient is a 28-year-old female at 32 weeks gestation, who reports experiencing a gradual onset of headache over the past 48 hours, describing it as a dull ache, 6/10 in intensity, and worsening over time. She also complains of swe",
+          "responseLength": 3694
+        }
+      ]
+    },
+    {
+      "agent": "Lab Interpreter (Groq streamText)",
+      "endpoint": "/api/lab-interpreter",
+      "results": [
+        {
+          "question": "Na 128, K 6.8, Creatinine 4.2, BUN 80, Hb 9.2, WBC 12.4, Plt 180",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 995,
+          "responsePreview": "## 🔴 Critical / Panic Values\n**Hyperkalemia (K > 6.5)**: The patient's potassium level is **6.8**, which is critically elevated and requires immediate attention to prevent cardiac arrhythmias.\n\n## 📊 Abnormal Findings Summary\n| Test | Result | Status | Clinical Significance |\n|------|--------|--------|----------------------|\n| Na   | 128    | ⬇️     | Mild hyponatremia, may indicate fluid overloa",
+          "responseLength": 3834
+        },
+        {
+          "question": "ALT 520, AST 480, ALP 340, Total Bili 5.6, PT 18s, INR 1.8, Albumin 2.8",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 596,
+          "responsePreview": "## 🔴 Critical / Panic Values\n**ALT > 500, INR > 1.5**: These values require immediate attention due to the risk of severe liver dysfunction and potential coagulopathy.\n\n## 📊 Abnormal Findings Summary\n| Test | Result | Status | Clinical Significance |\n|------|--------|--------|----------------------|\n| ALT | 520 | ⬆️ | Indicates significant hepatocellular injury |\n| AST | 480 | ⬆️ | Suggests live",
+          "responseLength": 3811
+        }
+      ]
+    },
+    {
+      "agent": "MDT Debate (Groq x3 NDJSON stream)",
+      "endpoint": "/api/mdt-debate",
+      "results": [
+        {
+          "question": "What is the optimal anticoagulation strategy for a patient with AF and recent GI",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 1343,
+          "responsePreview": "{\"agent\":\"A\",\"status\":\"researching\",\"message\":\"Agent A: Clinical Researcher is retrieving evidence-based data...\"}\n{\"agent\":\"A\",\"status\":\"typing\",\"chunk\":\"For\"}\n{\"agent\":\"A\",\"status\":\"typing\",\"chunk\":\" a\"}\n{\"agent\":\"A\",\"status\":\"typing\",\"chunk\":\" patient\"}\n{\"agent\":\"A\",\"status\":\"typing\",\"chunk\":\" with\"}\n{\"agent\":\"A\",\"status\":\"typing\",\"chunk\":\" atr\"}\n{\"agent\":\"A\",\"status\":\"typing\",\"chunk\":\"ial\"}\n{\"",
+          "responseLength": 5354
+        }
+      ]
+    },
+    {
+      "agent": "Medical Query RAG (Groq streamText)",
+      "endpoint": "/api/medical-query",
+      "results": [
+        {
+          "question": "What are the diagnostic criteria for sepsis-3?",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 1017,
+          "responsePreview": "⚡ \"Executive Summary (Triage / Urgent Action)\"\nSepsis-3 is defined as a life-threatening organ dysfunction caused by a dysregulated host response to infection [Evidence Level 1A - JAMA 2016]. The diagnostic criteria for sepsis-3 include:\n\n🔬 \"Pathophysiology & Clinical Analysis\"\nThe Sepsis-3 definition emphasizes the importance of organ dysfunction in the diagnosis of sepsis. The Sequential Organ ",
+          "responseLength": 2326
+        },
+        {
+          "question": "First-line treatment for acute decompensated heart failure?",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 783,
+          "responsePreview": "⚡ \"Executive Summary (Triage / Urgent Action)\"\nIn acute decompensated heart failure (ADHF), the first-line treatment focuses on stabilizing the patient, improving symptoms, and preventing further decompensation. Initial management includes supplemental oxygen, vasodilators, and diuretics [Evidence Level 1A - ACC/AHA 2022].\n\n🔬 \"Pathophysiology & Clinical Analysis\"\nADHF is characterized by the inab",
+          "responseLength": 2227
+        }
+      ]
+    },
+    {
+      "agent": "OSCE Chat — patient mode (Groq generateText)",
+      "endpoint": "/api/osce/chat",
+      "results": [
+        {
+          "question": "Hello, what brings you in today?",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 2445,
+          "responsePreview": "{\"content\":\"I've been having this really bad chest pain, it's like a crushing feeling right in the middle of my chest. It started about 2 hours ago, I was just sitting at home watching TV, and it's been getting worse. It's the worst pain I've ever had, and I'm getting really scared.\",\"role\":\"patient\"}",
+          "responseLength": 302
+        },
+        {
+          "question": "How long have you had this pain?",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 921,
+          "responsePreview": "{\"content\":\"It started about 2 hours ago, while I was watching TV. It's been getting worse since then.\",\"role\":\"patient\"}",
+          "responseLength": 121
+        }
+      ]
+    },
+    {
+      "agent": "OSCE Evaluate (Groq streamText)",
+      "endpoint": "/api/osce/evaluate",
+      "results": [
+        {
+          "question": "Student: Hello, my name is Dr Smith. Can you tell me what brings you in today?\nP",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 929,
+          "responsePreview": "### 📊 الدرجة النهائية\n85/100\n\n### ✅ ما أبدع فيه الطالب\nأبدع الطالب في بداية المحادثة بتقديم نفسه بشكل مهني، وطرح سؤال مفتوح لتحفيز المريض على التحدث عن أعراضه. كما سأل عن وصف الألم، وهو سؤال مهم لتحديد نوع الألم ومدى خطورته. بالإضافة إلى ذلك، سأل عن وجود أعراض سابقة مماثلة، وهو سؤال هام لتحديد ما إذا كان الألم جديدًا أو متكررًا. كما سأل عن وجود صعوبة في التنفس، وهو سؤال مهم لتحديد ما إذا كان المر",
+          "responseLength": 1481
+        }
+      ]
+    },
+    {
+      "agent": "OSCE Turn Phase 7 (xAI Grok → Groq fallback)",
+      "endpoint": "/api/osce/turn",
+      "results": [
+        {
+          "question": "Hello, my name is Dr Ahmed. What brings you in today?",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 1310,
+          "responsePreview": "{\"patientResponse\":\"I've got really bad chest pain, doctor. It's been going on for about 2 hours now and it's really scaring me. It's like a heavy weight is crushing my chest.\",\"timestamp\":1777653928430}",
+          "responseLength": 203
+        },
+        {
+          "question": "When did the pain start and does it radiate anywhere?",
+          "status": "http_error",
+          "httpStatus": 503,
+          "duration": 577,
+          "response": "{\"error\":\"فشل الاتصال — حاول مرة أخرى\"}"
+        }
+      ]
+    },
+    {
+      "agent": "Medical Translator (Groq streamText)",
+      "endpoint": "/api/translate",
+      "results": [
+        {
+          "question": "myocardial infarction",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 925,
+          "responsePreview": "# Translation\n**إنسداد عضلي قلبي**\n\n## Clinical Context\nMyocardial infarction, translated to Arabic as \"إنسداد عضلي قلبي\", refers to the medical condition commonly known as a heart attack. It occurs when the blood flow to the heart is blocked, causing damage to the heart muscle. This condition is often a result of a blockage in one of the coronary arteries, which supply blood to the heart. The ter",
+          "responseLength": 1019
+        },
+        {
+          "question": "متلازمة الأيض",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 578,
+          "responsePreview": "# Translation\n**متلازمة الأيض** translates to **Metabolic Syndrome**\n\n## Clinical Context\nMetabolic Syndrome, also known as متلازمة الأيض in Arabic, is a cluster of conditions that occur together, increasing the risk of developing type 2 diabetes and cardiovascular disease. The common abbreviations for Metabolic Syndrome include MetS, MS, and Syndrome X. It is characterized by a combination of fac",
+          "responseLength": 881
+        }
+      ]
+    },
+    {
+      "agent": "Flashcard Generator (Gemini 2.0 Flash streamText)",
+      "endpoint": "/api/flashcards",
+      "results": [
+        {
+          "question": "Atrial fibrillation is the most common sustained cardiac arrhythmia. It is chara",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 6726,
+          "responsePreview": "",
+          "responseLength": 0
+        }
+      ]
+    },
+    {
+      "agent": "Medical Summarizer (Gemini 2.0 Flash generateText → JSON)",
+      "endpoint": "/api/medical-summarizer",
+      "results": [
+        {
+          "question": "Patient presents with 3-day history of productive cough, fever 38.5°C, right low",
+          "status": "http_error",
+          "httpStatus": 500,
+          "duration": 6766,
+          "response": "{\"error\":\"Failed to process clinical text. Please try again.\"}"
+        }
+      ]
+    },
+    {
+      "agent": "OSCE Simulator (Gemini 2.0 Flash streamText)",
+      "endpoint": "/api/simulator",
+      "results": [
+        {
+          "question": "Start a new clinical OSCE scenario for me.",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 7317,
+          "responsePreview": "",
+          "responseLength": 0
+        }
+      ]
+    },
+    {
+      "agent": "Vision / Radiology (Gemini 2.0 Flash streamText)",
+      "endpoint": "/api/vision",
+      "results": [
+        {
+          "question": "test-image-connectivity",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 7096,
+          "responsePreview": "",
+          "responseLength": 0
+        }
+      ]
+    },
+    {
+      "agent": "Library Chapter Generator (Gemini 2.0 Flash JSON)",
+      "endpoint": "/api/library/chapter",
+      "results": [
+        {
+          "question": "generate-chapter-connectivity-test",
+          "status": "http_error",
+          "httpStatus": 500,
+          "duration": 1049,
+          "response": "{\"error\":\"Failed to generate chapter content\"}"
+        }
+      ]
+    },
+    {
+      "agent": "USMLE Explain (xAI Grok → Groq fallback, JSON)",
+      "endpoint": "/api/usmle/explain",
+      "results": [
+        {
+          "question": "inferior-stemi-pci-question",
+          "status": "success",
+          "httpStatus": 200,
+          "duration": 2485,
+          "responsePreview": "{\"explanation\":\"**WHY CORRECT:** \\nThe patient presents with symptoms and ECG findings consistent with an acute ST-elevation myocardial infarction (STEMI). The presence of ST elevation in leads II, III, and aVF indicates an inferior wall myocardial infarction. Administering aspirin is crucial as it reduces platelet aggregation, thereby decreasing the size of the infarct. Activating the cath lab fo",
+          "responseLength": 1982
+        }
+      ]
+    }
+  ],
+  "fixes": [
+    {
+      "agent": "Professor AI (llama-3.3-70b + free_medical_search tool)",
+      "endpoint": "/api/ai/professor",
+      "file": "src/app/api/ai/professor/route.ts",
+      "line": 157,
+      "rootCause": "maxSteps:1 caused the pipeline to stop after the tool call (step 1), leaving no step for text reply generation. Resulted in HTTP 200 with empty stream body.",
+      "fix": "Changed maxSteps from 1 to 2 — step1=free_medical_search tool call, step2=text response using search results. Safe because maxDuration=60 is already set (Vercel Pro).",
+      "changeType": "single line: maxSteps: 1 → maxSteps: 2"
+    },
+    {
+      "agent": "All Gemini agents (Flashcard, Medical Summarizer, OSCE Simulator, Vision/Radiology, Library Chapter)",
+      "endpoints": ["/api/flashcards", "/api/medical-summarizer", "/api/simulator", "/api/vision", "/api/library/chapter"],
+      "rootCause": "GOOGLE_GENERATIVE_AI_API_KEY is set on Vercel (Vision's explicit key check does not trigger 503) but is invalid or expired. streamText() with invalid key silently returns HTTP 200 with empty body; generateText() throws → HTTP 500.",
+      "fix": "NOT a code fix. User must regenerate GOOGLE_GENERATIVE_AI_API_KEY in Google AI Studio and update it in Vercel dashboard under Environment Variables.",
+      "changeType": "environment variable update required on Vercel"
+    },
+    {
+      "agent": "OSCE Turn Phase 7 (xAI Grok → Groq fallback)",
+      "endpoint": "/api/osce/turn",
+      "rootCause": "callGrok() in src/core/ai/providers/grok.ts only falls back to Groq when XAI_API_KEY is missing. If xAI returns a non-200 error (transient failure), it returns the error without trying Groq. The 503 on the 2nd test call is intermittent.",
+      "fix": "Intermittent infrastructure issue — not a code bug. No code change made. Monitor for recurrence.",
+      "changeType": "none"
+    }
+  ]
+}

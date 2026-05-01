@@ -151,10 +151,10 @@ You are equipped with the 'free_medical_search' tool. You MUST USE IT to answer 
       messages,
       temperature: 0.1,
       tools: { free_medical_search: freeMedicalSearchTool },
-      // maxSteps:1 keeps the pipeline within Vercel Hobby's 10s budget.
-      // Increase to 2 once upgraded to Vercel Pro (60s limit).
+      // FIX(audit): maxSteps was 1 — tool call used the only step, leaving no step for text reply.
+      // maxDuration=60 (Pro) supports 2 steps: step1=tool call, step2=response.
       // @ts-expect-error - maxSteps not in all streamText overloads
-      maxSteps: 1,
+      maxSteps: 2,
       abortSignal: AbortSignal.timeout(25_000),
     });
 
