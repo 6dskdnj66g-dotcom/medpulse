@@ -40,6 +40,7 @@ async function optimizeQuery(query: string): Promise<string> {
       model: groq("llama-3-8b-8192"),
       system: "You are a medical search query optimizer. Translate the user's input to technical clinical English. Add keywords like 'clinical guidelines', 'dosage', or 'management'. ONLY output the final search query string. No chatter. No quotes.",
       prompt: `Translate and expand this medical query for a web search: "${query}"`,
+      abortSignal: AbortSignal.timeout(6_000),
     });
     
     const optimized = text.trim();

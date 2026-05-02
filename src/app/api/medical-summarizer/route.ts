@@ -1,7 +1,8 @@
 import { generateText } from 'ai';
-import { google } from '@ai-sdk/google';
+import { createGroq } from '@ai-sdk/groq';
 
 export const maxDuration = 60;
+export const dynamic = 'force-dynamic';
 
 const SUMMARIZER_PROMPT = `You are MedPulse Clinical Summarizer — an elite, clinical-grade medical AI built strictly for evidence-based text analysis.
 
@@ -9,7 +10,7 @@ MANDATORY MEDICAL SOURCES TO PRIORITIZE:
 UpToDate, The Cochrane Library, PubMed/MEDLINE, WHO (World Health Organization) guidelines, CDC, NICE guidelines, BMJ, The Lancet, NEJM (New England Journal of Medicine), JAMA, and foundational textbooks (e.g., Harrison's, Davidson's, Bailey & Love, Nelson, Macleod's).
 
 CRITICAL DIRECTIVES:
-1. Analyze the provided clinical text (patient notes, lecture material, research, lab results) and any attached medical images thoroughly against the prioritized sources.
+1. Analyze the provided clinical text (patient notes, lecture material, research, lab results) thoroughly against the prioritized sources.
 2. Structure your response STRICTLY in the following JSON format — no markdown, no code blocks, only valid raw JSON:
 {
   "chiefComplaint": "...",
@@ -31,41 +32,37 @@ CRITICAL DIRECTIVES:
 7. IMPORTANT: Return ONLY the raw JSON object. No markdown, no backticks, no "json" prefix.`;
 
 export async function POST(req: Request) {
-  try {
-    const { text, image, lang = 'ar' } = await req.json();
+  if (!process.env.GROQ_API_KEY) {
+    return new Response(
+      JSON.stringify({ error: 'Server misconfigured: missing GROQ_API_KEY.' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
+  }
 
-    if ((!text || text.trim().length < 2) && !image) {
+  try {
+    const { text, lang = 'ar' } = await req.json();
+
+    if (!text || text.trim().length < 2) {
       return new Response(
-        JSON.stringify({ error: 'Insufficient data provided. Please enter clinical text or upload an image.' }),
+        JSON.stringify({ error: 'Insufficient data provided. Please enter clinical text.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const languageInstruction = lang === 'en' 
-      ? "\n\nCRITICAL DIRECTIVE: Translate the summary into ENGLISH. DO NOT output Arabic."
-      : "\n\nCRITICAL DIRECTIVE: Translate the summary into ARABIC. Keep clinical terms in English where appropriate.";
+    const languageInstruction = lang === 'en'
+      ? '\n\nCRITICAL DIRECTIVE: Translate the summary into ENGLISH. DO NOT output Arabic.'
+      : '\n\nCRITICAL DIRECTIVE: Translate the summary into ARABIC. Keep clinical terms in English where appropriate.';
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const messages: any = [
-      {
-        role: 'user' as const,
-        content: image 
-          ? [
-              { type: 'text' as const, text: `Analyze and summarize the following clinical text alongside the provided medical image/lab report:\n\n${text || "No text provided, rely on the image."}` },
-              { type: 'image' as const, image: image.split(',')[1] || image }
-            ]
-          : `Analyze and summarize the following clinical text:\n\n${text}`
-      }
-    ];
+    const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
 
     const { text: responseText } = await generateText({
-      model: google('gemini-2.0-flash'),
+      model: groq('llama-3.3-70b-versatile'),
       system: SUMMARIZER_PROMPT + languageInstruction,
-      messages,
+      prompt: `Analyze and summarize the following clinical text:\n\n${text.trim().slice(0, 8000)}`,
       temperature: 0.1,
+      abortSignal: AbortSignal.timeout(50_000),
     });
 
-    // Extract JSON from response
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       return new Response(
@@ -88,4 +85,3 @@ export async function POST(req: Request) {
     );
   }
 }
-
