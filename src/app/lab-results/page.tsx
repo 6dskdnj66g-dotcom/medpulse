@@ -427,7 +427,7 @@ export default function LabResultsPage() {
                         li: ({ node: _n, ...props }) => <li className="text-sm leading-relaxed" {...props} />,
                         p:  ({ node: _n, ...props }) => <p className="text-sm leading-relaxed my-1" {...props} />,
                         strong: ({ node: _n, ...props }) => <strong className="font-bold text-[var(--text-primary)]" {...props} />,
-                        table: ({ node: _n, ...props }) => <table className="w-full text-sm border-collapse my-3" {...props} />,
+                        table: ({ node: _n, ...props }) => <div className="overflow-x-auto my-3"><table className="w-full text-sm border-collapse" {...props} /></div>,
                         th: ({ node: _n, ...props }) => <th className="text-left font-semibold border border-[var(--border-primary)] px-2 py-1 bg-[var(--bg-primary)]" {...props} />,
                         td: ({ node: _n, ...props }) => <td className="border border-[var(--border-primary)] px-2 py-1" {...props} />,
                       }}
