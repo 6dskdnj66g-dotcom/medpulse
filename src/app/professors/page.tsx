@@ -305,17 +305,17 @@ function ChatModal({
                 </div>
               )}
               <div
-                className={`max-w-[85%] md:max-w-[75%] px-5 py-4 text-[15px] leading-relaxed shadow-sm transition-all duration-300 hover:shadow-md ${
+                className={`max-w-[85%] md:max-w-[75%] min-w-0 break-words px-5 py-4 text-[15px] leading-relaxed shadow-sm transition-all duration-300 hover:shadow-md ${
                   msg.role === "user"
                     ? `bg-gradient-to-br from-[var(--color-medical-indigo)] to-[var(--color-clinical-violet)] text-white ${dir === "rtl" ? "rounded-[20px] rounded-bl-[4px]" : "rounded-[20px] rounded-br-[4px]"} `
                     : `glass text-[var(--text-primary)] border border-[var(--border-subtle)] ${dir === "rtl" ? "rounded-[20px] rounded-br-[4px]" : "rounded-[20px] rounded-bl-[4px]"}`
                 }`}
               >
                 {msg.content ? (
-                  <ReactMarkdown 
+                  <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      a: ({ node: _node, ...props }) => <a className="text-[var(--color-vital-cyan)] font-bold hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                      a: ({ node: _node, ...props }) => <a className="text-[var(--color-vital-cyan)] font-bold hover:underline break-all" target="_blank" rel="noopener noreferrer" {...props} />,
                       p: ({ node: _node, ...props }) => <p className="mb-3 last:mb-0" {...props} />,
                       ul: ({ node: _node, ...props }) => <ul className="list-disc pl-6 mb-3 space-y-1" {...props} />,
                       ol: ({ node: _node, ...props }) => <ol className="list-decimal pl-6 mb-3 space-y-1" {...props} />,
