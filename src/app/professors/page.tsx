@@ -219,6 +219,7 @@ function ChatModal({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           professorId,
+          lang,
           systemPrompt: professor.corpus ? `${professor.nameAr} - ${professor.titleAr}. Sources: ${professor.corpus}. Reply in formal medical Arabic.` : undefined,
           messages: [
             ...messages.map((m) => ({ role: m.role, content: m.content })),
