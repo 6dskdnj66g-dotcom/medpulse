@@ -57,11 +57,10 @@ async function optimizeQuery(query: string): Promise<string> {
  */
 export const freeMedicalSearchTool = tool({
   description: "Search the web EXCLUSIVELY across trusted global medical guidelines (NICE, NIH, AHA, UpToDate, CDC). Use this tool whenever you need factual medical information. The tool internally optimizes queries for best results.",
-  parameters: z.object({
+  inputSchema: z.object({
     query: z.string().describe("The medical query (can be in Arabic or English)."),
   }),
-  // @ts-expect-error - Vercel AI SDK types may resolve this to undefined in older versions
-  execute: async ({ query }: { query: string }) => {
+  execute: async ({ query }) => {
     try {
       const now = Date.now();
       

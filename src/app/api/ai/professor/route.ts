@@ -1,8 +1,9 @@
 // src/app/api/ai/professor/route.ts
-import { streamText } from "ai";
+import { streamText, tool, stepCountIs } from "ai";
 import { createGroq } from "@ai-sdk/groq";
 import { z } from "zod";
 import { sanitizeInput } from "@/core/ai/providers/grok";
+import { searchPubMed } from "@/lib/medical-search";
 
 export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
@@ -83,7 +84,7 @@ When a user asks for a drug dosage or clinical pharmacology information, you MUS
 };
 
 const requestSchema = z.object({
-  professorId: z.enum(["cardiology", "internal", "neurology", "emergency", "pharma", "peds"]).optional(),
+  professorId: z.enum(["cardiology", "internal", "neurology", "emergency", "pharmacology", "pediatrics"]).optional(),
   lang:        z.enum(["ar", "en"]).default("ar"),
   systemPrompt: z.string().max(3000).optional(),
   messages:    z.array(z.object({
@@ -143,15 +144,36 @@ You have access to the 'free_medical_search' tool. Use it when you need to verif
     const groq = createGroq({ apiKey: groqKey });
     const { freeMedicalSearchTool } = await import("@/core/ai/tools/free-medical-search");
 
+    const searchMedical = tool({
+      description:
+        "Search PubMed for peer-reviewed medical articles and abstracts. Use this for evidence-based facts, drug data, or guideline citations from primary literature.",
+      inputSchema: z.object({
+        query: z.string().min(2).describe("Clinical search query (English preferred for best PubMed coverage)."),
+      }),
+      execute: async ({ query }) => {
+        try {
+          return await searchPubMed(query);
+        } catch (err) {
+          const msg = err instanceof Error ? err.message : String(err);
+          console.error("[Professor] searchMedical tool failed:", msg);
+          return "PubMed search unavailable at the moment.";
+        }
+      },
+    });
+
     const result = streamText({
       model: groq("llama-3.3-70b-versatile"),
       system: systemInstruction,
       messages,
       temperature: 0.1,
-      tools: { free_medical_search: freeMedicalSearchTool },
-      // maxSteps: step1 = optional tool call, step2 = final text response.
-      // @ts-expect-error - maxSteps not in all streamText overloads
-      maxSteps: 2,
+      tools: {
+        free_medical_search: freeMedicalSearchTool,
+        searchMedical,
+      },
+      // Allow the model to: call a tool -> read result -> optionally call again -> final text.
+      // The previous `maxSteps: 2` was silently ignored under AI SDK v6 (renamed to stopWhen),
+      // which left tool-calling turns hanging without ever producing the final response chunk.
+      stopWhen: stepCountIs(5),
     });
 
     log('streaming');
