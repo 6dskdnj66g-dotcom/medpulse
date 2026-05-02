@@ -3,10 +3,13 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { callGrok } from "@/core/ai/providers/grok";
+import { generateText } from "ai";
+import { createGroq } from "@ai-sdk/groq";
 import { buildPatientSystemPrompt } from "@/lib/osce/patient-engine";
 import { getStation } from "@/lib/osce/station-loader";
 import type { SessionMessage } from "@/lib/osce/types";
+
+const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
 
 const messageSchema = z.object({
   id: z.string(),
@@ -56,27 +59,15 @@ export async function POST(req: NextRequest) {
 
     const systemPrompt = buildPatientSystemPrompt(station.patient, recentHistory);
 
-    const result = await callGrok(
-      [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: sanitized },
-      ],
-      {
-        temperature: 0.5,
-        maxTokens: 250,
-        addDisclaimer: false,
-      }
-    );
-
-    if (result.error) {
-      return NextResponse.json(
-        { error: result.message ?? "AI service unavailable" },
-        { status: 503 }
-      );
-    }
+    const { text } = await generateText({
+      model: groq("llama-3.3-70b-versatile"),
+      system: systemPrompt,
+      prompt: sanitized,
+      temperature: 0.5,
+    });
 
     return NextResponse.json({
-      patientResponse: (result.content ?? "").trim(),
+      patientResponse: text.trim(),
       timestamp: Date.now(),
     });
   } catch (err) {
