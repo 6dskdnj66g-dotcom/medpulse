@@ -702,6 +702,10 @@ function NewFormatActivePage({
     total: 0,
   });
   const bottomRef = useRef<HTMLDivElement>(null);
+  const [isListening, setIsListening] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
     sessionMgr.current = new SessionManager(station);
@@ -710,6 +714,56 @@ function NewFormatActivePage({
   }, [station]);
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        recognitionRef.current = new SpeechRecognition();
+        recognitionRef.current.continuous = false;
+        recognitionRef.current.interimResults = true;
+        recognitionRef.current.lang = "en-US";
+        recognitionRef.current.onresult = (event: any) => {
+          let final = "";
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) final += event.results[i][0].transcript + " ";
+          }
+          if (final) setInput(prev => prev + (prev.endsWith(" ") || prev === "" ? "" : " ") + final.trim());
+        };
+        recognitionRef.current.onerror = () => setIsListening(false);
+        recognitionRef.current.onend = () => setIsListening(false);
+      }
+    }
+    return () => {
+      recognitionRef.current?.stop();
+      if (typeof window !== "undefined") window.speechSynthesis?.cancel();
+    };
+  }, []);
+
+  const speakText = useCallback((text: string) => {
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(text);
+      utt.lang = "en-US";
+      utt.rate = 0.95;
+      utt.onstart = () => setIsSpeaking(true);
+      utt.onend = () => setIsSpeaking(false);
+      utt.onerror = () => setIsSpeaking(false);
+      window.speechSynthesis.speak(utt);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (voiceEnabled && messages.length > 0) {
+      const last = messages[messages.length - 1];
+      if (last.role === "patient") speakText(last.content);
+    }
+  }, [messages, voiceEnabled, speakText]);
+
+  const toggleListen = () => {
+    if (isListening) recognitionRef.current?.stop();
+    else { setInput(""); recognitionRef.current?.start(); setIsListening(true); }
+  };
 
   function updateRubricForMessage(text: string) {
     const lower = text.toLowerCase();
@@ -929,6 +983,15 @@ function NewFormatActivePage({
               </div>
             )}
 
+            {isSpeaking && (
+              <div className="flex justify-center my-4">
+                <div className="flex items-center gap-2 bg-teal-500/10 text-teal-600 px-4 py-2 rounded-full border border-teal-500/20 text-[10px] font-black tracking-widest uppercase">
+                  <Volume2 className="w-3.5 h-3.5 animate-pulse" />
+                  Patient Speaking...
+                </div>
+              </div>
+            )}
+
             {error && (
               <div className="text-xs text-rose-500 font-medium text-center py-2">
                 {error}
@@ -940,14 +1003,34 @@ function NewFormatActivePage({
 
           {/* Input */}
           <div className="flex-shrink-0 border-t border-[var(--border-subtle)] p-3 bg-[var(--bg-0)]/80 backdrop-blur-md">
+            <div className="flex items-center justify-between px-2 mb-2 max-w-3xl mx-auto">
+              <button
+                onClick={() => setVoiceEnabled(!voiceEnabled)}
+                className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--text-tertiary)] hover:text-[var(--text-primary)] uppercase tracking-widest transition-colors"
+              >
+                {voiceEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+                {voiceEnabled ? "Patient Audio On" : "Patient Audio Off"}
+              </button>
+            </div>
             <div className="flex items-end gap-2 max-w-3xl mx-auto">
+              <button
+                type="button"
+                onClick={toggleListen}
+                className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all ${
+                  isListening
+                    ? "bg-rose-500/10 border border-rose-500/30 text-rose-500 animate-pulse"
+                    : "bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--color-medical-indigo)]"
+                }`}
+              >
+                {isListening ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
+              </button>
               <textarea
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 rows={1}
                 disabled={sending}
-                placeholder="Speak to the patient, request investigations... (Enter to send)"
+                placeholder={isListening ? "Listening..." : "Speak to the patient, request investigations... (Enter to send)"}
                 className="flex-1 resize-none bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-[13px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-medical-indigo)]/20 transition-all min-h-[48px] max-h-32 overflow-y-auto"
               />
               <button
