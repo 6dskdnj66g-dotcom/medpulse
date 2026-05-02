@@ -1,9 +1,8 @@
 import { streamText } from 'ai';
 import { createGroq } from '@ai-sdk/groq';
 
-const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
-
 export const maxDuration = 60;
+export const dynamic = 'force-dynamic';
 
 const LAB_INTERPRETER_PROMPT = `You are MedPulse Lab Interpreter — an elite clinical laboratory AI trained on:
 - Harrison's Principles of Internal Medicine (21st Ed)
@@ -72,6 +71,14 @@ export async function POST(req: Request) {
       );
     }
 
+    if (!process.env.GROQ_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: 'Server misconfigured: missing GROQ_API_KEY.' }),
+        { status: 500 }
+      );
+    }
+
+    const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
     const sanitizedLabs = sanitize(labText);
     const sanitizedContext = clinicalContext ? sanitize(clinicalContext) : '';
 
@@ -82,7 +89,7 @@ ${sanitizedContext ? `CLINICAL CONTEXT: ${sanitizedContext}` : 'No additional cl
 
 Please provide a comprehensive clinical interpretation following the required format.`;
 
-    const result = await streamText({
+    const result = streamText({
       model: groq('llama-3.3-70b-versatile'),
       system: LAB_INTERPRETER_PROMPT,
       prompt,

@@ -124,16 +124,14 @@ export async function POST(req: Request) {
       systemInstruction = `${systemInstruction}\n\nCRITICAL DIRECTIVE: The user has selected ARABIC mode. You MUST respond ENTIRELY in Arabic.`;
     }
 
-    // RAG ENFORCEMENT DIRECTIVE FOR GROQ TOOL CALLING
+    // RAG TOOL HINT — optional, non-blocking
     systemInstruction += `
 
-[CRITICAL RAG ENFORCEMENT]
-You are equipped with the 'free_medical_search' tool. You MUST USE IT to answer all clinical queries.
-1. ALWAYS call the tool first to fetch guidelines (e.g. from NIH, NICE, AHA).
-2. If the tool returns results, formulate your answer based ONLY on those results.
-3. If the tool finds no results or fails, you MUST say: "أعتذر، لم أتمكن من إيجاد السند الطبي الموثق في المراجع العالمية المعتمدة حالياً."
-4. Do NOT hallucinate. Do NOT answer from memory.
-5. ALWAYS list the URLs given by the tool at the very end of your response under the heading "المصادر / Sources:".`;
+[RAG TOOL AVAILABLE]
+You have access to the 'free_medical_search' tool. Use it when you need to verify a guideline, drug dosage, or clinical protocol from NIH, NICE, or AHA.
+- If the tool returns results, cite the URLs at the end under "المصادر / Sources:".
+- If the tool fails or returns no results, answer from your medical training and note the limitation.
+- You may answer directly from your training data without calling the tool when you are confident.`;
 
     const groqKey = process.env.GROQ_API_KEY;
 
@@ -151,11 +149,9 @@ You are equipped with the 'free_medical_search' tool. You MUST USE IT to answer 
       messages,
       temperature: 0.1,
       tools: { free_medical_search: freeMedicalSearchTool },
-      // FIX(audit): maxSteps was 1 — tool call used the only step, leaving no step for text reply.
-      // maxDuration=60 (Pro) supports 2 steps: step1=tool call, step2=response.
+      // maxSteps: step1 = optional tool call, step2 = final text response.
       // @ts-expect-error - maxSteps not in all streamText overloads
       maxSteps: 2,
-      abortSignal: AbortSignal.timeout(25_000),
     });
 
     log('streaming');
