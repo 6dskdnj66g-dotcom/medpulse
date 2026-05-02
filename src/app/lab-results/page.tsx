@@ -14,6 +14,7 @@ import {
   ChevronUp,
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const LAB_PANELS = {
   cbc: {
@@ -416,9 +417,23 @@ export default function LabResultsPage() {
               ) : (
                 <div className="space-y-4">
                   {result && (
-                    <div className="prose prose-base dark:prose-invert max-w-none text-[var(--text-primary)] prose-headings:text-[var(--text-primary)] prose-a:text-emerald-600 prose-strong:text-[var(--text-primary)]">
-                      <ReactMarkdown>{result}</ReactMarkdown>
-                    </div>
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        h2: ({ node: _n, ...props }) => <h2 className="text-lg font-bold mt-4 mb-1 text-[var(--text-primary)]" {...props} />,
+                        h3: ({ node: _n, ...props }) => <h3 className="text-base font-semibold mt-3 mb-1 text-[var(--text-primary)]" {...props} />,
+                        ul: ({ node: _n, ...props }) => <ul className="list-disc pl-5 space-y-1 my-2" {...props} />,
+                        ol: ({ node: _n, ...props }) => <ol className="list-decimal pl-5 space-y-1 my-2" {...props} />,
+                        li: ({ node: _n, ...props }) => <li className="text-sm leading-relaxed" {...props} />,
+                        p:  ({ node: _n, ...props }) => <p className="text-sm leading-relaxed my-1" {...props} />,
+                        strong: ({ node: _n, ...props }) => <strong className="font-bold text-[var(--text-primary)]" {...props} />,
+                        table: ({ node: _n, ...props }) => <table className="w-full text-sm border-collapse my-3" {...props} />,
+                        th: ({ node: _n, ...props }) => <th className="text-left font-semibold border border-[var(--border-primary)] px-2 py-1 bg-[var(--bg-primary)]" {...props} />,
+                        td: ({ node: _n, ...props }) => <td className="border border-[var(--border-primary)] px-2 py-1" {...props} />,
+                      }}
+                    >
+                      {result}
+                    </ReactMarkdown>
                   )}
                   {isLoading && (
                     <div className="flex items-center gap-3 text-emerald-600 font-medium p-4 bg-emerald-500/5 rounded-xl border border-emerald-500/10 mt-2">
