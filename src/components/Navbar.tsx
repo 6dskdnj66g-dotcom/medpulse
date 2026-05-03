@@ -110,7 +110,6 @@ export function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
-          <NotificationToggle />
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(true)}
@@ -242,6 +241,7 @@ export function Navbar() {
                   {profile?.role || "Student"}
                 </p>
               </div>
+              <NotificationToggle />
             </div>
             <button
               onClick={() => signOut()}

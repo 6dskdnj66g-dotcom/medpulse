@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Bell, BellOff, Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   isPushSupported,
   subscribeToPush,
@@ -11,16 +12,16 @@ import { useAuth } from "@/core/auth/useAuth";
 type State = "default" | "granted" | "denied" | "loading" | "unsupported";
 
 const buttonBase =
-  "p-2 rounded-full transition-colors flex items-center justify-center";
+  "relative p-2 rounded-full flex items-center justify-center backdrop-blur-md transition-colors";
 
 const buttonIdle =
-  "bg-[var(--bg-2)] hover:bg-[var(--bg-3)] border border-[var(--border-subtle)] text-[var(--text-secondary)]";
+  "bg-[var(--glass-bg)] hover:bg-[var(--bg-3)] border border-[var(--glass-border)] text-[var(--text-secondary)]";
 
 const buttonGranted =
-  "bg-[var(--bg-2)] hover:bg-[var(--bg-3)] border border-[var(--border-subtle)] text-emerald-600 dark:text-emerald-400";
+  "bg-[var(--glass-bg)] hover:bg-[var(--bg-3)] border border-[var(--glass-border)] text-emerald-600 dark:text-emerald-400";
 
 const buttonDisabled =
-  "bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-tertiary)] cursor-not-allowed";
+  "bg-[var(--glass-bg)] border border-[var(--glass-border)] text-[var(--text-tertiary)] cursor-not-allowed";
 
 export default function NotificationToggle() {
   const { user, loading: authLoading } = useAuth();
@@ -113,14 +114,37 @@ export default function NotificationToggle() {
   }
 
   const enabled = state === "granted";
+  // "default" = supported, permission not yet requested -> nudge with pulsing dot.
+  const showPulse = !enabled;
+
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.07 }}
+      whileTap={{ scale: 0.94 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
       onClick={enabled ? disable : enable}
       className={`${buttonBase} ${enabled ? buttonGranted : buttonIdle}`}
       title={enabled ? "Disable notifications" : "Enable notifications"}
       aria-label={enabled ? "Disable notifications" : "Enable notifications"}
     >
       {enabled ? <Bell className="w-5 h-5" /> : <BellOff className="w-5 h-5" />}
-    </button>
+
+      <AnimatePresence>
+        {showPulse && (
+          <motion.span
+            key="pulse"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            aria-hidden
+            className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5"
+          >
+            <span className="absolute inset-0 rounded-full bg-rose-500/70 animate-ping" />
+            <span className="absolute inset-0.5 rounded-full bg-rose-500" />
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
   );
 }
