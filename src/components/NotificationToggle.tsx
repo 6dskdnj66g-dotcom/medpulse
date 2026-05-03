@@ -10,6 +10,18 @@ import { useAuth } from "@/core/auth/useAuth";
 
 type State = "default" | "granted" | "denied" | "loading" | "unsupported";
 
+const buttonBase =
+  "p-2 rounded-full transition-colors flex items-center justify-center";
+
+const buttonIdle =
+  "bg-[var(--bg-2)] hover:bg-[var(--bg-3)] border border-[var(--border-subtle)] text-[var(--text-secondary)]";
+
+const buttonGranted =
+  "bg-[var(--bg-2)] hover:bg-[var(--bg-3)] border border-[var(--border-subtle)] text-emerald-600 dark:text-emerald-400";
+
+const buttonDisabled =
+  "bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-tertiary)] cursor-not-allowed";
+
 export default function NotificationToggle() {
   const { user, loading: authLoading } = useAuth();
   const [state, setState] = useState<State>("loading");
@@ -78,7 +90,7 @@ export default function NotificationToggle() {
     return (
       <button
         disabled
-        className="p-2 rounded-full bg-white/5 text-slate-400"
+        className={`${buttonBase} ${buttonDisabled}`}
         aria-busy="true"
         aria-label="Loading notifications status"
       >
@@ -91,7 +103,7 @@ export default function NotificationToggle() {
     return (
       <button
         disabled
-        className="p-2 rounded-full bg-white/5 text-slate-500 cursor-not-allowed"
+        className={`${buttonBase} ${buttonDisabled}`}
         title="Notifications blocked in browser settings"
         aria-label="Notifications blocked"
       >
@@ -104,15 +116,11 @@ export default function NotificationToggle() {
   return (
     <button
       onClick={enabled ? disable : enable}
-      className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+      className={`${buttonBase} ${enabled ? buttonGranted : buttonIdle}`}
       title={enabled ? "Disable notifications" : "Enable notifications"}
       aria-label={enabled ? "Disable notifications" : "Enable notifications"}
     >
-      {enabled ? (
-        <Bell className="w-5 h-5 text-emerald-400" />
-      ) : (
-        <BellOff className="w-5 h-5 text-slate-400" />
-      )}
+      {enabled ? <Bell className="w-5 h-5" /> : <BellOff className="w-5 h-5" />}
     </button>
   );
 }
