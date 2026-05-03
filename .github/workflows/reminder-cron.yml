@@ -14,7 +14,7 @@ jobs:
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
-          curl -X GET "https://medpulse-ai.vercel.app/api/cron/process-reminders" \
+          curl -X GET "https://medpulse-ai-five.vercel.app/api/cron/process-reminders" \
             -H "Authorization: Bearer $CRON_SECRET" \
             --fail-with-body \
             --max-time 90 \
