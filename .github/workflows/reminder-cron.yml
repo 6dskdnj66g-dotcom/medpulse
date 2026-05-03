@@ -1,0 +1,21 @@
+name: Reminder Processing Cron
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Every 5 minutes (best-effort; GitHub Actions cron has jitter)
+  workflow_dispatch: # Allows manual trigger for testing
+
+jobs:
+  trigger-reminders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Hit Process Reminders API
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          curl -X GET "https://medpulse-ai.vercel.app/api/cron/process-reminders" \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            --fail-with-body \
+            --max-time 90 \
+            --silent --show-error
