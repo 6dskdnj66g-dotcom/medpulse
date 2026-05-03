@@ -16,6 +16,7 @@ import { LanguageToggle } from "@/core/ui/LanguageToggle";
 import { useLanguage } from "@/core/i18n/LanguageContext";
 import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { DevRoleToggle } from "@/components/DevRoleToggle";
+import NotificationToggle from "@/components/NotificationToggle";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -200,13 +201,16 @@ export function Sidebar() {
                 </p>
               </div>
             </div>
-            <button
-              onClick={() => signOut()}
-              className="w-full flex items-center justify-center gap-2 py-2 rounded-xl border border-[var(--border-subtle)] text-[var(--text-secondary)] font-bold text-xs hover:bg-rose-500 hover:text-white hover:border-rose-500 transition-all"
-            >
-              <LogOut className="w-3.5 h-3.5" />
-              {t.common.logout}
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => signOut()}
+                className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl border border-[var(--border-subtle)] text-[var(--text-secondary)] font-bold text-xs hover:bg-rose-500 hover:text-white hover:border-rose-500 transition-all"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                {t.common.logout}
+              </button>
+              <NotificationToggle />
+            </div>
             <DevRoleToggle />
           </div>
         </div>
