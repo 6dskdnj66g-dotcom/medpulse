@@ -13,6 +13,7 @@ import { LanguageToggle } from "@/core/ui/LanguageToggle";
 import { useLanguage } from "@/core/i18n/LanguageContext";
 import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { DevRoleToggle } from "./DevRoleToggle";
+import NotificationToggle from "./NotificationToggle";
 
 const BOTTOM_NAV_ITEMS = [
   { href: "/",            icon: Home,      labelAr: "الرئيسية",        labelEn: "Home" },
@@ -109,6 +110,7 @@ export function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
+          <NotificationToggle />
           <ThemeToggle />
           <button
             onClick={() => setIsOpen(true)}
