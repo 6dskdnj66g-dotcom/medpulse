@@ -1,5 +1,5 @@
 import { streamText } from 'ai';
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createGroq } from '@ai-sdk/groq';
 
 export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
@@ -71,14 +71,14 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+    if (!process.env.GROQ_API_KEY) {
       return new Response(
-        JSON.stringify({ error: 'Server misconfigured: missing GOOGLE_GENERATIVE_AI_API_KEY.' }),
+        JSON.stringify({ error: 'Server misconfigured: missing GROQ_API_KEY.' }),
         { status: 500 }
       );
     }
 
-    const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY });
+    const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
     const sanitizedLabs = sanitize(labText);
     const sanitizedContext = clinicalContext ? sanitize(clinicalContext) : '';
 
@@ -90,7 +90,7 @@ ${sanitizedContext ? `CLINICAL CONTEXT: ${sanitizedContext}` : 'No additional cl
 Please provide a comprehensive clinical interpretation following the required format.`;
 
     const result = streamText({
-      model: google('gemini-2.5-flash'),
+      model: groq('llama-3.3-70b-versatile'),
       system: LAB_INTERPRETER_PROMPT,
       prompt,
       temperature: 0.1,
