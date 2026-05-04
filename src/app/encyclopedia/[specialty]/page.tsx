@@ -13,6 +13,7 @@ import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import { FlashcardDeck } from "@/core/ui/FlashcardDeck";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { InAppBrowser } from "@/components/medical/InAppBrowser";
 
 interface Flashcard {
   q: string;
@@ -470,21 +471,37 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
 
   const config = SPECIALTY_CONFIG[specialty];
 
+  // Filter real sources related to this specialty
+  const relatedSources = _GLOBAL_MEDICAL_SOURCES.filter(src => 
+    src.impact.toLowerCase().includes(config.label.toLowerCase()) ||
+    src.name.toLowerCase().includes(config.label.toLowerCase()) ||
+    src.category === "Clinical Database" ||
+    src.category === "Journal" && ["NEJM", "The Lancet", "JAMA", "BMJ"].some(n => src.name.includes(n))
+  );
+
   const specialtyLibrary = {
-    "Clinical Guidelines 2026": [
-      { name: "Primary Care Protocol.pdf", size: "2.4 MB", date: "Jan 12, 2026" },
-      { name: "Acute Intervention Standard.docx", size: "1.1 MB", date: "Feb 05, 2026" },
-      { name: "Evidence-Based Consensus v4.pdf", size: "5.8 MB", date: "Mar 20, 2026" },
-    ],
-    "Anatomical Atlases": [
-      { name: "High-Res Cross Sections.zip", size: "142 MB", date: "Dec 2025" },
-      { name: "Neuro-Vascular Map.pdf", size: "12 MB", date: "Jan 2026" },
-    ],
-    "Therapeutic Frameworks": [
-      { name: "Pharmacological Dosage Matrix.xlsx", size: "850 KB", date: "Apr 2026" },
-      { name: "Toxicology Update.pdf", size: "3.2 MB", date: "Mar 2026" },
-    ]
+    "Clinical Guidelines & Textbooks": relatedSources.filter(s => s.category === "Guideline Body" || s.category === "Textbook").map(s => ({
+      name: s.name,
+      size: s.impact,
+      date: "2026 Edition",
+      url: s.url || "https://pubmed.ncbi.nlm.nih.gov" // fallback
+    })),
+    "Premier Journals": relatedSources.filter(s => s.category === "Journal").map(s => ({
+      name: s.name,
+      size: `IF: ${s.impact}`,
+      date: "Latest Issue",
+      url: s.url || "https://pubmed.ncbi.nlm.nih.gov"
+    })),
+    "Evidence Databases": relatedSources.filter(s => s.category === "Clinical Database").map(s => ({
+      name: s.name,
+      size: s.impact,
+      date: "Live Sync",
+      url: s.url || "https://pubmed.ncbi.nlm.nih.gov"
+    }))
   };
+
+  const [browserUrl, setBrowserUrl] = useState<string | null>(null);
+  const [browserTitle, setBrowserTitle] = useState<string>("");
 
   if (!config) {
     return (
@@ -684,7 +701,12 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
                             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{file.date} • {file.size}</p>
                           </div>
                         </div>
-                        <button className="text-[10px] font-black uppercase tracking-widest text-teal-600 bg-teal-500/10 px-4 py-2 rounded-xl border border-teal-500/20 hover:bg-teal-500 hover:text-white transition-all">Download Reference</button>
+                        <button 
+                          onClick={() => { setBrowserUrl(file.url); setBrowserTitle(file.name); }}
+                          className="text-[10px] font-black uppercase tracking-widest text-teal-600 bg-teal-500/10 px-4 py-2 rounded-xl border border-teal-500/20 hover:bg-teal-500 hover:text-white transition-all"
+                        >
+                          Open Source
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -810,6 +832,13 @@ function SpecialtyPage({ specialty }: { specialty: string }) {
           </div>
         </div>
       )}
+
+      <InAppBrowser
+        url={browserUrl || ""}
+        title={browserTitle}
+        isOpen={!!browserUrl}
+        onClose={() => setBrowserUrl(null)}
+      />
     </div>
   );
 }

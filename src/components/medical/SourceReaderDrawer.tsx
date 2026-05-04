@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSourceReader } from '@/contexts/SourceReaderContext';
 import type { MedicalSource } from '@/types/medical';
+import { InAppBrowser } from '@/components/medical/InAppBrowser';
 
 // Extended interface for additional optional fields not in base MedicalSource
 interface ExtendedMedicalSource extends MedicalSource {
@@ -17,6 +18,7 @@ interface ExtendedMedicalSource extends MedicalSource {
 export function SourceReaderDrawer() {
   const { activeSource, closeSource } = useSourceReader();
   const drawerRef = useRef<HTMLDivElement>(null);
+  const [browserOpen, setBrowserOpen] = useState(false);
 
   // Close on ESC
   useEffect(() => {
@@ -101,15 +103,13 @@ export function SourceReaderDrawer() {
                 <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               </button>
             )}
-            <a 
-              href={activeSource.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <button 
+              onClick={() => setBrowserOpen(true)}
               className="text-white bg-blue-600 hover:bg-blue-700 px-3 py-1 text-xs font-medium rounded-md transition-colors flex items-center gap-1"
             >
               Open Original
               <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -154,6 +154,15 @@ export function SourceReaderDrawer() {
           </button>
         </div>
       </div>
+      
+      {activeSource?.url && (
+        <InAppBrowser
+          url={activeSource.url}
+          title={activeSource.title}
+          isOpen={browserOpen}
+          onClose={() => setBrowserOpen(false)}
+        />
+      )}
     </>
   );
 }

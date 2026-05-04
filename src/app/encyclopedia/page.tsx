@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 import { useLanguage } from "@/core/i18n/LanguageContext";
+import { InAppBrowser } from "@/components/medical/InAppBrowser";
 
 const SPECIALTIES = [
   {
@@ -271,6 +272,8 @@ function EncyclopediaHome() {
   const { lang, dir } = useLanguage();
   const isAr = lang === "ar";
   const [search, setSearch] = useState("");
+  const [browserUrl, setBrowserUrl] = useState<string | null>(null);
+  const [browserTitle, setBrowserTitle] = useState<string>("");
 
   const filtered = SPECIALTIES.filter(s =>
     s.label.toLowerCase().includes(search.toLowerCase()) ||
@@ -420,23 +423,28 @@ function EncyclopediaHome() {
               </div>
               <div className="flex flex-wrap gap-2 md:gap-3">
                 {cat.sources.map(src => (
-                  <a
+                  <button
                     key={src.label}
-                    href={src.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={() => { setBrowserUrl(src.url); setBrowserTitle(src.label); }}
                     title={`Open ${src.label}`}
                     className={`inline-flex items-center gap-2 text-[11px] md:text-[12px] font-extrabold px-4 py-2.5 rounded-xl transition-all hover:scale-[1.03] hover:shadow-md cursor-pointer border border-[var(--border-subtle)] bg-[var(--bg-0)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-indigo-500/30`}
                   >
                     {src.label}
                     <ExternalLink className="w-3 h-3 opacity-50" />
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <InAppBrowser 
+        url={browserUrl || ""} 
+        title={browserTitle} 
+        isOpen={!!browserUrl} 
+        onClose={() => setBrowserUrl(null)} 
+      />
     </div>
   );
 }
