@@ -49,7 +49,6 @@ export function Sidebar() {
         { href: "/drug-checker", icon: Pill,        label: t.nav.drugChecker },
         { href: "/ecg",          icon: Activity,    label: t.nav.ecg },
         { href: "/radiology",    icon: Scan,        label: t.nav.radiology },
-        { href: "/pathology",    icon: Microscope,  label: t.nav.pathology },
         { href: "/lab-results",  icon: TestTube,    label: t.nav.labResults },
         { href: "/translator",   icon: Languages,   label: t.nav.translator },
         { href: "/notes",        icon: Edit,        label: t.nav.notes },
@@ -69,7 +68,6 @@ export function Sidebar() {
       items: [
         { href: "/srs",          icon: Repeat,       label: t.nav.srs },
         { href: "/reasoning",    icon: FlaskConical, label: t.nav.reasoning },
-        { href: "/image-bank",   icon: Images,       label: t.nav.imageBank },
         { href: "/procedures",   icon: Video,        label: t.nav.procedures },
         { href: "/saudi-exams",  icon: Award,        label: t.nav.saudiExams },
       ],
