@@ -1,7 +1,18 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useRef } from 'react';
 import { useSourceReader } from '@/contexts/SourceReaderContext';
+import type { MedicalSource } from '@/types/medical';
+
+// Extended interface for additional optional fields not in base MedicalSource
+interface ExtendedMedicalSource extends MedicalSource {
+  isOpenAccess?: boolean;
+  qualityScore?: number;
+  studyType?: string;
+  category?: string;
+  year?: string | number;
+  fullText?: string;
+}
 
 export function SourceReaderDrawer() {
   const { activeSource, closeSource } = useSourceReader();
@@ -27,11 +38,11 @@ export function SourceReaderDrawer() {
 
   if (!activeSource) return null;
 
-  // Placeholder for missing props - you might need to adjust based on exact MedicalSource type variations
-  const isOA = (activeSource as any).isOpenAccess === true;
-  const quality = (activeSource as any).qualityScore || 0;
-  const studyType = (activeSource as any).studyType || 'N/A';
-  const category = (activeSource as any).category || 'research';
+  const extSource = activeSource as ExtendedMedicalSource;
+  const isOA = extSource.isOpenAccess === true;
+  const quality = extSource.qualityScore || 0;
+  const studyType = extSource.studyType || 'N/A';
+  const category = extSource.category || 'research';
 
   return (
     <>
@@ -75,7 +86,7 @@ export function SourceReaderDrawer() {
           <div className="truncate flex-1 min-w-[200px] flex items-center gap-2">
             <span className="font-medium text-gray-800 dark:text-gray-200">{activeSource.journal}</span>
             <span>&bull;</span>
-            <span>{activeSource.publicationYear || (activeSource as any).year}</span>
+            <span>{activeSource.publicationYear || extSource.year}</span>
             <span>&bull;</span>
             <span className="truncate">{activeSource.authors}</span>
           </div>
@@ -109,11 +120,11 @@ export function SourceReaderDrawer() {
                  dangerouslySetInnerHTML={{ __html: activeSource.summary }} />
           </section>
 
-          {isOA && (activeSource as any).fullText && (
+          {isOA && extSource.fullText && (
             <section className="h-[400px] border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flex flex-col">
               <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 bg-gray-50 dark:bg-gray-800 px-4 py-2 border-b border-gray-200 dark:border-gray-700 m-0">Full Text Viewer</h3>
               <iframe 
-                srcDoc={(activeSource as any).fullText} 
+                srcDoc={extSource.fullText} 
                 sandbox="allow-same-origin"
                 className="w-full flex-1 bg-white"
                 title="Full text content"

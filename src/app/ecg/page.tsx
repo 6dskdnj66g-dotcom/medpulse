@@ -76,7 +76,7 @@ export default function ECGPage() {
             }
           }
           if (finalTranscript) {
-            setDescription(description + (description.endsWith(" ") || description === "" ? "" : " ") + finalTranscript);
+            setDescription(prev => prev + (prev.endsWith(" ") || prev === "" ? "" : " ") + finalTranscript);
           }
         };
 

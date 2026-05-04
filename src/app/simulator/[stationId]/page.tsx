@@ -159,7 +159,7 @@ function BriefPhase({ station, onStart, isAr }: { station: OldOSCEStation; onSta
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 md:p-8">
+    <div className="min-h-[calc(100dvh-4rem)] flex items-center justify-center p-4 md:p-8">
       <div className="w-full max-w-2xl space-y-6 animate-in fade-in zoom-in-95 duration-500">
         <div className="medpulse-card glass level-2 p-8 border border-[var(--border-subtle)] shadow-xl">
           <div className="flex items-center gap-2 mb-6 flex-wrap">
@@ -313,7 +313,7 @@ function ActivePhase({
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-4rem)]">
+    <div className="flex flex-col h-[calc(100dvh-4rem)]">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-subtle)] bg-[var(--bg-0)]/80 backdrop-blur-md flex-shrink-0">
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-8 h-8 rounded-xl bg-[var(--color-medical-indigo)]/10 flex items-center justify-center flex-shrink-0 border border-[var(--color-medical-indigo)]/20">
@@ -379,7 +379,7 @@ function ActivePhase({
                 }`}>
                   {msg.role === "user" ? "Dr" : "Pt"}
                 </div>
-                <div className={`max-w-[75%] md:max-w-[65%] px-4 py-3 rounded-2xl text-[13px] md:text-sm font-medium leading-relaxed ${
+                <div className={`max-w-[85%] md:max-w-[70%] px-4 py-3 rounded-2xl text-[13px] md:text-sm font-medium leading-relaxed ${
                   msg.role === "user"
                     ? "bg-[var(--color-medical-indigo)]/10 text-[var(--text-primary)] border border-[var(--color-medical-indigo)]/20 rounded-tr-sm"
                     : "bg-[var(--bg-2)] text-[var(--text-primary)] border border-[var(--border-subtle)] rounded-tl-sm"
@@ -475,7 +475,7 @@ function ActivePhase({
                 rows={1}
                 disabled={sending}
                 placeholder={isListening ? (isAr ? "تحدث الآن..." : "Listening...") : (isAr ? "اكتب سؤالك..." : "Type your question... (Enter to send)")}
-                className="flex-1 resize-none bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-[13px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-medical-indigo)]/20 transition-all min-h-[48px] max-h-36 overflow-y-auto"
+                className="flex-1 resize-none bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-base md:text-[13px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-medical-indigo)]/20 transition-all min-h-[48px] max-h-36 overflow-y-auto"
               />
               <button
                 onClick={onSend}
@@ -894,7 +894,7 @@ function NewFormatActivePage({
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-4rem)]">
+    <div className="flex flex-col h-[calc(100dvh-4rem)]">
       {/* Top bar */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-[var(--border-subtle)] bg-[var(--bg-0)]/80 backdrop-blur-md flex-shrink-0">
         <div className="flex items-center gap-3 min-w-0">
@@ -959,7 +959,7 @@ function NewFormatActivePage({
                   }`}>
                     {msg.role === "user" ? "Dr" : "Pt"}
                   </div>
-                  <div className={`max-w-[75%] px-4 py-3 rounded-2xl text-sm font-medium leading-relaxed ${
+                  <div className={`max-w-[85%] md:max-w-[75%] px-4 py-3 rounded-2xl text-[13px] md:text-sm font-medium leading-relaxed ${
                     msg.role === "user"
                       ? "bg-[var(--color-medical-indigo)]/10 text-[var(--text-primary)] border border-[var(--color-medical-indigo)]/20 rounded-tr-sm"
                       : "bg-[var(--bg-2)] text-[var(--text-primary)] border border-[var(--border-subtle)] rounded-tl-sm"
@@ -1031,7 +1031,7 @@ function NewFormatActivePage({
                 rows={1}
                 disabled={sending}
                 placeholder={isListening ? "Listening..." : "Speak to the patient, request investigations... (Enter to send)"}
-                className="flex-1 resize-none bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-[13px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-medical-indigo)]/20 transition-all min-h-[48px] max-h-32 overflow-y-auto"
+                className="flex-1 resize-none bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-base md:text-[13px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-medical-indigo)]/20 transition-all min-h-[48px] max-h-32 overflow-y-auto"
               />
               <button
                 onClick={sendMessage}
@@ -1114,7 +1114,7 @@ function NewFormatStationPage({ stationId }: { stationId: string }) {
 
   if (phase === "loading" || !station) {
     return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-4rem)]">
+      <div className="flex items-center justify-center min-h-[calc(100dvh-4rem)]">
         <Loader2 className="w-8 h-8 text-[var(--color-medical-indigo)] animate-spin" />
       </div>
     );
@@ -1289,7 +1289,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
 
       {phase === "results" && (
         evaluating ? (
-          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] gap-6">
+          <div className="flex flex-col items-center justify-center min-h-[calc(100dvh-4rem)] gap-6">
             <div className="w-20 h-20 rounded-[24px] bg-[var(--color-medical-indigo)]/10 flex items-center justify-center border border-[var(--color-medical-indigo)]/20 shadow-xl">
               <Loader2 className="w-10 h-10 text-[var(--color-medical-indigo)] animate-spin" />
             </div>
@@ -1305,7 +1305,7 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
         ) : result ? (
           <ResultsPhase station={oldStation} result={result} onRetry={handleRetry} isAr={isAr} />
         ) : (
-          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] gap-4 p-8">
+          <div className="flex flex-col items-center justify-center min-h-[calc(100dvh-4rem)] gap-4 p-8">
             <XCircle className="w-16 h-16 text-rose-500" />
             <p className="text-lg font-extrabold text-[var(--text-primary)] text-center">
               {isAr ? "فشل التقييم — لا توجد محادثة كافية" : "No conversation to evaluate"}

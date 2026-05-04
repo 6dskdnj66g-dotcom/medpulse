@@ -90,6 +90,7 @@ export function InvestigationCard({ investigation }: InvestigationCardProps) {
           <>
             {investigation.imageUrl && (
               <div className="mb-3 rounded-xl overflow-hidden bg-black/10 border border-[var(--border-subtle)] flex items-center justify-center h-40">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={investigation.imageUrl}
                   alt={investigation.name}

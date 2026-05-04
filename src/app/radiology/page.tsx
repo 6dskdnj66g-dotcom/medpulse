@@ -111,6 +111,7 @@ export default function RadiologyPage() {
             onClick={() => fileInputRef.current?.click()}
           >
             {imagePreview ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img src={imagePreview} alt="Preview" className="max-h-[250px] object-contain rounded-lg" />
             ) : (
               <div className="text-center">

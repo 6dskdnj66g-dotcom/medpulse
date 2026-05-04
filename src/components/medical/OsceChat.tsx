@@ -43,7 +43,7 @@ export default function OsceChat() {
         <p className="mt-1 text-sm text-slate-500">Take a focused history from the patient.</p>
       </div>
 
-      <div className="mb-4 flex h-[500px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-inner">
+      <div className="mb-4 flex h-[calc(100dvh-200px)] md:h-[500px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-inner">
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.length === 0 && (
             <p className="mt-10 text-center text-sm text-slate-400">
@@ -85,7 +85,7 @@ export default function OsceChat() {
           onChange={(e) => setInput(e.target.value)}
           disabled={isPending}
           placeholder="Ask the patient…"
-          className="flex-1 rounded-xl border border-slate-300 p-4 text-sm outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+          className="flex-1 rounded-xl border border-slate-300 p-4 text-base md:text-sm outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
         />
         <button
           type="submit"

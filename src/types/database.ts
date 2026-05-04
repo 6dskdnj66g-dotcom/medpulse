@@ -1,4 +1,4 @@
-﻿export type ExamType = 'usmle_step1' | 'usmle_step2' | 'usmle_step3' | 'plab1' | 'plab2_osce';
+export type ExamType = 'usmle_step1' | 'usmle_step2' | 'usmle_step3' | 'plab1' | 'plab2_osce';
 export type QuestionFormat = 'single_best' | 'extended_matching' | 'ospe_station';
 export type CognitiveLevel = 'recall' | 'application' | 'analysis';
 export type StationType = 'history' | 'examination' | 'communication' | 'data_interpretation' | 'practical';
@@ -33,6 +33,12 @@ export interface QuestionOption {
   is_correct: boolean;
 }
 
+export interface MarkingCriterion {
+  criteria: string;
+  marks: number;
+  descriptor?: string;
+}
+
 export interface OsceStation {
   id: string; // References Question.id
   station_type: StationType;
@@ -40,7 +46,7 @@ export interface OsceStation {
   patient_brief: string;
   actor_notes?: string | null;
   candidate_brief?: string | null;
-  marking_criteria: any[]; // JSONB
+  marking_criteria: MarkingCriterion[]; // JSONB
   pass_mark: number;
 }
 

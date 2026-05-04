@@ -2,7 +2,6 @@
 
 import { useLanguage } from "@/core/i18n/LanguageContext";
 import { Activity, Brain, Globe, GraduationCap, MonitorCheck } from "lucide-react";
-import Image from "next/image";
 
 export default function AboutPage() {
   const { lang, dir } = useLanguage();

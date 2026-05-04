@@ -29,27 +29,31 @@ export default function NotificationToggle() {
 
   useEffect(() => {
     if (authLoading) return;
-    if (!isPushSupported()) {
-      setState("unsupported");
-      return;
-    }
 
     let cancelled = false;
-    const perm = Notification.permission;
 
-    if (perm === "granted") {
-      navigator.serviceWorker
-        .getRegistration("/")
-        .then((reg) => reg?.pushManager.getSubscription())
-        .then((sub) => {
+    const initState = async () => {
+      if (!isPushSupported()) {
+        if (!cancelled) setState("unsupported");
+        return;
+      }
+
+      const perm = Notification.permission;
+
+      if (perm === "granted") {
+        try {
+          const reg = await navigator.serviceWorker.getRegistration("/");
+          const sub = await reg?.pushManager.getSubscription();
           if (!cancelled) setState(sub ? "granted" : "default");
-        })
-        .catch(() => {
+        } catch {
           if (!cancelled) setState("default");
-        });
-    } else {
-      setState(perm);
-    }
+        }
+      } else {
+        if (!cancelled) setState(perm as State);
+      }
+    };
+
+    initState();
 
     return () => {
       cancelled = true;
