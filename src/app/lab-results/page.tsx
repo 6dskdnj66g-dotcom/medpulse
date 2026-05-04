@@ -301,7 +301,7 @@ export default function LabResultsPage() {
                           value={labValues[key] ?? ""}
                           onChange={(e) => handleValueChange(key, e.target.value)}
                           placeholder={normal}
-                          className="w-full px-4 py-2.5 text-sm font-medium rounded-xl bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all outline-none text-[var(--text-primary)] placeholder:text-[var(--text-muted)]"
+                          className="w-full px-4 py-2.5 text-base md:text-sm font-medium rounded-xl bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all outline-none text-[var(--text-primary)] placeholder:text-[var(--text-muted)]"
                         />
                       </div>
                     </div>
@@ -337,21 +337,21 @@ export default function LabResultsPage() {
                           value={entry.key}
                           onChange={(e) => updateCustomEntry(idx, "key", e.target.value)}
                           placeholder={isAr ? "اسم التحليل" : "Test Name"}
-                          className="w-1/3 px-3 py-2 text-sm rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-primary)] focus:border-emerald-500 outline-none"
+                          className="w-1/3 px-3 py-2 text-base md:text-sm rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-primary)] focus:border-emerald-500 outline-none"
                         />
                         <input
                           type="text"
                           value={entry.value}
                           onChange={(e) => updateCustomEntry(idx, "value", e.target.value)}
                           placeholder={isAr ? "القيمة" : "Value"}
-                          className="w-1/3 px-3 py-2 text-sm rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-primary)] focus:border-emerald-500 outline-none"
+                          className="w-1/3 px-3 py-2 text-base md:text-sm rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-primary)] focus:border-emerald-500 outline-none"
                         />
                         <input
                           type="text"
                           value={entry.unit}
                           onChange={(e) => updateCustomEntry(idx, "unit", e.target.value)}
                           placeholder={isAr ? "الوحدة" : "Unit"}
-                          className="w-1/4 px-3 py-2 text-sm rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-primary)] focus:border-emerald-500 outline-none"
+                          className="w-1/4 px-3 py-2 text-base md:text-sm rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-primary)] focus:border-emerald-500 outline-none"
                         />
                         <button
                           type="button"
@@ -378,7 +378,7 @@ export default function LabResultsPage() {
                 onChange={(e) => setClinicalContext(e.target.value)}
                 placeholder={isAr ? "مثال: مريض ذكر 55 عاماً، مصاب بالسكري، يشكو من التعب والغثيان... (يساعد السياق السريري الذكاء الاصطناعي في ربط النتائج ببعضها)" : "e.g., 55yo male with DM2, presenting with fatigue and nausea... (Context helps the AI correlate findings)"}
                 rows={3}
-                className="w-full px-4 py-3 text-sm rounded-xl bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none text-[var(--text-primary)] resize-none transition-all placeholder:text-[var(--text-muted)]"
+                className="w-full px-4 py-3 text-base md:text-sm rounded-xl bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none text-[var(--text-primary)] resize-none transition-all placeholder:text-[var(--text-muted)]"
               />
             </div>
 
