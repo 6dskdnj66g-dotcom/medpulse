@@ -165,7 +165,10 @@ export default function LabResultsPage() {
     e.preventDefault();
     const labText = buildLabText();
     const hasValues = labText.split("\n").length > 1;
-    if (!hasValues) return;
+    if (!hasValues) {
+      setResult(isAr ? "⚠️ يرجى إدخال قيمة مختبرية واحدة على الأقل قبل بدء التحليل." : "⚠️ Please enter at least one laboratory value before analyzing.");
+      return;
+    }
 
     setResult("");
     setIsLoading(true);
