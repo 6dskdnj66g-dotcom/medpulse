@@ -1,5 +1,5 @@
 import { generateText } from 'ai';
-import { createGroq } from '@ai-sdk/groq';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 
 export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
@@ -32,9 +32,9 @@ CRITICAL DIRECTIVES:
 7. IMPORTANT: Return ONLY the raw JSON object. No markdown, no backticks, no "json" prefix.`;
 
 export async function POST(req: Request) {
-  if (!process.env.GROQ_API_KEY) {
+  if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     return new Response(
-      JSON.stringify({ error: 'Server misconfigured: missing GROQ_API_KEY.' }),
+      JSON.stringify({ error: 'Server misconfigured: missing GOOGLE_GENERATIVE_AI_API_KEY.' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
@@ -53,10 +53,10 @@ export async function POST(req: Request) {
       ? '\n\nCRITICAL DIRECTIVE: Translate the summary into ENGLISH. DO NOT output Arabic.'
       : '\n\nCRITICAL DIRECTIVE: Translate the summary into ARABIC. Keep clinical terms in English where appropriate.';
 
-    const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
+    const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY });
 
     const { text: responseText } = await generateText({
-      model: groq('llama-3.3-70b-versatile'),
+      model: google('gemini-2.5-flash'),
       system: SUMMARIZER_PROMPT + languageInstruction,
       prompt: `Analyze and summarize the following clinical text:\n\n${text.trim().slice(0, 8000)}`,
       temperature: 0.1,

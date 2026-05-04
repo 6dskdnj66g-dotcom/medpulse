@@ -1,6 +1,6 @@
 import { streamText } from 'ai';
-import { createGroq } from '@ai-sdk/groq';
-const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY });
 
 export const maxDuration = 60;
 
@@ -29,7 +29,7 @@ Example Output:
 Brief explanation...`;
 
     const result = await streamText({
-      model: groq('llama-3.3-70b-versatile'),
+      model: google('gemini-2.5-flash'),
       system: "You are a professional medical translator.",
       prompt: prompt,
       temperature: 0.2,

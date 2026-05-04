@@ -1,5 +1,5 @@
 import { streamText } from "ai";
-import { createGroq } from "@ai-sdk/groq";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { z } from "zod";
 
 export const maxDuration = 60;
@@ -32,15 +32,15 @@ export async function POST(req: Request) {
 
     const { transcript } = parsed.data;
 
-    const groqKey = process.env.GROQ_API_KEY;
-    if (!groqKey) {
-      return Response.json({ error: "No GROQ_API_KEY configured" }, { status: 503 });
+    const googleApiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    if (!googleApiKey) {
+      return Response.json({ error: "No GOOGLE_GENERATIVE_AI_API_KEY configured" }, { status: 503 });
     }
 
-    const groq = createGroq({ apiKey: groqKey });
+    const google = createGoogleGenerativeAI({ apiKey: googleApiKey });
     
     const result = await streamText({
-      model: groq("llama-3.3-70b-versatile"), // Powerful enough for clinical evaluation
+      model: google("gemini-2.5-flash"), // Powerful enough for clinical evaluation
       system: EXAMINER_SYSTEM_PROMPT,
       messages: [{ role: "user", content: `نص محادثة الـ OSCE للتقييم:\n\n${transcript}` }],
       temperature: 0.1, // Near deterministic

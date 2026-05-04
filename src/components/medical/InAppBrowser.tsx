@@ -18,10 +18,11 @@ export function InAppBrowser({ url, title, isOpen, onClose }: InAppBrowserProps)
   const [isFullscreen, setIsFullscreen] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // Reset loading state when URL changes
-  useEffect(() => {
+  const [currentUrl, setCurrentUrl] = useState(url);
+  if (url !== currentUrl) {
+    setCurrentUrl(url);
     setIsLoading(true);
-  }, [url]);
+  }
 
   // Close on Escape
   useEffect(() => {

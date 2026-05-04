@@ -1,6 +1,6 @@
 // src/app/api/ai/professor/route.ts
-import { streamText, tool, stepCountIs } from "ai";
-import { createGroq } from "@ai-sdk/groq";
+import { streamText, tool } from "ai";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { z } from "zod";
 import { sanitizeInput } from "@/core/ai/providers/grok";
 import { searchPubMed } from "@/lib/medical-search";
@@ -12,7 +12,7 @@ const log = (stage: string, data?: unknown) =>
   console.log(`[Professor:${stage}]`, JSON.stringify(data ?? {}));
 
 // Only env vars actually consumed by this route
-const REQUIRED_ENV = ['GROQ_API_KEY'] as const;
+const REQUIRED_ENV = ['GOOGLE_GENERATIVE_AI_API_KEY'] as const;
 
 const PROFESSOR_PERSONAS: Record<string, { nameAr: string; systemPrompt: string }> = {
   cardiology: {
@@ -134,14 +134,14 @@ You have access to the 'free_medical_search' tool. Use it when you need to verif
 - If the tool fails or returns no results, answer from your medical training and note the limitation.
 - You may answer directly from your training data without calling the tool when you are confident.`;
 
-    const groqKey = process.env.GROQ_API_KEY;
+    const googleApiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
 
-    if (!groqKey) {
-      return Response.json({ error: "No GROQ_API_KEY configured for professors RAG" }, { status: 503 });
+    if (!googleApiKey) {
+      return Response.json({ error: "No GOOGLE_GENERATIVE_AI_API_KEY configured for professors RAG" }, { status: 503 });
     }
 
     log('start', { professorId, lang, messageCount: messages.length });
-    const groq = createGroq({ apiKey: groqKey });
+    const google = createGoogleGenerativeAI({ apiKey: googleApiKey });
     const { freeMedicalSearchTool } = await import("@/core/ai/tools/free-medical-search");
 
     const searchMedical = tool({
@@ -162,7 +162,7 @@ You have access to the 'free_medical_search' tool. Use it when you need to verif
     });
 
     const result = streamText({
-      model: groq("llama-3.3-70b-versatile"),
+      model: google("gemini-2.5-flash"),
       system: systemInstruction,
       messages,
       temperature: 0.1,
@@ -170,10 +170,6 @@ You have access to the 'free_medical_search' tool. Use it when you need to verif
         free_medical_search: freeMedicalSearchTool,
         searchMedical,
       },
-      // Allow the model to: call a tool -> read result -> optionally call again -> final text.
-      // The previous `maxSteps: 2` was silently ignored under AI SDK v6 (renamed to stopWhen),
-      // which left tool-calling turns hanging without ever producing the final response chunk.
-      stopWhen: stepCountIs(5),
     });
 
     log('streaming');

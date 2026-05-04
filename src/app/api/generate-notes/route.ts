@@ -1,6 +1,6 @@
 import { streamText } from 'ai';
-import { createGroq } from '@ai-sdk/groq';
-const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY });
 
 export const maxDuration = 60;
 
@@ -69,7 +69,7 @@ export async function POST(req: Request) {
     }
 
     const result = await streamText({
-      model: groq('llama-3.3-70b-versatile'),
+      model: google('gemini-2.5-flash'),
       system: NOTES_PROMPT,
       prompt: `Generate a complete clinical SOAP note from the following information:\n\n${clinicalInfo}`,
       temperature: 0.2,

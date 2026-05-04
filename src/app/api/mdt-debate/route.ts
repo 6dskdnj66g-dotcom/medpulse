@@ -1,6 +1,6 @@
 import { streamText } from 'ai';
-import { createGroq } from '@ai-sdk/groq';
-const groq = createGroq({ apiKey: process.env.GROQ_API_KEY });
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY });
 import { AGENT_A_PROMPT, AGENT_B_PROMPT, AGENT_C_PROMPT } from '@/core/ai/mdt-agents';
 
 export const maxDuration = 120;
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
           send({ agent: 'A', status: 'researching', message: 'Agent A: Clinical Researcher is retrieving evidence-based data...' });
 
           const resultA = await streamText({
-            model: groq('llama-3.3-70b-versatile'),
+            model: google('gemini-2.5-flash'),
             system: AGENT_A_PROMPT + langInstruction,
             prompt: `CLINICAL QUERY: ${sanitizedQuery}\n\nProvide a structured evidence-based analysis. Tag every claim with Evidence Level citations (e.g., [Level 1A — NEJM 2025], [Grade A — ACC/AHA 2026]).`,
             temperature: 0.1,
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
           send({ agent: 'B', status: 'reviewing', message: 'Agent B: MDT Reviewer cross-examining findings...' });
 
           const resultB = await streamText({
-            model: groq('llama-3.3-70b-versatile'),
+            model: google('gemini-2.5-flash'),
             system: AGENT_B_PROMPT + langInstruction + `\n\n--- Agent A Research Output ---\n${agentAOutput}`,
             prompt: `ORIGINAL QUERY: ${sanitizedQuery}\n\nCritically cross-examine the above research output. Identify: (1) drug interactions or contraindications, (2) outdated protocols vs 2026 guidelines, (3) FDA/EMA discrepancies, (4) missing evidence levels or unsupported claims, (5) patient safety concerns.`,
             temperature: 0.1,
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
           send({ agent: 'C', status: 'synthesizing', message: 'Agent C: CMO synthesizing final verified consensus...' });
 
           const resultC = await streamText({
-            model: groq('llama-3.3-70b-versatile'),
+            model: google('gemini-2.5-flash'),
             system: AGENT_C_PROMPT + langInstruction,
             prompt: `ORIGINAL CLINICAL QUERY: ${sanitizedQuery}\n\n--- Agent A (Clinical Researcher) ---\n${agentAOutput}\n\n--- Agent B (MDT Reviewer) ---\n${agentBOutput}\n\nSynthesize into a final verified clinical consensus. Resolve all conflicts. Issue actionable recommendations with supreme Evidence-Level badges. Prioritize patient safety above all.`,
             temperature: 0.05,
