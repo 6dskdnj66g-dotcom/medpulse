@@ -68,7 +68,6 @@ export function Sidebar() {
       items: [
         { href: "/srs",          icon: Repeat,       label: t.nav.srs },
         { href: "/reasoning",    icon: FlaskConical, label: t.nav.reasoning },
-        { href: "/procedures",   icon: Video,        label: t.nav.procedures },
         { href: "/saudi-exams",  icon: Award,        label: t.nav.saudiExams },
       ],
     },
