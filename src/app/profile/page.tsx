@@ -114,6 +114,14 @@ export default function ProfilePage() {
             إنشاء حساب
           </Link>
         </div>
+        
+        {/* Back Button */}
+        <button 
+          onClick={() => window.history.back()} 
+          className="mt-8 mx-auto flex items-center justify-center gap-2 text-sm font-bold text-slate-400 hover:text-[var(--text-primary)] transition-colors py-2 px-4 rounded-full hover:bg-[var(--bg-2)]"
+        >
+          <span>←</span> الرجوع للخلف
+        </button>
       </div>
     );
   }

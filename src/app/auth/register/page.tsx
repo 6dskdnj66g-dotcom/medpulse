@@ -126,6 +126,14 @@ export default function RegisterPage() {
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-500/20 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-500/15 blur-[120px] pointer-events-none" />
 
+      {/* Global Back Button */}
+      <button 
+        onClick={() => window.history.back()} 
+        className="absolute top-6 left-6 z-50 flex items-center justify-center gap-2 text-[13px] font-bold text-slate-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md"
+      >
+        <span>←</span> Back
+      </button>
+
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
