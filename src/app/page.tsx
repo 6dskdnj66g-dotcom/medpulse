@@ -1,4 +1,4 @@
-// src/app/page.tsx — MedPulse AI Landing Page
+// src/app/page.tsx — MedPulse AI Landing Page (Refero Bento Grid Aesthetic)
 "use client";
 
 import { useEffect, useState } from "react";
@@ -6,85 +6,32 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Brain, HeartPulse, BookOpen, Pill, Activity, Trophy,
-  Users, FileText, ChevronRight, CheckCircle, X, Calculator
+  Users, FileText, ChevronRight, CheckCircle, X, Calculator, Sparkles, ArrowUpRight
 } from "lucide-react";
 import { useSupabaseAuth } from "@/core/auth/SupabaseAuthContext";
 import { useLanguage } from "@/core/i18n/LanguageContext";
 
-// ── Honest feature list (only real features) ─────────────────────────────────
+// ── Features for Bento Grid ─────────────────────────────────
 const FEATURES = [
-  { icon: Brain,      color: "indigo", href: "/mdt",         titleEn: "MDT AI Debate",       titleAr: "مناظرة MDT الذكية",        descEn: "3 AI specialists debate clinical cases to evidence-based consensus.", descAr: "3 متخصصين بالذكاء الاصطناعي يناظرون الحالات السريرية للوصول لتوافق مبني على الأدلة." },
-  { icon: HeartPulse, color: "rose",   href: "/simulator",   titleEn: "OSCE Simulator",       titleAr: "محاكي OSCE",               descEn: "AI patient roleplay with real-time examiner feedback and scoring.", descAr: "محاكاة سريرية مع مريض AI وتغذية راجعة فورية من الممتحن." },
-  { icon: Calculator, color: "sky",    href: "/calculators", titleEn: "Clinical Calculators", titleAr: "الحاسبات السريرية",        descEn: "8 evidence-based calculators: BMI, GFR, CURB-65, Wells, MELD, GCS.", descAr: "8 حاسبات سريرية: BMI وGFR وCURB-65 وWells وMELD وGCS." },
-  { icon: BookOpen,   color: "teal",   href: "/encyclopedia", titleEn: "Medical Encyclopedia", titleAr: "الموسوعة الطبية",          descEn: "13 specialties with links to 308+ verified real medical sources.", descAr: "13 تخصص مع روابط لـ 308+ مصدر طبي موثق حقيقي." },
-  { icon: Pill,       color: "violet", href: "/drug-checker", titleEn: "Drug Checker",         titleAr: "فاحص الأدوية",            descEn: "AI drug interaction analysis across up to 8 medications at once.", descAr: "تحليل تفاعلات الأدوية بالذكاء الاصطناعي لحتى 8 أدوية." },
-  { icon: Activity,   color: "emerald",href: "/ecg",          titleEn: "ECG Analyzer",         titleAr: "محلل ECG",                descEn: "Systematic AI ECG interpretation with 6 preset clinical scenarios.", descAr: "تفسير ECG منهجي بالذكاء الاصطناعي مع 6 سيناريوهات سريرية." },
-  { icon: Users,      color: "amber",  href: "/professors",   titleEn: "AI Professors",        titleAr: "أساتذة الذكاء الاصطناعي", descEn: "6 specialist AI professors with persona-specific system prompts.", descAr: "6 أساتذة متخصصون بالذكاء الاصطناعي مع نماذج شخصية مخصصة." },
-  { icon: FileText,   color: "rose",   href: "/summarizer",   titleEn: "Report Summarizer",    titleAr: "ملخص التقارير",           descEn: "AI clinical report summarizer with structured 5-section output.", descAr: "ملخص AI للتقارير الطبية في 5 أقسام منظمة." },
+  { id: "osce", colSpan: "col-span-1 md:col-span-2 lg:col-span-2 row-span-2", icon: HeartPulse, color: "text-rose-500", bg: "bg-rose-500/10", href: "/simulator", titleEn: "OSCE Simulator", titleAr: "محاكي OSCE", descEn: "AI patient roleplay with real-time examiner feedback and scoring.", descAr: "محاكاة سريرية مع مريض AI وتغذية راجعة فورية من الممتحن.", glow: "group-hover:shadow-[0_0_80px_-20px_rgba(244,63,94,0.3)]" },
+  { id: "mdt", colSpan: "col-span-1 md:col-span-1 lg:col-span-1", icon: Brain, color: "text-indigo-400", bg: "bg-indigo-500/10", href: "/mdt", titleEn: "MDT AI Debate", titleAr: "مناظرة MDT", descEn: "3 AI specialists debate clinical cases.", descAr: "3 متخصصين AI يناظرون الحالات.", glow: "group-hover:shadow-[0_0_80px_-20px_rgba(99,102,241,0.3)]" },
+  { id: "professors", colSpan: "col-span-1 md:col-span-1 lg:col-span-1", icon: Users, color: "text-amber-400", bg: "bg-amber-500/10", href: "/professors", titleEn: "AI Professors", titleAr: "أساتذة ذكاء اصطناعي", descEn: "6 specialist AI professors.", descAr: "6 أساتذة متخصصون بالذكاء الاصطناعي.", glow: "group-hover:shadow-[0_0_80px_-20px_rgba(251,191,36,0.3)]" },
+  { id: "calculators", colSpan: "col-span-1 md:col-span-2 lg:col-span-2", icon: Calculator, color: "text-sky-400", bg: "bg-sky-500/10", href: "/calculators", titleEn: "Clinical Calculators", titleAr: "الحاسبات السريرية", descEn: "8 evidence-based calculators: BMI, GFR, CURB-65, Wells, MELD, GCS.", descAr: "8 حاسبات سريرية مبنية على الأدلة: BMI، GFR والمزيد.", glow: "group-hover:shadow-[0_0_80px_-20px_rgba(56,189,248,0.3)]" },
+  { id: "encyclopedia", colSpan: "col-span-1 md:col-span-1 lg:col-span-1", icon: BookOpen, color: "text-teal-400", bg: "bg-teal-500/10", href: "/encyclopedia", titleEn: "Encyclopedia", titleAr: "الموسوعة الطبية", descEn: "308+ verified real medical sources.", descAr: "308+ مصدر طبي موثق حقيقي.", glow: "group-hover:shadow-[0_0_80px_-20px_rgba(45,212,191,0.3)]" },
+  { id: "drug", colSpan: "col-span-1 md:col-span-1 lg:col-span-1", icon: Pill, color: "text-violet-400", bg: "bg-violet-500/10", href: "/drug-checker", titleEn: "Drug Checker", titleAr: "فاحص الأدوية", descEn: "Analyze interactions for up to 8 drugs.", descAr: "تحليل تفاعلات حتى 8 أدوية معاً.", glow: "group-hover:shadow-[0_0_80px_-20px_rgba(167,139,250,0.3)]" },
+  { id: "ecg", colSpan: "col-span-1 md:col-span-1 lg:col-span-1", icon: Activity, color: "text-emerald-400", bg: "bg-emerald-500/10", href: "/ecg", titleEn: "ECG Analyzer", titleAr: "محلل ECG", descEn: "Systematic AI ECG interpretation.", descAr: "تفسير ECG منهجي بالذكاء الاصطناعي.", glow: "group-hover:shadow-[0_0_80px_-20px_rgba(52,211,153,0.3)]" },
+  { id: "summarizer", colSpan: "col-span-1 md:col-span-1 lg:col-span-1", icon: FileText, color: "text-pink-400", bg: "bg-pink-500/10", href: "/summarizer", titleEn: "Report Summarizer", titleAr: "ملخص التقارير", descEn: "AI summarizer with 5-section output.", descAr: "تلخيص ذكي للتقارير الطبية.", glow: "group-hover:shadow-[0_0_80px_-20px_rgba(244,114,182,0.3)]" },
 ];
 
-// ── Honest comparison (only real, verified features) ─────────────────────────
 const COMPARISON = [
-  { feature: "Arabic RTL interface",          featureAr: "واجهة عربية كاملة",         medpulse: true,  amboss: false, uptodate: false },
-  { feature: "Completely free",               featureAr: "مجاني تماماً",               medpulse: true,  amboss: false, uptodate: false },
-  { feature: "OSCE AI simulator",             featureAr: "محاكي OSCE بالذكاء",        medpulse: true,  amboss: true,  uptodate: false },
-  { feature: "MDT multi-agent debate",        featureAr: "مناظرة MDT متعدد الوكلاء",  medpulse: true,  amboss: false, uptodate: false },
-  { feature: "Clinical calculators",          featureAr: "حاسبات سريرية",             medpulse: true,  amboss: true,  uptodate: true  },
-  { feature: "Drug interaction checker",      featureAr: "فاحص تفاعل الأدوية",       medpulse: true,  amboss: true,  uptodate: true  },
-  { feature: "Updated clinical guidelines",   featureAr: "إرشادات سريرية محدّثة",    medpulse: true,  amboss: true,  uptodate: true  },
-  { feature: "308+ real linked sources",      featureAr: "308+ مصدر طبي حقيقي",      medpulse: true,  amboss: false, uptodate: false },
+  { feature: "Arabic RTL interface", featureAr: "واجهة عربية كاملة", medpulse: true, amboss: false, uptodate: false },
+  { feature: "Completely free", featureAr: "مجاني تماماً", medpulse: true, amboss: false, uptodate: false },
+  { feature: "OSCE AI simulator", featureAr: "محاكي OSCE بالذكاء", medpulse: true, amboss: true, uptodate: false },
+  { feature: "MDT multi-agent debate", featureAr: "مناظرة MDT متعدد الوكلاء", medpulse: true, amboss: false, uptodate: false },
+  { feature: "Clinical calculators", featureAr: "حاسبات سريرية", medpulse: true, amboss: true, uptodate: true },
+  { feature: "308+ real linked sources", featureAr: "308+ مصدر طبي حقيقي", medpulse: true, amboss: false, uptodate: false },
 ];
 
-// ── Inline BMI Calculator ─────────────────────────────────────────────────────
-function InlineBMI({ isAr }: { isAr: boolean }) {
-  const [weight, setWeight] = useState(70);
-  const [height, setHeight] = useState(170);
-  const bmi = weight / Math.pow(height / 100, 2);
-  const cat =
-    bmi < 18.5 ? { label: isAr ? "نقص وزن" : "Underweight", color: "text-sky-500 bg-sky-500/10" }
-    : bmi < 25  ? { label: isAr ? "وزن طبيعي" : "Normal",      color: "text-emerald-500 bg-emerald-500/10" }
-    : bmi < 30  ? { label: isAr ? "زيادة وزن" : "Overweight",  color: "text-amber-500 bg-amber-500/10" }
-    :             { label: isAr ? "سمنة" : "Obese",            color: "text-rose-500 bg-rose-500/10" };
-
-  return (
-    <div className="bg-[var(--bg-0)]/90 backdrop-blur-xl rounded-3xl border border-[var(--border-subtle)] p-6 shadow-2xl w-full max-w-sm mx-auto">
-      <p className="text-[11px] font-black uppercase tracking-widest text-[var(--color-medical-indigo)] mb-4 flex items-center gap-2">
-        <Calculator className="w-4 h-4" />
-        {isAr ? "جرّب الآن — حاسبة BMI" : "Try Now — BMI Calculator"}
-      </p>
-      <div className="space-y-3 mb-4">
-        <div>
-          <label className="text-[11px] font-bold text-[var(--text-tertiary)] uppercase tracking-widest block mb-1">{isAr ? "الوزن (kg)" : "Weight (kg)"}</label>
-          <input type="range" min={30} max={200} value={weight} onChange={e => setWeight(+e.target.value)}
-            className="w-full accent-indigo-600" />
-          <span className="text-[13px] font-extrabold text-[var(--text-primary)]">{weight} kg</span>
-        </div>
-        <div>
-          <label className="text-[11px] font-bold text-[var(--text-tertiary)] uppercase tracking-widest block mb-1">{isAr ? "الطول (cm)" : "Height (cm)"}</label>
-          <input type="range" min={140} max={220} value={height} onChange={e => setHeight(+e.target.value)}
-            className="w-full accent-indigo-600" />
-          <span className="text-[13px] font-extrabold text-[var(--text-primary)]">{height} cm</span>
-        </div>
-      </div>
-      <div className={`rounded-2xl p-4 flex items-center justify-between ${cat.color}`}>
-        <span className="text-3xl font-black">{bmi.toFixed(1)}</span>
-        <span className="text-sm font-extrabold">{cat.label}</span>
-      </div>
-      <p className="text-[10px] text-[var(--text-tertiary)] text-center mt-2 font-medium">
-        {isAr ? "WHO Classification" : "WHO Classification"} · <Link href="/calculators" className="underline hover:text-[var(--color-medical-indigo)]">{isAr ? "8 حاسبات أخرى ←" : "8 more calculators →"}</Link>
-      </p>
-    </div>
-  );
-}
-
-const colorMap: Record<string, string> = {
-  indigo: "bg-indigo-500/10 text-indigo-500", rose:   "bg-rose-500/10 text-rose-500",
-  amber:  "bg-amber-500/10 text-amber-500",   teal:   "bg-teal-500/10 text-teal-500",
-  sky:    "bg-sky-500/10 text-sky-500",       emerald:"bg-emerald-500/10 text-emerald-500",
-  violet: "bg-violet-500/10 text-violet-500",
-};
-
-// ── Main Page ─────────────────────────────────────────────────────────────────
 export default function LandingPage() {
   const router = useRouter();
   const { user, loading } = useSupabaseAuth();
@@ -97,8 +44,8 @@ export default function LandingPage() {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-[var(--bg-0)] z-50">
-        <div className="w-16 h-16 border-4 border-indigo-500/20 border-t-indigo-600 rounded-full animate-spin" />
+      <div className="fixed inset-0 flex items-center justify-center bg-[#09090b] z-50">
+        <div className="w-12 h-12 border-2 border-white/10 border-t-indigo-500 rounded-full animate-spin" />
       </div>
     );
   }
@@ -106,115 +53,104 @@ export default function LandingPage() {
   if (user) return null;
 
   return (
-    <div className="w-full overflow-x-hidden" dir={isAr ? "rtl" : "ltr"}>
+    <div className="w-full bg-[#09090b] min-h-screen text-slate-200 selection:bg-indigo-500/30 overflow-x-hidden font-sans" dir={isAr ? "rtl" : "ltr"}>
+      
+      {/* ── DOT MATRIX BACKGROUND ── */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.15]" 
+           style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+      
+      {/* ── HERO GLOW ── */}
+      <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* ── HERO ───────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* CSS gradient mesh background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950" />
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-violet-600/15 rounded-full blur-[100px]" />
-          <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-teal-500/10 rounded-full blur-[80px]" />
+      {/* ── HEADER / NAVIGATION ── */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-full px-6 py-4 flex items-center justify-between shadow-2xl">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-teal-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <Activity className="w-4 h-4 text-white" />
+          </div>
+          <span className="font-extrabold text-white tracking-tight text-lg">MedPulse <span className="text-indigo-400">AI</span></span>
+        </div>
+        <Link href="/dashboard" className="bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-slate-200 hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+          {isAr ? "دخول للمنصة" : "Enter Platform"}
+        </Link>
+      </nav>
+
+      {/* ── HERO SECTION ── */}
+      <section className="relative pt-48 pb-20 px-4 flex flex-col items-center text-center z-10">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] text-indigo-300 text-[11px] font-black uppercase tracking-widest mb-8 backdrop-blur-md">
+          <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+          {isAr ? "المنصة السريرية الأقوى" : "The Ultimate Clinical Platform"}
         </div>
 
-        {/* Heartbeat SVG animation */}
-        <div className="absolute top-8 left-0 right-0 flex justify-center opacity-20 pointer-events-none">
-          <svg viewBox="0 0 400 60" className="w-full max-w-2xl" style={{ animation: "pulse 2s ease-in-out infinite" }}>
-            <style>{`@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.8}}`}</style>
-            <polyline points="0,30 60,30 80,10 100,50 120,5 140,55 160,30 400,30"
-              fill="none" stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round" />
-          </svg>
-        </div>
+        <h1 className="text-5xl md:text-7xl lg:text-[80px] font-black text-white leading-[1.1] tracking-tighter mb-6 max-w-4xl mx-auto drop-shadow-2xl">
+          {isAr ? (
+            <>تعلم الطب بذكاء<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-teal-400">وليس بجهد</span></>
+          ) : (
+            <>Study Medicine<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-teal-400">Smarter, Not Harder</span></>
+          )}
+        </h1>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-24 grid md:grid-cols-2 gap-12 items-center w-full">
-          {/* Left: Text */}
-          <div>
-            <div className="inline-flex items-center gap-2 bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-full mb-6 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-              {isAr ? "دليلك السريري الشامل" : "The Ultimate Clinical Platform"}
-            </div>
+        <p className="text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
+          {isAr
+            ? "منصة طبية متكاملة بمعايير عالمية: حاسبات سريرية، محاكي تدريب OSCE، وأساتذة ذكاء اصطناعي. بتصميم مستوحى من كبرى المنصات."
+            : "A world-class integrated medical platform: clinical calculators, OSCE simulators, and AI professors. Beautifully designed for excellence."}
+        </p>
 
-            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6 drop-shadow-2xl">
-              {isAr ? (
-                <>أهلاً بك في<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-teal-400">ميدبالس</span><br />الطبية</>
-              ) : (
-                <>Welcome to<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-teal-400">MedPulse</span></>
-              )}
-            </h1>
-
-            <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-xl font-medium">
-              {isAr
-                ? "منصة طبية متكاملة بمعايير عالمية: حاسبات سريرية، محاكي تدريب، أطباء متخصصين، ومكتبة 308+ مصدر طبي موثق. مجاني تماماً."
-                : "A world-class integrated medical platform: clinical calculators, training simulators, specialist tools, and 308+ verified sources. Completely free."}
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link href="/dashboard"
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-black text-base py-4 px-8 rounded-2xl transition-all shadow-[0_0_30px_rgba(99,102,241,0.4)] hover:shadow-[0_0_40px_rgba(99,102,241,0.6)] hover:scale-105">
-                {isAr ? "ابدأ مجاناً" : "Start Free"}
-                <ChevronRight className={`w-5 h-5 ${isAr ? "rotate-180" : ""}`} />
-              </Link>
-              <Link href="/calculators"
-                className="inline-flex items-center gap-2 border border-slate-500 hover:border-indigo-400 text-slate-300 hover:text-white font-bold text-base py-4 px-8 rounded-2xl transition-all hover:bg-slate-800">
-                {isAr ? "جرّب بدون تسجيل" : "Try Without Signup"}
-              </Link>
-            </div>
-
-            {/* Honest stats */}
-            <div className="flex flex-wrap gap-6 mt-10">
-              {[
-                { n: "13", label: isAr ? "تخصص طبي" : "Specialties" },
-                { n: "308+", label: isAr ? "مصدر طبي" : "Verified Sources" },
-                { n: "8", label: isAr ? "حاسبات سريرية" : "Calculators" },
-                { n: "50+", label: isAr ? "سيناريو OSCE" : "OSCE Scenarios" },
-              ].map(s => (
-                <div key={s.n}>
-                  <div className="text-2xl font-black text-white">{s.n}</div>
-                  <div className="text-xs text-slate-400 font-medium">{s.label}</div>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-[11px] text-slate-500 font-medium mt-6">
-              {isAr ? "بناء:" : "Built by"}{" "}
-              <span className="text-slate-400 font-semibold">Hasanain Salah</span>
-            </p>
-          </div>
-
-          {/* Right: Inline BMI demo */}
-          <div className="flex justify-center">
-            <InlineBMI isAr={isAr} />
-          </div>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link href="/dashboard"
+            className="group relative inline-flex items-center gap-2 bg-white text-black font-extrabold text-base py-4 px-8 rounded-full overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+            <span className="relative z-10 flex items-center gap-2">
+              {isAr ? "ابدأ مجاناً الآن" : "Start For Free"}
+              <ArrowUpRight className={`w-5 h-5 ${isAr ? "-scale-x-100" : ""}`} />
+            </span>
+          </Link>
+          <Link href="/calculators"
+            className="inline-flex items-center gap-2 border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] text-white font-bold text-base py-4 px-8 rounded-full transition-all backdrop-blur-md">
+            {isAr ? "تصفح الأدوات" : "Explore Tools"}
+          </Link>
         </div>
       </section>
 
-      {/* ── FEATURES ───────────────────────────────────────────────────────── */}
-      <section className="bg-[var(--bg-0)] py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-4xl font-extrabold text-[var(--text-primary)] mb-3 tracking-tight">
-              {isAr ? "أدوات طبية حقيقية تعمل الآن" : "Real Medical Tools That Work Now"}
+      {/* ── REFERO-STYLE BENTO GRID ── */}
+      <section className="py-20 px-4 z-10 relative">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tighter">
+              {isAr ? "أدوات سريرية حقيقية" : "Real Clinical Intelligence"}
             </h2>
-            <p className="text-[var(--text-secondary)] text-lg font-medium max-w-xl mx-auto">
-              {isAr ? "كل ميزة مبنية ومختبرة — بدون وعود مستقبلية." : "Every feature is built and tested — no future promises."}
+            <p className="text-slate-400 font-medium">
+              {isAr ? "تصميم حديث، أداء فائق، وموثوقية طبية تامة." : "Modern design, extreme performance, medical reliability."}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {FEATURES.map(f => {
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+            {FEATURES.map((f) => {
               const Icon = f.icon;
-              const color = colorMap[f.color] || colorMap.indigo;
               return (
-                <Link key={f.href} href={f.href}
-                  className="group medpulse-card glass level-1 p-6 border border-[var(--border-subtle)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${color} group-hover:scale-110 transition-transform`}>
-                    <Icon className="w-6 h-6" />
+                <Link key={f.id} href={f.href} className={`group relative bg-white/[0.02] border border-white/[0.08] hover:bg-white/[0.04] transition-all duration-500 rounded-[32px] p-8 flex flex-col overflow-hidden backdrop-blur-xl ${f.colSpan} ${f.glow}`}>
+                  
+                  {/* Subtle Grid Background in Card */}
+                  <div className="absolute inset-0 pointer-events-none opacity-[0.03] group-hover:opacity-[0.05] transition-opacity" 
+                       style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                  
+                  {/* Icon */}
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-auto ${f.bg} ${f.color} border border-white/5 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
+                    <Icon className="w-7 h-7" />
                   </div>
-                  <h3 className="font-extrabold text-[var(--text-primary)] mb-2 text-[15px]">{isAr ? f.titleAr : f.titleEn}</h3>
-                  <p className="text-[var(--text-secondary)] text-[13px] leading-relaxed font-medium flex-1">{isAr ? f.descAr : f.descEn}</p>
-                  <div className="flex items-center gap-1 mt-4 text-[12px] font-extrabold text-[var(--color-medical-indigo)] uppercase tracking-widest">
-                    {isAr ? "جرّب ←" : "Try →"}
+                  
+                  {/* Content */}
+                  <div className="relative z-10 mt-6">
+                    <h3 className="font-extrabold text-white text-xl mb-2 tracking-tight group-hover:text-indigo-300 transition-colors">
+                      {isAr ? f.titleAr : f.titleEn}
+                    </h3>
+                    <p className="text-slate-400 text-sm font-medium leading-relaxed">
+                      {isAr ? f.descAr : f.descEn}
+                    </p>
+                  </div>
+
+                  {/* Arrow Indicator */}
+                  <div className={`absolute bottom-8 ${isAr ? 'left-8' : 'right-8'} w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75`}>
+                    <ArrowUpRight className={`w-5 h-5 text-white ${isAr ? "-scale-x-100" : ""}`} />
                   </div>
                 </Link>
               );
@@ -223,126 +159,66 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── HONEST COMPARISON ──────────────────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[var(--bg-1)]">
+      {/* ── HONEST COMPARISON (Refero Dark Table Style) ── */}
+      <section className="py-24 px-4 z-10 relative">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-[var(--text-primary)] mb-3">
-              {isAr ? "مقارنة صادقة" : "Honest Comparison"}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter">
+              {isAr ? "مقارنة شفافة تماماً" : "Transparent Comparison"}
             </h2>
-            <p className="text-[var(--text-secondary)] font-medium">
-              {isAr ? "نقارن فقط بالميزات الموجودة فعلاً — بدون مبالغة." : "We compare only what actually exists — no exaggeration."}
+            <p className="text-slate-400 font-medium">
+              {isAr ? "نصنع الفارق حيث يهم." : "We make the difference where it counts."}
             </p>
           </div>
 
-          <div className="medpulse-card glass level-1 overflow-hidden border border-[var(--border-subtle)] rounded-3xl">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-[var(--border-subtle)]">
-                  <th className="text-start p-4 font-black text-[var(--text-secondary)] text-[11px] uppercase tracking-widest w-1/2">
+          <div className="bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-[32px] overflow-hidden shadow-2xl">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-white/[0.02] border-b border-white/[0.08]">
+                <tr>
+                  <th className={`p-6 font-black text-slate-400 text-[11px] uppercase tracking-widest ${isAr ? 'text-right' : 'text-left'} w-1/2`}>
                     {isAr ? "الميزة" : "Feature"}
                   </th>
-                  <th className="p-4 font-black text-indigo-500 text-[11px] uppercase tracking-widest">MedPulse</th>
-                  <th className="p-4 font-black text-slate-400 text-[11px] uppercase tracking-widest">AMBOSS</th>
-                  <th className="p-4 font-black text-slate-400 text-[11px] uppercase tracking-widest">UpToDate</th>
+                  <th className="p-6 text-center font-black text-indigo-400 text-[11px] uppercase tracking-widest">MedPulse</th>
+                  <th className="p-6 text-center font-black text-slate-500 text-[11px] uppercase tracking-widest">AMBOSS</th>
+                  <th className="p-6 text-center font-black text-slate-500 text-[11px] uppercase tracking-widest">UpToDate</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-white/[0.05]">
                 {COMPARISON.map((row, i) => (
-                  <tr key={i} className={`border-b border-[var(--border-subtle)] last:border-0 ${i % 2 === 0 ? "bg-[var(--bg-0)]/30" : ""}`}>
-                    <td className="p-4 font-medium text-[var(--text-primary)] text-[13px]">
+                  <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                    <td className={`p-6 font-bold text-slate-300 text-[13px] ${isAr ? 'text-right' : 'text-left'}`}>
                       {isAr ? row.featureAr : row.feature}
                     </td>
-                    <td className="p-4 text-center">
-                      {row.medpulse
-                        ? <CheckCircle className="w-5 h-5 text-emerald-500 mx-auto" />
-                        : <X className="w-5 h-5 text-slate-300 mx-auto" />}
+                    <td className="p-6 text-center">
+                      {row.medpulse ? <CheckCircle className="w-5 h-5 text-emerald-400 mx-auto" /> : <X className="w-5 h-5 text-slate-600 mx-auto" />}
                     </td>
-                    <td className="p-4 text-center">
-                      {row.amboss
-                        ? <CheckCircle className="w-5 h-5 text-slate-400 mx-auto" />
-                        : <X className="w-5 h-5 text-slate-300 mx-auto" />}
+                    <td className="p-6 text-center">
+                      {row.amboss ? <CheckCircle className="w-5 h-5 text-slate-500 mx-auto" /> : <X className="w-5 h-5 text-slate-600 mx-auto" />}
                     </td>
-                    <td className="p-4 text-center">
-                      {row.uptodate
-                        ? <CheckCircle className="w-5 h-5 text-slate-400 mx-auto" />
-                        : <X className="w-5 h-5 text-slate-300 mx-auto" />}
+                    <td className="p-6 text-center">
+                      {row.uptodate ? <CheckCircle className="w-5 h-5 text-slate-500 mx-auto" /> : <X className="w-5 h-5 text-slate-600 mx-auto" />}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-
-          <p className="text-center text-[11px] text-[var(--text-tertiary)] mt-4 font-medium">
-            {isAr
-              ? "* AMBOSS وUpToDate منصتان ممتازتان مدفوعتان — المقارنة للتوضيح فقط."
-              : "* AMBOSS and UpToDate are excellent paid platforms — comparison is for context only."}
-          </p>
         </div>
       </section>
 
-      {/* ── ABOUT / SOCIAL PROOF ───────────────────────────────────────────── */}
-      <section className="py-20 px-4 bg-[var(--bg-0)]">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-16 h-16 bg-indigo-500/10 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-indigo-500/20">
-            <Trophy className="w-8 h-8 text-indigo-500" />
-          </div>
-          <h2 className="text-2xl font-extrabold text-[var(--text-primary)] mb-4">
-            {isAr ? "مبنية من طالب طب، لطلاب الطب" : "Built by a medical student, for medical students"}
-          </h2>
-          <p className="text-[var(--text-secondary)] leading-relaxed font-medium text-base">
-            {isAr
-              ? "MedPulse AI مشروع مجتمعي يهدف لتوفير أدوات طبية عالية الجودة بالعربية، مجاناً، للطلاب في جميع أنحاء العالم العربي."
-              : "MedPulse AI is a community project aimed at providing high-quality medical education tools in Arabic, for free, for students across the Arab world."}
-          </p>
+      {/* ── FOOTER ── */}
+      <footer className="py-12 text-center border-t border-white/[0.05] relative z-10">
+        <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-white/10">
+          <Trophy className="w-5 h-5 text-indigo-400" />
         </div>
-      </section>
-
-      {/* ── MEDICAL DISCLAIMER ─────────────────────────────────────────────── */}
-      <section className="py-8 px-4 bg-amber-500/5 border-y border-amber-500/15">
-        <div className="max-w-4xl mx-auto flex items-start gap-4">
-          <div className="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center flex-shrink-0 border border-amber-500/20">
-            <span className="text-xl">⚕️</span>
-          </div>
-          <div>
-            <p className="font-extrabold text-amber-700 dark:text-amber-400 text-sm mb-1">
-              {isAr ? "تنبيه طبي مهم" : "Important Medical Disclaimer"}
-            </p>
-            <p className="text-amber-700/80 dark:text-amber-400/80 text-[13px] font-medium leading-relaxed">
-              {isAr
-                ? "هذه المنصة مخصصة للتعليم الطبي والبحث العلمي فقط. لا تُغني عن استشارة طبيب مرخص أو التشخيص أو العلاج. في حالات الطوارئ اتصل فوراً: 997 (السعودية) · 999 (الإمارات) · 911 (أمريكا)."
-                : "This platform is for medical education and research only. It does not replace consultation with a licensed physician. In emergencies, call: 997 (Saudi) · 999 (UAE) · 911 (USA)."}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA / FOOTER ───────────────────────────────────────────────────── */}
-      <section className="py-20 px-4 bg-gradient-to-br from-slate-900 to-indigo-950 text-center">
-        <h2 className="text-3xl font-extrabold text-white mb-4">
-          {isAr ? "ابدأ رحلتك الطبية اليوم" : "Start your medical journey today"}
-        </h2>
-        <p className="text-slate-300 mb-8 font-medium">
-          {isAr ? "مجاني بالكامل · بدون بطاقة ائتمانية · بدون إعلانات" : "100% free · No credit card · No ads"}
+        <p className="text-slate-400 font-medium text-sm mb-2">
+          {isAr ? "صُنع للقطاع الطبي بكل شغف." : "Built for the medical sector with passion."}
         </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Link href="/dashboard"
-            className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 px-10 rounded-2xl transition-all shadow-[0_0_30px_rgba(99,102,241,0.4)] hover:scale-105">
-            {isAr ? "ابدأ مجاناً" : "Get Started Free"}
-            <ChevronRight className={`w-5 h-5 ${isAr ? "rotate-180" : ""}`} />
-          </Link>
-          <Link href="/calculators"
-            className="inline-flex items-center gap-2 border border-slate-500 hover:border-white text-slate-300 hover:text-white font-bold py-4 px-10 rounded-2xl transition-all">
-            {isAr ? "جرّب الحاسبات" : "Try Calculators"}
-          </Link>
-        </div>
-        <p className="text-slate-500 text-[11px] mt-10 font-medium">
-          © 2026 MedPulse AI · {isAr ? "جميع الحقوق محفوظة" : "All rights reserved"}
+        <p className="text-slate-600 font-medium text-xs">
+          MedPulse AI © 2026
         </p>
-      </section>
+      </footer>
 
     </div>
   );
 }
-
