@@ -2,12 +2,13 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, ShieldAlert, ExternalLink } from "lucide-react";
+import { Activity, ShieldAlert, ExternalLink, Sparkles } from "lucide-react";
 import { useLanguage } from "@/core/i18n/LanguageContext";
 
 export function Footer() {
   const { lang, dir } = useLanguage();
   const isAr = lang === "ar";
+  const year = new Date().getFullYear();
 
   return (
     <footer
@@ -27,16 +28,17 @@ export function Footer() {
       </div>
 
       {/* Footer body */}
-      <div className="max-w-7xl mx-auto px-4 py-5 md:py-6">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-
+      <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
           {/* Brand */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-indigo-600 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+            <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
               <Activity className="w-4 h-4 text-white" />
             </div>
             <div>
-              <span className="text-sm font-black text-[var(--text-primary)] tracking-tight">MedPulse AI</span>
+              <span className="text-sm font-black text-[var(--text-primary)] tracking-tight">
+                MedPulse AI
+              </span>
               <p className="text-[10px] text-[var(--text-tertiary)] font-medium mt-0.5">
                 {isAr ? "الذكاء الاصطناعي الطبي العربي" : "Arabic Clinical Intelligence Platform"}
               </p>
@@ -60,9 +62,9 @@ export function Footer() {
           <nav className="flex flex-wrap items-center gap-x-4 gap-y-1">
             {[
               { labelAr: "سياسة الخصوصية", labelEn: "Privacy Policy", href: "/privacy" },
-              { labelAr: "من نحن",           labelEn: "About Us",       href: "/about" },
-              { labelAr: "التسعير",          labelEn: "Pricing",        href: "/pricing" },
-            ].map(l => (
+              { labelAr: "من نحن", labelEn: "About Us", href: "/about" },
+              { labelAr: "التسعير", labelEn: "Pricing", href: "/pricing" },
+            ].map((l) => (
               <Link
                 key={l.labelEn}
                 href={l.href}
@@ -82,23 +84,60 @@ export function Footer() {
           </nav>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-[10px] text-[var(--text-tertiary)] font-medium">
-            © 2026 MedPulse AI · {isAr ? "جميع الحقوق محفوظة" : "All rights reserved"}
-            {" · "}
-            <span className="text-[var(--text-secondary)] font-semibold">
-              {isAr ? "بناء: Hasanain Salah" : "Built by Hasanain Salah"}
+        {/* ── Author Signature Card — featured prominently ─────────────────── */}
+        <div className="mt-6 pt-6 border-t border-[var(--border-subtle)] flex flex-col md:flex-row items-center justify-between gap-4">
+          <Link
+            href="/about"
+            className="group relative inline-flex items-center gap-3 px-5 py-3 rounded-2xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(99,102,241,0.10) 0%, rgba(139,92,246,0.08) 50%, rgba(20,184,166,0.06) 100%)",
+              border: "1px solid rgba(99,102,241,0.20)",
+              boxShadow: "0 8px 24px -8px rgba(99,102,241,0.20)",
+            }}
+          >
+            {/* Avatar monogram */}
+            <span
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-sm tracking-tight flex-shrink-0 shadow-lg"
+              style={{
+                background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #14b8a6 100%)",
+                boxShadow: "0 6px 16px rgba(99,102,241,0.35)",
+              }}
+              aria-hidden="true"
+            >
+              HS
             </span>
-          </p>
-          <p className="text-[10px] text-[var(--text-tertiary)] font-medium text-center">
-            {isAr
-              ? "مبني على: WHO · NEJM · ACC/AHA · ESC · KDIGO · AAN · ACOG"
-              : "Built on: WHO · NEJM · ACC/AHA · ESC · KDIGO · AAN · ACOG"}
-          </p>
+
+            <div className="flex flex-col leading-tight">
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--text-tertiary)] flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3" style={{ color: "var(--color-medical-indigo)" }} />
+                {isAr ? "تصميم وتطوير" : "Architected & engineered by"}
+              </span>
+              <span className="text-base md:text-lg font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-violet-500 to-teal-400 group-hover:from-indigo-600 group-hover:via-violet-600 group-hover:to-teal-500 transition-all">
+                Hasanain Salah
+              </span>
+              <span
+                className="text-[11px] font-bold mt-0.5"
+                style={{ color: "var(--text-secondary)" }}
+                dir="rtl"
+              >
+                حسنين صلاح
+              </span>
+            </div>
+          </Link>
+
+          <div className="flex flex-col items-center md:items-end gap-1.5 text-center md:text-end">
+            <p className="text-[10px] text-[var(--text-tertiary)] font-medium">
+              © {year} MedPulse AI · {isAr ? "جميع الحقوق محفوظة" : "All rights reserved"}
+            </p>
+            <p className="text-[10px] text-[var(--text-tertiary)] font-medium">
+              {isAr
+                ? "مبني على: WHO · NEJM · ACC/AHA · ESC · KDIGO · AAN · ACOG"
+                : "Built on: WHO · NEJM · ACC/AHA · ESC · KDIGO · AAN · ACOG"}
+            </p>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-
