@@ -116,13 +116,6 @@ export function Footer() {
               <span className="text-base md:text-lg font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-violet-500 to-teal-400 group-hover:from-indigo-600 group-hover:via-violet-600 group-hover:to-teal-500 transition-all">
                 Hasanain Salah
               </span>
-              <span
-                className="text-[11px] font-bold mt-0.5"
-                style={{ color: "var(--text-secondary)" }}
-                dir="rtl"
-              >
-                حسنين صلاح
-              </span>
             </div>
           </Link>
 

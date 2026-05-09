@@ -1,9 +1,13 @@
 // src/lib/osce/session-manager.ts
-// localStorage-backed OSCE session persistence with recovery support
+// localStorage-backed OSCE session persistence with recovery support.
+// Each persist() also fires a best-effort background sync to Supabase
+// (see features/osce/services/sessionSync) so logged-in users do not lose
+// their history when switching browsers/devices.
 
 import type {
   OSCESession, OSCEStation, SessionMessage, SessionScores, RubricItemProgress
 } from "./types";
+import { syncOSCESession } from "@/features/osce/services/sessionSync";
 
 const SESSION_PREFIX = "osce_v2_session_";
 const ACTIVE_SESSION_KEY = "osce_v2_active_session_id";
@@ -119,6 +123,7 @@ export class SessionManager {
     } catch {
       // localStorage may be full — silently ignore
     }
+    syncOSCESession(this.session);
   }
 
   static loadActive(): OSCESession | null {

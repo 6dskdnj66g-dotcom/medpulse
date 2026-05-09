@@ -2,13 +2,13 @@
 
 **Arabic Clinical Intelligence Platform** — A comprehensive bilingual medical education platform built with Next.js 15, TypeScript, and Tailwind CSS.
 
-**Built by Hassanin Salah**
+**Built by Hasanain Salah**
 
 ## Features
 
 - **USMLE Question Bank** — 5,300+ Step 1 & Step 2 CK board-style questions with AI explanations
 - **OSCE Simulator** — Realistic clinical scenarios with patient interactions and rubric scoring
-- **AI Professors** — Grok-powered medical tutors for Q&A
+- **AI Professors** — Groq-powered medical tutors for Q&A
 - **Clinical Tools** — Drug checker, ECG analyzer, differential diagnosis, medical calculator
 - **Medical Encyclopedia** — Bilingual (English/Arabic) clinical reference
 - **MDT Debates** — Multi-disciplinary team case discussions
@@ -18,9 +18,11 @@
 ## Stack
 
 - **Framework**: Next.js 15 App Router
-- **UI**: Tailwind CSS 4 + shadcn/ui
-- **AI**: xAI Grok (primary) / Groq fallback
-- **Auth/DB**: Supabase
+- **UI**: Tailwind CSS 4
+- **AI**: Groq (primary) + Google Generative AI
+- **Auth/DB**: Supabase (with Row-Level Security)
+- **Rate limiting**: Upstash Redis (sliding window)
+- **Error monitoring**: Sentry-compatible (env-gated)
 - **Language**: TypeScript 5
 
 ## Getting Started
@@ -35,10 +37,24 @@ Open [http://localhost:3000](http://localhost:3000)
 ## Environment Variables
 
 ```env
-XAI_API_KEY=         # xAI Grok API key
-GROQ_API_KEY=        # Groq fallback key
+# AI providers
+GROQ_API_KEY=
+GOOGLE_GENERATIVE_AI_API_KEY=
+
+# Supabase
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+
+# Rate limiting (optional — falls back to in-memory)
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+
+# Error monitoring (optional)
+SENTRY_DSN=
+
+# Site
+NEXT_PUBLIC_SITE_URL=
 ```
 
 ## Medical Disclaimer
@@ -47,4 +63,4 @@ This platform is for **educational purposes only**. It does not replace consulta
 
 ---
 
-© 2026 MedPulse AI · Built by Hassanin Salah · Based on WHO · NEJM · ACC/AHA · ESC guidelines
+© MedPulse AI · Built by Hasanain Salah · Based on WHO · NEJM · ACC/AHA · ESC guidelines

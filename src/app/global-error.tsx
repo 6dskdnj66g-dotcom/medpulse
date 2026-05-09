@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { AlertOctagon } from "lucide-react";
+import { captureException } from "@/core/observability/error-monitoring";
 
 export default function GlobalError({
   error,
@@ -9,6 +11,14 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  useEffect(() => {
+    captureException(error, {
+      tags: { boundary: "global-error" },
+      level: "fatal",
+      extra: { digest: error.digest },
+    });
+  }, [error]);
+
   return (
     <html>
       <body>

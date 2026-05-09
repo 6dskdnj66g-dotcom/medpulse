@@ -1,5 +1,21 @@
 import type { NextConfig } from "next";
 
+const productionHost = (() => {
+  try {
+    return process.env.NEXT_PUBLIC_SITE_URL
+      ? new URL(process.env.NEXT_PUBLIC_SITE_URL).host
+      : null;
+  } catch {
+    return null;
+  }
+})();
+
+const allowedServerActionOrigins = [
+  productionHost,
+  "medpulse-ai-five.vercel.app",
+  "medpulse-a3wfmgz43-6dskdnj66g-dotcoms-projects.vercel.app",
+].filter(Boolean) as string[];
+
 const securityHeaders = [
   { key: "X-Frame-Options",           value: "DENY" },
   { key: "X-Content-Type-Options",    value: "nosniff" },
@@ -12,16 +28,19 @@ const securityHeaders = [
   },
   {
     key: "Content-Security-Policy",
-    // Permits NCBI for the library reader, xAI + Groq for AI, Supabase for auth.
-    // 'unsafe-inline' on style-src is required for Tailwind CSS class injection.
-    // 'unsafe-eval' on script-src is required by Next.js dev mode; tighten in prod if needed.
+    // Provider whitelist:
+    //   - Groq + Google Generative AI (active providers)
+    //   - NCBI for the library reader
+    //   - Supabase for auth/realtime
+    //   - Upstash for rate limiting
+    // Removed: api.x.ai (xAI Grok was retired; we now use Groq exclusively).
     value: [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel-insights.com",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://images.unsplash.com https://plus.unsplash.com https://www.ncbi.nlm.nih.gov",
       "font-src 'self' data:",
-      "connect-src 'self' https://api.x.ai https://api.groq.com https://eutils.ncbi.nlm.nih.gov https://*.supabase.co wss://*.supabase.co",
+      "connect-src 'self' https://api.groq.com https://generativelanguage.googleapis.com https://eutils.ncbi.nlm.nih.gov https://*.supabase.co wss://*.supabase.co https://*.upstash.io",
       "frame-src 'none'",
       "object-src 'none'",
       "base-uri 'self'",
@@ -32,6 +51,15 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+
+  experimental: {
+    // CSRF defense for Server Actions: only accept invocations from these
+    // origins. Vercel preview URLs that need access must be added to
+    // NEXT_PUBLIC_SITE_URL or this allowlist.
+    serverActions: {
+      allowedOrigins: allowedServerActionOrigins,
+    },
+  },
 
   images: {
     remotePatterns: [

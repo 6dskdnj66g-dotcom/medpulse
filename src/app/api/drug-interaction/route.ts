@@ -1,16 +1,26 @@
 import { streamText } from 'ai';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { z } from 'zod';
+import { logAIResponseAsync } from '@/core/ai/audit-log';
+
 const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY });
 
 export const maxDuration = 60;
 
+const ROUTE = '/api/drug-interaction';
+const MODEL = 'gemini-2.5-flash';
+
+const RequestSchema = z.object({
+  drugs: z.array(z.string().min(1).max(100)).min(2).max(10),
+});
+
 const DRUG_INTERACTION_PROMPT = `
-You are the MedPulse AI Drug Interaction Analyzer (April 2026 Edition).
+You are the MedPulse AI Drug Interaction Analyzer.
 You are trained exclusively on:
-- Lexicomp 2026, Micromedex 2026, DrugBank 2026
-- WHO Essential Medicines List 2026
-- FDA Drug Safety Communications 2026
-- BNF (British National Formulary) 2026
+- Lexicomp, Micromedex, DrugBank
+- WHO Essential Medicines List
+- FDA Drug Safety Communications
+- BNF (British National Formulary)
 
 YOUR TASK: Analyze drug interactions between the provided medications.
 
@@ -30,73 +40,86 @@ For each drug pair, describe:
 - Alternative drugs if interaction is dangerous
 
 ## Evidence Level
-Cite your source: [Lexicomp 2026] / [Micromedex 2026] / [FDA 2026]
+Cite your source: [Lexicomp] / [Micromedex] / [FDA]
 
 CRITICAL RULES:
 - If any combination is CONTRAINDICATED, clearly state this at the top in bold
 - Never minimize serious interactions
 - Always recommend physician/pharmacist consultation
-- Current date: April 2026
 `;
 
+function sanitize(text: string): string {
+  return text
+    .replace(/ignore\s+(?:all\s+)?previous\s+instructions?/gi, '')
+    .replace(/\[SYSTEM\]/gi, '')
+    .replace(/system\s*:/gi, '')
+    .replace(/<\|.*?\|>/g, '')
+    .trim()
+    .slice(0, 100);
+}
+
 export async function POST(req: Request) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim();
+
+  let raw: unknown;
   try {
-    const { drugs } = await req.json();
+    raw = await req.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400 });
+  }
 
-    if (!Array.isArray(drugs) || drugs.length < 2) {
-      return new Response(
-        JSON.stringify({ error: "Please provide at least 2 drugs to check interactions." }),
-        { status: 400 }
-      );
-    }
+  const parsed = RequestSchema.safeParse(raw);
+  if (!parsed.success) {
+    return new Response(
+      JSON.stringify({ error: 'Please provide between 2 and 10 drug names.', issues: parsed.error.issues }),
+      { status: 400 }
+    );
+  }
 
-    if (drugs.length > 10) {
-      return new Response(
-        JSON.stringify({ error: "Maximum 10 drugs per interaction check." }),
-        { status: 400 }
-      );
-    }
+  const sanitizedDrugs = parsed.data.drugs.map(sanitize).filter(d => d.length > 0);
+  if (sanitizedDrugs.length < 2) {
+    return new Response(JSON.stringify({ error: 'Please provide at least 2 valid drug names.' }), { status: 400 });
+  }
 
-    // Sanitize drug names — strip injection patterns, limit length
-    const sanitizedDrugs = drugs
-      .filter((d: unknown) => typeof d === "string" && d.trim().length > 0)
-      .map((d: string) =>
-        d.replace(/ignore\s+(?:all\s+)?previous\s+instructions?/gi, "")
-         .replace(/\[SYSTEM\]/gi, "")
-         .replace(/system\s*:/gi, "")
-         .replace(/<\|.*?\|>/g, "")
-         .trim()
-         .slice(0, 100)
-      );
+  const drugList = sanitizedDrugs.join(', ');
+  const promptForAudit = `drugs: ${drugList}`;
 
-    if (sanitizedDrugs.length < 2) {
-      return new Response(
-        JSON.stringify({ error: "Please provide at least 2 valid drug names." }),
-        { status: 400 }
-      );
-    }
-
-    const drugList = sanitizedDrugs.join(', ');
-
+  try {
     const result = await streamText({
-      model: google('gemini-2.5-flash'),
+      model: google(MODEL),
       system: DRUG_INTERACTION_PROMPT,
-      prompt: `Analyze interactions between these drugs: ${drugList}. Patient context: April 2026.`,
+      prompt: `Analyze interactions between these drugs: ${drugList}.`,
       temperature: 0.1,
+      onFinish: ({ text, usage }) => {
+        logAIResponseAsync({
+          route: ROUTE,
+          model: MODEL,
+          prompt: promptForAudit,
+          response: text,
+          promptTokens: usage?.inputTokens,
+          completionTokens: usage?.outputTokens,
+          status: 'ok',
+          ip,
+        });
+      },
     });
 
     return result.toTextStreamResponse({
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
         'X-Content-Type-Options': 'nosniff',
-      }
+      },
     });
   } catch (error) {
-    console.error("Drug Interaction Error:", error);
-    return new Response(
-      JSON.stringify({ error: "Failed to analyze drug interactions." }),
-      { status: 500 }
-    );
+    console.error('Drug Interaction Error:', error);
+    logAIResponseAsync({
+      route: ROUTE,
+      model: MODEL,
+      prompt: promptForAudit,
+      status: 'error',
+      errorMessage: error instanceof Error ? error.message : String(error),
+      ip,
+    });
+    return new Response(JSON.stringify({ error: 'Failed to analyze drug interactions.' }), { status: 500 });
   }
 }
-

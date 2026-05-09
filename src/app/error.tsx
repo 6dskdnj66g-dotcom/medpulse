@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { AlertTriangle, RotateCcw } from "lucide-react";
+import { captureException } from "@/core/observability/error-monitoring";
 
 export default function RootError({
   error,
@@ -9,6 +11,13 @@ export default function RootError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  useEffect(() => {
+    captureException(error, {
+      tags: { boundary: "root-error" },
+      extra: { digest: error.digest },
+    });
+  }, [error]);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-950 p-6">
       <div className="text-center max-w-md w-full bg-gray-900 border border-gray-800 rounded-3xl p-8 shadow-2xl">

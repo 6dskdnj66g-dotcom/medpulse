@@ -3,6 +3,7 @@
 import { classifyQuery, aggregateSourcesSmart, synthesizeMultiSource } from "@/lib/medical-sources";
 import { MedPulseAgent, RESEARCH_AGENTS } from "@/lib/ai/agent-registry";
 import { ValidatedResponse, EvidenceLevel, MedicalSource as UISource } from "@/types/medical";
+import { requireSameOrigin } from "@/core/security/csrf";
 
 interface RawSource {
   id: string;
@@ -46,6 +47,7 @@ export async function processClinicalQuery(
   userQuery: string,
   agentType: MedPulseAgent = "PROFESSOR"
 ): Promise<ValidatedResponse> {
+  await requireSameOrigin();
   if (!userQuery.trim()) throw new Error("Query cannot be empty.");
 
   if (!RESEARCH_AGENTS.has(agentType)) {
