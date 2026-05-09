@@ -10,6 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "db:migrate": "node scripts/db-migrate.mjs",
     "prepare": "husky"
   },
   "dependencies": {
