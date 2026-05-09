@@ -11,6 +11,7 @@
     "lint": "next lint",
     "test": "jest",
     "db:migrate": "node scripts/db-migrate.mjs",
+    "vercel:env:sync": "node scripts/sync-vercel-env.mjs",
     "prepare": "husky"
   },
   "dependencies": {
