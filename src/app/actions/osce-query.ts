@@ -2,6 +2,7 @@
 
 import Groq from "groq-sdk";
 import { buildAgentPrompt } from "@/lib/ai/agent-registry";
+import { requireSameOrigin } from "@/core/security/csrf";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -11,6 +12,7 @@ export async function processOSCEQuery(
   history: ChatMessage[],
   newQuery: string
 ): Promise<string> {
+  await requireSameOrigin();
   if (!newQuery.trim()) throw new Error("Query is empty.");
 
   const patientProfile =

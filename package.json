@@ -2,7 +2,7 @@
   "name": "medpulse-ai",
   "version": "0.1.0",
   "private": true,
-  "author": "Hassanin Salah",
+  "author": "Hasanain Salah",
   "description": "MedPulse AI — Arabic Clinical Intelligence Platform for medical education",
   "scripts": {
     "dev": "next dev",
@@ -19,6 +19,8 @@
     "@pinecone-database/pinecone": "^7.2.0",
     "@supabase/ssr": "^0.10.2",
     "@supabase/supabase-js": "^2.103.2",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
     "ai": "^6.0.162",
     "duck-duck-scrape": "^2.2.7",
     "framer-motion": "^12.38.0",
@@ -33,7 +35,8 @@
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "resend": "^6.12.2",
-    "web-push": "^3.6.7"
+    "web-push": "^3.6.7",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

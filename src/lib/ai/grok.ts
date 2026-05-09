@@ -1,32 +1,14 @@
-// src/lib/ai/grok.ts
-// Thin wrapper around core/ai/providers/grok that exposes askGrok() for OSCE engine
-// Server-side only — never import from client components
-
-import { callGrok } from "@/core/ai/providers/grok";
-
-export interface AskGrokOptions {
-  systemPrompt: string;
-  userMessage: string;
-  temperature?: number;
-  maxTokens?: number;
-}
-
-export async function askGrok(options: AskGrokOptions): Promise<string> {
-  const result = await callGrok(
-    [
-      { role: "system", content: options.systemPrompt },
-      { role: "user", content: options.userMessage },
-    ],
-    {
-      temperature: options.temperature ?? 0.3,
-      maxTokens: options.maxTokens ?? 500,
-      addDisclaimer: false,
-    }
-  );
-
-  if (result.error) {
-    throw new Error(result.message ?? "AI service error");
-  }
-
-  return result.content ?? "";
-}
+/**
+ * Backward-compatible re-export.
+ * The single source of truth for the Grok/Groq client now lives at
+ * `@/core/ai/providers/grok`. New code should import from there directly.
+ */
+export {
+  askGrok,
+  callGrok,
+  sanitizeInput,
+  checkRateLimit,
+  type AskGrokOptions,
+  type GrokMessage,
+  type GrokResult,
+} from "@/core/ai/providers/grok";
