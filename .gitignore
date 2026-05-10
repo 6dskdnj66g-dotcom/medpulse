@@ -40,6 +40,10 @@ server.log
 .vercel
 clinical_tests/
 
+# supabase CLI local state
+supabase/.temp/
+supabase/.branches/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
