@@ -8,7 +8,7 @@ import {
   ArrowLeft, Clock, Send, Loader2, CheckCircle, XCircle,
   AlertCircle, ChevronDown, ChevronUp, Trophy, Target,
   BookOpen, Star, TrendingUp, TrendingDown, User, Stethoscope,
-  RotateCcw, Home, ChevronRight, Activity, Brain, Mic, MicOff, Volume2, VolumeX
+  RotateCcw, Home, ChevronRight, Activity, Brain, Mic, MicOff, Volume2, VolumeX, X
 } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/core/i18n/LanguageContext";
@@ -705,6 +705,8 @@ function NewFormatActivePage({
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
+  // Mobile-only rubric drawer — desktop shows the sidebar inline (see `hidden lg:flex` below)
+  const [showMobileRubric, setShowMobileRubric] = useState(false);
   const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
@@ -939,14 +941,17 @@ function NewFormatActivePage({
           </div>
           <div className="min-w-0">
             <p className="text-[13px] font-extrabold text-[var(--text-primary)] truncate">{station.patient.name}</p>
-            <p className="text-[10px] text-[var(--text-tertiary)] font-medium">{station.patient.age}y · {station.patient.gender} · {station.specialty}</p>
+            <p className="text-[10px] text-[var(--text-tertiary)] font-medium truncate">
+              {station.patient.age}y · {station.patient.gender}
+              <span className="hidden sm:inline"> · {station.specialty}</span>
+            </p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           <CountdownTimer totalSeconds={station.durationMinutes * 60} onExpire={finish} />
           <button
             onClick={finish}
-            className="text-[11px] font-black px-4 py-2 rounded-xl bg-[var(--color-medical-indigo)] text-white hover:bg-[var(--color-medical-indigo)]/90 uppercase tracking-widest transition-all flex items-center gap-1.5"
+            className="text-[11px] font-black px-3 sm:px-4 py-2 rounded-xl bg-[var(--color-medical-indigo)] text-white hover:bg-[var(--color-medical-indigo)]/90 uppercase tracking-widest transition-all flex items-center gap-1.5"
           >
             <CheckCircle className="w-3.5 h-3.5" />
             Finish
@@ -1038,14 +1043,25 @@ function NewFormatActivePage({
           </div>
 
           {/* Input */}
-          <div className="flex-shrink-0 border-t border-[var(--border-subtle)] p-3 bg-[var(--bg-0)]/80 backdrop-blur-md">
-            <div className="flex items-center justify-between px-2 mb-2 max-w-3xl mx-auto">
+          <div
+            className="flex-shrink-0 border-t border-[var(--border-subtle)] p-3 bg-[var(--bg-0)]/80 backdrop-blur-md"
+            style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
+          >
+            <div className="flex items-center justify-between px-2 mb-2 max-w-3xl mx-auto gap-3">
               <button
                 onClick={() => setVoiceEnabled(!voiceEnabled)}
-                className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--text-tertiary)] hover:text-[var(--text-primary)] uppercase tracking-widest transition-colors"
+                className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--text-tertiary)] hover:text-[var(--text-primary)] uppercase tracking-widest transition-colors truncate"
               >
-                {voiceEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
-                {voiceEnabled ? "Patient Audio On" : "Patient Audio Off"}
+                {voiceEnabled ? <Volume2 className="w-3.5 h-3.5 flex-shrink-0" /> : <VolumeX className="w-3.5 h-3.5 flex-shrink-0" />}
+                <span className="truncate">{voiceEnabled ? "Audio On" : "Audio Off"}</span>
+              </button>
+              {/* Mobile-only: open rubric drawer. Desktop shows the sidebar inline. */}
+              <button
+                onClick={() => setShowMobileRubric(true)}
+                className="lg:hidden flex items-center gap-1.5 text-[10px] font-black text-[var(--color-medical-indigo)] hover:opacity-80 uppercase tracking-widest transition-opacity"
+              >
+                <Target className="w-3.5 h-3.5" />
+                Rubric · {scores.total.toFixed(1)}/{station.rubric.totalMaxScore}
               </button>
             </div>
             <div className="flex items-end gap-2 max-w-3xl mx-auto">
@@ -1080,7 +1096,7 @@ function NewFormatActivePage({
           </div>
         </div>
 
-        {/* Rubric sidebar */}
+        {/* Rubric sidebar (desktop only) */}
         <div className="hidden lg:flex flex-col w-80 border-l border-[var(--border-subtle)] bg-[var(--bg-1)] overflow-hidden flex-shrink-0">
           <RubricSidebar
             rubric={station.rubric}
@@ -1089,6 +1105,43 @@ function NewFormatActivePage({
           />
         </div>
       </div>
+
+      {/* Mobile rubric bottom-sheet drawer — desktop uses inline sidebar above */}
+      {showMobileRubric && (
+        <div className="lg:hidden fixed inset-0 z-50 flex flex-col justify-end">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={() => setShowMobileRubric(false)}
+          />
+          {/* Sheet */}
+          <div
+            className="relative bg-[var(--bg-1)] border-t border-[var(--border-subtle)] rounded-t-3xl shadow-2xl max-h-[85dvh] flex flex-col animate-in slide-in-from-bottom duration-300"
+            style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+          >
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-subtle)] flex-shrink-0">
+              <div className="flex items-center gap-2">
+                <Target className="w-4 h-4 text-[var(--color-medical-indigo)]" />
+                <p className="text-[12px] font-black uppercase tracking-widest text-[var(--text-primary)]">Live Rubric</p>
+              </div>
+              <button
+                onClick={() => setShowMobileRubric(false)}
+                aria-label="Close rubric"
+                className="w-9 h-9 rounded-xl bg-[var(--bg-2)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              <RubricSidebar
+                rubric={station.rubric}
+                progress={rubricProgress}
+                scores={scores}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
