@@ -162,7 +162,25 @@ Respond ONLY as valid JSON (no markdown, no code blocks, just raw JSON):
     return NextResponse.json({ error: "Invalid mode" }, { status: 400 });
   } catch (err) {
     console.error("OSCE API error:", err);
-    return NextResponse.json({ error: "AI service error" }, { status: 500 });
+    // Surface upstream API-provider errors (e.g. expired GROQ key) so the frontend
+    // can display an actionable message instead of a generic "Connection error".
+    const anyErr = err as { statusCode?: number; message?: string; name?: string };
+    if (anyErr?.statusCode === 401) {
+      return NextResponse.json(
+        { error: "AI provider rejected the request (invalid or expired API key). Please rotate GROQ_API_KEY." },
+        { status: 502 }
+      );
+    }
+    if (anyErr?.statusCode === 429) {
+      return NextResponse.json(
+        { error: "AI provider rate limit reached. Please wait a moment and try again." },
+        { status: 502 }
+      );
+    }
+    return NextResponse.json(
+      { error: "AI service error", detail: anyErr?.message ?? anyErr?.name ?? "unknown" },
+      { status: 500 }
+    );
   }
 }
 

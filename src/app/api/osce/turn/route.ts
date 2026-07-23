@@ -37,6 +37,13 @@ function sanitizeInput(input: string): string {
 
 export async function POST(req: NextRequest) {
   try {
+    if (!process.env.GROQ_API_KEY) {
+      return NextResponse.json(
+        { error: "AI service is not configured (GROQ_API_KEY missing)" },
+        { status: 503 }
+      );
+    }
+
     const body = await req.json();
     const parsed = requestSchema.safeParse(body);
 
@@ -72,6 +79,27 @@ export async function POST(req: NextRequest) {
     });
   } catch (err) {
     console.error("OSCE turn error:", err);
-    return NextResponse.json({ error: "Server error processing OSCE turn" }, { status: 500 });
+    // Surface upstream API-provider errors (e.g. expired GROQ key) so the frontend
+    // can display an actionable message instead of a generic "Connection error".
+    const anyErr = err as { statusCode?: number; responseBody?: string; message?: string; name?: string };
+    if (anyErr?.statusCode === 401) {
+      return NextResponse.json(
+        { error: "AI provider rejected the request (invalid or expired API key). Please rotate GROQ_API_KEY." },
+        { status: 502 }
+      );
+    }
+    if (anyErr?.statusCode === 429) {
+      return NextResponse.json(
+        { error: "AI provider rate limit reached. Please wait a moment and try again." },
+        { status: 502 }
+      );
+    }
+    return NextResponse.json(
+      {
+        error: "Server error processing OSCE turn",
+        detail: anyErr?.message ?? anyErr?.name ?? "unknown",
+      },
+      { status: 500 }
+    );
   }
 }

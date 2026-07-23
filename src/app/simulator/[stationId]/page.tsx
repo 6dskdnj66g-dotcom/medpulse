@@ -897,13 +897,20 @@ function NewFormatActivePage({
         }),
       });
 
-      if (!res.ok) throw new Error("API error");
+      if (!res.ok) {
+        // Extract server-supplied error message so the user sees a real cause,
+        // not a generic "Connection error" that hides upstream API failures.
+        const errBody = await res.json().catch(() => ({} as { error?: string; detail?: string }));
+        const msg = (errBody as { error?: string; detail?: string }).error
+          ?? `Request failed (${res.status})`;
+        throw new Error(msg);
+      }
       const data = await res.json() as { patientResponse: string };
 
       const patientMsg: NewMessage = { id: crypto.randomUUID(), role: "patient", content: data.patientResponse, timestamp: Date.now() };
       setMessages(prev => [...prev, ...invMessages, patientMsg]);
-    } catch {
-      setError("Connection error. Please try again.");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Connection error. Please try again.");
       setMessages(updatedMessages);
     } finally {
       setSending(false);
@@ -1250,11 +1257,16 @@ export default function StationPage({ params }: { params: Promise<{ stationId: s
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: updated, stationId, mode: "patient", lang: isAr ? "ar" : "en" }),
       });
-      if (!res.ok) throw new Error("API error");
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({} as { error?: string }));
+        const msg = (errBody as { error?: string }).error ?? `Request failed (${res.status})`;
+        throw new Error(msg);
+      }
       const data = await res.json() as { content: string };
       setMessages(prev => [...prev, { role: "assistant", content: data.content, timestamp: Date.now() }]);
-    } catch {
-      setError(isAr ? "خطأ في الاتصال." : "Connection error. Please try again.");
+    } catch (e) {
+      const fallback = isAr ? "خطأ في الاتصال." : "Connection error. Please try again.";
+      setError(e instanceof Error && e.message ? e.message : fallback);
     } finally {
       setSending(false);
     }
