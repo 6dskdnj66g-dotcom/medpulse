@@ -57,6 +57,9 @@ function ScoreRing({ percentage, passing }: { percentage: number; passing: boole
 
 export function FinalReport({ station, session, onRetry }: FinalReportProps) {
   const [showFeedback, setShowFeedback] = useState(false);
+  const [aiFeedback, setAiFeedback] = useState<string>(session.finalFeedback ?? "");
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
+  const [feedbackError, setFeedbackError] = useState<string>("");
   const scores = session.scores as SessionScores;
   const totalMax = station.rubric.totalMaxScore;
   const totalEarned = scores.total;
@@ -191,42 +194,58 @@ export function FinalReport({ station, session, onRetry }: FinalReportProps) {
         </button>
         {showFeedback && (
           <div className="mt-4">
-            {session.finalFeedback ? (
+            {aiFeedback ? (
               <p className="text-sm text-[var(--text-secondary)] font-medium leading-relaxed whitespace-pre-wrap">
-                {session.finalFeedback}
+                {aiFeedback}
+                {feedbackLoading && <span className="inline-block w-2 h-4 ml-1 bg-[var(--color-medical-indigo)] animate-pulse align-middle" />}
               </p>
             ) : (
               <div className="text-center py-4 bg-[var(--bg-1)] rounded-xl border border-[var(--border-subtle)] border-dashed">
-                <p className="text-xs text-[var(--text-tertiary)] mb-3">No deep AI analysis found for this session.</p>
+                <p className="text-xs text-[var(--text-tertiary)] mb-3">
+                  {feedbackLoading ? "Generating examiner analysis…" : "No deep AI analysis found for this session."}
+                </p>
+                {feedbackError && (
+                  <p className="text-xs text-rose-500 mb-3 font-medium">{feedbackError}</p>
+                )}
                 <button
+                  disabled={feedbackLoading}
                   onClick={async () => {
-                    const transcript = session.messages.map(m => `${m.role}: ${m.content}`).join('\\n');
+                    setFeedbackError("");
+                    setFeedbackLoading(true);
+                    // Real newlines so the LLM sees a formatted transcript, not one collapsed line
+                    const transcript = session.messages
+                      .map(m => `${m.role}: ${m.content}`)
+                      .join("\n");
                     try {
-                      const res = await fetch('/api/osce/evaluate', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                      const res = await fetch("/api/osce/evaluate", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ stationId: station.id, transcript }),
                       });
-                      if (!res.ok) throw new Error('Evaluation failed');
+                      if (!res.ok) throw new Error(`Evaluation failed (${res.status})`);
                       const reader = res.body?.getReader();
-                      if (!reader) return;
+                      if (!reader) throw new Error("No response stream");
                       const decoder = new TextDecoder();
-                      session.finalFeedback = "";
+                      let acc = "";
+                      // Stream into React state so the UI re-renders on every chunk
                       while (true) {
                         const { done, value } = await reader.read();
                         if (done) break;
-                        session.finalFeedback += decoder.decode(value, { stream: true });
-                        // Re-render
-                        setShowFeedback(true);
+                        acc += decoder.decode(value, { stream: true });
+                        setAiFeedback(acc);
                       }
+                      session.finalFeedback = acc;
                     } catch (e) {
-                      console.error('AI Eval failed', e);
+                      console.error("AI Eval failed", e);
+                      setFeedbackError(e instanceof Error ? e.message : "Evaluation failed");
+                    } finally {
+                      setFeedbackLoading(false);
                     }
                   }}
-                  className="px-4 py-2 bg-[var(--color-medical-indigo)]/10 text-[var(--color-medical-indigo)] hover:bg-[var(--color-medical-indigo)]/20 transition-colors text-[11px] font-black uppercase tracking-widest rounded-lg flex items-center gap-2 mx-auto"
+                  className="px-4 py-2 bg-[var(--color-medical-indigo)]/10 text-[var(--color-medical-indigo)] hover:bg-[var(--color-medical-indigo)]/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-[11px] font-black uppercase tracking-widest rounded-lg flex items-center gap-2 mx-auto"
                 >
                   <Brain className="w-3.5 h-3.5" />
-                  Generate AI Analysis Now
+                  {feedbackLoading ? "Analysing…" : "Generate AI Analysis Now"}
                 </button>
               </div>
             )}

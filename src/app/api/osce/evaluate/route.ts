@@ -1,12 +1,16 @@
+// src/app/api/osce/evaluate/route.ts
+// Post-session OSCE examiner analysis — GROQ ONLY (project rule #1: Gemini quota exhausted, do not use).
+// Streams a markdown-formatted Arabic examiner report back to the FinalReport UI.
+
 import { streamText } from "ai";
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createGroq } from "@ai-sdk/groq";
 import { z } from "zod";
 
 export const maxDuration = 60;
 
 const requestSchema = z.object({
-  stationId: z.string(),
-  transcript: z.string().min(10).max(20000), // Protect against too large payload
+  stationId: z.string().min(1).max(100),
+  transcript: z.string().min(10).max(20000),
 });
 
 const EXAMINER_SYSTEM_PROMPT = `أنت بروفيسور طبي في لجنة الـ OSCE وحكم طبي صارم (Examiner).
@@ -27,23 +31,31 @@ export async function POST(req: Request) {
     const raw = await req.json();
     const parsed = requestSchema.safeParse(raw);
     if (!parsed.success) {
-      return Response.json({ error: "Invalid request", details: parsed.error.flatten() }, { status: 400 });
+      return Response.json(
+        { error: "Invalid request", details: parsed.error.flatten() },
+        { status: 400 }
+      );
     }
 
     const { transcript } = parsed.data;
 
-    const googleApiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-    if (!googleApiKey) {
-      return Response.json({ error: "No GOOGLE_GENERATIVE_AI_API_KEY configured" }, { status: 503 });
+    const groqApiKey = process.env.GROQ_API_KEY;
+    if (!groqApiKey) {
+      return Response.json(
+        { error: "GROQ_API_KEY is not configured on the server" },
+        { status: 503 }
+      );
     }
 
-    const google = createGoogleGenerativeAI({ apiKey: googleApiKey });
-    
-    const result = await streamText({
-      model: google("gemini-2.5-flash"), // Powerful enough for clinical evaluation
+    const groq = createGroq({ apiKey: groqApiKey });
+
+    const result = streamText({
+      model: groq("llama-3.3-70b-versatile"),
       system: EXAMINER_SYSTEM_PROMPT,
-      messages: [{ role: "user", content: `نص محادثة الـ OSCE للتقييم:\n\n${transcript}` }],
-      temperature: 0.1, // Near deterministic
+      messages: [
+        { role: "user", content: `نص محادثة الـ OSCE للتقييم:\n\n${transcript}` },
+      ],
+      temperature: 0.15,
     });
 
     return result.toTextStreamResponse();
