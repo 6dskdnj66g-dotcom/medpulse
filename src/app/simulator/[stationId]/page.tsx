@@ -25,6 +25,7 @@ import { CountdownTimer } from "@/components/osce/CountdownTimer";
 import { RubricSidebar } from "@/components/osce/RubricSidebar";
 import { InvestigationCard } from "@/components/osce/InvestigationCard";
 import { FinalReport } from "@/components/osce/FinalReport";
+import { IraqiResourcesLauncher } from "@/components/resources/IraqiResourcesLauncher";
 
 // ── Types (old format) ────────────────────────────────────────────────────────
 
@@ -1072,6 +1073,8 @@ function NewFormatActivePage({
                 <Target className="w-3.5 h-3.5" aria-hidden="true" />
                 Rubric · {scores.total.toFixed(1)}/{station.rubric.totalMaxScore}
               </button>
+              {/* Resources launcher — available on every breakpoint during the OSCE */}
+              <IraqiResourcesLauncher stationId={station.id} />
             </div>
             <div className="flex items-end gap-2 max-w-3xl mx-auto">
               <button
