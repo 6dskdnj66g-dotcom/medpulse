@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import {
-  Clock, AlertCircle, Target, User, Stethoscope, BookOpen, ChevronRight, Activity
+  Clock, AlertCircle, Target, User, Stethoscope, BookOpen, ChevronRight, Activity, ShieldAlert
 } from "lucide-react";
 import type { OSCEStation } from "@/lib/osce/types";
 
@@ -38,11 +38,24 @@ export function StationBriefing({ station, onStart, readingTimeRemaining }: Stat
     <div className="min-h-screen flex items-center justify-center p-4 md:p-8">
       <div className="w-full max-w-2xl space-y-6 animate-in fade-in zoom-in-95 duration-500">
 
+        {/* Educational-simulation disclaimer — visible before the station starts */}
+        <div
+          role="note"
+          aria-label="Educational disclaimer"
+          className="flex items-start gap-2 bg-amber-500/5 border border-amber-500/20 rounded-2xl px-4 py-3"
+        >
+          <ShieldAlert className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
+          <p className="text-[11px] md:text-xs font-semibold text-amber-700 dark:text-amber-400 leading-relaxed">
+            Educational simulation only. This is a fictional patient for OSCE practice. Not clinical advice.
+            All patient identities, histories, and results are simulated and do not represent real individuals.
+          </p>
+        </div>
+
         {/* Reading time indicator */}
         {readingTimeRemaining > 0 && (
           <div className="flex items-center gap-2 justify-center bg-amber-500/10 border border-amber-500/20 rounded-2xl px-4 py-2 text-amber-600 dark:text-amber-400">
-            <Clock className="w-4 h-4" />
-            <span className="text-sm font-bold">Reading time: {readingTimeRemaining}s remaining</span>
+            <Clock className="w-4 h-4" aria-hidden="true" />
+            <span className="text-sm font-bold" aria-live="polite">Reading time: {readingTimeRemaining}s remaining</span>
           </div>
         )}
 

@@ -41,10 +41,16 @@ function DomainSection({ label, items, score, progress, defaultOpen = false }: D
   const pct = score.percentage;
   const barColor = pct >= 70 ? "bg-emerald-500" : pct >= 50 ? "bg-amber-500" : "bg-rose-500";
 
+  const domainSlug = label.replace(/\s+/g, "-").toLowerCase();
+  const panelId = `rubric-domain-${domainSlug}`;
+
   return (
     <div className="border-b" style={{ borderColor: "var(--border-subtle)" }}>
       <button
         onClick={() => setOpen(p => !p)}
+        aria-expanded={open}
+        aria-controls={panelId}
+        aria-label={`${label} — ${score.earned.toFixed(1)} of ${score.max} points earned. ${open ? "Collapse" : "Expand"}`}
         className="w-full flex items-center justify-between p-3 hover:bg-[var(--bg-3)] transition-colors"
       >
         <div className="flex-1 min-w-0 text-left">
@@ -67,7 +73,7 @@ function DomainSection({ label, items, score, progress, defaultOpen = false }: D
       </button>
 
       {open && (
-        <div className="px-3 pb-3 space-y-1.5">
+        <div id={panelId} className="px-3 pb-3 space-y-1.5">
           {items.map(item => {
             const prog = progress[item.id];
             const triggered = prog?.triggered ?? false;

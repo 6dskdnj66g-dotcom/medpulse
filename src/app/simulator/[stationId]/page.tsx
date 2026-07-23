@@ -449,9 +449,11 @@ function ActivePhase({
             <div className="flex items-center justify-between px-2 mb-2 max-w-4xl mx-auto">
               <button
                 onClick={() => setVoiceEnabled(!voiceEnabled)}
+                aria-label={voiceEnabled ? (isAr ? "كتم صوت المريض" : "Mute patient audio") : (isAr ? "تشغيل صوت المريض" : "Unmute patient audio")}
+                aria-pressed={voiceEnabled}
                 className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--text-tertiary)] hover:text-[var(--text-primary)] uppercase tracking-widest transition-colors"
               >
-                {voiceEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+                {voiceEnabled ? <Volume2 className="w-3.5 h-3.5" aria-hidden="true" /> : <VolumeX className="w-3.5 h-3.5" aria-hidden="true" />}
                 {voiceEnabled ? (isAr ? "صوت المريض مفعّل" : "Patient Audio On") : (isAr ? "صوت المريض متوقف" : "Patient Audio Off")}
               </button>
             </div>
@@ -459,13 +461,15 @@ function ActivePhase({
               <button
                 type="button"
                 onClick={toggleListen}
+                aria-label={isListening ? (isAr ? "إيقاف الإدخال الصوتي" : "Stop voice input") : (isAr ? "بدء الإدخال الصوتي" : "Start voice input")}
+                aria-pressed={isListening}
                 className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all ${
                   isListening
                     ? "bg-rose-500/10 border border-rose-500/30 text-rose-500 animate-pulse"
                     : "bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--color-medical-indigo)]"
                 }`}
               >
-                {isListening ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
+                {isListening ? <Mic className="w-5 h-5" aria-hidden="true" /> : <MicOff className="w-5 h-5" aria-hidden="true" />}
               </button>
               <textarea
                 ref={textareaRef}
@@ -474,15 +478,17 @@ function ActivePhase({
                 onKeyDown={handleKeyDown}
                 rows={1}
                 disabled={sending}
+                aria-label={isAr ? "الرسالة إلى المريض" : "Message to patient"}
                 placeholder={isListening ? (isAr ? "تحدث الآن..." : "Listening...") : (isAr ? "اكتب سؤالك..." : "Type your question... (Enter to send)")}
                 className="flex-1 resize-none bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-base md:text-[13px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-medical-indigo)]/20 transition-all min-h-[48px] max-h-36 overflow-y-auto"
               />
               <button
                 onClick={onSend}
                 disabled={sending || !input.trim()}
+                aria-label={sending ? (isAr ? "جارٍ الإرسال" : "Sending message") : (isAr ? "إرسال الرسالة" : "Send message to patient")}
                 className="w-12 h-12 rounded-2xl bg-[var(--color-medical-indigo)] text-white flex items-center justify-center flex-shrink-0 hover:bg-[var(--color-medical-indigo)]/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95"
               >
-                {sending ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                {sending ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Send className="w-5 h-5" aria-hidden="true" />}
               </button>
             </div>
           </div>
@@ -1050,17 +1056,20 @@ function NewFormatActivePage({
             <div className="flex items-center justify-between px-2 mb-2 max-w-3xl mx-auto gap-3">
               <button
                 onClick={() => setVoiceEnabled(!voiceEnabled)}
+                aria-label={voiceEnabled ? "Mute patient audio" : "Unmute patient audio"}
+                aria-pressed={voiceEnabled}
                 className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--text-tertiary)] hover:text-[var(--text-primary)] uppercase tracking-widest transition-colors truncate"
               >
-                {voiceEnabled ? <Volume2 className="w-3.5 h-3.5 flex-shrink-0" /> : <VolumeX className="w-3.5 h-3.5 flex-shrink-0" />}
+                {voiceEnabled ? <Volume2 className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" /> : <VolumeX className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />}
                 <span className="truncate">{voiceEnabled ? "Audio On" : "Audio Off"}</span>
               </button>
               {/* Mobile-only: open rubric drawer. Desktop shows the sidebar inline. */}
               <button
                 onClick={() => setShowMobileRubric(true)}
+                aria-label={`Open rubric — current score ${scores.total.toFixed(1)} out of ${station.rubric.totalMaxScore}`}
                 className="lg:hidden flex items-center gap-1.5 text-[10px] font-black text-[var(--color-medical-indigo)] hover:opacity-80 uppercase tracking-widest transition-opacity"
               >
-                <Target className="w-3.5 h-3.5" />
+                <Target className="w-3.5 h-3.5" aria-hidden="true" />
                 Rubric · {scores.total.toFixed(1)}/{station.rubric.totalMaxScore}
               </button>
             </div>
@@ -1068,13 +1077,15 @@ function NewFormatActivePage({
               <button
                 type="button"
                 onClick={toggleListen}
+                aria-label={isListening ? "Stop voice input" : "Start voice input"}
+                aria-pressed={isListening}
                 className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all ${
                   isListening
                     ? "bg-rose-500/10 border border-rose-500/30 text-rose-500 animate-pulse"
                     : "bg-[var(--bg-2)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--color-medical-indigo)]"
                 }`}
               >
-                {isListening ? <Mic className="w-5 h-5" /> : <MicOff className="w-5 h-5" />}
+                {isListening ? <Mic className="w-5 h-5" aria-hidden="true" /> : <MicOff className="w-5 h-5" aria-hidden="true" />}
               </button>
               <textarea
                 value={input}
@@ -1082,15 +1093,17 @@ function NewFormatActivePage({
                 onKeyDown={handleKeyDown}
                 rows={1}
                 disabled={sending}
+                aria-label="Message to patient"
                 placeholder={isListening ? "Listening..." : "Speak to the patient, request investigations... (Enter to send)"}
                 className="flex-1 resize-none bg-[var(--bg-2)] border border-[var(--border-subtle)] rounded-2xl px-4 py-3 text-base md:text-[13px] font-medium text-[var(--text-primary)] placeholder-[var(--text-tertiary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-medical-indigo)]/20 transition-all min-h-[48px] max-h-32 overflow-y-auto"
               />
               <button
                 onClick={sendMessage}
                 disabled={sending || !input.trim()}
+                aria-label={sending ? "Sending message" : "Send message to patient"}
                 className="w-12 h-12 rounded-2xl bg-[var(--color-medical-indigo)] text-white flex items-center justify-center flex-shrink-0 hover:bg-[var(--color-medical-indigo)]/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all active:scale-95"
               >
-                {sending ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                {sending ? <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" /> : <Send className="w-5 h-5" aria-hidden="true" />}
               </button>
             </div>
           </div>
