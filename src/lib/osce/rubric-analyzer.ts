@@ -55,17 +55,19 @@ export async function scoreSessionWithAI(
   redFlags: string[],
   lang: "ar" | "en" = "ar"
 ): Promise<ExaminerScore> {
+  // Project rule #1: GROQ is the primary AI provider. xAI is only a legacy fallback
+  // when GROQ is entirely unavailable (never preferred, even if XAI_API_KEY is set).
   const groqKey = process.env.GROQ_API_KEY;
   const xaiKey = process.env.XAI_API_KEY;
 
-  const apiKey = xaiKey || groqKey;
-  const endpoint = xaiKey
-    ? "https://api.x.ai/v1/chat/completions"
-    : "https://api.groq.com/openai/v1/chat/completions";
-  const model = xaiKey ? "grok-2-latest" : "llama-3.3-70b-versatile";
+  const apiKey = groqKey || xaiKey;
+  const endpoint = groqKey
+    ? "https://api.groq.com/openai/v1/chat/completions"
+    : "https://api.x.ai/v1/chat/completions";
+  const model = groqKey ? "llama-3.3-70b-versatile" : "grok-2-latest";
 
   if (!apiKey) {
-    throw new Error("No AI API key configured");
+    throw new Error("No AI API key configured (expected GROQ_API_KEY)");
   }
 
   const totalMaxMarks = rubric.reduce((a, r) => a + r.points, 0);

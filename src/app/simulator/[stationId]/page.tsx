@@ -765,7 +765,15 @@ function NewFormatActivePage({
     else { setInput(""); recognitionRef.current?.start(); setIsListening(true); }
   };
 
-  function updateRubricForMessage(text: string) {
+  // Client-side live rubric — fires keyword, diagnosis-stated, and investigation-requested
+  // items instantly. `ai-evaluation` items are intentionally deferred to the FinalReport
+  // examiner endpoint (see /api/osce/evaluate) — we mark them as `pending` here so the
+  // sidebar doesn't misleadingly show them as failed while the encounter is still live.
+  //
+  // Accepts an explicit `investigationsForTurn` list so that investigations released on
+  // THIS turn immediately trigger their rubric item — the prior implementation checked
+  // stale state and always missed by one turn.
+  function updateRubricForMessage(text: string, investigationsForTurn: string[]) {
     const lower = text.toLowerCase();
     const newProgress = { ...rubricProgress };
     let changed = false;
@@ -780,20 +788,39 @@ function NewFormatActivePage({
       if (newProgress[item.id]?.triggered) continue;
 
       let triggered = false;
+      let quality: "excellent" | "good" | "adequate" | "poor" = "adequate";
+
       if (item.detectionMethod === "keyword" && item.keywordMatchers) {
-        const hasPrimary = item.keywordMatchers.primary.some(kw => lower.includes(kw.toLowerCase()));
-        if (hasPrimary) triggered = true;
+        const primaryHits = item.keywordMatchers.primary.filter(kw =>
+          lower.includes(kw.toLowerCase())
+        ).length;
+        if (primaryHits > 0) {
+          // Simple graded quality: more distinct primary keywords covered → higher rating.
+          triggered = true;
+          if (primaryHits >= 4) quality = "excellent";
+          else if (primaryHits >= 2) quality = "good";
+          else quality = "adequate";
+        }
       } else if (item.detectionMethod === "diagnosis-stated" && item.keywordMatchers) {
         const diagVerbs = ["i think", "this is", "looks like", "diagnosis", "consistent with", "likely", "probably", "i believe"];
         if (diagVerbs.some(v => lower.includes(v))) {
           triggered = item.keywordMatchers.primary.some(kw => lower.includes(kw.toLowerCase()));
+          if (triggered) quality = "good";
         }
       } else if (item.detectionMethod === "investigation-requested" && item.investigationId) {
-        triggered = releasedInvestigations.includes(item.investigationId);
+        triggered = investigationsForTurn.includes(item.investigationId);
+        if (triggered) quality = "good";
       }
 
       if (triggered) {
-        newProgress[item.id] = { itemId: item.id, triggered: true, triggeredAt: Date.now(), quality: "adequate", pointsAwarded: item.weight * 0.7 };
+        const multiplier: Record<string, number> = { excellent: 1.0, good: 0.85, adequate: 0.7, poor: 0.4 };
+        newProgress[item.id] = {
+          itemId: item.id,
+          triggered: true,
+          triggeredAt: Date.now(),
+          quality,
+          pointsAwarded: Math.round(item.weight * multiplier[quality] * 10) / 10,
+        };
         changed = true;
       }
     }
@@ -830,9 +857,8 @@ function NewFormatActivePage({
     const updatedMessages = [...messages, userMsg];
     setMessages(updatedMessages);
 
-    updateRubricForMessage(text);
-
-    // Check investigations
+    // Detect investigations FIRST so that rubric items depending on them fire on the
+    // same turn the student requested them (previously required an extra turn).
     const invs = invDetector.current?.detectMultiple(text) ?? [];
     const newReleased = [...releasedInvestigations];
     const invMessages: NewMessage[] = [];
@@ -849,6 +875,9 @@ function NewFormatActivePage({
     if (newReleased.length > releasedInvestigations.length) {
       setReleasedInvestigations(newReleased);
     }
+
+    // Now run rubric with the up-to-date released list
+    updateRubricForMessage(text, newReleased);
 
     try {
       const conversationHistory = updatedMessages.map(m => ({
