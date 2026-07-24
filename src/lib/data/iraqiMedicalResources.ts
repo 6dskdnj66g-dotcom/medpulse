@@ -13,6 +13,15 @@
 
 export type IraqiRegion = "baghdad" | "central" | "north" | "south" | "kurdistan";
 
+/**
+ * Curriculum architecture used by the college.
+ *   - traditional : subject-based / discipline-siloed years 1-3, clinical rotations years 4-6
+ *   - integrated  : PBL / systems-integrated across preclinical and clinical years
+ *   - hybrid      : mixed model with integrated modules layered onto a traditional backbone
+ *   - unspecified : we don't have a reliable, current classification — DO NOT GUESS
+ */
+export type CurriculumSystem = "traditional" | "integrated" | "hybrid" | "unspecified";
+
 export interface IraqiMedicalCollege {
   id: string;
   name: string;
@@ -22,6 +31,9 @@ export interface IraqiMedicalCollege {
   region: IraqiRegion;
   established?: number;
   website?: string;
+  system?: CurriculumSystem;
+  description?: string;
+  descriptionAr?: string;
   notes?: string;
 }
 
@@ -72,6 +84,11 @@ export interface StationReferenceLinks {
 
 // ── Iraqi medical colleges ────────────────────────────────────────────────
 
+const IRAQI_MBCHB_GENERAL_DESC =
+  "Six-year MBChB program: three preclinical years (basic sciences) followed by three clinical years covering Internal Medicine, Surgery, Paediatrics, Obstetrics & Gynaecology, and community-medicine / psychiatry rotations. Iraqi curricula draw heavily on UK-style clinical textbooks — Davidson's, Kumar & Clark, Macleod's, and Bailey & Love are the widely-shared backbone.";
+const IRAQI_MBCHB_GENERAL_DESC_AR =
+  "برنامج بكالوريوس الطب والجراحة لست سنوات: ثلاث سنوات قبل سريرية (العلوم الأساسية) تليها ثلاث سنوات سريرية تشمل الباطنية والجراحة والأطفال والنسائية والتوليد والطب المجتمعي والطب النفسي. تعتمد المناهج العراقية بشكل واسع على المراجع السريرية بالنمط البريطاني — ديفيدسون، كومار وكلارك، ماكلويد، وبيلي أند لوف هي العمود الفقري المشترك.";
+
 export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
   {
     id: "baghdad-medicine",
@@ -82,6 +99,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "baghdad",
     established: 1927,
     website: "https://comed.uobaghdad.edu.iq/",
+    system: "traditional",
+    description: `The oldest medical college in Iraq (founded 1927) and one of the oldest in the region. ${IRAQI_MBCHB_GENERAL_DESC}`,
+    descriptionAr: `أقدم كلية طب في العراق (تأسست عام 1927) ومن أقدم الكليات في المنطقة. ${IRAQI_MBCHB_GENERAL_DESC_AR}`,
   },
   {
     id: "al-kindy-medicine",
@@ -92,6 +112,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "baghdad",
     established: 2001,
     website: "https://kmc.uobaghdad.edu.iq/",
+    system: "integrated",
+    description: `Widely reported to run an integrated / problem-based-learning (PBL) curriculum, with systems modules replacing the traditional discipline-by-discipline layout. Total MBChB duration remains six years.`,
+    descriptionAr: `تعتمد الكلية على منهج تكاملي قائم على التعلّم المبني على المشكلات (PBL)، مع وحدات نظامية تحل محل التقسيم التقليدي حسب التخصصات. مدة البكالوريوس ست سنوات.`,
   },
   {
     id: "mustansiriya-medicine",
@@ -102,6 +125,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "baghdad",
     established: 1988,
     website: "https://uomustansiriyah.edu.iq/",
+    system: "traditional",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "nahrain-medicine",
@@ -112,6 +138,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "baghdad",
     established: 1988,
     website: "https://www.nahrainuniv.edu.iq/",
+    system: "integrated",
+    description: `Al-Nahrain has a long history of using an integrated / PBL curriculum for its medical program, with systems-based modules across preclinical and clinical years.`,
+    descriptionAr: `تعتمد كلية طب النهرين تاريخياً منهجاً تكاملياً قائماً على التعلّم المبني على المشكلات (PBL)، مع وحدات نظامية تمتد على مدى السنوات قبل السريرية والسريرية.`,
   },
   {
     id: "mosul-medicine",
@@ -122,6 +151,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "north",
     established: 1959,
     website: "https://uomosul.edu.iq/",
+    system: "traditional",
+    description: `One of Iraq's oldest medical schools outside Baghdad. ${IRAQI_MBCHB_GENERAL_DESC}`,
+    descriptionAr: `من أقدم كليات الطب العراقية خارج بغداد. ${IRAQI_MBCHB_GENERAL_DESC_AR}`,
   },
   {
     id: "ninevah-medicine",
@@ -131,6 +163,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     cityAr: "الموصل",
     region: "north",
     established: 2014,
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "basrah-medicine",
@@ -141,6 +176,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "south",
     established: 1967,
     website: "https://uobasrah.edu.iq/",
+    system: "traditional",
+    description: `The principal medical school in southern Iraq. ${IRAQI_MBCHB_GENERAL_DESC}`,
+    descriptionAr: `الكلية الطبية الرئيسية في جنوب العراق. ${IRAQI_MBCHB_GENERAL_DESC_AR}`,
   },
   {
     id: "kufa-medicine",
@@ -151,6 +189,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "central",
     established: 1977,
     website: "https://uokufa.edu.iq/",
+    system: "traditional",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "babylon-medicine",
@@ -161,6 +202,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "central",
     established: 1991,
     website: "https://uobabylon.edu.iq/",
+    system: "traditional",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "karbala-medicine",
@@ -171,6 +215,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "central",
     established: 2003,
     website: "https://uokerbala.edu.iq/",
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "diyala-medicine",
@@ -181,6 +228,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "central",
     established: 2003,
     website: "https://www.uodiyala.edu.iq/",
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "tikrit-medicine",
@@ -191,6 +241,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "central",
     established: 1988,
     website: "https://www.tu.edu.iq/",
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "anbar-medicine",
@@ -201,6 +254,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "central",
     established: 2001,
     website: "https://www.uoanbar.edu.iq/",
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "wasit-medicine",
@@ -211,6 +267,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "central",
     established: 2003,
     website: "https://uowasit.edu.iq/",
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "muthanna-medicine",
@@ -220,6 +279,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     cityAr: "السماوة",
     region: "south",
     website: "https://mu.edu.iq/",
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "thi-qar-medicine",
@@ -229,6 +291,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     cityAr: "الناصرية",
     region: "south",
     website: "https://utq.edu.iq/",
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
   {
     id: "sulaimani-medicine",
@@ -239,6 +304,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "kurdistan",
     established: 1968,
     website: "https://univsul.edu.iq/",
+    system: "traditional",
+    description: `The principal medical school in Kurdistan Region, with a long-established MBChB program. ${IRAQI_MBCHB_GENERAL_DESC}`,
+    descriptionAr: `الكلية الطبية الرئيسية في إقليم كردستان مع برنامج بكالوريوس طب راسخ. ${IRAQI_MBCHB_GENERAL_DESC_AR}`,
   },
   {
     id: "hawler-medical",
@@ -249,6 +317,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "kurdistan",
     established: 2005,
     website: "https://hmu.edu.krd/",
+    system: "unspecified",
+    description: `A dedicated medical university in Erbil housing colleges of Medicine, Dentistry, Pharmacy, Nursing, and Health Sciences under one institution.`,
+    descriptionAr: `جامعة طبية متخصصة في أربيل تضم كليات الطب وطب الأسنان والصيدلة والتمريض والعلوم الصحية تحت مظلة واحدة.`,
   },
   {
     id: "duhok-medicine",
@@ -259,6 +330,9 @@ export const IRAQI_MEDICAL_COLLEGES: IraqiMedicalCollege[] = [
     region: "kurdistan",
     established: 1992,
     website: "https://uod.ac/",
+    system: "unspecified",
+    description: IRAQI_MBCHB_GENERAL_DESC,
+    descriptionAr: IRAQI_MBCHB_GENERAL_DESC_AR,
   },
 ];
 
@@ -739,4 +813,192 @@ export function getGuidelineById(id: string): ClinicalGuidelineSource | undefine
 
 export function getStationReferenceLinks(stationId: string): StationReferenceLinks | undefined {
   return STATION_REFERENCE_MAP.find((s) => s.stationId === stationId);
+}
+
+// ── Medical apps & digital platforms ─────────────────────────────────────
+// Only globally-recognised platforms with public URLs are listed here. Iraqi
+// MoH mobile apps and local academic portals are NOT populated — the UI shows
+// an explicit empty state for that sub-section rather than fabricating links.
+
+export type AppCategory =
+  | "evidence-reference"
+  | "drug-info"
+  | "imaging"
+  | "anatomy"
+  | "board-review"
+  | "spaced-repetition"
+  | "guidelines";
+
+export type AppAccess = "free" | "freemium" | "subscription" | "institutional";
+
+export interface MedicalApp {
+  id: string;
+  name: string;
+  publisher: string;
+  category: AppCategory;
+  access: AppAccess;
+  platforms: ("web" | "ios" | "android")[];
+  url: string;
+  description: string;
+}
+
+export const APP_CATEGORY_LABELS: Record<AppCategory, string> = {
+  "evidence-reference": "Evidence-Based Reference",
+  "drug-info":          "Drug Information",
+  "imaging":            "Imaging",
+  "anatomy":            "Anatomy",
+  "board-review":       "Board Review",
+  "spaced-repetition":  "Spaced Repetition",
+  "guidelines":         "Guidelines",
+};
+
+export const APP_ACCESS_LABELS: Record<AppAccess, string> = {
+  "free":          "Free",
+  "freemium":      "Freemium",
+  "subscription":  "Subscription",
+  "institutional": "Institutional access",
+};
+
+export const MEDICAL_APPS: MedicalApp[] = [
+  {
+    id: "uptodate",
+    name: "UpToDate",
+    publisher: "Wolters Kluwer",
+    category: "evidence-reference",
+    access: "subscription",
+    platforms: ["web", "ios", "android"],
+    url: "https://www.uptodate.com/",
+    description:
+      "Physician-authored, continuously-updated clinical decision support — the reference standard for evidence-based answers at the bedside. Often available through hospital / institutional access.",
+  },
+  {
+    id: "bmj-best-practice",
+    name: "BMJ Best Practice",
+    publisher: "BMJ",
+    category: "evidence-reference",
+    access: "subscription",
+    platforms: ["web", "ios", "android"],
+    url: "https://bestpractice.bmj.com/",
+    description:
+      "Structured, step-by-step management topics with linked guidelines and evidence grades. Offline-capable mobile app.",
+  },
+  {
+    id: "medscape",
+    name: "Medscape",
+    publisher: "WebMD",
+    category: "evidence-reference",
+    access: "free",
+    platforms: ["web", "ios", "android"],
+    url: "https://www.medscape.com/",
+    description:
+      "Free clinical reference with drug information, disease topics, and specialty news — widely used by medical students globally, including in Iraq.",
+  },
+  {
+    id: "amboss",
+    name: "AMBOSS",
+    publisher: "AMBOSS",
+    category: "board-review",
+    access: "subscription",
+    platforms: ["web", "ios", "android"],
+    url: "https://www.amboss.com/us",
+    description:
+      "Integrated learning platform used across USMLE, PLAB, and European medical curricula — knowledge library plus question bank.",
+  },
+  {
+    id: "dynamed",
+    name: "DynaMed",
+    publisher: "EBSCO",
+    category: "evidence-reference",
+    access: "subscription",
+    platforms: ["web", "ios", "android"],
+    url: "https://www.dynamed.com/",
+    description: "Evidence-based clinical reference with rapid updates and mobile access.",
+  },
+  {
+    id: "epocrates",
+    name: "Epocrates",
+    publisher: "Athenahealth",
+    category: "drug-info",
+    access: "freemium",
+    platforms: ["ios", "android"],
+    url: "https://www.epocrates.com/",
+    description: "Drug database, interaction checker, and formulary — widely used for point-of-care prescribing.",
+  },
+  {
+    id: "lexicomp",
+    name: "Lexicomp",
+    publisher: "Wolters Kluwer",
+    category: "drug-info",
+    access: "subscription",
+    platforms: ["web", "ios", "android"],
+    url: "https://www.wolterskluwer.com/en/solutions/lexicomp",
+    description: "Comprehensive drug information, IV compatibility, and interaction checking.",
+  },
+  {
+    id: "bnf-app",
+    name: "BNF & BNFc",
+    publisher: "BMJ / Pharmaceutical Press",
+    category: "drug-info",
+    access: "free",
+    platforms: ["web", "ios", "android"],
+    url: "https://bnf.nice.org.uk/",
+    description:
+      "British National Formulary — the UK-standard prescribing reference. Free mobile access for many users; widely used by Iraqi FY doctors.",
+  },
+  {
+    id: "radiopaedia",
+    name: "Radiopaedia",
+    publisher: "Radiopaedia.org",
+    category: "imaging",
+    access: "freemium",
+    platforms: ["web", "ios", "android"],
+    url: "https://radiopaedia.org/",
+    description:
+      "Peer-reviewed radiology teaching cases and articles — the standard free-access imaging reference for medical students.",
+  },
+  {
+    id: "complete-anatomy",
+    name: "Complete Anatomy",
+    publisher: "3D4Medical (Elsevier)",
+    category: "anatomy",
+    access: "subscription",
+    platforms: ["web", "ios", "android"],
+    url: "https://3d4medical.com/",
+    description: "Interactive 3D anatomy atlas — used across preclinical anatomy courses.",
+  },
+  {
+    id: "osmosis",
+    name: "Osmosis",
+    publisher: "Elsevier",
+    category: "board-review",
+    access: "subscription",
+    platforms: ["web", "ios", "android"],
+    url: "https://www.osmosis.org/",
+    description: "Video-based medical education platform covering preclinical and clinical topics.",
+  },
+  {
+    id: "anki",
+    name: "Anki",
+    publisher: "Ankitects",
+    category: "spaced-repetition",
+    access: "free",
+    platforms: ["web", "ios", "android"],
+    url: "https://apps.ankiweb.net/",
+    description:
+      "Open-source spaced-repetition flashcard system. Widely used with community decks (e.g., AnKing) for USMLE/finals revision.",
+  },
+  {
+    id: "nice-guidance",
+    name: "NICE Guidance",
+    publisher: "National Institute for Health and Care Excellence (UK)",
+    category: "guidelines",
+    access: "free",
+    platforms: ["web"],
+    url: "https://www.nice.org.uk/guidance",
+    description: "UK-standard evidence-based guidelines — the reference for many Iraqi curricula's clinical protocols.",
+  },
+];
+
+export function getAppById(id: string): MedicalApp | undefined {
+  return MEDICAL_APPS.find((a) => a.id === id);
 }

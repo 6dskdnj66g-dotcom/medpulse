@@ -21,21 +21,33 @@
 import { useMemo, useState } from "react";
 import {
   BookOpen, GraduationCap, ScrollText, Users, Search, ExternalLink,
-  MapPin, BookMarked, Sparkles, Info,
+  MapPin, BookMarked, Sparkles, Info, Smartphone, Layers,
 } from "lucide-react";
 import {
   IRAQI_MEDICAL_COLLEGES,
   REFERENCE_BOOKS,
   GUIDELINE_SOURCES,
+  MEDICAL_APPS,
+  APP_CATEGORY_LABELS,
+  APP_ACCESS_LABELS,
   getStationReferenceLinks,
   getReferenceById,
   getGuidelineById,
   type IraqiMedicalCollege,
   type MedicalReferenceBook,
   type ClinicalGuidelineSource,
+  type MedicalApp,
+  type CurriculumSystem,
 } from "@/lib/data/iraqiMedicalResources";
 
-type TabKey = "colleges" | "references" | "guidelines" | "community";
+type TabKey = "colleges" | "references" | "guidelines" | "apps" | "community";
+
+const SYSTEM_LABELS: Record<CurriculumSystem, { en: string; ar: string; color: string }> = {
+  traditional: { en: "Traditional",  ar: "تقليدي",       color: "bg-slate-500/10 text-slate-600 border-slate-500/25" },
+  integrated:  { en: "Integrated",   ar: "تكاملي (PBL)", color: "bg-emerald-500/10 text-emerald-600 border-emerald-500/25" },
+  hybrid:      { en: "Hybrid",       ar: "هجين",         color: "bg-amber-500/10 text-amber-600 border-amber-500/25" },
+  unspecified: { en: "System n/a",   ar: "غير محدد",     color: "bg-[var(--bg-3)] text-[var(--text-tertiary)] border-[var(--border-subtle)]" },
+};
 
 interface IraqiMedicalSidebarProps {
   stationId?: string;
@@ -106,6 +118,9 @@ function TabButton({
 
 function CollegeCard({ college, isAr }: { college: IraqiMedicalCollege; isAr: boolean }) {
   const region = REGION_LABELS[college.region];
+  const system = college.system ? SYSTEM_LABELS[college.system] : undefined;
+  const description = isAr ? (college.descriptionAr ?? college.description) : college.description;
+
   return (
     <a
       href={college.website ?? undefined}
@@ -127,16 +142,75 @@ function CollegeCard({ college, isAr }: { college: IraqiMedicalCollege; isAr: bo
             {college.established ? ` · Est. ${college.established}` : ""}
           </p>
         </div>
-        <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded-full border ${region.color}`}>
+        <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded-full border flex-shrink-0 ${region.color}`}>
           {isAr ? region.ar : region.en}
         </span>
       </div>
+
+      {system && (
+        <div className="flex items-center gap-1.5 mb-2">
+          <Layers className="w-3 h-3 text-[var(--text-tertiary)]" aria-hidden="true" />
+          <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border ${system.color}`}>
+            {isAr ? system.ar : system.en}
+          </span>
+        </div>
+      )}
+
+      {description && (
+        <p className="text-[11px] text-[var(--text-secondary)] font-medium leading-relaxed">
+          {description}
+        </p>
+      )}
+
       {college.website && (
         <div className="flex items-center gap-1 mt-2 text-[10px] font-bold text-[var(--color-medical-indigo)]/80 group-hover:text-[var(--color-medical-indigo)] transition-colors">
           <ExternalLink className="w-3 h-3" aria-hidden="true" />
-          <span className="truncate">Official site</span>
+          <span className="truncate">{isAr ? "الموقع الرسمي" : "Official site"}</span>
         </div>
       )}
+    </a>
+  );
+}
+
+function AppCard({ app, isAr }: { app: MedicalApp; isAr: boolean }) {
+  const accessColor: Record<MedicalApp["access"], string> = {
+    free:          "bg-emerald-500/10 text-emerald-600 border-emerald-500/25",
+    freemium:      "bg-teal-500/10 text-teal-600 border-teal-500/25",
+    subscription:  "bg-amber-500/10 text-amber-600 border-amber-500/25",
+    institutional: "bg-indigo-500/10 text-indigo-600 border-indigo-500/25",
+  };
+  return (
+    <a
+      href={app.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-2)] p-4 transition-all hover:border-[var(--color-medical-indigo)]/30 hover:shadow-md"
+      aria-label={`${app.name} — opens official site in a new tab`}
+    >
+      <div className="flex items-start justify-between gap-3 mb-2">
+        <div className="flex-1 min-w-0">
+          <p className="text-[13px] font-extrabold text-[var(--text-primary)] leading-tight">{app.name}</p>
+          <p className="text-[10px] text-[var(--text-tertiary)] font-medium mt-1">{app.publisher}</p>
+        </div>
+        <span className="text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded-full border bg-[var(--bg-3)] text-[var(--text-secondary)] border-[var(--border-subtle)] flex-shrink-0">
+          {APP_CATEGORY_LABELS[app.category]}
+        </span>
+      </div>
+      <p className="text-[11px] text-[var(--text-secondary)] font-medium leading-relaxed mb-2">
+        {app.description}
+      </p>
+      <div className="flex items-center gap-2 flex-wrap">
+        <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded-full border ${accessColor[app.access]}`}>
+          {APP_ACCESS_LABELS[app.access]}
+        </span>
+        <span className="text-[9px] font-bold uppercase tracking-widest text-[var(--text-tertiary)]">
+          {app.platforms.join(" · ").toUpperCase()}
+        </span>
+        <span className="text-[10px] font-bold text-[var(--color-medical-indigo)] flex items-center gap-1 ml-auto">
+          <ExternalLink className="w-3 h-3" aria-hidden="true" />
+          {isAr ? "افتح" : "Open"}
+        </span>
+      </div>
     </a>
   );
 }
@@ -329,6 +403,13 @@ export function IraqiMedicalSidebar({ stationId, initialTab = "colleges", isAr =
           onClick={() => setTab("guidelines")}
         />
         <TabButton
+          active={tab === "apps"}
+          icon={Smartphone}
+          label={isAr ? "التطبيقات" : "Apps"}
+          count={MEDICAL_APPS.length}
+          onClick={() => setTab("apps")}
+        />
+        <TabButton
           active={tab === "community"}
           icon={Users}
           label={isAr ? "المجتمع" : "Community"}
@@ -454,6 +535,40 @@ export function IraqiMedicalSidebar({ stationId, initialTab = "colleges", isAr =
                   ? "الروابط الرسمية أعلاه هي المرجع الأول. راجع أحدث النسخ المنشورة قبل تطبيق أي بروتوكول سريري."
                   : "Always check the official body's own site for the current version — guidelines are updated frequently."}
               </p>
+            </div>
+          </div>
+        )}
+
+        {tab === "apps" && (
+          <div role="tabpanel" aria-label="Medical applications and digital platforms" className="space-y-4">
+            <div className="space-y-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)] px-1">
+                {isAr ? "التطبيقات العالمية" : "Global platforms"}
+              </p>
+              <div className="space-y-2">
+                {MEDICAL_APPS.map((app) => (
+                  <AppCard key={app.id} app={app} isAr={isAr} />
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-tertiary)] px-1">
+                {isAr ? "التطبيقات العراقية الرسمية" : "Iraqi official platforms"}
+              </p>
+              <div className="rounded-2xl border border-dashed border-[var(--border-default)] bg-[var(--bg-2)] p-5 text-center">
+                <div className="w-12 h-12 rounded-2xl bg-[var(--color-medical-indigo)]/10 flex items-center justify-center mx-auto mb-3 border border-[var(--color-medical-indigo)]/20">
+                  <Smartphone className="w-5 h-5 text-[var(--color-medical-indigo)]" aria-hidden="true" />
+                </div>
+                <p className="text-[12px] font-extrabold text-[var(--text-primary)] mb-1.5">
+                  {isAr ? "التطبيقات المحلية قيد التوثيق" : "Iraqi apps pending verification"}
+                </p>
+                <p className="text-[11px] text-[var(--text-secondary)] font-medium leading-relaxed max-w-sm mx-auto">
+                  {isAr
+                    ? "لم نُوثّق بعد تطبيقات رسمية من وزارة الصحة العراقية أو من الجمعيات الطبية العراقية. سنُضيفها فور توفّر روابط رسمية موثّقة."
+                    : "We haven't yet verified an official mobile app from the Iraqi Ministry of Health or the Iraqi medical societies. Entries will be added only once a verified official URL is available."}
+                </p>
+              </div>
             </div>
           </div>
         )}

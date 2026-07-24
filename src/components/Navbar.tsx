@@ -3,7 +3,8 @@
 import {
   Activity, Menu, X, LayoutDashboard, BookOpen, Brain, Bot, FileText,
   LogOut, Home, Trophy, Pill, User, Calculator, HeartPulse,
-  Library, TrendingUp, Stethoscope
+  Library, TrendingUp, Stethoscope,
+  Scan, TestTube, GraduationCap, Repeat, FlaskConical, Award, LayoutGrid,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -58,6 +59,31 @@ const DRAWER_SECTIONS = [
       { href: "/translator",   icon: Bot,         labelAr: "المترجم الطبي",      labelEn: "Medical Translator" },
       { href: "/records",      icon: FileText,    labelAr: "المحفظة السريرية",   labelEn: "Clinical Portfolio" },
       { href: "/library",      icon: Library,     labelAr: "مكتبة المصادر",      labelEn: "Source Library" },
+      { href: "/radiology",    icon: Scan,        labelAr: "الأشعة بالذكاء الاصطناعي", labelEn: "Radiology AI" },
+      { href: "/lab-results",  icon: TestTube,    labelAr: "نتائج المختبر",       labelEn: "Lab Results" },
+    ],
+  },
+  {
+    titleAr: "قاعدة المعرفة",
+    titleEn: "Knowledge Base",
+    items: [
+      { href: "/local-resources", icon: GraduationCap, labelAr: "قاعدة المعرفة العراقية", labelEn: "Iraqi Knowledge Base" },
+    ],
+  },
+  {
+    titleAr: "أدوات التعلم",
+    titleEn: "Learning Tools",
+    items: [
+      { href: "/srs",         icon: Repeat,       labelAr: "بطاقات SRS",            labelEn: "Flashcard SRS" },
+      { href: "/reasoning",   icon: FlaskConical, labelAr: "التفكير السريري",       labelEn: "Clinical Reasoning" },
+      { href: "/saudi-exams", icon: Award,        labelAr: "الاختبارات السعودية",   labelEn: "Saudi Exams" },
+    ],
+  },
+  {
+    titleAr: "الإدارة",
+    titleEn: "Administration",
+    items: [
+      { href: "/admin", icon: LayoutGrid, labelAr: "لوحة الأدمن", labelEn: "Admin Panel" },
     ],
   },
 ];

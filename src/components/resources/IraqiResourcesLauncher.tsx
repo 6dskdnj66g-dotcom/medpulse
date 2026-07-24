@@ -53,7 +53,7 @@ export function IraqiResourcesLauncher({
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        aria-label={isAr ? "فتح مراجع الطلبة العراقيين" : "Open Iraqi medical resources"}
+        aria-label={isAr ? "فتح القاعدة الوطنية للمصادر الطبية العراقية" : "Open the National Iraqi Medical Knowledge Base"}
         className={
           triggerClassName ??
           "flex items-center gap-1.5 text-[10px] font-black text-[var(--color-medical-indigo)] hover:opacity-80 uppercase tracking-widest transition-opacity"
@@ -67,7 +67,7 @@ export function IraqiResourcesLauncher({
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={isAr ? "مراجع الطلبة العراقيين" : "Iraqi medical resources"}
+          aria-label={isAr ? "القاعدة الوطنية للمصادر الطبية العراقية" : "National Iraqi Medical Knowledge Base"}
           className="fixed inset-0 z-50"
         >
           {/* Backdrop */}
@@ -85,7 +85,7 @@ export function IraqiResourcesLauncher({
               <div className="flex items-center gap-2">
                 <BookMarked className="w-4 h-4 text-[var(--color-medical-indigo)]" aria-hidden="true" />
                 <p className="text-[12px] font-black uppercase tracking-widest text-[var(--text-primary)]">
-                  {isAr ? "المراجع الطبية العراقية" : "Iraqi Medical Resources"}
+                  {isAr ? "القاعدة الوطنية للمصادر الطبية العراقية" : "National Iraqi Medical Knowledge Base"}
                 </p>
               </div>
               <button
@@ -107,7 +107,7 @@ export function IraqiResourcesLauncher({
               <div className="flex items-center gap-2">
                 <BookMarked className="w-4 h-4 text-[var(--color-medical-indigo)]" aria-hidden="true" />
                 <p className="text-[12px] font-black uppercase tracking-widest text-[var(--text-primary)]">
-                  {isAr ? "المراجع الطبية العراقية" : "Iraqi Medical Resources"}
+                  {isAr ? "القاعدة الوطنية للمصادر الطبية العراقية" : "National Iraqi Medical Knowledge Base"}
                 </p>
               </div>
               <button
